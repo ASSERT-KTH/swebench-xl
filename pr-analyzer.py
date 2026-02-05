@@ -7,8 +7,7 @@ import requests
 import time
 import json
 import re
-from typing import List, Dict, Optional
-from datetime import datetime
+from typing import List, Dict
 
 # ============================================================================
 # CONFIGURATION
@@ -102,36 +101,43 @@ def get_merged_prs(owner: str, repo: str, max_prs: int = 500) -> List[Dict]:
     
     return prs[:max_prs]
 
-def extract_closed_issues(pr_body: str) -> List[int]:
+def get_closing_issues(owner: str, repo: str, pr_number: int) -> List[Dict]:
     """
-    Extracts issue numbers that are closed by the PR.
-    Looks for patterns like: fixes #123, closes #456, resolves #789
+    Fetches issues that are closed by a PR using GitHub's GraphQL API.
+    This is more reliable than regex parsing as GitHub determines the links.
     """
-    if not pr_body:
-        return []
-    
-    patterns = [
-        r'(?:close[sd]?|fix(?:e[sd])?|resolve[sd]?)\s+#(\d+)',
-        r'(?:close[sd]?|fix(?:e[sd])?|resolve[sd]?)\s+https?://github\.com/[^/]+/[^/]+/issues/(\d+)'
-    ]
-    
-    issue_numbers = []
-    for pattern in patterns:
-        matches = re.findall(pattern, pr_body, re.IGNORECASE)
-        issue_numbers.extend([int(match) for match in matches])
-    
-    return list(set(issue_numbers))  # Remove duplicates
+    query = """
+    query($owner: String!, $repo: String!, $pr: Int!) {
+      repository(owner: $owner, name: $repo) {
+        pullRequest(number: $pr) {
+          closingIssuesReferences(first: 10) {
+            nodes {
+              number
+              title
+              body
+            }
+          }
+        }
+      }
+    }
+    """
 
-def get_issue_details(owner: str, repo: str, issue_number: int) -> Optional[Dict]:
-    """Fetches details of a specific issue."""
-    url = f"{GITHUB_API_BASE}/repos/{owner}/{repo}/issues/{issue_number}"
-    
-    response = requests.get(url, headers=get_github_headers())
+    response = requests.post(
+        "https://api.github.com/graphql",
+        headers={"Authorization": f"bearer {GITHUB_TOKEN}"},
+        json={
+            "query": query,
+            "variables": {"owner": owner, "repo": repo, "pr": pr_number}
+        }
+    )
     time.sleep(DELAY_BETWEEN_REQUESTS)
-    
+
     if response.status_code == 200:
-        return response.json()
-    return None
+        data = response.json()
+        pr_data = data.get("data", {}).get("repository", {}).get("pullRequest")
+        if pr_data:
+            return pr_data.get("closingIssuesReferences", {}).get("nodes", [])
+    return []
 
 def get_pr_files(owner: str, repo: str, pr_number: int) -> List[Dict]:
     """Fetches the list of files changed in a PR."""
@@ -179,8 +185,8 @@ def analyze_pr_with_llm(pr_data: Dict) -> Dict:
 - Lines Deleted: {pr_data['deletions']}
 - File Paths: {', '.join(pr_data['file_paths'][:10])}
 
-**Linked Issue:**
-{pr_data['issue_description'][:1000] if pr_data['issue_description'] else 'No linked issue'}
+**Linked Issues:**
+{chr(10).join(f"#{issue['number']}: {issue['title']}{chr(10)}{(issue.get('body') or '')[:500]}" for issue in pr_data.get('issues', []))}
 
 **Commit Messages:**
 {chr(10).join(pr_data['commit_messages'][:5])}
@@ -271,40 +277,27 @@ def process_repository(owner: str, repo: str) -> List[Dict]:
     
     for i, pr in enumerate(prs, 1):
         print(f"\n[{owner}/{repo}] Processing PR #{pr['number']} ({i}/{len(prs)})")
-        
-        # Extract closed issues from PR body
-        closed_issues = extract_closed_issues(pr.get('body', ''))
-        
-        if not closed_issues:
+
+        # Get closing issues via GraphQL
+        closing_issues = get_closing_issues(owner, repo, pr['number'])
+
+        if not closing_issues:
             print(f"  Skipping - no linked issues found")
             continue
-        
-        print(f"  Closes issues: {closed_issues}")
-        
-        # Get issue details
-        issue_data = None
-        for issue_num in closed_issues:
-            issue_data = get_issue_details(owner, repo, issue_num)
-            if issue_data:
-                break  # Use first valid issue
-        
-        if not issue_data:
-            print(f"  Skipping - couldn't fetch issue details")
-            continue
-        
+
+        print(f"  Closes issues: {[issue['number'] for issue in closing_issues]}")
+
         # Get PR files and commits
         files = get_pr_files(owner, repo, pr['number'])
         commits = get_pr_commits(owner, repo, pr['number'])
-        
+
         # Prepare data for LLM analysis
         pr_data = {
             'repo': f"{owner}/{repo}",
             'pr_number': pr['number'],
             'title': pr['title'],
             'description': pr.get('body', ''),
-            'issue_number': closed_issues[0] if closed_issues else None,
-            'issue_title': issue_data.get('title', ''),
-            'issue_description': issue_data.get('body', ''),
+            'issues': closing_issues,
             'files_changed': len(files),
             'additions': pr.get('additions', 0),
             'deletions': pr.get('deletions', 0),
