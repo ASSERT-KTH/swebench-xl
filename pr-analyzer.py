@@ -5,7 +5,6 @@ Analyzes merged PRs that close issues to identify tasks requiring deep codebase 
 
 import requests
 import time
-import csv
 import json
 import re
 from typing import List, Dict, Optional
@@ -34,7 +33,7 @@ REQUESTS_PER_HOUR = 4500  # Adjust based on your GitHub token tier
 DELAY_BETWEEN_REQUESTS = 0.8  # seconds
 
 # Output
-OUTPUT_CSV = "pr_analysis_results.csv"
+OUTPUT_JSON = "pr_analysis_results.json"
 
 # LLM Model (adjust to your preferred model on OpenRouter)
 LLM_MODEL = "anthropic/claude-3.5-sonnet"  # or "openai/gpt-4-turbo", etc.
@@ -339,40 +338,15 @@ def process_repository(owner: str, repo: str) -> List[Dict]:
     
     return results
 
-def save_results_to_csv(all_results: List[Dict], filename: str):
-    """Saves results to CSV file."""
+def save_results_to_json(all_results: List[Dict], filename: str):
+    """Saves results to JSON file."""
     if not all_results:
         print("No results to save!")
         return
-    
-    fieldnames = [
-        'repo',
-        'pr_number',
-        'pr_url',
-        'title',
-        'issue_number',
-        'issue_title',
-        'files_changed',
-        'additions',
-        'deletions',
-        'commits_count',
-        'merged_at',
-        'task_type',
-        'understanding_level',
-        'complexity_score',
-        'requires_domain_knowledge',
-        'reasoning',
-        'description',
-        'issue_description',
-        'file_paths',
-        'commit_messages'
-    ]
-    
-    with open(filename, 'w', newline='', encoding='utf-8') as csvfile:
-        writer = csv.DictWriter(csvfile, fieldnames=fieldnames, extrasaction='ignore')
-        writer.writeheader()
-        writer.writerows(all_results)
-    
+
+    with open(filename, 'w', encoding='utf-8') as jsonfile:
+        json.dump(all_results, jsonfile, indent=2, ensure_ascii=False)
+
     print(f"\n✓ Results saved to {filename}")
 
 def main():
@@ -396,7 +370,7 @@ def main():
             continue
     
     # Save results
-    save_results_to_csv(all_results, OUTPUT_CSV)
+    save_results_to_json(all_results, OUTPUT_JSON)
     
     # Print summary statistics
     print("\n" + "=" * 80)
