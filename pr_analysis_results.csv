@@ -1,0 +1,582 @@
+repo,pr_number,pr_url,title,issue_number,issue_title,files_changed,additions,deletions,commits_count,merged_at,task_type,understanding_level,complexity_score,requires_domain_knowledge,reasoning,description,issue_description,file_paths,commit_messages
+arangodb/arangodb,22176,https://github.com/arangodb/arangodb/pull/22176,[COR-50] Introduce thread-local leasers for builders and strings,22158,"ArangoDB 3.12.5 When Running Specific Query AQL-Builder Error is returned, crashing eventually",9,0,0,24,2025-12-16T11:55:10Z,unknown,unknown,0,False,Analysis failed,"### Scope & Purpose
+
+Introduces thread-local leasers for velocypack::Builder and std::string.
+
+This also addresses a problem with `async-prefetch` where builders and strings were leased through the transaction context, which is not meant to be acceessed concurrently.
+
+- [x] :hankey: Bugfix
+- [ ] :pizza: New feature
+- [ ] :fire: Performance improvement
+- [ ] :hammer: Refactoring/simplification
+
+Fixes #22158 and other issues with `async-prefetch`
+
+
+<!-- CURSOR_SUMMARY -->
+---
+
+> [!NOTE]
+> Introduce thread-local leasers for Builder and std::string and refactor transaction leasers to use them, fixing async-prefetch concurrency issues and adding targeted tests.
+> 
+> - **Basics**:
+>   - **New `ThreadLocalLeaser`**: Add `Basics/ThreadLocalLeaser.h` with thread-local pooling for reusable objects; typedefs `ThreadLocalBuilderLeaser` and `ThreadLocalStringLeaser`.
+>   - **Tests**: Add `ThreadLocalLeaserTest.cpp` covering leasing, stash behavior, moves, and cross-thread handoff.
+> - **Transaction**:
+>   - **Refactor leasers**: `transaction::StringLeaser` and `transaction::BuilderLeaser` now use `ThreadLocal*Leaser` (`release/acquire/get`); remove context-based leasing/destructors/clear/steal.
+>   - **Integrations**: Update usages in `Helpers.cpp/.h`, `Methods.cpp` (drop explicit `_replicationData.clear()`), and helpers to new APIs.
+> - **Mocks/Tests**:
+>   - Update `tests/Mocks/PhysicalCollectionMock.cpp` to use `builder.release()`.
+>   - Add JS regression test `aql-async-prefetch-leaser-reuse.js` to stress async-prefetch concurrency.
+> - **Changelog**:
+>   - Note fix for concurrent reuse of builders/strings with async-prefetch.
+> 
+> <sup>Written by [Cursor Bugbot](https://cursor.com/dashboard?tab=bugbot) for commit c0d55909056c3015ee7e73c26a96a1cd20d2c56f. This will update automatically on new commits. Configure [here](https://cursor.com/dashboard?tab=bugbot).</sup>
+<!-- /CURSOR_SUMMARY -->","**Summary**
+ArangoDB crashes after running a specific query several times
+The query also fails to return results as expected.
+
+**Environment:**
+ArangoDB Version: 3.12.5
+Storage Engine: RocksDB
+
+**Database Structure**
+
+The database contains the following collections and entities:
+- Document Collection a
+  Documents with keys: 1 to 4000
+
+- Document Collection c
+Documents with keys: 1 to 4000
+
+- Edge Collection b
+For each i in 1 to 4000, edge i connects:
+from: a/{i}
+to: c/{i}
+
+**Steps to reproduce:**
+run the query:
+```
+for node in @@col
+  let x = (
+    for n,e,p in 1..1 ANY node._id @@edge_col
+      filter !is_null(e) && !is_null(e._from) && !is_null(e._to)
+      filter PARSE_IDENTIFIER(e._from).collection in @_collections
+      return n._id
+    )
+  
+  
+  filter length(x) > 0
+  for n, ee, ppp in 1..1 ANY node._id @@edge_col
+    filter PARSE_IDENTIFIER(ee._from).collection in @_collections && PARSE_IDENTIFIER(ee._to).collection in @_collections
+    return ee
+```
+with the bind vars:
+```
+{
+  ""@col"": ""a"",
+  ""@edge_col"": ""b"",
+  ""_collections"": [
+    ""a"",
+    ""b"",
+    ""c""
+  ]
+}
+```
+
+Query Result:
+```Query error: AQL: Builder value not yet sealed [node #5: TraversalNode] (exception location: arangod/Aql/ExecutionBlockImpl.tpp:638). Please report this error to arangodb.com [node #6: CalculationNode] (exception location: arangod/Aql/ExecutionBlockImpl.tpp:620). Please report this error to arangodb.com [node #7: FilterNode] (exception location: arangod/Aql/ExecutionBlockImpl.tpp:620). Please report this error to arangodb.com [node #23: SubqueryEndNode] (exception location: arangod/Aql/ExecutionBlockImpl.tpp:620). Please report this error to arangodb.com [node #13: CalculationNode] (exception location: arangod/Aql/ExecutionBlockImpl.tpp:2690). Please report this error to arangodb.com [node #13: CalculationNode] (exception location: arangod/Aql/ExecutionBlockImpl.tpp:620). Please report this error to arangodb.com [node #14: FilterNode] (exception location: arangod/Aql/ExecutionBlockImpl.tpp:2690). Please report this error to arangodb.com [node #14: FilterNode] (exception location: arangod/Aql/ExecutionBlockImpl.tpp:620). Please report this error to arangodb.com [node #16: TraversalNode] (exception location: arangod/Aql/ExecutionBlockImpl.tpp:2690). Please report this error to arangodb.com [node #16: TraversalNode] (exception location: arangod/Aql/ExecutionBlockImpl.tpp:620). Please report this error to arangodb.com [node #17: CalculationNode] (exception location: arangod/Aql/ExecutionBlockImpl.tpp:620). Please report this error to arangodb.com [node #18: FilterNode] (exception location: arangod/Aql/ExecutionBlockImpl.tpp:620). Please report this error to arangodb.com [node #19: ReturnNode] (exception location: arangod/Aql/ExecutionBlockImpl.tpp:620). Please report this error to arangodb.com (while executing) (exception location: arangod/RestHandler/RestCursorHandler.cpp:306). Please report this error to arangodb.com```",CHANGELOG; arangod/Transaction/Helpers.cpp; arangod/Transaction/Helpers.h; arangod/Transaction/Methods.cpp; lib/Basics/ThreadLocalLeaser.h; tests/Basics/CMakeLists.txt; tests/Basics/ThreadLocalLeaserTest.cpp; tests/Mocks/PhysicalCollectionMock.cpp; tests/js/client/aql/aql-async-prefetch-leaser-reuse.js,"Introduce thread-local leasers for builders; Template ThreadLocalLeaser, use ThreadLocalStringLeaser; Fix arangodbtests; Add a test; Add a changelog entry.; Fix test; Bumpf; More eslint; Correct collection name; Unittest ThreadLocalLeasers"
+nodejs/node,61573,https://github.com/nodejs/node/pull/61573,test_runner: fix test enqueue when test file has syntax error,61565,"For test file with syntax error, no ""file"" field for `test:enqueue` event with `isolation: ""none""`",3,0,0,5,2026-02-02T16:57:37Z,unknown,unknown,0,False,Analysis failed,"Fixes #61565
+
+Add location to the test placeholder
+","### Version
+
+v24.13.0
+
+### Platform
+
+```text
+Linux ichor 6.14.0-37-generic #37~24.04.1-Ubuntu SMP PREEMPT_DYNAMIC Thu Nov 20 10:25:38 UTC 2 x86_64 x86_64 x86_64 GNU/Linux
+```
+
+### Subsystem
+
+test
+
+### What steps will reproduce the bug?
+
+Minimal reproduction repo: https://github.com/hamptonsmith/isolation-test-enqueue-file-field-mre
+
+Create a test file with a syntax error:
+
+```
+import { test } from 'node:test';
+
+test('a test!', () => {
+    if true {
+        // syntax error
+    }
+});
+```
+
+Run tests like:
+
+```
+run({
+    files: ['./test-file.mjs'],
+    isolation: 'none'
+})
+```
+
+### How often does it reproduce? Is there a required condition?
+
+Consistently reproducible. See minimal reproduction repo: https://github.com/hamptonsmith/isolation-test-enqueue-file-field-mre
+
+### What is the expected behavior? Why is that the expected behavior?
+
+According to [the docs](https://nodejs.org/api/test.html#event-testenqueue), the `test:enqueue` event should have a field `file` that contains the test filename. `undefined` is permitted only if ""test was run through the REPL"", which it was not.
+
+### What do you see instead?
+
+`test:enqueue` event has no `file` field
+
+### Additional information
+
+Found this when the downstream [node-test-reporter](https://github.com/integreat-io/node-test-reporter/blob/main/lib/index.js#L66) library failed to produce useful error output for a syntax error in a test file.",lib/internal/test_runner/runner.js; test/fixtures/test-runner/syntax-error-test.mjs; test/parallel/test-runner-enqueue-file-syntax-error.js,test_runner: fix test enqueue when test file has syntax error; fix linter issues; fix test; apply review suggestions; test: improve test
+nodejs/node,60405,https://github.com/nodejs/node/pull/60405,doc: align Buffer.concat documentation with behavior,60400,Buffer.concat documentation is wrong,2,0,0,1,2026-02-02T11:09:21Z,unknown,unknown,0,False,Analysis failed,"Fixes https://github.com/nodejs/node/issues/60400
+
+* Fixes docs
+* Adds more coverage","https://github.com/nodejs/node/blob/2bda7cbfb62778bd793fbceaa9a5a907c3d344be/doc/api/buffer.md?plain=1#L1042
+
+This is not what happens. Instead, non-integers throw:
+```
+> Buffer.concat([Buffer.of()],2.6)
+Uncaught:
+RangeError [ERR_OUT_OF_RANGE]: The value of ""length"" is out of range. It must be an integer. Received 2.6
+    at validateOffset (node:buffer:123:3)
+    at Buffer.concat (node:buffer:590:5) {
+  code: 'ERR_OUT_OF_RANGE'
+}
+> Buffer.concat([Buffer.of()],'10')
+Uncaught:
+TypeError [ERR_INVALID_ARG_TYPE]: The ""length"" argument must be of type number. Received type string ('10')
+    at validateOffset (node:buffer:123:3)
+    at Buffer.concat (node:buffer:590:5) {
+  code: 'ERR_INVALID_ARG_TYPE'
+}
+```
+
+---
+
+Less significant, but also confusing (ref: https://github.com/nodejs/node/pull/55562)
+
+https://github.com/nodejs/node/blob/2bda7cbfb62778bd793fbceaa9a5a907c3d344be/doc/api/buffer.md?plain=1#L1044-L1045
+
+This is not always true, as this happens on empty lists:
+
+https://github.com/nodejs/node/blob/2bda7cbfb62778bd793fbceaa9a5a907c3d344be/doc/api/buffer.md?plain=1#L1036-L1037
+
+```
+> Buffer.concat([],100)
+<Buffer >
+```",doc/api/buffer.md; test/parallel/test-buffer-concat.js,doc: align Buffer.concat documentation with behavior
+nodejs/node,61596,https://github.com/nodejs/node/pull/61596,doc: fix node-config-schema,61595,node-config-schema.json has mistakes,2,0,0,2,2026-02-01T21:50:55Z,unknown,unknown,0,False,Analysis failed,"Fixes #61595
+
+1. `minItems` was used incorrectly
+2. added `""required"": [],` to explicitly document that there are no required properties (which allows running in `requireValidation` mode which also ensures that no props are non-typed)
+
+It now passes in:
+1. `require('@exodus/schemasafe').validator(require('../../doc/node-config-schema.json')`
+3. `require('@exodus/schemasafe').validator(require('../../doc/node-config-schema.json', { requireValidation: true })`
+
+Strings are still not validated","With a schema validator which also validates the schema itself when compiling for all rules to be in non-conflict:
+`require('@exodus/schemasafe').validator(require('../../doc/node-config-schema.json'))`
+
+Same but also enforcing that every property is validated:
+`require('@exodus/schemasafe').validator(require('../../doc/node-config-schema.json'), { mode: 'strong' })`
+
+Even the first one fails
+
+Example:
+https://github.com/nodejs/node/blob/e67848a8ae92d3846e1e417fb55342b7ad837af8/doc/node-config-schema.json#L26-L30
+
+`minItems` is not a property of `type: 'string'` schema, it should have been on `type: 'array'` level
+It crashes strict validators and is silently ignored in loose validators otherwise.
+
+There seems to be many instances of that
+
+also perhaps add a validator to lint that",doc/node-config-schema.json; lib/internal/options.js,doc: fix node-config-schema; doc: fix schema generator
+nodejs/node,60462,https://github.com/nodejs/node/pull/60462,sqlite: fix segfault SQLTagStore when db handle is garbage collected,60448,sqlite: segmentation fault using `SQLTagStore` if there's no reference to the underlying database,3,0,0,3,2026-01-31T06:35:30Z,unknown,unknown,0,False,Analysis failed,"Fixes https://github.com/nodejs/node/issues/60448 by changing from a `BaseObjectWeakPtr` to a `BaseObjectPtr`.
+
+A SQLTagStore should keep the database alive.","### Version
+
+v24.10.0
+
+### Platform
+
+```text
+Linux localhost 6.17.4-200.fc42.x86_64 #1 SMP PREEMPT_DYNAMIC Sun Oct 19 18:47:49 UTC 2025 x86_64 GNU/Linux
+```
+
+### Subsystem
+
+sqlite
+
+### What steps will reproduce the bug?
+
+```js
+import { DatabaseSync } from ""node:sqlite"";
+
+// Creating a SQLTagStore without holding a reference to the DatabaseSync:
+const sql = new DatabaseSync("":memory:"").createTagStore();
+
+// Substituting line 3 with these two fixes the segfault:
+// const db = new DatabaseSync("":memory:"");
+// const sql = db.createTagStore();
+
+sql.db.exec(""CREATE TABLE TEST (DATA NUMBER)"");
+
+// Simulating meaningful work/likely triggering garbage collection...
+for (const x of new Array(100_000).fill(0)) {
+  x + x;
+}
+
+console.log(""About to run insert..."");
+sql.run`INSERT INTO TEST (DATA) VALUES (1)`;
+
+// Code will segfault and never run the following log
+console.log(""didn't segfault!"");
+```
+
+### How often does it reproduce? Is there a required condition?
+
+Running the snippet will always, unconditionally, cause a `SIGSEGV` on my machine.
+
+### What is the expected behavior? Why is that the expected behavior?
+
+Ideally, the program inserts the data and doesn't crash, outputting:
+```
+About to run insert...
+didn't segfault!
+```
+
+If the `new DatabaseSync().createTagStore()` usecase is unsupported, then I'd expect a user-friendly error letting me know that it's my responsibility to keep the `DatabaseSync` in scope, or some other way of preventing this unsupported pattern.
+
+### What do you see instead?
+
+`fish: Job 1, 'node index.js' terminated by signal SIGSEGV (Address boundary error)`
+
+### Additional information
+
+The reason I tried keeping only a `SQLTagStore` is because the tag store [has a db field](https://nodejs.org/docs/latest-v24.x/api/sqlite.html#sqltagstoredb) - I liked the idea of only holding a tag store and using `sql.db` when needed, instead of holding both a `DatabaseSync` and a `SQLTagStore`.
+
+Thank you for all your hard work!",src/node_sqlite.cc; src/node_sqlite.h; test/parallel/test-sqlite-template-tag.js,sqlite: change approach to fix segfault SQLTagStore; sqlite: add eslint ignore for no-void; sqlite: remove redundant parameter
+nodejs/node,61535,https://github.com/nodejs/node/pull/61535,doc: regenerate `node.1` using `doc-kit`,61508,doc: add missing CLI options to node.1 manpage,3,0,0,2,2026-01-29T18:25:45Z,unknown,unknown,0,False,Analysis failed,"This file has been generated using `@nodejs/doc-kit`. Once #57343 lands, we will move the generation of this file into an Makefile script, but in the mean time, I've seen _several_ issues opened to update this file, so might as well update it.
+
+You can preview the output of this man-page with `curl ""https://raw.githubusercontent.com/nodejs/node/81c1d6f411f750205ba59915983d7d3047eb5f0d/doc/node.1"" -s | mandoc` (or locally, `mandoc path/to/doc/node.1`) (**Note**, I suggest using `mandoc -l` to page the output)
+
+Additionally, a [PDF version](https://github.com/user-attachments/files/24865754/node.1.pdf) of the output.
+
+Fixes #60877
+Fixes #58895
+Fixes #60840
+Fixes #60857
+Fixes #61148
+Fixes #61508
+","Resolves #58895
+
+This PR adds the missing CLI options to the node.1 manpage that are documented in the CLI documentation.
+
+Added 34 missing options:
+- build-snapshot
+- build-snapshot-config
+- disable-sigusr1
+- disable-warning
+- dns-result-order
+- enable-network-family-autoselection
+- env-file
+- env-file-if-exists
+- experimental-network-inspection
+- experimental-print-required-tla
+- experimental-require-module
+- experimental-sea-config
+- experimental-worker-inspection
+- force-node-api-uncaught-exceptions-policy
+- import
+- network-family-autoselection-attempt-timeout
+- no-async-context-frame
+- no-experimental-detect-module
+- no-experimental-global-navigator
+- no-experimental-require-module
+- no-network-family-autoselection
+- openssl-legacy-provider
+- openssl-shared-config
+- report-dir
+- report-directory
+- report-exclude-env
+- report-exclude-network
+- run
+- snapshot-blob
+- trace-env
+- trace-env-js-stack
+- trace-env-native-stack
+- trace-require-module
+- use-system-ca
+- watch-preserve-output",doc/api/cli.md; doc/node.1; test/parallel/test-cli-node-cli-manpage-options.mjs,doc: regenerate `node.1` using `doc-kit`; fixup!
+nodejs/node,61409,https://github.com/nodejs/node/pull/61409,lib: unify ICU and no-ICU TextDecoder,61411,TextDecoder defaults to stream: true instead of false with null options,2,0,0,2,2026-01-27T14:34:22Z,unknown,unknown,0,False,Analysis failed,"Better reviewed with whitespace ignored
+
+1. Fix #61411 
+2. Add support for fatal UTF-8 decoder in no-ICU version unless streaming is used
+3. add utf-8 fast path to no-ICU version
+4. reduce duplication of TextDecoder source
+5. normalize how `this[kHandle]` was not set in no-ICU version
+6. The refactor changes the encoding reported in the no-ICU version when encoding is recognized but unsupported: now the actual resolved encoding name is reported as unsupported when previously the original input string was reported.
+I don't think this is major, and reporting the actual encoding name is better in that case.
+
+This will allow further fixes and common fast path for UTF-16 / fixed impl for UTF-16 as string_decoder doesn't implement UTF-16 per spec.
+
+UTF-16 is still broken in no-ICU version here, this PR does not address that.
+Tracking: #61041 
+
+","```js
+> new TextDecoder('utf-16le').decode(Uint8Array.of(0x80), null)
+''
+```
+
+For any multi-byte encoding except utf-8 fast path
+
+Should be:
+```js
+> new TextDecoder('utf-16le').decode(Uint8Array.of(0x80), null)
+'�'
+```
+
+This code here is wrong:
+https://github.com/nodejs/node/blob/8365edcbd0d98fdd79993a61302e35d299c3d557/lib/internal/encoding.js#L475-L477
+
+When options is `null` (instead of default empty object), `flags` is `0`, but should be `CONVERTER_FLAGS_FLUSH`
+
+Overall, the flags-based logic is too complex and convoluted
+
+Will be fixed in #61409 ",lib/internal/encoding.js; test/parallel/test-whatwg-encoding-custom-textdecoder.js,lib: unify ICU and no-ICU TextDecoder; test: fix test expectations
+nodejs/node,61064,https://github.com/nodejs/node/pull/61064,doc: added `requestOCSP` option to `tls.connect`,61042,doc: `tls.connect` supports `requestOCSP` option but it is undocumented,1,0,0,1,2026-01-27T11:23:35Z,unknown,unknown,0,False,Analysis failed,"Fixes #61042
+
+<!--
+Before submitting a pull request, please read:
+
+- the CONTRIBUTING guide at https://github.com/nodejs/node/blob/HEAD/CONTRIBUTING.md
+- the commit message formatting guidelines at
+  https://github.com/nodejs/node/blob/HEAD/doc/contributing/pull-requests.md#commit-message-guidelines
+
+For code changes:
+1. Include tests for any bug fixes or new features.
+2. Update documentation if relevant.
+3. Ensure that `make -j4 test` (UNIX), or `vcbuild test` (Windows) passes.
+
+If you believe this PR should be highlighted in the Node.js CHANGELOG
+please add the `notable-change` label.
+
+Developer's Certificate of Origin 1.1
+
+By making a contribution to this project, I certify that:
+
+(a) The contribution was created in whole or in part by me and I
+    have the right to submit it under the open source license
+    indicated in the file; or
+
+(b) The contribution is based upon previous work that, to the best
+    of my knowledge, is covered under an appropriate open source
+    license and I have the right under that license to submit that
+    work with modifications, whether created in whole or in part
+    by me, under the same open source license (unless I am
+    permitted to submit under a different license), as indicated
+    in the file; or
+
+(c) The contribution was provided directly to me by some other
+    person who certified (a), (b) or (c) and I have not modified
+    it.
+
+(d) I understand and agree that this project and the contribution
+    are public and that a record of the contribution (including all
+    personal information I submit with it, including my sign-off) is
+    maintained indefinitely and may be redistributed consistent with
+    this project or the open source license(s) involved.
+-->
+","### What is the problem?
+
+According to the documentation, the `requestOCSP` option is supported by the
+`new tls.TLSSocket()` constructor, but **`tls.connect()` does not list
+`requestOCSP` as a supported option**.
+
+However, in practice, `tls.connect()` *does* accept and honor the
+`requestOCSP` option.
+
+This creates a documentation inconsistency: users relying on `tls.connect()`
+cannot discover that OCSP stapling can be requested, even though it works.
+
+### What is expected?
+
+Document that `tls.connect()` supports the `requestOCSP` option, and describe its effect, in the same way it is documented for `new tls.TLSSocket()`.
+
+### Affected docs
+
+https://nodejs.org/api/tls.html#tlsconnectoptions-callback
+
+---
+
+### Observed behavior
+
+When passing `{ requestOCSP: true }` to `tls.connect()`, it causes the client to request
+OCSP stapling during the TLS handshake:
+
+- The server emits an `OCSPRequest` event
+- The client receives an `OCSPResponse` event
+
+When `requestOCSP` is `false`, no OCSP request is made and no response
+is received.
+
+The behavior is reproducible and matches the documented behavior of `new tls.TLSSocket()`.
+
+<details>
+<summary>Test code</summary>
+
+```sh
+# generate server.key
+openssl genrsa -out server.key 2048
+# generate server.crt
+openssl req -x509 -new -nodes \
+  -key server.key \
+  -sha256 \
+  -days 1 \
+  -out server.crt \
+  -subj ""/CN=ocsp.example.test"" \
+  -addext ""subjectAltName=DNS:ocsp.example.test""
+```
+
+After that, execute the following typescript in the same directory:
+```ts
+import * as assert from ""node:assert"";
+import * as fs from ""node:fs"";
+import { describe, it } from ""node:test"";
+import * as tls from ""node:tls"";
+
+const certPem = fs.readFileSync(""server.crt"");
+const keyPem = fs.readFileSync(""server.key"");
+
+const domain = ""ocsp.example.test"";
+
+declare module ""node:tls"" {
+    interface ConnectionOptions {
+        requestOCSP?: boolean;
+    }
+}
+
+async function withTlsServer(
+    onListening: (server: tls.Server, port: number) => Promise<void>,
+    options?: tls.TlsOptions,
+) {
+    await using server = tls.createServer({
+        cert: certPem,
+        key: keyPem,
+        minVersion: ""TLSv1.2"",
+        maxVersion: ""TLSv1.2"",
+        ...options,
+    });
+
+    await new Promise<void>((resolve, reject) => {
+        server.once(""error"", reject);
+        server.listen(0, ""127.0.0.1"", resolve);
+    });
+
+    const address = server.address();
+    assert.ok(address && typeof address === ""object"", ""server did not start"");
+
+    server.on(""secureConnection"", (socket) => {
+        socket.on(""OCSPResponse"", () => {
+            throw new Error(""Server socket should not receive OCSPResponse events"");
+        });
+    });
+
+    await onListening(server, address.port);
+}
+
+function connectWithRequestOCSP(port: number, requestOCSP: boolean) {
+    return new Promise<(Buffer | null)[]>((resolve, reject) => {
+        const tlsSocket = tls.connect(
+            {
+                port,
+                host: ""127.0.0.1"",
+                servername: domain,
+                minVersion: ""TLSv1.2"",
+                maxVersion: ""TLSv1.2"",
+                rejectUnauthorized: false,
+                requestOCSP,
+            },
+            () => {
+                tlsSocket.end();
+            },
+        );
+
+        const ocspResponses: Array<Buffer | null> = [];
+        tlsSocket.on(""OCSPResponse"", response => ocspResponses.push(response));
+        tlsSocket.once(""error"", reject);
+        tlsSocket.setTimeout(3_000, () => tlsSocket.destroy(new Error(""TLS handshake timeout"")));
+        tlsSocket.once(""close"", () => resolve(ocspResponses));
+    });
+}
+
+function randomBytes(length: number): Buffer<ArrayBuffer> {
+    const buffer = Buffer.alloc(length);
+    crypto.getRandomValues(buffer);
+    return buffer;
+}
+function createOcspRequestCounter(server: tls.Server, randomBuffer: Buffer) {
+    let count = 0;
+    server.on(""OCSPRequest"", (_certificate, _issuer, callback) => {
+        count += 1;
+        callback(null, randomBuffer);
+    });
+    return () => count;
+}
+
+describe(""tls OCSP behavior"", () => {
+    describe(""connect"", () => {
+        it(""requests OCSP stapling when requestOCSP is true"", async () =>
+            await withTlsServer(async (server, port) => {
+                const randomBuffer = randomBytes(16);
+                const ocspRequestCounter = createOcspRequestCounter(server, randomBuffer);
+                const ocspResponses = await connectWithRequestOCSP(port, true);
+                assert.strictEqual(ocspRequestCounter(), 1);
+                assert.deepEqual(ocspResponses, [randomBuffer]);
+            }));
+
+        it(""does not request OCSP stapling when requestOCSP is false"", async () =>
+            await withTlsServer(async (server, port) => {
+                const randomBuffer = randomBytes(16);
+                const ocspRequestCounter = createOcspRequestCounter(server, randomBuffer);
+                const ocspResponses = await connectWithRequestOCSP(port, false);
+                assert.strictEqual(ocspRequestCounter(), 0);
+                assert.deepEqual(ocspResponses, []);
+            }));
+    });
+    describe(""createServer"", () => {
+        it(""requestOCSP option has no effect"", async () => {
+            for (const requestOCSP of [true, false]) {
+                await withTlsServer(
+                    async (server, port) => {
+                        const randomBuffer = randomBytes(16);
+                        const ocspRequestCounter = createOcspRequestCounter(server, randomBuffer);
+                        const ocspResponses = await connectWithRequestOCSP(port, true);
+                        assert.strictEqual(ocspRequestCounter(), 1);
+                        assert.deepEqual(ocspResponses, [randomBuffer]);
+                    },
+                    // @ts-expect-error Testing undocumented option
+                    { requestOCSP },
+                );
+            }
+        });
+    });
+});
+```
+</details>
+",doc/api/tls.md,doc: added `requestOCSP` option to `tls.connect`
