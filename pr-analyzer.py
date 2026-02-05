@@ -3,18 +3,22 @@ GitHub PR Analyzer for Coding Agent Benchmark
 Analyzes merged PRs that close issues to identify tasks requiring deep codebase understanding.
 """
 
+import os
 import requests
 import time
 import json
 import re
 from typing import List, Dict
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # ============================================================================
 # CONFIGURATION
 # ============================================================================
 
-GITHUB_TOKEN = "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"  # Get from https://github.com/settings/tokens
-OPENROUTER_API_KEY = "your_openrouter_api_key_here"
+GITHUB_TOKEN = os.environ["GITHUB_TOKEN"]
+OPENROUTER_API_KEY = os.environ["OPENROUTER_API_KEY"]
 
 # Repositories to analyze
 REPOSITORIES = [
