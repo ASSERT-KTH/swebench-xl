@@ -225,6 +225,11 @@ def get_closing_issues(owner: str, repo: str, pr_number: int) -> List[Dict]:
               number
               title
               body
+              labels(first: 20) {
+                nodes {
+                  name
+                }
+              }
             }
           }
         }
@@ -238,22 +243,17 @@ def get_closing_issues(owner: str, repo: str, pr_number: int) -> List[Dict]:
         data = response.json()
         pr_data = data.get("data", {}).get("repository", {}).get("pullRequest")
         if pr_data:
-            return pr_data.get("closingIssuesReferences", {}).get("nodes", [])
+            issues = pr_data.get("closingIssuesReferences", {}).get("nodes", [])
+            # Flatten labels from GraphQL format
+            for issue in issues:
+                labels_data = issue.pop('labels', {})
+                issue['labels'] = [l['name'] for l in labels_data.get('nodes', [])]
+            return issues
     return []
 
 def get_pr_files(owner: str, repo: str, pr_number: int) -> List[Dict]:
     """Fetches the list of files changed in a PR."""
     url = f"{GITHUB_API_BASE}/repos/{owner}/{repo}/pulls/{pr_number}/files"
-
-    response = github_request('GET', url)
-
-    if response.status_code == 200:
-        return response.json()
-    return []
-
-def get_pr_commits(owner: str, repo: str, pr_number: int) -> List[Dict]:
-    """Fetches commits in a PR."""
-    url = f"{GITHUB_API_BASE}/repos/{owner}/{repo}/pulls/{pr_number}/commits"
 
     response = github_request('GET', url)
 
@@ -321,9 +321,8 @@ def fetch_repository_data(owner: str, repo: str, all_results: List[Dict], fetche
 
         print(f"  Closes issues: {[issue['number'] for issue in closing_issues]}")
 
-        # Get PR files and commits
+        # Get PR files
         files = get_pr_files(owner, repo, pr_number)
-        commits = get_pr_commits(owner, repo, pr_number)
 
         # Calculate additions/deletions from files
         additions = sum(f.get('additions', 0) for f in files)
@@ -332,19 +331,42 @@ def fetch_repository_data(owner: str, repo: str, all_results: List[Dict], fetche
         # Get merged_at from pull_request object in search results
         merged_at = pr.get('pull_request', {}).get('merged_at')
 
+        # Extract patches from files
+        patches = [
+            {
+                'filename': f['filename'],
+                'status': f.get('status', ''),  # added, removed, modified, renamed
+                'additions': f.get('additions', 0),
+                'deletions': f.get('deletions', 0),
+                'patch': f.get('patch', '')  # The actual diff
+            }
+            for f in files
+        ]
+
+        # Extract labels from PR
+        pr_labels = [label['name'] for label in pr.get('labels', [])]
+
+        # Extract labels from issues
+        issue_labels = []
+        for issue in closing_issues:
+            issue_labels.extend([label['name'] for label in issue.get('labels', [])])
+        issue_labels = list(set(issue_labels))  # Remove duplicates
+
         # Store raw data
         pr_data = {
             'repo': repo_name,
             'pr_number': pr_number,
             'title': pr['title'],
             'description': pr.get('body', ''),
+            'pr_labels': pr_labels,
             'issues': closing_issues,
+            'issue_labels': issue_labels,
             'files_changed': len(files),
             'additions': additions,
             'deletions': deletions,
-            'commits_count': len(commits),
             'file_paths': [f['filename'] for f in files],
-            'commit_messages': [c['commit']['message'].split('\n')[0] for c in commits],
+            'patches': patches,
+            'created_at': pr.get('created_at'),
             'merged_at': merged_at,
             'pr_url': pr['html_url']
         }
