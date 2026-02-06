@@ -212,54 +212,99 @@ def search_merged_prs_with_issues(owner: str, repo: str) -> List[Dict]:
     print(f"  Total: {len(all_prs)} merged PRs with linked issues")
     return all_prs
 
-def get_closing_issues(owner: str, repo: str, pr_number: int) -> List[Dict]:
+def get_pr_details_batch(owner: str, repo: str, pr_numbers: List[int]) -> Dict[int, Dict]:
     """
-    Fetches issues that are closed by a PR using GitHub's GraphQL API.
+    Fetches PR details and closing issues for multiple PRs in one GraphQL query.
+    Returns a dict mapping pr_number -> pr_data
     """
-    query = """
-    query($owner: String!, $repo: String!, $pr: Int!) {
-      repository(owner: $owner, name: $repo) {
-        pullRequest(number: $pr) {
-          closingIssuesReferences(first: 10) {
-            nodes {
+    if not pr_numbers:
+        return {}
+
+    # Build dynamic query for multiple PRs
+    pr_queries = []
+    for i, pr_num in enumerate(pr_numbers):
+        pr_queries.append(f"""
+        pr{i}: pullRequest(number: {pr_num}) {{
+          number
+          title
+          body
+          createdAt
+          mergedAt
+          url
+          labels(first: 20) {{
+            nodes {{ name }}
+          }}
+          closingIssuesReferences(first: 10) {{
+            nodes {{
               number
               title
               body
-              labels(first: 20) {
-                nodes {
-                  name
-                }
-              }
-            }
-          }
-        }
-      }
-    }
+              labels(first: 20) {{
+                nodes {{ name }}
+              }}
+            }}
+          }}
+        }}""")
+
+    query = f"""
+    query($owner: String!, $repo: String!) {{
+      repository(owner: $owner, name: $repo) {{
+        {"".join(pr_queries)}
+      }}
+    }}
     """
 
-    response = github_graphql(query, {"owner": owner, "repo": repo, "pr": pr_number})
+    response = github_graphql(query, {"owner": owner, "repo": repo})
 
+    results = {}
     if response.status_code == 200:
         data = response.json()
-        pr_data = data.get("data", {}).get("repository", {}).get("pullRequest")
-        if pr_data:
-            issues = pr_data.get("closingIssuesReferences", {}).get("nodes", [])
-            # Flatten labels from GraphQL format
-            for issue in issues:
-                labels_data = issue.pop('labels', {})
-                issue['labels'] = [l['name'] for l in labels_data.get('nodes', [])]
-            return issues
-    return []
+        repo_data = data.get("data", {}).get("repository", {})
+
+        for i, pr_num in enumerate(pr_numbers):
+            pr_data = repo_data.get(f"pr{i}")
+            if pr_data:
+                # Flatten labels
+                labels_data = pr_data.pop('labels', {})
+                pr_data['labels'] = [l['name'] for l in labels_data.get('nodes', [])]
+
+                # Flatten closing issues labels
+                issues = pr_data.get('closingIssuesReferences', {}).get('nodes', [])
+                for issue in issues:
+                    issue_labels = issue.pop('labels', {})
+                    issue['labels'] = [l['name'] for l in issue_labels.get('nodes', [])]
+                pr_data['closingIssues'] = issues
+
+                results[pr_num] = pr_data
+
+    return results
 
 def get_pr_files(owner: str, repo: str, pr_number: int) -> List[Dict]:
-    """Fetches the list of files changed in a PR."""
-    url = f"{GITHUB_API_BASE}/repos/{owner}/{repo}/pulls/{pr_number}/files"
+    """Fetches all files changed in a PR with pagination."""
+    all_files = []
+    page = 1
 
-    response = github_request('GET', url)
+    while True:
+        url = f"{GITHUB_API_BASE}/repos/{owner}/{repo}/pulls/{pr_number}/files"
+        params = {'per_page': 100, 'page': page}
 
-    if response.status_code == 200:
-        return response.json()
-    return []
+        response = github_request('GET', url, params=params)
+
+        if response.status_code != 200:
+            break
+
+        files = response.json()
+        if not files:
+            break
+
+        all_files.extend(files)
+
+        if len(files) < 100:
+            break
+
+        page += 1
+
+    return all_files
 
 # ============================================================================
 # DATA PERSISTENCE
@@ -290,9 +335,11 @@ def get_fetched_prs(data: List[Dict]) -> set:
 # MAIN PROCESSING
 # ============================================================================
 
+GRAPHQL_BATCH_SIZE = 20  # Number of PRs to fetch in one GraphQL query
+
 def fetch_repository_data(owner: str, repo: str, all_results: List[Dict], fetched_prs: set) -> int:
     """
-    Fetches PR data from a repository using Search API, skipping already fetched PRs.
+    Fetches PR data from a repository using Search API + batched GraphQL.
     Saves incrementally to disk.
     Returns the number of new PRs fetched.
     """
@@ -300,89 +347,87 @@ def fetch_repository_data(owner: str, repo: str, all_results: List[Dict], fetche
     new_count = 0
 
     # Use search API to get only merged PRs with linked issues
-    prs = search_merged_prs_with_issues(owner, repo)
-    print(f"\n[{repo_name}] Processing {len(prs)} PRs with linked issues")
+    search_results = search_merged_prs_with_issues(owner, repo)
 
-    for i, pr in enumerate(prs, 1):
-        pr_number = pr['number']
+    # Filter out already fetched PRs
+    prs_to_fetch = [pr for pr in search_results if (repo_name, pr['number']) not in fetched_prs]
+    print(f"\n[{repo_name}] {len(prs_to_fetch)} new PRs to fetch (skipped {len(search_results) - len(prs_to_fetch)} already fetched)")
 
-        # Skip if already fetched
-        if (repo_name, pr_number) in fetched_prs:
-            continue
+    # Process in batches
+    for batch_start in range(0, len(prs_to_fetch), GRAPHQL_BATCH_SIZE):
+        batch = prs_to_fetch[batch_start:batch_start + GRAPHQL_BATCH_SIZE]
+        batch_pr_numbers = [pr['number'] for pr in batch]
 
-        print(f"\n[{repo_name}] Processing PR #{pr_number} ({i}/{len(prs)})")
+        print(f"\n[{repo_name}] Fetching batch {batch_start // GRAPHQL_BATCH_SIZE + 1} ({len(batch)} PRs via GraphQL)...")
 
-        # Get closing issues via GraphQL (to get issue details)
-        closing_issues = get_closing_issues(owner, repo, pr_number)
+        # Batch fetch PR details via GraphQL
+        pr_details = get_pr_details_batch(owner, repo, batch_pr_numbers)
 
-        if not closing_issues:
-            print(f"  Warning: Search said linked but no closing issues found via GraphQL")
-            continue
+        for pr in batch:
+            pr_number = pr['number']
+            details = pr_details.get(pr_number)
 
-        print(f"  Closes issues: {[issue['number'] for issue in closing_issues]}")
+            if not details:
+                print(f"  PR #{pr_number}: No GraphQL data returned, skipping")
+                continue
 
-        # Get PR files
-        files = get_pr_files(owner, repo, pr_number)
+            closing_issues = details.get('closingIssues', [])
+            if not closing_issues:
+                print(f"  PR #{pr_number}: No closing issues found, skipping")
+                continue
 
-        # Calculate additions/deletions from files
-        additions = sum(f.get('additions', 0) for f in files)
-        deletions = sum(f.get('deletions', 0) for f in files)
+            print(f"  PR #{pr_number}: {len(closing_issues)} closing issue(s), fetching files...")
 
-        # Get merged_at from pull_request object in search results
-        merged_at = pr.get('pull_request', {}).get('merged_at')
+            # Get PR files (REST API - needed for patches)
+            files = get_pr_files(owner, repo, pr_number)
 
-        # Extract patches from files
-        patches = [
-            {
-                'filename': f['filename'],
-                'status': f.get('status', ''),  # added, removed, modified, renamed
-                'additions': f.get('additions', 0),
-                'deletions': f.get('deletions', 0),
-                'patch': f.get('patch', '')  # The actual diff
+            # Calculate additions/deletions from files
+            additions = sum(f.get('additions', 0) for f in files)
+            deletions = sum(f.get('deletions', 0) for f in files)
+
+            # Extract patches from files
+            patches = [
+                {
+                    'filename': f['filename'],
+                    'status': f.get('status', ''),
+                    'additions': f.get('additions', 0),
+                    'deletions': f.get('deletions', 0),
+                    'patch': f.get('patch', '')
+                }
+                for f in files
+            ]
+
+            # Extract issue labels (flattened for convenience)
+            issue_labels = list(set(
+                label for issue in closing_issues for label in issue.get('labels', [])
+            ))
+
+            # Store raw data
+            pr_data = {
+                'repo': repo_name,
+                'pr_number': pr_number,
+                'title': details.get('title', ''),
+                'description': details.get('body', ''),
+                'pr_labels': details.get('labels', []),
+                'issues': closing_issues,
+                'issue_labels': issue_labels,
+                'files_changed': len(files),
+                'additions': additions,
+                'deletions': deletions,
+                'patches': patches,
+                'created_at': details.get('createdAt'),
+                'merged_at': details.get('mergedAt'),
+                'pr_url': details.get('url', '')
             }
-            for f in files
-        ]
 
-        # Extract labels from PR
-        pr_labels = [label['name'] for label in pr.get('labels', [])]
+            all_results.append(pr_data)
+            fetched_prs.add((repo_name, pr_number))
+            new_count += 1
 
-        # Extract labels from issues
-        issue_labels = []
-        for issue in closing_issues:
-            issue_labels.extend([label['name'] for label in issue.get('labels', [])])
-        issue_labels = list(set(issue_labels))  # Remove duplicates
-
-        # Store raw data
-        pr_data = {
-            'repo': repo_name,
-            'pr_number': pr_number,
-            'title': pr['title'],
-            'description': pr.get('body', ''),
-            'pr_labels': pr_labels,
-            'issues': closing_issues,
-            'issue_labels': issue_labels,
-            'files_changed': len(files),
-            'additions': additions,
-            'deletions': deletions,
-            'file_paths': [f['filename'] for f in files],
-            'patches': patches,
-            'created_at': pr.get('created_at'),
-            'merged_at': merged_at,
-            'pr_url': pr['html_url']
-        }
-
-        all_results.append(pr_data)
-        fetched_prs.add((repo_name, pr_number))
-        new_count += 1
-
-        # Save periodically
-        if new_count % SAVE_EVERY_N_PRS == 0:
+        # Save after each batch
+        if new_count > 0:
             save_data(all_results)
             print(f"  [Checkpoint] Saved {len(all_results)} total PRs to disk")
-
-    # Final save for this repo
-    if new_count > 0:
-        save_data(all_results)
 
     return new_count
 
