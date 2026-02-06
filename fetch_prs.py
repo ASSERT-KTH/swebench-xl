@@ -21,7 +21,7 @@ GITHUB_TOKEN = os.environ["GITHUB_TOKEN"]
 
 # Repositories to analyze
 REPOSITORIES = [
-    "openjdk/jdk",
+    #"openjdk/jdk",
     "arangodb/arangodb",
     "nodejs/node",
     "BabylonJS/Babylon.js",
@@ -36,12 +36,12 @@ MIN_DELAY_BETWEEN_REQUESTS = 0.5  # seconds
 RATE_LIMIT_BUFFER = 100  # Start slowing down when this many requests remain
 MAX_RETRIES = 3
 
-# Time range (set to None for no cutoff - fetch all PRs)
-YEARS_TO_FETCH = None
-CUTOFF_DATE = datetime.now() - timedelta(days=YEARS_TO_FETCH * 365) if YEARS_TO_FETCH else None
+# Search API settings
+SEARCH_RATE_LIMIT_DELAY = 2.5  # Search API has stricter rate limits (30/min)
+SEARCH_YEARS_BACK = 10  # How many years back to search (in 1-year chunks to avoid 1000 limit)
 
 # Output
-OUTPUT_FILE = "pr_data_overnight.json"
+OUTPUT_FILE = "pr_data_new_approach.json"
 SAVE_EVERY_N_PRS = 50  # Save to disk after every N PRs
 
 # ============================================================================
@@ -55,18 +55,23 @@ def get_github_headers():
         'Accept': 'application/vnd.github.v3+json'
     }
 
-def handle_rate_limit(response):
+def handle_rate_limit(response, is_search_api=False):
     """Check rate limit headers and wait if necessary."""
     remaining = int(response.headers.get('X-RateLimit-Remaining', 1000))
     reset_time = int(response.headers.get('X-RateLimit-Reset', 0))
 
-    if remaining <= RATE_LIMIT_BUFFER:
+    # Search API has lower limit (30/min), so use lower buffer
+    buffer = 5 if is_search_api else RATE_LIMIT_BUFFER
+
+    if remaining <= buffer:
         wait_time = max(0, reset_time - time.time()) + 5  # Add 5s buffer
         if wait_time > 0:
             print(f"\n  [Rate limit] {remaining} requests remaining. Waiting {wait_time:.0f}s until reset...")
             time.sleep(wait_time)
     else:
-        time.sleep(MIN_DELAY_BETWEEN_REQUESTS)
+        # Use longer delay for search API
+        delay = SEARCH_RATE_LIMIT_DELAY if is_search_api else MIN_DELAY_BETWEEN_REQUESTS
+        time.sleep(delay)
 
 def github_request(method: str, url: str, **kwargs) -> requests.Response:
     """Make a GitHub API request with rate limit handling and retries."""
@@ -77,7 +82,8 @@ def github_request(method: str, url: str, **kwargs) -> requests.Response:
 
         # Success
         if response.status_code == 200:
-            handle_rate_limit(response)
+            is_search = '/search/' in url
+            handle_rate_limit(response, is_search_api=is_search)
             return response
 
         # Rate limited
@@ -140,67 +146,71 @@ def github_graphql(query: str, variables: dict) -> requests.Response:
 
     return response
 
-def get_merged_prs(owner: str, repo: str) -> List[Dict]:
+def search_merged_prs_with_issues(owner: str, repo: str) -> List[Dict]:
     """
-    Fetches merged pull requests. If CUTOFF_DATE is set, only fetches PRs after that date.
-    If CUTOFF_DATE is None, fetches all available PRs.
+    Uses GitHub Search API to find merged PRs with linked issues.
+    Searches in yearly chunks to avoid the 1000 result limit.
     """
-    prs = []
-    page = 1
-    per_page = 100
-    reached_cutoff = False
+    all_prs = []
+    current_year = datetime.now().year
 
-    if CUTOFF_DATE:
-        print(f"\n[{owner}/{repo}] Fetching merged PRs from last {YEARS_TO_FETCH} years...")
-        print(f"  Cutoff date: {CUTOFF_DATE.strftime('%Y-%m-%d')}")
-    else:
-        print(f"\n[{owner}/{repo}] Fetching all merged PRs (no cutoff)...")
+    print(f"\n[{owner}/{repo}] Searching for merged PRs with linked issues...")
 
-    while not reached_cutoff:
-        url = f"{GITHUB_API_BASE}/repos/{owner}/{repo}/pulls"
-        params = {
-            'state': 'closed',
-            'sort': 'updated',
-            'direction': 'desc',
-            'per_page': per_page,
-            'page': page
-        }
+    for year_offset in range(SEARCH_YEARS_BACK):
+        year = current_year - year_offset
+        start_date = f"{year}-01-01"
+        end_date = f"{year}-12-31"
 
-        response = github_request('GET', url, params=params)
+        page = 1
+        year_prs = []
 
-        if response.status_code != 200:
-            print(f"Error fetching PRs: {response.status_code}")
-            break
+        while True:
+            # Search query: merged PRs with linked issues in this repo for this year
+            query = f"repo:{owner}/{repo} is:pr is:merged linked:issue merged:{start_date}..{end_date}"
+            url = f"{GITHUB_API_BASE}/search/issues"
+            params = {
+                'q': query,
+                'per_page': 100,
+                'page': page,
+                'sort': 'updated',
+                'order': 'desc'
+            }
 
-        page_prs = response.json()
+            response = github_request('GET', url, params=params)
 
-        if not page_prs:
-            break
+            if response.status_code != 200:
+                print(f"  Error searching PRs: {response.status_code} - {response.text[:200]}")
+                break
 
-        # Filter for merged PRs within date range
-        for pr in page_prs:
-            if pr.get('merged_at') is None:
-                continue
+            data = response.json()
+            items = data.get('items', [])
+            total_count = data.get('total_count', 0)
 
-            # Check cutoff if set
-            if CUTOFF_DATE:
-                merged_at = datetime.fromisoformat(pr['merged_at'].replace('Z', '+00:00'))
-                merged_at = merged_at.replace(tzinfo=None)  # Make naive for comparison
+            if page == 1:
+                print(f"  {year}: Found {total_count} PRs with linked issues")
 
-                if merged_at < CUTOFF_DATE:
-                    reached_cutoff = True
-                    break
+            if not items:
+                break
 
-            prs.append(pr)
+            year_prs.extend(items)
 
-        print(f"  Fetched page {page}, total merged PRs: {len(prs)}")
+            # Search API has stricter rate limits
+            time.sleep(SEARCH_RATE_LIMIT_DELAY)
 
-        page += 1
+            if len(items) < 100:
+                break
 
-        if len(page_prs) < per_page:
-            break
+            page += 1
 
-    return prs
+            # Safety check - search API only returns max 1000 results
+            if page > 10:
+                print(f"  Warning: Hit 1000 result limit for {year}. Some PRs may be missing.")
+                break
+
+        all_prs.extend(year_prs)
+
+    print(f"  Total: {len(all_prs)} merged PRs with linked issues")
+    return all_prs
 
 def get_closing_issues(owner: str, repo: str, pr_number: int) -> List[Dict]:
     """
@@ -282,45 +292,50 @@ def get_fetched_prs(data: List[Dict]) -> set:
 
 def fetch_repository_data(owner: str, repo: str, all_results: List[Dict], fetched_prs: set) -> int:
     """
-    Fetches PR data from a repository, skipping already fetched PRs.
+    Fetches PR data from a repository using Search API, skipping already fetched PRs.
     Saves incrementally to disk.
     Returns the number of new PRs fetched.
     """
     repo_name = f"{owner}/{repo}"
     new_count = 0
 
-    prs = get_merged_prs(owner, repo)
-    print(f"\n[{repo_name}] Found {len(prs)} merged PRs")
+    # Use search API to get only merged PRs with linked issues
+    prs = search_merged_prs_with_issues(owner, repo)
+    print(f"\n[{repo_name}] Processing {len(prs)} PRs with linked issues")
 
     for i, pr in enumerate(prs, 1):
+        pr_number = pr['number']
+
         # Skip if already fetched
-        if (repo_name, pr['number']) in fetched_prs:
-            print(f"\n[{repo_name}] Skipping PR #{pr['number']} - already fetched")
+        if (repo_name, pr_number) in fetched_prs:
             continue
 
-        print(f"\n[{repo_name}] Processing PR #{pr['number']} ({i}/{len(prs)})")
+        print(f"\n[{repo_name}] Processing PR #{pr_number} ({i}/{len(prs)})")
 
-        # Get closing issues via GraphQL
-        closing_issues = get_closing_issues(owner, repo, pr['number'])
+        # Get closing issues via GraphQL (to get issue details)
+        closing_issues = get_closing_issues(owner, repo, pr_number)
 
         if not closing_issues:
-            print(f"  Skipping - no linked issues found")
+            print(f"  Warning: Search said linked but no closing issues found via GraphQL")
             continue
 
         print(f"  Closes issues: {[issue['number'] for issue in closing_issues]}")
 
         # Get PR files and commits
-        files = get_pr_files(owner, repo, pr['number'])
-        commits = get_pr_commits(owner, repo, pr['number'])
+        files = get_pr_files(owner, repo, pr_number)
+        commits = get_pr_commits(owner, repo, pr_number)
 
         # Calculate additions/deletions from files
         additions = sum(f.get('additions', 0) for f in files)
         deletions = sum(f.get('deletions', 0) for f in files)
 
+        # Get merged_at from pull_request object in search results
+        merged_at = pr.get('pull_request', {}).get('merged_at')
+
         # Store raw data
         pr_data = {
             'repo': repo_name,
-            'pr_number': pr['number'],
+            'pr_number': pr_number,
             'title': pr['title'],
             'description': pr.get('body', ''),
             'issues': closing_issues,
@@ -330,12 +345,12 @@ def fetch_repository_data(owner: str, repo: str, all_results: List[Dict], fetche
             'commits_count': len(commits),
             'file_paths': [f['filename'] for f in files],
             'commit_messages': [c['commit']['message'].split('\n')[0] for c in commits],
-            'merged_at': pr['merged_at'],
+            'merged_at': merged_at,
             'pr_url': pr['html_url']
         }
 
         all_results.append(pr_data)
-        fetched_prs.add((repo_name, pr['number']))
+        fetched_prs.add((repo_name, pr_number))
         new_count += 1
 
         # Save periodically
