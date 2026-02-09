@@ -173,6 +173,23 @@ def get_default_analysis():
         }
     }
 
+def load_existing_results():
+    """Load already-analyzed results from the output file for resume support."""
+    try:
+        with open(OUTPUT_FILE, 'r', encoding='utf-8') as f:
+            results = json.load(f)
+        analyzed = {(r.get('repo'), r.get('pr_number')) for r in results}
+        return results, analyzed
+    except (FileNotFoundError, json.JSONDecodeError):
+        return [], set()
+
+
+def save_results(results):
+    """Save results to disk."""
+    with open(OUTPUT_FILE, 'w', encoding='utf-8') as f:
+        json.dump(results, f, indent=2, ensure_ascii=False)
+
+
 def main():
     """Main execution function."""
     print(f"Loading PRs from {INPUT_FILE}...")
@@ -188,27 +205,41 @@ def main():
         print(f"Error: Invalid JSON in {INPUT_FILE}: {e}")
         return
 
-    results = []
+    results, already_analyzed = load_existing_results()
+    if already_analyzed:
+        print(f"Resuming — {len(already_analyzed)} PRs already analyzed")
+
+    new_count = 0
+    skipped = 0
     for i, pr_data in enumerate(pr_data_list, 1):
         if i > 100:
             print(f"Limiting to first 100 PRs for testing. Remove this condition to analyze all.")
             break
 
         if pr_data['files_changed'] < 4 or pr_data['files_changed'] > 100:
-            print(f"[{i}/{len(pr_data_list)}] PR #{pr_data['pr_number']} — skipped ({pr_data['files_changed']} files)")
+            skipped += 1
+            continue
+
+        pr_key = (pr_data['repo'], pr_data['pr_number'])
+        if pr_key in already_analyzed:
             continue
 
         analysis = analyze_pr_with_llm(pr_data)
 
         result = {**pr_data, **analysis}
         results.append(result)
+        already_analyzed.add(pr_key)
+        new_count += 1
 
         suitable = "✓" if analysis.get('benchmark_verdict', {}).get('is_suitable') else "✗"
-        print(f"[{i}/{len(pr_data_list)}] PR #{pr_data['pr_number']} — {analysis.get('category', '?')} | {suitable}")
+        print(f"[{len(already_analyzed)}/{len(pr_data_list) - skipped}] PR #{pr_data['pr_number']} — {analysis.get('category', '?')} | {suitable}")
 
-    with open(OUTPUT_FILE, 'w', encoding='utf-8') as f:
-        json.dump(results, f, indent=2, ensure_ascii=False)
-    print(f"\nDone. {len(results)} results saved to {OUTPUT_FILE}")
+        # Save every 10 PRs to avoid losing progress
+        if new_count % 10 == 0:
+            save_results(results)
+
+    save_results(results)
+    print(f"\nDone. {new_count} new, {len(results)} total results saved to {OUTPUT_FILE}")
 
 if __name__ == "__main__":
     main()
