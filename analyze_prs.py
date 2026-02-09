@@ -40,7 +40,7 @@ def analyze_pr_with_llm(pr_data: Dict) -> Dict:
     issues = pr_data.get('issues', [])
     if issues:
         issue_text_content = '\n'.join(
-            f"Issue #{iss['number']}: {iss['title']}\n{(iss.get('body') or '')[:500]}"
+            f"Issue #{iss['number']}: {iss['title']}\n{(iss.get('body') or '')[:1500]}"
             for iss in issues
         )
     else:
@@ -65,7 +65,7 @@ Input Data:
 - Repo: {pr_data['repo']}
 - Title: {pr_data['title']}
 - Description: {(pr_data.get('description') or '')[:1500]}
-- Issue Body: {issue_text_content[:1000]}
+- Issue Body: {issue_text_content[:3000]}
 - Files Changed: {pr_data['files_changed']} (Add: {pr_data['additions']}, Del: {pr_data['deletions']})
 - File Paths: {', '.join(file_paths[:30])}
 - Diff Snippet:
@@ -216,12 +216,14 @@ def main():
     new_count = 0
     skipped = 0
     for i, pr_data in enumerate(pr_data_list, 1):
-        if i > 100:
-            print(f"Limiting to first 100 PRs for testing. Remove this condition to analyze all.")
-            break
+        #if i > 100:
+        #    print(f"Limiting to first 100 PRs for testing. Remove this condition to analyze all.")
+        #    break
 
         if pr_data['files_changed'] < 4 or pr_data['files_changed'] > 100:
             skipped += 1
+            print(f"[{len(already_analyzed)}/{len(pr_data_list) - skipped}] Skipping PR #{pr_data['pr_number']} — {pr_data['files_changed']} files changed (outside 4-100 range)")
+            print("Amount skipped:", skipped)
             continue
 
         pr_key = (pr_data['repo'], pr_data['pr_number'])

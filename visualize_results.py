@@ -9,7 +9,7 @@ import html
 import statistics
 from collections import Counter
 
-INPUT_FILE = "pr_analysis_results_test.json"
+INPUT_FILE = "pr_analysis_results_full.json"
 OUTPUT_FILE = "report.html"
 
 
