@@ -69,6 +69,8 @@ def generate_html(results: list) -> str:
     categories = Counter(r.get("category", "unknown") for r in results)
     challenges = Counter(r.get("benchmark_verdict", {}).get("primary_challenge", "unknown") for r in results)
     ctx_deps = Counter(r.get("complexity_analysis", {}).get("context_dependency", "unknown") for r in results)
+    scopes = Counter(r.get("complexity_analysis", {}).get("scope", "unknown") for r in results)
+    localizations = Counter(r.get("complexity_analysis", {}).get("localization", "unknown") for r in results)
     test_types = Counter(r.get("verifiability_audit", {}).get("test_type", "none") for r in results)
 
     diff_dist = Counter()
@@ -149,6 +151,8 @@ def generate_html(results: list) -> str:
             "navigation_required": bool(lcf.get("navigation_step_required", False)),
             "multi_file_logic": bool(complexity.get("multi_file_logic", False)),
             "context_dependency": complexity.get("context_dependency", "low"),
+            "scope": complexity.get("scope", ""),
+            "localization": complexity.get("localization", ""),
             "test_type": verify.get("test_type", "none"),
         })
     table_data_json = json.dumps(table_data, ensure_ascii=False)
@@ -319,6 +323,17 @@ def generate_html(results: list) -> str:
 
 <div class="grid-2">
   <div class="section">
+    <h2>Scope</h2>
+    {bar_chart(dict(scopes), "#14b8a6")}
+  </div>
+  <div class="section">
+    <h2>Localization</h2>
+    {bar_chart(dict(localizations), "#f43f5e")}
+  </div>
+</div>
+
+<div class="grid-2">
+  <div class="section">
     <h2>Test Types</h2>
     {bar_chart(dict(test_types), "#f97316")}
   </div>
@@ -362,6 +377,8 @@ def generate_html(results: list) -> str:
           <th data-key="category">Category <span class="sort-arrow">&#9650;</span></th>
           <th data-key="difficulty">Diff. <span class="sort-arrow">&#9650;</span></th>
           <th data-key="challenge">Challenge <span class="sort-arrow">&#9650;</span></th>
+          <th data-key="scope">Scope <span class="sort-arrow">&#9650;</span></th>
+          <th data-key="localization">Localization <span class="sort-arrow">&#9650;</span></th>
           <th data-key="suitable">Suitable <span class="sort-arrow">&#9650;</span></th>
           <th data-key="rejection_reason">Rejection Reason <span class="sort-arrow">&#9650;</span></th>
           <th data-key="has_tests">Tests <span class="sort-arrow">&#9650;</span></th>
@@ -475,6 +492,8 @@ def generate_html(results: list) -> str:
         + '<td>' + escapeHtml(r.category) + '</td>'
         + '<td>' + r.difficulty + '</td>'
         + '<td>' + escapeHtml(r.challenge) + '</td>'
+        + '<td>' + escapeHtml(r.scope) + '</td>'
+        + '<td>' + escapeHtml(r.localization) + '</td>'
         + '<td>' + badge + '</td>'
         + '<td>' + escapeHtml(r.rejection_reason) + '</td>'
         + '<td>' + (r.has_tests ? '<span class="badge badge-yes">Yes</span>' : '<span class="badge badge-no">No</span>') + '</td>'

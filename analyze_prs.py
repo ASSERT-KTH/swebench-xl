@@ -24,7 +24,7 @@ LLM_MODEL = "google/gemini-2.5-flash"
 
 # Files
 INPUT_FILE = "pr_data_new_approach.json"
-OUTPUT_FILE = "pr_analysis_results_test.json"
+OUTPUT_FILE = "pr_analysis_results_full.json"
 
 # ============================================================================
 # LLM ANALYSIS FUNCTIONS
@@ -75,8 +75,10 @@ Analyze the data and return a JSON object evaluating this PR as a benchmark cand
 
 JSON Schema:
 {{
-  "category": "String: [bug, feature, refactor, test, docs, dependency, other]",
+  "category": "String: [bug, feature, refactor, test, docs, dependency, migration, other]",
   "complexity_analysis": {{
+    "scope": "String: [line, function, file, module, cross-module] (How much code is affected by this change)",
+    "localization": "String: [explicit, traceable, search] (explicit=obvious where to fix, traceable=can follow references, search=must search codebase)",
     "context_dependency": "String: [low, medium, high] (Low=isolated change, High=requires reading many external files)",
     "multi_file_logic": "Boolean: Does the logic span multiple files? (Not just import updates)",
     "requires_domain_knowledge": "Boolean: Does it require knowing specific business rules mentioned in the issue?"
@@ -93,7 +95,7 @@ JSON Schema:
   }},
   "benchmark_verdict": {{
     "is_suitable": "Boolean",
-    "difficulty_score": "Integer: 1-5 (5 = hardest)",
+    "difficulty_score": "Integer: 1-5 (1=trivial, 2=simple, 3=moderate, 4=complex, 5=architectural)",
     "rejection_reason": "String or null (e.g. 'Too trivial', 'Missing tests', 'Ambiguous description')",
     "primary_challenge": "String: [navigation, logic, testing, api_knowledge]"
   }}
@@ -151,6 +153,8 @@ def get_default_analysis():
     return {
         "category": "other",
         "complexity_analysis": {
+            "scope": "file",
+            "localization": "explicit",
             "context_dependency": "low",
             "multi_file_logic": False,
             "requires_domain_knowledge": False
