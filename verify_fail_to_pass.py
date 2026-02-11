@@ -13,11 +13,11 @@ A PR that passes both checks is a valid "fail-to-pass" candidate.
 import os
 import sys
 import json
+import re
 import time
-import shutil
 import subprocess
 import requests
-from pathlib import Path
+import xml.etree.ElementTree as ET
 from typing import List, Dict, Optional, Tuple
 from dotenv import load_dotenv
 
@@ -383,6 +383,100 @@ def run_gradle_tests(commands: List[str]) -> Tuple[bool, str]:
     return True, "\n---\n".join(all_output)
 
 # ============================================================================
+# JUNIT XML PARSING
+# ============================================================================
+
+def find_test_report_xmls(gradle_cmds: List[str]) -> List[str]:
+    """
+    Find JUnit XML report files for the modules referenced by the Gradle commands.
+    Reports live at <module>/build/test-results/test/TEST-*.xml
+    """
+    xml_files = []
+    for cmd in gradle_cmds:
+        # Extract module from command like './gradlew :x-pack:plugin:ml:test ...'
+        match = re.search(r'\s(:\S+):test\s', cmd)
+        if not match:
+            continue
+        gradle_module = match.group(1)  # e.g. ':x-pack:plugin:ml'
+        module_dir = gradle_module.lstrip(':').replace(':', '/')
+        report_dir = os.path.join(CLONE_DIR, module_dir, 'build', 'test-results', 'test')
+        if os.path.isdir(report_dir):
+            for fname in os.listdir(report_dir):
+                if fname.startswith('TEST-') and fname.endswith('.xml'):
+                    xml_files.append(os.path.join(report_dir, fname))
+    return xml_files
+
+def parse_test_results(xml_files: List[str]) -> Tuple[List[str], List[str]]:
+    """
+    Parse JUnit XML reports and return (failed_tests, passed_tests).
+    Each entry is 'classname::testName' (SWE-Bench convention).
+    """
+    failed = []
+    passed = []
+    for xml_path in xml_files:
+        try:
+            tree = ET.parse(xml_path)
+            root = tree.getroot()
+            for tc in root.findall('.//testcase'):
+                classname = tc.get('classname', '')
+                name = tc.get('name', '')
+                if not classname or not name:
+                    continue
+                test_id = f"{classname}::{name}"
+                if tc.find('failure') is not None or tc.find('error') is not None:
+                    failed.append(test_id)
+                elif tc.get('skipped') is not None or tc.find('skipped') is not None:
+                    continue  # skip skipped tests
+                else:
+                    passed.append(test_id)
+        except ET.ParseError:
+            continue
+    return failed, passed
+
+# ============================================================================
+# SWE-BENCH DATA EXTRACTION
+# ============================================================================
+
+def build_unified_patch(patches: List[Dict], file_filter) -> str:
+    """
+    Reconstruct a unified diff from GitHub's hunk-only patches.
+    file_filter is a callable that returns True for files to include.
+    """
+    diff_parts = []
+    for p in patches:
+        filename = p["filename"]
+        if not file_filter(filename):
+            continue
+        raw_patch = p.get("patch", "")
+        if not raw_patch:
+            continue
+        status = p.get("status", "modified")
+        if status == "added":
+            header = f"--- /dev/null\n+++ b/{filename}"
+        elif status == "removed":
+            header = f"--- a/{filename}\n+++ /dev/null"
+        else:
+            header = f"--- a/{filename}\n+++ b/{filename}"
+        diff_parts.append(f"{header}\n{raw_patch}")
+    return "\n".join(diff_parts)
+
+def extract_version() -> str:
+    """Extract elasticsearch version from the checked-out repo."""
+    for candidate in [
+        os.path.join(CLONE_DIR, "build-tools-internal", "version.properties"),
+        os.path.join(CLONE_DIR, "buildSrc", "version.properties"),
+    ]:
+        if os.path.isfile(candidate):
+            try:
+                with open(candidate) as f:
+                    for line in f:
+                        if line.strip().startswith("elasticsearch"):
+                            return line.split("=", 1)[1].strip()
+            except OSError:
+                pass
+    return ""
+
+# ============================================================================
 # RESUMABLE LOAD/SAVE (pattern from analyze_prs.py)
 # ============================================================================
 
@@ -407,7 +501,7 @@ def save_results(results: List[Dict]):
 def verify_pr(pr: Dict, shas: dict) -> Dict:
     """
     Run fail-to-pass verification on a single PR.
-    Returns a result dict with status and details.
+    Returns a result dict with status, SWE-Bench fields, and details.
     """
     pr_number = pr["pr_number"]
     merge_commit = shas["merge_commit"]
@@ -422,6 +516,13 @@ def verify_pr(pr: Dict, shas: dict) -> Dict:
         "details": "",
         "fail_phase_output": "",
         "pass_phase_output": "",
+        # SWE-Bench fields (populated on success)
+        "instance_id": "",
+        "patch": "",
+        "test_patch": "",
+        "FAIL_TO_PASS": [],
+        "PASS_TO_PASS": [],
+        "version": "",
     }
 
     # Classify files
@@ -465,6 +566,9 @@ def verify_pr(pr: Dict, shas: dict) -> Dict:
         result["details"] = "No gradlew at base commit (too old)"
         return result
 
+    # Extract version while we're at the base commit
+    result["version"] = extract_version()
+
     # ---- PHASE 2: Apply test files only, expect FAIL ----
     print(f"  [2/4] Applying {len(test_files)} test files from {merge_commit[:10]}...")
     ok, err = checkout_files(merge_commit, test_files)
@@ -481,6 +585,18 @@ def verify_pr(pr: Dict, shas: dict) -> Dict:
         result["details"] = "Tests passed without source fix - not a valid fail-to-pass candidate"
         return result
 
+    # Parse FAIL_TO_PASS from JUnit XML reports (fail phase)
+    xml_files = find_test_report_xmls(gradle_cmds)
+    fail_phase_failed, fail_phase_passed = parse_test_results(xml_files)
+    if fail_phase_failed:
+        result["FAIL_TO_PASS"] = fail_phase_failed
+        print(f"  [2/4] Parsed {len(fail_phase_failed)} failing, {len(fail_phase_passed)} passing test(s)")
+    else:
+        # No XML reports = compilation failure. Fall back to test class FQNs.
+        fqns = [extract_test_fqn(f) for f in java_test_files]
+        result["FAIL_TO_PASS"] = [fqn for fqn in fqns if fqn]
+        print(f"  [2/4] No XML reports (compilation failure), using {len(result['FAIL_TO_PASS'])} test class FQN(s)")
+
     # ---- PHASE 3: Apply source files, expect PASS ----
     print(f"  [3/4] Applying {len(source_files)} source files from {merge_commit[:10]}...")
     ok, err = checkout_files(merge_commit, source_files)
@@ -496,6 +612,21 @@ def verify_pr(pr: Dict, shas: dict) -> Dict:
         result["status"] = "invalid_tests_fail_with_fix"
         result["details"] = "Tests still fail after applying source fix"
         return result
+
+    # Parse PASS_TO_PASS from JUnit XML reports (pass phase)
+    xml_files = find_test_report_xmls(gradle_cmds)
+    pass_phase_failed, pass_phase_passed = parse_test_results(xml_files)
+    result["PASS_TO_PASS"] = pass_phase_passed
+    print(f"  [4/4] Parsed {len(pass_phase_passed)} passing test(s)")
+
+    # Build SWE-Bench fields
+    result["instance_id"] = f"elastic__elasticsearch-{pr_number}"
+    result["patch"] = build_unified_patch(
+        pr["patches"], lambda f: not is_test_file(f)
+    )
+    result["test_patch"] = build_unified_patch(
+        pr["patches"], lambda f: is_test_file(f)
+    )
 
     # Success!
     result["status"] = "verified"
@@ -580,16 +711,16 @@ def main():
         sys.exit(1)
 
     # ---- Process each PR ----
-    print(f"\n[Processing {len(candidates)} PRs]")
+    print(f"\n[Processing {len(candidates[:100])} PRs]")
     stats = {"verified": 0, "invalid_tests_pass_without_fix": 0,
              "invalid_tests_fail_with_fix": 0, "error": 0, "skipped": 0}
 
-    for i, pr in enumerate(candidates):
+    for i, pr in enumerate(candidates[:100]):
         pr_number = pr["pr_number"]
         shas = sha_map[pr_number]
 
         print(f"\n{'─' * 60}")
-        print(f"[{i + 1}/{len(candidates)}] PR #{pr_number}: {pr['title'][:60]}")
+        print(f"[{i + 1}/{len(candidates[:100])}] PR #{pr_number}: {pr['title'][:60]}")
         print(f"  base={shas['base_commit'][:10]} merge={shas['merge_commit'][:10]}")
 
         try:
