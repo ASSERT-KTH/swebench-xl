@@ -161,6 +161,10 @@ def generate_html(results: list) -> str:
     unique_categories = sorted(set(d["category"] for d in table_data if d["category"]))
     unique_challenges = sorted(set(d["challenge"] for d in table_data if d["challenge"]))
     unique_repos = sorted(set(d["repo"] for d in table_data if d["repo"]))
+    unique_scopes = sorted(set(d["scope"] for d in table_data if d["scope"]))
+    unique_localizations = sorted(set(d["localization"] for d in table_data if d["localization"]))
+    unique_ctx_deps = sorted(set(d["context_dependency"] for d in table_data if d["context_dependency"]))
+    unique_test_types = sorted(set(d["test_type"] for d in table_data if d["test_type"]))
 
     def options_html(values):
         return "\n".join(f'<option value="{html.escape(v)}">{html.escape(v)}</option>' for v in values)
@@ -215,6 +219,7 @@ def generate_html(results: list) -> str:
     border-radius: 6px; padding: .45rem .5rem; font-size: .85rem; cursor: pointer;
   }}
   .table-controls select:focus {{ outline: none; border-color: var(--accent); }}
+  .table-controls input[type="number"]:focus {{ outline: none; border-color: var(--accent); }}
   .table-info {{ font-size: .8rem; color: var(--text2); margin-left: auto; }}
 
   /* Table */
@@ -364,6 +369,14 @@ def generate_html(results: list) -> str:
     <select id="filter-challenge"><option value="">All challenges</option>{options_html(unique_challenges)}</select>
     <select id="filter-suitable"><option value="">All</option><option value="true">Suitable</option><option value="false">Not suitable</option></select>
     <select id="filter-repo"><option value="">All repos</option>{options_html(unique_repos)}</select>
+    <select id="filter-has-tests"><option value="">Tests: All</option><option value="true">Has tests</option><option value="false">No tests</option></select>
+    <select id="filter-test-type"><option value="">All test types</option>{options_html(unique_test_types)}</select>
+    <select id="filter-scope"><option value="">All scopes</option>{options_html(unique_scopes)}</select>
+    <select id="filter-localization"><option value="">All localizations</option>{options_html(unique_localizations)}</select>
+    <select id="filter-ctx-dep"><option value="">All context deps</option>{options_html(unique_ctx_deps)}</select>
+    <label style="font-size:.85rem;color:var(--text2);display:flex;align-items:center;gap:.4rem;">
+      Difficulty &ge; <input type="number" id="filter-difficulty" min="0" max="5" value="0" style="width:48px;background:var(--surface2);border:1px solid var(--surface2);color:var(--text);border-radius:6px;padding:.35rem .4rem;font-size:.85rem;text-align:center;">
+    </label>
     <span class="table-info" id="table-info"></span>
   </div>
 
@@ -416,6 +429,12 @@ def generate_html(results: list) -> str:
   const filterCh = $('filter-challenge');
   const filterSuit = $('filter-suitable');
   const filterRepo = $('filter-repo');
+  const filterHasTests = $('filter-has-tests');
+  const filterTestType = $('filter-test-type');
+  const filterScope = $('filter-scope');
+  const filterLoc = $('filter-localization');
+  const filterCtxDep = $('filter-ctx-dep');
+  const filterDiff = $('filter-difficulty');
   const filterPreset = $('filter-preset');
 
   const PRESETS = {{
@@ -436,6 +455,12 @@ def generate_html(results: list) -> str:
     filterCh.value = '';
     filterSuit.value = '';
     filterRepo.value = '';
+    filterHasTests.value = '';
+    filterTestType.value = '';
+    filterScope.value = '';
+    filterLoc.value = '';
+    filterCtxDep.value = '';
+    filterDiff.value = '0';
   }}
 
   function applyFilters() {{
@@ -445,6 +470,12 @@ def generate_html(results: list) -> str:
     const ch = filterCh.value;
     const suit = filterSuit.value;
     const repo = filterRepo.value;
+    const ht = filterHasTests.value;
+    const tt = filterTestType.value;
+    const sc = filterScope.value;
+    const loc = filterLoc.value;
+    const cd = filterCtxDep.value;
+    const minDiff = parseInt(filterDiff.value, 10) || 0;
 
     filtered = DATA.filter(r => {{
       if (preset && PRESETS[preset] && !PRESETS[preset](r)) return false;
@@ -454,6 +485,13 @@ def generate_html(results: list) -> str:
       if (suit === 'true' && !r.suitable) return false;
       if (suit === 'false' && r.suitable) return false;
       if (repo && r.repo !== repo) return false;
+      if (ht === 'true' && !r.has_tests) return false;
+      if (ht === 'false' && r.has_tests) return false;
+      if (tt && r.test_type !== tt) return false;
+      if (sc && r.scope !== sc) return false;
+      if (loc && r.localization !== loc) return false;
+      if (cd && r.context_dependency !== cd) return false;
+      if (minDiff > 0 && r.difficulty < minDiff) return false;
       return true;
     }});
 
@@ -504,7 +542,8 @@ def generate_html(results: list) -> str:
     }}
     tbody.innerHTML = html;
 
-    $('table-info').textContent = filtered.length + ' of ' + DATA.length + ' PRs';
+    const avgDiff = filtered.length ? (filtered.reduce((s, r) => s + r.difficulty, 0) / filtered.length).toFixed(1) : '–';
+    $('table-info').textContent = filtered.length + ' of ' + DATA.length + ' PRs  |  Avg difficulty: ' + avgDiff;
     $('page-info').textContent = 'Page ' + (page + 1) + ' of ' + totalPages;
     $('btn-first').disabled = page === 0;
     $('btn-prev').disabled = page === 0;
@@ -546,6 +585,12 @@ def generate_html(results: list) -> str:
   filterCh.addEventListener('change', () => {{ filterPreset.value = ''; applyFilters(); }});
   filterSuit.addEventListener('change', () => {{ filterPreset.value = ''; applyFilters(); }});
   filterRepo.addEventListener('change', () => {{ filterPreset.value = ''; applyFilters(); }});
+  filterHasTests.addEventListener('change', () => {{ filterPreset.value = ''; applyFilters(); }});
+  filterTestType.addEventListener('change', () => {{ filterPreset.value = ''; applyFilters(); }});
+  filterScope.addEventListener('change', () => {{ filterPreset.value = ''; applyFilters(); }});
+  filterLoc.addEventListener('change', () => {{ filterPreset.value = ''; applyFilters(); }});
+  filterCtxDep.addEventListener('change', () => {{ filterPreset.value = ''; applyFilters(); }});
+  filterDiff.addEventListener('input', () => {{ filterPreset.value = ''; applyFilters(); }});
 
   // Pagination
   $('btn-first').addEventListener('click', () => {{ page = 0; render(); }});
