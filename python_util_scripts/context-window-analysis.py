@@ -79,21 +79,9 @@ if __name__ == "__main__":
     
     total_tokens["elasticsearch"] = walk_and_count_tokens(ELASTICSEARCH_PATH, file_extensions=ELASTICSEARCH_FILE_EXTENSIONS)
     print("Tokens in elasticsearch (filtered by extensions .java, .gradle, .xml):", total_tokens["elasticsearch"])
-    
-    
 
     with open(OUTPUT_FILE, 'w', encoding='utf-8') as f:
         json.dump(total_tokens, f, indent=2)
-    
-    # Also visualize the results in a plot
-    plt.figure(figsize=(10, 6))
-    for model_name, context_window in CONTEXT_WINDOW_SIZE.items():
-        print(f"\nModel: {model_name}")
-        percentages = []
-        repos = []
-        for repo, token_count in total_tokens.items():
-            percentage = (context_window / token_count) * 100 if token_count > 0 else 0
-            print(f"{repo}: {percentage:.2f}%")
 
 ### REPOS IN SWE-BENCH VERIFIED:
 # SOURCE: https://huggingface.co/datasets/princeton-nlp/SWE-bench_Verified/viewer/default/test?p=4
