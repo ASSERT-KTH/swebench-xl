@@ -84,9 +84,9 @@ if __name__ == "__main__":
 
     with open(OUTPUT_FILE, 'w', encoding='utf-8') as f:
         json.dump(total_tokens, f, indent=2)
-    
-    # Also visualize the results in a plot
-    plt.figure(figsize=(10, 6))
+        print(f"\nToken counts saved to {OUTPUT_FILE}")
+
+    print("\nCalculating context window percentages:")
     for model_name, context_window in CONTEXT_WINDOW_SIZE.items():
         print(f"\nModel: {model_name}")
         percentages = []
