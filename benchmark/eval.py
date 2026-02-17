@@ -123,7 +123,7 @@ echo "Test exit code: $TEST_EXIT"
 echo ""
 echo "=== Step 4: Parsing test output ==="
 cd /workspace
-python3 parser.py stdout.log stderr.log 2>&1
+python3 parser.py /app stdout.log stderr.log 2>&1
 PARSE_EXIT=$?
 if [ $PARSE_EXIT -ne 0 ]; then
     echo "WARNING: Parser failed (exit code $PARSE_EXIT)"
@@ -204,17 +204,22 @@ def evaluate_instance(
             container = client.containers.run(
                 image=image_name,
                 entrypoint="",
-                command=["bash", "/workspace/entry.sh"],
+                command=["bash", "-c", """
+set -e
+useradd -m -u 1000 elasticsearch 2>/dev/null || true
+chown -R elasticsearch:elasticsearch /app /workspace
+su elasticsearch -s /bin/bash -c 'bash /workspace/entry.sh'
+"""],
                 volumes={str(workspace): {"bind": "/workspace", "mode": "rw"}},
                 working_dir="/app",
                 detach=True,
-                # Elasticsearch tests can be memory-hungry
                 mem_limit="16g",
-                # No network access during eval (prevent cheating)
-                # Use --allow_network for validation when images lack cached deps
-                network_mode=None if allow_network else "none", #None means use default bridge network, "none" disables all networking
-                # Run as root to avoid permission issues
+                network_mode=None if allow_network else "none", # None means default network, "none" disables all networking
                 user="root",
+                environment={
+                    "GRADLE_OPTS": "-Dorg.gradle.vfs.watch=false",
+                    "ES_JAVA_OPTS": "-Des.enforce.bootstrap.checks=false",
+                },
             )
 
             # Wait for completion with timeout
@@ -353,10 +358,10 @@ def _find_test_match(test_name: str, passed_tests: set, all_tests: set) -> bool:
 
     Gradle test names may differ in format from the names stored in the dataset.
     For example:
-      Dataset: "org.elasticsearch.foo.BarTests"
-      Gradle:  "org.elasticsearch.foo.BarTests::testMethod {param=value} PASSED"
+      Dataset: "org.elasticsearch.foo.BarTests::testMethod" (full package)
+      Gradle:  "BarTests::testMethod" (short class name from JUnit XML)
 
-    We try exact match first, then substring match.
+    We try exact match first, then various substring matches.
     """
     # Exact match
     if test_name in passed_tests:
@@ -372,10 +377,21 @@ def _find_test_match(test_name: str, passed_tests: set, all_tests: set) -> bool:
         if test_name in passed:
             return True
 
+    # Check if passed test name is a suffix of test_name (handles short class names)
+    # e.g., "BarTests::testMethod" should match "org.foo.BarTests::testMethod"
+    for passed in passed_tests:
+        if passed in test_name:
+            return True
+        # Also check if just the class::method part matches (ignoring package)
+        if "::" in test_name and "::" in passed:
+            expected_suffix = test_name.split(".")[-1]  # "BarTests::testMethod"
+            if expected_suffix == passed:
+                return True
+
     # If the test wasn't found in any results at all, it might not have been executed
     found_in_results = False
     for t in all_tests:
-        if test_name in t:
+        if test_name in t or t in test_name:
             found_in_results = True
             break
 
@@ -403,7 +419,10 @@ def run_evaluation(
     valid_patches = []
     for p in patches:
         instance_id = p.get("instance_id")
-        model_patch = p.get("patch") or p.get("model_patch", "")
+        # Allow empty string patches (for validation), but skip if key is missing entirely
+        model_patch = p.get("patch") if "patch" in p else p.get("model_patch")
+        if model_patch is None:
+            model_patch = ""
         prefix = p.get("prefix", "unknown")
 
         if not instance_id:
@@ -411,9 +430,6 @@ def run_evaluation(
             continue
         if instance_id not in dataset:
             logger.warning(f"Skipping {instance_id}: not found in dataset")
-            continue
-        if not model_patch:
-            logger.warning(f"Skipping {instance_id}: empty patch")
             continue
 
         valid_patches.append({
@@ -522,14 +538,20 @@ def main():
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 Examples:
-  # Evaluate with gold patches (validation)
+  # Evaluate with gold patches (validation - all tests should pass)
   python eval.py --patches gold_patches.json --output_dir results/gold/
+
+  # Evaluate with empty patches (validation - fail_to_pass should fail, pass_to_pass should pass)
+  python eval.py --patches empty_patches.json --output_dir results/empty/
 
   # Evaluate model predictions
   python eval.py --patches predictions.json --output_dir results/my_model/ --num_workers 4
 
   # Generate gold patches for validation
   python eval.py --generate_gold_patches gold_patches.json
+
+  # Generate empty patches for validation
+  python eval.py --generate_empty_patches empty_patches.json
         """,
     )
 
@@ -575,6 +597,12 @@ Examples:
         help="Generate gold patches JSON from dataset (for validation runs)",
     )
     parser.add_argument(
+        "--generate_empty_patches",
+        type=Path,
+        metavar="OUTPUT_FILE",
+        help="Generate empty patches JSON from dataset (to verify fail_to_pass tests fail without fix)",
+    )
+    parser.add_argument(
         "--instances",
         type=str,
         nargs="+",
@@ -605,9 +633,23 @@ Examples:
         logger.info(f"Generated {len(gold_patches)} gold patches -> {args.generate_gold_patches}")
         return
 
+    # Generate empty patches mode (for validation: fail_to_pass should fail, pass_to_pass should pass)
+    if args.generate_empty_patches:
+        empty_patches = []
+        for instance_id, instance in dataset.items():
+            empty_patches.append({
+                "instance_id": instance_id,
+                "patch": "",
+                "prefix": "empty",
+            })
+        with open(args.generate_empty_patches, "w") as f:
+            json.dump(empty_patches, f, indent=2)
+        logger.info(f"Generated {len(empty_patches)} empty patches -> {args.generate_empty_patches}")
+        return
+
     # Evaluation mode
     if not args.patches:
-        parser.error("--patches is required for evaluation (or use --generate_gold_patches)")
+        parser.error("--patches is required for evaluation (or use --generate_gold_patches / --generate_empty_patches)")
 
     patches = load_patches(args.patches)
 
