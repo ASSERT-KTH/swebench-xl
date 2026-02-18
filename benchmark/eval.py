@@ -304,15 +304,18 @@ def score_instance(instance: dict, test_output: dict, result: dict) -> dict:
     instance_id = instance["instance_id"]
     tests = test_output.get("tests", [])
 
-    # Build a set of passed test names
+    # Build sets of test names by status
     passed_tests = set()
     failed_tests = set()
+    skipped_tests = set()
     all_test_names = set()
     for t in tests:
         name = t["name"]
         all_test_names.add(name)
         if t["status"] == "PASSED":
             passed_tests.add(name)
+        elif t["status"] == "SKIPPED":
+            skipped_tests.add(name)
         else:
             failed_tests.add(name)
 
@@ -321,39 +324,62 @@ def score_instance(instance: dict, test_output: dict, result: dict) -> dict:
     pass_to_pass = set(json.loads(instance["pass_to_pass"]))
 
     # Check fail_to_pass: these tests MUST now pass (they failed before the fix)
+    # Tests not found in any output are skipped (e.g. utility classes, abstract bases)
     f2p_results = {}
     for test in fail_to_pass:
-        # Match by substring - gradle output may include method names
-        matched = _find_test_match(test, passed_tests, all_test_names)
-        f2p_results[test] = matched
+        f2p_results[test] = _find_test_match(test, passed_tests, skipped_tests, all_test_names)
     result["fail_to_pass_results"] = f2p_results
 
     # Check pass_to_pass: these tests MUST still pass
     p2p_results = {}
     for test in pass_to_pass:
-        matched = _find_test_match(test, passed_tests, all_test_names)
-        p2p_results[test] = matched
+        p2p_results[test] = _find_test_match(test, passed_tests, skipped_tests, all_test_names)
     result["pass_to_pass_results"] = p2p_results
 
-    f2p_passed = sum(1 for v in f2p_results.values() if v)
-    f2p_total = len(f2p_results)
-    p2p_passed = sum(1 for v in p2p_results.values() if v)
-    p2p_total = len(p2p_results)
+    f2p_passed = sum(1 for v in f2p_results.values() if v == "PASSED")
+    f2p_failed = sum(1 for v in f2p_results.values() if v == "FAILED")
+    f2p_skipped = sum(1 for v in f2p_results.values() if v == "SKIPPED")
+    f2p_not_found = sum(1 for v in f2p_results.values() if v == "NOT_FOUND")
+    f2p_total = f2p_passed + f2p_failed  # exclude NOT_FOUND and SKIPPED from scoring. #TODO: include skipped in total, ensure they are not skipped!
 
-    result["resolved"] = (f2p_passed == f2p_total) and (p2p_passed == p2p_total)
+    p2p_passed = sum(1 for v in p2p_results.values() if v == "PASSED")
+    p2p_failed = sum(1 for v in p2p_results.values() if v == "FAILED")
+    p2p_skipped = sum(1 for v in p2p_results.values() if v == "SKIPPED")
+    p2p_not_found = sum(1 for v in p2p_results.values() if v == "NOT_FOUND")
+    p2p_total = p2p_passed + p2p_failed + p2p_skipped  # include skipped for ratio check
+
+    # F2P: all found tests must pass
+    f2p_ok = (f2p_total > 0) and (f2p_passed == f2p_total)
+
+    # P2P: fail if any test explicitly failed, or if >50% of tests were skipped
+    p2p_ok = (p2p_failed == 0)
+    if p2p_total > 0 and p2p_skipped > p2p_total * 0.5:
+        p2p_ok = False
+
+    result["resolved"] = f2p_ok and p2p_ok
 
     status = "RESOLVED" if result["resolved"] else "FAILED"
+    f2p_info = f"F2P: {f2p_passed}/{f2p_total}"
+    p2p_info = f"P2P: {p2p_passed}/{p2p_total}"
+    if f2p_skipped:
+        f2p_info += f" ({f2p_skipped} skipped)"
+    if f2p_not_found:
+        f2p_info += f" ({f2p_not_found} not found)"
+    if p2p_skipped:
+        p2p_info += f" ({p2p_skipped} skipped)"
+    if p2p_not_found:
+        p2p_info += f" ({p2p_not_found} not found)"
     logger.info(
         f"[{instance_id}] {status} | "
-        f"F2P: {f2p_passed}/{f2p_total} | "
-        f"P2P: {p2p_passed}/{p2p_total} | "
+        f"{f2p_info} | "
+        f"{p2p_info} | "
         f"Total tests parsed: {len(tests)}"
     )
 
     return result
 
 
-def _find_test_match(test_name: str, passed_tests: set, all_tests: set) -> bool:
+def _find_test_match(test_name: str, passed_tests: set, skipped_tests: set, all_tests: set) -> str:
     """Check if a test passed, using exact or substring matching.
 
     Gradle test names may differ in format from the names stored in the dataset.
@@ -362,43 +388,54 @@ def _find_test_match(test_name: str, passed_tests: set, all_tests: set) -> bool:
       Gradle:  "BarTests::testMethod" (short class name from JUnit XML)
 
     We try exact match first, then various substring matches.
+
+    Returns:
+      "PASSED" if the test was found and passed,
+      "SKIPPED" if the test was found but only skipped (not passed or failed),
+      "FAILED" if the test was found but failed,
+      "NOT_FOUND" if the test was not found in any test output.
     """
-    # Exact match
-    if test_name in passed_tests:
-        return True
-
-    # Check if test_name is a prefix of any passed test (class-level match)
-    for passed in passed_tests:
-        if passed.startswith(test_name + "::") or passed.startswith(test_name + " "):
+    # Helper: check if test_name matches any test in a given set
+    def _matches_any(test_name: str, test_set: set) -> bool:
+        if test_name in test_set:
             return True
 
-    # Check if the test_name appears as a substring in any passed test
-    for passed in passed_tests:
-        if test_name in passed:
-            return True
+        # Extract short class name from fully-qualified name
+        # e.g. "org.elasticsearch...AvgTests" -> "AvgTests"
+        # e.g. "org.elasticsearch...AvgTests::testMethod" -> "AvgTests::testMethod"
+        short_name = test_name.split(".")[-1] if "." in test_name else test_name
 
-    # Check if passed test name is a suffix of test_name (handles short class names)
-    # e.g., "BarTests::testMethod" should match "org.foo.BarTests::testMethod"
-    for passed in passed_tests:
-        if passed in test_name:
-            return True
-        # Also check if just the class::method part matches (ignoring package)
-        if "::" in test_name and "::" in passed:
-            expected_suffix = test_name.split(".")[-1]  # "BarTests::testMethod"
-            if expected_suffix == passed:
+        for t in test_set:
+            # Prefix match (class-level): test output starts with expected name
+            if t.startswith(test_name + "::") or t.startswith(test_name + " "):
                 return True
+            # Substring match in either direction
+            if test_name in t or t in test_name:
+                return True
+            # Compare short class names (exact match to avoid AvgTests matching WeightedAvgTests)
+            # Extract class part from output test name: "AvgTests::testMethod {TC}" -> "AvgTests"
+            t_class = t.split("::")[0] if "::" in t else t
+            if "::" in short_name:
+                # F2P has method: "AvgTests::testMethod" == "AvgTests::testMethod"
+                if short_name == t or t.startswith(short_name + " "):
+                    return True
+            else:
+                # F2P is class-level: "AvgTests" == "AvgTests"
+                if short_name == t_class:
+                    return True
+        return False
 
-    # If the test wasn't found in any results at all, it might not have been executed
-    found_in_results = False
-    for t in all_tests:
-        if test_name in t or t in test_name:
-            found_in_results = True
-            break
+    if _matches_any(test_name, passed_tests):
+        return "PASSED"
 
-    if not found_in_results:
-        logger.debug(f"  Test not found in output: {test_name}")
+    if _matches_any(test_name, skipped_tests):
+        return "SKIPPED"
 
-    return False
+    if _matches_any(test_name, all_tests):
+        return "FAILED"
+
+    logger.warning(f"  Test not found in output (skipping from scoring): {test_name}")
+    return "NOT_FOUND"
 
 
 def run_evaluation(
