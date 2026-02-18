@@ -410,9 +410,6 @@ def _find_test_match(test_name: str, passed_tests: set, skipped_tests: set, all_
             # Prefix match (class-level): test output starts with expected name
             if t.startswith(test_name + "::") or t.startswith(test_name + " "):
                 return True
-            # Substring match in either direction
-            if test_name in t or t in test_name:
-                return True
             # Compare short class names (exact match to avoid AvgTests matching WeightedAvgTests)
             # Extract class part from output test name: "AvgTests::testMethod {TC}" -> "AvgTests"
             t_class = t.split("::")[0] if "::" in t else t
