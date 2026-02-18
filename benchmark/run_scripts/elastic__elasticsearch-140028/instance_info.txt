@@ -1,0 +1,21 @@
+instance_id: elastic__elasticsearch-140028
+repo: elastic/elasticsearch
+version: 9.4.0
+base_commit: cba13bc83e252cb3b3014cf4e74311b3433c89c1
+pr_number: 140028
+
+FAIL_TO_PASS:
+  - org.elasticsearch.xpack.esql.optimizer.rules.logical.FoldNullTests::testNestedCoalesce
+
+PASS_TO_PASS:
+  - org.elasticsearch.xpack.esql.optimizer.rules.logical.FoldNullTests::testNullFoldableDoesNotApplyToIsNullAndNotNull
+  - org.elasticsearch.xpack.esql.optimizer.rules.logical.FoldNullTests::testNullCategorizeGroupingNotFolded
+  - org.elasticsearch.xpack.esql.optimizer.rules.logical.FoldNullTests::testNullFoldingDoesNotApplyOnAbstractMultivalueFunction
+  - org.elasticsearch.xpack.esql.optimizer.rules.logical.FoldNullTests::testNullFoldingDoesNotApplyOnAggregate
+  - org.elasticsearch.xpack.esql.optimizer.rules.logical.FoldNullTests::testNullFoldingDoesNotApplyOnLogicalExpressions
+  - org.elasticsearch.xpack.esql.optimizer.rules.logical.FoldNullTests::testNullBucketGetsFolded
+  - org.elasticsearch.xpack.esql.optimizer.rules.logical.FoldNullTests::testNullFoldingIsNull
+  - org.elasticsearch.xpack.esql.optimizer.rules.logical.FoldNullTests::testNullFoldingIsNotNull
+  - org.elasticsearch.xpack.esql.optimizer.rules.logical.FoldNullTests::testNestedCoalesce
+  - org.elasticsearch.xpack.esql.optimizer.rules.logical.FoldNullTests::testGenericNullableExpression
+  - org.elasticsearch.xpack.esql.optimizer.rules.logical.FoldNullTests::testBasicNullFolding

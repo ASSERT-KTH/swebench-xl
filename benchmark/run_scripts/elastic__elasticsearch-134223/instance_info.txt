@@ -1,0 +1,28 @@
+instance_id: elastic__elasticsearch-134223
+repo: elastic/elasticsearch
+version: 9.3.0
+base_commit: ffbf05c994b0364f081b75ff0a146957ec005555
+pr_number: 134223
+
+FAIL_TO_PASS:
+  - org.elasticsearch.ingest.geoip.EnterpriseGeoIpDownloaderIT
+  - org.elasticsearch.ingest.geoip.EnterpriseGeoIpDownloaderTests
+
+PASS_TO_PASS:
+  - org.elasticsearch.ingest.geoip.EnterpriseGeoIpDownloaderTests::testIndexChunksMd5Mismatch
+  - org.elasticsearch.ingest.geoip.EnterpriseGeoIpDownloaderTests::testRestartPeriodicRunReleasesLock
+  - org.elasticsearch.ingest.geoip.EnterpriseGeoIpDownloaderTests::testUpdateDatabasesIndexNotReady
+  - org.elasticsearch.ingest.geoip.EnterpriseGeoIpDownloaderTests::testProcessDatabaseNew
+  - org.elasticsearch.ingest.geoip.EnterpriseGeoIpDownloaderTests::testGetChunkExactlyChunkSize
+  - org.elasticsearch.ingest.geoip.EnterpriseGeoIpDownloaderTests::testGetChunkEndOfStream
+  - org.elasticsearch.ingest.geoip.EnterpriseGeoIpDownloaderTests::testGetChunkRethrowsIOException
+  - org.elasticsearch.ingest.geoip.EnterpriseGeoIpDownloaderTests::testProcessDatabaseSame
+  - org.elasticsearch.ingest.geoip.EnterpriseGeoIpDownloaderTests::testUpdateDatabasesWriteBlock
+  - org.elasticsearch.ingest.geoip.EnterpriseGeoIpDownloaderTests::testGetChunkMoreThanChunkSize
+  - org.elasticsearch.ingest.geoip.EnterpriseGeoIpDownloaderTests::testIndexChunks
+  - org.elasticsearch.ingest.geoip.EnterpriseGeoIpDownloaderTests::testMaxmindUrls
+  - org.elasticsearch.ingest.geoip.EnterpriseGeoIpDownloaderTests::testRequestRunOnDemandReleasesLock
+  - org.elasticsearch.ingest.geoip.EnterpriseGeoIpDownloaderTests::testGetChunkLessThanChunkSize
+  - org.elasticsearch.ingest.geoip.EnterpriseGeoIpDownloaderTests::testProcessDatabaseUpdate
+  - org.elasticsearch.ingest.geoip.EnterpriseGeoIpDownloaderTests::testIndexChunksNoData
+  - org.elasticsearch.ingest.geoip.EnterpriseGeoIpDownloaderTests::testIpinfoUrls

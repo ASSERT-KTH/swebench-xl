@@ -1,0 +1,25 @@
+instance_id: elastic__elasticsearch-120256
+repo: elastic/elasticsearch
+version: 9.0.0
+base_commit: c7d8862c75dab684c1997f486ccf869dee5459f3
+pr_number: 120256
+
+FAIL_TO_PASS:
+  - org.elasticsearch.xpack.enrich.EnrichProcessorMaxMatchesIT
+  - org.elasticsearch.xpack.enrich.EnrichCacheTests
+  - org.elasticsearch.xpack.enrich.GeoMatchProcessorTests
+  - org.elasticsearch.xpack.enrich.MatchProcessorTests
+
+PASS_TO_PASS:
+  - org.elasticsearch.xpack.enrich.GeoMatchProcessorTests::testBasics
+  - org.elasticsearch.xpack.enrich.MatchProcessorTests::testBasics
+  - org.elasticsearch.xpack.enrich.MatchProcessorTests::testExistingFieldWithOverrideDisabled
+  - org.elasticsearch.xpack.enrich.MatchProcessorTests::testNumericValue
+  - org.elasticsearch.xpack.enrich.MatchProcessorTests::testExistingNullFieldWithOverrideDisabled
+  - org.elasticsearch.xpack.enrich.MatchProcessorTests::testSearchFailure
+  - org.elasticsearch.xpack.enrich.MatchProcessorTests::testArray
+  - org.elasticsearch.xpack.enrich.MatchProcessorTests::testIgnoreKeyMissing
+  - org.elasticsearch.xpack.enrich.MatchProcessorTests::testNoMatch
+  - org.elasticsearch.xpack.enrich.EnrichCacheTests::testComputeIfAbsent
+  - org.elasticsearch.xpack.enrich.EnrichCacheTests::testDeepCopy
+  - org.elasticsearch.xpack.enrich.EnrichCacheTests::testCaching

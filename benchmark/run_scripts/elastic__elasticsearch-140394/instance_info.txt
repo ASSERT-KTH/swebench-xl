@@ -1,0 +1,37 @@
+instance_id: elastic__elasticsearch-140394
+repo: elastic/elasticsearch
+version: 9.4.0
+base_commit: be581a524408b1b4242456c75824d27791ceee03
+pr_number: 140394
+
+FAIL_TO_PASS:
+  - org.elasticsearch.repositories.RepositoryDataTests
+  - org.elasticsearch.repositories.blobstore.BlobStoreRepositoryTests
+
+PASS_TO_PASS:
+  - org.elasticsearch.repositories.RepositoryDataTests::testRemoveSnapshot
+  - org.elasticsearch.repositories.RepositoryDataTests::testAddSnapshots
+  - org.elasticsearch.repositories.RepositoryDataTests::testIndexMetaDataToRemoveAfterRemovingSnapshotWithSharing
+  - org.elasticsearch.repositories.RepositoryDataTests::testXContent
+  - org.elasticsearch.repositories.RepositoryDataTests::testEqualsAndHashCode
+  - org.elasticsearch.repositories.RepositoryDataTests::testGetSnapshotState
+  - org.elasticsearch.repositories.RepositoryDataTests::testToString
+  - org.elasticsearch.repositories.RepositoryDataTests::testIndicesToUpdateAfterRemovingSnapshot
+  - org.elasticsearch.repositories.RepositoryDataTests::testResolveIndexId
+  - org.elasticsearch.repositories.RepositoryDataTests::testIndexThatReferencesAnUnknownSnapshot
+  - org.elasticsearch.repositories.RepositoryDataTests::testIndexThatReferenceANullSnapshot
+  - org.elasticsearch.repositories.RepositoryDataTests::testFailsIfMinVersionNotSatisfied
+  - org.elasticsearch.repositories.RepositoryDataTests::testInitIndices
+  - org.elasticsearch.repositories.RepositoryDataTests::testIndexMetaDataToRemoveAfterRemovingSnapshotNoSharing
+  - org.elasticsearch.repositories.blobstore.BlobStoreRepositoryTests::testReadAndWriteSnapshotsThroughIndexFile
+  - org.elasticsearch.repositories.blobstore.BlobStoreRepositoryTests::testGetRepositoryDataThreadContext
+  - org.elasticsearch.repositories.blobstore.BlobStoreRepositoryTests::testRepositoryDataConcurrentModificationNotAllowed
+  - org.elasticsearch.repositories.blobstore.BlobStoreRepositoryTests::testBlobsToDeleteCapacity
+  - org.elasticsearch.repositories.blobstore.BlobStoreRepositoryTests::testRepositoryDataDetails
+  - org.elasticsearch.repositories.blobstore.BlobStoreRepositoryTests::testUuidCreationLogging
+  - org.elasticsearch.repositories.blobstore.BlobStoreRepositoryTests::testIndexGenerationalFiles
+  - org.elasticsearch.repositories.blobstore.BlobStoreRepositoryTests::testRetrieveSnapshots
+  - org.elasticsearch.repositories.blobstore.BlobStoreRepositoryTests::testEnsureUploadListenerIsResolvedWhenAFileSnapshotTaskFails
+  - org.elasticsearch.repositories.blobstore.BlobStoreRepositoryTests::testCorruptIndexLatestFile
+  - org.elasticsearch.repositories.blobstore.BlobStoreRepositoryTests::testGetRepositoryDataForking
+  - org.elasticsearch.repositories.blobstore.BlobStoreRepositoryTests::testBadChunksize

@@ -1,0 +1,12 @@
+instance_id: elastic__elasticsearch-135505
+repo: elastic/elasticsearch
+version: 9.2.0
+base_commit: bc7da67cd9b6a5fad54c52ee27fb0d0ea6435137
+pr_number: 135505
+
+FAIL_TO_PASS:
+  - org.elasticsearch.index.store.FsDirectoryFactoryTests::testPreload
+
+PASS_TO_PASS:
+  - org.elasticsearch.index.store.FsDirectoryFactoryTests::testPreload
+  - org.elasticsearch.index.store.FsDirectoryFactoryTests::testStoreDirectory

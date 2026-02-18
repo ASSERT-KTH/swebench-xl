@@ -1,0 +1,14 @@
+instance_id: elastic__elasticsearch-134455
+repo: elastic/elasticsearch
+version: 9.2.0
+base_commit: f1bcb0791f7e4051c9d7d0f86a7b1e4b06d7c461
+pr_number: 134455
+
+FAIL_TO_PASS:
+  - org.elasticsearch.xpack.esql.session.SessionUtilsTests
+
+PASS_TO_PASS:
+  - org.elasticsearch.xpack.esql.session.SessionUtilsTests::testFromPagesCircuitBreaks
+  - org.elasticsearch.xpack.esql.session.SessionUtilsTests::testCheckPagesBelowSize
+  - org.elasticsearch.xpack.esql.session.SessionUtilsTests::testMaxIntermediateLocalRelationSize
+  - org.elasticsearch.xpack.esql.session.SessionUtilsTests::testFromPages

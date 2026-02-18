@@ -1,0 +1,16 @@
+instance_id: elastic__elasticsearch-138306
+repo: elastic/elasticsearch
+version: 9.3.0
+base_commit: e6c5dcc087f13a3cfe738ab1531e4ab7ed39a0de
+pr_number: 138306
+
+FAIL_TO_PASS:
+  - org.elasticsearch.search.fetch.StoredFieldsSpecTests::testMergeSourcePathsRequireCompleteSource
+
+PASS_TO_PASS:
+  - org.elasticsearch.search.fetch.StoredFieldsSpecTests::testDefaults
+  - org.elasticsearch.search.fetch.StoredFieldsSpecTests::testMergeSourcePathsRequireCompleteSource
+  - org.elasticsearch.search.fetch.StoredFieldsSpecTests::testStoredFieldsDisabled
+  - org.elasticsearch.search.fetch.StoredFieldsSpecTests::testNoCloneOnMerge
+  - org.elasticsearch.search.fetch.StoredFieldsSpecTests::testScriptFieldsEnableMetadata
+  - org.elasticsearch.search.fetch.StoredFieldsSpecTests::testMergeSourcePaths

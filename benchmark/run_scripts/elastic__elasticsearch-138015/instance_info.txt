@@ -1,0 +1,21 @@
+instance_id: elastic__elasticsearch-138015
+repo: elastic/elasticsearch
+version: 9.3.0
+base_commit: 6aa1eb43278ab13a9522a6947a6e04650d83eb9f
+pr_number: 138015
+
+FAIL_TO_PASS:
+  - org.elasticsearch.cluster.metadata.MetadataDeleteIndexServiceTests::testDeleteMissing
+
+PASS_TO_PASS:
+  - org.elasticsearch.cluster.metadata.MetadataDeleteIndexServiceTests::testDeleteCurrentWriteIndexForDataStream
+  - org.elasticsearch.cluster.metadata.MetadataDeleteIndexServiceTests::testDeleteFailureIndexForDataStream
+  - org.elasticsearch.cluster.metadata.MetadataDeleteIndexServiceTests::testDeleteIndicesFromMultipleProjects
+  - org.elasticsearch.cluster.metadata.MetadataDeleteIndexServiceTests::testDeleteCurrentWriteFailureIndexForDataStream
+  - org.elasticsearch.cluster.metadata.MetadataDeleteIndexServiceTests::testDeleteMultipleFailureIndexForDataStream
+  - org.elasticsearch.cluster.metadata.MetadataDeleteIndexServiceTests::testDeleteSnapshotting
+  - org.elasticsearch.cluster.metadata.MetadataDeleteIndexServiceTests::testDeleteMultipleBackingIndexForDataStream
+  - org.elasticsearch.cluster.metadata.MetadataDeleteIndexServiceTests::testDeleteBackingIndexForDataStream
+  - org.elasticsearch.cluster.metadata.MetadataDeleteIndexServiceTests::testDeleteUnassigned
+  - org.elasticsearch.cluster.metadata.MetadataDeleteIndexServiceTests::testDeleteIndexWithAnAlias
+  - org.elasticsearch.cluster.metadata.MetadataDeleteIndexServiceTests::testDeleteMissing

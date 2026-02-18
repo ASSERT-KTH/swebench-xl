@@ -1,0 +1,51 @@
+instance_id: elastic__elasticsearch-141242
+repo: elastic/elasticsearch
+version: 9.4.0
+base_commit: 130044bc5c3ee79125dc6cd508c72d0cee584a43
+pr_number: 141242
+
+FAIL_TO_PASS:
+  - org.elasticsearch.compute.data.BasicBlockTests::testConstantBytesRefBlock
+
+PASS_TO_PASS:
+  - org.elasticsearch.compute.data.BasicBlockTests::testLongBlock
+  - org.elasticsearch.compute.data.BasicBlockTests::testBytesRefBlockOnGeoPoints
+  - org.elasticsearch.compute.data.BasicBlockTests::testConstantBooleanBlock
+  - org.elasticsearch.compute.data.BasicBlockTests::testFilterOrdinalBytesRefVector
+  - org.elasticsearch.compute.data.BasicBlockTests::testSingleValueSparseLong
+  - org.elasticsearch.compute.data.BasicBlockTests::testSingleValueSparseDouble
+  - org.elasticsearch.compute.data.BasicBlockTests::testRefCountingArrayBlock
+  - org.elasticsearch.compute.data.BasicBlockTests::testBytesRefBlockOnCartesianPoints
+  - org.elasticsearch.compute.data.BasicBlockTests::testSmallSingleValueDenseGrowthFloat
+  - org.elasticsearch.compute.data.BasicBlockTests::testEmpty
+  - org.elasticsearch.compute.data.BasicBlockTests::testRefCountingDocBlock
+  - org.elasticsearch.compute.data.BasicBlockTests::testSmallSingleValueDenseGrowthLong
+  - org.elasticsearch.compute.data.BasicBlockTests::testConstantBytesRefBlock
+  - org.elasticsearch.compute.data.BasicBlockTests::testRefCountingArrayVector
+  - org.elasticsearch.compute.data.BasicBlockTests::testRefCountingDocVector
+  - org.elasticsearch.compute.data.BasicBlockTests::testBytesRefBlock
+  - org.elasticsearch.compute.data.BasicBlockTests::testSmallSingleValueDenseGrowthInt
+  - org.elasticsearch.compute.data.BasicBlockTests::testIntBlockEmpty
+  - org.elasticsearch.compute.data.BasicBlockTests::testConstantFloatBlock
+  - org.elasticsearch.compute.data.BasicBlockTests::testConstantNullBlock
+  - org.elasticsearch.compute.data.BasicBlockTests::testRefCountingVectorBlock
+  - org.elasticsearch.compute.data.BasicBlockTests::testSmallSingleValueDenseGrowthAggregateMetricDouble
+  - org.elasticsearch.compute.data.BasicBlockTests::testBytesRefBlockBuilderWithNulls
+  - org.elasticsearch.compute.data.BasicBlockTests::testDoubleBlock
+  - org.elasticsearch.compute.data.BasicBlockTests::testConstantIntBlock
+  - org.elasticsearch.compute.data.BasicBlockTests::testConstantDoubleBlock
+  - org.elasticsearch.compute.data.BasicBlockTests::testRefCountingBigArrayBlock
+  - org.elasticsearch.compute.data.BasicBlockTests::testFilterOrdinalBytesRefBlock
+  - org.elasticsearch.compute.data.BasicBlockTests::testBooleanBlock
+  - org.elasticsearch.compute.data.BasicBlockTests::testSingleValueSparseInt
+  - org.elasticsearch.compute.data.BasicBlockTests::testSmallSingleValueDenseGrowthDouble
+  - org.elasticsearch.compute.data.BasicBlockTests::testRefCountingConstantNullBlock
+  - org.elasticsearch.compute.data.BasicBlockTests::testRefCountingBigArrayVector
+  - org.elasticsearch.compute.data.BasicBlockTests::testFloatBlock
+  - org.elasticsearch.compute.data.BasicBlockTests::testRefCountingConstantVector
+  - org.elasticsearch.compute.data.BasicBlockTests::testSingleValueSparseBoolean
+  - org.elasticsearch.compute.data.BasicBlockTests::testSmallSingleValueDenseGrowthBoolean
+  - org.elasticsearch.compute.data.BasicBlockTests::testToStringSmall
+  - org.elasticsearch.compute.data.BasicBlockTests::testIntBlock
+  - org.elasticsearch.compute.data.BasicBlockTests::testSmallSingleValueDenseGrowthBytesRef
+  - org.elasticsearch.compute.data.BasicBlockTests::testConstantLongBlock

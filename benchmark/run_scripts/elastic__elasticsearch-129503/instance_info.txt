@@ -1,0 +1,1359 @@
+instance_id: elastic__elasticsearch-129503
+repo: elastic/elasticsearch
+version: 9.1.0
+base_commit: 2502a363de7c42eb72fb78e3d1037f76afa399cc
+pr_number: 129503
+
+FAIL_TO_PASS:
+  - org.elasticsearch.xpack.esql.optimizer.rules.logical.PushDownJoinPastProjectTests::testShadowingAfterPushdown2
+  - org.elasticsearch.xpack.esql.optimizer.rules.logical.PushDownJoinPastProjectTests::testShadowingBeforePushdown
+  - org.elasticsearch.xpack.esql.optimizer.rules.logical.PushDownJoinPastProjectTests::testShadowingAfterPushdown
+  - org.elasticsearch.xpack.esql.optimizer.rules.logical.PushDownJoinPastProjectTests::testMultipleLookups
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testVerifierOnMissingReferencesWithBinaryPlans {default}
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testFilterWithSortBeforeLookupJoin
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPlanSanityCheckWithBinaryPlans
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPushDown_TheRightLimit_PastLookupJoin
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testRedundantSortOnMvExpandJoinKeepDropRename
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testLookupJoinPushDownSeparatedForConjunctionBetweenLeftAndRightField
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testSortLookupJoinLimit
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testRedundantSortOnJoin
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testMultipleLookupJoinWithSortAndLimit
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testLimitThenSortBeforeLookupJoin
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testCopyDefaultLimitPastLookupJoin
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testLookupJoinPushDownFilterOnLeftSideField
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testLookupJoinPushDownFilterOnJoinKeyWithRename
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testDontPushDownLimitPastLookupJoin
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testLookupJoinPushDownDisabledForLookupField
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testLookupJoinPushDownDisabledForDisjunctionBetweenLeftAndRightField
+
+PASS_TO_PASS:
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.predicate.operator.comparison.In}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.predicate.operator.comparison.In}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.predicate.operator.comparison.In}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.scalar.convert.ToDatetime}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.scalar.convert.ToDatetime}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.scalar.convert.ToDatetime}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.plan.physical.LimitExec}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.plan.physical.LimitExec}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.plan.physical.LimitExec}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.scalar.math.Atan}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.scalar.math.Atan}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.scalar.math.Atan}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.scalar.spatial.StGeohexToString}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.scalar.spatial.StGeohexToString}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.scalar.spatial.StGeohexToString}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.EsqlFunctionRegistryTests$DummyConfigurationOptionalArgumentFunction}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.EsqlFunctionRegistryTests$DummyConfigurationOptionalArgumentFunction}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.EsqlFunctionRegistryTests$DummyConfigurationOptionalArgumentFunction}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.scalar.spatial.SpatialIntersects}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.scalar.spatial.SpatialIntersects}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.scalar.spatial.SpatialIntersects}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.plan.logical.UnresolvedRelation}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.plan.logical.UnresolvedRelation}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.plan.logical.UnresolvedRelation}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.predicate.logical.Not}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.predicate.logical.Not}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.predicate.logical.Not}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.fulltext.Term}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.fulltext.Term}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.fulltext.Term}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.predicate.operator.arithmetic.Add}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.predicate.operator.arithmetic.Add}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.predicate.operator.arithmetic.Add}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.plan.logical.join.StubRelation}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.plan.logical.join.StubRelation}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.plan.logical.join.StubRelation}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.scalar.convert.ToString}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.scalar.convert.ToString}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.scalar.convert.ToString}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.aggregate.Avg}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.aggregate.Avg}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.aggregate.Avg}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.scalar.convert.ToIpLeadingZerosOctal}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.scalar.convert.ToIpLeadingZerosOctal}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.scalar.convert.ToIpLeadingZerosOctal}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.scalar.convert.ToBoolean}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.scalar.convert.ToBoolean}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.scalar.convert.ToBoolean}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.scalar.spatial.StGeohexToLong}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.scalar.spatial.StGeohexToLong}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.scalar.spatial.StGeohexToLong}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.scalar.convert.ToDegrees}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.scalar.convert.ToDegrees}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.scalar.convert.ToDegrees}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.aggregate.CountDistinctOverTime}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.aggregate.CountDistinctOverTime}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.aggregate.CountDistinctOverTime}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.scalar.multivalue.MvSort}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.scalar.multivalue.MvSort}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.scalar.multivalue.MvSort}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.core.tree.NodeTests$NoChildren}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.core.tree.NodeTests$NoChildren}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.core.tree.NodeTests$NoChildren}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.scalar.multivalue.MvPSeriesWeightedSum}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.scalar.multivalue.MvPSeriesWeightedSum}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.scalar.multivalue.MvPSeriesWeightedSum}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.plan.physical.ExchangeExec}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.plan.physical.ExchangeExec}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.plan.physical.ExchangeExec}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.scalar.spatial.StGeohash}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.scalar.spatial.StGeohash}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.scalar.spatial.StGeohash}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.scalar.multivalue.MvMedianAbsoluteDeviation}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.scalar.multivalue.MvMedianAbsoluteDeviation}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.scalar.multivalue.MvMedianAbsoluteDeviation}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.scalar.spatial.StYMax}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.scalar.spatial.StYMax}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.scalar.spatial.StYMax}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.plan.logical.inference.Completion}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.plan.logical.inference.Completion}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.plan.logical.inference.Completion}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.scalar.convert.ToGeoPoint}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.scalar.convert.ToGeoPoint}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.scalar.convert.ToGeoPoint}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.aggregate.MinOverTime}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.aggregate.MinOverTime}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.aggregate.MinOverTime}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.scalar.math.Sinh}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.scalar.math.Sinh}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.scalar.math.Sinh}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.scalar.math.Acos}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.scalar.math.Acos}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.scalar.math.Acos}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.scalar.string.EndsWith}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.scalar.string.EndsWith}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.scalar.string.EndsWith}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.aggregate.FilteredExpression}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.aggregate.FilteredExpression}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.aggregate.FilteredExpression}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.aggregate.WeightedAvg}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.aggregate.WeightedAvg}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.aggregate.WeightedAvg}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.scalar.string.LTrim}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.scalar.string.LTrim}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.scalar.string.LTrim}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.scalar.string.BitLength}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.scalar.string.BitLength}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.scalar.string.BitLength}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.scalar.multivalue.MvZip}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.scalar.multivalue.MvZip}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.scalar.multivalue.MvZip}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.scalar.convert.ToAggregateMetricDouble}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.scalar.convert.ToAggregateMetricDouble}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.scalar.convert.ToAggregateMetricDouble}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.scalar.conditional.Greatest}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.scalar.conditional.Greatest}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.scalar.conditional.Greatest}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.plan.logical.Filter}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.plan.logical.Filter}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.plan.logical.Filter}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.fulltext.MatchOperator}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.fulltext.MatchOperator}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.fulltext.MatchOperator}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.predicate.operator.comparison.GreaterThan}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.predicate.operator.comparison.GreaterThan}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.predicate.operator.comparison.GreaterThan}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.predicate.operator.arithmetic.Div}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.predicate.operator.arithmetic.Div}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.predicate.operator.arithmetic.Div}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.scalar.conditional.Case}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.scalar.conditional.Case}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.scalar.conditional.Case}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.scalar.string.ByteLength}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.scalar.string.ByteLength}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.scalar.string.ByteLength}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.scalar.util.Delay}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.scalar.util.Delay}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.scalar.util.Delay}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.scalar.convert.ToLong}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.scalar.convert.ToLong}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.scalar.convert.ToLong}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.plan.logical.Rename}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.plan.logical.Rename}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.plan.logical.Rename}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.plan.logical.Enrich}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.plan.logical.Enrich}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.plan.logical.Enrich}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.aggregate.AvgOverTime}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.aggregate.AvgOverTime}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.aggregate.AvgOverTime}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.scalar.string.Right}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.scalar.string.Right}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.scalar.string.Right}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.scalar.string.StartsWith}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.scalar.string.StartsWith}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.scalar.string.StartsWith}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.fulltext.QueryString}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.fulltext.QueryString}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.fulltext.QueryString}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.fulltext.MatchPhrase}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.fulltext.MatchPhrase}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.fulltext.MatchPhrase}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.scalar.string.Sha256}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.scalar.string.Sha256}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.scalar.string.Sha256}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.scalar.math.Asin}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.scalar.math.Asin}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.scalar.math.Asin}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.plan.logical.OrderBy}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.plan.logical.OrderBy}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.plan.logical.OrderBy}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.scalar.string.regex.RLike}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.scalar.string.regex.RLike}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.scalar.string.regex.RLike}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.EsqlFunctionRegistryTests$DummyFunction}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.EsqlFunctionRegistryTests$DummyFunction}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.EsqlFunctionRegistryTests$DummyFunction}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.scalar.multivalue.MvConcat}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.scalar.multivalue.MvConcat}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.scalar.multivalue.MvConcat}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.scalar.multivalue.MvAppend}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.scalar.multivalue.MvAppend}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.scalar.multivalue.MvAppend}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.plan.physical.TimeSeriesAggregateExec}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.plan.physical.TimeSeriesAggregateExec}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.plan.physical.TimeSeriesAggregateExec}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.scalar.math.Tau}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.scalar.math.Tau}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.scalar.math.Tau}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.scalar.string.Md5}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.scalar.string.Md5}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.scalar.string.Md5}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.scalar.math.CopySign}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.scalar.math.CopySign}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.scalar.math.CopySign}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.scalar.convert.ToInteger}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.scalar.convert.ToInteger}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.scalar.convert.ToInteger}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.scalar.math.Cbrt}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.scalar.math.Cbrt}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.scalar.math.Cbrt}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.aggregate.Rate}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.aggregate.Rate}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.aggregate.Rate}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.plan.logical.Sample}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.plan.logical.Sample}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.plan.logical.Sample}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.scalar.math.Scalb}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.scalar.math.Scalb}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.scalar.math.Scalb}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.scalar.convert.ToBase64}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.scalar.convert.ToBase64}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.scalar.convert.ToBase64}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.core.expression.NullabilityTests$Nullable}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.core.expression.NullabilityTests$Nullable}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.core.expression.NullabilityTests$Nullable}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.predicate.logical.And}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.predicate.logical.And}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.predicate.logical.And}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.scalar.math.Tanh}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.scalar.math.Tanh}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.scalar.math.Tanh}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.plan.physical.GrokExec}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.plan.physical.GrokExec}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.plan.physical.GrokExec}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.plan.physical.ShowExec}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.plan.physical.ShowExec}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.plan.physical.ShowExec}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.scalar.multivalue.MvSum}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.scalar.multivalue.MvSum}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.scalar.multivalue.MvSum}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.plan.logical.Row}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.plan.logical.Row}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.plan.logical.Row}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.DocsV3SupportTests$TestClass}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.DocsV3SupportTests$TestClass}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.DocsV3SupportTests$TestClass}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.scalar.multivalue.MvLast}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.scalar.multivalue.MvLast}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.scalar.multivalue.MvLast}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.scalar.spatial.StXMin}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.scalar.spatial.StXMin}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.scalar.spatial.StXMin}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.predicate.operator.arithmetic.Mul}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.predicate.operator.arithmetic.Mul}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.predicate.operator.arithmetic.Mul}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.plan.physical.TimeSeriesFieldExtractExec}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.plan.physical.TimeSeriesFieldExtractExec}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.plan.physical.TimeSeriesFieldExtractExec}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.scalar.math.Hypot}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.scalar.math.Hypot}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.scalar.math.Hypot}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.CheckLicenseTests$LicensedFunction}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.CheckLicenseTests$LicensedFunction}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.CheckLicenseTests$LicensedFunction}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.scalar.spatial.StGeohashToString}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.scalar.spatial.StGeohashToString}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.scalar.spatial.StGeohashToString}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.scalar.convert.ToRadians}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.scalar.convert.ToRadians}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.scalar.convert.ToRadians}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.vector.Knn}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.vector.Knn}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.vector.Knn}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.core.expression.UnresolvedStar}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.core.expression.UnresolvedStar}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.core.expression.UnresolvedStar}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.scalar.convert.ToTimeDuration}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.scalar.convert.ToTimeDuration}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.scalar.convert.ToTimeDuration}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.scalar.multivalue.MvMedian}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.scalar.multivalue.MvMedian}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.scalar.multivalue.MvMedian}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.plan.logical.join.InlineJoin}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.plan.logical.join.InlineJoin}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.plan.logical.join.InlineJoin}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.aggregate.SumOverTime}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.aggregate.SumOverTime}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.aggregate.SumOverTime}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.scalar.math.Round}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.scalar.math.Round}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.scalar.math.Round}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.scalar.math.Floor}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.scalar.math.Floor}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.scalar.math.Floor}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.scalar.spatial.StGeotileToLong}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.scalar.spatial.StGeotileToLong}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.scalar.spatial.StGeotileToLong}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.scalar.date.DateFormat}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.scalar.date.DateFormat}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.scalar.date.DateFormat}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.plan.physical.TopNExec}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.plan.physical.TopNExec}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.plan.physical.TopNExec}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.plan.logical.Lookup}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.plan.logical.Lookup}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.plan.logical.Lookup}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.plan.physical.EvalExec}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.plan.physical.EvalExec}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.plan.physical.EvalExec}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.plan.physical.ExchangeSourceExec}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.plan.physical.ExchangeSourceExec}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.plan.physical.ExchangeSourceExec}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.scalar.spatial.StYMin}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.scalar.spatial.StYMin}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.scalar.spatial.StYMin}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.scalar.date.DateParse}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.scalar.date.DateParse}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.scalar.date.DateParse}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.scalar.math.Cosh}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.scalar.math.Cosh}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.scalar.math.Cosh}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.plan.physical.SampleExec}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.plan.physical.SampleExec}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.plan.physical.SampleExec}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.Order}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.Order}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.Order}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.aggregate.Count}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.aggregate.Count}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.aggregate.Count}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.grouping.Categorize}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.grouping.Categorize}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.grouping.Categorize}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.scalar.spatial.SpatialDisjoint}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.scalar.spatial.SpatialDisjoint}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.scalar.spatial.SpatialDisjoint}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.plan.logical.TimeSeriesAggregate}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.plan.logical.TimeSeriesAggregate}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.plan.logical.TimeSeriesAggregate}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.plan.physical.EnrichExec}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.plan.physical.EnrichExec}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.plan.physical.EnrichExec}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.predicate.operator.comparison.NotEquals}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.predicate.operator.comparison.NotEquals}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.predicate.operator.comparison.NotEquals}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.scalar.convert.ToDateNanos}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.scalar.convert.ToDateNanos}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.scalar.convert.ToDateNanos}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.aggregate.MaxOverTime}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.aggregate.MaxOverTime}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.aggregate.MaxOverTime}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.plan.physical.ChangePointExec}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.plan.physical.ChangePointExec}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.plan.physical.ChangePointExec}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.predicate.operator.arithmetic.Neg}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.predicate.operator.arithmetic.Neg}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.predicate.operator.arithmetic.Neg}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.scalar.string.regex.WildcardLikeList}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.scalar.string.regex.WildcardLikeList}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.scalar.string.regex.WildcardLikeList}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.plan.physical.LookupJoinExec}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.plan.physical.LookupJoinExec}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.plan.physical.LookupJoinExec}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.scalar.string.Replace}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.scalar.string.Replace}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.scalar.string.Replace}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.scalar.math.Tan}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.scalar.math.Tan}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.scalar.math.Tan}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.plan.physical.ExchangeSinkExec}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.plan.physical.ExchangeSinkExec}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.plan.physical.ExchangeSinkExec}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.plan.physical.HashJoinExec}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.plan.physical.HashJoinExec}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.plan.physical.HashJoinExec}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.plan.physical.inference.RerankExec}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.plan.physical.inference.RerankExec}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.plan.physical.inference.RerankExec}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.scalar.string.ToUpper}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.scalar.string.ToUpper}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.scalar.string.ToUpper}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.plan.physical.FragmentExec}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.plan.physical.FragmentExec}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.plan.physical.FragmentExec}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.scalar.math.RoundTo}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.scalar.math.RoundTo}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.scalar.math.RoundTo}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.grouping.Bucket}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.grouping.Bucket}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.grouping.Bucket}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.aggregate.SpatialExtent}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.aggregate.SpatialExtent}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.aggregate.SpatialExtent}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.plan.logical.TopN}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.plan.logical.TopN}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.plan.logical.TopN}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.scalar.string.Length}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.scalar.string.Length}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.scalar.string.Length}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.plan.physical.MergeExec}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.plan.physical.MergeExec}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.plan.physical.MergeExec}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.scalar.math.Exp}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.scalar.math.Exp}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.scalar.math.Exp}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.plan.physical.FilterExec}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.plan.physical.FilterExec}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.plan.physical.FilterExec}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.plan.physical.RrfScoreEvalExec}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.plan.physical.RrfScoreEvalExec}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.plan.physical.RrfScoreEvalExec}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.scalar.string.Sha1}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.scalar.string.Sha1}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.scalar.string.Sha1}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.optimizer.OptimizerRulesTests$DummyBooleanExpression}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.optimizer.OptimizerRulesTests$DummyBooleanExpression}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.optimizer.OptimizerRulesTests$DummyBooleanExpression}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.scalar.string.Space}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.scalar.string.Space}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.scalar.string.Space}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.plan.logical.RrfScoreEval}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.plan.logical.RrfScoreEval}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.plan.logical.RrfScoreEval}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.scalar.multivalue.MvFirst}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.scalar.multivalue.MvFirst}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.scalar.multivalue.MvFirst}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.plan.logical.Grok}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.plan.logical.Grok}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.plan.logical.Grok}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.plan.physical.OutputExec}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.plan.physical.OutputExec}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.plan.physical.OutputExec}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.scalar.ip.CIDRMatch}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.scalar.ip.CIDRMatch}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.scalar.ip.CIDRMatch}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.scalar.convert.ToVersion}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.scalar.convert.ToVersion}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.scalar.convert.ToVersion}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.scalar.string.ToLower}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.scalar.string.ToLower}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.scalar.string.ToLower}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.plan.physical.inference.CompletionExec}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.plan.physical.inference.CompletionExec}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.plan.physical.inference.CompletionExec}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.plan.logical.Dissect}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.plan.logical.Dissect}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.plan.logical.Dissect}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.scalar.math.Pi}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.scalar.math.Pi}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.scalar.math.Pi}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.core.expression.EmptyAttribute}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.core.expression.EmptyAttribute}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.core.expression.EmptyAttribute}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.scalar.string.Split}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.scalar.string.Split}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.scalar.string.Split}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.plan.logical.Insist}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.plan.logical.Insist}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.plan.logical.Insist}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.aggregate.FromPartial}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.aggregate.FromPartial}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.aggregate.FromPartial}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.scalar.math.Log10}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.scalar.math.Log10}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.scalar.math.Log10}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.plan.logical.EsRelation}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.plan.logical.EsRelation}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.plan.logical.EsRelation}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.aggregate.LastOverTime}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.aggregate.LastOverTime}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.aggregate.LastOverTime}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.plan.physical.AggregateExec}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.plan.physical.AggregateExec}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.plan.physical.AggregateExec}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.plan.physical.FieldExtractExec}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.plan.physical.FieldExtractExec}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.plan.physical.FieldExtractExec}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.plan.logical.join.Join}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.plan.logical.join.Join}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.plan.logical.join.Join}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.CheckLicenseTests$LicensedLimit}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.CheckLicenseTests$LicensedLimit}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.CheckLicenseTests$LicensedLimit}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.scalar.convert.ToDouble}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.scalar.convert.ToDouble}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.scalar.convert.ToDouble}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.plan.physical.EsSourceExec}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.plan.physical.EsSourceExec}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.plan.physical.EsSourceExec}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.scalar.date.Now}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.scalar.date.Now}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.scalar.date.Now}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.scalar.string.Concat}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.scalar.string.Concat}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.scalar.string.Concat}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.scalar.math.Log}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.scalar.math.Log}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.scalar.math.Log}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.predicate.nulls.IsNull}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.predicate.nulls.IsNull}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.predicate.nulls.IsNull}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.predicate.logical.Or}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.predicate.logical.Or}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.predicate.logical.Or}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.scalar.multivalue.MvPercentile}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.scalar.multivalue.MvPercentile}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.scalar.multivalue.MvPercentile}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.predicate.nulls.IsNotNull}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.predicate.nulls.IsNotNull}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.predicate.nulls.IsNotNull}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.core.tree.NodeTests$ChildrenAreAProperty}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.core.tree.NodeTests$ChildrenAreAProperty}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.core.tree.NodeTests$ChildrenAreAProperty}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.scalar.spatial.StGeohashToLong}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.scalar.spatial.StGeohashToLong}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.scalar.spatial.StGeohashToLong}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.scalar.convert.ToCartesianPoint}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.scalar.convert.ToCartesianPoint}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.scalar.convert.ToCartesianPoint}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.fulltext.Match}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.fulltext.Match}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.fulltext.Match}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.predicate.Range}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.predicate.Range}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.predicate.Range}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.scalar.spatial.StDistance}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.scalar.spatial.StDistance}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.scalar.spatial.StDistance}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.scalar.nulls.Coalesce}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.scalar.nulls.Coalesce}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.scalar.nulls.Coalesce}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.plan.physical.EsStatsQueryExec}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.plan.physical.EsStatsQueryExec}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.plan.physical.EsStatsQueryExec}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.scalar.ip.IpPrefix}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.scalar.ip.IpPrefix}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.scalar.ip.IpPrefix}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.scalar.convert.ToIp}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.scalar.convert.ToIp}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.scalar.convert.ToIp}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.aggregate.SpatialCentroid}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.aggregate.SpatialCentroid}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.aggregate.SpatialCentroid}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.aggregate.Top}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.aggregate.Top}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.aggregate.Top}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.plan.logical.Limit}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.plan.logical.Limit}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.plan.logical.Limit}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.scalar.convert.ToIpLeadingZerosRejected}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.scalar.convert.ToIpLeadingZerosRejected}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.scalar.convert.ToIpLeadingZerosRejected}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.scalar.string.Reverse}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.scalar.string.Reverse}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.scalar.string.Reverse}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.plan.logical.Project}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.plan.logical.Project}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.plan.logical.Project}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.plan.logical.local.LocalRelation}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.plan.logical.local.LocalRelation}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.plan.logical.local.LocalRelation}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.scalar.math.Ceil}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.scalar.math.Ceil}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.scalar.math.Ceil}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.core.expression.MapExpression}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.core.expression.MapExpression}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.core.expression.MapExpression}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.plan.logical.MvExpand}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.plan.logical.MvExpand}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.plan.logical.MvExpand}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.plan.logical.Eval}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.plan.logical.Eval}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.plan.logical.Eval}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.scalar.spatial.StGeotile}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.scalar.spatial.StGeotile}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.scalar.spatial.StGeotile}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.aggregate.Percentile}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.aggregate.Percentile}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.aggregate.Percentile}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.scalar.spatial.StX}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.scalar.spatial.StX}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.scalar.spatial.StX}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.scalar.date.DateTrunc}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.scalar.date.DateTrunc}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.scalar.date.DateTrunc}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.plan.logical.Explain}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.plan.logical.Explain}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.plan.logical.Explain}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.plan.logical.inference.Rerank}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.plan.logical.inference.Rerank}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.plan.logical.inference.Rerank}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.predicate.operator.arithmetic.Sub}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.predicate.operator.arithmetic.Sub}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.predicate.operator.arithmetic.Sub}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.UnsupportedAttribute}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.UnsupportedAttribute}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.UnsupportedAttribute}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.aggregate.Sum}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.aggregate.Sum}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.aggregate.Sum}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.plan.logical.InlineStats}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.plan.logical.InlineStats}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.plan.logical.InlineStats}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.plan.logical.Dedup}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.plan.logical.Dedup}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.plan.logical.Dedup}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.predicate.operator.comparison.InsensitiveEquals}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.predicate.operator.comparison.InsensitiveEquals}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.predicate.operator.comparison.InsensitiveEquals}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.plan.logical.local.EsqlProject}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.plan.logical.local.EsqlProject}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.plan.logical.local.EsqlProject}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.scalar.convert.ToUnsignedLong}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.scalar.convert.ToUnsignedLong}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.scalar.convert.ToUnsignedLong}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.plan.physical.DissectExec}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.plan.physical.DissectExec}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.plan.physical.DissectExec}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.plan.logical.Fork}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.plan.logical.Fork}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.plan.logical.Fork}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.core.tree.NodeTests$AChildIsAProperty}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.core.tree.NodeTests$AChildIsAProperty}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.core.tree.NodeTests$AChildIsAProperty}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.scalar.spatial.StGeotileToString}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.scalar.spatial.StGeotileToString}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.scalar.spatial.StGeotileToString}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.plan.physical.EsQueryExec}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.plan.physical.EsQueryExec}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.plan.physical.EsQueryExec}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.plan.logical.show.ShowInfo}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.plan.logical.show.ShowInfo}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.plan.logical.show.ShowInfo}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.scalar.string.regex.WildcardLike}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.scalar.string.regex.WildcardLike}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.scalar.string.regex.WildcardLike}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.aggregate.StdDev}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.aggregate.StdDev}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.aggregate.StdDev}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.UnresolvedNamePattern}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.UnresolvedNamePattern}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.UnresolvedNamePattern}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.scalar.multivalue.MvDedupe}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.scalar.multivalue.MvDedupe}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.scalar.multivalue.MvDedupe}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.core.expression.EntryExpression}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.core.expression.EntryExpression}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.core.expression.EntryExpression}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.plan.logical.Aggregate}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.plan.logical.Aggregate}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.plan.logical.Aggregate}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.scalar.math.Sin}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.scalar.math.Sin}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.scalar.math.Sin}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.core.expression.ReferenceAttribute}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.core.expression.ReferenceAttribute}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.core.expression.ReferenceAttribute}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.EsqlFunctionRegistryTests$DummyFunction2}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.EsqlFunctionRegistryTests$DummyFunction2}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.EsqlFunctionRegistryTests$DummyFunction2}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.aggregate.MedianAbsoluteDeviation}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.aggregate.MedianAbsoluteDeviation}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.aggregate.MedianAbsoluteDeviation}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.predicate.operator.comparison.LessThan}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.predicate.operator.comparison.LessThan}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.predicate.operator.comparison.LessThan}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.aggregate.Values}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.aggregate.Values}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.aggregate.Values}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.scalar.convert.ToDatePeriod}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.scalar.convert.ToDatePeriod}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.scalar.convert.ToDatePeriod}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.plan.physical.LocalSourceExec}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.plan.physical.LocalSourceExec}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.plan.physical.LocalSourceExec}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.aggregate.ToPartial}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.aggregate.ToPartial}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.aggregate.ToPartial}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.scalar.math.Abs}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.scalar.math.Abs}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.scalar.math.Abs}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.core.expression.FieldAttribute}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.core.expression.FieldAttribute}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.predicate.operator.comparison.Equals}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.predicate.operator.comparison.Equals}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.predicate.operator.comparison.Equals}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.plan.logical.Drop}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.plan.logical.Drop}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.plan.logical.Drop}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.plan.physical.ProjectExec}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.plan.physical.ProjectExec}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.plan.physical.ProjectExec}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.scalar.string.Left}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.scalar.string.Left}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.scalar.string.Left}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.predicate.operator.arithmetic.Mod}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.predicate.operator.arithmetic.Mod}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.predicate.operator.arithmetic.Mod}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.predicate.operator.comparison.LessThanOrEqual}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.predicate.operator.comparison.LessThanOrEqual}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.predicate.operator.comparison.LessThanOrEqual}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.scalar.multivalue.MvAvg}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.scalar.multivalue.MvAvg}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.scalar.multivalue.MvAvg}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.scalar.math.Pow}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.scalar.math.Pow}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.scalar.math.Pow}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.scalar.convert.FromBase64}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.scalar.convert.FromBase64}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.scalar.convert.FromBase64}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.optimizer.LocalLogicalPlanOptimizerTests$MockFieldAttributeCommand}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.optimizer.LocalLogicalPlanOptimizerTests$MockFieldAttributeCommand}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.optimizer.LocalLogicalPlanOptimizerTests$MockFieldAttributeCommand}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.scalar.math.Cos}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.scalar.math.Cos}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.scalar.math.Cos}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.scalar.string.Hash}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.scalar.string.Hash}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.scalar.string.Hash}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.scalar.string.Repeat}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.scalar.string.Repeat}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.scalar.string.Repeat}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.scalar.convert.ToIpLeadingZerosDecimal}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.scalar.convert.ToIpLeadingZerosDecimal}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.scalar.convert.ToIpLeadingZerosDecimal}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.plan.physical.TimeSeriesSourceExec}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.plan.physical.TimeSeriesSourceExec}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.plan.physical.TimeSeriesSourceExec}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.aggregate.Min}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.aggregate.Min}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.aggregate.Min}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.scalar.spatial.StY}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.scalar.spatial.StY}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.scalar.spatial.StY}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.fulltext.Kql}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.fulltext.Kql}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.fulltext.Kql}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.scalar.spatial.SpatialWithin}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.scalar.spatial.SpatialWithin}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.scalar.spatial.SpatialWithin}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.plan.logical.Keep}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.plan.logical.Keep}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.plan.logical.Keep}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.scalar.date.DateDiff}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.scalar.date.DateDiff}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.scalar.date.DateDiff}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.plan.physical.ParallelExec}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.plan.physical.ParallelExec}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.plan.physical.ParallelExec}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.scalar.spatial.StGeohex}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.scalar.spatial.StGeohex}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.scalar.spatial.StGeohex}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.aggregate.FirstOverTime}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.aggregate.FirstOverTime}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.aggregate.FirstOverTime}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.scalar.string.Trim}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.scalar.string.Trim}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.scalar.string.Trim}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.scalar.spatial.StXMax}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.scalar.spatial.StXMax}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.scalar.spatial.StXMax}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.fulltext.MultiMatch}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.fulltext.MultiMatch}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.fulltext.MultiMatch}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.core.expression.MetadataAttribute}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.core.expression.MetadataAttribute}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.core.expression.MetadataAttribute}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.scalar.date.DateExtract}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.scalar.date.DateExtract}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.scalar.date.DateExtract}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.scalar.multivalue.MvSlice}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.scalar.multivalue.MvSlice}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.scalar.multivalue.MvSlice}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.scalar.math.Signum}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.scalar.math.Signum}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.scalar.math.Signum}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.aggregate.CountDistinct}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.aggregate.CountDistinct}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.aggregate.CountDistinct}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.aggregate.CountOverTime}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.aggregate.CountOverTime}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.aggregate.CountOverTime}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.aggregate.Max}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.aggregate.Max}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.aggregate.Max}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.scalar.convert.ToCartesianShape}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.scalar.convert.ToCartesianShape}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.scalar.convert.ToCartesianShape}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.core.expression.predicate.operator.arithmetic.Neg}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.core.expression.predicate.operator.arithmetic.Neg}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.core.expression.predicate.operator.arithmetic.Neg}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.plan.logical.join.LookupJoin}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.plan.logical.join.LookupJoin}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.plan.logical.join.LookupJoin}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.DeepCopy}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.DeepCopy}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.DeepCopy}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.plan.physical.MvExpandExec}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.plan.physical.MvExpandExec}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.plan.physical.MvExpandExec}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.plan.physical.SubqueryExec}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.plan.physical.SubqueryExec}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.plan.physical.SubqueryExec}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.predicate.operator.comparison.GreaterThanOrEqual}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.predicate.operator.comparison.GreaterThanOrEqual}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.predicate.operator.comparison.GreaterThanOrEqual}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.scalar.math.Atan2}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.scalar.math.Atan2}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.scalar.math.Atan2}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.scalar.string.Substring}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.scalar.string.Substring}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.scalar.string.Substring}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.scalar.multivalue.MvMin}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.scalar.multivalue.MvMin}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.scalar.multivalue.MvMin}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.scalar.multivalue.MvCount}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.scalar.multivalue.MvCount}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.scalar.multivalue.MvCount}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.scalar.string.Locate}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.scalar.string.Locate}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.scalar.string.Locate}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.aggregate.Sample}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.aggregate.Sample}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.aggregate.Sample}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.plan.logical.ChangePoint}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.plan.logical.ChangePoint}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.plan.logical.ChangePoint}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.scalar.spatial.StEnvelope}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.scalar.spatial.StEnvelope}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.scalar.spatial.StEnvelope}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.scalar.convert.FromAggregateMetricDouble}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.scalar.convert.FromAggregateMetricDouble}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.scalar.convert.FromAggregateMetricDouble}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.scalar.math.Sqrt}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.scalar.math.Sqrt}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.scalar.math.Sqrt}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.scalar.convert.ToGeoShape}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.scalar.convert.ToGeoShape}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.scalar.convert.ToGeoShape}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.scalar.multivalue.MvMax}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.scalar.multivalue.MvMax}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.scalar.multivalue.MvMax}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.scalar.string.RTrim}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.scalar.string.RTrim}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.scalar.string.RTrim}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.scalar.math.E}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.scalar.math.E}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.scalar.math.E}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.aggregate.Median}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.aggregate.Median}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.aggregate.Median}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.core.expression.Alias}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.core.expression.Alias}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.core.expression.Alias}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.scalar.spatial.SpatialContains}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.scalar.spatial.SpatialContains}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.scalar.spatial.SpatialContains}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testTransform {class org.elasticsearch.xpack.esql.expression.function.scalar.conditional.Least}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testReplaceChildren {class org.elasticsearch.xpack.esql.expression.function.scalar.conditional.Least}
+  - org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests::testInfoParameters {class org.elasticsearch.xpack.esql.expression.function.scalar.conditional.Least}
+  - org.elasticsearch.xpack.esql.optimizer.rules.logical.PushDownJoinPastProjectTests::testMultipleLookups
+  - org.elasticsearch.xpack.esql.optimizer.rules.logical.PushDownJoinPastProjectTests::testShadowingAfterPushdown
+  - org.elasticsearch.xpack.esql.optimizer.rules.logical.PushDownJoinPastProjectTests::testShadowingBeforePushdown
+  - org.elasticsearch.xpack.esql.optimizer.rules.logical.PushDownJoinPastProjectTests::testShadowingAfterPushdown2
+  - org.elasticsearch.xpack.esql.plan.QueryPlanTests::testTransformWithExpressionTopLevelInCollection
+  - org.elasticsearch.xpack.esql.plan.QueryPlanTests::testForEachWithExpressionTopLevelInCollection
+  - org.elasticsearch.xpack.esql.plan.QueryPlanTests::testTransformWithExpressionTree
+  - org.elasticsearch.xpack.esql.plan.QueryPlanTests::testPlanExpressions
+  - org.elasticsearch.xpack.esql.plan.QueryPlanTests::testPlanReferences
+  - org.elasticsearch.xpack.esql.plan.QueryPlanTests::testForEachWithExpressionTree
+  - org.elasticsearch.xpack.esql.plan.QueryPlanTests::testForEachWithExpressionTreeInCollection
+  - org.elasticsearch.xpack.esql.plan.QueryPlanTests::testTransformWithExpressionTopLevel
+  - org.elasticsearch.xpack.esql.plan.QueryPlanTests::testForEachWithExpressionTopLevel
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testPushBinaryLogicFilters {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testGlobalAggFoldingOutput {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testProjectAwayAllColumnsWhenOnlyTheCountMattersInStats {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testReductionPlanForLimit {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testSpatialTypesAndStatsExtentUseDocValues {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testRejectRemoteEnrichAfterCoordinatorEnrich {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testSpatialTypesAndStatsUseDocValuesNestedLiteral {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testVerifierOnDuplicateOutputAttributes {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testPushTopNWithFilterToSource {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testPushDownNotRLike {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testPushDownUpperCaseChangeLike {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testPushAndInequalitiesFilter {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testDontPushDownMetadataVersionAndId {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testSpatialTypesAndStatsExtentOfShapesNegativeCases {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testDissect {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testPushCompoundTopNDistanceWithDeeplyNestedCompoundEvalToSource {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testAggToLocalRelationOnDataNode {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testPushCartesianSpatialIntersectsShapeToSource {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testScoreTopN {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testPushSpatialIntersectsStringToSourceAndUseDocValuesForCentroid {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testNoPushDownNonFoldableInComparisonFilter {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testTwoIntersectsWithTwoCentroidsUsesDocValues {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testPushDownLowerCaseChangeRLike {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testNoTextFilterPushDown {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testExtractorsOverridingFields {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testPushDownNotLike {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testDoNotExtractGroupingFields {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testEvalRLike {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testIntersectsOnTwoPointFieldAndBothCentroidUsesDocValues {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testLookupJoinFieldLoading {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testPushDownMetadataIndexInEquality {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testEqualsPushdownToDelegateTooBig {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testPushCartesianSpatialIntersectsToSource {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testAvgSurrogateFunctionAfterRenameAndLimit {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testPushSpatialIntersectsStringToSource {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testSpatialTypesAndStatsExtentAndCentroidUseDocValues {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testEnrichBeforeTopN {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testPushTopNDistanceAndNonPushableEvalWithCompoundFilterToSource {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testSpatialTypesAndStatsUseDocValuesMultiAggregationsGrouped {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testPushSpatialDistanceComplexPredicateWithEvalToSource {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testPushDownDisjunction {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testPushDownNotEqualsToUpper {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testPushTopNDistanceAndPushableFieldWithCompoundFilterToSource {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testExtractGroupingFieldsIfAggd {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testMaxExpressionDepth_math {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testMaxExpressionDepth_boolean {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testQueryWithAggregation {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testPushTopNKeywordToSource {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testLocallyMissingField {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testScore {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testVerifierOnMissingReferencesWithBinaryPlans {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testPushCompoundTopNDistanceWithCompoundFilterToSource {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testPushDownNegatedConjunction {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testQueryWithNull {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testQueryWithAggAfterEval {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testEnrich {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testPushSpatialDistanceToSource {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testTextWithRawSortPushDown {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testExtractorForEvalWithoutProject {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testIntersectsOnTwoPointFieldAndOneCentroidUsesDocValues {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testPushDownMetadataIndexInWildcard {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testEnrichBeforeLimit {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testManyEnrich {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testQueryJustWithLimit {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testNoTextSortPushDown {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testNotEqualsPushdownToDelegate {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testAggThenEnrichRemote {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testPushTopNDistanceWithFilterToSource {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testPushSpatialIntersectsStringToSourceCompoundPredicateAndUseDocValuesForCentroid {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testOnlyPushTranslatableConditionsInFilter {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testPushMultipleFunctions {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testGrok {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testSpatialTypesAndStatsUseDocValuesMultiAggregationsGroupedAggregated {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testPushDownNegatedEquality {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testMixedSpatialBoundsAndPointsExtracted {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testFieldExtractWithoutSourceAttributes {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testEnrichAfterTopN {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testNoPushDownNonFieldAttributeInComparisonFilter {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testExtractorMultiEvalWithDifferentNames {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testSpatialTypesAndStatsUseDocValuesMultiAggregationsFiltered {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testPushDownEqualsToLower {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testPushSpatialDistanceDisjointBandsToSource {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testExtractorMultiEvalWithSameName {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testPushSpatialDistanceEvalWithSimpleStatsToSource {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testPushSpatialDistanceBandToSource {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testExtractorForField {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testExactlyOneExtractorPerFieldWithPruning {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testPushWhereEvalToSource {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testQueryWithLimitSort {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testPushDownChangeCaseThroughEval {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testDontPushDownMetadataIndexInInequality {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testDoNotAliasesDefinedAfterTheExchange {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testReductionPlanForAggs {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testMaxQueryDepth {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testSpatialTypesAndStatsCentroidUseDocValues {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testPushTopNToSource {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testPushDownChangeCaseMultiplePredicates {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testPushTopNDistanceWithCompoundFilterToSource {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testNoPushDownChangeCase {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testPushTopNDistanceWithCompoundFilterToSourceAndDisjunctiveNonPushableEval {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testPushDownRecombinedIn {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testPushDownIn {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testProjectAwayColumnsDoesNothingForPipelineBreakingAggs {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testQueryForStatWithMultiAgg {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testNoNonIndexedSortPushDown {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testEqualsPushdownToDelegate {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testPushTopNDistanceAndNonPushableEvalsWithCompoundFilterToSource {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testPushSpatialDistanceEvalToSource {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testPushSpatialDistanceMultiEvalToSource {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testExtractGroupingFieldsIfAggdWithEval {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testDoubleExtractorPerFieldEvenWithAliasNoPruningDueToImplicitProjection {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testReductionPlanForTopN {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testPartialAggFoldingOutput {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testLocalProjectIncludeLocalAlias {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testProjectAwayColumns {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testPushDownEvalSwapFilter {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testSingleFieldExtractor {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testTripleExtractorPerField {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testSpatialTypesAndStatsExtentOfCartesianShapesWithAndWithoutDocValues {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testPushMultipleBinaryLogicFilters {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testPushDownEvalFilter {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testPushTopNInlineDistanceToSource {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testMaxExpressionDepth_mixed {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testMaxQueryDepthPlusExpressionDepth {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testQueryWithLimitWhereSort {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testPartialAggFoldingOutputForSyntheticAgg {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testLimitThenEnrich {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testTextWithRawFilterPushDown {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testLimitThenEnrichRemote {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testChangeCaseAsInsensitiveWildcardLikeNotPushedDown {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testPushDownMetadataIndexInNotEquality {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testSpatialTypesAndStatsUseDocValuesMultiSpatialAggregations {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testSpatialTypesAndStatsUseDocValuesMultiAggregations {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testSamplePushDown {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testSpatialTypesAndStatsExtentOfGeoShapeUsesBinaryExtraction {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testPushDownNotEqualsToLower {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testPushSpatialDistanceComplexPredicateToSource {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testPushSpatialIntersectsEvalToSource {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testNoNonIndexedFilterPushDown {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testQueryWithLimitWhereEvalSort {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testEvalLike {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testDontPushDownNegatedEqualityBetweenAttributes {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testPushDownSpatialRelatesStringToSourceAndUseDocValuesForCentroid {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testVerifierOnMissingReferences {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testMaxExpressionDepth_parentheses {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testPushDownUpperCaseChangeRLike {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testLookupJoinFieldLoadingTwoLookups {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testPushDownDisjunctionAndConjunction {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testPushSpatialIntersectsStringToSourceCompoundPredicate {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testPushCompoundTopNDistanceWithCompoundFilterAndCompoundEvalToSource {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testPushTopNAliasedKeywordToSource {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testFieldExtractForTextAndSubfield {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testPushSpatialIntersectsShapeToSource {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testProjectAwayAllColumnsWhenOnlyTheCountMatters {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testPushDownLike {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testPushLimitAndFilterToSource {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testMaxExpressionDepth_cast {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testLimit {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testPushDownLowerCaseChangeLike {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testProjectAfterTopN {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testEnrichBeforeAggregation {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testPushDownNegatedDisjunction {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testPushTopNDistanceToSource {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testPushLimitToSource {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testPushCompoundTopNDistanceWithCompoundFilterAndNestedCompoundEvalToSource {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testPushDownRLike {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testPushDownInAndConjunction {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testPushSpatialDistanceEvalWithStatsToSource {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testEnrichAfterAggregation {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testPushDownSpatialRelatesStringToSource {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testPushDownEqualsToUpper {default}
+  - org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests::testEnrichBeforeSpatialAggregationSupportsDocValues {default}
+  - org.elasticsearch.xpack.esql.plan.logical.CommandLicenseTests::testLicenseCheck
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testIsNotNullConstraintForAliasedExpressions
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testDontPushDownLimitPastAggregate_AndMvExpand
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testSampleMerged
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testDontCombineOrderByThroughMvExpand
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPushDownLimitPastEval
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testCombineProjectionWithPruning
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testSortMvExpandLimit
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testLookupJoinPushDownSeparatedForConjunctionBetweenLeftAndRightField
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testSimpleAvgReplacement
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPruneEvalAliasOnAggGroupedByAlias
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testCombineDisjunctionToInMixed
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testInvalidFoldDueToReplacement
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testSortMvExpand
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testDontPruneSameFieldDifferentDirectionSortClauses_UsingAlias
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testSampleNoPushDownChangePoint
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testNestedExpressionsWithGroupingKeyInAggs
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testRedundantSortOnMvExpandAndJoin
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testEmptyProjectInStatWithGroupAndEval
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPushdownLimitsPastLeftJoin
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testNestedMultiExpressionsInGroupingAndAggs
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPushDownFilterPastProjectUsingDissect
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testSampleNoPushDown
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testIsNotNullConstraintForStatsWithMultiAggWithAndOnGrouping
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testSamplePushDown_sort
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testStatsExpOverAggsWithScalars
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testFoldNullListInToLocalRelation
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testMedianReplacement
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPruneRedundantSortClauses
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testSimplifyRLikeMatchAll
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPushShadowingGeneratingPlanPastProject
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testReplaceStringCasingWithInsensitiveEqualsLowerFalse
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testRedundantSort_BeforeMvExpand_WithFilterOnExpandedField_ResultTruncationDefaultSize
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testCombineProjectionWithAggregationFirstAndAliasedGroupingUnused
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testRedundantSortOnMvExpand
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testSimplifyComparisonArithmeticSkippedOnMulDivByZero
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testDontPushDownLimitPastFilter
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testFoldInKeyword
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testExtractStatsCommonFilterUsingAliases
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testDontPushDownLimitPastLookupJoin
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testNoPushDownOrFilterPastLimit
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testReplaceStatsFilteredAggWithEvalSingleAggWithExpression
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testDescendantLimitMvExpand
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testTranslateMixedAggsWithoutGrouping
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testReplaceStatsFilteredAggWithEvalSingleAggWithGroup
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testSimplyComparisonArithmeticWithUnfoldedProd
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPruneJoinOnNullMatchingField
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testDontPruneSameFieldDifferentDirectionSortClauses
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testTrivialTypeConversionWrittenAway
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPruneChainedEvalNoProjection
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testReplaceStatsFilteredAggWithEvalCount
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testEmptyMappingIndex
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPlanSanityCheckWithBinaryPlans
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPushDownEvalPastProject
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testReplaceStatsFilteredAggWithEvalSameAggWithAndWithoutFilter
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testIsNotNullConstraintForStatsWithoutGrouping
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testReplaceStringCasingWithInsensitiveEqualsUpperFalse
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testExtractStatsCommonFilter
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testLookupJoinKeepNoLookupFields
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPushDownGrokPastProject
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testCountOfLiteral
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testDoNotEliminateHigherLimitDueToDescendantLimit
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testMvExpandFoldable
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testTranslateMetricsGroupedByTwoDimension
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testCombineDisjunctionToInEquals
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPruneJoinOnNullAssignedMatchingField
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testFoldInEval
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testNestedExpressionsInStatsWithExpression
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testToDatePeriodToTimeDurationWithField
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testEliminateDuplicateRenamedGroupings
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testReplaceStringCasingWithInsensitiveEqualsUpperTrue
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testMultipleCombineLimits
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testCombineOrderByThroughEvalWithTwoDefs
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testStatsExpOverAggs
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testFunctionNamedParamsAsFunctionArgument
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testReplaceSortByExpressionsWithStats
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testRedundantSort_BeforeMvExpand_WithFilterOnExpandedFieldAlias
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testUnboundedSortSimple
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testCombineProjectionWithDuplicateAggregation
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testFilterWithSortBeforeMvExpand
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testRedundantSortOnMvExpandJoinKeepDropRename
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testSimplifyComparisonArithmeticWithFieldNegation
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testSortLookupJoinLimit
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPruneUnusedAggsChainedAgg
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testLookupJoinPushDownFilterOnJoinKeyWithRename
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPushDownLimitPastGrok
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPushDownLimit_PastEvalAndMvExpand
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPruningDuplicateEvals
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testCombineProjectionWithAggregationFirstAndAliasedGroupingUsedInAgg
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testCombineOrderByThroughFilter
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testStatsWithCanonicalAggregate
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testIsNotNullConstraintSkippedForStatsWithAlias
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testCombineOrderByThroughGrok
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testLimitThenSortBeforeMvExpand
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testEmptyProjections
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testWhereLookupJoin
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testLikeWrongPattern
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testCombineProjectionsWithEval
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testLimitZeroUsesLocalRelation
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPruneUnusedEval
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testSimplifyRLikeNoWildcard
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testEvalAfterGroupBy
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testRedundantSort_BeforeMvExpand_WithFilterOnExpandedField
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPartiallyFoldCase
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPushDownLimitPastProject
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testDontPruneSortWithLimitBeforeStats
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testSemiClashingAvgReplacement
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testFoldInNumerics
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testCombineLimitWithOrderByThroughFilterAndEval
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testCopyDefaultLimitPastMvExpand
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testReplaceStringCasingWithInsensitiveEqualsEquals
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testCombineOrderByThroughProjectAndEval
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testExtractStatsCommonFilterInConjunction
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testTranslateMetricsGroupedByOneDimension
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testReplaceSortByExpressions
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testNoWrongIsNotNullPruning
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPruneRedundantSortClausesUsingAlias
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testEvalAliasingAcrossCommands
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testCombineEvals
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testEvalAliasingInsideSameCommand
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testIsNotNullConstraintForStatsWithMultiAggWithoutGrouping
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testMultipleLookupJoinWithSortAndLimit
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testEnrich
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testBucketAcceptsEvalLiteralReferences
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testEvalAfterStats
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testNoPruningWhenDealingJustWithEvals
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testLookupJoinPushDownDisabledForLookupField
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testSimplifyComparisonArithmeticSkippedOnFloatFieldWithPlusMinus
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testStatsWithFilteringDefaultAliasing
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPruneRenameOnAggBy
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testCombineOrderByThroughEval
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPruneUnusedAggSimple
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testNoPruningWhenChainedEvals
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testRemoveUnusedSortBeforeMvExpand_DefaultLimit10000
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testIsNotNullConstraintForStatsWithAndOnGrouping
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testAssertSemanticMatching
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPushDownEnrichPastProject
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testReplaceStatsFilteredAggWithEvalFilterFalseAndNull
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testEliminateDuplicateAggsMixed
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testCombineProjections
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testCombineProjectionWithAggregation
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPushDownLimitPastDissect
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testTranslateMetricsWithoutGrouping
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testCombineDisjunctionToInFromIn
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testSplittingInWithFoldableValue
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testRenameStatsDropGroup
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testMultiMvExpand_SortDownBelow
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testFoldInVersion
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testSimplifyLikeNoWildcard
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testSimplifyComparisonArithmeticWithConjunction
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testClashingAggAvgReplacement
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testEliminateHigherLimitDueToDescendantLimit
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testMultipleRenameStatsDropGroupMultirow
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testAggOfLiteral
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPruneSortBeforeStats
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testNestedExpressionsInBothAggsAndGroups
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testUnboundedSortExpandFilter
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testSpatialTypesAndStatsUseDocValuesWithEval
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testMvSortInvalidOrder
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPushdownWithOverwrittenName
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testUnboundedSortWithMvExpandAndFilter
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testSimplifyComparisonArithmeticWithMultipleOps
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testCombineOrderByThroughProject
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testEliminateDuplicateAggsNonCount
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testEvalLookupMultipleSorts
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testReplaceSortWithExact
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testSelectivelyPushDownFilterPastEval
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPushDown_TheRightLimit_PastMvExpand
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testReplaceStringCasingWithInsensitiveEqualsNotEquals
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testReplaceFilterWithExact
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testCombineProjectionWhilePreservingAlias
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPruneEvalAliasOnAggUngrouped
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testExtractStatsCommonFilterSkippedDueToDisjunction
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testInsist_multipleInsistClauses_insistsAreFolded
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testEnrichNotNullFilter
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPruneRenameOnAgg
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPushShadowingGeneratingPlanPastRenamingProject
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testSpatialTypesAndStatsUseDocValues
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPushDownDissectPastProject
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testBucketWithAggExpression
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testToDatePeriodTimeDurationInvalidIntervals
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testSimplifyComparisonArithmeticSkippedOnFloats
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testReplaceSortByExpressionsMultipleSorts
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testCombineOrderByThroughDissect
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testRemoveOverridesInAggregate
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testTranslateMetricsGroupedByTimeBucketAndDimensions
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testNestedExpressionsInGroupsWithCategorize
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testAggOfLiteralGrouped
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testReplaceStatsFilteredAggWithEvalSingleAgg
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testCombineProjectionWithAggregationAndEval
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testSumOfLiteral
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testCombineLimits
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testEmptyProjectInStatWithEval
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testTranslateMetricsGroupedByTimeBucket
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testReplaceExpressionWithExact
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testRLikeWrongPattern
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testSortLookupJoin
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testFoldInIP
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testSimplifyComparisonArithmeticSkippedOnResultingFloatLiteral
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testReplaceStatsFilteredAggWithEvalMixedFilterAndNoFilter
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPushDownLimitThroughMultipleSort_AfterMvExpand2
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testRedundantSortOnJoin
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPruneUnusedAggMixedWithEval
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testIsNotNullConstraintForStatsWithMultiAggWithGrouping
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPushDownFilterPastProject
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testSimplifyComparisonArithmeticCommutativeVsNonCommutativeOps
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testExtractStatsCommonFilterNormalizeAndCombineWithExistingFilter
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPushDownLimitThroughMultipleSort_AfterMvExpand
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testLookupJoinPushDownFilterOnLeftSideField
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testInsist_multiIndexFieldPartiallyExistsAndIsKeyword_castsAreNotSupported
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testMultipleLookupShadowing
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPushDown_TheRightLimit_PastLookupJoin
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPruneEvalAliasOnAggGrouped
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testMetricsWithoutRate
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPushDownFilterPastProjectUsingGrok
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testTranslateMixedAggsGroupedByTimeBucketAndDimensions
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testBucketWithNonFoldingArgs
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPlanSanityCheck
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testMultipleMvExpandWithSortAndLimit
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testSimplifyComparisonArithmeticWithDisjunction
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testSimplifyComparisonArithmeticSkippedOnDiv
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPruneRedundantOrderBy
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testSimplifyComparisonArithmeticsWithFloatingPoints
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testEmptyProjectionInStat
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testAggsWithOverridingInputAndGrouping
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testTranslateMixedAggsWithMathWithoutGrouping
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testCombineProjectionWithCategorizeGrouping
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testWhereMvExpand
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testIsNotNullConstraintForStatsWithAndOnGroupingAlias
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testInsist_fieldDoesNotExist_createsUnmappedFieldInRelation
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testDescendantLimitLookupJoin
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testCombineOrderByThroughProjectWithAlias
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testExtractStatsCommonFilterSkippedWithGroups
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testCombineMultipleOrderByAndLimits
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testFunctionNamedParamsAsFunctionArgument1
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testSimplifyComparisonArithmeticWithFieldDoubleNegation
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testFilterWithSortBeforeLookupJoin
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPushDownFilterPastProjectUsingEval
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testNoPushDownOrFilterPastAgg
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testLookupJoinPushDownDisabledForDisjunctionBetweenLeftAndRightField
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testExtractStatsCommonFilterInConjunctionWithMultipleCommonConjunctions
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testWhereNull
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPruneEvalAliasMixedWithRenameOnAggGrouped
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testSampleNoPushDownLookupJoin
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testUnboundedSortWithLookupJoinAndFilter
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPruneEvalDueToStats
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testIsNotNullConstraintForStatsWithGrouping
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testRedundantSort_BeforeMvExpand_WithFilter_NOT_OnExpandedField
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testLimitThenSortBeforeLookupJoin
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPushShadowingGeneratingPlanPastRenamingProjectWithResolution
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testSamplePushDown
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testCopyDefaultLimitPastLookupJoin
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testTopNEnrich
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testUnboundedSortJoin
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testReplaceStringCasingWithInsensitiveEqualsUnwrap
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testDontPushDownLimitPastMvExpand
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testTranslateMaxOverTime
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testRedundantSortOnMvExpandEnrichGrokDissect
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testTranslateAvgOverTime
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testExtractStatsCommonFilterSkippedOnLackingFilter
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testFoldFromRowInEval
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testSamplePushDown_where
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testStatsExpOverAggsMulti
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testRedundantSortOnMvExpandJoinEnrichGrokDissect
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testEvalAliasingInsideSameCommandWithShadowing
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testMultlipleRedundantSortOnMvExpandAndJoin
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testExtractStatsCommonFilterSkippedNotSameFilter
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testAdjustMetricsRateBeforeFinalAgg
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testMultipleRenameStatsDropGroup
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testNestedExpressionsInAggs
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testStatsExpOverAggsWithScalarAndDuplicateAggs
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testCombineProjectionWithFilterInBetween
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testFoldNullInToLocalRelation
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testFoldFromRow
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPruneMixedAggInsideUnusedEval
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testNestedExpressionsInGroups
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPruneChainedEval
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testSimplifyLikeMatchAll
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testExtractStatsCommonFilterUsingJustOneAlias
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testCombineProjectionsWithEvalAndDrop
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testQlComparisonOptimizationsApply
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testBucketFailsOnFieldArgument
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testReplaceStatsFilteredAggWithEvalCountDistinctInExpression
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testCombineOrderBy
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testReplaceStringCasingWithInsensitiveEqualsLowerTrue
+  - org.elasticsearch.xpack.ql.plan.QueryPlanTests::testForEachWithExpressionTopLevel
+  - org.elasticsearch.xpack.ql.plan.QueryPlanTests::testPlanExpressions
+  - org.elasticsearch.xpack.ql.plan.QueryPlanTests::testForEachWithExpressionTreeInCollection
+  - org.elasticsearch.xpack.ql.plan.QueryPlanTests::testTransformWithExpressionTopLevel
+  - org.elasticsearch.xpack.ql.plan.QueryPlanTests::testTransformWithExpressionTree
+  - org.elasticsearch.xpack.ql.plan.QueryPlanTests::testForEachWithExpressionTree
+  - org.elasticsearch.xpack.ql.plan.QueryPlanTests::testForEachWithExpressionTopLevelInCollection
+  - org.elasticsearch.xpack.ql.plan.QueryPlanTests::testTransformWithExpressionTopLevelInCollection
+  - org.elasticsearch.xpack.ql.plan.QueryPlanTests::testPlanReferences

@@ -1,0 +1,25 @@
+instance_id: elastic__elasticsearch-135966
+repo: elastic/elasticsearch
+version: 9.3.0
+base_commit: e47b044350304ad67d26f816453ccca3e492da85
+pr_number: 135966
+
+FAIL_TO_PASS:
+  - org.elasticsearch.xpack.ml.inference.pytorch.PriorityProcessWorkerExecutorServiceTests::testNotifyQueueRunnables_notifiesAllQueuedRunnables
+  - org.elasticsearch.xpack.ml.inference.pytorch.PriorityProcessWorkerExecutorServiceTests::testNotifyQueueRunnables_notifiesAllQueuedRunnables_withError
+  - org.elasticsearch.xpack.ml.job.process.ProcessWorkerExecutorServiceTests::testQueuedAbstractRunnablesAreNotified_whenRunnableFutureEncountersError
+
+PASS_TO_PASS:
+  - org.elasticsearch.xpack.ml.inference.pytorch.PriorityProcessWorkerExecutorServiceTests::testOrderedRunnables_MixedPriorities
+  - org.elasticsearch.xpack.ml.inference.pytorch.PriorityProcessWorkerExecutorServiceTests::testExecutorShutsDownAfterCompletingWork
+  - org.elasticsearch.xpack.ml.inference.pytorch.PriorityProcessWorkerExecutorServiceTests::testNotifyQueueRunnables_notifiesAllQueuedRunnables_withError
+  - org.elasticsearch.xpack.ml.inference.pytorch.PriorityProcessWorkerExecutorServiceTests::testQueueCapacityReached
+  - org.elasticsearch.xpack.ml.inference.pytorch.PriorityProcessWorkerExecutorServiceTests::testNotifyQueueRunnables_notifiesAllQueuedRunnables
+  - org.elasticsearch.xpack.ml.inference.pytorch.PriorityProcessWorkerExecutorServiceTests::testQueueCapacityReached_HighestPriority
+  - org.elasticsearch.xpack.ml.inference.pytorch.PriorityProcessWorkerExecutorServiceTests::testOrderedRunnables_NormalPriority
+  - org.elasticsearch.xpack.ml.job.process.ProcessWorkerExecutorServiceTests::testNotifyQueueRunnables_notifiesAllQueuedAbstractRunnables
+  - org.elasticsearch.xpack.ml.job.process.ProcessWorkerExecutorServiceTests::testAutodetectWorkerExecutorServiceDoesNotSwallowErrors
+  - org.elasticsearch.xpack.ml.job.process.ProcessWorkerExecutorServiceTests::testAutodetectWorkerExecutorService_TasksNotExecutedCallHandlerOnShutdown
+  - org.elasticsearch.xpack.ml.job.process.ProcessWorkerExecutorServiceTests::testNotifyQueueRunnables_notifiesAllQueuedAbstractRunnables_withError
+  - org.elasticsearch.xpack.ml.job.process.ProcessWorkerExecutorServiceTests::testQueuedAbstractRunnablesAreNotified_whenRunnableFutureEncountersError
+  - org.elasticsearch.xpack.ml.job.process.ProcessWorkerExecutorServiceTests::testAutodetectWorkerExecutorService_SubmitAfterShutdown

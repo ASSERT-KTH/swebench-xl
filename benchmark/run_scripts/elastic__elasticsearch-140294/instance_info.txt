@@ -1,0 +1,18 @@
+instance_id: elastic__elasticsearch-140294
+repo: elastic/elasticsearch
+version: 9.4.0
+base_commit: 8cfe6c50153a720eab5c37c6b9edea8308e7ecd1
+pr_number: 140294
+
+FAIL_TO_PASS:
+  - org.elasticsearch.xpack.esql.expression.function.DocsV3Support
+  - org.elasticsearch.xpack.esql.plan.QuerySettingsTests
+
+PASS_TO_PASS:
+  - org.elasticsearch.xpack.esql.plan.QuerySettingsTests::testValidate_ProjectRouting_noCps
+  - org.elasticsearch.xpack.esql.plan.QuerySettingsTests::testValidate_NonExistingSetting
+  - org.elasticsearch.xpack.esql.plan.QuerySettingsTests::testValidate_ProjectRouting
+  - org.elasticsearch.xpack.esql.plan.QuerySettingsTests::testValidate_TimeZone_nonSnapshot
+  - org.elasticsearch.xpack.esql.plan.QuerySettingsTests::testValidate_TimeZone
+  - org.elasticsearch.xpack.esql.plan.QuerySettingsTests::testValidate_UnmappedFields_allValues
+  - org.elasticsearch.xpack.esql.plan.QuerySettingsTests::testValidate_Approximate

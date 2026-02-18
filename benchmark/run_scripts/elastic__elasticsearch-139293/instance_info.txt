@@ -1,0 +1,35 @@
+instance_id: elastic__elasticsearch-139293
+repo: elastic/elasticsearch
+version: 9.3.0
+base_commit: a0ee98ca7580948520308aa9486ae9b09f7b94d2
+pr_number: 139293
+
+FAIL_TO_PASS:
+  - org.elasticsearch.search.sort.AbstractSortTestCase
+  - org.elasticsearch.search.sort.FieldSortBuilderTests
+
+PASS_TO_PASS:
+  - org.elasticsearch.search.sort.FieldSortBuilderTests::testBuildSortFieldDoubleMissingValue
+  - org.elasticsearch.search.sort.FieldSortBuilderTests::testGetPrimaryFieldSort
+  - org.elasticsearch.search.sort.FieldSortBuilderTests::testFormatDateTime
+  - org.elasticsearch.search.sort.FieldSortBuilderTests::testBuildSortFieldOrder
+  - org.elasticsearch.search.sort.FieldSortBuilderTests::testFromXContent
+  - org.elasticsearch.search.sort.FieldSortBuilderTests::testEqualsAndHashcode
+  - org.elasticsearch.search.sort.FieldSortBuilderTests::testIntRewritesToLong
+  - org.elasticsearch.search.sort.FieldSortBuilderTests::testUnknownOptionFails
+  - org.elasticsearch.search.sort.FieldSortBuilderTests::testGetMaxNumericSortValue
+  - org.elasticsearch.search.sort.FieldSortBuilderTests::testShardDocSort
+  - org.elasticsearch.search.sort.FieldSortBuilderTests::testMultiValueMode
+  - org.elasticsearch.search.sort.FieldSortBuilderTests::testGetMaxKeywordValue
+  - org.elasticsearch.search.sort.FieldSortBuilderTests::testBuildSortFieldByteMissingValue
+  - org.elasticsearch.search.sort.FieldSortBuilderTests::testGetMaxNumericDateValue
+  - org.elasticsearch.search.sort.FieldSortBuilderTests::testModeNonNumericField
+  - org.elasticsearch.search.sort.FieldSortBuilderTests::testNestedSortRewrites
+  - org.elasticsearch.search.sort.FieldSortBuilderTests::testBuildSortFieldShortMissingValue
+  - org.elasticsearch.search.sort.FieldSortBuilderTests::testSerialization
+  - org.elasticsearch.search.sort.FieldSortBuilderTests::testBuildSortFieldIntegerMissingValue
+  - org.elasticsearch.search.sort.FieldSortBuilderTests::testBuildNested
+  - org.elasticsearch.search.sort.FieldSortBuilderTests::testBuildSortField
+  - org.elasticsearch.search.sort.FieldSortBuilderTests::testIsBottomSortShardDisjoint
+  - org.elasticsearch.search.sort.FieldSortBuilderTests::testInvalidFormat
+  - org.elasticsearch.search.sort.FieldSortBuilderTests::testNestedRewrites
