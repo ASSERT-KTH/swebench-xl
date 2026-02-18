@@ -32,7 +32,6 @@ Alternatively, "model_patch" can be used instead of "patch".
 import argparse
 import json
 import logging
-import os
 import sys
 import tempfile
 import time
@@ -146,6 +145,7 @@ def evaluate_instance(
     run_scripts_dir: Path,
     timeout: int,
     allow_network: bool = False,
+    save_debug_dir: bool = False,
 ) -> dict:
     """Evaluate a single instance inside a Docker container.
 
@@ -277,15 +277,16 @@ su elasticsearch -s /bin/bash -c 'bash /workspace/entry.sh'
             result["error"] = f"Docker API error: {str(e)[:200]}"
             logger.error(f"[{instance_id}] {result['error']}")
         finally:
-            # Save workspace files for debugging (NEW)
-            debug_dir = Path(f"debug_{instance_id}")
-            debug_dir.mkdir(exist_ok=True)
-            for log_file in ["stdout.log", "stderr.log", "container_stdout.log", "container_stderr.log", "output.json"]:
-                src = workspace / log_file
-                if src.exists():
-                    import shutil
-                    shutil.copy(src, debug_dir / log_file)
-                    logger.info(f"[{instance_id}] Saved {log_file} to {debug_dir}/")
+            if save_debug_dir:
+                # Save workspace files for debugging
+                debug_dir = Path(f"debug_{instance_id}")
+                debug_dir.mkdir(exist_ok=True)
+                for log_file in ["stdout.log", "stderr.log", "container_stdout.log", "container_stderr.log", "output.json"]:
+                    src = workspace / log_file
+                    if src.exists():
+                        import shutil
+                        shutil.copy(src, debug_dir / log_file)
+                        logger.info(f"[{instance_id}] Saved {log_file} to {debug_dir}/")
             # Clean up container
             try:
                 container.remove(force=True)
@@ -444,6 +445,7 @@ def run_evaluation(
     num_workers: int,
     timeout: int,
     allow_network: bool = False,
+    save_debug_dir: bool = False,
 ):
     """Run evaluation for all patches."""
     output_dir.mkdir(parents=True, exist_ok=True)
@@ -485,7 +487,7 @@ def run_evaluation(
             logger.info(f"[{i+1}/{len(valid_patches)}] Evaluating {p['instance_id']}...")
             result = evaluate_instance(
                 client, instance, p["model_patch"], run_scripts_dir, timeout,
-                allow_network=allow_network,
+                allow_network=allow_network, save_debug_dir=save_debug_dir,
             )
             result["prefix"] = p["prefix"]
             results.append(result)
@@ -498,7 +500,7 @@ def run_evaluation(
                 future = executor.submit(
                     evaluate_instance,
                     client, instance, p["model_patch"], run_scripts_dir, timeout,
-                    allow_network=allow_network,
+                    allow_network=allow_network, save_debug_dir=save_debug_dir,
                 )
                 futures[future] = p
 
@@ -649,6 +651,12 @@ Examples:
         help="Allow network access in containers (for validation before deps are cached in images)",
     )
 
+    parser.add_argument(
+        "--save_debug_dir",
+        action="store_true",
+        help="Save debug directory with logs for each instance (for debugging)",
+    )
+
     args = parser.parse_args()
 
     # Load dataset
@@ -706,6 +714,7 @@ Examples:
         num_workers=args.num_workers,
         timeout=args.timeout,
         allow_network=args.allow_network,
+        save_debug_dir=args.save_debug_dir,
     )
     elapsed = time.time() - start_time
     logger.info(f"Total evaluation time: {elapsed:.1f}s ({elapsed/60:.1f}m)")
