@@ -55,6 +55,7 @@ logger = logging.getLogger(__name__)
 BENCHMARK_DIR = Path(__file__).resolve().parent
 DATASET_FILE = BENCHMARK_DIR / "dataset.jsonl"
 RUN_SCRIPTS_DIR = BENCHMARK_DIR / "run_scripts"
+PARSER_FILE = BENCHMARK_DIR / "parser.py"
 DOCKER_IMAGE_PREFIX = "es-bench"
 
 
@@ -178,21 +179,21 @@ def evaluate_instance(
             model_patch += "\n"
         (workspace / "model_patch.diff").write_text(model_patch)
 
-        # Copy run_script.sh and parser.py from run_scripts
+        # Copy run_script.sh from per-instance directory
         instance_scripts = run_scripts_dir / instance_id
-        if not instance_scripts.exists():
-            result["error"] = f"Run scripts directory not found: {instance_scripts}"
+        run_script_src = instance_scripts / "run_script.sh"
+        if not run_script_src.exists():
+            result["error"] = f"Missing run_script.sh in {instance_scripts}"
             logger.error(f"[{instance_id}] {result['error']}")
             return result
+        (workspace / "run_script.sh").write_text(run_script_src.read_text())
 
-        for script_file in ["run_script.sh", "parser.py"]:
-            src = instance_scripts / script_file
-            if src.exists():
-                (workspace / script_file).write_text(src.read_text())
-            else:
-                result["error"] = f"Missing {script_file} in {instance_scripts}"
-                logger.error(f"[{instance_id}] {result['error']}")
-                return result
+        # Copy shared parser.py
+        if not PARSER_FILE.exists():
+            result["error"] = f"Missing shared parser: {PARSER_FILE}"
+            logger.error(f"[{instance_id}] {result['error']}")
+            return result
+        (workspace / "parser.py").write_text(PARSER_FILE.read_text())
 
         # Write entry script
         entry_script = build_entry_script(instance, instance_id)
