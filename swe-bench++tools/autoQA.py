@@ -3,25 +3,33 @@ import subprocess
 from pathlib import Path
 from collections import defaultdict
 import os
+import re
+import requests
 from dotenv import load_dotenv
 
 load_dotenv()
 
-
-# This is the Automated Quality Assurance (autoQA) script based on the methodology in SWE-Bench++.
-
-# Layer 1: Envrionment Determinism (Build Stability)
-
-def check_build_stability():
-    """Build each Dockerfile 3 times and filter out unstable builds."""
-    dockerfile_dir = Path("../benchmark/dockerfiles/instances")
+def load_dataset():
     dataset_path = Path("../benchmark/dataset.jsonl")
-    
-    # Load instance IDs from dataset
     instance_ids = []
+    instances = []
     with open(dataset_path) as f:
         for line in f:
-            instance_ids.append(json.loads(line)["instance_id"])
+            instance = json.loads(line)
+            instance_ids.append(instance["instance_id"])
+            instances.append(instance)
+            
+    return instance_ids, instances
+    
+    
+
+# This is the Automated Quality Assurance (autoQA) script based on the methodology in SWE-Bench++.
+# Layer 1: Envrionment Determinism (Build Stability)
+
+def check_build_stability(instance_ids):
+    """Build each Dockerfile 3 times and filter out unstable builds."""
+    dockerfile_dir = Path("../benchmark/dockerfiles/instances")
+    
     
     build_results = defaultdict(list)
     
@@ -92,15 +100,19 @@ def check_oracle_consistency(instance_ids):
     return consistent_instances
 
 # Layer 3: Semantic Alignment & Automated Curation
+# TODO: Currently I only check semantic alignment but skip the curation step.
 
-def check_semantic_alignment(instance_ids):
+def check_semantic_alignment(instaces):
+    print("Not running semantic alignment yet - placeholder for LLM-based analysis of PRs to determine suitability for benchmarking. This will involve prompting an LLM with PR data and parsing its response to filter for semantically suitable PRs.")
+    pass
     OPENROUTER_API_KEY = os.environ["OPENROUTER_API_KEY"]
 
     OPENROUTER_API_BASE = "https://openrouter.ai/api/v1"
 
     LLM_MODEL = "google/gemini-2.5-flash"
     
-    prompt = ""
+    for instance in instances:
+        prompt = f"Given this problem stated in a PR: {instance}" #TODO: complete this prompt
     
     headers = {
         "Authorization": f"Bearer {OPENROUTER_API_KEY}",
@@ -141,16 +153,17 @@ def check_semantic_alignment(instance_ids):
             return analysis
         else:
             print(f"LLM API error: {response.status_code}")
-            return get_default_analysis()
+            return None
 
     except Exception as e:
         print(f"Error analyzing with LLM: {e}")
-        return get_default_analysis()
+        return None
 
 # (Optional, mayber for later use)Layer 4: False Negative Filtering (model breaking verification)
 
 if __name__ == "__main__":
-    stable_instances = check_build_stability()
+    instance_ids, instances = load_dataset()
+    stable_instances = check_build_stability(instance_ids)
     print("Stable instances:", stable_instances)
     consistent_instances = check_oracle_consistency(stable_instances)
     print("Consistent instances:", consistent_instances)
