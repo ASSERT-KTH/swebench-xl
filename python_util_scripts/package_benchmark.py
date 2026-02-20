@@ -15,15 +15,24 @@ from pathlib import Path
 
 ROOT_DIR = Path(__file__).resolve().parent.parent
 INPUT_FILE = ROOT_DIR / "fail_to_pass_results.json"
+INPUT_FILE_FULL = ROOT_DIR / "pr_analysis_results_full.json"
 OUTPUT_DIR = ROOT_DIR / "benchmark"
 DATASET_FILE = OUTPUT_DIR / "dataset.jsonl"
 RUN_SCRIPTS_DIR = OUTPUT_DIR / "run_scripts"
 
 
-def load_verified_instances(path: Path) -> list[dict]:
+def load_verified_instances(path: Path, path_full: Path) -> list[dict]:
     with open(path) as f:
         data = json.load(f)
     verified = [d for d in data if d["status"] == "verified"]
+    with open(path_full) as f:
+        full_data = json.load(f)
+        for inst in verified:
+            pr = inst["pr_number"]
+            full_inst = next((i for i in full_data if i["pr_number"] == pr), None)
+            if full_inst:
+                inst.update(full_inst)
+
     print(f"Loaded {len(data)} total instances, {len(verified)} verified")
     return verified
 
@@ -41,7 +50,8 @@ def create_dataset_jsonl(instances: list[dict], output_path: Path):
             "base_commit": inst["base_commit"],
             "patch": inst["patch"],
             "test_patch": inst["test_patch"],
-            "problem_statement": inst["title"],
+            "problem_statement_title": inst["title"],
+            "problem_statement_description": inst["description"],
             "fail_to_pass": json.dumps(inst["FAIL_TO_PASS"]),
             "pass_to_pass": json.dumps(inst["PASS_TO_PASS"]),
             "version": inst["version"],
@@ -134,7 +144,7 @@ def main():
         print(f"Error: {INPUT_FILE} not found", file=sys.stderr)
         sys.exit(1)
 
-    instances = load_verified_instances(INPUT_FILE)
+    instances = load_verified_instances(INPUT_FILE, INPUT_FILE_FULL)
 
     # Step 1: Create dataset JSONL
     print("\n=== Step 1: Creating dataset JSONL ===")
