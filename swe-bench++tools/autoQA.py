@@ -5,6 +5,7 @@ from collections import defaultdict
 import os
 import re
 import requests
+import shutil
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -33,7 +34,7 @@ def check_build_stability(instance_ids):
     
     build_results = defaultdict(list)
     
-    for instance_id in instance_ids[0:1]:
+    for instance_id in instance_ids[0:3]: # For testing, only check first 3 instances - change to instance_ids for full run
 
         dockerfile = dockerfile_dir / f"{instance_id}/Dockerfile"
         
@@ -46,7 +47,7 @@ def check_build_stability(instance_ids):
             image_tag = f"es-bench-{instance_id}"
             try:
                 results = subprocess.run(
-                    ["docker", "build", "--no-cache", "-f", str(dockerfile), "-t", image_tag, str(dockerfile_dir)],
+                    ["docker", "build", "--no-cache", "-f", str(dockerfile), "-t", image_tag, str(dockerfile_dir/instance_id)],
                     check=True,
                     capture_output=True,
                     timeout=600
@@ -77,6 +78,7 @@ def check_oracle_consistency(instance_ids):
         print(f"Testing oracle consistency for {instance_id}...")
         run_results = []
         output_dir = repo_root / "swe-bench++tools" / "tmp" / "eval_output"
+        output_dir.mkdir(parents=True, exist_ok=True)
         
         # Run eval 3 times
         for attempt in range(3):
@@ -93,6 +95,7 @@ def check_oracle_consistency(instance_ids):
                         "--output_dir",
                         str(output_dir),
                         "--allow_network",
+                        "--save_debug_dir",
                     ],
                     check=True,
                     capture_output=True,
@@ -104,23 +107,33 @@ def check_oracle_consistency(instance_ids):
                 try:
                     with open(output_dir/f"eval_summary_gold.json") as f:
                         eval_results = json.load(f)
-                    if eval_results and eval_results.get(instance_id):
+                    if eval_results and eval_results.get(instance_id) is True:
                         run_results.append(True)
+                        # Clean up debug dir on success
+                        debug_dir = repo_root / f"debug_{instance_id}"
+                        if debug_dir.exists():
+                            shutil.rmtree(debug_dir)
+                            print(f"Cleaned up debug directory for {instance_id}")
                     else:
+                        print(f"Output mismatch for {instance_id} on attempt {attempt + 1}: {eval_results}")
                         run_results.append(False)
-                except (FileNotFoundError, json.JSONDecodeError):
-                    print(f"Output JSON not found or invalid for {instance_id} on attempt {attempt + 1}")
+                        break  # No need to continue if we already have a failure
+                except (FileNotFoundError, json.JSONDecodeError) as e:
+                    print(f"Output JSON not found or invalid for {instance_id} on attempt {attempt + 1}: {e}")
                     run_results.append(False)
+                    break
             except (subprocess.CalledProcessError, subprocess.TimeoutExpired) as e:
                 print(f"Eval script failed for {instance_id} on attempt {attempt + 1}: {e}")
                 if isinstance(e, subprocess.CalledProcessError):
                     print(f"stdout:\n{e.stdout}\n")
                     print(f"stderr:\n{e.stderr}\n")
                 run_results.append(False)
+                break  # No need to continue if we already have a failure
 
             #Delete output files to avoid confusion in next run
-            for output_file in output_dir.glob("*"):
-                output_file.unlink(missing_ok=True)
+            finally:
+                for output_file in output_dir.glob("*"):
+                    output_file.unlink(missing_ok=True)
         
         # Keep only instances that pass all 3 runs
         if all(run_results):
@@ -194,6 +207,11 @@ if __name__ == "__main__":
     instance_ids, instances = load_dataset()
     stable_instances = check_build_stability(instance_ids)
     print("Stable instances:", stable_instances)
+    #save stable instances to a jsonl file for later use
+    with open("stable_instances.jsonl", "w") as f:
+        for instance in instances:
+            if instance["instance_id"] in stable_instances:
+                f.write(json.dumps(instance) + "\n")
     consistent_instances = check_oracle_consistency(stable_instances)
     print("Consistent instances:", consistent_instances)
     #save consistent instances to a jsonl file for later use
@@ -201,3 +219,6 @@ if __name__ == "__main__":
         for instance in instances:
             if instance["instance_id"] in consistent_instances:
                 f.write(json.dumps(instance) + "\n")
+
+
+#elastic__elasticsearch-141503
