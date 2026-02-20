@@ -150,7 +150,10 @@ def check_semantic_alignment(instances):
 
     LLM_MODEL = "google/gemini-2.5-flash"
     
-    for instance in instances[0:1]:
+    all_results = []
+    high_quality_instances = set()
+    
+    for instance in tqdm(instances, desc="Semantic Alignment", unit="instance"):
         prompt = f"""You are an expert software engineering benchmark curator evaluating whether a GitHub issue and its corresponding tests are well-aligned for use in a coding benchmark.
 
 ## Problem Statement
@@ -172,61 +175,100 @@ Respond with a JSON object only, no markdown, with the following fields:
 - "reason": a concise 1-2 sentence explanation of your rating
 """
     
-    headers = {
-        "Authorization": f"Bearer {OPENROUTER_API_KEY}",
-        "Content-Type": "application/json"
-    }
+        headers = {
+            "Authorization": f"Bearer {OPENROUTER_API_KEY}",
+            "Content-Type": "application/json"
+        }
 
-    payload = {
-        "model": LLM_MODEL,
-        "messages": [
-            {
-                "role": "user",
-                "content": prompt
-            }
-        ],
-        "temperature": 0.3,
-        "max_tokens": 1024
-    }
+        payload = {
+            "model": LLM_MODEL,
+            "messages": [
+                {
+                    "role": "user",
+                    "content": prompt
+                }
+            ],
+            "temperature": 0.3,
+            "max_tokens": 512
+        }
 
-    try:
-        response = requests.post(
-            f"{OPENROUTER_API_BASE}/chat/completions",
-            headers=headers,
-            json=payload,
-            timeout=30
-        )
+        try:
+            response = requests.post(
+                f"{OPENROUTER_API_BASE}/chat/completions",
+                headers=headers,
+                json=payload,
+                timeout=30
+            )
 
-        if response.status_code == 200:
-            result = response.json()
-            llm_response = result['choices'][0]['message']['content']
+            if response.status_code == 200:
+                result = response.json()
+                llm_response = result['choices'][0]['message']['content']
 
-            # Parse JSON from response
-            llm_response = llm_response.strip()
-            if llm_response.startswith('```'):
-                llm_response = re.sub(r'^```json?\n', '', llm_response)
-                llm_response = re.sub(r'\n```$', '', llm_response)
+                # Parse JSON from response
+                llm_response = llm_response.strip()
+                if llm_response.startswith('```'):
+                    llm_response = re.sub(r'^```json?\n', '', llm_response)
+                    llm_response = re.sub(r'\n```$', '', llm_response)
 
-            analysis = json.loads(llm_response)
-            return analysis
-        else:
-            print(f"LLM API error: {response.status_code}")
-            return None
+                analysis = json.loads(llm_response)
+                
+                # Store result
+                result_entry = {
+                    "instance_id": instance["instance_id"],
+                    "quality": analysis["quality"],
+                    "reason": analysis["reason"]
+                }
+                all_results.append(result_entry)
+                
+                # Track high quality instances
+                if analysis["quality"] == "High":
+                    high_quality_instances.add(instance["instance_id"])
+            else:
+                print(f"LLM API error for {instance['instance_id']}: {response.status_code}")
+                all_results.append({
+                    "instance_id": instance["instance_id"],
+                    "quality": "Error",
+                    "reason": f"API error: {response.status_code}"
+                })
 
-    except Exception as e:
-        print(f"Error analyzing with LLM: {e}")
-        return None
+        except Exception as e:
+            print(f"Error analyzing {instance['instance_id']} with LLM: {e}")
+            all_results.append({
+                "instance_id": instance["instance_id"],
+                "quality": "Error",
+                "reason": f"Exception: {str(e)}"
+            })
+    
+    # Save all results to JSON file
+    with open("semantic_alignment_results.json", "w") as f:
+        json.dump(all_results, f, indent=2)
+    
+    print(f"\nSaved semantic alignment results to semantic_alignment_results.json")
+    
+    return high_quality_instances
 
 # (Optional, mayber for later use)Layer 4: False Negative Filtering (model breaking verification)
 
 if __name__ == "__main__":
     instance_ids, instances = load_dataset()
     print(f"Loaded {len(instance_ids)} instances")
+    
+    print("\n" + "="*50)
+    print("LAYER 3: Semantic Alignment Check")
+    print("="*50)
+    high_quality_instances = check_semantic_alignment(instances)
+    print(f"\nHigh quality instances: {len(high_quality_instances)}/{len(instances)}")
+    #save high quality instances to a jsonl file for later use
+    with open("high_quality_instances.jsonl", "w") as f:
+        for instance in instances:
+            if instance["instance_id"] in high_quality_instances:
+                f.write(json.dumps(instance) + "\n")
+    
     print("\n" + "="*50)
     print("LAYER 1: Build Stability Check")
     print("="*50)
-    stable_instances = check_build_stability(instance_ids)
-    print(f"\nStable instances: {len(stable_instances)}/{len(instance_ids)}")
+    stable_instances = check_build_stability(high_quality_instances)
+    print(f"\nStable instances: {len(stable_instances)}/{len(high_quality_instances)}")
     #save stable instances to a jsonl file for later use
     with open("stable_instances.jsonl", "w") as f:
         for instance in instances:
@@ -238,8 +280,8 @@ if __name__ == "__main__":
     print("="*50)
     consistent_instances = check_oracle_consistency(stable_instances)
     print(f"\nConsistent instances: {len(consistent_instances)}/{len(stable_instances)}")
-    #save consistent instances to a jsonl file for later use
-    with open("consistent_instances.jsonl", "w") as f:
+    #save final consistent instances to a jsonl file for later use
+    with open("final_consistent_instances.jsonl", "w") as f:
         for instance in instances:
             if instance["instance_id"] in consistent_instances:
                 f.write(json.dumps(instance) + "\n")
