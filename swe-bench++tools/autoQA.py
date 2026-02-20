@@ -63,38 +63,58 @@ def check_build_stability(instance_ids):
 
 def check_oracle_consistency(instance_ids):
     """Run eval.py on each instance multiple times to verify test determinism."""
-    eval_script = Path("../benchmark/eval.py")
+    script_dir = Path(__file__).resolve().parent
+    repo_root = script_dir.parent
+    eval_script = repo_root / "benchmark" / "eval.py"
     consistent_instances = set()
     
     for instance_id in instance_ids:
         print(f"Testing oracle consistency for {instance_id}...")
-        results = []
-        output_dir = Path("tmp/eval_output")
+        run_results = []
+        output_dir = repo_root / "swe-bench++tools" / "tmp" / "eval_output"
         
         # Run eval 3 times
         for attempt in range(3):
+            print(f"Running eval for {instance_id}, attempt {attempt + 1}...")
             try:
-                subprocess.run(
-                    ["python", str(eval_script), f"--instances {instance_id}", "--patches gold_patches.json", "--output_dir", str(output_dir), "--allow_network"] ,
+                run_result = subprocess.run(
+                    [
+                        "python",
+                        str(eval_script),
+                        "--instances",
+                        instance_id,
+                        "--patches",
+                        str(repo_root / "benchmark" / "gold_patches.json"),
+                        "--output_dir",
+                        str(output_dir),
+                        "--allow_network",
+                    ],
                     check=True,
                     capture_output=True,
-                    timeout=600
+                    cwd=str(repo_root),
+                    timeout=800
                 )
+
                 # Check JSON for output results
                 try:
                     with open(output_dir/f"eval_summary_gold.json") as f:
                         eval_results = json.load(f)
                     if eval_results and eval_results.get(instance_id):
-                        results.append(True)
+                        run_results.append(True)
                     else:
-                        results.append(False)
+                        run_results.append(False)
                 except (FileNotFoundError, json.JSONDecodeError):
-                    results.append(False)
-            except (subprocess.CalledProcessError, subprocess.TimeoutExpired):
-                results.append(False)
+                    print(f"Output JSON not found or invalid for {instance_id} on attempt {attempt + 1}")
+                    run_results.append(False)
+            except (subprocess.CalledProcessError, subprocess.TimeoutExpired) as e:
+                print(f"Eval script failed for {instance_id} on attempt {attempt + 1}: {e}")
+                if isinstance(e, subprocess.CalledProcessError):
+                    print(f"stdout:\n{e.stdout}\n")
+                    print(f"stderr:\n{e.stderr}\n")
+                run_results.append(False)
         
         # Keep only instances that pass all 3 runs
-        if all(results):
+        if all(run_results):
             consistent_instances.add(instance_id)
     
     return consistent_instances
