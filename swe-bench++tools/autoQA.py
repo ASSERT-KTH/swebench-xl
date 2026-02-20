@@ -40,9 +40,13 @@ def check_build_stability(instance_ids):
         # Attempt to build 3 times
         for attempt in range(3):
             print(f"Building {instance_id}, attempt {attempt + 1}...")
+            if attempt > 0:
+                # Remove previous image to ensure clean build
+                subprocess.run(["docker", "rmi", f"es-bench-{instance_id}"], capture_output=True)
+            image_tag = f"es-bench-{instance_id}"
             try:
                 results = subprocess.run(
-                    ["docker", "build", "-f", str(dockerfile), "-t", f"{instance_id}:attempt{attempt}", str(dockerfile_dir)],
+                    ["docker", "build", "--no-cache", "-f", str(dockerfile), "-t", image_tag, str(dockerfile_dir)],
                     check=True,
                     capture_output=True,
                     timeout=600
@@ -51,7 +55,8 @@ def check_build_stability(instance_ids):
                     build_results[instance_id].append(True)
                 else:
                     build_results[instance_id].append(False)
-            except (subprocess.CalledProcessError, subprocess.TimeoutExpired):
+            except (subprocess.CalledProcessError, subprocess.TimeoutExpired) as e:
+                print(f"Build failed for {instance_id} on attempt {attempt + 1} with exception {e}.")
                 build_results[instance_id].append(False)
     
     # Filter: keep only instances that built successfully all 3 times
@@ -112,6 +117,10 @@ def check_oracle_consistency(instance_ids):
                     print(f"stdout:\n{e.stdout}\n")
                     print(f"stderr:\n{e.stderr}\n")
                 run_results.append(False)
+
+            #Delete output files to avoid confusion in next run
+            for output_file in output_dir.glob("*"):
+                output_file.unlink(missing_ok=True)
         
         # Keep only instances that pass all 3 runs
         if all(run_results):
