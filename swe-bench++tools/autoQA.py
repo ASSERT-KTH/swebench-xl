@@ -6,6 +6,7 @@ import os
 import re
 import requests
 import shutil
+from tqdm import tqdm
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -34,13 +35,12 @@ def check_build_stability(instance_ids):
     
     build_results = defaultdict(list)
     
-    for instance_id in instance_ids[0:3]: # For testing, only check first 3 instances - change to instance_ids for full run
+    for instance_id in tqdm(instance_ids[0:3], desc="Build Stability", unit="instance"): # For testing, only check first 3 instances - change to instance_ids for full run
 
         dockerfile = dockerfile_dir / f"{instance_id}/Dockerfile"
         
         # Attempt to build 3 times
-        for attempt in range(3):
-            print(f"Building {instance_id}, attempt {attempt + 1}...")
+        for attempt in tqdm(range(3), desc=f"  Builds for {instance_id}", unit="build", leave=False):
             if attempt > 0:
                 # Remove previous image to ensure clean build
                 subprocess.run(["docker", "rmi", f"es-bench-{instance_id}"], capture_output=True)
@@ -74,15 +74,14 @@ def check_oracle_consistency(instance_ids):
     eval_script = repo_root / "benchmark" / "eval.py"
     consistent_instances = set()
     
-    for instance_id in instance_ids:
+    for instance_id in tqdm(instance_ids, desc="Oracle Consistency", unit="instance"):
         print(f"Testing oracle consistency for {instance_id}...")
         run_results = []
         output_dir = repo_root / "swe-bench++tools" / "tmp" / "eval_output"
         output_dir.mkdir(parents=True, exist_ok=True)
         
         # Run eval 3 times
-        for attempt in range(3):
-            print(f"Running eval for {instance_id}, attempt {attempt + 1}...")
+        for attempt in tqdm(range(3), desc=f"  Attempts for {instance_id}", unit="attempt", leave=False):
             try:
                 run_result = subprocess.run(
                     [
@@ -145,8 +144,6 @@ def check_oracle_consistency(instance_ids):
 # TODO: Currently I only check semantic alignment but skip the curation step.
 
 def check_semantic_alignment(instances):
-    print("Not running semantic alignment yet - placeholder for LLM-based analysis of PRs to determine suitability for benchmarking. This will involve prompting an LLM with PR data and parsing its response to filter for semantically suitable PRs.")
-    pass
     OPENROUTER_API_KEY = os.environ["OPENROUTER_API_KEY"]
 
     OPENROUTER_API_BASE = "https://openrouter.ai/api/v1"
@@ -154,7 +151,26 @@ def check_semantic_alignment(instances):
     LLM_MODEL = "google/gemini-2.5-flash"
     
     for instance in instances[0:1]:
-        prompt = f"Given this problem stated in a PR: {instance['problem_statement_title']}: {instance['problem_statement_description']}, and the tests that are expected to pass for this instance: {instance['test_patch']}, is this PR semantically aligned with the expected test outcomes? Please respond with a JSON object containing a boolean 'is_aligned' field and a string 'reason' field." #TODO: complete this prompt
+        prompt = f"""You are an expert software engineering benchmark curator evaluating whether a GitHub issue and its corresponding tests are well-aligned for use in a coding benchmark.
+
+## Problem Statement
+Title: {instance['problem_statement_title']}
+Description: {instance['problem_statement_description']}
+
+## Test Oracle (tests that must pass after a correct fix)
+{instance['test_patch']}
+
+## Task
+Evaluate the semantic alignment between the problem statement and the test oracle using the following rubric:
+
+- **High Quality**: The tests directly and clearly validate the behavior described in the problem statement. A developer reading only the problem statement would naturally write these tests or very similar ones.
+- **Medium Quality**: The tests partially capture the problem, but also test implementation details not explicitly requested (e.g., specific method names, accessor patterns, or internal behavior not mentioned in the issue). The core intent is still recoverable.
+- **Low Quality**: The tests are misaligned, ambiguous, or test something fundamentally different from what the problem statement describes. A developer could not reasonably infer these tests from the problem statement alone.
+
+Respond with a JSON object only, no markdown, with the following fields:
+- "quality": one of "High", "Medium", or "Low"
+- "reason": a concise 1-2 sentence explanation of your rating
+"""
     
     headers = {
         "Authorization": f"Bearer {OPENROUTER_API_KEY}",
@@ -205,15 +221,23 @@ def check_semantic_alignment(instances):
 
 if __name__ == "__main__":
     instance_ids, instances = load_dataset()
+    print(f"Loaded {len(instance_ids)} instances")
+    print("\n" + "="*50)
+    print("LAYER 1: Build Stability Check")
+    print("="*50)
     stable_instances = check_build_stability(instance_ids)
-    print("Stable instances:", stable_instances)
+    print(f"\nStable instances: {len(stable_instances)}/{len(instance_ids)}")
     #save stable instances to a jsonl file for later use
     with open("stable_instances.jsonl", "w") as f:
         for instance in instances:
             if instance["instance_id"] in stable_instances:
                 f.write(json.dumps(instance) + "\n")
+    
+    print("\n" + "="*50)
+    print("LAYER 2: Oracle Consistency Check")
+    print("="*50)
     consistent_instances = check_oracle_consistency(stable_instances)
-    print("Consistent instances:", consistent_instances)
+    print(f"\nConsistent instances: {len(consistent_instances)}/{len(stable_instances)}")
     #save consistent instances to a jsonl file for later use
     with open("consistent_instances.jsonl", "w") as f:
         for instance in instances:
