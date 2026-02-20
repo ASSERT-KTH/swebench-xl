@@ -122,7 +122,7 @@ def check_oracle_consistency(instance_ids):
 # Layer 3: Semantic Alignment & Automated Curation
 # TODO: Currently I only check semantic alignment but skip the curation step.
 
-def check_semantic_alignment(instaces):
+def check_semantic_alignment(instances):
     print("Not running semantic alignment yet - placeholder for LLM-based analysis of PRs to determine suitability for benchmarking. This will involve prompting an LLM with PR data and parsing its response to filter for semantically suitable PRs.")
     pass
     OPENROUTER_API_KEY = os.environ["OPENROUTER_API_KEY"]
@@ -131,8 +131,8 @@ def check_semantic_alignment(instaces):
 
     LLM_MODEL = "google/gemini-2.5-flash"
     
-    for instance in instances:
-        prompt = f"Given this problem stated in a PR: {instance}" #TODO: complete this prompt
+    for instance in instances[0:1]:
+        prompt = f"Given this problem stated in a PR: {instance['problem_statement_title']}: {instance['problem_statement_description']}, and the tests that are expected to pass for this instance: {instance['test_patch']}, is this PR semantically aligned with the expected test outcomes? Please respond with a JSON object containing a boolean 'is_aligned' field and a string 'reason' field." #TODO: complete this prompt
     
     headers = {
         "Authorization": f"Bearer {OPENROUTER_API_KEY}",
@@ -187,3 +187,8 @@ if __name__ == "__main__":
     print("Stable instances:", stable_instances)
     consistent_instances = check_oracle_consistency(stable_instances)
     print("Consistent instances:", consistent_instances)
+    #save consistent instances to a jsonl file for later use
+    with open("consistent_instances.jsonl", "w") as f:
+        for instance in instances:
+            if instance["instance_id"] in consistent_instances:
+                f.write(json.dumps(instance) + "\n")
