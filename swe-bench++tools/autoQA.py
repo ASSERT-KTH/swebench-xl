@@ -32,10 +32,23 @@ def check_build_stability(instance_ids):
     """Build each Dockerfile 3 times and filter out unstable builds."""
     dockerfile_dir = Path("../benchmark/dockerfiles/instances")
     
+    checkpoint_file = Path("build_stability_checkpoint.json")
     
+    # Load checkpoint if exists
     build_results = defaultdict(list)
+    processed_ids = set()
+    if checkpoint_file.exists():
+        print(f"Loading checkpoint from {checkpoint_file}")
+        with open(checkpoint_file) as f:
+            checkpoint_data = json.load(f)
+            build_results = defaultdict(list, checkpoint_data["build_results"])
+            processed_ids = set(checkpoint_data["processed_ids"])
+        print(f"Resuming from checkpoint with {len(processed_ids)} instances already processed")
     
-    for instance_id in tqdm(instance_ids[0:3], desc="Build Stability", unit="instance"): # For testing, only check first 3 instances - change to instance_ids for full run
+    for idx, instance_id in enumerate(tqdm(instance_ids, desc="Build Stability", unit="instance")):
+        # Skip if already processed
+        if instance_id in processed_ids:
+            continue
 
         dockerfile = dockerfile_dir / f"{instance_id}/Dockerfile"
         
@@ -59,6 +72,27 @@ def check_build_stability(instance_ids):
             except (subprocess.CalledProcessError, subprocess.TimeoutExpired) as e:
                 print(f"Build failed for {instance_id} on attempt {attempt + 1} with exception {e}.")
                 build_results[instance_id].append(False)
+        
+        processed_ids.add(instance_id)
+        
+        # Save checkpoint every 5 instances
+        if (idx + 1) % 5 == 0:
+            checkpoint_data = {
+                "build_results": dict(build_results),
+                "processed_ids": list(processed_ids)
+            }
+            with open(checkpoint_file, "w") as f:
+                json.dump(checkpoint_data, f, indent=2)
+            print(f"\nCheckpoint saved at instance {idx + 1}/{len(instance_ids)}")
+    
+    # Save final checkpoint
+    checkpoint_data = {
+        "build_results": dict(build_results),
+        "processed_ids": list(processed_ids)
+    }
+    with open(checkpoint_file, "w") as f:
+        json.dump(checkpoint_data, f, indent=2)
+    print(f"\nFinal checkpoint saved")
     
     # Filter: keep only instances that built successfully all 3 times
     stable_instances = {id for id, results in build_results.items() if all(results)}
@@ -72,9 +106,25 @@ def check_oracle_consistency(instance_ids):
     script_dir = Path(__file__).resolve().parent
     repo_root = script_dir.parent
     eval_script = repo_root / "benchmark" / "eval.py"
-    consistent_instances = set()
     
-    for instance_id in tqdm(instance_ids, desc="Oracle Consistency", unit="instance"):
+    checkpoint_file = Path("oracle_consistency_checkpoint.json")
+    
+    # Load checkpoint if exists
+    consistent_instances = set()
+    processed_ids = set()
+    if checkpoint_file.exists():
+        print(f"Loading checkpoint from {checkpoint_file}")
+        with open(checkpoint_file) as f:
+            checkpoint_data = json.load(f)
+            consistent_instances = set(checkpoint_data["consistent_instances"])
+            processed_ids = set(checkpoint_data["processed_ids"])
+        print(f"Resuming from checkpoint with {len(processed_ids)} instances already processed")
+    
+    for idx, instance_id in enumerate(tqdm(instance_ids, desc="Oracle Consistency", unit="instance")):
+        # Skip if already processed
+        if instance_id in processed_ids:
+            continue
+            
         print(f"Testing oracle consistency for {instance_id}...")
         run_results = []
         output_dir = repo_root / "swe-bench++tools" / "tmp" / "eval_output"
@@ -137,6 +187,27 @@ def check_oracle_consistency(instance_ids):
         # Keep only instances that pass all 3 runs
         if all(run_results):
             consistent_instances.add(instance_id)
+        
+        processed_ids.add(instance_id)
+        
+        # Save checkpoint every 5 instances
+        if (idx + 1) % 5 == 0:
+            checkpoint_data = {
+                "consistent_instances": list(consistent_instances),
+                "processed_ids": list(processed_ids)
+            }
+            with open(checkpoint_file, "w") as f:
+                json.dump(checkpoint_data, f, indent=2)
+            print(f"\nCheckpoint saved at instance {idx + 1}/{len(instance_ids)}")
+    
+    # Save final checkpoint
+    checkpoint_data = {
+        "consistent_instances": list(consistent_instances),
+        "processed_ids": list(processed_ids)
+    }
+    with open(checkpoint_file, "w") as f:
+        json.dump(checkpoint_data, f, indent=2)
+    print(f"\nFinal checkpoint saved")
     
     return consistent_instances
 
@@ -252,7 +323,7 @@ Respond with a JSON object only, no markdown, with the following fields:
 if __name__ == "__main__":
     instance_ids, instances = load_dataset()
     print(f"Loaded {len(instance_ids)} instances")
-    
+    """
     print("\n" + "="*50)
     print("LAYER 3: Semantic Alignment Check")
     print("="*50)
@@ -263,15 +334,22 @@ if __name__ == "__main__":
         for instance in instances:
             if instance["instance_id"] in high_quality_instances:
                 f.write(json.dumps(instance) + "\n")
+    """
     
     print("\n" + "="*50)
     print("LAYER 1: Build Stability Check")
     print("="*50)
+    with open("high_quality_instances.jsonl") as f:
+        high_quality_instances = [json.loads(line)["instance_id"] for line in f]
+    #for instance in high_quality_instances:
+    #    print(instance)
+    #    print(instance["instance_id"])
     stable_instances = check_build_stability(high_quality_instances)
     print(f"\nStable instances: {len(stable_instances)}/{len(high_quality_instances)}")
     #save stable instances to a jsonl file for later use
     with open("stable_instances.jsonl", "w") as f:
         for instance in instances:
+            print(instance)
             if instance["instance_id"] in stable_instances:
                 f.write(json.dumps(instance) + "\n")
     
