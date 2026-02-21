@@ -1,0 +1,392 @@
+[
+  {
+    "instance_id": "elastic__elasticsearch-141775",
+    "quality": "High",
+    "reason": "The problem statement explicitly mentions handling 'aggs with surrogates in unit tests' and 'fixing multiple test classes that were never executed'. The test oracle directly addresses this by modifying `AbstractAggregationTestCase.java` to properly execute and test aggregations, including those with surrogates, and by adding new test cases for `Avg`, `Sum`, `WeightedAvg`, `Count`, `Min`, `Max`, `Median`, `Percentile`, and `Sample` that were previously not fully tested or had issues with surrogate handling."
+  },
+  {
+    "instance_id": "elastic__elasticsearch-140747",
+    "quality": "High",
+    "reason": "The problem statement describes moving the sorting of search shard iterators and sorting only after filtering. The tests directly address this by adding `result.sort(SearchShardIterator::compareTo)` in `TransportSearchActionTests.java` and modifying assertions in `CanMatchPreFilterSearchPhaseTests.java` to reflect the new sorting behavior after filtering, including checks for `shardId().id()` order and `skip()` status."
+  },
+  {
+    "instance_id": "elastic__elasticsearch-141503",
+    "quality": "High",
+    "reason": "The tests directly address the problem of confusing error messages when the @timestamp field is missing. The `GenerativeRestTest` removes the old, confusing error pattern, and `LogicalPlanOptimizerTests` adds a new test case that expects a more informative error message, including the specific reasons for the failure, as described in the problem statement."
+  },
+  {
+    "instance_id": "elastic__elasticsearch-141523",
+    "quality": "High",
+    "reason": "The tests directly validate the core requirement of the problem statement: ensuring that FUSE and MMR operations explicitly require a LIMIT clause before them, including scenarios with subqueries, and that appropriate error messages are generated when this condition is not met."
+  },
+  {
+    "instance_id": "elastic__elasticsearch-141371",
+    "quality": "High",
+    "reason": "The problem statement describes an infinite loop related to subqueries referencing indices with empty mappings. The new tests directly address this by introducing `no_fields_index` and `empty_index` with empty mappings and testing subqueries against them, ensuring the analyzer handles these cases correctly without looping."
+  },
+  {
+    "instance_id": "elastic__elasticsearch-141519",
+    "quality": "High",
+    "reason": "The problem statement explicitly mentions 'Reduce locking when persisting ML job statistics'. The new test `testConcurrentReadsDuringPersistence` directly validates this by simulating a slow persistence and asserting that concurrent reads are not blocked, perfectly aligning with the problem's core intent."
+  },
+  {
+    "instance_id": "elastic__elasticsearch-140515",
+    "quality": "High",
+    "reason": "The problem statement explicitly mentions using 'max result window as upper limit' for the number of IDs. The added test `testIdsSizeMayNotExceedMaxResultWindow` directly verifies this behavior by setting a `max_result_window` and asserting that an `IllegalStateException` is thrown when the number of IDs exceeds this limit."
+  },
+  {
+    "instance_id": "elastic__elasticsearch-141242",
+    "quality": "High",
+    "reason": "The test directly addresses the core issue of `BytesRef` not being deep-copied by modifying the original `value` after block creation and asserting that the block still holds the original, unmodified data. This perfectly validates the problem statement's claim that constant blocks should not share underlying bytes with external modifications."
+  },
+  {
+    "instance_id": "elastic__elasticsearch-140672",
+    "quality": "High",
+    "reason": "The tests directly address the key changes described in the problem statement: handling multi-value fields, restricting rerank fields to string types, and allowing expressions without explicit naming. The `RerankOperatorTests` and `RerankRequestIteratorTests` specifically validate the multi-value field processing."
+  },
+  {
+    "instance_id": "elastic__elasticsearch-141249",
+    "quality": "Error",
+    "reason": "API error: 500"
+  },
+  {
+    "instance_id": "elastic__elasticsearch-141157",
+    "quality": "High",
+    "reason": "The problem statement explicitly mentions the inability to fold `case()` with `date_period` and `time_duration` due to missing `ElementType`. The new test `testFoldCaseWithTemporalAmount` directly addresses this by creating `Case` expressions with these temporal types and asserting their foldability and correct folded values, exactly matching the problem's scope."
+  },
+  {
+    "instance_id": "elastic__elasticsearch-135899",
+    "quality": "Low",
+    "reason": "The problem statement describes transforming Long.MIN_VALUE to the epoch and Long.MAX_VALUE to '9999-12-31T23:59:59.999999999Z'. However, the tests assert that both Long.MIN_VALUE and Long.MAX_VALUE should format to 'null', which directly contradicts the problem description."
+  },
+  {
+    "instance_id": "elastic__elasticsearch-140693",
+    "quality": "High",
+    "reason": "The tests directly validate the core requirement of `codePointCount` for various string types and lengths, including random unicode strings, and explicitly check for the expected speedup by comparing against `UnicodeUtil.codePointCount` as implied by the problem statement's mention of it."
+  },
+  {
+    "instance_id": "elastic__elasticsearch-140264",
+    "quality": "High",
+    "reason": "The tests directly validate the core functionality described in the problem statement: native dot product functions for int4 query vectors against 1-bit index vectors, including single and bulk scoring, and handling of memory segments and offsets. The tests also cover edge cases like illegal dimensions, which is good practice for such low-level optimizations."
+  },
+  {
+    "instance_id": "elastic__elasticsearch-140294",
+    "quality": "High",
+    "reason": "The problem statement explicitly asks for documentation generation for the SET command and all non-snapshot settings. The test oracle adds new classes and methods (`SettingsTocDocsSupport`, `SettingsDocsSupport`, `writeToTempSettingsDir`) specifically for generating and writing this documentation, directly fulfilling the problem's requirements."
+  },
+  {
+    "instance_id": "elastic__elasticsearch-140594",
+    "quality": "Low",
+    "reason": "The problem statement is about 'cross series aggregations' and only accepting 'children that return a range vector'. The tests, however, focus on type mismatches (instant vs. range vector) for specific functions like `avg` and `rate`, which is a different concern than 'cross series aggregations'."
+  },
+  {
+    "instance_id": "elastic__elasticsearch-140135",
+    "quality": "High",
+    "reason": "The tests directly validate the new functionalities described in the problem statement, such as top-level arithmetic operations, implicit `last_over_time` insertion, and handling of bare metrics and post-processing with group-by-all. The `InsertDefaultInnerTimeSeriesAggregateTests` specifically covers the implicit `last_over_time` behavior for various arithmetic expressions, which is a core part of the problem description."
+  },
+  {
+    "instance_id": "elastic__elasticsearch-140094",
+    "quality": "Low",
+    "reason": "The problem statement asks to *add* base64/binary docvalue output, implying it should be supported. However, the tests *expect* IllegalArgumentException when 'base64' is used, indicating it's not supported, which directly contradicts the problem's intent."
+  },
+  {
+    "instance_id": "elastic__elasticsearch-139873",
+    "quality": "High",
+    "reason": "The problem statement explicitly mentions adding parameter support in PromQL query durations, and the tests directly verify this functionality for both named and positional parameters, including error cases for invalid inputs."
+  },
+  {
+    "instance_id": "elastic__elasticsearch-140394",
+    "quality": "High",
+    "reason": "The problem statement describes limiting heap usage for tracking deletions, and the tests directly validate this by checking that blobs are only written to the underlying stream while capacity allows, and that logs are generated when capacity is exceeded."
+  },
+  {
+    "instance_id": "elastic__elasticsearch-139946",
+    "quality": "High",
+    "reason": "The problem statement describes a fix for validation of anomaly detection job config, and the tests directly address this by adding new validation checks for `over_field_name` usage with specific detector functions, which is a core part of anomaly detection job configuration."
+  },
+  {
+    "instance_id": "elastic__elasticsearch-137744",
+    "quality": "High",
+    "reason": "The problem statement explicitly mentions converting `DateTimeException` to `IllegalArgumentException` for input errors. The added test case directly validates this by providing an invalid date ('2026-02-29' for February 29th) and asserting that an `IllegalArgumentException` with a specific message is generated, which perfectly aligns with the problem's intent."
+  },
+  {
+    "instance_id": "elastic__elasticsearch-133558",
+    "quality": "High",
+    "reason": "The problem statement describes limiting the size of `shardDeleteResults` based on heap space to prevent OOM errors. The new test `testWriteToShardBlobToDelete` directly verifies this behavior by setting a max heap size and asserting that blobs are only written up to that limit, and that a warning is logged when capacity is exceeded."
+  },
+  {
+    "instance_id": "elastic__elasticsearch-135602",
+    "quality": "Low",
+    "reason": "The problem statement describes an optimization for vector similarity functions when one parameter is constant, aiming to improve performance. The provided tests, however, focus entirely on the `toString()` representation of evaluators and factories, not on the performance or correctness of the optimization itself. They validate string formatting, not the core functional or performance improvement."
+  },
+  {
+    "instance_id": "elastic__elasticsearch-137907",
+    "quality": "High",
+    "reason": "The problem statement explicitly describes adding support for column pruning in FORK branches, and the tests directly validate this by checking the pruned output of FORK and its individual branches under various scenarios (e.g., simple Evals, nested Evals, aggregations, aliases)."
+  },
+  {
+    "instance_id": "elastic__elasticsearch-140028",
+    "quality": "High",
+    "reason": "The problem statement explicitly mentions 'null folding of nested COALESCE' and 'COALESCE can't be folded if one of the children is null'. The new test `testNestedCoalesce` directly addresses this by creating a nested COALESCE with a null child and asserting it's not folded, perfectly aligning with the problem description."
+  },
+  {
+    "instance_id": "elastic__elasticsearch-139857",
+    "quality": "Low",
+    "reason": "The problem statement describes moving a specific action to a different threadpool and optimizing task matching logic. The provided tests, however, primarily remove existing `match` tests from various request classes and add new `match` tests to `TransformTaskTests.java`, focusing on the `match` method's behavior rather than the threadpool change or the performance optimization described."
+  },
+  {
+    "instance_id": "elastic__elasticsearch-139715",
+    "quality": "High",
+    "reason": "The tests directly leverage the new `FieldStorageVerifier` API to check for field storage as described in the problem statement. They cover various scenarios, including expected storage, no storage, and double storage, aligning perfectly with the stated goals of the verifier."
+  },
+  {
+    "instance_id": "elastic__elasticsearch-139530",
+    "quality": "High",
+    "reason": "The problem statement describes adding tracking for the 'sort' section and leveraging extended reporting to record the sort type. The tests directly validate this by parsing various sort formats and asserting that the 'sort' section is tracked and the correct sort type is recorded in the extended usage data."
+  },
+  {
+    "instance_id": "elastic__elasticsearch-139337",
+    "quality": "High",
+    "reason": "The tests directly address the problem statement by asserting that using the exclusion prefix '-' on its own, or with an empty string, consistently throws an InvalidIndexNameException, regardless of security settings. The test cases cover various combinations of expressions as described in the problem."
+  },
+  {
+    "instance_id": "elastic__elasticsearch-139293",
+    "quality": "High",
+    "reason": "The problem statement explicitly mentions ensuring integer sorts are rewritten to long sorts for BWC indexes. The added test `testIntRewritesToLong` directly verifies this behavior across various index versions, including older ones where the rewrite to LONG is expected, and newer ones where INT is expected, perfectly aligning with the problem's core intent."
+  },
+  {
+    "instance_id": "elastic__elasticsearch-138126",
+    "quality": "High",
+    "reason": "The tests directly reflect the changes described in the problem statement, specifically the introduction of a `Supplier<Long>` to `IndicesQueryCache::getStats` and `CommonStats::getShardLevelStats`. The tests update existing calls to these methods to pass a `Supplier<Long>` (often `() -> 0L`), and `IndicesQueryCacheTests` adds new mocking and logic to test the `getStats` method with a supplier for shared RAM size, directly addressing the performance fix."
+  },
+  {
+    "instance_id": "elastic__elasticsearch-137964",
+    "quality": "High",
+    "reason": "The new test `testDiskLowWatermarkIsIncludedInDeprecationWarnings` directly addresses both parts of the problem statement: ensuring node deprecations are reported even when the low watermark is exceeded, and that node-level failures (like the disk watermark) are properly included in the deprecation warnings."
+  },
+  {
+    "instance_id": "elastic__elasticsearch-138317",
+    "quality": "High",
+    "reason": "The problem statement explicitly mentions reinstating and testing the native int7u bulk dot product. The added tests directly address this by introducing `testInt7uBulk` and `testBulkIllegalDims`, which thoroughly test the bulk dot product functionality and its error handling."
+  },
+  {
+    "instance_id": "elastic__elasticsearch-138115",
+    "quality": "High",
+    "reason": "The problem statement explicitly mentions moving the disk watermark check to the master node and using correct setting values. The added tests in `TransportDeprecationInfoActionTests.java` directly validate this by introducing `testCheckDiskLowWatermark` and `testMasterOperation` which verify the disk watermark check logic and its execution on the master node, respectively. The changes in `TransportNodeDeprecationCheckActionTests.java` remove the disk watermark check from the node-level action, aligning with the problem statement's intent to move this check."
+  },
+  {
+    "instance_id": "elastic__elasticsearch-138736",
+    "quality": "High",
+    "reason": "The problem statement describes fixing a parsing exception for PromQL with a trailing space. The added test `testPromqlTrailingSpaces` directly validates this by providing PromQL queries with trailing spaces, ensuring they parse correctly."
+  },
+  {
+    "instance_id": "elastic__elasticsearch-138306",
+    "quality": "High",
+    "reason": "The problem statement describes a specific scenario where StoredFieldsSpec requires the whole source and how merging should handle sourcePaths in that case. The new test `testMergeSourcePathsRequireCompleteSource` directly and clearly validates this exact behavior, making it a high-quality alignment."
+  },
+  {
+    "instance_id": "elastic__elasticsearch-138380",
+    "quality": "High",
+    "reason": "The problem statement explicitly describes the issue occurring when 'limit' is 1 and an 'outputField' is present, leading to incorrect surrogate usage. The new test cases directly target this scenario, testing both ascending and descending orders with 'limit' set to 1 and an 'outputField' provided, validating the exact behavior described."
+  },
+  {
+    "instance_id": "elastic__elasticsearch-138366",
+    "quality": "High",
+    "reason": "The problem statement explicitly mentions introducing the 'time_series_metric' parameter and the 'histogram' metric type. The new test `testMetricType` directly validates the behavior of this new parameter, including its default, valid values, and invalid values, which perfectly aligns with the problem description."
+  },
+  {
+    "instance_id": "elastic__elasticsearch-138107",
+    "quality": "High",
+    "reason": "The problem statement describes updating tests to use random configurations but override specific parameters. The test oracle clearly shows the removal of `withStaticConfiguration()` and its replacement with `withConfiguration()` to set specific timezones or locales, directly addressing the stated problem."
+  },
+  {
+    "instance_id": "elastic__elasticsearch-138112",
+    "quality": "High",
+    "reason": "The tests directly validate the core functionality described: constant folding of ESQL COMPLETION commands into EVAL nodes with CompletionFunction, handling literal prompts, custom target fields, and foldable expressions. They also cover edge cases like null inputs and non-foldable prompts, which are natural extensions of the main problem."
+  },
+  {
+    "instance_id": "elastic__elasticsearch-138142",
+    "quality": "High",
+    "reason": "The new test `testShardWithNoWriteLoadStillResetsQueueLatency` directly addresses the problem statement's core requirement: recording shard movement even for shards with no write load to ensure hotspot mitigation happens only once. The `testNoInfiniteLoopBetweenHotspotMitigationAndBalancing` test further validates the desired behavior in a more complex scenario."
+  },
+  {
+    "instance_id": "elastic__elasticsearch-137944",
+    "quality": "High",
+    "reason": "The problem statement explicitly mentions fixing a bug in T-Digest to exponential histogram conversion for zero counts, and the `testToExponentialHistogramConversionWithZeroCounts` directly addresses this. It also mentions implementing 'coerce' for the exponential_histogram field type, and `testCoerce` directly validates this functionality."
+  },
+  {
+    "instance_id": "elastic__elasticsearch-138015",
+    "quality": "High",
+    "reason": "The problem statement explicitly says 'Don't fail delete index API if an index is deleted during the request' and 'we can simply skip it instead of throwing an exception'. The test `testDeleteMissing` directly validates this by asserting that no exception is thrown and the cluster state remains unchanged when attempting to delete a non-existent index."
+  },
+  {
+    "instance_id": "elastic__elasticsearch-137430",
+    "quality": "High",
+    "reason": "The problem statement explicitly states that full text functions should accept null as a field parameter, which is directly tested by `testMatchFunctionAcrossMultipleIndicesWithMissingField` and the `checkFullTextFunctionAcceptsNullField` helper in `VerifierTests`, as well as the `addNullFieldTestCases` in `AbstractMatchFullTextFunctionTests` and `KnnTests`."
+  },
+  {
+    "instance_id": "elastic__elasticsearch-130857",
+    "quality": "High",
+    "reason": "The tests directly address the performance improvement by introducing a `0L` parameter to `getShardLevelStats` and `getStats`, which is the pre-computed total number of objects/shards mentioned in the problem statement. The new `testGetSharedRamSizeForShard` method specifically tests the logic for calculating shared RAM size, which is a key part of the described optimization."
+  },
+  {
+    "instance_id": "elastic__elasticsearch-134223",
+    "quality": "High",
+    "reason": "The problem statement explicitly mentions refactoring to avoid race conditions and using an `AtomicInteger` to track on-demand runs to prevent concurrent execution. The new tests directly validate that the 'lock' mechanism (implied by the `AtomicInteger` and concurrency control) is properly released even when exceptions occur during both on-demand and periodic runs, which is crucial for preventing deadlocks and ensuring subsequent runs proceed."
+  },
+  {
+    "instance_id": "elastic__elasticsearch-120256",
+    "quality": "High",
+    "reason": "The problem statement focuses on improving memory aspects of the enrich cache, specifically by changing the cache key object and using a static value for empty results, and improving memory tracking. The tests, particularly 'testEnrichCacheValuesAndMaxMatches' and 'testCaching', directly validate the cache's behavior, including its ability to handle different `max_matches` values (which implies a change to the cache key) and its eviction policy, which is related to memory management. The changes in `EnrichCacheTests.java` removing `SearchRequest` as a key and introducing `EnrichCache.CacheKey` directly align with the problem's description of changing the cache key object."
+  },
+  {
+    "instance_id": "elastic__elasticsearch-137407",
+    "quality": "High",
+    "reason": "The problem statement describes a bug where `getEffectiveSettings` did not account for `IndexSettingsProviders` and caused crashes for `time_series` data streams. The tests directly address this by moving `getEffectiveSettings` to `MetadataDataStreamsService` and adding new tests in `MetadataDataStreamsServiceTests` that explicitly verify the correct merging of settings from templates, component templates, data streams, and implicitly, `IndexSettingProviders` (though `IndexSettingProviders.EMPTY` is used in the new tests, the change in location and the problem description imply this is where the fix would be applied). The changes in `TransportGetDataStreamsActionTests` and `MetadataRolloverServiceTests` reflect the new location of the `getEffectiveSettings` method and pass `metadataDataStreamsService` as a parameter, which is consistent with the problem's description of moving the method."
+  },
+  {
+    "instance_id": "elastic__elasticsearch-137560",
+    "quality": "High",
+    "reason": "The problem statement describes returning 'friendly exceptions for validation errors' and the tests directly validate this by changing the type of exception thrown from 'QlIllegalArgumentException' to 'InvalidArgumentException', which aligns with making exceptions more client-friendly and standard."
+  },
+  {
+    "instance_id": "elastic__elasticsearch-137244",
+    "quality": "High",
+    "reason": "The problem statement explicitly mentions 'Preserve deployments with zero allocations during assignment planning'. The new tests `testZeroAllocationsDeploymentIsPreserved` and `testMultipleZeroAllocationsDeploymentsArePreserved` directly and clearly validate this exact behavior, ensuring that deployments with zero allocations are included in the plan but have no assignments."
+  },
+  {
+    "instance_id": "elastic__elasticsearch-137138",
+    "quality": "High",
+    "reason": "The problem statement explicitly mentions 'Fix mutateInstance() implementations'. The test oracle directly addresses this by showing changes to multiple `mutateInstance` methods across various test files, indicating a clear alignment with the stated problem."
+  },
+  {
+    "instance_id": "elastic__elasticsearch-137025",
+    "quality": "High",
+    "reason": "The tests directly address the problem of `ReplaceAliasingEvalWithProject` in cases of shadowing, which is the core issue described. The various test cases cover different scenarios of aliasing and shadowing, including simple cases, loops, and shadowing of aliased attributes, which are all relevant to the problem statement."
+  },
+  {
+    "instance_id": "elastic__elasticsearch-137040",
+    "quality": "High",
+    "reason": "The problem statement describes a change in how the `@timestamp` field is handled implicitly by functions. The tests directly reflect this by changing how `@timestamp` is referenced in `TBucket` and by updating error messages to reflect the new `UnresolvedTimestamp` mechanism when `@timestamp` is renamed or dropped, which is a direct consequence of the described change."
+  },
+  {
+    "instance_id": "elastic__elasticsearch-136441",
+    "quality": "Medium",
+    "reason": "The tests cover the explicitly supported cases and some failure scenarios, but they do not cover the 'not supported and requires consideration' cases mentioned in the problem description, which are crucial for a complete implementation."
+  },
+  {
+    "instance_id": "elastic__elasticsearch-136541",
+    "quality": "High",
+    "reason": "The tests directly validate the core functionality of multiple grok patterns and the error handling for conflicting types, as described in the problem statement's examples. The `testCombinedPatterns` in `GrokTests.java` also directly tests the underlying pattern combination logic."
+  },
+  {
+    "instance_id": "elastic__elasticsearch-136348",
+    "quality": "High",
+    "reason": "The problem statement explicitly describes adding an error message for using 'inline stats' before 'stats' in a TS query, and the tests directly verify this by asserting the exact error message for various invalid 'inline stats' usages before 'stats' within TS queries."
+  },
+  {
+    "instance_id": "elastic__elasticsearch-135966",
+    "quality": "High",
+    "reason": "The tests directly address all three points of the problem statement: refactoring `notifyQueueRunnables` for wrapped runnables, ensuring it's called on executor shutdown/error, and adding unit tests for these scenarios."
+  },
+  {
+    "instance_id": "elastic__elasticsearch-135936",
+    "quality": "High",
+    "reason": "The problem statement explicitly mentions the addition of an 'available_processors' field to CAT Nodes and OS Stats. The tests directly verify the serialization, deserialization, and presence of this new field across various relevant components like NodeStats, OsStats, and monitoring/autoscaling contexts, aligning perfectly with the stated change."
+  },
+  {
+    "instance_id": "elastic__elasticsearch-136266",
+    "quality": "High",
+    "reason": "The problem statement explicitly states that 'Two pages with positionCount=0 should be considered not equal if they have different number/type of blocks.' The added test case directly addresses this by creating pages with `positionCount=0` but varying numbers of blocks, and using `EqualsHashCodeTestUtils.checkEqualsAndHashCode` to verify the new equality behavior."
+  },
+  {
+    "instance_id": "elastic__elasticsearch-135981",
+    "quality": "High",
+    "reason": "The problem statement explicitly states that dimension fields should only be allowed in grouping attributes and forbidden in aggregated stats. The new test `testNoDimensionsInAggsOnlyInByClause` directly verifies this by asserting errors when dimension fields are used within aggregation functions in a `STATS` clause without being in the `BY` clause."
+  },
+  {
+    "instance_id": "elastic__elasticsearch-132962",
+    "quality": "High",
+    "reason": "The problem statement describes a refactor to handle `ignore_above` for keyword multi-fields in synthetic source. The tests directly validate this by checking block loader behavior when `ignore_above` is set or not set, and specifically test multi-field scenarios with `ignore_above`."
+  },
+  {
+    "instance_id": "elastic__elasticsearch-135184",
+    "quality": "High",
+    "reason": "The tests directly address the bug described in the problem statement, specifically the `lastOptimisedValue` not being reset and the interaction between `getText()` and optimized text retrieval. The new `testOptimisedParser` with its randomized access patterns directly simulates the scenario that caught the original bug."
+  },
+  {
+    "instance_id": "elastic__elasticsearch-135505",
+    "quality": "High",
+    "reason": "The problem statement explicitly mentions DISIAccumulator and tmp files for tsdb doc values. The test oracle directly adds assertions for 'es819 tsdb doc values tmp files' including 'disi' and 'address-data' files, which perfectly aligns with the problem's description of performance issues related to these temporary files."
+  },
+  {
+    "instance_id": "elastic__elasticsearch-135544",
+    "quality": "High",
+    "reason": "The problem statement explicitly mentions allowing and accounting for -1 SOAR assignments. The test oracle directly reflects this by modifying the assertion to include `soarAssignments[i] == NO_SOAR_ASSIGNMENT` (which is defined as -1), perfectly aligning with the described change."
+  },
+  {
+    "instance_id": "elastic__elasticsearch-134455",
+    "quality": "High",
+    "reason": "The problem statement explicitly mentions 'memory tracking for the blocks used in the LocalRelations generated at the intermediary phase of executing an INLINESTATS'. The tests directly validate this by checking circuit breaking behavior (`testFromPagesCircuitBreaks`) and size checks (`testCheckPagesBelowSize`) related to pages and blocks, and also verify the `maxIntermediateLocalRelationSize` calculation which is directly related to memory limits for these local relations."
+  },
+  {
+    "instance_id": "elastic__elasticsearch-134941",
+    "quality": "High",
+    "reason": "The problem statement explicitly mentions 'Better `max_age` rollover for tiny retentions'. The new test `testWithTinyRetentions` directly validates the `max_age` calculation for small retention periods (1 day and 12 hours), and the updated `testAutoMaxAgeCalculation` in `RolloverConfigurationTests` provides specific assertions for various 'tiny' retention values, directly addressing the core issue."
+  },
+  {
+    "instance_id": "elastic__elasticsearch-134955",
+    "quality": "High",
+    "reason": "The problem statement explicitly states that transforms should 'wait for PIT to close' and 'continue after PIT is closed'. The added test code directly verifies this by introducing `beforeCloseListener` and `paceCounter` to assert the order of operations and ensure the transform proceeds only after the PIT close request is initiated and completed."
+  },
+  {
+    "instance_id": "elastic__elasticsearch-134413",
+    "quality": "High",
+    "reason": "The tests directly validate all three categories of unsupported queries mentioned in the problem statement: LIMIT/SORT before STATS, over-time aggregations without an outer aggregation, and `COUNT(*)` with TS. The error messages also align with the expected rejections."
+  },
+  {
+    "instance_id": "elastic__elasticsearch-134877",
+    "quality": "High",
+    "reason": "The tests directly address the regressions mentioned in the problem statement by adding the exact failing queries as new test cases in `KqlParserFieldQueryTests.java`. The changes in `supported-queries` and `unsupported-queries` also align with the refactoring of the filter value grammar."
+  },
+  {
+    "instance_id": "elastic__elasticsearch-134501",
+    "quality": "High",
+    "reason": "The problem statement is about increasing the default limit for TS queries. The new test `testTimeseriesDefaultLimitIs1B` directly verifies that TS queries use a specific default limit (`DEFAULT_TIMESERIES_LIMIT`) while non-TS queries use the standard default limit (`DEFAULT_LIMIT`), which is exactly what the problem describes."
+  },
+  {
+    "instance_id": "elastic__elasticsearch-134475",
+    "quality": "High",
+    "reason": "The tests directly validate the functionality of the new ABSENT and ABSENT_OVER_TIME functions as described in the problem statement, covering various data types and scenarios including the absence of rows."
+  },
+  {
+    "instance_id": "elastic__elasticsearch-129503",
+    "quality": "High",
+    "reason": "The problem statement clearly describes the pushdown transformation and the shadowing edge case. The tests, particularly the new `PushDownJoinPastProjectTests`, directly validate these scenarios with multiple lookup joins and explicit shadowing examples, aligning perfectly with the described behavior."
+  },
+  {
+    "instance_id": "elastic__elasticsearch-134328",
+    "quality": "High",
+    "reason": "The tests directly address the problem of boolean operators being misinterpreted as literals, specifically by changing assertions from `assertTermQueryBuilder` or `assertMatchQueryBuilder` to `assertMustNotQueryBuilder` for 'NOT AND' and 'NOT OR' cases, which aligns perfectly with the problem description."
+  },
+  {
+    "instance_id": "elastic__elasticsearch-133360",
+    "quality": "High",
+    "reason": "The tests directly validate the core functionality described in the problem statement: recovering a failure document to its original form, handling missing fields, and preserving metadata. The test cases cover both successful recovery and expected error conditions, aligning perfectly with the problem description's examples."
+  },
+  {
+    "instance_id": "elastic__elasticsearch-134201",
+    "quality": "High",
+    "reason": "The problem statement explicitly mentions adding guards for 'SORT with no LIMIT before INLINESTATS' and 'CATEGORIZE with INLINESTATS'. The tests directly verify these two conditions by asserting specific error messages for queries that violate these rules."
+  },
+  {
+    "instance_id": "elastic__elasticsearch-133087",
+    "quality": "High",
+    "reason": "The tests directly address the core requirements of the problem statement: filtering out null metrics, handling multiple metrics with OR, and considering specific scenarios like non-TS mode, dimensions, coalesced metrics, and multiple STATS blocks. The tests validate the intended behavior and edge cases discussed in the problem description."
+  },
+  {
+    "instance_id": "elastic__elasticsearch-133952",
+    "quality": "High",
+    "reason": "The problem statement describes a warning caused by filtered mappings not containing alias target fields, specifically related to 'host' fields. The new test `testSortAndHostNameAlias` directly addresses this by introducing an alias mapping ('host.architecture' to 'resource.attributes.host.arch') and verifying that the `LogsdbIndexModeSettingsProvider` correctly processes it without error, aligning perfectly with the described fix."
+  }
+]

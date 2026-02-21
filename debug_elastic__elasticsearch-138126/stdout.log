@@ -1,0 +1,41 @@
+Running pre-configured gradle commands...
+=== Running gradle command 1/1 ===
+Downloading https://services.gradle.org/distributions/gradle-9.2.0-all.zip
+......................10%......................20%......................30%.......................40%......................50%......................60%......................70%.......................80%......................90%......................100%
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/9.2.0/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build 
+Parallel Configuration Cache is an incubating feature.
+
+> Task :build-conventions:compileJava
+
+> Task :build-conventions:pluginDescriptors
+> Task :build-conventions:processResources
+> Task :build-conventions:classes
+> Task :build-conventions:jar
+> Task :build-tools:reaper:compileJava
+> Task :build-tools:reaper:processResources NO-SOURCE
+> Task :build-tools:reaper:classes
+> Task :build-tools:reaper:jar
+> Task :build-tools-internal:extractPluginRequests
+> Task :build-tools-internal:generatePluginAdapters
+> Task :build-tools-internal:pluginDescriptors
+> Task :build-tools-internal:processResources
+
+> Task :build-tools:compileJava
+
+> Task :build-tools:compileGroovy NO-SOURCE
+> Task :build-tools:generateVersionProperties
+> Task :build-tools:pluginDescriptors
+> Task :build-tools:processResources
+> Task :build-tools:classes
+> Task :build-tools:jar
+
+> Task :build-tools-internal:compileJava
+
+> Task :build-tools-internal:compileGroovy
+> Task :build-tools-internal:compileGroovyPlugins
+> Task :build-tools-internal:classes
+> Task :build-tools-internal:jar
+
+[Incubating] Problems report is available at: file:///app/build/reports/problems/problems-report.html
+19 actionable tasks: 19 executed

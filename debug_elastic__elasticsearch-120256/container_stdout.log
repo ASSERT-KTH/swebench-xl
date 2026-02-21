@@ -1,0 +1,98 @@
+=== Instance: elastic__elasticsearch-120256 ===
+=== Step 1: Applying test patch ===
+Checking patch x-pack/plugin/enrich/src/internalClusterTest/java/org/elasticsearch/xpack/enrich/EnrichProcessorMaxMatchesIT.java...
+Checking patch x-pack/plugin/enrich/src/test/java/org/elasticsearch/xpack/enrich/EnrichCacheTests.java...
+Checking patch x-pack/plugin/enrich/src/test/java/org/elasticsearch/xpack/enrich/GeoMatchProcessorTests.java...
+Checking patch x-pack/plugin/enrich/src/test/java/org/elasticsearch/xpack/enrich/MatchProcessorTests.java...
+Applied patch x-pack/plugin/enrich/src/internalClusterTest/java/org/elasticsearch/xpack/enrich/EnrichProcessorMaxMatchesIT.java cleanly.
+Applied patch x-pack/plugin/enrich/src/test/java/org/elasticsearch/xpack/enrich/EnrichCacheTests.java cleanly.
+Applied patch x-pack/plugin/enrich/src/test/java/org/elasticsearch/xpack/enrich/GeoMatchProcessorTests.java cleanly.
+Applied patch x-pack/plugin/enrich/src/test/java/org/elasticsearch/xpack/enrich/MatchProcessorTests.java cleanly.
+
+=== Step 2: Applying model patch ===
+Checking patch docs/changelog/120256.yaml...
+Checking patch x-pack/plugin/enrich/src/main/java/org/elasticsearch/xpack/enrich/AbstractEnrichProcessor.java...
+Checking patch x-pack/plugin/enrich/src/main/java/org/elasticsearch/xpack/enrich/EnrichCache.java...
+error: while searching for:
+        );
+    }
+
+    private String getEnrichIndexKey(SearchRequest searchRequest) {
+        String alias = searchRequest.indices()[0];
+        IndexAbstraction ia = metadata.getIndicesLookup().get(alias);
+        if (ia == null) {
+            throw new IndexNotFoundException("no generated enrich index [" + alias + "]");
+        }
+        return ia.getIndices().get(0).getName();
+    }
+
+    static CacheValue toCacheValue(SearchResponse response) {
+        List<Map<?, ?>> result = new ArrayList<>(response.getHits().getHits().length);
+        long size = 0;
+        for (SearchHit hit : response.getHits()) {
+            result.add(deepCopy(hit.getSourceAsMap(), true));
+            size += hit.getSourceRef() != null ? hit.getSourceRef().ramBytesUsed() : 0;
+
+error: patch failed: x-pack/plugin/enrich/src/main/java/org/elasticsearch/xpack/enrich/EnrichCache.java:160
+error: x-pack/plugin/enrich/src/main/java/org/elasticsearch/xpack/enrich/EnrichCache.java: patch does not apply
+Checking patch x-pack/plugin/enrich/src/main/java/org/elasticsearch/xpack/enrich/EnrichProcessorFactory.java...
+Checking patch x-pack/plugin/enrich/src/main/java/org/elasticsearch/xpack/enrich/GeoMatchProcessor.java...
+Checking patch x-pack/plugin/enrich/src/main/java/org/elasticsearch/xpack/enrich/MatchProcessor.java...
+WARNING: Failed to apply model patch (exit code 1)
+Attempting with --reject...
+Checking patch docs/changelog/120256.yaml...
+Checking patch x-pack/plugin/enrich/src/main/java/org/elasticsearch/xpack/enrich/AbstractEnrichProcessor.java...
+Checking patch x-pack/plugin/enrich/src/main/java/org/elasticsearch/xpack/enrich/EnrichCache.java...
+error: while searching for:
+        );
+    }
+
+    private String getEnrichIndexKey(SearchRequest searchRequest) {
+        String alias = searchRequest.indices()[0];
+        IndexAbstraction ia = metadata.getIndicesLookup().get(alias);
+        if (ia == null) {
+            throw new IndexNotFoundException("no generated enrich index [" + alias + "]");
+        }
+        return ia.getIndices().get(0).getName();
+    }
+
+    static CacheValue toCacheValue(SearchResponse response) {
+        List<Map<?, ?>> result = new ArrayList<>(response.getHits().getHits().length);
+        long size = 0;
+        for (SearchHit hit : response.getHits()) {
+            result.add(deepCopy(hit.getSourceAsMap(), true));
+            size += hit.getSourceRef() != null ? hit.getSourceRef().ramBytesUsed() : 0;
+
+error: patch failed: x-pack/plugin/enrich/src/main/java/org/elasticsearch/xpack/enrich/EnrichCache.java:160
+Hunk #7 succeeded at 196 (offset 8 lines).
+Checking patch x-pack/plugin/enrich/src/main/java/org/elasticsearch/xpack/enrich/EnrichProcessorFactory.java...
+Checking patch x-pack/plugin/enrich/src/main/java/org/elasticsearch/xpack/enrich/GeoMatchProcessor.java...
+Checking patch x-pack/plugin/enrich/src/main/java/org/elasticsearch/xpack/enrich/MatchProcessor.java...
+Applied patch docs/changelog/120256.yaml cleanly.
+Applied patch x-pack/plugin/enrich/src/main/java/org/elasticsearch/xpack/enrich/AbstractEnrichProcessor.java cleanly.
+Applying patch x-pack/plugin/enrich/src/main/java/org/elasticsearch/xpack/enrich/EnrichCache.java with 1 reject...
+Hunk #1 applied cleanly.
+Hunk #2 applied cleanly.
+Hunk #3 applied cleanly.
+Hunk #4 applied cleanly.
+Hunk #5 applied cleanly.
+Rejected hunk #6.
+Hunk #7 applied cleanly.
+Applied patch x-pack/plugin/enrich/src/main/java/org/elasticsearch/xpack/enrich/EnrichProcessorFactory.java cleanly.
+Applied patch x-pack/plugin/enrich/src/main/java/org/elasticsearch/xpack/enrich/GeoMatchProcessor.java cleanly.
+Applied patch x-pack/plugin/enrich/src/main/java/org/elasticsearch/xpack/enrich/MatchProcessor.java cleanly.
+
+=== Step 3: Running tests ===
+Test exit code: 1
+
+=== Step 4: Parsing test output ===
+No JUnit XML files found, falling back to stdout parsing
+Parsed 0 tests from stdout
+Wrote 0 test results -> output.json
+Summary: 0 passed, 0 failed, 0 skipped
+
+=== Evaluation complete ===
+test_patch_applied: 0
+model_patch_applied: 1
+test_exit_code: 1
+parser_exit_code: 0

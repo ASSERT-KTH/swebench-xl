@@ -1,0 +1,41 @@
+=== Instance: elastic__elasticsearch-138126 ===
+=== Step 1: Applying test patch ===
+Checking patch server/src/test/java/org/elasticsearch/action/admin/cluster/stats/VersionStatsTests.java...
+Checking patch server/src/test/java/org/elasticsearch/index/shard/IndexShardTests.java...
+Checking patch server/src/test/java/org/elasticsearch/indices/IndicesQueryCacheTests.java...
+Checking patch server/src/test/java/org/elasticsearch/indices/IndicesServiceCloseTests.java...
+Checking patch server/src/test/java/org/elasticsearch/indices/IndicesServiceTests.java...
+Applied patch server/src/test/java/org/elasticsearch/action/admin/cluster/stats/VersionStatsTests.java cleanly.
+Applied patch server/src/test/java/org/elasticsearch/index/shard/IndexShardTests.java cleanly.
+Applied patch server/src/test/java/org/elasticsearch/indices/IndicesQueryCacheTests.java cleanly.
+Applied patch server/src/test/java/org/elasticsearch/indices/IndicesServiceCloseTests.java cleanly.
+Applied patch server/src/test/java/org/elasticsearch/indices/IndicesServiceTests.java cleanly.
+
+=== Step 2: Applying model patch ===
+Checking patch docs/changelog/138126.yaml...
+Checking patch server/src/main/java/org/elasticsearch/action/admin/cluster/stats/TransportClusterStatsAction.java...
+Checking patch server/src/main/java/org/elasticsearch/action/admin/indices/stats/CommonStats.java...
+Checking patch server/src/main/java/org/elasticsearch/action/admin/indices/stats/TransportIndicesStatsAction.java...
+Checking patch server/src/main/java/org/elasticsearch/indices/IndicesQueryCache.java...
+Checking patch server/src/main/java/org/elasticsearch/indices/IndicesService.java...
+Applied patch docs/changelog/138126.yaml cleanly.
+Applied patch server/src/main/java/org/elasticsearch/action/admin/cluster/stats/TransportClusterStatsAction.java cleanly.
+Applied patch server/src/main/java/org/elasticsearch/action/admin/indices/stats/CommonStats.java cleanly.
+Applied patch server/src/main/java/org/elasticsearch/action/admin/indices/stats/TransportIndicesStatsAction.java cleanly.
+Applied patch server/src/main/java/org/elasticsearch/indices/IndicesQueryCache.java cleanly.
+Applied patch server/src/main/java/org/elasticsearch/indices/IndicesService.java cleanly.
+
+=== Step 3: Running tests ===
+Test exit code: 1
+
+=== Step 4: Parsing test output ===
+No JUnit XML files found, falling back to stdout parsing
+Parsed 0 tests from stdout
+Wrote 0 test results -> output.json
+Summary: 0 passed, 0 failed, 0 skipped
+
+=== Evaluation complete ===
+test_patch_applied: 0
+model_patch_applied: 0
+test_exit_code: 1
+parser_exit_code: 0
