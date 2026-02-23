@@ -1,0 +1,18 @@
+[metadata]
+author_name = "Pontus"
+author_email = "unknown"
+difficulty = "{difficulty}"
+category = "sofware-engineering"
+tags = ["java", "elasticsearch", "gradle"]
+
+[verifier]
+timeout_sec = {max_timeout}
+
+[agent]
+timeout_sec = {max_timeout}
+
+[environment]
+build_timeout_sec = 1800.0
+cpus = 4
+memory_mb = 16384
+storage_mb = 30720
