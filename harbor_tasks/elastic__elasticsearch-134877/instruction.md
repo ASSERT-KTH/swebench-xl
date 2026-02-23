@@ -1,0 +1,25 @@
+# Task
+
+## [KQL] Refactored the field filter value grammar
+
+https://github.com/elastic/elasticsearch/pull/133737 caused several regressions in the KQL parser.
+
+Especially queries in the list bellow were failing:
+
+```
+*:whatever people say i am that s what i m not
+*:ballon d or 
+*:and just like that
+```
+
+This PR is a refactoring of the filterQueryValue parser that fix the issues (added to the test case).
+
+
+Also fix: #133871
+
+---
+
+**Repo:** `elastic/elasticsearch`
+**Base commit:** `53d644fd7336e2fd7728b8a8b4b6198934a5501c`
+**Instance ID:** `elastic__elasticsearch-134877`
+**Language:** `Java`

@@ -1,0 +1,17 @@
+# Task
+
+## ES|QL Absent and AbsentOverTime functions
+
+Add two new ES|QL functions:
+
+- ABSENT checks for the absence of a field in the output result. Absence means that the input expression yields null values only or nothing.
+- ABSENT_OVER_TIME is similar to ABSENT, but is used to check the presence of values over a time series in the given field.
+
+Closes #131069
+
+---
+
+**Repo:** `elastic/elasticsearch`
+**Base commit:** `3e0e33b276fb709c3a08d243e18e3fb2b62f53ed`
+**Instance ID:** `elastic__elasticsearch-134475`
+**Language:** `Java`

@@ -1,0 +1,19 @@
+# Task
+
+## [ES|QL] prune columns when using fork
+
+In this PR we add support for column pruning for `FORK` branches. 
+
+The main idea is that we apply pruning in two steps: 
+
+* First, we limit `FORK`'s output based on the actual needed attributes in `PruneColumns` rule. 
+* Then, based on these attributes, we proceed to prune each branch of the `FORK` plan independently through  `pruneSubPlan`, with the same used params as base (i.e. `FORK`'s output). We then proceed to compute separately any additional needed params for each branch and keep/remove plans as per usual in  `PruneColumns`. 
+
+Closes https://github.com/elastic/elasticsearch/issues/136365
+
+---
+
+**Repo:** `elastic/elasticsearch`
+**Base commit:** `4a14f83b1659a4315105e6a77a3c098b709863a4`
+**Instance ID:** `elastic__elasticsearch-137907`
+**Language:** `Java`
