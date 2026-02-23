@@ -1,0 +1,22 @@
+instance_id: elastic__elasticsearch-137025
+repo: elastic/elasticsearch
+version: 9.3.0
+base_commit: 34145ed1d1ff9f06f225ae57c15c938f3797aacc
+pr_number: 137025
+
+FAIL_TO_PASS:
+  - org.elasticsearch.xpack.esql.optimizer.rules.logical.ReplaceAliasingEvalWithProjectTests
+
+PASS_TO_PASS:
+  - org.elasticsearch.xpack.esql.optimizer.rules.logical.ReplaceAliasingEvalWithProjectTests::testAliasShadowingOtherAlias
+  - org.elasticsearch.xpack.esql.optimizer.rules.logical.ReplaceAliasingEvalWithProjectTests::testNonAliasShadowingAliasedAttributeWithRename
+  - org.elasticsearch.xpack.esql.optimizer.rules.logical.ReplaceAliasingEvalWithProjectTests::testAliasForNonAlias
+  - org.elasticsearch.xpack.esql.optimizer.rules.logical.ReplaceAliasingEvalWithProjectTests::testNonAliasShadowingAliasOfAliasedAttribute
+  - org.elasticsearch.xpack.esql.optimizer.rules.logical.ReplaceAliasingEvalWithProjectTests::testSimple
+  - org.elasticsearch.xpack.esql.optimizer.rules.logical.ReplaceAliasingEvalWithProjectTests::testNonAliasShadowingAliasedAttributeWithAgg
+  - org.elasticsearch.xpack.esql.optimizer.rules.logical.ReplaceAliasingEvalWithProjectTests::testNonAliasShadowingAliasedAttribute
+  - org.elasticsearch.xpack.esql.optimizer.rules.logical.ReplaceAliasingEvalWithProjectTests::testAliasForShadowedNonAlias
+  - org.elasticsearch.xpack.esql.optimizer.rules.logical.ReplaceAliasingEvalWithProjectTests::testSimpleFieldFromLookup
+  - org.elasticsearch.xpack.esql.optimizer.rules.logical.ReplaceAliasingEvalWithProjectTests::testAliasLoopTwoVars
+  - org.elasticsearch.xpack.esql.optimizer.rules.logical.ReplaceAliasingEvalWithProjectTests::testAliasLoopThreeVars
+  - org.elasticsearch.xpack.esql.optimizer.rules.logical.ReplaceAliasingEvalWithProjectTests::testOnlyAliases

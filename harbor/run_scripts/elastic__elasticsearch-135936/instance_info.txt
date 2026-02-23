@@ -1,0 +1,52 @@
+instance_id: elastic__elasticsearch-135936
+repo: elastic/elasticsearch
+version: 9.3.0
+base_commit: bbd8a515e7a86eab03c037e5e42a0d1a9595af57
+pr_number: 135936
+
+FAIL_TO_PASS:
+  - org.elasticsearch.action.admin.cluster.node.stats.NodeStatsTests
+  - org.elasticsearch.monitor.os.OsProbeTests
+  - org.elasticsearch.monitor.os.OsStatsTests
+  - org.elasticsearch.rest.action.cat.RestNodesActionTests
+  - org.elasticsearch.xpack.autoscaling.capacity.nodeinfo.AutoscalingNodesInfoServiceTests
+  - org.elasticsearch.xpack.monitoring.collector.node.NodeStatsMonitoringDocTests
+
+PASS_TO_PASS:
+  - org.elasticsearch.rest.action.cat.RestNodesActionTests::testFormattedNumericSort
+  - org.elasticsearch.rest.action.cat.RestNodesActionTests::testBuildTableDoesNotThrowGivenNullNodeInfoAndStats
+  - org.elasticsearch.monitor.os.OsProbeTests::testCgroupProbe
+  - org.elasticsearch.monitor.os.OsProbeTests::testOsInfo
+  - org.elasticsearch.monitor.os.OsProbeTests::testCgroupProbeWithMissingCpuAcct
+  - org.elasticsearch.monitor.os.OsProbeTests::testOsStats
+  - org.elasticsearch.monitor.os.OsProbeTests::testGetTotalMemFromProcMeminfo
+  - org.elasticsearch.monitor.os.OsProbeTests::testTotalMemoryOverride
+  - org.elasticsearch.monitor.os.OsProbeTests::testCgroupProbeWithMissingCpu
+  - org.elasticsearch.monitor.os.OsProbeTests::testCgroupProbeWithMissingMemory
+  - org.elasticsearch.monitor.os.OsStatsTests::testSerialization
+  - org.elasticsearch.monitor.os.OsStatsTests::testGetUsedSwapWithZeroTotal
+  - org.elasticsearch.monitor.os.OsStatsTests::testGetUsedMemoryWithZeroTotal
+  - org.elasticsearch.action.admin.cluster.node.stats.NodeStatsTests::testSerialization
+  - org.elasticsearch.action.admin.cluster.node.stats.NodeStatsTests::testChunking
+  - org.elasticsearch.xpack.autoscaling.capacity.nodeinfo.AutoscalingNodesInfoServiceTests::testRestartNode
+  - org.elasticsearch.xpack.autoscaling.capacity.nodeinfo.AutoscalingNodesInfoServiceTests::testNoLongerMaster
+  - org.elasticsearch.xpack.autoscaling.capacity.nodeinfo.AutoscalingNodesInfoServiceTests::testConcurrentStateUpdate
+  - org.elasticsearch.xpack.autoscaling.capacity.nodeinfo.AutoscalingNodesInfoServiceTests::testNotMaster
+  - org.elasticsearch.xpack.autoscaling.capacity.nodeinfo.AutoscalingNodesInfoServiceTests::testInfoFails
+  - org.elasticsearch.xpack.autoscaling.capacity.nodeinfo.AutoscalingNodesInfoServiceTests::testStatsFails
+  - org.elasticsearch.xpack.autoscaling.capacity.nodeinfo.AutoscalingNodesInfoServiceTests::testRelevantNodes
+  - org.elasticsearch.xpack.autoscaling.capacity.nodeinfo.AutoscalingNodesInfoServiceTests::testAddRemoveNode
+  - org.elasticsearch.xpack.monitoring.collector.node.NodeStatsMonitoringDocTests::testMonitoringNodeToXContent
+  - org.elasticsearch.xpack.monitoring.collector.node.NodeStatsMonitoringDocTests::testToXContentContainsCommonFields
+  - org.elasticsearch.xpack.monitoring.collector.node.NodeStatsMonitoringDocTests::testConstructor
+  - org.elasticsearch.xpack.monitoring.collector.node.NodeStatsMonitoringDocTests::testConstructorNodeIdMustNotBeNull
+  - org.elasticsearch.xpack.monitoring.collector.node.NodeStatsMonitoringDocTests::testFilteredMonitoringDocToXContent
+  - org.elasticsearch.xpack.monitoring.collector.node.NodeStatsMonitoringDocTests::testConstructorFiltersMustNotBeEmpty
+  - org.elasticsearch.xpack.monitoring.collector.node.NodeStatsMonitoringDocTests::testToXContent
+  - org.elasticsearch.xpack.monitoring.collector.node.NodeStatsMonitoringDocTests::testMonitoringNodeSerialization
+  - org.elasticsearch.xpack.monitoring.collector.node.NodeStatsMonitoringDocTests::testMonitoringNodeConstructor
+  - org.elasticsearch.xpack.monitoring.collector.node.NodeStatsMonitoringDocTests::testCreateMonitoringDoc
+  - org.elasticsearch.xpack.monitoring.collector.node.NodeStatsMonitoringDocTests::testConstructorClusterMustNotBeNull
+  - org.elasticsearch.xpack.monitoring.collector.node.NodeStatsMonitoringDocTests::testConstructorFiltersMustNotBeNull
+  - org.elasticsearch.xpack.monitoring.collector.node.NodeStatsMonitoringDocTests::testConstructorNodeStatsMustNotBeNull
+  - org.elasticsearch.xpack.monitoring.collector.node.NodeStatsMonitoringDocTests::testMonitoringNodeEqualsAndHashcode

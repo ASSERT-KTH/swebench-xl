@@ -1,0 +1,51 @@
+instance_id: elastic__elasticsearch-134941
+repo: elastic/elasticsearch
+version: 9.2.0
+base_commit: d9783aded0854f34276f3a1ed4ec371b11303440
+pr_number: 134941
+
+FAIL_TO_PASS:
+  - org.elasticsearch.datastreams.lifecycle.DataStreamLifecycleServiceTests::testWithTinyRetentions
+
+PASS_TO_PASS:
+  - org.elasticsearch.datastreams.lifecycle.DataStreamLifecycleServiceTests::testRetentionNotConfigured
+  - org.elasticsearch.datastreams.lifecycle.DataStreamLifecycleServiceTests::testForceMerge
+  - org.elasticsearch.datastreams.lifecycle.DataStreamLifecycleServiceTests::testBackingIndicesFromMultipleDataStreamsInErrorStore
+  - org.elasticsearch.datastreams.lifecycle.DataStreamLifecycleServiceTests::testMergePolicySettingsAreConfiguredBeforeForcemerge
+  - org.elasticsearch.datastreams.lifecycle.DataStreamLifecycleServiceTests::testUpdateForceMergeCompleteTask
+  - org.elasticsearch.datastreams.lifecycle.DataStreamLifecycleServiceTests::testDataStreamsWithoutLifecycleAreSkipped
+  - org.elasticsearch.datastreams.lifecycle.DataStreamLifecycleServiceTests::testRetentionNotExecutedDueToAge
+  - org.elasticsearch.datastreams.lifecycle.DataStreamLifecycleServiceTests::testMaybeExecuteRetentionSuccessfulDownsampledIndex
+  - org.elasticsearch.datastreams.lifecycle.DataStreamLifecycleServiceTests::testRetentionNotExecutedForTSIndicesWithinTimeBounds
+  - org.elasticsearch.datastreams.lifecycle.DataStreamLifecycleServiceTests::testMergePolicyNotExecutedForTSIndicesWithinTimeBounds
+  - org.elasticsearch.datastreams.lifecycle.DataStreamLifecycleServiceTests::testMaybeExecuteRetentionDownsampledUnknown
+  - org.elasticsearch.datastreams.lifecycle.DataStreamLifecycleServiceTests::testIlmManagedIndicesAreSkipped
+  - org.elasticsearch.datastreams.lifecycle.DataStreamLifecycleServiceTests::testTargetIndices
+  - org.elasticsearch.datastreams.lifecycle.DataStreamLifecycleServiceTests::testDownsamplingWhenTargetIndexNameClashYieldsException
+  - org.elasticsearch.datastreams.lifecycle.DataStreamLifecycleServiceTests::testDownsampling
+  - org.elasticsearch.datastreams.lifecycle.DataStreamLifecycleServiceTests::testForceMergeRetries
+  - org.elasticsearch.datastreams.lifecycle.DataStreamLifecycleServiceTests::testDeletedIndicesAreRemovedFromTheErrorStore
+  - org.elasticsearch.datastreams.lifecycle.DataStreamLifecycleServiceTests::testTrackingTimeStats
+  - org.elasticsearch.datastreams.lifecycle.DataStreamLifecycleServiceTests::testOperationsExecutedOnce
+  - org.elasticsearch.datastreams.lifecycle.DataStreamLifecycleServiceTests::testFailureStoreIsManagedEvenWhenDisabled
+  - org.elasticsearch.datastreams.lifecycle.DataStreamLifecycleServiceTests::testTimeSeriesIndicesStillWithinTimeBounds
+  - org.elasticsearch.datastreams.lifecycle.DataStreamLifecycleServiceTests::testForceMergeRequestWrapperEqualsHashCode
+  - org.elasticsearch.datastreams.lifecycle.DataStreamLifecycleServiceTests::testDefaultRolloverRequest
+  - org.elasticsearch.datastreams.lifecycle.DataStreamLifecycleServiceTests::testErrorStoreIsClearedOnBackingIndexBecomingUnmanaged
+  - org.elasticsearch.datastreams.lifecycle.DataStreamLifecycleServiceTests::testWithTinyRetentions
+  - org.elasticsearch.datastreams.lifecycle.DataStreamLifecycleServiceTests::testMaybeExecuteRetentionDownsampledIndexInProgress
+  - org.elasticsearch.datastreams.lifecycle.DataStreamLifecycleServiceTests::testRetentionSkippedWhilstDownsamplingInProgress
+  - org.elasticsearch.datastreams.lifecycle.DataStreamLifecycleServiceTests::testForceMergeDedup
+  - org.elasticsearch.action.admin.indices.rollover.RolloverConfigurationTests::testToString
+  - org.elasticsearch.action.admin.indices.rollover.RolloverConfigurationTests::testConstructorValidation
+  - org.elasticsearch.action.admin.indices.rollover.RolloverConfigurationTests::testConcreteRolloverConditionCalculation
+  - org.elasticsearch.action.admin.indices.rollover.RolloverConfigurationTests::testClusterSettingParsing
+  - org.elasticsearch.action.admin.indices.rollover.RolloverConfigurationTests::testXContentSerializationWithKnownDataRetention
+  - org.elasticsearch.action.admin.indices.rollover.RolloverConfigurationTests::testConcurrentEquals
+  - org.elasticsearch.action.admin.indices.rollover.RolloverConfigurationTests::testEqualsAndHashcode
+  - org.elasticsearch.action.admin.indices.rollover.RolloverConfigurationTests::testConcurrentHashCode
+  - org.elasticsearch.action.admin.indices.rollover.RolloverConfigurationTests::testToXContent
+  - org.elasticsearch.action.admin.indices.rollover.RolloverConfigurationTests::testConcurrentSerialization
+  - org.elasticsearch.action.admin.indices.rollover.RolloverConfigurationTests::testAutoMaxAgeCalculation
+  - org.elasticsearch.action.admin.indices.rollover.RolloverConfigurationTests::testSameConditionCanOnlyBeAddedOnce
+  - org.elasticsearch.action.admin.indices.rollover.RolloverConfigurationTests::testSerialization

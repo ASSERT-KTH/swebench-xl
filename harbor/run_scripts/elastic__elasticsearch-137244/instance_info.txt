@@ -1,0 +1,44 @@
+instance_id: elastic__elasticsearch-137244
+repo: elastic/elasticsearch
+version: 9.3.0
+base_commit: 8c110cb2bc43dc6c135a13482e01ea5ccf85cd14
+pr_number: 137244
+
+FAIL_TO_PASS:
+  - org.elasticsearch.xpack.ml.inference.assignment.planning.AssignmentPlannerTests::testZeroAllocationsDeploymentIsPreserved
+  - org.elasticsearch.xpack.ml.inference.assignment.planning.AssignmentPlannerTests::testMultipleZeroAllocationsDeploymentsArePreserved
+
+PASS_TO_PASS:
+  - org.elasticsearch.xpack.ml.inference.assignment.planning.AssignmentPlannerTests::testFullCoreUtilization_GivenDeploymentsWithSingleThreadPerAllocation_NewMemoryFields
+  - org.elasticsearch.xpack.ml.inference.assignment.planning.AssignmentPlannerTests::testModelWithMoreAllocationsThanAvailableCores_GivenSingleThreadPerAllocation_NewMemoryFields
+  - org.elasticsearch.xpack.ml.inference.assignment.planning.AssignmentPlannerTests::testSingleModelThatFitsFullyOnSingleNode_NewMemoryFields
+  - org.elasticsearch.xpack.ml.inference.assignment.planning.AssignmentPlannerTests::testTooManyNodesAndDeployments_DoesNotThrowOOM_GivenComboWayOverLimit
+  - org.elasticsearch.xpack.ml.inference.assignment.planning.AssignmentPlannerTests::testZeroAllocationsDeploymentIsPreserved
+  - org.elasticsearch.xpack.ml.inference.assignment.planning.AssignmentPlannerTests::testTooManyNodesAndDeployments_DoesNotThrowOOM_GivenNodesJustUnderLimit
+  - org.elasticsearch.xpack.ml.inference.assignment.planning.AssignmentPlannerTests::testGivenClusterResize_ShouldRemoveAllocatedDeployments_NewMemoryFields
+  - org.elasticsearch.xpack.ml.inference.assignment.planning.AssignmentPlannerTests::testFullCoreUtilization_GivenDeploymentsWithSingleThreadPerAllocation
+  - org.elasticsearch.xpack.ml.inference.assignment.planning.AssignmentPlannerTests::testPreviousAssignmentsGetAtLeastAsManyAllocationsAfterAddingNewModel
+  - org.elasticsearch.xpack.ml.inference.assignment.planning.AssignmentPlannerTests::testModelWithMoreAllocationsThanAvailableCores_GivenThreeThreadsPerAllocation
+  - org.elasticsearch.xpack.ml.inference.assignment.planning.AssignmentPlannerTests::testModelWithMoreAllocationsThanAvailableCores_GivenSingleThreadPerAllocation
+  - org.elasticsearch.xpack.ml.inference.assignment.planning.AssignmentPlannerTests::testModelWithThreadsPerAllocationNotFittingOnAnyNode
+  - org.elasticsearch.xpack.ml.inference.assignment.planning.AssignmentPlannerTests::testMultipleZeroAllocationsDeploymentsArePreserved
+  - org.elasticsearch.xpack.ml.inference.assignment.planning.AssignmentPlannerTests::testTooManyNodesAndModels_DoesNotThrowOOM_GivenDeploymentsJustUnderLimit
+  - org.elasticsearch.xpack.ml.inference.assignment.planning.AssignmentPlannerTests::testGivenPreviouslyAssignedDeployments_CannotAllBeAllocated
+  - org.elasticsearch.xpack.ml.inference.assignment.planning.AssignmentPlannerTests::testModelWithoutCurrentAllocationsGetsAssignedIfAllocatedPreviously
+  - org.elasticsearch.xpack.ml.inference.assignment.planning.AssignmentPlannerTests::testModelWithPreviousAssignmentAndNoMoreCoresAvailable
+  - org.elasticsearch.xpack.ml.inference.assignment.planning.AssignmentPlannerTests::testSingleModelThatFitsFullyOnSingleNode_GivenTwoNodes_ShouldBeFullyAssignedOnOneNode
+  - org.elasticsearch.xpack.ml.inference.assignment.planning.AssignmentPlannerTests::testSingleModelThatFitsFullyOnSingleNode_GivenTwoNodes_ShouldBeFullyAssignedOnOneNode_NewMemoryFields
+  - org.elasticsearch.xpack.ml.inference.assignment.planning.AssignmentPlannerTests::testMultipleDeploymentsAndNodesWithSingleSolution
+  - org.elasticsearch.xpack.ml.inference.assignment.planning.AssignmentPlannerTests::testGivenClusterResize_ShouldAllocateEachModelAtLeastOnce
+  - org.elasticsearch.xpack.ml.inference.assignment.planning.AssignmentPlannerTests::testRandomBenchmark
+  - org.elasticsearch.xpack.ml.inference.assignment.planning.AssignmentPlannerTests::testModelThatDoesNotFitInMemory
+  - org.elasticsearch.xpack.ml.inference.assignment.planning.AssignmentPlannerTests::testGivenClusterResize_AllocationShouldNotExceedMemoryConstraints
+  - org.elasticsearch.xpack.ml.inference.assignment.planning.AssignmentPlannerTests::testModelWithMoreAllocationsThanAvailableCores_GivenThreeThreadsPerAllocation_NewMemoryFields
+  - org.elasticsearch.xpack.ml.inference.assignment.planning.AssignmentPlannerTests::testSingleModelThatFitsFullyOnSingleNode
+  - org.elasticsearch.xpack.ml.inference.assignment.planning.AssignmentPlannerTests::testGivenLargerModelWithPreviousAssignmentsAndSmallerModelWithoutAssignments
+  - org.elasticsearch.xpack.ml.inference.assignment.planning.AssignmentPlannerTests::testGivenClusterResize_ShouldRemoveAllocatedDeployments
+  - org.elasticsearch.xpack.ml.inference.assignment.planning.AssignmentPlannerTests::testTooManyNodesAndModels_DoesNotThrowOOM_GivenDeploymentsJustOverLimit
+  - org.elasticsearch.xpack.ml.inference.assignment.planning.AssignmentPlannerTests::testTooManyNodesAndDeployments_DoesNotThrowOOM_GivenNodesJustOverLimit
+  - org.elasticsearch.xpack.ml.inference.assignment.planning.AssignmentPlannerTests::testTooManyNodesAndDeployments_DoesNotThrowOOM_GivenComboJustUnderLimit
+  - org.elasticsearch.xpack.ml.inference.assignment.planning.AssignmentPlannerTests::testTooManyNodesAndDeployments_DoesNotThrowOOM_GivenComboJustOverLimit
+  - org.elasticsearch.xpack.ml.inference.assignment.planning.AssignmentPlannerTests::testMultipleDeploymentsAndNodesWithSingleSolution_NewMemoryFields

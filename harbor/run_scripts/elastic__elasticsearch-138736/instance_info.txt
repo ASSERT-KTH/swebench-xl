@@ -1,0 +1,25 @@
+instance_id: elastic__elasticsearch-138736
+repo: elastic/elasticsearch
+version: 9.3.0
+base_commit: 49858d1795ffc9b508a0cc5e112d7b1b611120e3
+pr_number: 138736
+
+FAIL_TO_PASS:
+  - org.elasticsearch.xpack.esql.optimizer.promql.PromqlLogicalPlanOptimizerTests::testPromqlTrailingSpaces
+
+PASS_TO_PASS:
+  - org.elasticsearch.xpack.esql.optimizer.promql.PromqlLogicalPlanOptimizerTests::testPromqlAvgWithoutByDimension
+  - org.elasticsearch.xpack.esql.optimizer.promql.PromqlLogicalPlanOptimizerTests::testLabelSelectorPrefix
+  - org.elasticsearch.xpack.esql.optimizer.promql.PromqlLogicalPlanOptimizerTests::testLabelSelectorRegex
+  - org.elasticsearch.xpack.esql.optimizer.promql.PromqlLogicalPlanOptimizerTests::testExplainPromqlSimple
+  - org.elasticsearch.xpack.esql.optimizer.promql.PromqlLogicalPlanOptimizerTests::testSort
+  - org.elasticsearch.xpack.esql.optimizer.promql.PromqlLogicalPlanOptimizerTests::testAvgAvgOverTimeOutput
+  - org.elasticsearch.xpack.esql.optimizer.promql.PromqlLogicalPlanOptimizerTests::testTSAvgWithoutByDimension
+  - org.elasticsearch.xpack.esql.optimizer.promql.PromqlLogicalPlanOptimizerTests::testLabelSelector
+  - org.elasticsearch.xpack.esql.optimizer.promql.PromqlLogicalPlanOptimizerTests::testRangeSelector
+  - org.elasticsearch.xpack.esql.optimizer.promql.PromqlLogicalPlanOptimizerTests::testTSAvgAvgOverTimeOutput
+  - org.elasticsearch.xpack.esql.optimizer.promql.PromqlLogicalPlanOptimizerTests::testStartEndStep
+  - org.elasticsearch.xpack.esql.optimizer.promql.PromqlLogicalPlanOptimizerTests::testPromqlMaxOfLongField
+  - org.elasticsearch.xpack.esql.optimizer.promql.PromqlLogicalPlanOptimizerTests::testPromqlTrailingSpaces
+  - org.elasticsearch.xpack.esql.optimizer.promql.PromqlLogicalPlanOptimizerTests::testLabelSelectorProperPrefix
+  - org.elasticsearch.xpack.esql.optimizer.promql.PromqlLogicalPlanOptimizerTests::testExplainPromql

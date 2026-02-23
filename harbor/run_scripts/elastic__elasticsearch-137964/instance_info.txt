@@ -1,0 +1,13 @@
+instance_id: elastic__elasticsearch-137964
+repo: elastic/elasticsearch
+version: 9.3.0
+base_commit: 0051df80d66012a9d45b93b06a56ea153b1cbe66
+pr_number: 137964
+
+FAIL_TO_PASS:
+  - org.elasticsearch.xpack.deprecation.TransportNodeDeprecationCheckActionTests
+
+PASS_TO_PASS:
+  - org.elasticsearch.xpack.deprecation.TransportNodeDeprecationCheckActionTests::testNodeOperation
+  - org.elasticsearch.xpack.deprecation.TransportNodeDeprecationCheckActionTests::testCheckDiskLowWatermark
+  - org.elasticsearch.xpack.deprecation.TransportNodeDeprecationCheckActionTests::testDiskLowWatermarkIsIncludedInDeprecationWarnings

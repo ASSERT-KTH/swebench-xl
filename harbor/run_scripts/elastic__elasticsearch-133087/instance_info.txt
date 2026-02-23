@@ -1,0 +1,16 @@
+instance_id: elastic__elasticsearch-133087
+repo: elastic/elasticsearch
+version: 9.2.0
+base_commit: df8cedf9920c8bf710221ca8579bb90f64d4faa0
+pr_number: 133087
+
+FAIL_TO_PASS:
+  - org.elasticsearch.xpack.esql.optimizer.rules.logical.local.IgnoreNullMetricsTests
+
+PASS_TO_PASS:
+  - org.elasticsearch.xpack.esql.optimizer.rules.logical.local.IgnoreNullMetricsTests::testMultipleStats
+  - org.elasticsearch.xpack.esql.optimizer.rules.logical.local.IgnoreNullMetricsTests::testFiltersAreJoinedWithOr
+  - org.elasticsearch.xpack.esql.optimizer.rules.logical.local.IgnoreNullMetricsTests::testSkipCoalescedMetrics
+  - org.elasticsearch.xpack.esql.optimizer.rules.logical.local.IgnoreNullMetricsTests::testSimple
+  - org.elasticsearch.xpack.esql.optimizer.rules.logical.local.IgnoreNullMetricsTests::testRuleDoesNotApplyInNonTSMode
+  - org.elasticsearch.xpack.esql.optimizer.rules.logical.local.IgnoreNullMetricsTests::testDimensionsAreNotFiltered

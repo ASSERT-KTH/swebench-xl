@@ -1,0 +1,645 @@
+instance_id: elastic__elasticsearch-137430
+repo: elastic/elasticsearch
+version: 9.3.0
+base_commit: ffa76e57d6ea7e5e9e02b7a44e2a55bf4e3e5d6d
+pr_number: 137430
+
+FAIL_TO_PASS:
+  - org.elasticsearch.xpack.esql.qa.rest.RestEsqlTestCase
+  - org.elasticsearch.xpack.esql.analysis.VerifierTests
+  - org.elasticsearch.xpack.esql.expression.function.fulltext.AbstractMatchFullTextFunctionTests
+  - org.elasticsearch.xpack.esql.expression.function.fulltext.KnnTests
+  - org.elasticsearch.xpack.esql.expression.function.fulltext.MatchErrorTests
+  - org.elasticsearch.xpack.esql.expression.function.fulltext.MatchOperatorErrorTests
+  - org.elasticsearch.xpack.esql.expression.function.fulltext.MatchPhraseTests
+  - org.elasticsearch.xpack.esql.optimizer.LocalLogicalPlanOptimizerTests
+  - org.elasticsearch.xpack.esql.optimizer.LocalPhysicalPlanOptimizerTests
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests
+  - org.elasticsearch.xpack.esql.optimizer.rules.logical.PushDownFilterAndLimitIntoUnionAllTests
+
+PASS_TO_PASS:
+  - org.elasticsearch.xpack.esql.optimizer.rules.logical.PushDownFilterAndLimitIntoUnionAllTests::testPushDownConjunctiveFullTextFunctionPastUnionAll
+  - org.elasticsearch.xpack.esql.optimizer.rules.logical.PushDownFilterAndLimitIntoUnionAllTests::testFilterOnMixedDataTypesFields
+  - org.elasticsearch.xpack.esql.optimizer.rules.logical.PushDownFilterAndLimitIntoUnionAllTests::testPushDownFilterOnReferenceAttributesAndFieldAttributesPastUnionAll
+  - org.elasticsearch.xpack.esql.optimizer.rules.logical.PushDownFilterAndLimitIntoUnionAllTests::testPushDownConjunctiveFilterPastUnionAll
+  - org.elasticsearch.xpack.esql.optimizer.rules.logical.PushDownFilterAndLimitIntoUnionAllTests::testPushDownDisjunctiveFullTextFunctionPastUnionAll
+  - org.elasticsearch.xpack.esql.optimizer.rules.logical.PushDownFilterAndLimitIntoUnionAllTests::testPushDownFilterPastUnionAllAndCombineWithFilterInSubquery
+  - org.elasticsearch.xpack.esql.optimizer.rules.logical.PushDownFilterAndLimitIntoUnionAllTests::testPushDownSingleFullTextFunctionPastUnionAll
+  - org.elasticsearch.xpack.esql.optimizer.rules.logical.PushDownFilterAndLimitIntoUnionAllTests::testPushDownFilterOnReferenceAttributesPastUnionAll
+  - org.elasticsearch.xpack.esql.optimizer.rules.logical.PushDownFilterAndLimitIntoUnionAllTests::testPushDownSimpleFilterPastUnionAll
+  - org.elasticsearch.xpack.esql.optimizer.rules.logical.PushDownFilterAndLimitIntoUnionAllTests::testPushDownDisjunctiveFilterPastUnionAll
+  - org.elasticsearch.xpack.esql.optimizer.rules.logical.PushDownFilterAndLimitIntoUnionAllTests::testFullTextFunctionCanBePushedDownPastUnionAll
+  - org.elasticsearch.xpack.esql.optimizer.rules.logical.PushDownFilterAndLimitIntoUnionAllTests::testPushDownFilterAndLimitPastSubqueryWithSort
+  - org.elasticsearch.xpack.esql.optimizer.rules.logical.PushDownFilterAndLimitIntoUnionAllTests::testPushDownLimitPastSubqueryWithSort
+  - org.elasticsearch.xpack.esql.optimizer.rules.logical.PushDownFilterAndLimitIntoUnionAllTests::testPushDownFullTextFunctionNoFieldRequiredPastUnionAll
+  - org.elasticsearch.xpack.esql.expression.function.fulltext.MatchOperatorErrorTests::test
+  - org.elasticsearch.xpack.esql.expression.function.fulltext.KnnTests::testSerializationOfSimple {TestCase=<text>, <dense_vector>, options}
+  - org.elasticsearch.xpack.esql.expression.function.fulltext.KnnTests::testSerializationOfSimple {TestCase=<dense_vector>, <dense_vector> with null field, options}
+  - org.elasticsearch.xpack.esql.expression.function.fulltext.KnnTests::testSerializationOfSimple {TestCase=<null>, <dense_vector> with null field, options}
+  - org.elasticsearch.xpack.esql.expression.function.fulltext.KnnTests::testSerializationOfSimple {TestCase=<null>, <dense_vector>, options}
+  - org.elasticsearch.xpack.esql.expression.function.fulltext.KnnTests::testSerializationOfSimple {TestCase=<text>, <dense_vector> with null field, options}
+  - org.elasticsearch.xpack.esql.expression.function.fulltext.KnnTests::testSerializationOfSimple {TestCase=<dense_vector>, <dense_vector>, options}
+  - org.elasticsearch.xpack.esql.analysis.VerifierTests::testPeriodAndDurationInRowAssignment
+  - org.elasticsearch.xpack.esql.analysis.VerifierTests::testFullTextFunctionsNullArgs
+  - org.elasticsearch.xpack.esql.analysis.VerifierTests::testFilterDateConstant
+  - org.elasticsearch.xpack.esql.analysis.VerifierTests::testRenameOrDropTimestampWithTBucket
+  - org.elasticsearch.xpack.esql.analysis.VerifierTests::testUnsignedLongTypeMixInComparisons
+  - org.elasticsearch.xpack.esql.analysis.VerifierTests::testGroupingInsideAggsAsAgg
+  - org.elasticsearch.xpack.esql.analysis.VerifierTests::testIntervalAsString
+  - org.elasticsearch.xpack.esql.analysis.VerifierTests::testDoubleRenamingField
+  - org.elasticsearch.xpack.esql.analysis.VerifierTests::testChangePoint_keySortable
+  - org.elasticsearch.xpack.esql.analysis.VerifierTests::testNonStringFieldsInDissect
+  - org.elasticsearch.xpack.esql.analysis.VerifierTests::testMixedNonConvertibleTypesInIn
+  - org.elasticsearch.xpack.esql.analysis.VerifierTests::testSubqueryInFromWithLookupJoinOnFullTextFunction
+  - org.elasticsearch.xpack.esql.analysis.VerifierTests::testLookupJoinExpressionConstant
+  - org.elasticsearch.xpack.esql.analysis.VerifierTests::testCategorizeWithInlineStats
+  - org.elasticsearch.xpack.esql.analysis.VerifierTests::testAggsIgnoreCanonicalGrouping
+  - org.elasticsearch.xpack.esql.analysis.VerifierTests::testAggsResolutionWithUnresolvedGroupings
+  - org.elasticsearch.xpack.esql.analysis.VerifierTests::testAggsWithInvalidGrouping
+  - org.elasticsearch.xpack.esql.analysis.VerifierTests::testFilterNullField
+  - org.elasticsearch.xpack.esql.analysis.VerifierTests::testImplicitCastingErrorMessages
+  - org.elasticsearch.xpack.esql.analysis.VerifierTests::testTRangeFailures
+  - org.elasticsearch.xpack.esql.analysis.VerifierTests::testSortInTimeSeries
+  - org.elasticsearch.xpack.esql.analysis.VerifierTests::testFullTextFunctionsWithNonBooleanFunctions
+  - org.elasticsearch.xpack.esql.analysis.VerifierTests::testSpatialSort
+  - org.elasticsearch.xpack.esql.analysis.VerifierTests::testSubqueryInFromWithForkInMainQuery
+  - org.elasticsearch.xpack.esql.analysis.VerifierTests::testDissectByAggregate
+  - org.elasticsearch.xpack.esql.analysis.VerifierTests::testAggsInsideGrouping
+  - org.elasticsearch.xpack.esql.analysis.VerifierTests::testCategorizeOptionOutputFormat
+  - org.elasticsearch.xpack.esql.analysis.VerifierTests::testFullTextFunctionsDisjunctions
+  - org.elasticsearch.xpack.esql.analysis.VerifierTests::testGroupingInAggs
+  - org.elasticsearch.xpack.esql.analysis.VerifierTests::testInlineStatsWithRateNotAllowed
+  - org.elasticsearch.xpack.esql.analysis.VerifierTests::testMatchInsideEval
+  - org.elasticsearch.xpack.esql.analysis.VerifierTests::testNotAllowRateOutsideMetrics
+  - org.elasticsearch.xpack.esql.analysis.VerifierTests::testUnsupportedAndMultiTypedFields
+  - org.elasticsearch.xpack.esql.analysis.VerifierTests::testLookupJoinExpressionRightNotPushable
+  - org.elasticsearch.xpack.esql.analysis.VerifierTests::testCategorizeWithFilteredAggregations
+  - org.elasticsearch.xpack.esql.analysis.VerifierTests::testInvalidBucketCalls
+  - org.elasticsearch.xpack.esql.analysis.VerifierTests::testSubtractDateTimeFromTemporal
+  - org.elasticsearch.xpack.esql.analysis.VerifierTests::testVectorSimilarityFunctionsNullArgs
+  - org.elasticsearch.xpack.esql.analysis.VerifierTests::testConditionalFunctionsWithMixedNumericTypes
+  - org.elasticsearch.xpack.esql.analysis.VerifierTests::testMvExpandBeforeTSStatsNotAllowed
+  - org.elasticsearch.xpack.esql.analysis.VerifierTests::testAggsExpressionsInStatsAggs
+  - org.elasticsearch.xpack.esql.analysis.VerifierTests::testToIPInvalidOptions
+  - org.elasticsearch.xpack.esql.analysis.VerifierTests::testNoMetricInStatsByClause
+  - org.elasticsearch.xpack.esql.analysis.VerifierTests::testDoubleRenamingReference
+  - org.elasticsearch.xpack.esql.analysis.VerifierTests::testRenameOrDropTimestmapWithDelta
+  - org.elasticsearch.xpack.esql.analysis.VerifierTests::testFullTextFunctionsInStats
+  - org.elasticsearch.xpack.esql.analysis.VerifierTests::testRenameOrDropTimestmapWithIRate
+  - org.elasticsearch.xpack.esql.analysis.VerifierTests::testRoundFunctionInvalidInputs
+  - org.elasticsearch.xpack.esql.analysis.VerifierTests::testNotFoundFieldInNestedFunction
+  - org.elasticsearch.xpack.esql.analysis.VerifierTests::testAggFilterOnNonAggregates
+  - org.elasticsearch.xpack.esql.analysis.VerifierTests::testCategorizeOptionSimilarityThreshold
+  - org.elasticsearch.xpack.esql.analysis.VerifierTests::testFullTextFunctionOptions
+  - org.elasticsearch.xpack.esql.analysis.VerifierTests::testAggregateOnCounter
+  - org.elasticsearch.xpack.esql.analysis.VerifierTests::testLookupJoinDataTypeMismatch
+  - org.elasticsearch.xpack.esql.analysis.VerifierTests::testSortByAggregate
+  - org.elasticsearch.xpack.esql.analysis.VerifierTests::testAggWithNonBooleanFilter
+  - org.elasticsearch.xpack.esql.analysis.VerifierTests::testFullTextFunctionsOnlyAllowedInWhere
+  - org.elasticsearch.xpack.esql.analysis.VerifierTests::testToDatePeriodTimeDurationInInvalidPosition
+  - org.elasticsearch.xpack.esql.analysis.VerifierTests::testNestedAggField
+  - org.elasticsearch.xpack.esql.analysis.VerifierTests::testUnsignedLongTypeMixInArithmetics
+  - org.elasticsearch.xpack.esql.analysis.VerifierTests::testFullTextFunctionsTargetsExistingField
+  - org.elasticsearch.xpack.esql.analysis.VerifierTests::testFilterNonBoolField
+  - org.elasticsearch.xpack.esql.analysis.VerifierTests::testTextEmbeddingFunctionInvalidInferenceId
+  - org.elasticsearch.xpack.esql.analysis.VerifierTests::testLookupJoinExpressionAmbiguousLeft
+  - org.elasticsearch.xpack.esql.analysis.VerifierTests::testBucketOnlyInAggs
+  - org.elasticsearch.xpack.esql.analysis.VerifierTests::testGroupingInsideAggsAsGrouping
+  - org.elasticsearch.xpack.esql.analysis.VerifierTests::testLookupJoinExpressionTranslatableButFromLeft
+  - org.elasticsearch.xpack.esql.analysis.VerifierTests::testTextEmbeddingFunctionInvalidQuery
+  - org.elasticsearch.xpack.esql.analysis.VerifierTests::testLookupJoinExpressionTranslatableButMixedLeftRight
+  - org.elasticsearch.xpack.esql.analysis.VerifierTests::testSumOnDate
+  - org.elasticsearch.xpack.esql.analysis.VerifierTests::testIncompatibleTypesInMathOperation
+  - org.elasticsearch.xpack.esql.analysis.VerifierTests::testMixedDataTypesInSubquery
+  - org.elasticsearch.xpack.esql.analysis.VerifierTests::testLimitBeforeInlineStats_WithTS
+  - org.elasticsearch.xpack.esql.analysis.VerifierTests::testLimitBeforeInlineStats_WithFork
+  - org.elasticsearch.xpack.esql.analysis.VerifierTests::testRenameOrDropTimestmapWithIncrease
+  - org.elasticsearch.xpack.esql.analysis.VerifierTests::testDecayFunctionNullArgs
+  - org.elasticsearch.xpack.esql.analysis.VerifierTests::testToDatePeriodToTimeDurationWithInvalidType
+  - org.elasticsearch.xpack.esql.analysis.VerifierTests::testMultipleAggsOutsideStats
+  - org.elasticsearch.xpack.esql.analysis.VerifierTests::testWeightedAvg
+  - org.elasticsearch.xpack.esql.analysis.VerifierTests::testSubqueryInFromWithInlineStatsInMainQuery
+  - org.elasticsearch.xpack.esql.analysis.VerifierTests::testGroupingAliasDuplicate
+  - org.elasticsearch.xpack.esql.analysis.VerifierTests::testRenameOrDropTimestmapWithIDelta
+  - org.elasticsearch.xpack.esql.analysis.VerifierTests::testGroupingAlias
+  - org.elasticsearch.xpack.esql.analysis.VerifierTests::testUnsignedLongNegation
+  - org.elasticsearch.xpack.esql.analysis.VerifierTests::testInlineImpossibleConvert
+  - org.elasticsearch.xpack.esql.analysis.VerifierTests::testCategorizeOnlyFirstGrouping
+  - org.elasticsearch.xpack.esql.analysis.VerifierTests::testAggsWithoutAgg
+  - org.elasticsearch.xpack.esql.analysis.VerifierTests::testCategorizeNestedGrouping
+  - org.elasticsearch.xpack.esql.analysis.VerifierTests::testInlineStatsInTSNotAllowed
+  - org.elasticsearch.xpack.esql.analysis.VerifierTests::testChangePoint_valueNumeric
+  - org.elasticsearch.xpack.esql.analysis.VerifierTests::testGrokByAggregate
+  - org.elasticsearch.xpack.esql.analysis.VerifierTests::testCountersSorting
+  - org.elasticsearch.xpack.esql.analysis.VerifierTests::testTimeseriesAggregate
+  - org.elasticsearch.xpack.esql.analysis.VerifierTests::testAggFilterOnBucketingOrAggFunctions
+  - org.elasticsearch.xpack.esql.analysis.VerifierTests::testRenameOrDropTimestmapWithRate
+  - org.elasticsearch.xpack.esql.analysis.VerifierTests::testLimitBeforeInlineStats_WithFrom_And_Row
+  - org.elasticsearch.xpack.esql.analysis.VerifierTests::testGroupingInsideGrouping
+  - org.elasticsearch.xpack.esql.analysis.VerifierTests::testRenameOrDropTimestmapWithFirstOverTime
+  - org.elasticsearch.xpack.esql.analysis.VerifierTests::testLookupJoinExpressionAmbiguousBoth
+  - org.elasticsearch.xpack.esql.analysis.VerifierTests::testLookupJoinExpressionComplexFormula
+  - org.elasticsearch.xpack.esql.analysis.VerifierTests::testRenameOrDropTimestmapWithLastOverTime
+  - org.elasticsearch.xpack.esql.analysis.VerifierTests::testFullTextFunctionsWithSemanticText
+  - org.elasticsearch.xpack.esql.analysis.VerifierTests::testPeriodAndDurationInEval
+  - org.elasticsearch.xpack.esql.analysis.VerifierTests::testCategorizeInvalidOptionsField
+  - org.elasticsearch.xpack.esql.analysis.VerifierTests::testInvalidTBucketCalls
+  - org.elasticsearch.xpack.esql.analysis.VerifierTests::testLookupJoinExpressionAmbiguousRight
+  - org.elasticsearch.xpack.esql.analysis.VerifierTests::testNonFieldBasedFullTextFunctionsNotAllowedAfterCommands
+  - org.elasticsearch.xpack.esql.analysis.VerifierTests::testFilterByAggregate
+  - org.elasticsearch.xpack.esql.analysis.VerifierTests::testGroupByCounter
+  - org.elasticsearch.xpack.esql.analysis.VerifierTests::testAggregateInRow
+  - org.elasticsearch.xpack.esql.analysis.VerifierTests::testFuse
+  - org.elasticsearch.xpack.esql.analysis.VerifierTests::testInsistNotOnTopOfFrom
+  - org.elasticsearch.xpack.esql.analysis.VerifierTests::testMixedNumericalNonConvertibleTypesInIn
+  - org.elasticsearch.xpack.esql.analysis.VerifierTests::testNonStringFieldsInGrok
+  - org.elasticsearch.xpack.esql.analysis.VerifierTests::testCategorizeWithinAggregations
+  - org.elasticsearch.xpack.esql.analysis.VerifierTests::testSourceSorting
+  - org.elasticsearch.xpack.esql.analysis.VerifierTests::testAggsInsideEval
+  - org.elasticsearch.xpack.esql.analysis.VerifierTests::testDropAfterRenaming
+  - org.elasticsearch.xpack.esql.analysis.VerifierTests::testChunkFunctionInvalidInputs
+  - org.elasticsearch.xpack.esql.analysis.VerifierTests::testNoDimensionsInAggsOnlyInByClause
+  - org.elasticsearch.xpack.esql.analysis.VerifierTests::testChangePoint
+  - org.elasticsearch.xpack.esql.analysis.VerifierTests::testDuplicateRenaming
+  - org.elasticsearch.xpack.esql.analysis.VerifierTests::testWrongInputParam
+  - org.elasticsearch.xpack.esql.analysis.VerifierTests::testFullTextFunctionCurrentlyUnsupportedBehaviour
+  - org.elasticsearch.xpack.esql.analysis.VerifierTests::testFieldBasedFullTextFunctions
+  - org.elasticsearch.xpack.esql.expression.function.fulltext.MatchPhraseTests::testSerializationOfSimple {TestCase=fieldName, text, options}
+  - org.elasticsearch.xpack.esql.expression.function.fulltext.MatchPhraseTests::testSerializationOfSimple {TestCase=fieldName, keyword with null field, options}
+  - org.elasticsearch.xpack.esql.expression.function.fulltext.MatchPhraseTests::testSerializationOfSimple {TestCase=fieldName, text, options #2}
+  - org.elasticsearch.xpack.esql.expression.function.fulltext.MatchPhraseTests::testSerializationOfSimple {TestCase=fieldName, keyword, options}
+  - org.elasticsearch.xpack.esql.expression.function.fulltext.MatchPhraseTests::testSerializationOfSimple {TestCase=<empty KEYWORD>, keyword, options}
+  - org.elasticsearch.xpack.esql.expression.function.fulltext.MatchPhraseTests::testSerializationOfSimple {TestCase=fieldName, text, options #3}
+  - org.elasticsearch.xpack.esql.expression.function.fulltext.MatchPhraseTests::testSerializationOfSimple {TestCase=fieldName, keyword, options #2}
+  - org.elasticsearch.xpack.esql.expression.function.fulltext.MatchPhraseTests::testSerializationOfSimple {TestCase=fieldName, text, options #4}
+  - org.elasticsearch.xpack.esql.expression.function.fulltext.MatchPhraseTests::testSerializationOfSimple {TestCase=<short alpha TEXT>, text, options}
+  - org.elasticsearch.xpack.esql.expression.function.fulltext.MatchPhraseTests::testSerializationOfSimple {TestCase=fieldName, keyword, options #3}
+  - org.elasticsearch.xpack.esql.expression.function.fulltext.MatchPhraseTests::testSerializationOfSimple {TestCase=<long alpha TEXT>, text, options}
+  - org.elasticsearch.xpack.esql.expression.function.fulltext.MatchPhraseTests::testSerializationOfSimple {TestCase=<long alpha KEYWORD>, keyword, options}
+  - org.elasticsearch.xpack.esql.expression.function.fulltext.MatchPhraseTests::testSerializationOfSimple {TestCase=<short alpha KEYWORD>, keyword, options}
+  - org.elasticsearch.xpack.esql.expression.function.fulltext.MatchPhraseTests::testSerializationOfSimple {TestCase=<long unicode KEYWORD>, keyword, options}
+  - org.elasticsearch.xpack.esql.expression.function.fulltext.MatchPhraseTests::testSerializationOfSimple {TestCase=fieldName, text, options #5}
+  - org.elasticsearch.xpack.esql.expression.function.fulltext.MatchPhraseTests::testSerializationOfSimple {TestCase=<empty KEYWORD>, keyword with null field, options}
+  - org.elasticsearch.xpack.esql.expression.function.fulltext.MatchPhraseTests::testSerializationOfSimple {TestCase=fieldName, keyword, options #4}
+  - org.elasticsearch.xpack.esql.expression.function.fulltext.MatchPhraseTests::testSerializationOfSimple {TestCase=<short unicode KEYWORD>, keyword, options}
+  - org.elasticsearch.xpack.esql.expression.function.fulltext.MatchPhraseTests::testSerializationOfSimple {TestCase=fieldName, keyword, options #5}
+  - org.elasticsearch.xpack.esql.expression.function.fulltext.MatchPhraseTests::testSerializationOfSimple {TestCase=<empty TEXT>, text, options}
+  - org.elasticsearch.xpack.esql.expression.function.fulltext.MatchPhraseTests::testSerializationOfSimple {TestCase=<long unicode TEXT>, text, options}
+  - org.elasticsearch.xpack.esql.expression.function.fulltext.MatchPhraseTests::testSerializationOfSimple {TestCase=<empty TEXT>, text with null field, options}
+  - org.elasticsearch.xpack.esql.expression.function.fulltext.MatchPhraseTests::testSerializationOfSimple {TestCase=<short unicode TEXT>, text, options}
+  - org.elasticsearch.xpack.esql.optimizer.LocalPhysicalPlanOptimizerTests::testPushDownComplexNegationsToKnnPrefilter {default}
+  - org.elasticsearch.xpack.esql.optimizer.LocalPhysicalPlanOptimizerTests::testSingleMatchFunctionFilterPushdownWithStringValues {default}
+  - org.elasticsearch.xpack.esql.optimizer.LocalPhysicalPlanOptimizerTests::testMatchFunction {default}
+  - org.elasticsearch.xpack.esql.optimizer.LocalPhysicalPlanOptimizerTests::testMissingFieldsNotPurgingTheJoinLocally {default}
+  - org.elasticsearch.xpack.esql.optimizer.LocalPhysicalPlanOptimizerTests::testMissingFieldsPurgesTheJoinLocally {default}
+  - org.elasticsearch.xpack.esql.optimizer.LocalPhysicalPlanOptimizerTests::testVerifierOnAdditionalAttributeAdded {default}
+  - org.elasticsearch.xpack.esql.optimizer.LocalPhysicalPlanOptimizerTests::testCountAllWithFilter {default}
+  - org.elasticsearch.xpack.esql.optimizer.LocalPhysicalPlanOptimizerTests::testMultiCountAllWithFilter {default}
+  - org.elasticsearch.xpack.esql.optimizer.LocalPhysicalPlanOptimizerTests::testKnnPrefilters {default}
+  - org.elasticsearch.xpack.esql.optimizer.LocalPhysicalPlanOptimizerTests::testMissingFieldsDoNotGetExtracted {default}
+  - org.elasticsearch.xpack.esql.optimizer.LocalPhysicalPlanOptimizerTests::testSingleMatchFunctionPushdownWithCasting {default}
+  - org.elasticsearch.xpack.esql.optimizer.LocalPhysicalPlanOptimizerTests::testKqlFunction {default}
+  - org.elasticsearch.xpack.esql.optimizer.LocalPhysicalPlanOptimizerTests::testSingleMatchOperatorFilterPushdownWithoutCasting {default}
+  - org.elasticsearch.xpack.esql.optimizer.LocalPhysicalPlanOptimizerTests::testMatchOptionsPushDown {default}
+  - org.elasticsearch.xpack.esql.optimizer.LocalPhysicalPlanOptimizerTests::testFieldHasValue {default}
+  - org.elasticsearch.xpack.esql.optimizer.LocalPhysicalPlanOptimizerTests::testMultipleKnnQueriesInPrefilters {default}
+  - org.elasticsearch.xpack.esql.optimizer.LocalPhysicalPlanOptimizerTests::testQStrOptionsPushDown {default}
+  - org.elasticsearch.xpack.esql.optimizer.LocalPhysicalPlanOptimizerTests::testTermFunction {default}
+  - org.elasticsearch.xpack.esql.optimizer.LocalPhysicalPlanOptimizerTests::testMatchFunctionWithStatsWherePushable {default}
+  - org.elasticsearch.xpack.esql.optimizer.LocalPhysicalPlanOptimizerTests::testMissingFieldsPurgesTheJoinLocallyThroughCommands {default}
+  - org.elasticsearch.xpack.esql.optimizer.LocalPhysicalPlanOptimizerTests::testPushDownConjunctionsToKnnPrefilter {default}
+  - org.elasticsearch.xpack.esql.optimizer.LocalPhysicalPlanOptimizerTests::testKnnPrefiltersWithMultipleFilters {default}
+  - org.elasticsearch.xpack.esql.optimizer.LocalPhysicalPlanOptimizerTests::testCountFieldsAndAllWithFilter {default}
+  - org.elasticsearch.xpack.esql.optimizer.LocalPhysicalPlanOptimizerTests::testMultiMatchOptionsPushDown {default}
+  - org.elasticsearch.xpack.esql.optimizer.LocalPhysicalPlanOptimizerTests::testCountFieldWithFilter {default}
+  - org.elasticsearch.xpack.esql.optimizer.LocalPhysicalPlanOptimizerTests::testConstantKeywordDissectFilter {default}
+  - org.elasticsearch.xpack.esql.optimizer.LocalPhysicalPlanOptimizerTests::testToDateNanosPushDown {default}
+  - org.elasticsearch.xpack.esql.optimizer.LocalPhysicalPlanOptimizerTests::testPushDownNegatedConjunctionsToKnnPrefilter {default}
+  - org.elasticsearch.xpack.esql.optimizer.LocalPhysicalPlanOptimizerTests::testCountFieldWithEval {default}
+  - org.elasticsearch.xpack.esql.optimizer.LocalPhysicalPlanOptimizerTests::testSingleMatchOperatorFilterPushdownWithStringValues {default}
+  - org.elasticsearch.xpack.esql.optimizer.LocalPhysicalPlanOptimizerTests::testConstantKeywordWithNonMatchingFilter {default}
+  - org.elasticsearch.xpack.esql.optimizer.LocalPhysicalPlanOptimizerTests::testConstantKeywordExpandFilter {default}
+  - org.elasticsearch.xpack.esql.optimizer.LocalPhysicalPlanOptimizerTests::testIsNull_TextField_Pushdown_WithCount {default}
+  - org.elasticsearch.xpack.esql.optimizer.LocalPhysicalPlanOptimizerTests::testAnotherCountAllWithFilter {default}
+  - org.elasticsearch.xpack.esql.optimizer.LocalPhysicalPlanOptimizerTests::testNotPushDownKnnWithNonPushablePrefilters {default}
+  - org.elasticsearch.xpack.esql.optimizer.LocalPhysicalPlanOptimizerTests::testCountOneFieldWithFilterAndLimit {default}
+  - org.elasticsearch.xpack.esql.optimizer.LocalPhysicalPlanOptimizerTests::testIsNotNull_TextField_Pushdown {default}
+  - org.elasticsearch.xpack.esql.optimizer.LocalPhysicalPlanOptimizerTests::testKnnKAndMinCandidatesLowerK {default}
+  - org.elasticsearch.xpack.esql.optimizer.LocalPhysicalPlanOptimizerTests::testIsNullPushdownFilter {default}
+  - org.elasticsearch.xpack.esql.optimizer.LocalPhysicalPlanOptimizerTests::testMatchOperator {default}
+  - org.elasticsearch.xpack.esql.optimizer.LocalPhysicalPlanOptimizerTests::testSingleMatchFunctionFilterPushdownWithoutCasting {default}
+  - org.elasticsearch.xpack.esql.optimizer.LocalPhysicalPlanOptimizerTests::testCountOneFieldWithFilter {default}
+  - org.elasticsearch.xpack.esql.optimizer.LocalPhysicalPlanOptimizerTests::testLocalAggOptimizedToLocalRelation {default}
+  - org.elasticsearch.xpack.esql.optimizer.LocalPhysicalPlanOptimizerTests::testCountAllWithEval {default}
+  - org.elasticsearch.xpack.esql.optimizer.LocalPhysicalPlanOptimizerTests::testConstantKeywordWithMatchingFilter {default}
+  - org.elasticsearch.xpack.esql.optimizer.LocalPhysicalPlanOptimizerTests::testKnnUsesLimitForK {default}
+  - org.elasticsearch.xpack.esql.optimizer.LocalPhysicalPlanOptimizerTests::testMatchFunctionWithStatsPushableAndNonPushableCondition {default}
+  - org.elasticsearch.xpack.esql.optimizer.LocalPhysicalPlanOptimizerTests::testCountMultipleFieldsWithFilter {default}
+  - org.elasticsearch.xpack.esql.optimizer.LocalPhysicalPlanOptimizerTests::testIsNotNull_TextField_Pushdown_WithCount {default}
+  - org.elasticsearch.xpack.esql.optimizer.LocalPhysicalPlanOptimizerTests::testMatchWithFieldCasting {default}
+  - org.elasticsearch.xpack.esql.optimizer.LocalPhysicalPlanOptimizerTests::testFieldHasValueWithEmptyFieldInfos {default}
+  - org.elasticsearch.xpack.esql.optimizer.LocalPhysicalPlanOptimizerTests::testTranslateMetricsGroupedByTwoDimension {default}
+  - org.elasticsearch.xpack.esql.optimizer.LocalPhysicalPlanOptimizerTests::testNotPushDownDisjunctionsToKnnPrefilter {default}
+  - org.elasticsearch.xpack.esql.optimizer.LocalPhysicalPlanOptimizerTests::testIsNotNullPushdownFilter {default}
+  - org.elasticsearch.xpack.esql.optimizer.LocalPhysicalPlanOptimizerTests::testMissingFieldsDoesNotPurgeTheJoinOnCoordinator {default}
+  - org.elasticsearch.xpack.esql.optimizer.LocalPhysicalPlanOptimizerTests::testOutOfRangeFilterPushdownWithFloatAndHalfFloat {default}
+  - org.elasticsearch.xpack.esql.optimizer.LocalPhysicalPlanOptimizerTests::testQstrFunction {default}
+  - org.elasticsearch.xpack.esql.optimizer.LocalPhysicalPlanOptimizerTests::testVerifierOnAttributeDatatypeChanged {default}
+  - org.elasticsearch.xpack.esql.optimizer.LocalPhysicalPlanOptimizerTests::testMatchFunctionStatisWithNonPushableCondition {default}
+  - org.elasticsearch.xpack.esql.optimizer.LocalPhysicalPlanOptimizerTests::testKnnKAndMinCandidatesHigherK {default}
+  - org.elasticsearch.xpack.esql.optimizer.LocalPhysicalPlanOptimizerTests::testSingleCountWithStatsFilter {default}
+  - org.elasticsearch.xpack.esql.optimizer.LocalPhysicalPlanOptimizerTests::testIsNull_TextField_Pushdown {default}
+  - org.elasticsearch.xpack.esql.optimizer.LocalPhysicalPlanOptimizerTests::testCountPushdownForSvAndMvFields {default}
+  - org.elasticsearch.xpack.esql.optimizer.LocalPhysicalPlanOptimizerTests::testOutOfRangeFilterPushdown {default}
+  - org.elasticsearch.xpack.esql.optimizer.LocalPhysicalPlanOptimizerTests::testVerifierOnMissingReferences {default}
+  - org.elasticsearch.xpack.esql.optimizer.LocalPhysicalPlanOptimizerTests::testKnnOptionsPushDown {default}
+  - org.elasticsearch.xpack.esql.expression.function.fulltext.MatchErrorTests::test
+  - org.elasticsearch.xpack.esql.optimizer.LocalLogicalPlanOptimizerTests::testReplaceLowerStringCasingWithMixedCaseRLikeList
+  - org.elasticsearch.xpack.esql.optimizer.LocalLogicalPlanOptimizerTests::testIsNotNullOnFunctionWithOneField
+  - org.elasticsearch.xpack.esql.optimizer.LocalLogicalPlanOptimizerTests::testMissingFieldInSort
+  - org.elasticsearch.xpack.esql.optimizer.LocalLogicalPlanOptimizerTests::testMissingFieldInFilterNumericWithReference
+  - org.elasticsearch.xpack.esql.optimizer.LocalLogicalPlanOptimizerTests::testIsNotNullOnCoalesce
+  - org.elasticsearch.xpack.esql.optimizer.LocalLogicalPlanOptimizerTests::testVectorFunctionsNotPushedDownWhenNotIndexed
+  - org.elasticsearch.xpack.esql.optimizer.LocalLogicalPlanOptimizerTests::testUnionTypesInferNonNullAggConstraint
+  - org.elasticsearch.xpack.esql.optimizer.LocalLogicalPlanOptimizerTests::testReplaceStringCasingAndRLikeWithLocalRelation
+  - org.elasticsearch.xpack.esql.optimizer.LocalLogicalPlanOptimizerTests::testReplaceLowerStringCasingWithInsensitiveRLikeList
+  - org.elasticsearch.xpack.esql.optimizer.LocalLogicalPlanOptimizerTests::testVectorFunctionsWhenFieldMissing
+  - org.elasticsearch.xpack.esql.optimizer.LocalLogicalPlanOptimizerTests::testIsNotNullOnExpression
+  - org.elasticsearch.xpack.esql.optimizer.LocalLogicalPlanOptimizerTests::testReassignedMissingFieldInProject
+  - org.elasticsearch.xpack.esql.optimizer.LocalLogicalPlanOptimizerTests::testVectorFunctionsReplacedWithTopN
+  - org.elasticsearch.xpack.esql.optimizer.LocalLogicalPlanOptimizerTests::testMissingFieldInFilterString
+  - org.elasticsearch.xpack.esql.optimizer.LocalLogicalPlanOptimizerTests::testReplaceStringCasingAndRLikeListWithLocalRelation
+  - org.elasticsearch.xpack.esql.optimizer.LocalLogicalPlanOptimizerTests::testReplaceStringCasingAndLikeListWithLocalRelation
+  - org.elasticsearch.xpack.esql.optimizer.LocalLogicalPlanOptimizerTests::testReplaceUpperStringCasinqWithInsensitiveRLikeList
+  - org.elasticsearch.xpack.esql.optimizer.LocalLogicalPlanOptimizerTests::testMissingFieldInFilterNumeric
+  - org.elasticsearch.xpack.esql.optimizer.LocalLogicalPlanOptimizerTests::testMissingFieldInFilterNumericWithReferenceToEval
+  - org.elasticsearch.xpack.esql.optimizer.LocalLogicalPlanOptimizerTests::testIsNotNullOnCase
+  - org.elasticsearch.xpack.esql.optimizer.LocalLogicalPlanOptimizerTests::testVectorFunctionsInWhere
+  - org.elasticsearch.xpack.esql.optimizer.LocalLogicalPlanOptimizerTests::testGroupingByMissingFields
+  - org.elasticsearch.xpack.esql.optimizer.LocalLogicalPlanOptimizerTests::testVectorFunctionsInStats
+  - org.elasticsearch.xpack.esql.optimizer.LocalLogicalPlanOptimizerTests::testVerifierOnAdditionalAttributeAdded
+  - org.elasticsearch.xpack.esql.optimizer.LocalLogicalPlanOptimizerTests::testPruneLeftJoinOnNullMatchingFieldAndShadowingAttributes
+  - org.elasticsearch.xpack.esql.optimizer.LocalLogicalPlanOptimizerTests::testIsNotNullOnOperatorWithOneField
+  - org.elasticsearch.xpack.esql.optimizer.LocalLogicalPlanOptimizerTests::testReplaceLowerStringCasingWithInsensitiveRLike
+  - org.elasticsearch.xpack.esql.optimizer.LocalLogicalPlanOptimizerTests::testReplaceLowerStringCasingWithMixedCaseLikeList
+  - org.elasticsearch.xpack.esql.optimizer.LocalLogicalPlanOptimizerTests::testIsNotNullOnFunctionWithTwoFields
+  - org.elasticsearch.xpack.esql.optimizer.LocalLogicalPlanOptimizerTests::testMissingFieldInNewCommand
+  - org.elasticsearch.xpack.esql.optimizer.LocalLogicalPlanOptimizerTests::testMissingFieldInProject
+  - org.elasticsearch.xpack.esql.optimizer.LocalLogicalPlanOptimizerTests::testVectorFunctionsReplaced
+  - org.elasticsearch.xpack.esql.optimizer.LocalLogicalPlanOptimizerTests::testMissingFieldInFilterNoProjection
+  - org.elasticsearch.xpack.esql.optimizer.LocalLogicalPlanOptimizerTests::testVectorFunctionsUpdateIntermediateProjections
+  - org.elasticsearch.xpack.esql.optimizer.LocalLogicalPlanOptimizerTests::testReplaceUpperStringCasingWithInsensitiveLike
+  - org.elasticsearch.xpack.esql.optimizer.LocalLogicalPlanOptimizerTests::testKnnOnMissingField
+  - org.elasticsearch.xpack.esql.optimizer.LocalLogicalPlanOptimizerTests::testIsNotNullOnCase_With_IS_NULL
+  - org.elasticsearch.xpack.esql.optimizer.LocalLogicalPlanOptimizerTests::testIsNotNullOnOperatorWithTwoFields
+  - org.elasticsearch.xpack.esql.optimizer.LocalLogicalPlanOptimizerTests::testSparseDocument
+  - org.elasticsearch.xpack.esql.optimizer.LocalLogicalPlanOptimizerTests::testFullTextFunctionOnMissingField
+  - org.elasticsearch.xpack.esql.optimizer.LocalLogicalPlanOptimizerTests::testReplaceUpperStringCasinqgWithInsensitiveRLike
+  - org.elasticsearch.xpack.esql.optimizer.LocalLogicalPlanOptimizerTests::testVectorFunctionsWithDuplicateFunctions
+  - org.elasticsearch.xpack.esql.optimizer.LocalLogicalPlanOptimizerTests::testVerifierOnMissingReferences
+  - org.elasticsearch.xpack.esql.optimizer.LocalLogicalPlanOptimizerTests::testReplaceStringCasingAndLikeWithLocalRelation
+  - org.elasticsearch.xpack.esql.optimizer.LocalLogicalPlanOptimizerTests::testReplaceLowerStringCasingWithInsensitiveLike
+  - org.elasticsearch.xpack.esql.optimizer.LocalLogicalPlanOptimizerTests::testMissingFieldInEval
+  - org.elasticsearch.xpack.esql.optimizer.LocalLogicalPlanOptimizerTests::testReplaceUpperStringCasingWithInsensitiveLikeList
+  - org.elasticsearch.xpack.esql.optimizer.LocalLogicalPlanOptimizerTests::testVerifierOnAttributeDatatypeChanged
+  - org.elasticsearch.xpack.esql.optimizer.LocalLogicalPlanOptimizerTests::testMissingFieldInMvExpand
+  - org.elasticsearch.xpack.esql.optimizer.LocalLogicalPlanOptimizerTests::testIsNotNullOnIsNullField
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testCombineOrderByThroughEvalWithTwoDefs
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testMultipleRenameStatsDropGroupMultirow
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testMedianReplacement
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testSortLookupJoinLimit
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testStatsExpOverAggs
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testCombineOrderByThroughGrok
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testTranslateMixedAggsGroupedByTimeBucketAndDimensions
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testLookupJoinRightFilterMatch
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testDecayScaleMustBeLiteral
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testLookupJoinPushDownFilterOnJoinKeyWithRename
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testFilterWithSortBeforeLookupJoin
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testRemoveUnusedSortBeforeMvExpand_DefaultLimit10000
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPushDownConjunctionsToKnnPrefilter
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testAggsWithOverridingInputAndGrouping
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testEvalAliasingInsideSameCommandWithShadowing
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testCombineDisjunctionToInFromIn
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testTranslateMaxOverTime
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testCombineMultipleOrderByAndLimits
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testEvalWithScoreImplicitLimit
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testExtractStatsCommonFilterSkippedDueToDisjunction
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testEvalAfterGroupBy
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testEmptyProjections
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testTranslateMetricsGroupedByTimeBucket
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testTranslateWithInlineFilter
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testKnnWithMultipleClauses
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testLookupJoinKeepNoLookupFields
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testFoldInKeyword
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testReplaceSortByExpressionsWithStats
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPushShadowingGeneratingPlanPastRenamingProject
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testQlComparisonOptimizationsApply
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testExtractStatsCommonFilterInConjunctionWithMultipleCommonConjunctions
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testCombineProjectionWithAggregationAndEval
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testCombineProjectionWithCategorizeGrouping
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testTranslateMetricsGroupedByTimeBucketAndDimensions
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPushDownEnrichPastProject
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testWhereLookupJoin
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testSampleNoPushDownLookupJoin
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testCombineDisjunctionToInEquals
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testCombineProjectionWithAggregation
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testTrivialTypeConversionWrittenAway
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPruneRedundantOrderBy
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testInvalidFoldDueToReplacement
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testReplaceExpressionWithExact
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testWhereMvExpand
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testIsNotNullConstraintForStatsWithAndOnGrouping
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testInlineStatsWithRow
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testFilterWithSortBeforeMvExpand
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testTranslateMetricsGroupedByTwoDimension
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testSimplifyComparisonArithmeticWithFieldNegation
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testTranslateDataGroupedByTBucket
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testReplaceStringCasingWithInsensitiveEqualsUpperFalse
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testMultipleCombineLimits
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testDontPushDownLimitPastAggregate_AndMvExpand
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testInsist_fieldDoesNotExist_createsUnmappedFieldInRelation
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testReplaceStringCasingWithInsensitiveEqualsUpperTrue
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPushShadowingGeneratingPlanPastRenamingProjectWithResolution
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testMvSortInvalidOrder
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testSimplifyRLikeMatchAll
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testCombineLimitWithOrderByThroughFilterAndEval
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testMultiMvExpand_SortDownBelow
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testSpatialTypesAndStatsUseDocValuesWithEval
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testCombineProjections
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPlanSanityCheckWithBinaryPlans
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testDontPushDownLimitPastFilter
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testSplittingInWithFoldableValue
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPushDownLimitPastGrok
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testSimplifyComparisonArithmeticWithFloatsAndDirectionChange
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testCombineProjectionWithPruning
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testTripleInlineStatsWithLookupJoinGetsPrunedEntirely
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testStatsExpOverAggsWithScalars
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testLikeWrongPattern
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testRedundantSortOnMvExpandAndJoin
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testEvalAliasingAcrossCommands
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testMultipleLookupShadowing
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testExtractStatsCommonFilterInConjunction
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testStatsExpOverAggsWithScalarAndDuplicateAggs
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPushDown_TheRightLimit_PastLookupJoin
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testVerifierOnAttributeDatatypeChanged
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testLookupJoinPushDownDisabledForDisjunctionBetweenLeftAndRightField
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testSortMvExpand
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testSimplifyComparisonArithmeticCommutativeVsNonCommutativeOps
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPruneUnusedAggMixedWithEval
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testSimplifyComparisonArithmeticWithDisjunction
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testSimplifyComparisonArithmeticSkippedOnDiv
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPushdownWithOverwrittenName
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testCombineOrderByThroughProjectWithAlias
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testInsist_multipleInsistClauses_insistsAreFolded
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testReplaceStringCasingWithInsensitiveEqualsNotEquals
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testFullTextFunctionOnEvalNull
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testSampleMerged
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testExtractStatsCommonFilterSkippedNotSameFilter
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPruneMixedAggInsideUnusedEval
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testCombineOrderByThroughEval
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testSamplePushDown
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testExtractStatsCommonFilterSkippedWithGroups
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testReplaceSortByExpressions
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testTripleInlineStatsGetsPrunedPartially
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testInlineStatsWithShadowedOutput
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testKnnWithLimit
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testToDatePeriodTimeDurationInvalidIntervals
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testDontPruneSameFieldDifferentDirectionSortClauses_UsingAlias
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testMultipleRenameStatsDropGroup
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testAdjustMetricsRateBeforeFinalAgg
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testFunctionNamedParamsAsFunctionArgument
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testMultlipleRedundantSortOnMvExpandAndJoin
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testTranslateMixedAggsWithMathWithoutGrouping
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testTranslateMetricsGroupedByOneDimension
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testEliminateDuplicateRenamedGroupings
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPruneJoinOnNullMatchingFieldExpressionJoin
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPushDownLimitPastDissect
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPruningDuplicateEvals
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testUnboundedSortWithMvExpandAndFilter
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testSimplifyLikeNoWildcard
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testSimplifyComparisonArithmeticSkippedOnMulDivByZero
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testDontPushDownLimitPastLookupJoin
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testCombineProjectionWithAggregationFirstAndAliasedGroupingUsedInAgg
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testLookupJoinPushDownFilterOnLeftSideField
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testTranslateWithInlineFilterWithImplicitLastOverTime
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPushDownConjunctionsAndNotDisjunctionsToKnnPrefilter
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testWhereNull
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testReplaceStringCasingWithInsensitiveEqualsUnwrap
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testLookupJoinRightFilterSpatialContains
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testSimplifyComparisonArithmeticSkippedOnFloatFieldWithPlusMinus
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPushShadowingGeneratingPlanPastProject
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testNestedExpressionsInStatsWithExpression
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testDescendantLimitMvExpand
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testRemoveOverridesInAggregate
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testSamplePushDown_sort
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testUnboundedSortWithLookupJoinAndFilter
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testRedundantSortOnJoin
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testTranslateAvgOverTime
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testEmptyProjectInStatWithGroupAndEval
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testTranslateMixedAggsWithoutGrouping
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPushDownLimitThroughMultipleSort_AfterMvExpand2
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testEmptyProjectInStatWithEval
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testTripleInlineStatsMultipleAssignmentsGetsPrunedEntirely
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testCombineProjectionWithFilterInBetween
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testRedundantSortOnMvExpand
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testEvalLookupMultipleSorts
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPushDown_TheRightLimit_PastMvExpand
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPruneEvalAliasOnAggGrouped
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testFoldInNumerics
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testVerifierOnAdditionalAttributeAdded
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testReplaceStringCasingWithInsensitiveEqualsEquals
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testLookupJoinRightFilter
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testDontPushDownLimitPastMvExpand
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testIsNotNullConstraintForStatsWithMultiAggWithoutGrouping
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testFoldFromRow
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testLookupJoinPushDownSeparatedForConjunctionBetweenLeftAndRightField
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPruneChainedEval
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testInlineStatsWithLimit
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testRedundantSort_BeforeMvExpand_WithFilter_NOT_OnExpandedField
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testFoldFromRowInEval
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPruneUnusedAggsChainedAgg
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testCombineProjectionsWithEvalAndDrop
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testTranslateMetricsWithoutGrouping
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testNoPushDownOrFilterPastLimit
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPushDownFilterPastProject
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testEvalAliasingInsideSameCommand
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPruneUnusedEval
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPushDownEvalPastProject
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testKnnWithStats
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testSampleNoPushDownChangePoint
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testSimplifyComparisonArithmeticWithFieldDoubleNegation
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testAggOfLiteralGrouped
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testEliminateDuplicateAggsNonCount
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testRenameStatsDropGroup
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testCombineOrderByThroughDissect
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPushDownLimitPastProject
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testNestedExpressionsWithGroupingKeyInAggs
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testSimplyComparisonArithmeticWithUnfoldedProd
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testNoPruningWhenChainedEvals
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPlanSanityCheck
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testDontPruneSortWithLimitBeforeStats
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testLookupJoinRightFilterMatchWithWhereClause
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testSumOfLiteral
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testMultipleMvExpandWithSortAndLimit
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testFoldNullInToLocalRelation
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testBucketAcceptsEvalLiteralReferences
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testReplaceFilterWithExact
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testRedundantSort_BeforeMvExpand_WithFilterOnExpandedField
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testInsist_multiIndexFieldPartiallyExistsAndIsKeyword_castsAreNotSupported
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPruneSortBeforeStats
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testReplaceStringCasingWithInsensitiveEqualsLowerFalse
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testNestedExpressionsInBothAggsAndGroups
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testSpatialTypesAndStatsUseDocValues
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPushDownLimitPastEval
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testAggOfLiteral
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testNotPushDownDisjunctionsToKnnPrefilter
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testRedundantSort_BeforeMvExpand_WithFilterOnExpandedField_ResultTruncationDefaultSize
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testSimpleAvgReplacement
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPushDownFilterPastProjectUsingDissect
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testReplaceSortByExpressionsMultipleSorts
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testLookupJoinExpressionSwapped
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testDontCombineOrderByThroughMvExpand
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testCombineOrderBy
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testNestedExpressionsInAggs
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testIsNotNullConstraintSkippedForStatsWithAlias
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testSemiClashingAvgReplacement
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testSimplifyRLikeNoWildcard
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testIsNotNullConstraintForStatsWithAndOnGroupingAlias
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPruneJoinOnNullAssignedMatchingFieldExpr
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testUnboundedSortJoin
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPruneRedundantSortClauses
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testKnnWithMultipleLimitsAfterTopN
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testRLikeWrongPattern
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testEliminateDuplicateAggsMixed
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testForkInSubquery
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testFoldInIP
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testFoldNullListInToLocalRelation
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPartiallyFoldCase
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testDecayOriginMustBeLiteral
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testCombineOrderByThroughFilter
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testTranslateSumOfTwoRates
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPruneEvalAliasOnAggGroupedByAlias
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPruneUnusedAggSimple
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testExtractStatsCommonFilterUsingJustOneAlias
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPruneEvalAliasOnAggUngrouped
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPushDownGrokPastProject
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testInlineStatsGetsPrunedPartially
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testNoPruningWhenDealingJustWithEvals
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testTranslateMetricsGroupedByTBucketInTSMode
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testInlineStatsWithAvg
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPruneJoinOnNullAssignedMatchingField
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPushDownDissectPastProject
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testTranslateTRangeFoldsToLocalRelation
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testRedundantSortOnMvExpandJoinKeepDropRename
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testKnnWithRerankAmdLimit
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPruneEvalAliasMixedWithRenameOnAggGrouped
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testLimitThenSortBeforeLookupJoin
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testEnrich
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testCopyDefaultLimitPastLookupJoin
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testSimplifyComparisonArithmeticWithConjunction
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testIsNotNullConstraintForStatsWithMultiAggWithGrouping
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testBucketWithAggExpression
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPushDownOrderByPastRename
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testUnboundedSortSimple
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPushDownLimit_PastEvalAndMvExpand
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testTranslateTRangeFoldsToLiteralWhenTimestampInsideRange
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testFunctionNamedParamsAsFunctionArgument1
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testUnboundedSortExpandFilter
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testLimitThenSortBeforeMvExpand
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testAssertSemanticMatching
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testTripleInlineStatsMultipleAssignmentsGetsPrunedPartially
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testStatsWithCanonicalAggregate
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testFoldInEval
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testLookupJoinRightFilterSpatialWithin
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testEnrichNotNullFilter
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testDoubleInlineStatsWithEvalGetsPrunedEntirely
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testEvalAfterStats
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testTranslateLastOverTime
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testBucketWithNonFoldingArgs
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testCopyDefaultLimitPastMvExpand
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testEliminateHigherLimitDueToDescendantLimit
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPruneEvalDueToStats
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testLookupJoinRightFilterSpatialIntersects
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testSimplifyComparisonArithmeticSkippedOnResultingFloatLiteral
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testEmptyMappingIndex
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testRedundantSortOnMvExpandJoinEnrichGrokDissect
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testCombineOrderByThroughProjectAndEval
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testIsNotNullConstraintForStatsWithGrouping
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testMorePushDownConjunctionsAndNotDisjunctionsToKnnPrefilter
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testIsNotNullConstraintForStatsWithoutGrouping
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testKnnWithMultipleLimitsCombined
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testFoldInVersion
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testSimplifyComparisonArithmeticSkippedOnFloats
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testEvalWithScoreExplicitLimit
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testCombineOrderByThroughProject
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testExtractStatsCommonFilterNormalizeAndCombineWithExistingFilter
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testSortLookupJoin
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testInlineStatsNestedExpressionsInGroups
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testTranslateTRangeFoldsToLiteralWhenTimestampOutsideRange
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testDoNotEliminateHigherLimitDueToDescendantLimit
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testExtractStatsCommonFilter
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testStatsExpOverAggsMulti
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testClashingAggAvgReplacement
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testMultipleLookupJoinWithSortAndLimit
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testFullTextFunctionOnNull
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testKnnWithTopN
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testBucketFailsOnFieldArgument
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testCombineProjectionsWithEval
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testCombineDisjunctionToInMixed
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testDoubleInlineStatsGetsPrunedEntirely
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testTopNEnrich
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testSelectivelyPushDownFilterPastEval
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testCombineEvals
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testSamplePushDown_where
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testLookupJoinPushDownDisabledForLookupField
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testMultipleKnnQueriesInPrefilters
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testRedundantSort_BeforeMvExpand_WithFilterOnExpandedFieldAlias
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPushDownFilterPastProjectUsingEval
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testInlineStatsWithLookupJoin
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testCombineProjectionWithAggregationFirstAndAliasedGroupingUnused
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testIsNotNullConstraintForStatsWithMultiAggWithAndOnGrouping
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testNestedExpressionsInGroups
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testKnnImplicitLimit
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPruneRenameOnAgg
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testLimitZeroUsesLocalRelation
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testInlineStatsWithLimitAndAgg
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testSimplifyLikeMatchAll
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testRedundantSortOnMvExpandEnrichGrokDissect
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testNestedMultiExpressionsInGroupingAndAggs
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testNestedSubqueries
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testInlineStatsWithAggAndInlineStatsGetsPruned
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPruneChainedEvalNoProjection
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testSimplifyComparisonArithmeticsWithFloatingPoints
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testStatsWithFilteringDefaultAliasing
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testNestedExpressionsInGroupsWithCategorize
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testCombineProjectionWithDuplicateAggregation
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testNoPushDownOrFilterPastAgg
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testSortMvExpandLimit
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testKnnWithRerankAmdTopN
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testReplaceStringCasingWithInsensitiveEqualsLowerTrue
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testCombineLimits
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testExtractStatsCommonAlwaysTruePlusOtherFilter
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testDontPruneSameFieldDifferentDirectionSortClauses
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPushDownFilterPastProjectUsingGrok
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testExtractStatsCommonFilterUsingAliases
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testInlinestatsGetsPrunedEntirely
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPushDownMultipleFiltersToKnnPrefilter
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPushDownLimitThroughMultipleSort_AfterMvExpand
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPushdownLimitsPastLeftJoin
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testMvExpandFoldable
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testCountOfLiteral
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testReplaceSortWithExact
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPruneRedundantSortClausesUsingAlias
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testDescendantLimitLookupJoin
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testCombineProjectionWhilePreservingAlias
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testSimplifyComparisonArithmeticWithMultipleOps
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testIsNotNullConstraintForAliasedExpressions
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testExtractStatsCommonFilterSkippedOnLackingFilter
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testLookupJoinExpressionSameAttrsDifferentConditions
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testSampleNoPushDown
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPruneJoinOnNullMatchingField
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testToDatePeriodToTimeDurationWithField
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPruneRenameOnAggBy
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testEmptyProjectionInStat
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testNoWrongIsNotNullPruning
+  - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testInlineStatsWithAggGetsPrunedEntirely

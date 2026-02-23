@@ -1,0 +1,25 @@
+instance_id: elastic__elasticsearch-140515
+repo: elastic/elasticsearch
+version: 9.4.0
+base_commit: eed907ba00891ffc46c0bb8357582e37141e2416
+pr_number: 140515
+
+FAIL_TO_PASS:
+  - org.elasticsearch.index.query.IdsQueryBuilderTests::testIdsSizeMayNotExceedMaxResultWindow
+
+PASS_TO_PASS:
+  - org.elasticsearch.index.query.IdsQueryBuilderTests::testToQuery
+  - org.elasticsearch.index.query.IdsQueryBuilderTests::testFromJson
+  - org.elasticsearch.index.query.IdsQueryBuilderTests::testValidOutput
+  - org.elasticsearch.index.query.IdsQueryBuilderTests::testEqualsAndHashcode
+  - org.elasticsearch.index.query.IdsQueryBuilderTests::testQueryWrappedInArray
+  - org.elasticsearch.index.query.IdsQueryBuilderTests::testNegativeBoosts
+  - org.elasticsearch.index.query.IdsQueryBuilderTests::testFromXContent
+  - org.elasticsearch.index.query.IdsQueryBuilderTests::testIdsSizeMayNotExceedMaxResultWindow
+  - org.elasticsearch.index.query.IdsQueryBuilderTests::testUnknownField
+  - org.elasticsearch.index.query.IdsQueryBuilderTests::testMustRewrite
+  - org.elasticsearch.index.query.IdsQueryBuilderTests::testCacheability
+  - org.elasticsearch.index.query.IdsQueryBuilderTests::testUnknownObjectException
+  - org.elasticsearch.index.query.IdsQueryBuilderTests::testIdsQueryWithInvalidValues
+  - org.elasticsearch.index.query.IdsQueryBuilderTests::testSerialization
+  - org.elasticsearch.index.query.IdsQueryBuilderTests::testIllegalArguments

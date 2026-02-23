@@ -1,0 +1,73 @@
+instance_id: elastic__elasticsearch-138366
+repo: elastic/elasticsearch
+version: 9.3.0
+base_commit: 0fb42ed2338627e9639d0f57856b037951c08336
+pr_number: 138366
+
+FAIL_TO_PASS:
+  - org.elasticsearch.xpack.exponentialhistogram.ExponentialHistogramFieldMapperTests
+  - org.elasticsearch.xpack.exponentialhistogram.aggregations.bucket.histogram.ExponentialHistogramBackedHistogramAggregatorTests
+  - org.elasticsearch.xpack.exponentialhistogram.aggregations.metrics.ExponentialHistogramAvgAggregatorTests
+  - org.elasticsearch.xpack.exponentialhistogram.aggregations.metrics.ExponentialHistogramSumAggregatorTests
+  - org.elasticsearch.xpack.exponentialhistogram.aggregations.metrics.ExponentialHistogramValueCountAggregatorTests
+
+PASS_TO_PASS:
+  - org.elasticsearch.xpack.exponentialhistogram.aggregations.metrics.ExponentialHistogramAvgAggregatorTests::testNoDocs
+  - org.elasticsearch.xpack.exponentialhistogram.aggregations.metrics.ExponentialHistogramAvgAggregatorTests::testNoMatchingField
+  - org.elasticsearch.xpack.exponentialhistogram.aggregations.metrics.ExponentialHistogramAvgAggregatorTests::testMatchesNumericDocValues
+  - org.elasticsearch.xpack.exponentialhistogram.aggregations.metrics.ExponentialHistogramAvgAggregatorTests::testSupportedFieldTypes
+  - org.elasticsearch.xpack.exponentialhistogram.aggregations.metrics.ExponentialHistogramAvgAggregatorTests::testQueryFiltering
+  - org.elasticsearch.xpack.exponentialhistogram.aggregations.metrics.ExponentialHistogramSumAggregatorTests::testNoDocs
+  - org.elasticsearch.xpack.exponentialhistogram.aggregations.metrics.ExponentialHistogramSumAggregatorTests::testNoMatchingField
+  - org.elasticsearch.xpack.exponentialhistogram.aggregations.metrics.ExponentialHistogramSumAggregatorTests::testMatchesNumericDocValues
+  - org.elasticsearch.xpack.exponentialhistogram.aggregations.metrics.ExponentialHistogramSumAggregatorTests::testSupportedFieldTypes
+  - org.elasticsearch.xpack.exponentialhistogram.aggregations.metrics.ExponentialHistogramSumAggregatorTests::testQueryFiltering
+  - org.elasticsearch.xpack.exponentialhistogram.aggregations.metrics.ExponentialHistogramValueCountAggregatorTests::testNoDocs
+  - org.elasticsearch.xpack.exponentialhistogram.aggregations.metrics.ExponentialHistogramValueCountAggregatorTests::testNoMatchingField
+  - org.elasticsearch.xpack.exponentialhistogram.aggregations.metrics.ExponentialHistogramValueCountAggregatorTests::testMatchesNumericDocValues
+  - org.elasticsearch.xpack.exponentialhistogram.aggregations.metrics.ExponentialHistogramValueCountAggregatorTests::testSupportedFieldTypes
+  - org.elasticsearch.xpack.exponentialhistogram.aggregations.metrics.ExponentialHistogramValueCountAggregatorTests::testQueryFiltering
+  - org.elasticsearch.xpack.exponentialhistogram.ExponentialHistogramFieldMapperTests::testSyntheticEmptyListNoDocValuesLoader
+  - org.elasticsearch.xpack.exponentialhistogram.ExponentialHistogramFieldMapperTests::testMeta
+  - org.elasticsearch.xpack.exponentialhistogram.ExponentialHistogramFieldMapperTests::testTextSearchInfoConsistency
+  - org.elasticsearch.xpack.exponentialhistogram.ExponentialHistogramFieldMapperTests::testSyntheticEmptyList
+  - org.elasticsearch.xpack.exponentialhistogram.ExponentialHistogramFieldMapperTests::testIgnoreMalformedFalseByDefault
+  - org.elasticsearch.xpack.exponentialhistogram.ExponentialHistogramFieldMapperTests::testSortShortcuts
+  - org.elasticsearch.xpack.exponentialhistogram.ExponentialHistogramFieldMapperTests::testEmptyDocumentNoDocValueLoader
+  - org.elasticsearch.xpack.exponentialhistogram.ExponentialHistogramFieldMapperTests::testMetricType
+  - org.elasticsearch.xpack.exponentialhistogram.ExponentialHistogramFieldMapperTests::testIgnoreMalformedExplicitlyFalse
+  - org.elasticsearch.xpack.exponentialhistogram.ExponentialHistogramFieldMapperTests::testIgnoreMalformedTrue
+  - org.elasticsearch.xpack.exponentialhistogram.ExponentialHistogramFieldMapperTests::testSyntheticSourceKeepAll
+  - org.elasticsearch.xpack.exponentialhistogram.ExponentialHistogramFieldMapperTests::testAggregatableConsistency
+  - org.elasticsearch.xpack.exponentialhistogram.ExponentialHistogramFieldMapperTests::testSyntheticSourceIgnoreMalformedExamples
+  - org.elasticsearch.xpack.exponentialhistogram.ExponentialHistogramFieldMapperTests::testSyntheticSourceWithTranslogSnapshot
+  - org.elasticsearch.xpack.exponentialhistogram.ExponentialHistogramFieldMapperTests::testSyntheticSourceInvalid
+  - org.elasticsearch.xpack.exponentialhistogram.ExponentialHistogramFieldMapperTests::testMinimalToMaximal
+  - org.elasticsearch.xpack.exponentialhistogram.ExponentialHistogramFieldMapperTests::testMinimalIsInvalidInRoutingPath
+  - org.elasticsearch.xpack.exponentialhistogram.ExponentialHistogramFieldMapperTests::testBoostNotAllowed
+  - org.elasticsearch.xpack.exponentialhistogram.ExponentialHistogramFieldMapperTests::testEmptyName
+  - org.elasticsearch.xpack.exponentialhistogram.ExponentialHistogramFieldMapperTests::testBlankName
+  - org.elasticsearch.xpack.exponentialhistogram.ExponentialHistogramFieldMapperTests::testFieldHasValueWithEmptyFieldInfos
+  - org.elasticsearch.xpack.exponentialhistogram.ExponentialHistogramFieldMapperTests::testMinimalSerializesToItself
+  - org.elasticsearch.xpack.exponentialhistogram.ExponentialHistogramFieldMapperTests::testCannotUseHistogramInArrays
+  - org.elasticsearch.xpack.exponentialhistogram.ExponentialHistogramFieldMapperTests::testFormattedDocValues
+  - org.elasticsearch.xpack.exponentialhistogram.ExponentialHistogramFieldMapperTests::testSyntheticSourceKeepArrays
+  - org.elasticsearch.xpack.exponentialhistogram.ExponentialHistogramFieldMapperTests::testSyntheticSourceInObject
+  - org.elasticsearch.xpack.exponentialhistogram.ExponentialHistogramFieldMapperTests::testNullInput
+  - org.elasticsearch.xpack.exponentialhistogram.ExponentialHistogramFieldMapperTests::testFieldHasValue
+  - org.elasticsearch.xpack.exponentialhistogram.ExponentialHistogramFieldMapperTests::testCannotBeUsedInMultifields
+  - org.elasticsearch.xpack.exponentialhistogram.ExponentialHistogramFieldMapperTests::testSyntheticSourceKeepNone
+  - org.elasticsearch.xpack.exponentialhistogram.ExponentialHistogramFieldMapperTests::testSyntheticSourceMany
+  - org.elasticsearch.xpack.exponentialhistogram.ExponentialHistogramFieldMapperTests::testUpdates
+  - org.elasticsearch.xpack.exponentialhistogram.ExponentialHistogramFieldMapperTests::testTotalFieldsCount
+  - org.elasticsearch.xpack.exponentialhistogram.ExponentialHistogramFieldMapperTests::testSyntheticSource
+  - org.elasticsearch.xpack.exponentialhistogram.ExponentialHistogramFieldMapperTests::testSupportsParsingObject
+  - org.elasticsearch.xpack.exponentialhistogram.ExponentialHistogramFieldMapperTests::testSyntheticSourceInNestedObject
+  - org.elasticsearch.xpack.exponentialhistogram.ExponentialHistogramFieldMapperTests::testCoerce
+  - org.elasticsearch.xpack.exponentialhistogram.ExponentialHistogramFieldMapperTests::testExistsQueryMinimalMapping
+  - org.elasticsearch.xpack.exponentialhistogram.aggregations.bucket.histogram.ExponentialHistogramBackedHistogramAggregatorTests::testSupportedFieldTypes
+  - org.elasticsearch.xpack.exponentialhistogram.aggregations.bucket.histogram.ExponentialHistogramBackedHistogramAggregatorTests::testQueryFiltering
+  - org.elasticsearch.xpack.exponentialhistogram.aggregations.bucket.histogram.ExponentialHistogramBackedHistogramAggregatorTests::testRandomHistogramsAndRandomIntervalAndOffset
+  - org.elasticsearch.xpack.exponentialhistogram.aggregations.bucket.histogram.ExponentialHistogramBackedHistogramAggregatorTests::testNoMatchingField
+  - org.elasticsearch.xpack.exponentialhistogram.aggregations.bucket.histogram.ExponentialHistogramBackedHistogramAggregatorTests::testNoDocs
+  - org.elasticsearch.xpack.exponentialhistogram.aggregations.bucket.histogram.ExponentialHistogramBackedHistogramAggregatorTests::testMinDocCount

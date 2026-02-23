@@ -1,0 +1,22 @@
+instance_id: elastic__elasticsearch-141519
+repo: elastic/elasticsearch
+version: 9.4.0
+base_commit: 3ff6d2d3c1624fff18afdf6d9d5d63a684c8b6cf
+pr_number: 141519
+
+FAIL_TO_PASS:
+  - org.elasticsearch.xpack.ml.job.process.DataCountsReporterTests::testConcurrentReadsDuringPersistence
+
+PASS_TO_PASS:
+  - org.elasticsearch.xpack.ml.job.process.DataCountsReporterTests::testReportRecordsWritten_Given100_000Records
+  - org.elasticsearch.xpack.ml.job.process.DataCountsReporterTests::testFinishReporting
+  - org.elasticsearch.xpack.ml.job.process.DataCountsReporterTests::testReportRecordsWritten_Given9999Records
+  - org.elasticsearch.xpack.ml.job.process.DataCountsReporterTests::testReportRecordsWritten_Given2_000_000Records
+  - org.elasticsearch.xpack.ml.job.process.DataCountsReporterTests::testSimpleConstructor
+  - org.elasticsearch.xpack.ml.job.process.DataCountsReporterTests::testComplexConstructor
+  - org.elasticsearch.xpack.ml.job.process.DataCountsReporterTests::testReportLatestTimeIncrementalStats
+  - org.elasticsearch.xpack.ml.job.process.DataCountsReporterTests::testReportRecordsWritten_Given30000Records
+  - org.elasticsearch.xpack.ml.job.process.DataCountsReporterTests::testResetIncrementalCounts
+  - org.elasticsearch.xpack.ml.job.process.DataCountsReporterTests::testConcurrentReadsDuringPersistence
+  - org.elasticsearch.xpack.ml.job.process.DataCountsReporterTests::testReportRecordsWritten_Given1_000_000Records
+  - org.elasticsearch.xpack.ml.job.process.DataCountsReporterTests::testReportRecordsWritten

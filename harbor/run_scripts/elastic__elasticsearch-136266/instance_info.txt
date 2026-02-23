@@ -1,0 +1,20 @@
+instance_id: elastic__elasticsearch-136266
+repo: elastic/elasticsearch
+version: 9.3.0
+base_commit: f74e8e460c86a54fa051d8cd52d44fbb1c78ea99
+pr_number: 136266
+
+FAIL_TO_PASS:
+  - org.elasticsearch.compute.data.BasicPageTests::testEqualityAndHashCodeSmallInput
+
+PASS_TO_PASS:
+  - org.elasticsearch.compute.data.BasicPageTests::testAppend
+  - org.elasticsearch.compute.data.BasicPageTests::testPageMultiRelease
+  - org.elasticsearch.compute.data.BasicPageTests::testPageSerializationSimple
+  - org.elasticsearch.compute.data.BasicPageTests::testEqualityAndHashCodeSmallInput
+  - org.elasticsearch.compute.data.BasicPageTests::testBasic
+  - org.elasticsearch.compute.data.BasicPageTests::testEqualityAndHashCode
+  - org.elasticsearch.compute.data.BasicPageTests::testPageSerializationEmpty
+  - org.elasticsearch.compute.data.BasicPageTests::testAppendToEmpty
+  - org.elasticsearch.compute.data.BasicPageTests::testSerializationListPages
+  - org.elasticsearch.compute.data.BasicPageTests::testExceptions

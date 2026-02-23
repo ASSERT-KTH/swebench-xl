@@ -1,0 +1,70 @@
+instance_id: elastic__elasticsearch-135184
+repo: elastic/elasticsearch
+version: 9.2.0
+base_commit: 651314e8b9f7de8f67992e9e1559069a9e9ecbf4
+pr_number: 135184
+
+FAIL_TO_PASS:
+  - org.elasticsearch.common.xcontent.json.JsonXContentTests::testOptimizedTextHasBytes
+
+PASS_TO_PASS:
+  - org.elasticsearch.xcontent.provider.cbor.ESCborParserTests::testParseText
+  - org.elasticsearch.xcontent.provider.json.ESUTF8StreamJsonParserTests::testGetValueRandomized
+  - org.elasticsearch.xcontent.provider.json.ESUTF8StreamJsonParserTests::testGetValueAsText
+  - org.elasticsearch.xcontent.provider.json.ESUTF8StreamJsonParserTests::testOptimisedParser
+  - org.elasticsearch.common.xcontent.json.JsonXContentTests::testShorts
+  - org.elasticsearch.common.xcontent.json.JsonXContentTests::testCalendar
+  - org.elasticsearch.common.xcontent.json.JsonXContentTests::testUnknownObject
+  - org.elasticsearch.common.xcontent.json.JsonXContentTests::testSelfReferencingIterableTwoLevels
+  - org.elasticsearch.common.xcontent.json.JsonXContentTests::testOptimizedTextHasBytes
+  - org.elasticsearch.common.xcontent.json.JsonXContentTests::testSelfReferencingMapsOneLevel
+  - org.elasticsearch.common.xcontent.json.JsonXContentTests::testAllowsDuplicates
+  - org.elasticsearch.common.xcontent.json.JsonXContentTests::testObject
+  - org.elasticsearch.common.xcontent.json.JsonXContentTests::testUnixEpochMillisField
+  - org.elasticsearch.common.xcontent.json.JsonXContentTests::testObjects
+  - org.elasticsearch.common.xcontent.json.JsonXContentTests::testBinaryValueWithOffsetLength
+  - org.elasticsearch.common.xcontent.json.JsonXContentTests::testRepeatedMapsAndNoSelfReferences
+  - org.elasticsearch.common.xcontent.json.JsonXContentTests::testJavaTime
+  - org.elasticsearch.common.xcontent.json.JsonXContentTests::testStrings
+  - org.elasticsearch.common.xcontent.json.JsonXContentTests::testMissingEndArray
+  - org.elasticsearch.common.xcontent.json.JsonXContentTests::testChecksForDuplicates
+  - org.elasticsearch.common.xcontent.json.JsonXContentTests::testBigIntegers
+  - org.elasticsearch.common.xcontent.json.JsonXContentTests::testFloats
+  - org.elasticsearch.common.xcontent.json.JsonXContentTests::testText
+  - org.elasticsearch.common.xcontent.json.JsonXContentTests::testMissingEndObject
+  - org.elasticsearch.common.xcontent.json.JsonXContentTests::testSelfReferencingIterable
+  - org.elasticsearch.common.xcontent.json.JsonXContentTests::testContentType
+  - org.elasticsearch.common.xcontent.json.JsonXContentTests::testBinaryField
+  - org.elasticsearch.common.xcontent.json.JsonXContentTests::testBytes
+  - org.elasticsearch.common.xcontent.json.JsonXContentTests::testMalformedJsonFieldThrowsXContentException
+  - org.elasticsearch.common.xcontent.json.JsonXContentTests::testSelfReferencingIterableOneLevel
+  - org.elasticsearch.common.xcontent.json.JsonXContentTests::testBinaryValue
+  - org.elasticsearch.common.xcontent.json.JsonXContentTests::testIterable
+  - org.elasticsearch.common.xcontent.json.JsonXContentTests::testLatLon
+  - org.elasticsearch.common.xcontent.json.JsonXContentTests::testGeoPoint
+  - org.elasticsearch.common.xcontent.json.JsonXContentTests::testBasics
+  - org.elasticsearch.common.xcontent.json.JsonXContentTests::testLongs
+  - org.elasticsearch.common.xcontent.json.JsonXContentTests::testIntegers
+  - org.elasticsearch.common.xcontent.json.JsonXContentTests::testStartEndArray
+  - org.elasticsearch.common.xcontent.json.JsonXContentTests::testMap
+  - org.elasticsearch.common.xcontent.json.JsonXContentTests::testPath
+  - org.elasticsearch.common.xcontent.json.JsonXContentTests::testNullValue
+  - org.elasticsearch.common.xcontent.json.JsonXContentTests::testBinaryUTF8
+  - org.elasticsearch.common.xcontent.json.JsonXContentTests::testSelfReferencingMapsTwoLevels
+  - org.elasticsearch.common.xcontent.json.JsonXContentTests::testOptimizedText
+  - org.elasticsearch.common.xcontent.json.JsonXContentTests::testNullField
+  - org.elasticsearch.common.xcontent.json.JsonXContentTests::testRawValue
+  - org.elasticsearch.common.xcontent.json.JsonXContentTests::testField
+  - org.elasticsearch.common.xcontent.json.JsonXContentTests::testEnsureNameNotNull
+  - org.elasticsearch.common.xcontent.json.JsonXContentTests::testToXContent
+  - org.elasticsearch.common.xcontent.json.JsonXContentTests::testBooleans
+  - org.elasticsearch.common.xcontent.json.JsonXContentTests::testBigInteger
+  - org.elasticsearch.common.xcontent.json.JsonXContentTests::testBigDecimals
+  - org.elasticsearch.common.xcontent.json.JsonXContentTests::testDoubles
+  - org.elasticsearch.common.xcontent.json.JsonXContentTests::testRawField
+  - org.elasticsearch.common.xcontent.json.JsonXContentTests::testEnsureNotNull
+  - org.elasticsearch.common.xcontent.json.JsonXContentTests::testStartEndObject
+  - org.elasticsearch.common.xcontent.json.JsonXContentTests::testEnsureNoSelfReferences
+  - org.elasticsearch.common.xcontent.json.JsonXContentTests::testNamedObject
+  - org.elasticsearch.common.xcontent.json.JsonXContentTests::testSelfReferencingObjectsArray
+  - org.elasticsearch.common.xcontent.json.JsonXContentTests::testDate
