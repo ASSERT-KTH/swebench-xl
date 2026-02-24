@@ -138,11 +138,14 @@ def build_combined_dockerfile(instance_id: str) -> str:
         "\n"
         "RUN mkdir -p /logs\n"
         "\n"
-        "# Elasticsearch refuses to run as root — create a dedicated user\n"
-        "# and transfer ownership of the repo and log directory.\n"
+        "# /installed-agent is where Harbor copies the agent's install.sh before startup\n"
+        "RUN mkdir -p /installed-agent\n"
+        "\n"
+        "# Elasticsearch refuses to run as root — create a dedicated user.\n"
+        "# The container stays as root so Harbor can install agents via apt-get;\n"
+        "# run_script.sh drops to this user with 'su elasticsearch' before invoking Gradle.\n"
         "RUN useradd -m -u 1000 elasticsearch 2>/dev/null || true\n"
-        "RUN chown -R elasticsearch:elasticsearch /app /logs\n"
-        "USER elasticsearch\n"
+        "RUN chown -R elasticsearch:elasticsearch /app\n"
     )
 
     return f"{base_content}\n\n# ── Instance-specific setup ──────────────────────────────────\n{instance_content}\n{harbor_additions}"

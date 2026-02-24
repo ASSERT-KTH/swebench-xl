@@ -93,8 +93,11 @@ ENV PYTHONPATH=/app/lib:/app
 
 RUN mkdir -p /logs
 
-# Elasticsearch refuses to run as root — create a dedicated user
-# and transfer ownership of the repo and log directory.
+# /installed-agent is where Harbor copies the agent's install.sh before startup
+RUN mkdir -p /installed-agent
+
+# Elasticsearch refuses to run as root — create a dedicated user.
+# The container stays as root so Harbor can install agents via apt-get;
+# run_script.sh drops to this user with 'su elasticsearch' before invoking Gradle.
 RUN useradd -m -u 1000 elasticsearch 2>/dev/null || true
-RUN chown -R elasticsearch:elasticsearch /app /logs
-USER elasticsearch
+RUN chown -R elasticsearch:elasticsearch /app

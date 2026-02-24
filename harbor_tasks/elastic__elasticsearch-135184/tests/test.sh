@@ -67,7 +67,9 @@ else:
 # (passing selected_test_files_to_run would trigger a generic --tests branch
 # that uses the wrong Gradle module and fails with "No tests found").
 set +e
-bash /tests/run_script.sh > "$STDOUT_LOG" 2> "$STDERR_LOG"
+# Run as the elasticsearch user — Elasticsearch refuses to start as root.
+# The container stays root so Harbor can install agents; we drop here for Gradle only.
+su -s /bin/bash elasticsearch -c "bash /tests/run_script.sh" > "$STDOUT_LOG" 2> "$STDERR_LOG"
 RUN_EXIT_CODE=$?
 set -e
 
