@@ -69,6 +69,9 @@ else:
 set +e
 # Run as the elasticsearch user — Elasticsearch refuses to start as root.
 # The container stays root so Harbor can install agents; we drop here for Gradle only.
+# The agent may have run Gradle as root, creating /app/.gradle owned by root.
+# Re-chown it so the elasticsearch user can write to the project-level Gradle cache.
+chown -R elasticsearch:elasticsearch /app/.gradle 2>/dev/null || true
 su -s /bin/bash elasticsearch -c "bash /tests/run_script.sh" > "$STDOUT_LOG" 2> "$STDERR_LOG"
 RUN_EXIT_CODE=$?
 set -e
@@ -148,6 +151,14 @@ for test in results.get('tests', []):
     elif test.get('status') == 'FAILED':
         failed_tests.add(name)
 
+# If the build failed and no tests ran at all, treat as failure.
+# Without this, all fail_to_pass entries get silently skipped as "unrunnable"
+# (because all_output_tests is empty), producing a false reward of 1.
+build_result = results.get('build_result')
+if build_result == 'FAILED' and not all_output_tests:
+    print("\nRESULT: FAILED (build failed, no tests ran)")
+    sys.exit(1)
+
 def matches_any(required, test_set):
     """
     Check if a required test name matches anything in test_set.
@@ -164,13 +175,18 @@ def matches_any(required, test_set):
     return False
 
 # fail_to_pass: every required test must have PASSED.
-# Skip class-level entries that produced no output at all (e.g. abstract base
-# classes that JUnit cannot instantiate — they are dataset artifacts).
+# If a required class produced no output:
+#   - build PASSED  → likely an abstract base class JUnit can't instantiate; skip it.
+#   - build FAILED  → likely a compilation error prevented the tests from running;
+#                     count it as missing so the reward is not inflated.
 missing = []
 skipped_abstract = []
 for req in fail_to_pass:
     if not matches_any(req, all_output_tests):
-        skipped_abstract.append(req)  # no output → abstract/not runnable, ignore
+        if build_result == 'FAILED':
+            missing.append(req)  # build failed → test didn't run, not abstract
+        else:
+            skipped_abstract.append(req)  # build passed → assume abstract/unrunnable
         continue
     if not matches_any(req, passed_tests):
         missing.append(req)

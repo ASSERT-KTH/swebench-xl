@@ -141,10 +141,12 @@ def parse_gradle_stdout_fallback(stdout: str, stderr: str) -> list[dict]:
 def determine_build_result(stdout: str, stderr: str) -> str | None:
     """Determine overall build result from stdout/stderr."""
     combined = stdout + "\n" + stderr
-    if "BUILD SUCCESSFUL" in combined:
-        return "PASSED"
-    elif "BUILD FAILED" in combined:
+    # Check FAILED first: if any command failed, the overall result is FAILED
+    # even if other commands succeeded (combined output can contain both strings).
+    if "BUILD FAILED" in combined:
         return "FAILED"
+    elif "BUILD SUCCESSFUL" in combined:
+        return "PASSED"
     return None
 
 
