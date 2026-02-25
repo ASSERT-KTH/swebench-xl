@@ -12,20 +12,20 @@ if [ $# -gt 0 ]; then
     TEST_FILES="$@"
     echo "Running with custom test files: $TEST_FILES"
     for tf in $(echo "$TEST_FILES" | tr ',' ' '); do
-        ./gradlew test --tests "$tf" --no-daemon --stacktrace -x javadoc
+        ./gradlew test --tests "$tf" --no-daemon --stacktrace -x javadoc --no-configuration-cache
     done
 else
     echo "Running pre-configured gradle commands..."
 
 echo "=== Running gradle command 1/2 ==="
-./gradlew :x-pack:plugin:esql:test --tests org.elasticsearch.xpack.esql.analysis.AnalyzerTestUtils --tests org.elasticsearch.xpack.esql.optimizer.AbstractLogicalPlanOptimizerTests --tests org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests --tests org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests --tests org.elasticsearch.xpack.esql.optimizer.rules.logical.PushDownJoinPastProjectTests --tests org.elasticsearch.xpack.esql.plan.QueryPlanTests --tests org.elasticsearch.xpack.esql.plan.logical.CommandLicenseTests --tests org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests --no-daemon --stacktrace -x javadoc
+./gradlew :x-pack:plugin:esql:test --tests org.elasticsearch.xpack.esql.analysis.AnalyzerTestUtils --tests org.elasticsearch.xpack.esql.optimizer.AbstractLogicalPlanOptimizerTests --tests org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests --tests org.elasticsearch.xpack.esql.optimizer.PhysicalPlanOptimizerTests --tests org.elasticsearch.xpack.esql.optimizer.rules.logical.PushDownJoinPastProjectTests --tests org.elasticsearch.xpack.esql.plan.QueryPlanTests --tests org.elasticsearch.xpack.esql.plan.logical.CommandLicenseTests --tests org.elasticsearch.xpack.esql.tree.EsqlNodeSubclassTests --no-daemon --stacktrace -x javadoc --no-configuration-cache
 EXIT_CODE=$?
 if [ $EXIT_CODE -ne 0 ]; then
     echo "Gradle command 1 failed with exit code $EXIT_CODE"
 fi
 
 echo "=== Running gradle command 2/2 ==="
-./gradlew :x-pack:plugin:ql:test --tests org.elasticsearch.xpack.ql.plan.QueryPlanTests --no-daemon --stacktrace -x javadoc
+./gradlew :x-pack:plugin:ql:test --tests org.elasticsearch.xpack.ql.plan.QueryPlanTests --no-daemon --stacktrace -x javadoc --no-configuration-cache
 EXIT_CODE=$?
 if [ $EXIT_CODE -ne 0 ]; then
     echo "Gradle command 2 failed with exit code $EXIT_CODE"

@@ -78,6 +78,8 @@ def generate_run_script(instance: dict, output_dir: Path):
     # Build the script with each gradle command
     commands_block = ""
     for i, cmd in enumerate(gradle_commands):
+        if "--no-configuration-cache" not in cmd:
+            cmd = cmd + " --no-configuration-cache"
         commands_block += f"""
 echo "=== Running gradle command {i + 1}/{len(gradle_commands)} ==="
 {cmd}
@@ -101,7 +103,7 @@ if [ $# -gt 0 ]; then
     TEST_FILES="$@"
     echo "Running with custom test files: $TEST_FILES"
     for tf in $(echo "$TEST_FILES" | tr ',' ' '); do
-        ./gradlew test --tests "$tf" --no-daemon --stacktrace -x javadoc
+        ./gradlew test --tests "$tf" --no-daemon --stacktrace -x javadoc --no-configuration-cache
     done
 else
     echo "Running pre-configured gradle commands..."

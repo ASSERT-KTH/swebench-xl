@@ -12,27 +12,27 @@ if [ $# -gt 0 ]; then
     TEST_FILES="$@"
     echo "Running with custom test files: $TEST_FILES"
     for tf in $(echo "$TEST_FILES" | tr ',' ' '); do
-        ./gradlew test --tests "$tf" --no-daemon --stacktrace -x javadoc
+        ./gradlew test --tests "$tf" --no-daemon --stacktrace -x javadoc --no-configuration-cache
     done
 else
     echo "Running pre-configured gradle commands..."
 
 echo "=== Running gradle command 1/3 ==="
-./gradlew :server:test --tests org.elasticsearch.action.admin.cluster.node.stats.NodeStatsTests --tests org.elasticsearch.monitor.os.OsProbeTests --tests org.elasticsearch.monitor.os.OsStatsTests --tests org.elasticsearch.rest.action.cat.RestNodesActionTests --no-daemon --stacktrace -x javadoc
+./gradlew :server:test --tests org.elasticsearch.action.admin.cluster.node.stats.NodeStatsTests --tests org.elasticsearch.monitor.os.OsProbeTests --tests org.elasticsearch.monitor.os.OsStatsTests --tests org.elasticsearch.rest.action.cat.RestNodesActionTests --no-daemon --stacktrace -x javadoc --no-configuration-cache
 EXIT_CODE=$?
 if [ $EXIT_CODE -ne 0 ]; then
     echo "Gradle command 1 failed with exit code $EXIT_CODE"
 fi
 
 echo "=== Running gradle command 2/3 ==="
-./gradlew :x-pack:plugin:autoscaling:test --tests org.elasticsearch.xpack.autoscaling.capacity.nodeinfo.AutoscalingNodesInfoServiceTests --no-daemon --stacktrace -x javadoc
+./gradlew :x-pack:plugin:autoscaling:test --tests org.elasticsearch.xpack.autoscaling.capacity.nodeinfo.AutoscalingNodesInfoServiceTests --no-daemon --stacktrace -x javadoc --no-configuration-cache
 EXIT_CODE=$?
 if [ $EXIT_CODE -ne 0 ]; then
     echo "Gradle command 2 failed with exit code $EXIT_CODE"
 fi
 
 echo "=== Running gradle command 3/3 ==="
-./gradlew :x-pack:plugin:monitoring:test --tests org.elasticsearch.xpack.monitoring.collector.node.NodeStatsMonitoringDocTests --no-daemon --stacktrace -x javadoc
+./gradlew :x-pack:plugin:monitoring:test --tests org.elasticsearch.xpack.monitoring.collector.node.NodeStatsMonitoringDocTests --no-daemon --stacktrace -x javadoc --no-configuration-cache
 EXIT_CODE=$?
 if [ $EXIT_CODE -ne 0 ]; then
     echo "Gradle command 3 failed with exit code $EXIT_CODE"

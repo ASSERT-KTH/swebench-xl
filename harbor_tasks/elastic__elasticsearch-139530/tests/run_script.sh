@@ -12,13 +12,13 @@ if [ $# -gt 0 ]; then
     TEST_FILES="$@"
     echo "Running with custom test files: $TEST_FILES"
     for tf in $(echo "$TEST_FILES" | tr ',' ' '); do
-        ./gradlew test --tests "$tf" --no-daemon --stacktrace -x javadoc
+        ./gradlew test --tests "$tf" --no-daemon --stacktrace -x javadoc --no-configuration-cache
     done
 else
     echo "Running pre-configured gradle commands..."
 
 echo "=== Running gradle command 1/1 ==="
-./gradlew :server:test --tests org.elasticsearch.search.builder.SearchSourceBuilderTests --no-daemon --stacktrace -x javadoc
+./gradlew :server:test --tests org.elasticsearch.search.builder.SearchSourceBuilderTests --no-daemon --stacktrace -x javadoc --no-configuration-cache
 EXIT_CODE=$?
 if [ $EXIT_CODE -ne 0 ]; then
     echo "Gradle command 1 failed with exit code $EXIT_CODE"

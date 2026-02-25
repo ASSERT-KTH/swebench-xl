@@ -12,20 +12,20 @@ if [ $# -gt 0 ]; then
     TEST_FILES="$@"
     echo "Running with custom test files: $TEST_FILES"
     for tf in $(echo "$TEST_FILES" | tr ',' ' '); do
-        ./gradlew test --tests "$tf" --no-daemon --stacktrace -x javadoc
+        ./gradlew test --tests "$tf" --no-daemon --stacktrace -x javadoc --no-configuration-cache
     done
 else
     echo "Running pre-configured gradle commands..."
 
 echo "=== Running gradle command 1/2 ==="
-./gradlew :modules:data-streams:test --tests org.elasticsearch.datastreams.action.TransportGetDataStreamsActionTests --no-daemon --stacktrace -x javadoc
+./gradlew :modules:data-streams:test --tests org.elasticsearch.datastreams.action.TransportGetDataStreamsActionTests --no-daemon --stacktrace -x javadoc --no-configuration-cache
 EXIT_CODE=$?
 if [ $EXIT_CODE -ne 0 ]; then
     echo "Gradle command 1 failed with exit code $EXIT_CODE"
 fi
 
 echo "=== Running gradle command 2/2 ==="
-./gradlew :server:test --tests org.elasticsearch.action.admin.indices.rollover.MetadataRolloverServiceTests --tests org.elasticsearch.cluster.metadata.DataStreamTests --tests org.elasticsearch.cluster.metadata.MetadataDataStreamsServiceTests --no-daemon --stacktrace -x javadoc
+./gradlew :server:test --tests org.elasticsearch.action.admin.indices.rollover.MetadataRolloverServiceTests --tests org.elasticsearch.cluster.metadata.DataStreamTests --tests org.elasticsearch.cluster.metadata.MetadataDataStreamsServiceTests --no-daemon --stacktrace -x javadoc --no-configuration-cache
 EXIT_CODE=$?
 if [ $EXIT_CODE -ne 0 ]; then
     echo "Gradle command 2 failed with exit code $EXIT_CODE"

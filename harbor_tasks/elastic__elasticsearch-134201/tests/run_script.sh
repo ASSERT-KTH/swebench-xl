@@ -12,20 +12,20 @@ if [ $# -gt 0 ]; then
     TEST_FILES="$@"
     echo "Running with custom test files: $TEST_FILES"
     for tf in $(echo "$TEST_FILES" | tr ',' ' '); do
-        ./gradlew test --tests "$tf" --no-daemon --stacktrace -x javadoc
+        ./gradlew test --tests "$tf" --no-daemon --stacktrace -x javadoc --no-configuration-cache
     done
 else
     echo "Running pre-configured gradle commands..."
 
 echo "=== Running gradle command 1/2 ==="
-./gradlew :x-pack:plugin:esql:qa:server:test --tests org.elasticsearch.xpack.esql.qa.rest.generative.GenerativeRestTest --no-daemon --stacktrace -x javadoc
+./gradlew :x-pack:plugin:esql:qa:server:test --tests org.elasticsearch.xpack.esql.qa.rest.generative.GenerativeRestTest --no-daemon --stacktrace -x javadoc --no-configuration-cache
 EXIT_CODE=$?
 if [ $EXIT_CODE -ne 0 ]; then
     echo "Gradle command 1 failed with exit code $EXIT_CODE"
 fi
 
 echo "=== Running gradle command 2/2 ==="
-./gradlew :x-pack:plugin:esql:test --tests org.elasticsearch.xpack.esql.analysis.VerifierTests --tests org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests --tests org.elasticsearch.xpack.esql.optimizer.OptimizerVerificationTests --no-daemon --stacktrace -x javadoc
+./gradlew :x-pack:plugin:esql:test --tests org.elasticsearch.xpack.esql.analysis.VerifierTests --tests org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests --tests org.elasticsearch.xpack.esql.optimizer.OptimizerVerificationTests --no-daemon --stacktrace -x javadoc --no-configuration-cache
 EXIT_CODE=$?
 if [ $EXIT_CODE -ne 0 ]; then
     echo "Gradle command 2 failed with exit code $EXIT_CODE"

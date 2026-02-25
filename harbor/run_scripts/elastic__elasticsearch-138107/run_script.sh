@@ -12,13 +12,13 @@ if [ $# -gt 0 ]; then
     TEST_FILES="$@"
     echo "Running with custom test files: $TEST_FILES"
     for tf in $(echo "$TEST_FILES" | tr ',' ' '); do
-        ./gradlew test --tests "$tf" --no-daemon --stacktrace -x javadoc
+        ./gradlew test --tests "$tf" --no-daemon --stacktrace -x javadoc --no-configuration-cache
     done
 else
     echo "Running pre-configured gradle commands..."
 
 echo "=== Running gradle command 1/1 ==="
-./gradlew :x-pack:plugin:esql:test --tests org.elasticsearch.xpack.esql.expression.function.TestCaseSupplier --tests org.elasticsearch.xpack.esql.expression.function.grouping.BucketTests --tests org.elasticsearch.xpack.esql.expression.function.grouping.TBucketTests --tests org.elasticsearch.xpack.esql.expression.function.scalar.AbstractConfigurationFunctionTestCase --tests org.elasticsearch.xpack.esql.expression.function.scalar.date.DateExtractTests --tests org.elasticsearch.xpack.esql.expression.function.scalar.date.DateFormatTests --tests org.elasticsearch.xpack.esql.expression.function.scalar.date.DayNameTests --tests org.elasticsearch.xpack.esql.expression.function.scalar.date.MonthNameTests --tests org.elasticsearch.xpack.esql.expression.function.scalar.date.NowTests --tests org.elasticsearch.xpack.esql.expression.function.scalar.string.ToLowerTests --tests org.elasticsearch.xpack.esql.expression.function.scalar.string.ToUpperTests --no-daemon --stacktrace -x javadoc
+./gradlew :x-pack:plugin:esql:test --tests org.elasticsearch.xpack.esql.expression.function.TestCaseSupplier --tests org.elasticsearch.xpack.esql.expression.function.grouping.BucketTests --tests org.elasticsearch.xpack.esql.expression.function.grouping.TBucketTests --tests org.elasticsearch.xpack.esql.expression.function.scalar.AbstractConfigurationFunctionTestCase --tests org.elasticsearch.xpack.esql.expression.function.scalar.date.DateExtractTests --tests org.elasticsearch.xpack.esql.expression.function.scalar.date.DateFormatTests --tests org.elasticsearch.xpack.esql.expression.function.scalar.date.DayNameTests --tests org.elasticsearch.xpack.esql.expression.function.scalar.date.MonthNameTests --tests org.elasticsearch.xpack.esql.expression.function.scalar.date.NowTests --tests org.elasticsearch.xpack.esql.expression.function.scalar.string.ToLowerTests --tests org.elasticsearch.xpack.esql.expression.function.scalar.string.ToUpperTests --no-daemon --stacktrace -x javadoc --no-configuration-cache
 EXIT_CODE=$?
 if [ $EXIT_CODE -ne 0 ]; then
     echo "Gradle command 1 failed with exit code $EXIT_CODE"
