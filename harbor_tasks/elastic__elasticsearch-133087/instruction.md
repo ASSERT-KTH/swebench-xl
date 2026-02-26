@@ -1,22 +1,18 @@
 # Task
 
-## Esql skip null metrics
+## Filter out null metric values
 
-Resolves https://github.com/elastic/elasticsearch/issues/129524
+Aggregations involving time-series should only process documents where values for metric fields are not null. This is in line with PromQL that implicitly selects time-series containing values and tracks the ones with no recent data as stale.
 
-This is meant to add a rewrite rule to filter out null metrics.  I'm opening this PR early to collect feedback from the Analytics Engine team on the approach.
+A workaround is to explicitly filter out null values, e.g.
 
-This rule scans the query plan to collect all of the metric attributes, creates an isNotNull expression for each, and then combines them into a single filter.  For the initial version of this, we want to process any document that has any of the metrics in question, so we OR the filters together.
+```
+TS my-metrics
+ | WHERE cpu_usage IS NOT NULL
+ | STATS max(avg_over_time(cpu_usage)) BY TBUCKET(1 hour), hostname
+```
 
-Feature Design Questions:
-- Should we apply this filter even if the user has other filters or logic dealing with the given metric field?  e.g. if they have a `COALESCE` for that field already in the query?
-    - At this point, the rule only collects metrics from `STATS` commands.  So if a field is coalesced and then we compute a statistic on that result, no metric will be collected for it.  This is a little fragile as written here, but it is working and it has tests.
-- Is it correct to be OR'ing the filters together?
-    - This seems correct.  We want all documents that have a metric value for any of the metrics involved in the query.
-
-Implementation Questions: 
-- Where is the correct place in the query planning process to apply this rule?  My instinct is that it should run in the "Finish Analysis" phase of the "Analyzer" step.  As written it should only run once, and it seems like it should run after references and union types have been resolved.  
-    - Resolution: I discussed this with Fang, and we decided it was best placed in the substitutions phase of the logical plan optimizer.
+Still, adding `WHERE <metric> IS NOT NULL` for all metrics in all queries is fairly verbose and redundant. It should be implicitly applied within the `TS` command scope.
 
 ---
 
@@ -24,3 +20,87 @@ Implementation Questions:
 **Base commit:** `df8cedf9920c8bf710221ca8579bb90f64d4faa0`
 **Instance ID:** `elastic__elasticsearch-133087`
 **Language:** `Java`
+
+You can execute bash commands and edit files to implement the necessary changes.
+
+## Recommended Workflow
+
+This workflows should be done step-by-step so that you can iterate on your 
+changes and any possible problems.
+
+1. Analyze the codebase by finding and reading relevant files
+2. Create a script to reproduce the issue
+3. Edit the source code to resolve the issue
+4. Verify your fix works by running your script again
+5. Test edge cases to ensure your fix is robust
+6. Submit your changes and finish your work by issuing the following command: 
+`echo COMPLETE_TASK_AND_SUBMIT_FINAL_OUTPUT`.
+   Do not combine it with any other command. <important>After this command, you 
+cannot continue working on this task.</important>
+
+## Important Rules
+
+1. Every response must contain exactly one action
+2. The action must be enclosed in triple backticks
+3. Directory or environment variable changes are not persistent. Every action is
+executed in a new subshell.
+   However, you can prefix any action with `MY_ENV_VAR=MY_VALUE cd 
+/path/to/working/dir && ...` or write/load environment variables from files
+
+<system_information>
+Linux 6.6.87.2-microsoft-standard-WSL2 #1 SMP PREEMPT_DYNAMIC Thu Jun  5 
+18:30:46 UTC 2025 x86_64
+</system_information>
+
+## Formatting your response
+
+Here is an example of a correct response:
+
+<example_response>
+THOUGHT: I need to understand the structure of the repository first. Let me 
+check what files are in the current directory to get a better understanding of 
+the codebase.
+
+```bash
+ls -la
+```
+</example_response>
+
+## Useful command examples
+
+### Create a new file:
+
+```bash
+cat <<'EOF' > newfile.py
+import numpy as np
+hello = "world"
+print(hello)
+EOF
+```
+
+### Edit files with sed:```bash
+# Replace all occurrences
+sed -i 's/old_string/new_string/g' filename.py
+
+# Replace only first occurrence
+sed -i 's/old_string/new_string/' filename.py
+
+# Replace first occurrence on line 1
+sed -i '1s/old_string/new_string/' filename.py
+
+# Replace all occurrences in lines 1-10
+sed -i '1,10s/old_string/new_string/g' filename.py
+```
+
+### View file content:
+
+```bash
+# View specific lines with numbers
+nl -ba filename.py | sed -n '10,20p'
+```
+
+### Any other command you want to run
+
+```bash
+anything
+```

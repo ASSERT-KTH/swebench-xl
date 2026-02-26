@@ -1,43 +1,22 @@
 # Task
 
-## ESQL: Pushdown Lookup Join past Project
+## ESQL: LOOKUP JOIN push down optimizations
 
-Closes https://github.com/elastic/elasticsearch/issues/119082.
+Compared to `ENRICH` (and other, similar plans like `GROK`, `DISSECT` and `EVAL`), we do not push down `LOOKUP JOIN`s.
 
-Alternative approach to https://github.com/elastic/elasticsearch/pull/127776 that doesn't rely on renaming the lookup fields that `LOOKUP JOIN` adds.
+That leads to suboptimal plans, e.g. because projections before and after the `LOOKUP JOIN` cannot be combined.
 
-In general, we're doing this simple transformation:
+Example:
 ```
-Join[LEFT][leftKeyField][rightKeyField]
-|_Project[leftKeyField, leftOtherField]
-| \_...
-\_EsRelation[LOOKUP][rightKeyField, rightOtherField]
-
-->
-
-Project[leftKeyField, leftOtherField, rightOtherField]
-\_Join[LEFT][leftKeyField][rightKeyField]
-  |_...
-  \_EsRelation[LOOKUP][rightKeyField, rightOtherField]
+              FROM test
+            | LOOKUP JOIN lookup_index1 ON field
+            | RENAME foo AS b
+            | LOOKUP JOIN lookup_index2 ON field
+            | DROP b*
 ```
+The `RENAME foo AS b` in between the `LOOKUP JOIN`s becomes an `EsqlProject`, which cannot be combined with the `EsqlProject` that comes from the `DROP b*` because the `LOOKUP JOIN lookup_index_2` is in the way. As a result, we cannot determine that the field `foo` obtained from the `lookup_index1` is actually dropped and unused in the end.
 
-The tricky part is dealing with the case where the lookup fields added by `LOOKUP JOIN` would shadow some attributes if performed _after_ the `Project`; in this case, we leave `Eval`s in place that assign temporary names to any would-be shadowed attributes. This is the same approach that other pushdown rules take when they push down past an `Order` (`SORT`) - see `PushDownUtils#pushGeneratingPlanPastProjectAndOrderBy` for reference.
-
-Example with shadowing:
-```
-Join[LEFT][leftKeyField][rightKeyField]
-|_Project[leftKeyField, nameConflictField AS renamedField]
-| \_...
-\_EsRelation[LOOKUP][rightKeyField, nameConflictField]
-
-->
-
-Project[leftKeyField, $$nameConflictField$temp_name$ AS renamedField, nameConflictField]
-\_Join[LEFT][leftKeyField][rightKeyField]
-  |_Eval[nameConflictField AS $$nameConflictField$temp_name$]
-  |  \_...
-  \_EsRelation[LOOKUP][rightKeyField, nameConflictField]
-```
+**Edit:** Let's also double check that there are no other existing optimizer rules that could (somewhat) easily be applied to `LOOKUP JOIN`.
 
 ---
 
@@ -45,3 +24,87 @@ Project[leftKeyField, $$nameConflictField$temp_name$ AS renamedField, nameConfli
 **Base commit:** `2502a363de7c42eb72fb78e3d1037f76afa399cc`
 **Instance ID:** `elastic__elasticsearch-129503`
 **Language:** `Java`
+
+You can execute bash commands and edit files to implement the necessary changes.
+
+## Recommended Workflow
+
+This workflows should be done step-by-step so that you can iterate on your 
+changes and any possible problems.
+
+1. Analyze the codebase by finding and reading relevant files
+2. Create a script to reproduce the issue
+3. Edit the source code to resolve the issue
+4. Verify your fix works by running your script again
+5. Test edge cases to ensure your fix is robust
+6. Submit your changes and finish your work by issuing the following command: 
+`echo COMPLETE_TASK_AND_SUBMIT_FINAL_OUTPUT`.
+   Do not combine it with any other command. <important>After this command, you 
+cannot continue working on this task.</important>
+
+## Important Rules
+
+1. Every response must contain exactly one action
+2. The action must be enclosed in triple backticks
+3. Directory or environment variable changes are not persistent. Every action is
+executed in a new subshell.
+   However, you can prefix any action with `MY_ENV_VAR=MY_VALUE cd 
+/path/to/working/dir && ...` or write/load environment variables from files
+
+<system_information>
+Linux 6.6.87.2-microsoft-standard-WSL2 #1 SMP PREEMPT_DYNAMIC Thu Jun  5 
+18:30:46 UTC 2025 x86_64
+</system_information>
+
+## Formatting your response
+
+Here is an example of a correct response:
+
+<example_response>
+THOUGHT: I need to understand the structure of the repository first. Let me 
+check what files are in the current directory to get a better understanding of 
+the codebase.
+
+```bash
+ls -la
+```
+</example_response>
+
+## Useful command examples
+
+### Create a new file:
+
+```bash
+cat <<'EOF' > newfile.py
+import numpy as np
+hello = "world"
+print(hello)
+EOF
+```
+
+### Edit files with sed:```bash
+# Replace all occurrences
+sed -i 's/old_string/new_string/g' filename.py
+
+# Replace only first occurrence
+sed -i 's/old_string/new_string/' filename.py
+
+# Replace first occurrence on line 1
+sed -i '1s/old_string/new_string/' filename.py
+
+# Replace all occurrences in lines 1-10
+sed -i '1,10s/old_string/new_string/g' filename.py
+```
+
+### View file content:
+
+```bash
+# View specific lines with numbers
+nl -ba filename.py | sed -n '10,20p'
+```
+
+### Any other command you want to run
+
+```bash
+anything
+```

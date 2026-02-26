@@ -1,16 +1,10 @@
 # Task
 
-## Don't store keyword multi fields when they trip ignore_above
+## Avoid storing ignored source for multi-fields
 
-This is a small refactor + bug for fix [131282](https://github.com/elastic/elasticsearch/issues/131282).
+in case of multi-fields, the "parent" field is responsible for tracking the source. Other fields should not track source, e.g. in case of a keyword exceeding the `ignore_above` limit.
 
-The refactor changes how `text`, `match_only_text`, and `annotated_text` fields use `keyword` multi fields for synthetic source. Currently, this is done via the [hasSyntheticSourceCompatibleKeywordField](https://github.com/elastic/elasticsearch/blob/f0c30f272da3ff36f1a65524cc0e63a07389800a/server/src/main/java/org/elasticsearch/index/mapper/TextFieldMapper.java#L317) argument, where we set a boolean flag to indicate whether there is a keyword multi field that is either stored or has doc values. This is not a good approach for addressing [131282](https://github.com/elastic/elasticsearch/issues/131282) because we want to disable the [following logic](https://github.com/elastic/elasticsearch/blob/main/server/src/main/java/org/elasticsearch/index/mapper/KeywordFieldMapper.java#L1217-L1222) for multi fields. With that disabled, the parent fields will no longer have a multi field to use for synthetic source.
-
-We could designate one of the keyword fields as some kind of "synthetic source provider" for the parent. This way the field will always create a `StoredField` when `ignore_above` is tripped. However, this is a poor approach since it exposes how text fields are implemented to the keyword field. If the parent field decides how and what is stored, it'll be a lot clearer in the code.
-
-This is where this PR comes in. It aims to remove `hasSyntheticSourceCompatibleKeywordField` (although kept for now for bwc) and instead relies on the `syntheticSourceDelegate`. With the addition of a new method `canUseSyntheticSourceDelegateForSyntheticSource()`, which is called during indexing, we can determine whether a particular keyword multi field is a valid supporter of synthetic source. If it isn't, then the parent field will explicitly create a `StoredField` for that.
-
-Note: there are a lot of changed files, that said, most of them are just constructor changes. The actual changes are pretty limited.
+This was partially addressed in #129126 but needs to be generalized.
 
 ---
 
@@ -18,3 +12,87 @@ Note: there are a lot of changed files, that said, most of them are just constru
 **Base commit:** `caff54f13602703b8fa9aaa2f638e4220df31c3b`
 **Instance ID:** `elastic__elasticsearch-132962`
 **Language:** `Java`
+
+You can execute bash commands and edit files to implement the necessary changes.
+
+## Recommended Workflow
+
+This workflows should be done step-by-step so that you can iterate on your 
+changes and any possible problems.
+
+1. Analyze the codebase by finding and reading relevant files
+2. Create a script to reproduce the issue
+3. Edit the source code to resolve the issue
+4. Verify your fix works by running your script again
+5. Test edge cases to ensure your fix is robust
+6. Submit your changes and finish your work by issuing the following command: 
+`echo COMPLETE_TASK_AND_SUBMIT_FINAL_OUTPUT`.
+   Do not combine it with any other command. <important>After this command, you 
+cannot continue working on this task.</important>
+
+## Important Rules
+
+1. Every response must contain exactly one action
+2. The action must be enclosed in triple backticks
+3. Directory or environment variable changes are not persistent. Every action is
+executed in a new subshell.
+   However, you can prefix any action with `MY_ENV_VAR=MY_VALUE cd 
+/path/to/working/dir && ...` or write/load environment variables from files
+
+<system_information>
+Linux 6.6.87.2-microsoft-standard-WSL2 #1 SMP PREEMPT_DYNAMIC Thu Jun  5 
+18:30:46 UTC 2025 x86_64
+</system_information>
+
+## Formatting your response
+
+Here is an example of a correct response:
+
+<example_response>
+THOUGHT: I need to understand the structure of the repository first. Let me 
+check what files are in the current directory to get a better understanding of 
+the codebase.
+
+```bash
+ls -la
+```
+</example_response>
+
+## Useful command examples
+
+### Create a new file:
+
+```bash
+cat <<'EOF' > newfile.py
+import numpy as np
+hello = "world"
+print(hello)
+EOF
+```
+
+### Edit files with sed:```bash
+# Replace all occurrences
+sed -i 's/old_string/new_string/g' filename.py
+
+# Replace only first occurrence
+sed -i 's/old_string/new_string/' filename.py
+
+# Replace first occurrence on line 1
+sed -i '1s/old_string/new_string/' filename.py
+
+# Replace all occurrences in lines 1-10
+sed -i '1,10s/old_string/new_string/g' filename.py
+```
+
+### View file content:
+
+```bash
+# View specific lines with numbers
+nl -ba filename.py | sed -n '10,20p'
+```
+
+### Any other command you want to run
+
+```bash
+anything
+```

@@ -101,3 +101,57 @@ RUN mkdir -p /installed-agent
 # run_script.sh drops to this user with 'su elasticsearch' before invoking Gradle.
 RUN useradd -m -u 1000 elasticsearch 2>/dev/null || true
 RUN chown -R elasticsearch:elasticsearch /app
+
+# Pre-warm the Gradle distribution so the agent doesn't time out downloading it.
+# Run as root (same user the agent uses), so the cache lands in /root/.gradle.
+# The 'refuses to run as root' restriction only applies to starting an ES server,
+# not to Gradle compilation or unit test runs.
+RUN cd /app && ./gradlew --version --no-daemon || true
+
+# Write a mini-swe-agent config that:
+#   1. Restores the system_template from mini.yaml (lost when MSWEA_MINI_CONFIG_PATH
+#      fully replaces mini.yaml instead of merging with it).
+#   2. Raises per-command timeout to 600s (default 30s is too short for Gradle).
+#   3. Sets step_limit to 250.
+#   4. Fixes the format_error_template to explicitly require ```bash blocks.
+RUN cat > /root/mini-swe-agent-config.yaml << 'MSWEA_CONFIG_EOF'
+env:
+  timeout: 600
+agent:
+  step_limit: 250
+  system_template: |
+    You are a helpful assistant that can interact with a computer.
+
+    Your response must contain exactly ONE bash code block with ONE command (or
+    commands connected with && or ||).
+    Include a THOUGHT section before your command where you explain your reasoning
+    process.
+    Format your response as shown in <format_example>.
+
+    <format_example>
+    Your reasoning and analysis here. Explain why you want to perform the action.
+
+    ```bash
+    your_command_here
+    ```
+    </format_example>
+
+    Failure to follow these rules will cause your response to be rejected.
+  format_error_template: |
+    Please always provide EXACTLY ONE action in triple backticks, found {{actions|length}} actions.
+    If you want to end the task, please issue the following command: `echo COMPLETE_TASK_AND_SUBMIT_FINAL_OUTPUT`
+    without any other command.
+    Else, please format your response exactly as follows:
+
+    <response_example>
+    Here are some thoughts about why you want to perform the action.
+
+    ```bash
+    <action>
+    ```
+    </response_example>
+
+    Note: In rare cases, if you need to reference a similar format in your command,
+    you might have to proceed in two steps, first writing TRIPLEBACKTICKSBASH, then replacing them with ```bash.
+MSWEA_CONFIG_EOF
+ENV MSWEA_MINI_CONFIG_PATH=/root/mini-swe-agent-config.yaml

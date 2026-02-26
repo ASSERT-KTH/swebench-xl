@@ -12,7 +12,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 def load_dataset():
-    dataset_path = Path("../benchmark/dataset.jsonl")
+    dataset_path = Path("../benchmark/dataset_new.jsonl")
     instance_ids = []
     instances = []
     with open(dataset_path) as f:
@@ -311,10 +311,10 @@ Respond with a JSON object only, no markdown, with the following fields:
             })
     
     # Save all results to JSON file
-    with open("semantic_alignment_results.json", "w") as f:
+    with open("semantic_alignment_results_new.json", "w") as f:
         json.dump(all_results, f, indent=2)
     
-    print(f"\nSaved semantic alignment results to semantic_alignment_results.json")
+    print(f"\nSaved semantic alignment results to semantic_alignment_results_new.json")
     
     return high_quality_instances
 
@@ -323,19 +323,18 @@ Respond with a JSON object only, no markdown, with the following fields:
 if __name__ == "__main__":
     instance_ids, instances = load_dataset()
     print(f"Loaded {len(instance_ids)} instances")
-    """
     print("\n" + "="*50)
     print("LAYER 3: Semantic Alignment Check")
     print("="*50)
     high_quality_instances = check_semantic_alignment(instances)
     print(f"\nHigh quality instances: {len(high_quality_instances)}/{len(instances)}")
     #save high quality instances to a jsonl file for later use
-    with open("high_quality_instances.jsonl", "w") as f:
+    with open("high_quality_instances_new.jsonl", "w") as f:
         for instance in instances:
             if instance["instance_id"] in high_quality_instances:
                 f.write(json.dumps(instance) + "\n")
+
     """
-    
     print("\n" + "="*50)
     print("LAYER 1: Build Stability Check")
     print("="*50)
@@ -363,6 +362,7 @@ if __name__ == "__main__":
         for instance in instances:
             if instance["instance_id"] in consistent_instances:
                 f.write(json.dumps(instance) + "\n")
+    """
 
 
 #elastic__elasticsearch-141503

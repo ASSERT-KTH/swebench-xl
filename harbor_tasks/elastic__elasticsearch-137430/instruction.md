@@ -1,14 +1,23 @@
 # Task
 
-## ES|QL - Full text functions accept null as field parameter
+## ESQL: MATCH function failing on locally missing field
 
-Closes https://github.com/elastic/elasticsearch/issues/136608
+### Description
 
-Full text functions that take a field as a parameter should allow null as a field parameter. This is necessary as the field may not be present on an index mapping, and the local optimizer replaces it by null.
+A query like `FROM ... | WHERE MATCH(first_name, ...)` will currently fail to be planned, if `first_name` is `null` locally.
+The failure is a `org.elasticsearch.xpack.esql.VerificationException` : `"[MATCH] function cannot operate on [first_name], which is not a field from an index mapping"`.
+The reason is the way the planning goes with the locally null fields, replacing all found `FieldAttribute`s with `null` of the type in `ReplaceFieldWithConstantOrNull`:
+```
+  1> [2025-10-15T04:22:54,014][TRACE][o.e.x.e.o.L.changes      ][testMatchOnMissingField] Rule local.ReplaceFieldWithConstantOrNull applied with change
+  1> Limit[1000[INTEGER],false]                                                  = Limit[1000[INTEGER],false]
+  1> \_Filter[MATCH(first_name{f}#4,value[KEYWORD])]                             ! \_Filter[MATCH(null[KEYWORD],value[KEYWORD])]
+  1>   \_EsRelation[test][_meta_field{f}#9, emp_no{f}#3, first_name{f}#4, gen..] !   \_Project[[_meta_field{f}#9, emp_no{f}#3, first_name{r}#4, gender{f}#5, hire_date{f}#10, job{f}#11, job.raw{f}#12, langu
+  1>                                                                             ! ages{f}#6, last_name{f}#7, long_noidx{f}#13, salary{f}#8]]
+  1>                                                                             !     \_Eval[[null[KEYWORD] AS first_name#4]]
+  1>                                                                             !       \_EsRelation[test][_meta_field{f}#9, emp_no{f}#3, first_name{f}#4, gen..]
+```
 
-We allow null as a field in FullTextFunctions, meaning that they are nullable and will be replaced by `NULL`.
-
-This PR also refactors full text functions that depend on a single field (`MATCH`, `MATCH_PHRASE`, `KNN`) to use a common superclass (`SingleFieldFullTextFunction`) that contains the common field logic.
+A fix could be to adjust the rule, but adjusting the function to allow `null`s is probably better.
 
 ---
 
@@ -16,3 +25,87 @@ This PR also refactors full text functions that depend on a single field (`MATCH
 **Base commit:** `ffa76e57d6ea7e5e9e02b7a44e2a55bf4e3e5d6d`
 **Instance ID:** `elastic__elasticsearch-137430`
 **Language:** `Java`
+
+You can execute bash commands and edit files to implement the necessary changes.
+
+## Recommended Workflow
+
+This workflows should be done step-by-step so that you can iterate on your 
+changes and any possible problems.
+
+1. Analyze the codebase by finding and reading relevant files
+2. Create a script to reproduce the issue
+3. Edit the source code to resolve the issue
+4. Verify your fix works by running your script again
+5. Test edge cases to ensure your fix is robust
+6. Submit your changes and finish your work by issuing the following command: 
+`echo COMPLETE_TASK_AND_SUBMIT_FINAL_OUTPUT`.
+   Do not combine it with any other command. <important>After this command, you 
+cannot continue working on this task.</important>
+
+## Important Rules
+
+1. Every response must contain exactly one action
+2. The action must be enclosed in triple backticks
+3. Directory or environment variable changes are not persistent. Every action is
+executed in a new subshell.
+   However, you can prefix any action with `MY_ENV_VAR=MY_VALUE cd 
+/path/to/working/dir && ...` or write/load environment variables from files
+
+<system_information>
+Linux 6.6.87.2-microsoft-standard-WSL2 #1 SMP PREEMPT_DYNAMIC Thu Jun  5 
+18:30:46 UTC 2025 x86_64
+</system_information>
+
+## Formatting your response
+
+Here is an example of a correct response:
+
+<example_response>
+THOUGHT: I need to understand the structure of the repository first. Let me 
+check what files are in the current directory to get a better understanding of 
+the codebase.
+
+```bash
+ls -la
+```
+</example_response>
+
+## Useful command examples
+
+### Create a new file:
+
+```bash
+cat <<'EOF' > newfile.py
+import numpy as np
+hello = "world"
+print(hello)
+EOF
+```
+
+### Edit files with sed:```bash
+# Replace all occurrences
+sed -i 's/old_string/new_string/g' filename.py
+
+# Replace only first occurrence
+sed -i 's/old_string/new_string/' filename.py
+
+# Replace first occurrence on line 1
+sed -i '1s/old_string/new_string/' filename.py
+
+# Replace all occurrences in lines 1-10
+sed -i '1,10s/old_string/new_string/g' filename.py
+```
+
+### View file content:
+
+```bash
+# View specific lines with numbers
+nl -ba filename.py | sed -n '10,20p'
+```
+
+### Any other command you want to run
+
+```bash
+anything
+```

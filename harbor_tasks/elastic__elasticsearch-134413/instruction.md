@@ -1,21 +1,24 @@
 # Task
 
-## More validation for time-series aggregations
+## Disallow bare `{agg}_over_time` with grouping attributes | Disallow sorting between `TS` and `STATS`
 
-Add validations to reject the following queries until supported:
+### Issue 1: Disallow bare `{agg}_over_time` with grouping attributes
 
-1. Limit and sort cannot be used to alter the time-series source:
-   - `TS metrics | LIMIT ... | STATS ...`
-   - `TS metrics | SORT BY ... | STATS ...`
+`{agg}_over_time` and `rate` are applied per `_tsid`. Grouping on dimensions, in addition to time bucket, requires an outer agg to provide the aggregation function. For instance, the following query is not allowed:
 
-2. Over-time aggregation without an outer aggregation (to be supported soon):
-   - `TS metrics | STATS rate(requests)`
-   - `TS metrics | STATS last_over_time(requests)`
+```
+TS metrics | STATS rate(requests) BY host, TBUCKET(1 hour)
+```
 
-3. Reject lookup join, enrich, change point before the first stats.
+In this case, we need to return an error explaining that either an outer agg needs to be provided, or grouping attributes need to be stripped.
 
-Closes #134366
-Closes #134372
+
+
+---
+
+### Issue 2: Disallow sorting between `TS` and `STATS`
+
+Evaluation of `rate` and `{agg}_over_time` functions relies on scanning data ordered by `[tsid, @timestamp]`. Changing the order may lead to producing wrong results, so sort operations should not be allowed in this context. The `STATS` output can be sorted without restrictions.
 
 ---
 
@@ -23,3 +26,87 @@ Closes #134372
 **Base commit:** `9c96b944b21306794c370395a3b26fbb3dc5d562`
 **Instance ID:** `elastic__elasticsearch-134413`
 **Language:** `Java`
+
+You can execute bash commands and edit files to implement the necessary changes.
+
+## Recommended Workflow
+
+This workflows should be done step-by-step so that you can iterate on your 
+changes and any possible problems.
+
+1. Analyze the codebase by finding and reading relevant files
+2. Create a script to reproduce the issue
+3. Edit the source code to resolve the issue
+4. Verify your fix works by running your script again
+5. Test edge cases to ensure your fix is robust
+6. Submit your changes and finish your work by issuing the following command: 
+`echo COMPLETE_TASK_AND_SUBMIT_FINAL_OUTPUT`.
+   Do not combine it with any other command. <important>After this command, you 
+cannot continue working on this task.</important>
+
+## Important Rules
+
+1. Every response must contain exactly one action
+2. The action must be enclosed in triple backticks
+3. Directory or environment variable changes are not persistent. Every action is
+executed in a new subshell.
+   However, you can prefix any action with `MY_ENV_VAR=MY_VALUE cd 
+/path/to/working/dir && ...` or write/load environment variables from files
+
+<system_information>
+Linux 6.6.87.2-microsoft-standard-WSL2 #1 SMP PREEMPT_DYNAMIC Thu Jun  5 
+18:30:46 UTC 2025 x86_64
+</system_information>
+
+## Formatting your response
+
+Here is an example of a correct response:
+
+<example_response>
+THOUGHT: I need to understand the structure of the repository first. Let me 
+check what files are in the current directory to get a better understanding of 
+the codebase.
+
+```bash
+ls -la
+```
+</example_response>
+
+## Useful command examples
+
+### Create a new file:
+
+```bash
+cat <<'EOF' > newfile.py
+import numpy as np
+hello = "world"
+print(hello)
+EOF
+```
+
+### Edit files with sed:```bash
+# Replace all occurrences
+sed -i 's/old_string/new_string/g' filename.py
+
+# Replace only first occurrence
+sed -i 's/old_string/new_string/' filename.py
+
+# Replace first occurrence on line 1
+sed -i '1s/old_string/new_string/' filename.py
+
+# Replace all occurrences in lines 1-10
+sed -i '1,10s/old_string/new_string/g' filename.py
+```
+
+### View file content:
+
+```bash
+# View specific lines with numbers
+nl -ba filename.py | sed -n '10,20p'
+```
+
+### Any other command you want to run
+
+```bash
+anything
+```
