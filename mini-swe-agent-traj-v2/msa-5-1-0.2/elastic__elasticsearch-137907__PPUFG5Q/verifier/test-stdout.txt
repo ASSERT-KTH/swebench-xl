@@ -1,0 +1,12 @@
+test_patch applied successfully
+
+Found 1 JUnit XML file(s)
+Parsed 355 tests from XML files
+Wrote 355 test results -> output.json
+Summary: 342 passed, 5 failed, 8 skipped
+fail_to_pass: 6 required, 1 passed
+pass_to_pass: 347 required, 5 newly failing
+
+RESULT: FAILED
+fail_to_pass not satisfied (5): ['org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPruneColumnsInForkBranchesPruneIfAggregation', 'org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPruneColumnsInForkBranchesDropNestedEvalsFromOutputIfNotNeeded', 'org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPruneColumnsInForkBranchesShouldKeepAliasWithSameNameAsColumn', 'org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPruneColumnsInForkBranchesShouldPruneNestedEvalsIfColumnIsDropped', 'org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPruneColumnsInForkBranchesKeepOnlyNeededAggs']
+pass_to_pass broken (5): ['org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPruneColumnsInForkBranchesDropNestedEvalsFromOutputIfNotNeeded', 'org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPruneColumnsInForkBranchesPruneIfAggregation', 'org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPruneColumnsInForkBranchesShouldPruneNestedEvalsIfColumnIsDropped', 'org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPruneColumnsInForkBranchesShouldKeepAliasWithSameNameAsColumn', 'org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPruneColumnsInForkBranchesKeepOnlyNeededAggs']

@@ -1,0 +1,24 @@
+#!/bin/bash
+set -euo pipefail
+
+# Install curl and build tools
+apt-get update
+apt-get install -y curl build-essential git
+
+# Install uv
+curl -LsSf https://astral.sh/uv/0.7.13/install.sh | sh
+
+# Ensure $HOME/.local/bin is in PATH via .bashrc
+if ! grep -q 'export PATH="$HOME/.local/bin:$PATH"' "$HOME/.bashrc"; then
+    echo 'export PATH="$HOME/.local/bin:$PATH"' >> "$HOME/.bashrc"
+fi
+
+# Source the uv environment
+source "$HOME/.local/bin/env"
+
+# Install mini-swe-agent from git repository
+
+uv tool install git+https://github.com/li-boxuan/mini-swe-agent.git
+
+
+echo "INSTALL_SUCCESS"

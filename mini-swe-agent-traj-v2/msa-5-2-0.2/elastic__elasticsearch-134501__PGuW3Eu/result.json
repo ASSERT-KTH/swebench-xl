@@ -1,0 +1,91 @@
+{
+    "id": "a60cf88a-7857-4fa6-90c4-f685666dc4f2",
+    "task_name": "elastic__elasticsearch-134501",
+    "trial_name": "elastic__elasticsearch-134501__PGuW3Eu",
+    "trial_uri": "file:///home/pontaberglund/swebench-xl/jobs/2026-02-26__15-08-53/elastic__elasticsearch-134501__PGuW3Eu",
+    "task_id": {
+        "path": "harbor_tasks/elastic__elasticsearch-134501"
+    },
+    "source": "harbor_tasks",
+    "task_checksum": "ac9d4b16d4b9be05cc76c83eeb3f3099862937c087f8f740ac7a7ce118357618",
+    "config": {
+        "task": {
+            "path": "harbor_tasks/elastic__elasticsearch-134501",
+            "git_url": null,
+            "git_commit_id": null,
+            "overwrite": false,
+            "download_dir": null,
+            "source": "harbor_tasks"
+        },
+        "trial_name": "elastic__elasticsearch-134501__PGuW3Eu",
+        "trials_dir": "jobs/2026-02-26__15-08-53",
+        "timeout_multiplier": 1.0,
+        "agent": {
+            "name": "mini-swe-agent",
+            "import_path": null,
+            "model_name": "gemini/gemini-3-flash-preview",
+            "override_timeout_sec": null,
+            "override_setup_timeout_sec": null,
+            "max_timeout_sec": null,
+            "kwargs": {}
+        },
+        "environment": {
+            "type": "docker",
+            "import_path": null,
+            "force_build": false,
+            "delete": true,
+            "override_cpus": null,
+            "override_memory_mb": null,
+            "override_storage_mb": null,
+            "override_gpus": null,
+            "suppress_override_warnings": false,
+            "kwargs": {}
+        },
+        "verifier": {
+            "override_timeout_sec": null,
+            "max_timeout_sec": null,
+            "disable": false
+        },
+        "job_id": "031ef17e-1e70-4286-9ee7-29a3796e2987"
+    },
+    "agent_info": {
+        "name": "mini-swe-agent",
+        "version": "unknown",
+        "model_info": {
+            "name": "gemini-3-flash-preview",
+            "provider": "gemini"
+        }
+    },
+    "agent_result": {
+        "n_input_tokens": 753606,
+        "n_cache_tokens": 569299,
+        "n_output_tokens": 1911,
+        "cost_usd": 0.12635144999999998,
+        "rollout_details": null,
+        "metadata": null
+    },
+    "verifier_result": {
+        "rewards": {
+            "reward": 0.0
+        }
+    },
+    "exception_info": null,
+    "started_at": "2026-02-26T14:08:53.089554Z",
+    "finished_at": "2026-02-26T14:24:20.075129Z",
+    "environment_setup": {
+        "started_at": "2026-02-26T14:08:53.091739Z",
+        "finished_at": "2026-02-26T14:14:46.784669Z"
+    },
+    "agent_setup": {
+        "started_at": "2026-02-26T14:14:46.784725Z",
+        "finished_at": "2026-02-26T14:15:34.508194Z"
+    },
+    "agent_execution": {
+        "started_at": "2026-02-26T14:15:34.509672Z",
+        "finished_at": "2026-02-26T14:17:14.178907Z"
+    },
+    "verifier": {
+        "started_at": "2026-02-26T14:17:14.178981Z",
+        "finished_at": "2026-02-26T14:23:57.423848Z"
+    }
+}

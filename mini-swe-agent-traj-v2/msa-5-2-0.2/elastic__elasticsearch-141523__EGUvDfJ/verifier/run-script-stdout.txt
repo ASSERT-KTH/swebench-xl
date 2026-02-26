@@ -1,0 +1,110 @@
+Running pre-configured gradle commands...
+=== Running gradle command 1/1 ===
+Downloading https://services.gradle.org/distributions/gradle-9.3.1-all.zip
+......................10%......................20%.......................30%......................40%......................50%.......................60%......................70%.......................80%......................90%.......................100%
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/9.3.1/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build 
+Parallel Configuration Cache is an incubating feature.
+> Task :build-conventions:compileJava UP-TO-DATE
+> Task :build-conventions:pluginDescriptors UP-TO-DATE
+> Task :build-conventions:processResources UP-TO-DATE
+> Task :build-conventions:classes UP-TO-DATE
+> Task :build-conventions:jar UP-TO-DATE
+> Task :build-tools:reaper:compileJava UP-TO-DATE
+> Task :build-tools:reaper:processResources NO-SOURCE
+> Task :build-tools:reaper:classes UP-TO-DATE
+> Task :build-tools:reaper:jar UP-TO-DATE
+> Task :build-tools-internal:extractPluginRequests UP-TO-DATE
+> Task :build-tools-internal:generatePluginAdapters UP-TO-DATE
+> Task :build-tools-internal:pluginDescriptors UP-TO-DATE
+> Task :build-tools-internal:processResources UP-TO-DATE
+> Task :build-tools:compileJava UP-TO-DATE
+> Task :build-tools:compileGroovy NO-SOURCE
+> Task :build-tools:generateVersionProperties UP-TO-DATE
+> Task :build-tools:pluginDescriptors UP-TO-DATE
+> Task :build-tools:processResources UP-TO-DATE
+> Task :build-tools:classes UP-TO-DATE
+> Task :build-tools:jar UP-TO-DATE
+> Task :build-tools-internal:compileJava UP-TO-DATE
+> Task :build-tools-internal:compileGroovy UP-TO-DATE
+> Task :build-tools-internal:compileGroovyPlugins UP-TO-DATE
+> Task :build-tools-internal:classes UP-TO-DATE
+> Task :build-tools-internal:jar UP-TO-DATE
+=======================================
+Elasticsearch Build Hamster says Hello!
+  Gradle Version        : 9.3.1
+  OS Info               : Linux 6.6.87.2-microsoft-standard-WSL2 (amd64)
+  JDK Version           : 21.0.10+7-LTS (Eclipse Temurin)
+  JAVA_HOME             : /opt/java/openjdk
+  Random Testing Seed   : 4DB1525D401A0431
+  In FIPS 140 mode      : false
+=======================================
+> Task :libs:logging:compileJava UP-TO-DATE
+> Task :libs:entitlement:bridge:compileJava UP-TO-DATE
+> Task :libs:geo:compileJava UP-TO-DATE
+> Task :libs:cli:processResources NO-SOURCE
+> Task :libs:plugin-api:compileJava UP-TO-DATE
+> Task :libs:entitlement:asm-provider:processResources UP-TO-DATE
+> Task :libs:entitlement:processResources NO-SOURCE
+> Task :libs:entitlement:bridge:processResources NO-SOURCE
+> Task :libs:entitlement:bridge:classes UP-TO-DATE
+> Task :libs:entitlement:bridge:compileMain23Java UP-TO-DATE
+> Task :libs:entitlement:bridge:processMain23Resources NO-SOURCE
+> Task :libs:entitlement:bridge:main23Classes UP-TO-DATE
+> Task :libs:entitlement:bridge:java23Jar UP-TO-DATE
+> Task :libs:entitlement:processMain23Resources NO-SOURCE
+> Task :libs:exponential-histogram:processResources NO-SOURCE
+> Task :libs:geo:processResources NO-SOURCE
+> Task :libs:geo:classes UP-TO-DATE
+> Task :libs:geo:jar UP-TO-DATE
+> Task :libs:logging:processResources NO-SOURCE
+> Task :libs:logging:classes UP-TO-DATE
+> Task :libs:logging:jar UP-TO-DATE
+> Task :libs:lz4:processResources NO-SOURCE
+> Task :libs:native:processResources NO-SOURCE
+> Task :libs:native:processMain22Resources NO-SOURCE
+> Task :libs:plugin-api:processResources NO-SOURCE
+> Task :libs:plugin-api:classes UP-TO-DATE
+> Task :libs:plugin-api:jar UP-TO-DATE
+> Task :libs:simdvec:processResources NO-SOURCE
+> Task :libs:simdvec:processMain21Resources NO-SOURCE
+> Task :libs:simdvec:processMain22Resources NO-SOURCE
+> Task :libs:tdigest:processResources NO-SOURCE
+> Task :libs:x-content:impl:processResources UP-TO-DATE
+> Task :libs:x-content:processResources NO-SOURCE
+> Task :server:generateTransportVersionManifest UP-TO-DATE
+> Task :server:generateModulesList UP-TO-DATE
+> Task :server:generatePluginsList UP-TO-DATE
+> Task :libs:core:compileJava UP-TO-DATE
+> Task :libs:cli:compileJava UP-TO-DATE
+> Task :libs:x-content:compileJava UP-TO-DATE
+> Task :libs:entitlement:compileJava UP-TO-DATE
+> Task :libs:grok:compileJava UP-TO-DATE
+> Task :libs:lz4:compileJava UP-TO-DATE
+> Task :client:rest:compileJava UP-TO-DATE
+> Task :libs:native:compileJava UP-TO-DATE
+> Task :libs:exponential-histogram:compileJava UP-TO-DATE
+> Task :libs:cli:classes UP-TO-DATE
+> Task :libs:simdvec:compileJava UP-TO-DATE
+> Task :libs:core:processResources NO-SOURCE
+> Task :libs:core:classes UP-TO-DATE
+> Task :libs:cli:jar UP-TO-DATE
+> Task :libs:plugin-analysis-api:compileJava UP-TO-DATE
+> Task :libs:exponential-histogram:classes UP-TO-DATE
+> Task :libs:core:jar UP-TO-DATE
+> Task :libs:exponential-histogram:jar UP-TO-DATE
+> Task :libs:lz4:classes UP-TO-DATE
+> Task :libs:lz4:jar UP-TO-DATE
+> Task :libs:native:classes UP-TO-DATE
+> Task :libs:grok:processResources UP-TO-DATE
+> Task :libs:grok:classes UP-TO-DATE
+> Task :libs:grok:jar UP-TO-DATE
+> Task :libs:native:compileMain22Java FAILED
+> Task :libs:plugin-analysis-api:processResources NO-SOURCE
+> Task :libs:plugin-analysis-api:classes UP-TO-DATE
+> Task :libs:plugin-analysis-api:jar UP-TO-DATE
+> Task :libs:simdvec:classes UP-TO-DATE
+> Task :libs:simdvec:compileMain21Java UP-TO-DATE
+> Task :libs:tdigest:compileJava UP-TO-DATE
+> Task :libs:entitlement:asm-provider:compileJava UP-TO-DATE
+55 actionable tasks: 1 executed, 54 up-to-date

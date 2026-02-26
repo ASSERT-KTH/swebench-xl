@@ -1,0 +1,25 @@
+WARNING: git apply for test_patch failed, trying patch --fuzz=5
+Checking patch x-pack/plugin/esql/src/test/java/org/elasticsearch/xpack/esql/analysis/VerifierTests.java...
+error: while searching for:
+            error("FROM test METADATA _index, _score, _id | EVAL _fork = \"fork1\" | FUSE"),
+            containsString("FUSE can only be used on a limited number of rows. Consider adding a LIMIT before FUSE.")
+        );
+    }
+
+    public void testNoMetricInStatsByClause() {
+
+error: patch failed: x-pack/plugin/esql/src/test/java/org/elasticsearch/xpack/esql/analysis/VerifierTests.java:2921
+error: x-pack/plugin/esql/src/test/java/org/elasticsearch/xpack/esql/analysis/VerifierTests.java: patch does not apply
+
+patching file x-pack/plugin/esql/src/test/java/org/elasticsearch/xpack/esql/analysis/VerifierTests.java
+Hunk #1 succeeded at 2928 with fuzz 2 (offset 7 lines).
+Hunk #2 succeeded at 3619 (offset 6 lines).
+Found 1 JUnit XML file(s)
+Parsed 1 tests from XML files
+Wrote 1 test results -> output.json
+Summary: 0 passed, 1 failed, 0 skipped
+fail_to_pass: 2 required, 0 passed
+pass_to_pass: 136 required, 0 newly failing
+
+RESULT: FAILED
+fail_to_pass not satisfied (2): ['org.elasticsearch.xpack.esql.analysis.VerifierTests::testFuse', 'org.elasticsearch.xpack.esql.analysis.VerifierTests::testMMRLimitedInput']

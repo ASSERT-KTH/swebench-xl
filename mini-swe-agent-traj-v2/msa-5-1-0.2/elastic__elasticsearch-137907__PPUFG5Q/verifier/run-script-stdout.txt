@@ -1,0 +1,1135 @@
+Running pre-configured gradle commands...
+=== Running gradle command 1/1 ===
+Downloading https://services.gradle.org/distributions/gradle-9.2.1-all.zip
+......................10%......................20%......................30%.......................40%......................50%......................60%.......................70%......................80%......................90%......................100%
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/9.2.1/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build 
+Parallel Configuration Cache is an incubating feature.
+> Task :build-conventions:compileJava UP-TO-DATE
+> Task :build-conventions:pluginDescriptors UP-TO-DATE
+> Task :build-conventions:processResources UP-TO-DATE
+> Task :build-conventions:classes UP-TO-DATE
+> Task :build-conventions:jar UP-TO-DATE
+> Task :build-tools:reaper:compileJava UP-TO-DATE
+> Task :build-tools:reaper:processResources NO-SOURCE
+> Task :build-tools:reaper:classes UP-TO-DATE
+> Task :build-tools:reaper:jar UP-TO-DATE
+> Task :build-tools-internal:extractPluginRequests UP-TO-DATE
+> Task :build-tools-internal:generatePluginAdapters UP-TO-DATE
+> Task :build-tools-internal:pluginDescriptors UP-TO-DATE
+> Task :build-tools-internal:processResources UP-TO-DATE
+> Task :build-tools:compileJava UP-TO-DATE
+> Task :build-tools:compileGroovy NO-SOURCE
+> Task :build-tools:generateVersionProperties UP-TO-DATE
+> Task :build-tools:pluginDescriptors UP-TO-DATE
+> Task :build-tools:processResources UP-TO-DATE
+> Task :build-tools:classes UP-TO-DATE
+> Task :build-tools:jar UP-TO-DATE
+> Task :build-tools-internal:compileJava UP-TO-DATE
+> Task :build-tools-internal:compileGroovy UP-TO-DATE
+> Task :build-tools-internal:compileGroovyPlugins UP-TO-DATE
+> Task :build-tools-internal:classes UP-TO-DATE
+> Task :build-tools-internal:jar UP-TO-DATE
+=======================================
+Elasticsearch Build Hamster says Hello!
+  Gradle Version        : 9.2.1
+  OS Info               : Linux 6.6.87.2-microsoft-standard-WSL2 (amd64)
+  JDK Version           : 21.0.10+7-LTS (Eclipse Temurin)
+  JAVA_HOME             : /opt/java/openjdk
+  Random Testing Seed   : 58A188944454C79A
+  In FIPS 140 mode      : false
+=======================================
+> Task :libs:logging:compileJava UP-TO-DATE
+> Task :libs:entitlement:bridge:compileJava UP-TO-DATE
+> Task :libs:geo:compileJava UP-TO-DATE
+> Task :libs:cli:processResources NO-SOURCE
+> Task :libs:entitlement:asm-provider:processResources UP-TO-DATE
+> Task :libs:entitlement:processResources NO-SOURCE
+> Task :libs:plugin-api:compileJava UP-TO-DATE
+> Task :libs:entitlement:bridge:processResources NO-SOURCE
+> Task :libs:entitlement:bridge:classes UP-TO-DATE
+> Task :libs:entitlement:bridge:compileMain23Java UP-TO-DATE
+> Task :libs:entitlement:bridge:processMain23Resources NO-SOURCE
+> Task :libs:entitlement:bridge:main23Classes UP-TO-DATE
+> Task :libs:entitlement:bridge:java23Jar UP-TO-DATE
+> Task :libs:entitlement:processMain23Resources NO-SOURCE
+> Task :libs:exponential-histogram:processResources NO-SOURCE
+> Task :libs:geo:processResources NO-SOURCE
+> Task :libs:geo:classes UP-TO-DATE
+> Task :libs:geo:jar UP-TO-DATE
+> Task :libs:logging:processResources NO-SOURCE
+> Task :libs:logging:classes UP-TO-DATE
+> Task :libs:logging:jar UP-TO-DATE
+> Task :libs:lz4:processResources NO-SOURCE
+> Task :libs:native:processResources NO-SOURCE
+> Task :libs:native:processMain22Resources NO-SOURCE
+> Task :libs:plugin-api:processResources NO-SOURCE
+> Task :libs:plugin-api:classes UP-TO-DATE
+> Task :libs:plugin-api:jar UP-TO-DATE
+> Task :libs:simdvec:processResources NO-SOURCE
+> Task :libs:simdvec:processMain21Resources NO-SOURCE
+> Task :libs:simdvec:processMain22Resources NO-SOURCE
+> Task :libs:tdigest:processResources NO-SOURCE
+> Task :libs:x-content:impl:processResources UP-TO-DATE
+> Task :libs:x-content:processResources NO-SOURCE
+> Task :server:generateTransportVersionManifest UP-TO-DATE
+> Task :server:generateModulesList UP-TO-DATE
+> Task :server:generatePluginsList UP-TO-DATE
+> Task :libs:core:compileJava UP-TO-DATE
+> Task :libs:cli:compileJava UP-TO-DATE
+> Task :libs:grok:compileJava UP-TO-DATE
+> Task :client:rest:compileJava UP-TO-DATE
+> Task :libs:x-content:compileJava UP-TO-DATE
+> Task :libs:native:compileJava UP-TO-DATE
+> Task :libs:entitlement:compileJava UP-TO-DATE
+> Task :libs:plugin-analysis-api:compileJava UP-TO-DATE
+> Task :libs:lz4:compileJava UP-TO-DATE
+> Task :libs:cli:classes UP-TO-DATE
+> Task :libs:exponential-histogram:compileJava UP-TO-DATE
+> Task :libs:core:processResources NO-SOURCE
+> Task :libs:core:classes UP-TO-DATE
+> Task :libs:core:jar UP-TO-DATE
+> Task :libs:cli:jar UP-TO-DATE
+> Task :libs:exponential-histogram:classes UP-TO-DATE
+> Task :libs:simdvec:compileJava UP-TO-DATE
+> Task :libs:tdigest:compileJava UP-TO-DATE
+> Task :libs:exponential-histogram:jar UP-TO-DATE
+> Task :libs:lz4:classes UP-TO-DATE
+> Task :libs:grok:processResources UP-TO-DATE
+> Task :libs:grok:classes UP-TO-DATE
+> Task :libs:lz4:jar UP-TO-DATE
+> Task :libs:grok:jar UP-TO-DATE
+> Task :libs:native:classes UP-TO-DATE
+> Task :libs:plugin-analysis-api:processResources NO-SOURCE
+> Task :libs:plugin-analysis-api:classes UP-TO-DATE
+> Task :libs:plugin-analysis-api:jar UP-TO-DATE
+> Task :libs:simdvec:classes UP-TO-DATE
+> Task :libs:native:compileMain22Java UP-TO-DATE
+> Task :libs:native:main22Classes UP-TO-DATE
+> Task :libs:native:jar UP-TO-DATE
+> Task :libs:tdigest:classes UP-TO-DATE
+> Task :libs:tdigest:jar UP-TO-DATE
+> Task :libs:simdvec:compileMain21Java UP-TO-DATE
+> Task :libs:simdvec:main21Classes UP-TO-DATE
+> Task :libs:simdvec:compileMain22Java UP-TO-DATE
+> Task :libs:simdvec:main22Classes UP-TO-DATE
+> Task :libs:simdvec:jar UP-TO-DATE
+> Task :client:rest:processResources UP-TO-DATE
+> Task :client:rest:classes UP-TO-DATE
+> Task :client:rest:jar UP-TO-DATE
+> Task :libs:entitlement:asm-provider:compileJava UP-TO-DATE
+> Task :libs:entitlement:asm-provider:classes UP-TO-DATE
+> Task :libs:entitlement:asm-provider:jar UP-TO-DATE
+> Task :libs:dissect:compileJava UP-TO-DATE
+> Task :libs:dissect:processResources NO-SOURCE
+> Task :libs:dissect:classes UP-TO-DATE
+> Task :libs:entitlement:generateAsm-providerProviderManifest UP-TO-DATE
+> Task :libs:entitlement:generateAsm-providerProviderImpl UP-TO-DATE
+> Task :libs:entitlement:classes UP-TO-DATE
+> Task :libs:x-content:impl:compileJava UP-TO-DATE
+> Task :libs:x-content:impl:classes UP-TO-DATE
+> Task :libs:dissect:jar UP-TO-DATE
+> Task :libs:x-content:impl:jar UP-TO-DATE
+> Task :libs:h3:compileJava UP-TO-DATE
+> Task :libs:entitlement:compileMain23Java UP-TO-DATE
+> Task :libs:entitlement:main23Classes UP-TO-DATE
+> Task :libs:h3:processResources NO-SOURCE
+> Task :libs:h3:classes UP-TO-DATE
+> Task :libs:entitlement:jar UP-TO-DATE
+> Task :libs:h3:jar UP-TO-DATE
+> Task :libs:ssl-config:compileJava UP-TO-DATE
+> Task :test:framework:processResources UP-TO-DATE
+> Task :libs:ssl-config:processResources NO-SOURCE
+> Task :libs:ssl-config:classes UP-TO-DATE
+> Task :libs:ssl-config:jar UP-TO-DATE
+> Task :test:immutable-collections-patch:compileJava UP-TO-DATE
+> Task :test:immutable-collections-patch:processResources NO-SOURCE
+> Task :test:immutable-collections-patch:classes UP-TO-DATE
+> Task :test:immutable-collections-patch:generatePatch UP-TO-DATE
+> Task :x-pack:plugin:core:template-resources:compileJava UP-TO-DATE
+> Task :x-pack:license-tools:processResources UP-TO-DATE
+> Task :libs:entitlement:bridge:jar UP-TO-DATE
+> Task :libs:entitlement:agent:compileJava UP-TO-DATE
+> Task :libs:entitlement:agent:processResources NO-SOURCE
+> Task :libs:entitlement:agent:classes UP-TO-DATE
+> Task :libs:entitlement:agent:jar UP-TO-DATE
+> Task :modules:lang-painless:spi:processResources NO-SOURCE
+> Task :x-pack:plugin:core:template-resources:processResources UP-TO-DATE
+> Task :x-pack:plugin:core:template-resources:classes UP-TO-DATE
+> Task :x-pack:plugin:core:template-resources:jar UP-TO-DATE
+> Task :x-pack:plugin:core:copyYamlTestsTask NO-SOURCE
+> Task :x-pack:plugin:core:copyRestApiSpecsTask UP-TO-DATE
+> Task :x-pack:plugin:core:processTestResources UP-TO-DATE
+> Task :x-pack:plugin:esql:stringTemplates UP-TO-DATE
+> Task :x-pack:plugin:esql:compute:stringTemplates UP-TO-DATE
+> Task :x-pack:plugin:esql:compute:ann:compileJava UP-TO-DATE
+> Task :x-pack:plugin:esql:compute:ann:processResources NO-SOURCE
+> Task :x-pack:plugin:esql:compute:ann:classes UP-TO-DATE
+> Task :x-pack:plugin:esql:compute:ann:jar UP-TO-DATE
+> Task :server:compileJava UP-TO-DATE
+> Task :x-pack:plugin:esql:compute:gen:compileJava UP-TO-DATE
+> Task :libs:x-content:generateImplProviderManifest UP-TO-DATE
+> Task :libs:x-content:generateImplProviderImpl UP-TO-DATE
+> Task :libs:x-content:classes UP-TO-DATE
+> Task :libs:native:native-libraries:extractLibs UP-TO-DATE
+> Task :libs:x-content:jar UP-TO-DATE
+> Task :server:generateTestBuildInfo UP-TO-DATE
+> Task :server:processResources UP-TO-DATE
+> Task :server:classes UP-TO-DATE
+> Task :server:jar UP-TO-DATE
+> Task :modules:health-shards-availability:compileJava UP-TO-DATE
+> Task :modules:data-streams:compileJava UP-TO-DATE
+> Task :modules:lang-painless:spi:compileJava UP-TO-DATE
+> Task :modules:data-streams:generateTestBuildInfo UP-TO-DATE
+> Task :modules:health-shards-availability:generateTestBuildInfo UP-TO-DATE
+> Task :modules:data-streams:pluginProperties UP-TO-DATE
+> Task :modules:data-streams:processResources UP-TO-DATE
+> Task :modules:data-streams:classes UP-TO-DATE
+> Task :modules:data-streams:jar UP-TO-DATE
+> Task :modules:health-shards-availability:pluginProperties UP-TO-DATE
+> Task :modules:health-shards-availability:processResources UP-TO-DATE
+> Task :modules:health-shards-availability:classes UP-TO-DATE
+> Task :modules:lang-mustache:compileJava UP-TO-DATE
+> Task :modules:aggregations:compileJava UP-TO-DATE
+> Task :modules:analysis-common:compileJava UP-TO-DATE
+> Task :modules:aggregations:generateTestBuildInfo UP-TO-DATE
+> Task :modules:analysis-common:generateTestBuildInfo UP-TO-DATE
+> Task :modules:aggregations:pluginProperties UP-TO-DATE
+> Task :modules:health-shards-availability:jar UP-TO-DATE
+> Task :modules:lang-mustache:generateTestBuildInfo UP-TO-DATE
+> Task :modules:lang-mustache:pluginProperties UP-TO-DATE
+> Task :modules:analysis-common:pluginProperties UP-TO-DATE
+> Task :modules:lang-mustache:processResources UP-TO-DATE
+> Task :modules:aggregations:processResources UP-TO-DATE
+> Task :modules:lang-mustache:classes UP-TO-DATE
+> Task :modules:aggregations:classes UP-TO-DATE
+> Task :modules:ingest-common:compileJava UP-TO-DATE
+> Task :modules:aggregations:jar UP-TO-DATE
+> Task :modules:lang-mustache:jar UP-TO-DATE
+> Task :modules:ingest-common:generateTestBuildInfo UP-TO-DATE
+> Task :modules:analysis-common:processResources UP-TO-DATE
+> Task :modules:analysis-common:classes UP-TO-DATE
+> Task :modules:ingest-common:pluginProperties UP-TO-DATE
+> Task :modules:ingest-common:processResources UP-TO-DATE
+> Task :modules:analysis-common:jar UP-TO-DATE
+> Task :modules:ingest-common:classes UP-TO-DATE
+> Task :modules:mapper-extras:compileJava UP-TO-DATE
+> Task :modules:mapper-extras:generateTestBuildInfo UP-TO-DATE
+> Task :modules:mapper-extras:pluginProperties UP-TO-DATE
+> Task :modules:ingest-common:jar UP-TO-DATE
+> Task :modules:mapper-extras:processResources UP-TO-DATE
+> Task :modules:mapper-extras:classes UP-TO-DATE
+> Task :modules:mapper-extras:jar UP-TO-DATE
+> Task :modules:rest-root:compileJava UP-TO-DATE
+> Task :modules:reindex:compileJava UP-TO-DATE
+> Task :modules:parent-join:compileJava UP-TO-DATE
+> Task :modules:rest-root:generateTestBuildInfo UP-TO-DATE
+> Task :modules:reindex:generateTestBuildInfo UP-TO-DATE
+> Task :modules:reindex:pluginProperties UP-TO-DATE
+> Task :modules:rest-root:pluginProperties UP-TO-DATE
+> Task :modules:parent-join:generateTestBuildInfo UP-TO-DATE
+> Task :modules:parent-join:pluginProperties UP-TO-DATE
+> Task :modules:rest-root:processResources UP-TO-DATE
+> Task :modules:reindex:processResources UP-TO-DATE
+> Task :modules:reindex:classes UP-TO-DATE
+> Task :modules:rest-root:classes UP-TO-DATE
+> Task :modules:parent-join:processResources UP-TO-DATE
+> Task :modules:parent-join:classes UP-TO-DATE
+> Task :modules:reindex:jar UP-TO-DATE
+> Task :modules:rest-root:jar UP-TO-DATE
+> Task :modules:parent-join:jar UP-TO-DATE
+> Task :modules:legacy-geo:compileJava UP-TO-DATE
+> Task :modules:legacy-geo:generateTestBuildInfo UP-TO-DATE
+> Task :modules:legacy-geo:pluginProperties UP-TO-DATE
+> Task :modules:legacy-geo:processResources UP-TO-DATE
+> Task :modules:legacy-geo:classes UP-TO-DATE
+> Task :distribution:tools:cli-launcher:compileJava UP-TO-DATE
+> Task :modules:lang-painless:spi:classes UP-TO-DATE
+> Task :modules:lang-painless:spi:jar UP-TO-DATE
+> Task :modules:legacy-geo:jar UP-TO-DATE
+> Task :x-pack:plugin:esql:arrow:processResources NO-SOURCE
+> Task :x-pack:plugin:esql:compute:processResources NO-SOURCE
+> Task :x-pack:plugin:esql:processTestResources NO-SOURCE
+> Task :x-pack:plugin:esql:compute:gen:processResources UP-TO-DATE
+> Task :x-pack:plugin:esql:compute:gen:classes UP-TO-DATE
+> Task :x-pack:plugin:esql:compute:gen:jar UP-TO-DATE
+> Task :x-pack:plugin:esql-core:test-fixtures:processResources NO-SOURCE
+> Task :x-pack:plugin:esql:compute:test:processResources NO-SOURCE
+> Task :x-pack:plugin:esql-core:processTestResources UP-TO-DATE
+> Task :x-pack:plugin:esql:qa:testFixtures:processResources UP-TO-DATE
+> Task :modules:transport-netty4:compileJava UP-TO-DATE
+> Task :modules:transport-netty4:generateTestBuildInfo UP-TO-DATE
+> Task :modules:transport-netty4:pluginProperties UP-TO-DATE
+> Task :modules:transport-netty4:processResources UP-TO-DATE
+> Task :modules:transport-netty4:classes UP-TO-DATE
+> Task :modules:transport-netty4:jar UP-TO-DATE
+> Task :x-pack:plugin:core:compileJava UP-TO-DATE
+> Task :test:framework:compileJava UP-TO-DATE
+> Task :test:framework:classes UP-TO-DATE
+> Task :test:framework:jar UP-TO-DATE
+> Task :x-pack:plugin:mapper-aggregate-metric:compileJava UP-TO-DATE
+> Task :x-pack:license-tools:compileJava UP-TO-DATE
+> Task :x-pack:license-tools:classes UP-TO-DATE
+> Task :x-pack:license-tools:jar UP-TO-DATE
+> Task :x-pack:plugin:enrich:compileJava UP-TO-DATE
+> Task :x-pack:plugin:mapper-version:compileJava UP-TO-DATE
+> Task :x-pack:plugin:analytics:compileJava UP-TO-DATE
+> Task :x-pack:plugin:core:generateTestBuildInfo UP-TO-DATE
+> Task :x-pack:plugin:core:pluginProperties UP-TO-DATE
+> Task :x-pack:plugin:core:processResources UP-TO-DATE
+> Task :x-pack:plugin:core:classes UP-TO-DATE
+> Task :x-pack:plugin:core:jar UP-TO-DATE
+> Task :x-pack:plugin:enrich:generateTestBuildInfo UP-TO-DATE
+> Task :x-pack:plugin:enrich:pluginProperties UP-TO-DATE
+> Task :x-pack:plugin:downsample:compileJava UP-TO-DATE
+> Task :x-pack:plugin:downsample:generateTestBuildInfo UP-TO-DATE
+> Task :x-pack:plugin:downsample:pluginProperties UP-TO-DATE
+> Task :x-pack:plugin:enrich:processResources UP-TO-DATE
+> Task :x-pack:plugin:enrich:classes UP-TO-DATE
+> Task :x-pack:plugin:downsample:processResources UP-TO-DATE
+> Task :x-pack:plugin:downsample:classes UP-TO-DATE
+> Task :x-pack:plugin:enrich:jar UP-TO-DATE
+> Task :x-pack:plugin:downsample:jar UP-TO-DATE
+> Task :x-pack:plugin:autoscaling:compileJava UP-TO-DATE
+> Task :x-pack:plugin:ml-package-loader:compileJava UP-TO-DATE
+> Task :x-pack:plugin:kql:compileJava UP-TO-DATE
+> Task :x-pack:plugin:esql-core:compileJava UP-TO-DATE
+> Task :x-pack:plugin:mapper-version:generateTestBuildInfo UP-TO-DATE
+> Task :x-pack:plugin:kql:generateTestBuildInfo UP-TO-DATE
+> Task :x-pack:plugin:mapper-version:pluginProperties UP-TO-DATE
+> Task :x-pack:plugin:kql:pluginProperties UP-TO-DATE
+> Task :x-pack:plugin:kql:processResources UP-TO-DATE
+> Task :x-pack:plugin:kql:classes UP-TO-DATE
+> Task :x-pack:plugin:kql:jar UP-TO-DATE
+> Task :x-pack:plugin:esql-core:pluginProperties UP-TO-DATE
+> Task :x-pack:plugin:esql-core:test-fixtures:compileJava NO-SOURCE
+> Task :x-pack:plugin:mapper-version:processResources UP-TO-DATE
+> Task :x-pack:plugin:mapper-version:classes UP-TO-DATE
+> Task :x-pack:plugin:mapper-version:jar UP-TO-DATE
+> Task :x-pack:plugin:esql-core:generateTestBuildInfo UP-TO-DATE
+> Task :x-pack:plugin:esql-core:processResources UP-TO-DATE
+> Task :x-pack:plugin:esql-core:classes UP-TO-DATE
+> Task :x-pack:plugin:spatial:compileJava UP-TO-DATE
+> Task :x-pack:plugin:esql-core:jar UP-TO-DATE
+> Task :x-pack:plugin:mapper-aggregate-metric:generateTestBuildInfo UP-TO-DATE
+> Task :x-pack:plugin:mapper-unsigned-long:compileJava UP-TO-DATE
+> Task :x-pack:plugin:mapper-aggregate-metric:pluginProperties UP-TO-DATE
+> Task :x-pack:plugin:mapper-unsigned-long:generateTestBuildInfo UP-TO-DATE
+> Task :x-pack:plugin:mapper-unsigned-long:pluginProperties UP-TO-DATE
+> Task :x-pack:plugin:mapper-aggregate-metric:processResources UP-TO-DATE
+> Task :x-pack:plugin:mapper-aggregate-metric:classes UP-TO-DATE
+> Task :x-pack:plugin:mapper-aggregate-metric:jar UP-TO-DATE
+> Task :x-pack:plugin:spatial:generateTestBuildInfo UP-TO-DATE
+> Task :x-pack:plugin:spatial:pluginProperties UP-TO-DATE
+> Task :x-pack:plugin:mapper-unsigned-long:processResources UP-TO-DATE
+> Task :x-pack:plugin:mapper-unsigned-long:classes UP-TO-DATE
+> Task :x-pack:plugin:mapper-unsigned-long:jar UP-TO-DATE
+> Task :x-pack:plugin:esql-core:test-fixtures:classes UP-TO-DATE
+> Task :x-pack:plugin:spatial:processResources UP-TO-DATE
+> Task :x-pack:plugin:spatial:classes UP-TO-DATE
+> Task :x-pack:plugin:esql-core:test-fixtures:jar UP-TO-DATE
+> Task :x-pack:plugin:spatial:jar UP-TO-DATE
+> Task :x-pack:plugin:ml:compileJava UP-TO-DATE
+> Task :x-pack:plugin:ml:generateTestBuildInfo UP-TO-DATE
+> Task :x-pack:plugin:ml:pluginProperties UP-TO-DATE
+> Task :x-pack:plugin:ml:processResources UP-TO-DATE
+> Task :x-pack:plugin:ml:classes UP-TO-DATE
+> Task :x-pack:plugin:ml:jar UP-TO-DATE
+> Task :x-pack:plugin:core:compileTestJava UP-TO-DATE
+> Task :x-pack:plugin:core:testClasses UP-TO-DATE
+> Task :x-pack:plugin:core:testJar UP-TO-DATE
+> Task :x-pack:plugin:esql:compute:compileJava UP-TO-DATE
+> Task :x-pack:plugin:esql:compute:classes UP-TO-DATE
+> Task :x-pack:plugin:esql:compute:jar UP-TO-DATE
+> Task :x-pack:plugin:esql-core:compileTestJava UP-TO-DATE
+> Task :x-pack:plugin:esql-core:testClasses UP-TO-DATE
+> Task :x-pack:plugin:esql-core:testJar UP-TO-DATE
+> Task :x-pack:plugin:esql:compute:test:compileJava UP-TO-DATE
+> Task :x-pack:plugin:esql:compute:test:classes UP-TO-DATE
+> Task :x-pack:plugin:esql:compute:test:jar UP-TO-DATE
+> Task :x-pack:plugin:esql:arrow:compileJava UP-TO-DATE
+> Task :x-pack:plugin:esql:arrow:classes UP-TO-DATE
+> Task :x-pack:plugin:esql:arrow:jar UP-TO-DATE
+
+> Task :x-pack:plugin:esql:compileJava
+
+> Task :x-pack:plugin:esql:generateTestBuildInfo
+> Task :x-pack:plugin:esql:pluginProperties UP-TO-DATE
+> Task :x-pack:plugin:esql:processResources UP-TO-DATE
+> Task :x-pack:plugin:esql:classes
+> Task :x-pack:plugin:esql:qa:testFixtures:compileJava UP-TO-DATE
+> Task :x-pack:plugin:esql:qa:testFixtures:classes UP-TO-DATE
+> Task :x-pack:plugin:esql:qa:testFixtures:jar UP-TO-DATE
+
+> Task :x-pack:plugin:esql:compileTestJava
+
+> Task :x-pack:plugin:esql:testClasses
+
+> Task :x-pack:plugin:esql:test
+File 'commands.examples' created with 69 example specifications from csv-spec files.
+
+LogicalPlanOptimizerTests > testPruneColumnsInForkBranchesShouldKeepAliasWithSameNameAsColumn FAILED
+    java.lang.AssertionError: 
+    Expected: a collection with size <2>
+         but: collection size was <13>
+        at __randomizedtesting.SeedInfo.seed([58A188944454C79A:FA1FD92D77E2CDDD]:0)
+        at org.hamcrest.MatcherAssert.assertThat(MatcherAssert.java:20)
+        at org.hamcrest.MatcherAssert.assertThat(MatcherAssert.java:6)
+        at org.elasticsearch.test.ESTestCase.assertThat(ESTestCase.java:2809)
+        at org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests.testPruneColumnsInForkBranchesShouldKeepAliasWithSameNameAsColumn(LogicalPlanOptimizerTests.java:9976)
+
+LogicalPlanOptimizerTests > testPruneColumnsInForkBranchesKeepOnlyNeededAggs FAILED
+    java.lang.AssertionError: 
+    Expected: <1>
+         but: was <4>
+        at __randomizedtesting.SeedInfo.seed([58A188944454C79A:4FDC1A10179C75FF]:0)
+        at org.hamcrest.MatcherAssert.assertThat(MatcherAssert.java:20)
+        at org.hamcrest.MatcherAssert.assertThat(MatcherAssert.java:6)
+        at org.elasticsearch.test.ESTestCase.assertThat(ESTestCase.java:2809)
+        at org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests.testPruneColumnsInForkBranchesKeepOnlyNeededAggs(LogicalPlanOptimizerTests.java:10123)
+
+LogicalPlanOptimizerTests > testPruneColumnsInForkBranchesShouldPruneNestedEvalsIfColumnIsDropped FAILED
+    java.lang.AssertionError: 
+    Expected: <11>
+         but: was <12>
+        at __randomizedtesting.SeedInfo.seed([58A188944454C79A:1CBB6FD6F55D6E97]:0)
+        at org.hamcrest.MatcherAssert.assertThat(MatcherAssert.java:20)
+        at org.hamcrest.MatcherAssert.assertThat(MatcherAssert.java:6)
+        at org.elasticsearch.test.ESTestCase.assertThat(ESTestCase.java:2809)
+        at org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests.testPruneColumnsInForkBranchesShouldPruneNestedEvalsIfColumnIsDropped(LogicalPlanOptimizerTests.java:10048)
+
+LogicalPlanOptimizerTests > testPruneColumnsInForkBranchesPruneIfAggregation FAILED
+    java.lang.AssertionError: 
+    Expected: <3>
+         but: was <17>
+        at __randomizedtesting.SeedInfo.seed([58A188944454C79A:8E72A394F98E07F1]:0)
+        at org.hamcrest.MatcherAssert.assertThat(MatcherAssert.java:20)
+        at org.hamcrest.MatcherAssert.assertThat(MatcherAssert.java:6)
+        at org.elasticsearch.test.ESTestCase.assertThat(ESTestCase.java:2809)
+        at org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests.testPruneColumnsInForkBranchesPruneIfAggregation(LogicalPlanOptimizerTests.java:9833)
+
+LogicalPlanOptimizerTests > testPruneColumnsInForkBranchesDropNestedEvalsFromOutputIfNotNeeded FAILED
+    java.lang.AssertionError: 
+    Expected: a collection with size <5>
+         but: collection size was <17>
+        at __randomizedtesting.SeedInfo.seed([58A188944454C79A:632A7154990B077]:0)
+        at org.hamcrest.MatcherAssert.assertThat(MatcherAssert.java:20)
+        at org.hamcrest.MatcherAssert.assertThat(MatcherAssert.java:6)
+        at org.elasticsearch.test.ESTestCase.assertThat(ESTestCase.java:2809)
+        at org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests.testPruneColumnsInForkBranchesDropNestedEvalsFromOutputIfNotNeeded(LogicalPlanOptimizerTests.java:9756)
+  1> [2026-02-26T11:59:24,175][INFO ][o.e.n.j.JdkVectorLibrary ][[SUITE-LogicalPlanOptimizerTests-seed#[58A188944454C79A]]] vec_caps=2
+  1> [2026-02-26T11:59:24,183][INFO ][o.e.n.NativeAccess       ][[SUITE-LogicalPlanOptimizerTests-seed#[58A188944454C79A]]] Using native vector library; to disable start with -Dorg.elasticsearch.nativeaccess.enableVectorLibrary=false
+  1> [2026-02-26T11:59:24,192][INFO ][o.e.n.NativeAccess       ][[SUITE-LogicalPlanOptimizerTests-seed#[58A188944454C79A]]] Using [jdk] native provider and native methods for [Linux]
+  1> [2026-02-26T11:59:25,233][INFO ][o.e.c.u.FeatureFlag      ][[SUITE-LogicalPlanOptimizerTests-seed#[58A188944454C79A]]] The current build is a snapshot, feature flag [doc_values_skipper] is enabled
+  1> [2026-02-26T11:59:25,233][INFO ][o.e.c.u.FeatureFlag      ][[SUITE-LogicalPlanOptimizerTests-seed#[58A188944454C79A]]] The current build is a snapshot, feature flag [tsdb_synthetic_id] is enabled
+  1> [2026-02-26T11:59:25,284][INFO ][o.e.c.u.FeatureFlag      ][[SUITE-LogicalPlanOptimizerTests-seed#[58A188944454C79A]]] The current build is a snapshot, feature flag [ignored_source_fields_per_entry] is enabled
+  1> [2026-02-26T06:59:25,993][INFO ][o.e.c.u.FeatureFlag      ][suite] The current build is a snapshot, feature flag [batched_query_phase] is enabled
+  1> [2026-02-26T06:59:26,000][INFO ][o.e.c.u.FeatureFlag      ][suite] The current build is a snapshot, feature flag [pit_relocation_feature] is enabled
+  1> [2026-02-26T06:59:26,138][INFO ][o.e.c.u.FeatureFlag      ][suite] The current build is a snapshot, feature flag [esql_exponential_histogram] is enabled
+  1> [2026-02-26T06:59:26,161][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testInlineStatsWithLimitAndAgg] before test
+  1> [2026-02-26T06:59:26,300][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testInlineStatsWithLimitAndAgg] after test
+  1> [2026-02-26T06:59:26,303][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testTranslateHistogramPercentileWithImplicitMergeOverTime] before test
+  1> [2026-02-26T06:59:26,327][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testTranslateHistogramPercentileWithImplicitMergeOverTime] after test
+  1> [2026-02-26T06:59:26,329][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testTripleInlineStatsWithLookupJoinGetsPrunedEntirely] before test
+  1> [2026-02-26T06:59:26,380][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testTripleInlineStatsWithLookupJoinGetsPrunedEntirely] after test
+  1> [2026-02-26T06:59:26,382][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testLookupJoinKeepNoLookupFields] before test
+  1> [2026-02-26T06:59:26,390][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testLookupJoinKeepNoLookupFields] after test
+  1> [2026-02-26T06:59:26,392][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testSimplifyRLikeMatchAll] before test
+  1> [2026-02-26T06:59:26,403][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testSimplifyRLikeMatchAll] after test
+  1> [2026-02-26T06:59:26,405][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testEvalAliasingAcrossCommands] before test
+  1> [2026-02-26T06:59:26,415][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testEvalAliasingAcrossCommands] after test
+  1> [2026-02-26T06:59:26,417][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testPruneChainedEval] before test
+  1> [2026-02-26T06:59:26,424][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testPruneChainedEval] after test
+  1> [2026-02-26T06:59:26,426][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testSimplifyComparisonArithmeticSkippedOnDiv] before test
+  1> [2026-02-26T06:59:26,451][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testSimplifyComparisonArithmeticSkippedOnDiv] after test
+  1> [2026-02-26T06:59:26,453][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testReplaceSortByExpressions] before test
+  1> [2026-02-26T06:59:26,521][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testReplaceSortByExpressions] after test
+  1> [2026-02-26T06:59:26,522][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testTranslateHistogramSumWithImplicitMergeOverTime] before test
+  1> [2026-02-26T06:59:26,531][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testTranslateHistogramSumWithImplicitMergeOverTime] after test
+  1> [2026-02-26T06:59:26,532][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testCombineProjectionWithCategorizeGrouping] before test
+  1> [2026-02-26T06:59:26,599][INFO ][o.e.c.u.FeatureFlag      ][testCombineProjectionWithCategorizeGrouping] The current build is a snapshot, feature flag [new_ml_memory_computation] is enabled
+  1> [2026-02-26T06:59:26,615][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testCombineProjectionWithCategorizeGrouping] after test
+  1> [2026-02-26T06:59:26,617][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testPruneColumnsInForkBranchesShouldKeepAliasWithSameNameAsColumn] before test
+  1> [2026-02-26T06:59:26,634][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testPruneColumnsInForkBranchesShouldKeepAliasWithSameNameAsColumn] after test
+  1> [2026-02-26T06:59:26,639][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testIsNotNullConstraintForStatsWithMultiAggWithAndOnGrouping] before test
+  1> [2026-02-26T06:59:26,643][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testIsNotNullConstraintForStatsWithMultiAggWithAndOnGrouping] after test
+  1> [2026-02-26T06:59:26,644][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testRedundantSort_BeforeMvExpand_WithFilterOnExpandedField_ResultTruncationDefaultSize] before test
+  1> [2026-02-26T06:59:26,657][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testRedundantSort_BeforeMvExpand_WithFilterOnExpandedField_ResultTruncationDefaultSize] after test
+  1> [2026-02-26T06:59:26,658][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testPlanSanityCheckWithBinaryPlans] before test
+  1> [2026-02-26T06:59:26,668][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testPlanSanityCheckWithBinaryPlans] after test
+  1> [2026-02-26T06:59:26,670][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testDontPruneSameFieldDifferentDirectionSortClauses_UsingAlias] before test
+  1> [2026-02-26T06:59:26,676][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testDontPruneSameFieldDifferentDirectionSortClauses_UsingAlias] after test
+  1> [2026-02-26T06:59:26,678][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testPruneRedundantSortClausesUsingAlias] before test
+  1> [2026-02-26T06:59:26,682][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testPruneRedundantSortClausesUsingAlias] after test
+  1> [2026-02-26T06:59:26,683][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testDescendantLimitLookupJoin] before test
+  1> [2026-02-26T06:59:26,690][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testDescendantLimitLookupJoin] after test
+  1> [2026-02-26T06:59:26,692][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testAssertSemanticMatching] before test
+  1> [2026-02-26T06:59:26,704][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testAssertSemanticMatching] after test
+  1> [2026-02-26T06:59:26,706][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testDoNotEliminateHigherLimitDueToDescendantLimit] before test
+  1> [2026-02-26T06:59:26,711][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testDoNotEliminateHigherLimitDueToDescendantLimit] after test
+  1> [2026-02-26T06:59:26,712][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testPruneColumnsInForkBranchesKeepOnlyNeededAggs] before test
+  1> [2026-02-26T06:59:26,717][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testPruneColumnsInForkBranchesKeepOnlyNeededAggs] after test
+  1> [2026-02-26T06:59:26,719][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testPushdownLimitsPastLeftJoin] before test
+  1> [2026-02-26T06:59:26,722][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testPushdownLimitsPastLeftJoin] after test
+  1> [2026-02-26T06:59:26,723][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testVerifierOnAttributeDatatypeChanged] before test
+  1> [2026-02-26T06:59:26,750][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testVerifierOnAttributeDatatypeChanged] after test
+  1> [2026-02-26T06:59:26,752][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testMultipleMvExpandWithSortAndLimit] before test
+  1> [2026-02-26T06:59:26,757][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testMultipleMvExpandWithSortAndLimit] after test
+  1> [2026-02-26T06:59:26,760][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testPushDownLimitPastDissect] before test
+  1> [2026-02-26T06:59:26,763][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testPushDownLimitPastDissect] after test
+  1> [2026-02-26T06:59:26,764][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testTranslateHistogramPercentileWithImplicitMergeOverTimeAndFilter] before test
+  1> [2026-02-26T06:59:26,770][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testTranslateHistogramPercentileWithImplicitMergeOverTimeAndFilter] after test
+  1> [2026-02-26T06:59:26,772][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testNestedExpressionsInBothAggsAndGroups] before test
+  1> [2026-02-26T06:59:26,778][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testNestedExpressionsInBothAggsAndGroups] after test
+  1> [2026-02-26T06:59:26,779][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testRedundantSortOnMvExpandJoinEnrichGrokDissect] before test
+  1> [2026-02-26T06:59:26,785][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testRedundantSortOnMvExpandJoinEnrichGrokDissect] after test
+  1> [2026-02-26T06:59:26,786][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testDontPushDownLimitPastMvExpand] before test
+  1> [2026-02-26T06:59:26,790][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testDontPushDownLimitPastMvExpand] after test
+  1> [2026-02-26T06:59:26,791][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testUnboundedSortWithLookupJoinAndFilter] before test
+  1> [2026-02-26T06:59:26,809][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testUnboundedSortWithLookupJoinAndFilter] after test
+  1> [2026-02-26T06:59:26,810][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testQlComparisonOptimizationsApply] before test
+  1> [2026-02-26T06:59:26,815][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testQlComparisonOptimizationsApply] after test
+  1> [2026-02-26T06:59:26,816][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testCombineOrderByThroughEvalWithTwoDefs] before test
+  1> [2026-02-26T06:59:26,819][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testCombineOrderByThroughEvalWithTwoDefs] after test
+  1> [2026-02-26T06:59:26,820][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testTranslateMetricsGroupedByTwoDimension] before test
+  1> [2026-02-26T06:59:26,832][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testTranslateMetricsGroupedByTwoDimension] after test
+  1> [2026-02-26T06:59:26,833][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testPushShadowingGeneratingPlanPastRenamingProject] before test
+  1> [2026-02-26T06:59:26,838][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testPushShadowingGeneratingPlanPastRenamingProject] after test
+  1> [2026-02-26T06:59:26,839][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testMultlipleRedundantSortOnMvExpandAndJoin] before test
+  1> [2026-02-26T06:59:26,843][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testMultlipleRedundantSortOnMvExpandAndJoin] after test
+  1> [2026-02-26T06:59:26,844][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testFoldInIP] before test
+  1> [2026-02-26T06:59:26,853][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testFoldInIP] after test
+  1> [2026-02-26T06:59:26,854][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testEvalAfterStats] before test
+  1> [2026-02-26T06:59:26,857][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testEvalAfterStats] after test
+  1> [2026-02-26T06:59:26,858][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testEmptyProjectInStatWithEval] before test
+  1> [2026-02-26T06:59:26,861][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testEmptyProjectInStatWithEval] after test
+  1> [2026-02-26T06:59:26,862][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testRedundantSort_BeforeMvExpand_WithFilter_NOT_OnExpandedField] before test
+  1> [2026-02-26T06:59:26,865][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testRedundantSort_BeforeMvExpand_WithFilter_NOT_OnExpandedField] after test
+  1> [2026-02-26T06:59:26,866][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testIsNotNullConstraintForStatsWithGrouping] before test
+  1> [2026-02-26T06:59:26,869][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testIsNotNullConstraintForStatsWithGrouping] after test
+  1> [2026-02-26T06:59:26,870][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testSimplifyComparisonArithmeticWithFieldDoubleNegation] before test
+  1> [2026-02-26T06:59:26,875][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testSimplifyComparisonArithmeticWithFieldDoubleNegation] after test
+  1> [2026-02-26T06:59:26,876][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testLimitZeroUsesLocalRelation] before test
+  1> [2026-02-26T06:59:26,879][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testLimitZeroUsesLocalRelation] after test
+  1> [2026-02-26T06:59:26,881][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testTranslateMetricsGroupedByOneDimension] before test
+  1> [2026-02-26T06:59:26,884][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testTranslateMetricsGroupedByOneDimension] after test
+  1> [2026-02-26T06:59:26,885][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testPushDownOrderByPastRename] before test
+  1> [2026-02-26T06:59:26,886][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testPushDownOrderByPastRename] after test
+  1> [2026-02-26T06:59:26,887][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testExtractStatsCommonFilterSkippedNotSameFilter] before test
+  1> [2026-02-26T06:59:26,890][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testExtractStatsCommonFilterSkippedNotSameFilter] after test
+  1> [2026-02-26T06:59:26,891][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testRedundantSortOnMvExpandJoinKeepDropRename] before test
+  1> [2026-02-26T06:59:26,895][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testRedundantSortOnMvExpandJoinKeepDropRename] after test
+  1> [2026-02-26T06:59:26,896][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testBucketWithAggExpression] before test
+  1> [2026-02-26T06:59:26,900][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testBucketWithAggExpression] after test
+  1> [2026-02-26T06:59:26,901][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testMedianReplacement] before test
+  1> [2026-02-26T06:59:26,904][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testMedianReplacement] after test
+  1> [2026-02-26T06:59:26,905][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testReplaceExpressionWithExact] before test
+  1> [2026-02-26T06:59:26,907][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testReplaceExpressionWithExact] after test
+  1> [2026-02-26T06:59:26,908][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testSimplifyComparisonArithmeticsWithFloatingPoints] before test
+  1> [2026-02-26T06:59:26,912][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testSimplifyComparisonArithmeticsWithFloatingPoints] after test
+  1> [2026-02-26T06:59:26,913][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testTranslateMetricsAfterRenamingTimestamp] before test
+  1> [2026-02-26T06:59:26,922][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testTranslateMetricsAfterRenamingTimestamp] after test
+  1> [2026-02-26T06:59:26,924][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testDontCombineOrderByThroughMvExpand] before test
+  1> [2026-02-26T06:59:26,927][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testDontCombineOrderByThroughMvExpand] after test
+  1> [2026-02-26T06:59:26,929][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testReplaceStringCasingWithInsensitiveEqualsUpperFalse] before test
+  1> [2026-02-26T06:59:26,933][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testReplaceStringCasingWithInsensitiveEqualsUpperFalse] after test
+  1> [2026-02-26T06:59:26,935][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testReplaceSortWithExact] before test
+  1> [2026-02-26T06:59:26,938][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testReplaceSortWithExact] after test
+  1> [2026-02-26T06:59:26,949][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testRedundantSort_BeforeMvExpand_WithFilterOnExpandedField] before test
+  1> [2026-02-26T06:59:26,954][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testRedundantSort_BeforeMvExpand_WithFilterOnExpandedField] after test
+  1> [2026-02-26T06:59:26,955][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testCombineOrderByThroughFilter] before test
+  1> [2026-02-26T06:59:26,958][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testCombineOrderByThroughFilter] after test
+  1> [2026-02-26T06:59:26,959][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testEmptyMappingIndex] before test
+  1> [2026-02-26T06:59:26,969][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testEmptyMappingIndex] after test
+  1> [2026-02-26T06:59:26,971][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testPruneJoinOnNullMatchingFieldExpressionJoin] before test
+  1> [2026-02-26T06:59:26,979][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testPruneJoinOnNullMatchingFieldExpressionJoin] after test
+  1> [2026-02-26T06:59:26,981][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testCombineOrderByThroughProject] before test
+  1> [2026-02-26T06:59:26,985][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testCombineOrderByThroughProject] after test
+  1> [2026-02-26T06:59:26,988][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testDecayScaleMustBeLiteral] before test
+  1> [2026-02-26T06:59:27,001][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testDecayScaleMustBeLiteral] after test
+  1> [2026-02-26T06:59:27,003][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testCombineProjectionsWithEval] before test
+  1> [2026-02-26T06:59:27,010][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testCombineProjectionsWithEval] after test
+  1> [2026-02-26T06:59:27,011][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testFunctionNamedParamsAsFunctionArgument] before test
+  1> [2026-02-26T06:59:27,019][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testFunctionNamedParamsAsFunctionArgument] after test
+  1> [2026-02-26T06:59:27,021][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testVerifierOnAdditionalAttributeAdded] before test
+  1> [2026-02-26T06:59:27,024][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testVerifierOnAdditionalAttributeAdded] after test
+  1> [2026-02-26T06:59:27,026][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testPruningDuplicateEvals] before test
+  1> [2026-02-26T06:59:27,029][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testPruningDuplicateEvals] after test
+  1> [2026-02-26T06:59:27,030][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testStatsExpOverAggs] before test
+  1> [2026-02-26T06:59:27,034][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testStatsExpOverAggs] after test
+  1> [2026-02-26T06:59:27,035][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testCombineProjectionWithPruning] before test
+  1> [2026-02-26T06:59:27,037][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testCombineProjectionWithPruning] after test
+  1> [2026-02-26T06:59:27,038][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testSimplifyComparisonArithmeticSkippedOnFloatFieldWithPlusMinus] before test
+  1> [2026-02-26T06:59:27,054][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testSimplifyComparisonArithmeticSkippedOnFloatFieldWithPlusMinus] after test
+  1> [2026-02-26T06:59:27,055][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testCombineProjectionWhilePreservingAlias] before test
+  1> [2026-02-26T06:59:27,058][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testCombineProjectionWhilePreservingAlias] after test
+  1> [2026-02-26T06:59:27,059][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testSampleNoPushDownChangePoint] before test
+  1> [2026-02-26T06:59:27,062][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testSampleNoPushDownChangePoint] after test
+  1> [2026-02-26T06:59:27,063][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testRemoveUnusedSortBeforeMvExpand_DefaultLimit10000] before test
+  1> [2026-02-26T06:59:27,065][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testRemoveUnusedSortBeforeMvExpand_DefaultLimit10000] after test
+  1> [2026-02-26T06:59:27,066][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testExtractStatsCommonFilterSkippedDueToDisjunction] before test
+  1> [2026-02-26T06:59:27,073][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testExtractStatsCommonFilterSkippedDueToDisjunction] after test
+  1> [2026-02-26T06:59:27,074][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testRedundantSort_BeforeMvExpand_WithFilterOnExpandedFieldAlias] before test
+  1> [2026-02-26T06:59:27,078][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testRedundantSort_BeforeMvExpand_WithFilterOnExpandedFieldAlias] after test
+  1> [2026-02-26T06:59:27,079][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testSimplifyComparisonArithmeticSkippedOnMulDivByZero] before test
+  1> [2026-02-26T06:59:27,095][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testSimplifyComparisonArithmeticSkippedOnMulDivByZero] after test
+  1> [2026-02-26T06:59:27,096][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testTranslateTRangeFoldsToLocalRelation] before test
+  1> [2026-02-26T06:59:27,104][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testTranslateTRangeFoldsToLocalRelation] after test
+  1> [2026-02-26T06:59:27,105][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testPushDownConjunctionsAndNotDisjunctionsToKnnPrefilter] before test
+  1> [2026-02-26T06:59:27,142][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testPushDownConjunctionsAndNotDisjunctionsToKnnPrefilter] after test
+  1> [2026-02-26T06:59:27,143][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testCombineMultipleOrderByAndLimits] before test
+  1> [2026-02-26T06:59:27,147][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testCombineMultipleOrderByAndLimits] after test
+  1> [2026-02-26T06:59:27,148][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testCombineOrderBy] before test
+  1> [2026-02-26T06:59:27,151][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testCombineOrderBy] after test
+  1> [2026-02-26T06:59:27,152][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testSimplifyComparisonArithmeticWithFieldNegation] before test
+  1> [2026-02-26T06:59:27,155][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testSimplifyComparisonArithmeticWithFieldNegation] after test
+  1> [2026-02-26T06:59:27,156][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testPruneSortBeforeStats] before test
+  1> [2026-02-26T06:59:27,158][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testPruneSortBeforeStats] after test
+  1> [2026-02-26T06:59:27,159][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testTranslateSumOfTwoRates] before test
+  1> [2026-02-26T06:59:27,164][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testTranslateSumOfTwoRates] after test
+  1> [2026-02-26T06:59:27,165][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testBucketFailsOnFieldArgument] before test
+  1> [2026-02-26T06:59:27,168][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testBucketFailsOnFieldArgument] after test
+  1> [2026-02-26T06:59:27,169][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testCountOfLiteral] before test
+  1> [2026-02-26T06:59:27,174][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testCountOfLiteral] after test
+  1> [2026-02-26T06:59:27,175][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testPruneColumnsInForkBranchesShouldPruneNestedEvalsIfColumnIsDropped] before test
+  1> [2026-02-26T06:59:27,179][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testPruneColumnsInForkBranchesShouldPruneNestedEvalsIfColumnIsDropped] after test
+  1> [2026-02-26T06:59:27,180][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testPruneColumnsInForkBranchesPruneIfAggregation] before test
+  1> [2026-02-26T06:59:27,189][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testPruneColumnsInForkBranchesPruneIfAggregation] after test
+  1> [2026-02-26T06:59:27,191][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testTripleInlineStatsMultipleAssignmentsGetsPrunedPartially] before test
+  1> [2026-02-26T06:59:27,199][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testTripleInlineStatsMultipleAssignmentsGetsPrunedPartially] after test
+  1> [2026-02-26T06:59:27,200][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testSortMvExpandLimit] before test
+  1> [2026-02-26T06:59:27,203][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testSortMvExpandLimit] after test
+  1> [2026-02-26T06:59:27,205][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testDontPruneSameFieldDifferentDirectionSortClauses] before test
+  1> [2026-02-26T06:59:27,210][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testDontPruneSameFieldDifferentDirectionSortClauses] after test
+  1> [2026-02-26T06:59:27,211][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testPruneMixedAggInsideUnusedEval] before test
+  1> [2026-02-26T06:59:27,216][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testPruneMixedAggInsideUnusedEval] after test
+  1> [2026-02-26T06:59:27,217][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testLookupJoinRightFilterMatchWithWhereClause] before test
+  1> [2026-02-26T06:59:27,225][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testLookupJoinRightFilterMatchWithWhereClause] after test
+  1> [2026-02-26T06:59:27,226][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testNoPushDownOrFilterPastAgg] before test
+  1> [2026-02-26T06:59:27,230][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testNoPushDownOrFilterPastAgg] after test
+  1> [2026-02-26T06:59:27,231][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testTripleInlineStatsGetsPrunedPartially] before test
+  1> [2026-02-26T06:59:27,250][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testTripleInlineStatsGetsPrunedPartially] after test
+  1> [2026-02-26T06:59:27,251][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testNestedSubqueries] before test
+  1> [2026-02-26T06:59:27,260][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testNestedSubqueries] after test
+  1> [2026-02-26T06:59:27,262][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testPlanSanityCheck] before test
+  1> [2026-02-26T06:59:27,266][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testPlanSanityCheck] after test
+  1> [2026-02-26T06:59:27,267][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testExtractStatsCommonFilterInConjunctionWithMultipleCommonConjunctions] before test
+  1> [2026-02-26T06:59:27,272][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testExtractStatsCommonFilterInConjunctionWithMultipleCommonConjunctions] after test
+  1> [2026-02-26T06:59:27,273][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testPruneJoinOnNullAssignedMatchingField] before test
+  1> [2026-02-26T06:59:27,279][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testPruneJoinOnNullAssignedMatchingField] after test
+  1> [2026-02-26T06:59:27,280][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testLookupJoinRightFilterMatch] before test
+  1> [2026-02-26T06:59:27,282][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testLookupJoinRightFilterMatch] after test
+  1> [2026-02-26T06:59:27,283][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testNestedExpressionsInGroupsWithCategorize] before test
+  1> [2026-02-26T06:59:27,287][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testNestedExpressionsInGroupsWithCategorize] after test
+  1> [2026-02-26T06:59:27,288][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testEvalAliasingInsideSameCommandWithShadowing] before test
+  1> [2026-02-26T06:59:27,291][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testEvalAliasingInsideSameCommandWithShadowing] after test
+  1> [2026-02-26T06:59:27,292][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testNoPushDownOrFilterPastLimit] before test
+  1> [2026-02-26T06:59:27,294][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testNoPushDownOrFilterPastLimit] after test
+  1> [2026-02-26T06:59:27,295][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testPushDownLimitPastGrok] before test
+  1> [2026-02-26T06:59:27,298][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testPushDownLimitPastGrok] after test
+  1> [2026-02-26T06:59:27,299][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testLimitThenSortBeforeLookupJoin] before test
+  1> [2026-02-26T06:59:27,302][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testLimitThenSortBeforeLookupJoin] after test
+  1> [2026-02-26T06:59:27,303][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testReplaceStringCasingWithInsensitiveEqualsEquals] before test
+  1> [2026-02-26T06:59:27,314][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testReplaceStringCasingWithInsensitiveEqualsEquals] after test
+  1> [2026-02-26T06:59:27,315][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testCombineOrderByThroughGrok] before test
+  1> [2026-02-26T06:59:27,319][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testCombineOrderByThroughGrok] after test
+  1> [2026-02-26T06:59:27,320][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testDecayOriginMustBeLiteral] before test
+  1> [2026-02-26T06:59:27,330][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testDecayOriginMustBeLiteral] after test
+  1> [2026-02-26T06:59:27,331][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testExtractStatsCommonFilter] before test
+  1> [2026-02-26T06:59:27,335][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testExtractStatsCommonFilter] after test
+  1> [2026-02-26T06:59:27,337][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testNestedExpressionsInAggs] before test
+  1> [2026-02-26T06:59:27,340][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testNestedExpressionsInAggs] after test
+  1> [2026-02-26T06:59:27,341][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testWhereNull] before test
+  1> [2026-02-26T06:59:27,353][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testWhereNull] after test
+  1> [2026-02-26T06:59:27,354][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testExtractStatsCommonFilterUsingAliases] before test
+  1> [2026-02-26T06:59:27,358][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testExtractStatsCommonFilterUsingAliases] after test
+  1> [2026-02-26T06:59:27,359][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testNestedExpressionsInStatsWithExpression] before test
+  1> [2026-02-26T06:59:27,362][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testNestedExpressionsInStatsWithExpression] after test
+  1> [2026-02-26T06:59:27,363][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testCombineProjectionWithAggregation] before test
+  1> [2026-02-26T06:59:27,367][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testCombineProjectionWithAggregation] after test
+  1> [2026-02-26T06:59:27,368][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testSplittingInWithFoldableValue] before test
+  1> [2026-02-26T06:59:27,368][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testSplittingInWithFoldableValue] after test
+  1> [2026-02-26T06:59:27,369][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testCombineOrderByThroughProjectWithAlias] before test
+  1> [2026-02-26T06:59:27,373][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testCombineOrderByThroughProjectWithAlias] after test
+  1> [2026-02-26T06:59:27,374][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testInlinestatsGetsPrunedEntirely] before test
+  1> [2026-02-26T06:59:27,377][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testInlinestatsGetsPrunedEntirely] after test
+  1> [2026-02-26T06:59:27,378][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testCombineProjectionsWithEvalAndDrop] before test
+  1> [2026-02-26T06:59:27,381][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testCombineProjectionsWithEvalAndDrop] after test
+  1> [2026-02-26T06:59:27,382][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testReplaceStringCasingWithInsensitiveEqualsLowerFalse] before test
+  1> [2026-02-26T06:59:27,384][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testReplaceStringCasingWithInsensitiveEqualsLowerFalse] after test
+  1> [2026-02-26T06:59:27,386][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testPruneUnusedAggsChainedAgg] before test
+  1> [2026-02-26T06:59:27,390][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testPruneUnusedAggsChainedAgg] after test
+  1> [2026-02-26T06:59:27,392][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testSimplifyComparisonArithmeticWithDisjunction] before test
+  1> [2026-02-26T06:59:27,395][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testSimplifyComparisonArithmeticWithDisjunction] after test
+  1> [2026-02-26T06:59:27,396][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testReplaceSortByExpressionsWithStats] before test
+  1> [2026-02-26T06:59:27,401][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testReplaceSortByExpressionsWithStats] after test
+  1> [2026-02-26T06:59:27,401][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testFullTextFunctionOnEvalNull] before test
+  1> [2026-02-26T06:59:27,405][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testFullTextFunctionOnEvalNull] after test
+  1> [2026-02-26T06:59:27,406][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testTranslateWithInlineFilter] before test
+  1> [2026-02-26T06:59:27,410][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testTranslateWithInlineFilter] after test
+  1> [2026-02-26T06:59:27,411][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testInlineStatsNestedExpressionsInGroups] before test
+  1> [2026-02-26T06:59:27,414][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testInlineStatsNestedExpressionsInGroups] after test
+  1> [2026-02-26T06:59:27,415][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testSamplePushDown] before test
+  1> [2026-02-26T06:59:27,431][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testSamplePushDown] after test
+  1> [2026-02-26T06:59:27,433][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testCombineLimits] before test
+  1> [2026-02-26T06:59:27,433][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testCombineLimits] after test
+  1> [2026-02-26T06:59:27,435][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testSimplifyComparisonArithmeticWithConjunction] before test
+  1> [2026-02-26T06:59:27,438][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testSimplifyComparisonArithmeticWithConjunction] after test
+  1> [2026-02-26T06:59:27,440][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testSampleNoPushDown] before test
+  1> [2026-02-26T06:59:27,447][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testSampleNoPushDown] after test
+  1> [2026-02-26T06:59:27,449][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testPushdownWithOverwrittenName] before test
+  1> [2026-02-26T06:59:27,462][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testPushdownWithOverwrittenName] after test
+  1> [2026-02-26T06:59:27,463][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testPruneRedundantOrderBy] before test
+  1> [2026-02-26T06:59:27,465][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testPruneRedundantOrderBy] after test
+  1> [2026-02-26T06:59:27,467][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testExtractStatsCommonFilterUsingJustOneAlias] before test
+  1> [2026-02-26T06:59:27,471][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testExtractStatsCommonFilterUsingJustOneAlias] after test
+  1> [2026-02-26T06:59:27,472][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testStatsWithCanonicalAggregate] before test
+  1> [2026-02-26T06:59:27,474][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testStatsWithCanonicalAggregate] after test
+  1> [2026-02-26T06:59:27,475][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testPushShadowingGeneratingPlanPastRenamingProjectWithResolution] before test
+  1> [2026-02-26T06:59:27,477][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testPushShadowingGeneratingPlanPastRenamingProjectWithResolution] after test
+  1> [2026-02-26T06:59:27,477][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testSelectivelyPushDownFilterPastEval] before test
+  1> [2026-02-26T06:59:27,480][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testSelectivelyPushDownFilterPastEval] after test
+  1> [2026-02-26T06:59:27,481][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testCombineDisjunctionToInFromIn] before test
+  1> [2026-02-26T06:59:27,484][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testCombineDisjunctionToInFromIn] after test
+  1> [2026-02-26T06:59:27,485][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testBucketWithNonFoldingArgs] before test
+  1> [2026-02-26T06:59:27,499][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testBucketWithNonFoldingArgs] after test
+  1> [2026-02-26T06:59:27,500][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testPruneColumnsInForkBranchesShouldRespectOuterAlias] before test
+  1> [2026-02-26T06:59:27,504][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testPruneColumnsInForkBranchesShouldRespectOuterAlias] after test
+  1> [2026-02-26T06:59:27,505][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testFoldInKeyword] before test
+  1> [2026-02-26T06:59:27,509][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testFoldInKeyword] after test
+  1> [2026-02-26T06:59:27,510][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testDontPushDownLimitPastFilter] before test
+  1> [2026-02-26T06:59:27,512][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testDontPushDownLimitPastFilter] after test
+  1> [2026-02-26T06:59:27,513][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testInlineStatsWithLookupJoin] before test
+  1> [2026-02-26T06:59:27,519][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testInlineStatsWithLookupJoin] after test
+  1> [2026-02-26T06:59:27,520][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testReplaceStringCasingWithInsensitiveEqualsNotEquals] before test
+  1> [2026-02-26T06:59:27,525][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testReplaceStringCasingWithInsensitiveEqualsNotEquals] after test
+  1> [2026-02-26T06:59:27,526][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testLikeWrongPattern] before test
+  1> [2026-02-26T06:59:27,528][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testLikeWrongPattern] after test
+  1> [2026-02-26T06:59:27,530][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testCopyDefaultLimitPastMvExpand] before test
+  1> [2026-02-26T06:59:27,532][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testCopyDefaultLimitPastMvExpand] after test
+  1> [2026-02-26T06:59:27,532][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testPushDownEvalPastProject] before test
+  1> [2026-02-26T06:59:27,535][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testPushDownEvalPastProject] after test
+  1> [2026-02-26T06:59:27,536][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testPruneJoinOnNullAssignedMatchingFieldExpr] before test
+  1> [2026-02-26T06:59:27,540][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testPruneJoinOnNullAssignedMatchingFieldExpr] after test
+  1> [2026-02-26T06:59:27,540][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testTranslateWithInlineFilterWithImplicitLastOverTime] before test
+  1> [2026-02-26T06:59:27,544][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testTranslateWithInlineFilterWithImplicitLastOverTime] after test
+  1> [2026-02-26T06:59:27,545][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testStatsWithFilteringDefaultAliasing] before test
+  1> [2026-02-26T06:59:27,547][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testStatsWithFilteringDefaultAliasing] after test
+  1> [2026-02-26T06:59:27,548][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testRedundantSortOnMvExpandEnrichGrokDissect] before test
+  1> [2026-02-26T06:59:27,551][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testRedundantSortOnMvExpandEnrichGrokDissect] after test
+  1> [2026-02-26T06:59:27,552][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testPruneUnusedEval] before test
+  1> [2026-02-26T06:59:27,554][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testPruneUnusedEval] after test
+  1> [2026-02-26T06:59:27,555][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testNoWrongIsNotNullPruning] before test
+  1> [2026-02-26T06:59:27,558][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testNoWrongIsNotNullPruning] after test
+  1> [2026-02-26T06:59:27,559][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testBucketAcceptsEvalLiteralReferences] before test
+  1> [2026-02-26T06:59:27,562][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testBucketAcceptsEvalLiteralReferences] after test
+  1> [2026-02-26T06:59:27,563][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testTranslateMaxOverTime] before test
+  1> [2026-02-26T06:59:27,566][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testTranslateMaxOverTime] after test
+  1> [2026-02-26T06:59:27,567][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testInsist_fieldDoesNotExist_createsUnmappedFieldInRelation] before test
+  1> [2026-02-26T06:59:27,571][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testInsist_fieldDoesNotExist_createsUnmappedFieldInRelation] after test
+  1> [2026-02-26T06:59:27,572][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testFoldInVersion] before test
+  1> [2026-02-26T06:59:27,579][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testFoldInVersion] after test
+  1> [2026-02-26T06:59:27,580][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testAggOfLiteralGrouped] before test
+  1> [2026-02-26T06:59:27,609][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testAggOfLiteralGrouped] after test
+  1> [2026-02-26T06:59:27,611][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testKnnWithRerankAmdTopN] before test
+  1> [2026-02-26T06:59:27,615][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testKnnWithRerankAmdTopN] after test
+  1> [2026-02-26T06:59:27,617][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testTopNEnrich] before test
+  1> [2026-02-26T06:59:27,621][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testTopNEnrich] after test
+  1> [2026-02-26T06:59:27,621][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testPushDown_TheRightLimit_PastMvExpand] before test
+  1> [2026-02-26T06:59:27,624][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testPushDown_TheRightLimit_PastMvExpand] after test
+  1> [2026-02-26T06:59:27,625][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testToDatePeriodToTimeDurationWithField] before test
+  1> [2026-02-26T06:59:27,636][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testToDatePeriodToTimeDurationWithField] after test
+  1> [2026-02-26T06:59:27,637][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testTripleInlineStatsMultipleAssignmentsGetsPrunedEntirely] before test
+  1> [2026-02-26T06:59:27,643][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testTripleInlineStatsMultipleAssignmentsGetsPrunedEntirely] after test
+  1> [2026-02-26T06:59:27,644][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testExtractStatsCommonFilterNormalizeAndCombineWithExistingFilter] before test
+  1> [2026-02-26T06:59:27,648][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testExtractStatsCommonFilterNormalizeAndCombineWithExistingFilter] after test
+  1> [2026-02-26T06:59:27,649][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testNestedMultiExpressionsInGroupingAndAggs] before test
+  1> [2026-02-26T06:59:27,652][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testNestedMultiExpressionsInGroupingAndAggs] after test
+  1> [2026-02-26T06:59:27,653][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testNoPruningWhenChainedEvals] before test
+  1> [2026-02-26T06:59:27,655][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testNoPruningWhenChainedEvals] after test
+  1> [2026-02-26T06:59:27,656][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testTranslateLastOverTime] before test
+  1> [2026-02-26T06:59:27,659][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testTranslateLastOverTime] after test
+  1> [2026-02-26T06:59:27,660][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testMultipleCombineLimits] before test
+  1> [2026-02-26T06:59:27,661][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testMultipleCombineLimits] after test
+  1> [2026-02-26T06:59:27,662][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testInlineStatsWithAggGetsPrunedEntirely] before test
+  1> [2026-02-26T06:59:27,666][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testInlineStatsWithAggGetsPrunedEntirely] after test
+  1> [2026-02-26T06:59:27,667][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testLookupJoinRightFilterSpatialIntersects] before test
+  1> [2026-02-26T06:59:27,689][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testLookupJoinRightFilterSpatialIntersects] after test
+  1> [2026-02-26T06:59:27,690][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testFoldNullInToLocalRelation] before test
+  1> [2026-02-26T06:59:27,693][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testFoldNullInToLocalRelation] after test
+  1> [2026-02-26T06:59:27,694][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testCombineProjectionWithFilterInBetween] before test
+  1> [2026-02-26T06:59:27,697][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testCombineProjectionWithFilterInBetween] after test
+  1> [2026-02-26T06:59:27,698][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testSpatialTypesAndStatsUseDocValues] before test
+  1> [2026-02-26T06:59:27,701][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testSpatialTypesAndStatsUseDocValues] after test
+  1> [2026-02-26T06:59:27,711][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testEvalWithScoreExplicitLimit] before test
+  1> [2026-02-26T06:59:27,716][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testEvalWithScoreExplicitLimit] after test
+  1> [2026-02-26T06:59:27,717][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testPruneColumnsInForkBranchesDropNestedEvalsFromOutputIfNotNeeded] before test
+  1> [2026-02-26T06:59:27,728][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testPruneColumnsInForkBranchesDropNestedEvalsFromOutputIfNotNeeded] after test
+  1> [2026-02-26T06:59:27,730][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testPushDownLimitPastProject] before test
+  1> [2026-02-26T06:59:27,735][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testPushDownLimitPastProject] after test
+  1> [2026-02-26T06:59:27,737][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testEmptyProjectionInStat] before test
+  1> [2026-02-26T06:59:27,740][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testEmptyProjectionInStat] after test
+  1> [2026-02-26T06:59:27,741][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testTranslateMixedAggsWithoutGrouping] before test
+  1> [2026-02-26T06:59:27,745][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testTranslateMixedAggsWithoutGrouping] after test
+  1> [2026-02-26T06:59:27,746][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testPushDownLimitThroughMultipleSort_AfterMvExpand] before test
+  1> [2026-02-26T06:59:27,749][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testPushDownLimitThroughMultipleSort_AfterMvExpand] after test
+  1> [2026-02-26T06:59:27,750][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testDoubleInlineStatsWithEvalGetsPrunedEntirely] before test
+  1> [2026-02-26T06:59:27,754][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testDoubleInlineStatsWithEvalGetsPrunedEntirely] after test
+  1> [2026-02-26T06:59:27,755][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testNoPruningWhenDealingJustWithEvals] before test
+  1> [2026-02-26T06:59:27,758][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testNoPruningWhenDealingJustWithEvals] after test
+  1> [2026-02-26T06:59:27,759][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testKnnWithMultipleClauses] before test
+  1> [2026-02-26T06:59:27,762][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testKnnWithMultipleClauses] after test
+  1> [2026-02-26T06:59:27,764][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testForkInSubquery] before test
+  1> [2026-02-26T06:59:27,768][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testForkInSubquery] after test
+  1> [2026-02-26T06:59:27,769][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testPartiallyFoldCase] before test
+  1> [2026-02-26T06:59:27,772][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testPartiallyFoldCase] after test
+  1> [2026-02-26T06:59:27,773][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testMultipleKnnQueriesInPrefilters] before test
+  1> [2026-02-26T06:59:27,779][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testMultipleKnnQueriesInPrefilters] after test
+  1> [2026-02-26T06:59:27,780][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testPruneRedundantSortClauses] before test
+  1> [2026-02-26T06:59:27,783][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testPruneRedundantSortClauses] after test
+  1> [2026-02-26T06:59:27,784][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testPushDownFilterPastProject] before test
+  1> [2026-02-26T06:59:27,786][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testPushDownFilterPastProject] after test
+  1> [2026-02-26T06:59:27,787][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testInlineStatsWithLimit] before test
+  1> [2026-02-26T06:59:27,790][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testInlineStatsWithLimit] after test
+  1> [2026-02-26T06:59:27,790][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testKnnWithStats] before test
+  1> [2026-02-26T06:59:27,793][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testKnnWithStats] after test
+  1> [2026-02-26T06:59:27,794][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testPruneEvalDueToStats] before test
+  1> [2026-02-26T06:59:27,796][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testPruneEvalDueToStats] after test
+  1> [2026-02-26T06:59:27,797][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testUnboundedSortSimple] before test
+  1> [2026-02-26T06:59:27,800][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testUnboundedSortSimple] after test
+  1> [2026-02-26T06:59:27,800][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testLookupJoinRightFilterSpatialWithin] before test
+  1> [2026-02-26T06:59:27,805][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testLookupJoinRightFilterSpatialWithin] after test
+  1> [2026-02-26T06:59:27,806][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testLookupJoinPushDownDisabledForDisjunctionBetweenLeftAndRightField] before test
+  1> [2026-02-26T06:59:27,808][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testLookupJoinPushDownDisabledForDisjunctionBetweenLeftAndRightField] after test
+  1> [2026-02-26T06:59:27,809][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testKnnWithRerankAmdLimit] before test
+  1> [2026-02-26T06:59:27,812][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testKnnWithRerankAmdLimit] after test
+  1> [2026-02-26T06:59:27,813][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testRedundantSortOnMvExpand] before test
+  1> [2026-02-26T06:59:27,815][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testRedundantSortOnMvExpand] after test
+  1> [2026-02-26T06:59:27,816][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testEvalLookupMultipleSorts] before test
+  1> [2026-02-26T06:59:27,819][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testEvalLookupMultipleSorts] after test
+  1> [2026-02-26T06:59:27,820][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testSamplePushDown_sort] before test
+  1> [2026-02-26T06:59:27,822][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testSamplePushDown_sort] after test
+  1> [2026-02-26T06:59:27,823][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testEvalAliasingInsideSameCommand] before test
+  1> [2026-02-26T06:59:27,825][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testEvalAliasingInsideSameCommand] after test
+  1> [2026-02-26T06:59:27,826][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testEvalWithScoreImplicitLimit] before test
+  1> [2026-02-26T06:59:27,829][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testEvalWithScoreImplicitLimit] after test
+  1> [2026-02-26T06:59:27,830][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testInsist_multipleInsistClauses_insistsAreFolded] before test
+  1> [2026-02-26T06:59:27,833][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testInsist_multipleInsistClauses_insistsAreFolded] after test
+  1> [2026-02-26T06:59:27,834][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testWhereLookupJoin] before test
+  1> [2026-02-26T06:59:27,837][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testWhereLookupJoin] after test
+  1> [2026-02-26T06:59:27,838][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testReplaceStringCasingWithInsensitiveEqualsLowerTrue] before test
+  1> [2026-02-26T06:59:27,840][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testReplaceStringCasingWithInsensitiveEqualsLowerTrue] after test
+  1> [2026-02-26T06:59:27,840][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testNotPushDownDisjunctionsToKnnPrefilter] before test
+  1> [2026-02-26T06:59:27,842][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testNotPushDownDisjunctionsToKnnPrefilter] after test
+  1> [2026-02-26T06:59:27,843][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testInlineStatsGetsPrunedPartially] before test
+  1> [2026-02-26T06:59:27,846][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testInlineStatsGetsPrunedPartially] after test
+  1> [2026-02-26T06:59:27,847][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testAggsWithOverridingInputAndGrouping] before test
+  1> [2026-02-26T06:59:27,849][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testAggsWithOverridingInputAndGrouping] after test
+  1> [2026-02-26T06:59:27,850][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testIsNotNullConstraintForStatsWithoutGrouping] before test
+  1> [2026-02-26T06:59:27,852][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testIsNotNullConstraintForStatsWithoutGrouping] after test
+  1> [2026-02-26T06:59:27,852][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testLookupJoinPushDownFilterOnLeftSideField] before test
+  1> [2026-02-26T06:59:27,854][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testLookupJoinPushDownFilterOnLeftSideField] after test
+  1> [2026-02-26T06:59:27,855][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testRedundantSortOnMvExpandAndJoin] before test
+  1> [2026-02-26T06:59:27,857][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testRedundantSortOnMvExpandAndJoin] after test
+  1> [2026-02-26T06:59:27,858][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testRenameStatsDropGroup] before test
+  1> [2026-02-26T06:59:27,860][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testRenameStatsDropGroup] after test
+  1> [2026-02-26T06:59:27,861][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testRLikeWrongPattern] before test
+  1> [2026-02-26T06:59:27,863][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testRLikeWrongPattern] after test
+  1> [2026-02-26T06:59:27,864][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testCombineOrderByThroughDissect] before test
+  1> [2026-02-26T06:59:27,866][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testCombineOrderByThroughDissect] after test
+  1> [2026-02-26T06:59:27,867][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testSamplePushDown_where] before test
+  1> [2026-02-26T06:59:27,869][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testSamplePushDown_where] after test
+  1> [2026-02-26T06:59:27,869][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testPushDownFilterPastProjectUsingEval] before test
+  1> [2026-02-26T06:59:27,871][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testPushDownFilterPastProjectUsingEval] after test
+  1> [2026-02-26T06:59:27,872][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testPushShadowingGeneratingPlanPastProject] before test
+  1> [2026-02-26T06:59:27,874][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testPushShadowingGeneratingPlanPastProject] after test
+  1> [2026-02-26T06:59:27,874][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testPruneEvalAliasOnAggUngrouped] before test
+  1> [2026-02-26T06:59:27,877][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testPruneEvalAliasOnAggUngrouped] after test
+  1> [2026-02-26T06:59:27,877][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testTranslateMetricsGroupedByTimeBucketAndDimensions] before test
+  1> [2026-02-26T06:59:27,881][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testTranslateMetricsGroupedByTimeBucketAndDimensions] after test
+  1> [2026-02-26T06:59:27,882][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testRedundantSortOnJoin] before test
+  1> [2026-02-26T06:59:27,885][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testRedundantSortOnJoin] after test
+  1> [2026-02-26T06:59:27,886][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testReplaceStringCasingWithInsensitiveEqualsUpperTrue] before test
+  1> [2026-02-26T06:59:27,889][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testReplaceStringCasingWithInsensitiveEqualsUpperTrue] after test
+  1> [2026-02-26T06:59:27,890][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testAggOfLiteral] before test
+  1> [2026-02-26T06:59:27,905][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testAggOfLiteral] after test
+  1> [2026-02-26T06:59:27,906][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testMorePushDownConjunctionsAndNotDisjunctionsToKnnPrefilter] before test
+  1> [2026-02-26T06:59:27,910][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testMorePushDownConjunctionsAndNotDisjunctionsToKnnPrefilter] after test
+  1> [2026-02-26T06:59:27,910][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testLookupJoinPushDownDisabledForLookupField] before test
+  1> [2026-02-26T06:59:27,913][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testLookupJoinPushDownDisabledForLookupField] after test
+  1> [2026-02-26T06:59:27,914][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testSimpleAvgReplacement] before test
+  1> [2026-02-26T06:59:27,916][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testSimpleAvgReplacement] after test
+  1> [2026-02-26T06:59:27,917][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testSimplifyRLikeNoWildcard] before test
+  1> [2026-02-26T06:59:27,919][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testSimplifyRLikeNoWildcard] after test
+  1> [2026-02-26T06:59:27,919][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testPushDownLimitThroughMultipleSort_AfterMvExpand2] before test
+  1> [2026-02-26T06:59:27,921][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testPushDownLimitThroughMultipleSort_AfterMvExpand2] after test
+  1> [2026-02-26T06:59:27,922][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testPruneUnusedAggMixedWithEval] before test
+  1> [2026-02-26T06:59:27,925][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testPruneUnusedAggMixedWithEval] after test
+  1> [2026-02-26T06:59:27,925][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testSortMvExpand] before test
+  1> [2026-02-26T06:59:27,927][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testSortMvExpand] after test
+  1> [2026-02-26T06:59:27,928][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testDontPushDownLimitPastLookupJoin] before test
+  1> [2026-02-26T06:59:27,930][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testDontPushDownLimitPastLookupJoin] after test
+  1> [2026-02-26T06:59:27,931][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testEvalAfterGroupBy] before test
+  1> [2026-02-26T06:59:27,933][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testEvalAfterGroupBy] after test
+  1> [2026-02-26T06:59:27,934][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testTranslateHistogramSumWithImplicitMergeOverTimeAndFilter] before test
+  1> [2026-02-26T06:59:27,936][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testTranslateHistogramSumWithImplicitMergeOverTimeAndFilter] after test
+  1> [2026-02-26T06:59:27,937][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testUnboundedSortJoin] before test
+  1> [2026-02-26T06:59:27,940][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testUnboundedSortJoin] after test
+  1> [2026-02-26T06:59:27,941][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testMultipleRenameStatsDropGroupMultirow] before test
+  1> [2026-02-26T06:59:27,944][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testMultipleRenameStatsDropGroupMultirow] after test
+  1> [2026-02-26T06:59:27,944][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testExtractStatsCommonFilterSkippedWithGroups] before test
+  1> [2026-02-26T06:59:27,947][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testExtractStatsCommonFilterSkippedWithGroups] after test
+  1> [2026-02-26T06:59:27,947][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testPruneChainedEvalNoProjection] before test
+  1> [2026-02-26T06:59:27,949][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testPruneChainedEvalNoProjection] after test
+  1> [2026-02-26T06:59:27,950][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testUnboundedSortWithMvExpandAndFilter] before test
+  1> [2026-02-26T06:59:27,953][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testUnboundedSortWithMvExpandAndFilter] after test
+  1> [2026-02-26T06:59:27,954][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testFilterWithSortBeforeLookupJoin] before test
+  1> [2026-02-26T06:59:27,956][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testFilterWithSortBeforeLookupJoin] after test
+  1> [2026-02-26T06:59:27,957][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testCombineProjectionWithAggregationFirstAndAliasedGroupingUsedInAgg] before test
+  1> [2026-02-26T06:59:27,959][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testCombineProjectionWithAggregationFirstAndAliasedGroupingUsedInAgg] after test
+  1> [2026-02-26T06:59:27,960][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testPushDownDissectPastProject] before test
+  1> [2026-02-26T06:59:27,962][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testPushDownDissectPastProject] after test
+  1> [2026-02-26T06:59:27,963][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testPruneColumnsInForkBranchesSimpleEvalOutsideBranches] before test
+  1> [2026-02-26T06:59:27,966][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testPruneColumnsInForkBranchesSimpleEvalOutsideBranches] after test
+  1> [2026-02-26T06:59:27,966][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testPruneEvalAliasOnAggGroupedByAlias] before test
+  1> [2026-02-26T06:59:27,968][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testPruneEvalAliasOnAggGroupedByAlias] after test
+  1> [2026-02-26T06:59:27,969][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testSortLookupJoin] before test
+  1> [2026-02-26T06:59:27,972][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testSortLookupJoin] after test
+  1> [2026-02-26T06:59:27,973][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testLookupJoinPushDownSeparatedForConjunctionBetweenLeftAndRightField] before test
+  1> [2026-02-26T06:59:27,975][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testLookupJoinPushDownSeparatedForConjunctionBetweenLeftAndRightField] after test
+  1> [2026-02-26T06:59:27,976][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testFoldInNumerics] before test
+  1> [2026-02-26T06:59:27,982][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testFoldInNumerics] after test
+  1> [2026-02-26T06:59:27,983][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testLookupJoinRightFilter] before test
+  1> [2026-02-26T06:59:27,985][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testLookupJoinRightFilter] after test
+  1> [2026-02-26T06:59:27,985][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testMvSortInvalidOrder] before test
+  1> [2026-02-26T06:59:28,003][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testMvSortInvalidOrder] after test
+  1> [2026-02-26T06:59:28,005][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testTranslateMixedAggsGroupedByTimeBucketAndDimensions] before test
+  1> [2026-02-26T06:59:28,008][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testTranslateMixedAggsGroupedByTimeBucketAndDimensions] after test
+  1> [2026-02-26T06:59:28,009][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testPushDownLimitPastEval] before test
+  1> [2026-02-26T06:59:28,011][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testPushDownLimitPastEval] after test
+  1> [2026-02-26T06:59:28,012][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testInlineStatsWithRow] before test
+  1> [2026-02-26T06:59:28,015][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testInlineStatsWithRow] after test
+  1> [2026-02-26T06:59:28,015][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testTrivialTypeConversionWrittenAway] before test
+  1> [2026-02-26T06:59:28,030][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testTrivialTypeConversionWrittenAway] after test
+  1> [2026-02-26T06:59:28,031][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testEliminateHigherLimitDueToDescendantLimit] before test
+  1> [2026-02-26T06:59:28,034][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testEliminateHigherLimitDueToDescendantLimit] after test
+  1> [2026-02-26T06:59:28,034][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testTranslateTRangeFoldsToLiteralWhenTimestampOutsideRange] before test
+  1> [2026-02-26T06:59:28,037][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testTranslateTRangeFoldsToLiteralWhenTimestampOutsideRange] after test
+  1> [2026-02-26T06:59:28,038][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testNestedExpressionsInGroups] before test
+  1> [2026-02-26T06:59:28,040][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testNestedExpressionsInGroups] after test
+  1> [2026-02-26T06:59:28,041][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testFullTextFunctionOnNull] before test
+  1> [2026-02-26T06:59:28,043][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testFullTextFunctionOnNull] after test
+  1> [2026-02-26T06:59:28,043][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testStatsExpOverAggsMulti] before test
+  1> [2026-02-26T06:59:28,046][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testStatsExpOverAggsMulti] after test
+  1> [2026-02-26T06:59:28,047][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testPruneRenameOnAggBy] before test
+  1> [2026-02-26T06:59:28,049][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testPruneRenameOnAggBy] after test
+  1> [2026-02-26T06:59:28,050][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testToDatePeriodTimeDurationInvalidIntervals] before test
+  1> [2026-02-26T06:59:28,086][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testToDatePeriodTimeDurationInvalidIntervals] after test
+  1> [2026-02-26T06:59:28,088][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testMultiMvExpand_SortDownBelow] before test
+  1> [2026-02-26T06:59:28,090][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testMultiMvExpand_SortDownBelow] after test
+  1> [2026-02-26T06:59:28,091][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testSampleNoPushDownLookupJoin] before test
+  1> [2026-02-26T06:59:28,093][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testSampleNoPushDownLookupJoin] after test
+  1> [2026-02-26T06:59:28,095][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testSimplifyComparisonArithmeticSkippedOnResultingFloatLiteral] before test
+  1> [2026-02-26T06:59:28,101][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testSimplifyComparisonArithmeticSkippedOnResultingFloatLiteral] after test
+  1> [2026-02-26T06:59:28,102][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testCombineProjectionWithAggregationFirstAndAliasedGroupingUnused] before test
+  1> [2026-02-26T06:59:28,104][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testCombineProjectionWithAggregationFirstAndAliasedGroupingUnused] after test
+  1> [2026-02-26T06:59:28,105][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testUnboundedSortExpandFilter] before test
+  1> [2026-02-26T06:59:28,108][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testUnboundedSortExpandFilter] after test
+  1> [2026-02-26T06:59:28,109][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testEmptyProjectInStatWithGroupAndEval] before test
+  1> [2026-02-26T06:59:28,112][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testEmptyProjectInStatWithGroupAndEval] after test
+  1> [2026-02-26T06:59:28,114][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testInsist_multiIndexFieldPartiallyExistsAndIsKeyword_castsAreNotSupported] before test
+  1> [2026-02-26T06:59:28,118][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testInsist_multiIndexFieldPartiallyExistsAndIsKeyword_castsAreNotSupported] after test
+  1> [2026-02-26T06:59:28,119][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testReplaceFilterWithExact] before test
+  1> [2026-02-26T06:59:28,121][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testReplaceFilterWithExact] after test
+  1> [2026-02-26T06:59:28,122][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testCombineOrderByThroughProjectAndEval] before test
+  1> [2026-02-26T06:59:28,124][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testCombineOrderByThroughProjectAndEval] after test
+  1> [2026-02-26T06:59:28,125][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testTranslateDataGroupedByTBucket] before test
+  1> [2026-02-26T06:59:28,129][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testTranslateDataGroupedByTBucket] after test
+  1> [2026-02-26T06:59:28,130][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testTranslateMetricsGroupedByTBucketInTSMode] before test
+  1> [2026-02-26T06:59:28,132][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testTranslateMetricsGroupedByTBucketInTSMode] after test
+  1> [2026-02-26T06:59:28,133][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testKnnWithMultipleLimitsCombined] before test
+  1> [2026-02-26T06:59:28,136][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testKnnWithMultipleLimitsCombined] after test
+  1> [2026-02-26T06:59:28,137][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testSimplifyLikeMatchAll] before test
+  1> [2026-02-26T06:59:28,138][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testSimplifyLikeMatchAll] after test
+  1> [2026-02-26T06:59:28,139][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testLookupJoinRightFilterSpatialContains] before test
+  1> [2026-02-26T06:59:28,143][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testLookupJoinRightFilterSpatialContains] after test
+  1> [2026-02-26T06:59:28,144][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testIsNotNullConstraintForStatsWithAndOnGroupingAlias] before test
+  1> [2026-02-26T06:59:28,147][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testIsNotNullConstraintForStatsWithAndOnGroupingAlias] after test
+  1> [2026-02-26T06:59:28,147][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testCombineOrderByThroughEval] before test
+  1> [2026-02-26T06:59:28,149][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testCombineOrderByThroughEval] after test
+  1> [2026-02-26T06:59:28,150][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testPushDownLimit_PastEvalAndMvExpand] before test
+  1> [2026-02-26T06:59:28,152][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testPushDownLimit_PastEvalAndMvExpand] after test
+  1> [2026-02-26T06:59:28,153][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testMultipleLookupJoinWithSortAndLimit] before test
+  1> [2026-02-26T06:59:28,159][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testMultipleLookupJoinWithSortAndLimit] after test
+  1> [2026-02-26T06:59:28,159][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testPushDownGrokPastProject] before test
+  1> [2026-02-26T06:59:28,162][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testPushDownGrokPastProject] after test
+  1> [2026-02-26T06:59:28,163][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testIsNotNullConstraintForStatsWithMultiAggWithGrouping] before test
+  1> [2026-02-26T06:59:28,164][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testIsNotNullConstraintForStatsWithMultiAggWithGrouping] after test
+  1> [2026-02-26T06:59:28,165][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testDontPruneSortWithLimitBeforeStats] before test
+  1> [2026-02-26T06:59:28,167][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testDontPruneSortWithLimitBeforeStats] after test
+  1> [2026-02-26T06:59:28,168][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testTranslateAvgOverTime] before test
+  1> [2026-02-26T06:59:28,171][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testTranslateAvgOverTime] after test
+  1> [2026-02-26T06:59:28,172][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testSampleMerged] before test
+  1> [2026-02-26T06:59:28,174][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testSampleMerged] after test
+  1> [2026-02-26T06:59:28,175][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testTranslateMixedAggsWithMathWithoutGrouping] before test
+  1> [2026-02-26T06:59:28,178][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testTranslateMixedAggsWithMathWithoutGrouping] after test
+  1> [2026-02-26T06:59:28,179][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testSemiClashingAvgReplacement] before test
+  1> [2026-02-26T06:59:28,181][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testSemiClashingAvgReplacement] after test
+  1> [2026-02-26T06:59:28,182][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testLookupJoinExpressionSameAttrsDifferentConditions] before test
+  1> [2026-02-26T06:59:28,186][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testLookupJoinExpressionSameAttrsDifferentConditions] after test
+  1> [2026-02-26T06:59:28,187][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testSimplyComparisonArithmeticWithUnfoldedProd] before test
+  1> [2026-02-26T06:59:28,191][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testSimplyComparisonArithmeticWithUnfoldedProd] after test
+  1> [2026-02-26T06:59:28,192][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testTranslateMetricsWithoutGrouping] before test
+  1> [2026-02-26T06:59:28,194][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testTranslateMetricsWithoutGrouping] after test
+  1> [2026-02-26T06:59:28,195][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testPruneEvalAliasMixedWithRenameOnAggGrouped] before test
+  1> [2026-02-26T06:59:28,197][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testPruneEvalAliasMixedWithRenameOnAggGrouped] after test
+  1> [2026-02-26T06:59:28,198][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testPruneEvalAliasOnAggGrouped] before test
+  1> [2026-02-26T06:59:28,199][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testPruneEvalAliasOnAggGrouped] after test
+  1> [2026-02-26T06:59:28,200][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testPushDownFilterPastProjectUsingGrok] before test
+  1> [2026-02-26T06:59:28,203][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testPushDownFilterPastProjectUsingGrok] after test
+  1> [2026-02-26T06:59:28,204][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testKnnImplicitLimit] before test
+  1> [2026-02-26T06:59:28,206][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testKnnImplicitLimit] after test
+  1> [2026-02-26T06:59:28,207][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testIsNotNullConstraintSkippedForStatsWithAlias] before test
+  1> [2026-02-26T06:59:28,211][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testIsNotNullConstraintSkippedForStatsWithAlias] after test
+  1> [2026-02-26T06:59:28,212][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testFoldFromRow] before test
+  1> [2026-02-26T06:59:28,214][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testFoldFromRow] after test
+  1> [2026-02-26T06:59:28,215][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testInlineStatsWithAggAndInlineStatsGetsPruned] before test
+  1> [2026-02-26T06:59:28,219][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testInlineStatsWithAggAndInlineStatsGetsPruned] after test
+  1> [2026-02-26T06:59:28,220][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testDoubleInlineStatsGetsPrunedEntirely] before test
+  1> [2026-02-26T06:59:28,223][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testDoubleInlineStatsGetsPrunedEntirely] after test
+  1> [2026-02-26T06:59:28,224][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testLookupJoinExpressionSwapped] before test
+  1> [2026-02-26T06:59:28,226][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testLookupJoinExpressionSwapped] after test
+  1> [2026-02-26T06:59:28,227][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testLimitThenSortBeforeMvExpand] before test
+  1> [2026-02-26T06:59:28,229][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testLimitThenSortBeforeMvExpand] after test
+  1> [2026-02-26T06:59:28,230][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testPruneRenameOnAgg] before test
+  1> [2026-02-26T06:59:28,232][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testPruneRenameOnAgg] after test
+  1> [2026-02-26T06:59:28,233][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testCombineEvals] before test
+  1> [2026-02-26T06:59:28,236][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testCombineEvals] after test
+  1> [2026-02-26T06:59:28,237][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testFoldFromRowInEval] before test
+  1> [2026-02-26T06:59:28,239][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testFoldFromRowInEval] after test
+  1> [2026-02-26T06:59:28,239][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testSimplifyComparisonArithmeticWithMultipleOps] before test
+  1> [2026-02-26T06:59:28,242][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testSimplifyComparisonArithmeticWithMultipleOps] after test
+  1> [2026-02-26T06:59:28,242][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testRemoveOverridesInAggregate] before test
+  1> [2026-02-26T06:59:28,245][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testRemoveOverridesInAggregate] after test
+  1> [2026-02-26T06:59:28,246][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testFilterWithSortBeforeMvExpand] before test
+  1> [2026-02-26T06:59:28,248][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testFilterWithSortBeforeMvExpand] after test
+  1> [2026-02-26T06:59:28,249][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testSortLookupJoinLimit] before test
+  1> [2026-02-26T06:59:28,259][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testSortLookupJoinLimit] after test
+  1> [2026-02-26T06:59:28,260][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testCopyDefaultLimitPastLookupJoin] before test
+  1> [2026-02-26T06:59:28,263][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testCopyDefaultLimitPastLookupJoin] after test
+  1> [2026-02-26T06:59:28,264][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testFoldInEval] before test
+  1> [2026-02-26T06:59:28,266][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testFoldInEval] after test
+  1> [2026-02-26T06:59:28,267][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testKnnWithTopN] before test
+  1> [2026-02-26T06:59:28,270][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testKnnWithTopN] after test
+  1> [2026-02-26T06:59:28,271][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testKnnWithLimit] before test
+  1> [2026-02-26T06:59:28,273][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testKnnWithLimit] after test
+  1> [2026-02-26T06:59:28,273][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testExtractStatsCommonAlwaysTruePlusOtherFilter] before test
+  1> [2026-02-26T06:59:28,277][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testExtractStatsCommonAlwaysTruePlusOtherFilter] after test
+  1> [2026-02-26T06:59:28,278][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testCombineProjections] before test
+  1> [2026-02-26T06:59:28,280][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testCombineProjections] after test
+  1> [2026-02-26T06:59:28,281][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testInlineStatsWithAvg] before test
+  1> [2026-02-26T06:59:28,283][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testInlineStatsWithAvg] after test
+  1> [2026-02-26T06:59:28,283][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testReplaceStringCasingWithInsensitiveEqualsUnwrap] before test
+  1> [2026-02-26T06:59:28,286][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testReplaceStringCasingWithInsensitiveEqualsUnwrap] after test
+  1> [2026-02-26T06:59:28,286][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testMultipleRenameStatsDropGroup] before test
+  1> [2026-02-26T06:59:28,288][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testMultipleRenameStatsDropGroup] after test
+  1> [2026-02-26T06:59:28,289][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testDescendantLimitMvExpand] before test
+  1> [2026-02-26T06:59:28,291][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testDescendantLimitMvExpand] after test
+  1> [2026-02-26T06:59:28,292][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testMultipleLookupShadowing] before test
+  1> [2026-02-26T06:59:28,294][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testMultipleLookupShadowing] after test
+  1> [2026-02-26T06:59:28,294][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testIsNotNullConstraintForStatsWithAndOnGrouping] before test
+  1> [2026-02-26T06:59:28,296][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testIsNotNullConstraintForStatsWithAndOnGrouping] after test
+  1> [2026-02-26T06:59:28,297][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testPushDownFilterPastProjectUsingDissect] before test
+  1> [2026-02-26T06:59:28,299][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testPushDownFilterPastProjectUsingDissect] after test
+  1> [2026-02-26T06:59:28,299][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testCombineDisjunctionToInEquals] before test
+  1> [2026-02-26T06:59:28,301][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testCombineDisjunctionToInEquals] after test
+  1> [2026-02-26T06:59:28,302][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testAdjustMetricsRateBeforeFinalAgg] before test
+  1> [2026-02-26T06:59:28,305][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testAdjustMetricsRateBeforeFinalAgg] after test
+  1> [2026-02-26T06:59:28,306][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testKnnWithMultipleLimitsAfterTopN] before test
+  1> [2026-02-26T06:59:28,308][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testKnnWithMultipleLimitsAfterTopN] after test
+  1> [2026-02-26T06:59:28,309][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testSimplifyLikeNoWildcard] before test
+  1> [2026-02-26T06:59:28,310][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testSimplifyLikeNoWildcard] after test
+  1> [2026-02-26T06:59:28,311][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testCombineLimitWithOrderByThroughFilterAndEval] before test
+  1> [2026-02-26T06:59:28,313][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testCombineLimitWithOrderByThroughFilterAndEval] after test
+  1> [2026-02-26T06:59:28,314][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testEnrichNotNullFilter] before test
+  1> [2026-02-26T06:59:28,316][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testEnrichNotNullFilter] after test
+  1> [2026-02-26T06:59:28,316][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testTranslateOverTimeWithWindow] before test
+  1> [2026-02-26T06:59:28,328][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testTranslateOverTimeWithWindow] after test
+  1> [2026-02-26T06:59:28,329][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testInlineStatsWithShadowedOutput] before test
+  1> [2026-02-26T06:59:28,331][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testInlineStatsWithShadowedOutput] after test
+  1> [2026-02-26T06:59:28,331][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testLookupJoinPushDownFilterOnJoinKeyWithRename] before test
+  1> [2026-02-26T06:59:28,333][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testLookupJoinPushDownFilterOnJoinKeyWithRename] after test
+  1> [2026-02-26T06:59:28,334][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testSimplifyComparisonArithmeticSkippedOnFloats] before test
+  1> [2026-02-26T06:59:28,379][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testSimplifyComparisonArithmeticSkippedOnFloats] after test
+  1> [2026-02-26T06:59:28,380][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testIsNotNullConstraintForStatsWithMultiAggWithoutGrouping] before test
+  1> [2026-02-26T06:59:28,382][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testIsNotNullConstraintForStatsWithMultiAggWithoutGrouping] after test
+  1> [2026-02-26T06:59:28,383][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testPushDownConjunctionsToKnnPrefilter] before test
+  1> [2026-02-26T06:59:28,385][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testPushDownConjunctionsToKnnPrefilter] after test
+  1> [2026-02-26T06:59:28,386][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testEnrich] before test
+  1> [2026-02-26T06:59:28,388][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testEnrich] after test
+  1> [2026-02-26T06:59:28,388][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testSumOfLiteral] before test
+  1> [2026-02-26T06:59:28,392][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testSumOfLiteral] after test
+  1> [2026-02-26T06:59:28,393][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testNestedExpressionsWithGroupingKeyInAggs] before test
+  1> [2026-02-26T06:59:28,395][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testNestedExpressionsWithGroupingKeyInAggs] after test
+  1> [2026-02-26T06:59:28,396][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testTranslateTRangeFoldsToLiteralWhenTimestampInsideRange] before test
+  1> [2026-02-26T06:59:28,407][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testTranslateTRangeFoldsToLiteralWhenTimestampInsideRange] after test
+  1> [2026-02-26T06:59:28,408][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testCombineProjectionWithAggregationAndEval] before test
+  1> [2026-02-26T06:59:28,410][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testCombineProjectionWithAggregationAndEval] after test
+  1> [2026-02-26T06:59:28,410][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testSimplifyComparisonArithmeticCommutativeVsNonCommutativeOps] before test
+  1> [2026-02-26T06:59:28,421][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testSimplifyComparisonArithmeticCommutativeVsNonCommutativeOps] after test
+  1> [2026-02-26T06:59:28,421][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testFunctionNamedParamsAsFunctionArgument1] before test
+  1> [2026-02-26T06:59:28,426][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testFunctionNamedParamsAsFunctionArgument1] after test
+  1> [2026-02-26T06:59:28,426][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testFoldNullListInToLocalRelation] before test
+  1> [2026-02-26T06:59:28,428][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testFoldNullListInToLocalRelation] after test
+  1> [2026-02-26T06:59:28,429][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testSpatialTypesAndStatsUseDocValuesWithEval] before test
+  1> [2026-02-26T06:59:28,431][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testSpatialTypesAndStatsUseDocValuesWithEval] after test
+  1> [2026-02-26T06:59:28,432][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testSimplifyComparisonArithmeticWithFloatsAndDirectionChange] before test
+  1> [2026-02-26T06:59:28,436][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testSimplifyComparisonArithmeticWithFloatsAndDirectionChange] after test
+  1> [2026-02-26T06:59:28,436][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testIsNotNullConstraintForAliasedExpressions] before test
+  1> [2026-02-26T06:59:28,439][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testIsNotNullConstraintForAliasedExpressions] after test
+  1> [2026-02-26T06:59:28,440][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testReplaceSortByExpressionsMultipleSorts] before test
+  1> [2026-02-26T06:59:28,442][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testReplaceSortByExpressionsMultipleSorts] after test
+  1> [2026-02-26T06:59:28,442][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testWhereMvExpand] before test
+  1> [2026-02-26T06:59:28,444][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testWhereMvExpand] after test
+  1> [2026-02-26T06:59:28,445][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testEmptyProjections] before test
+  1> [2026-02-26T06:59:28,447][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testEmptyProjections] after test
+  1> [2026-02-26T06:59:28,447][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testExtractStatsCommonFilterSkippedOnLackingFilter] before test
+  1> [2026-02-26T06:59:28,449][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testExtractStatsCommonFilterSkippedOnLackingFilter] after test
+  1> [2026-02-26T06:59:28,450][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testMvExpandFoldable] before test
+  1> [2026-02-26T06:59:28,452][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testMvExpandFoldable] after test
+  1> [2026-02-26T06:59:28,453][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testPushDownEnrichPastProject] before test
+  1> [2026-02-26T06:59:28,455][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testPushDownEnrichPastProject] after test
+  1> [2026-02-26T06:59:28,456][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testDontPushDownLimitPastAggregate_AndMvExpand] before test
+  1> [2026-02-26T06:59:28,458][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testDontPushDownLimitPastAggregate_AndMvExpand] after test
+  1> [2026-02-26T06:59:28,459][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testPushDownMultipleFiltersToKnnPrefilter] before test
+  1> [2026-02-26T06:59:28,461][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testPushDownMultipleFiltersToKnnPrefilter] after test
+  1> [2026-02-26T06:59:28,462][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testPruneUnusedAggSimple] before test
+  1> [2026-02-26T06:59:28,464][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testPruneUnusedAggSimple] after test
+  1> [2026-02-26T06:59:28,465][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testInvalidFoldDueToReplacement] before test
+  1> [2026-02-26T06:59:28,467][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testInvalidFoldDueToReplacement] after test
+  1> [2026-02-26T06:59:28,467][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testExtractStatsCommonFilterInConjunction] before test
+  1> [2026-02-26T06:59:28,470][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testExtractStatsCommonFilterInConjunction] after test
+  1> [2026-02-26T06:59:28,471][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testStatsExpOverAggsWithScalars] before test
+  1> [2026-02-26T06:59:28,475][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testStatsExpOverAggsWithScalars] after test
+  1> [2026-02-26T06:59:28,476][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testCombineDisjunctionToInMixed] before test
+  1> [2026-02-26T06:59:28,478][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testCombineDisjunctionToInMixed] after test
+  1> [2026-02-26T06:59:28,479][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testTranslateMetricsGroupedByTimeBucket] before test
+  1> [2026-02-26T06:59:28,481][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testTranslateMetricsGroupedByTimeBucket] after test
+  1> [2026-02-26T06:59:28,482][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testPruneJoinOnNullMatchingField] before test
+  1> [2026-02-26T06:59:28,486][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testPruneJoinOnNullMatchingField] after test
+  1> [2026-02-26T06:59:28,486][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testClashingAggAvgReplacement] before test
+  1> [2026-02-26T06:59:28,488][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testClashingAggAvgReplacement] after test
+  1> [2026-02-26T06:59:28,489][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testPushDown_TheRightLimit_PastLookupJoin] before test
+  1> [2026-02-26T06:59:28,491][INFO ][o.e.x.e.o.LogicalPlanOptimizerTests][testPushDown_TheRightLimit_PastLookupJoin] after test
+
+Tests with failures:
+ - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests.testPruneColumnsInForkBranchesShouldKeepAliasWithSameNameAsColumn
+ - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests.testPruneColumnsInForkBranchesKeepOnlyNeededAggs
+ - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests.testPruneColumnsInForkBranchesShouldPruneNestedEvalsIfColumnIsDropped
+ - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests.testPruneColumnsInForkBranchesPruneIfAggregation
+ - org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests.testPruneColumnsInForkBranchesDropNestedEvalsFromOutputIfNotNeeded
+
+> Task :x-pack:plugin:esql:test FAILED
+
+[Incubating] Problems report is available at: file:///app/build/reports/problems/problems-report.html
+242 actionable tasks: 4 executed, 238 up-to-date

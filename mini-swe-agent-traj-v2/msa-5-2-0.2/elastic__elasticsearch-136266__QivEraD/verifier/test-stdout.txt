@@ -1,0 +1,12 @@
+test_patch applied successfully
+
+Found 2 JUnit XML file(s)
+Parsed 10 tests from XML files
+Wrote 10 test results -> output.json
+Summary: 8 passed, 2 failed, 0 skipped
+fail_to_pass: 1 required, 0 passed
+pass_to_pass: 10 required, 1 newly failing
+
+RESULT: FAILED
+fail_to_pass not satisfied (1): ['org.elasticsearch.compute.data.BasicPageTests::testEqualityAndHashCodeSmallInput']
+pass_to_pass broken (1): ['org.elasticsearch.compute.data.BasicPageTests::testEqualityAndHashCodeSmallInput']

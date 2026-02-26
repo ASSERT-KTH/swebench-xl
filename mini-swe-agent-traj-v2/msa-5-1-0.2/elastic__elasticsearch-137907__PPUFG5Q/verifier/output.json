@@ -1,0 +1,1425 @@
+{
+  "tests": [
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testInlineStatsWithLimitAndAgg",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testTranslateHistogramPercentileWithImplicitMergeOverTime",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testTripleInlineStatsWithLookupJoinGetsPrunedEntirely",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testLookupJoinKeepNoLookupFields",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testSimplifyRLikeMatchAll",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testEvalAliasingAcrossCommands",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPruneChainedEval",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testSimplifyComparisonArithmeticSkippedOnDiv",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testReplaceSortByExpressions",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testTranslateHistogramSumWithImplicitMergeOverTime",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testCombineProjectionWithCategorizeGrouping",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPruneColumnsInForkBranchesShouldKeepAliasWithSameNameAsColumn",
+      "status": "FAILED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testIsNotNullConstraintForStatsWithMultiAggWithAndOnGrouping",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testRedundantSort_BeforeMvExpand_WithFilterOnExpandedField_ResultTruncationDefaultSize",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPlanSanityCheckWithBinaryPlans",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testDontPruneSameFieldDifferentDirectionSortClauses_UsingAlias",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPruneRedundantSortClausesUsingAlias",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testDescendantLimitLookupJoin",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testAssertSemanticMatching",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testDoNotEliminateHigherLimitDueToDescendantLimit",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPruneColumnsInForkBranchesKeepOnlyNeededAggs",
+      "status": "FAILED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPushdownLimitsPastLeftJoin",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testVerifierOnAttributeDatatypeChanged",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testMultipleMvExpandWithSortAndLimit",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testSimplifyComparisonArithmeticSkippedOnDateOverflow",
+      "status": "SKIPPED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPushDownLimitPastDissect",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testTranslateHistogramPercentileWithImplicitMergeOverTimeAndFilter",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testNestedExpressionsInBothAggsAndGroups",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testRedundantSortOnMvExpandJoinEnrichGrokDissect",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testDontPushDownLimitPastMvExpand",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testUnboundedSortWithLookupJoinAndFilter",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testQlComparisonOptimizationsApply",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testCombineOrderByThroughEvalWithTwoDefs",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testTranslateMetricsGroupedByTwoDimension",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPushShadowingGeneratingPlanPastRenamingProject",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testMultlipleRedundantSortOnMvExpandAndJoin",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testFoldInIP",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testEvalAfterStats",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testEmptyProjectInStatWithEval",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testRedundantSort_BeforeMvExpand_WithFilter_NOT_OnExpandedField",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testIsNotNullConstraintForStatsWithGrouping",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testSimplifyComparisonArithmeticWithFieldDoubleNegation",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testLimitZeroUsesLocalRelation",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testTranslateMetricsGroupedByOneDimension",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPushDownOrderByPastRename",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testExtractStatsCommonFilterSkippedNotSameFilter",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testRedundantSortOnMvExpandJoinKeepDropRename",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testBucketWithAggExpression",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testMedianReplacement",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testReplaceExpressionWithExact",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testSimplifyComparisonArithmeticsWithFloatingPoints",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testTranslateMetricsAfterRenamingTimestamp",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testDontCombineOrderByThroughMvExpand",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testReplaceStringCasingWithInsensitiveEqualsUpperFalse",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testReplaceSortWithExact",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testRedundantSort_BeforeMvExpand_WithFilterOnExpandedField",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testCombineOrderByThroughFilter",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testEmptyMappingIndex",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPruneJoinOnNullMatchingFieldExpressionJoin",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testCombineOrderByThroughProject",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testDecayScaleMustBeLiteral",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testCombineProjectionsWithEval",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testFunctionNamedParamsAsFunctionArgument",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testVerifierOnAdditionalAttributeAdded",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPruningDuplicateEvals",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testStatsExpOverAggs",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testCombineProjectionWithPruning",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testSimplifyComparisonArithmeticSkippedOnFloatFieldWithPlusMinus",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testCombineProjectionWhilePreservingAlias",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testSampleNoPushDownChangePoint",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testRemoveUnusedSortBeforeMvExpand_DefaultLimit10000",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testExtractStatsCommonFilterSkippedDueToDisjunction",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testLookupStats",
+      "status": "SKIPPED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testRedundantSort_BeforeMvExpand_WithFilterOnExpandedFieldAlias",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testSimplifyComparisonArithmeticSkippedOnMulDivByZero",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testTranslateTRangeFoldsToLocalRelation",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPushDownConjunctionsAndNotDisjunctionsToKnnPrefilter",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testCombineMultipleOrderByAndLimits",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testCombineOrderBy",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testSimplifyComparisonArithmeticWithFieldNegation",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPruneSortBeforeStats",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testTranslateSumOfTwoRates",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testBucketFailsOnFieldArgument",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testCountOfLiteral",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPruneColumnsInForkBranchesShouldPruneNestedEvalsIfColumnIsDropped",
+      "status": "FAILED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPruneColumnsInForkBranchesPruneIfAggregation",
+      "status": "FAILED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testTripleInlineStatsMultipleAssignmentsGetsPrunedPartially",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testSortMvExpandLimit",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testDontPruneSameFieldDifferentDirectionSortClauses",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPruneMixedAggInsideUnusedEval",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testLookupJoinRightFilterMatchWithWhereClause",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testNoPushDownOrFilterPastAgg",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testTripleInlineStatsGetsPrunedPartially",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testNestedSubqueries",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPlanSanityCheck",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testExtractStatsCommonFilterInConjunctionWithMultipleCommonConjunctions",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPruneJoinOnNullAssignedMatchingField",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testLookupJoinRightFilterMatch",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testNestedExpressionsInGroupsWithCategorize",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testEvalAliasingInsideSameCommandWithShadowing",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testNoPushDownOrFilterPastLimit",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPushDownLimitPastGrok",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testLimitThenSortBeforeLookupJoin",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testReplaceStringCasingWithInsensitiveEqualsEquals",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testCombineOrderByThroughGrok",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testDecayOriginMustBeLiteral",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testExtractStatsCommonFilter",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testNestedExpressionsInAggs",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testWhereNull",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testExtractStatsCommonFilterUsingAliases",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testNestedExpressionsInStatsWithExpression",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testCombineProjectionWithAggregation",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testSplittingInWithFoldableValue",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testCombineOrderByThroughProjectWithAlias",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testInlinestatsGetsPrunedEntirely",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testCombineProjectionsWithEvalAndDrop",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testReplaceStringCasingWithInsensitiveEqualsLowerFalse",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPruneUnusedAggsChainedAgg",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testSimplifyComparisonArithmeticWithDisjunction",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testReplaceSortByExpressionsWithStats",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testFullTextFunctionOnEvalNull",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testSimplifyComparisonArithmeticSkippedOnNegatingOverflow",
+      "status": "SKIPPED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testTranslateWithInlineFilter",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testInlineStatsNestedExpressionsInGroups",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testSamplePushDown",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testCombineLimits",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testSimplifyComparisonArithmeticWithConjunction",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testSampleNoPushDown",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPushdownWithOverwrittenName",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPruneRedundantOrderBy",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testExtractStatsCommonFilterUsingJustOneAlias",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testStatsWithCanonicalAggregate",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPushShadowingGeneratingPlanPastRenamingProjectWithResolution",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testSelectivelyPushDownFilterPastEval",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testCombineDisjunctionToInFromIn",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testBucketWithNonFoldingArgs",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPruneColumnsInForkBranchesShouldRespectOuterAlias",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testFoldInKeyword",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testDontPushDownLimitPastFilter",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testInlineStatsWithLookupJoin",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testReplaceStringCasingWithInsensitiveEqualsNotEquals",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testLikeWrongPattern",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testLookupSimple",
+      "status": "SKIPPED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testCopyDefaultLimitPastMvExpand",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPushDownEvalPastProject",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPruneJoinOnNullAssignedMatchingFieldExpr",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testTranslateWithInlineFilterWithImplicitLastOverTime",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testStatsWithFilteringDefaultAliasing",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testRedundantSortOnMvExpandEnrichGrokDissect",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPruneUnusedEval",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testNoWrongIsNotNullPruning",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testBucketAcceptsEvalLiteralReferences",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testTranslateMaxOverTime",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testInsist_fieldDoesNotExist_createsUnmappedFieldInRelation",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testFoldInVersion",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testAggOfLiteralGrouped",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testKnnWithRerankAmdTopN",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testTopNEnrich",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPushDown_TheRightLimit_PastMvExpand",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testToDatePeriodToTimeDurationWithField",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testTripleInlineStatsMultipleAssignmentsGetsPrunedEntirely",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testExtractStatsCommonFilterNormalizeAndCombineWithExistingFilter",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testNestedMultiExpressionsInGroupingAndAggs",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testNoPruningWhenChainedEvals",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testTranslateLastOverTime",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testMultipleCombineLimits",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testInlineStatsWithAggGetsPrunedEntirely",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testLookupJoinRightFilterSpatialIntersects",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testFoldNullInToLocalRelation",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testCombineProjectionWithFilterInBetween",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testSpatialTypesAndStatsUseDocValues",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testEvalWithScoreExplicitLimit",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPruneColumnsInForkBranchesDropNestedEvalsFromOutputIfNotNeeded",
+      "status": "FAILED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPushDownLimitPastProject",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testEmptyProjectionInStat",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testTranslateMixedAggsWithoutGrouping",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPushDownLimitThroughMultipleSort_AfterMvExpand",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testDoubleInlineStatsWithEvalGetsPrunedEntirely",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testNoPruningWhenDealingJustWithEvals",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testKnnWithMultipleClauses",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testForkInSubquery",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPartiallyFoldCase",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testMultipleKnnQueriesInPrefilters",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPruneRedundantSortClauses",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPushDownFilterPastProject",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testInlineStatsWithLimit",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testKnnWithStats",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPruneEvalDueToStats",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testUnboundedSortSimple",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testLookupJoinRightFilterSpatialWithin",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testLookupJoinPushDownDisabledForDisjunctionBetweenLeftAndRightField",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testKnnWithRerankAmdLimit",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testRedundantSortOnMvExpand",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testEvalLookupMultipleSorts",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testSamplePushDown_sort",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testEvalAliasingInsideSameCommand",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testEvalWithScoreImplicitLimit",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testInsist_multipleInsistClauses_insistsAreFolded",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testWhereLookupJoin",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testReplaceStringCasingWithInsensitiveEqualsLowerTrue",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testNotPushDownDisjunctionsToKnnPrefilter",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testInlineStatsGetsPrunedPartially",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testAggsWithOverridingInputAndGrouping",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testIsNotNullConstraintForStatsWithoutGrouping",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testLookupJoinPushDownFilterOnLeftSideField",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testRedundantSortOnMvExpandAndJoin",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testRenameStatsDropGroup",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testRLikeWrongPattern",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testCombineOrderByThroughDissect",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testSamplePushDown_where",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPushDownFilterPastProjectUsingEval",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPushShadowingGeneratingPlanPastProject",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPruneEvalAliasOnAggUngrouped",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testTranslateMetricsGroupedByTimeBucketAndDimensions",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testRedundantSortOnJoin",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testReplaceStringCasingWithInsensitiveEqualsUpperTrue",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testAggOfLiteral",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testMorePushDownConjunctionsAndNotDisjunctionsToKnnPrefilter",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testLookupJoinPushDownDisabledForLookupField",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testSimpleAvgReplacement",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testSimplifyRLikeNoWildcard",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPushDownLimitThroughMultipleSort_AfterMvExpand2",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPruneUnusedAggMixedWithEval",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testSortMvExpand",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testDontPushDownLimitPastLookupJoin",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testEvalAfterGroupBy",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testTranslateHistogramSumWithImplicitMergeOverTimeAndFilter",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testUnboundedSortJoin",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testMultipleRenameStatsDropGroupMultirow",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testExtractStatsCommonFilterSkippedWithGroups",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPruneChainedEvalNoProjection",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testUnboundedSortWithMvExpandAndFilter",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testFilterWithSortBeforeLookupJoin",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testCombineProjectionWithAggregationFirstAndAliasedGroupingUsedInAgg",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPushDownDissectPastProject",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPruneColumnsInForkBranchesSimpleEvalOutsideBranches",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPruneEvalAliasOnAggGroupedByAlias",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testSortLookupJoin",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testLookupJoinPushDownSeparatedForConjunctionBetweenLeftAndRightField",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testFoldInNumerics",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testLookupJoinRightFilter",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testMvSortInvalidOrder",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testTranslateMixedAggsGroupedByTimeBucketAndDimensions",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPushDownLimitPastEval",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testInlineStatsWithRow",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testTrivialTypeConversionWrittenAway",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testEliminateHigherLimitDueToDescendantLimit",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testTranslateTRangeFoldsToLiteralWhenTimestampOutsideRange",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testNestedExpressionsInGroups",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testFullTextFunctionOnNull",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testStatsExpOverAggsMulti",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPruneRenameOnAggBy",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testToDatePeriodTimeDurationInvalidIntervals",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testMultiMvExpand_SortDownBelow",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testSampleNoPushDownLookupJoin",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testSimplifyComparisonArithmeticSkippedOnResultingFloatLiteral",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testCombineProjectionWithAggregationFirstAndAliasedGroupingUnused",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testUnboundedSortExpandFilter",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testEmptyProjectInStatWithGroupAndEval",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testInsist_multiIndexFieldPartiallyExistsAndIsKeyword_castsAreNotSupported",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testReplaceFilterWithExact",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testCombineOrderByThroughProjectAndEval",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testTranslateDataGroupedByTBucket",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testTranslateMetricsGroupedByTBucketInTSMode",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testKnnWithMultipleLimitsCombined",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testSimplifyLikeMatchAll",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testLookupJoinRightFilterSpatialContains",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testIsNotNullConstraintForStatsWithAndOnGroupingAlias",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testCombineOrderByThroughEval",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPushDownLimit_PastEvalAndMvExpand",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testMultipleLookupJoinWithSortAndLimit",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPushDownGrokPastProject",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testIsNotNullConstraintForStatsWithMultiAggWithGrouping",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testDontPruneSortWithLimitBeforeStats",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testTranslateAvgOverTime",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testSampleMerged",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testTranslateMixedAggsWithMathWithoutGrouping",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testSemiClashingAvgReplacement",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testLookupJoinExpressionSameAttrsDifferentConditions",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testSimplyComparisonArithmeticWithUnfoldedProd",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testTranslateMetricsWithoutGrouping",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testSelectivelyPushDownFilterPastRefAgg",
+      "status": "SKIPPED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPruneEvalAliasMixedWithRenameOnAggGrouped",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPruneEvalAliasOnAggGrouped",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPushDownFilterPastProjectUsingGrok",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testSimplifyComparisonArithmeticSkippedOnIntegerArithmeticalOverflow",
+      "status": "SKIPPED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testKnnImplicitLimit",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testIsNotNullConstraintSkippedForStatsWithAlias",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testFoldFromRow",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testInlineStatsWithAggAndInlineStatsGetsPruned",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testDoubleInlineStatsGetsPrunedEntirely",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testLookupJoinExpressionSwapped",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testLimitThenSortBeforeMvExpand",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPruneRenameOnAgg",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testSelectivePushDownComplexFilterPastAgg",
+      "status": "SKIPPED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testCombineEvals",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testFoldFromRowInEval",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testSimplifyComparisonArithmeticWithMultipleOps",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testRemoveOverridesInAggregate",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testFilterWithSortBeforeMvExpand",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testSortLookupJoinLimit",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testCopyDefaultLimitPastLookupJoin",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testFoldInEval",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testKnnWithTopN",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testKnnWithLimit",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testExtractStatsCommonAlwaysTruePlusOtherFilter",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testCombineProjections",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testInlineStatsWithAvg",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testReplaceStringCasingWithInsensitiveEqualsUnwrap",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testMultipleRenameStatsDropGroup",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testDescendantLimitMvExpand",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testMultipleLookupShadowing",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testIsNotNullConstraintForStatsWithAndOnGrouping",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPushDownFilterPastProjectUsingDissect",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testCombineDisjunctionToInEquals",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testAdjustMetricsRateBeforeFinalAgg",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testKnnWithMultipleLimitsAfterTopN",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testSimplifyLikeNoWildcard",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testCombineLimitWithOrderByThroughFilterAndEval",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testEnrichNotNullFilter",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testTranslateOverTimeWithWindow",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testInlineStatsWithShadowedOutput",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testLookupJoinPushDownFilterOnJoinKeyWithRename",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testSimplifyComparisonArithmeticSkippedOnFloats",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testIsNotNullConstraintForStatsWithMultiAggWithoutGrouping",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPushDownConjunctionsToKnnPrefilter",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testEnrich",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testSumOfLiteral",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testNestedExpressionsWithGroupingKeyInAggs",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testTranslateTRangeFoldsToLiteralWhenTimestampInsideRange",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testCombineProjectionWithAggregationAndEval",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testSimplifyComparisonArithmeticCommutativeVsNonCommutativeOps",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testFunctionNamedParamsAsFunctionArgument1",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testFoldNullListInToLocalRelation",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testSpatialTypesAndStatsUseDocValuesWithEval",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testSimplifyComparisonArithmeticWithFloatsAndDirectionChange",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testIsNotNullConstraintForAliasedExpressions",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testReplaceSortByExpressionsMultipleSorts",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testWhereMvExpand",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testEmptyProjections",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testExtractStatsCommonFilterSkippedOnLackingFilter",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testMvExpandFoldable",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPushDownEnrichPastProject",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testDontPushDownLimitPastAggregate_AndMvExpand",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPushDownMultipleFiltersToKnnPrefilter",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPruneUnusedAggSimple",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testInvalidFoldDueToReplacement",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testExtractStatsCommonFilterInConjunction",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testStatsExpOverAggsWithScalars",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testNestedExpressionsWithMultiGrouping",
+      "status": "SKIPPED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testCombineDisjunctionToInMixed",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testTranslateMetricsGroupedByTimeBucket",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPruneJoinOnNullMatchingField",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testClashingAggAvgReplacement",
+      "status": "PASSED"
+    },
+    {
+      "name": "org.elasticsearch.xpack.esql.optimizer.LogicalPlanOptimizerTests::testPushDown_TheRightLimit_PastLookupJoin",
+      "status": "PASSED"
+    }
+  ],
+  "build_result": "FAILED"
+}
