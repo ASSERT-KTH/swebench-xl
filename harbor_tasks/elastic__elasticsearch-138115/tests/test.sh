@@ -69,10 +69,19 @@ else:
 set +e
 # Run as the elasticsearch user — Elasticsearch refuses to start as root.
 # The container stays root so Harbor can install agents; we drop here for Gradle only.
-# The agent may have run Gradle as root, creating /app/.gradle owned by root.
-# Re-chown it so the elasticsearch user can write to the project-level Gradle cache.
-chown -R elasticsearch:elasticsearch /app/.gradle 2>/dev/null || true
-su -s /bin/bash elasticsearch -c "bash /tests/run_script.sh" > "$STDOUT_LOG" 2> "$STDERR_LOG"
+
+# Kill any Gradle daemon processes left behind by the agent.
+# Timed-out agent Gradle builds leave zombie daemons that starve or crash
+# the verifier's own Gradle run.
+pkill -f GradleDaemon 2>/dev/null || true
+# Fix ownership of the entire project directory. The agent runs as root and
+# creates root-owned files (build outputs, caches) throughout /app that the
+# elasticsearch user cannot write to.
+chown -R elasticsearch:elasticsearch /app 2>/dev/null || true
+# Use an isolated Gradle user home so the verifier is never affected by
+# anything the agent wrote to /root/.gradle (lock files, corrupted caches, etc).
+export GRADLE_USER_HOME=/tmp/gradle-verifier-home
+su -s /bin/bash elasticsearch -c "GRADLE_USER_HOME=/tmp/gradle-verifier-home bash /tests/run_script.sh" > "$STDOUT_LOG" 2> "$STDERR_LOG"
 RUN_EXIT_CODE=$?
 set -e
 
@@ -151,12 +160,13 @@ for test in results.get('tests', []):
     elif test.get('status') == 'FAILED':
         failed_tests.add(name)
 
-# If the build failed and no tests ran at all, treat as failure.
+# If the build didn't pass and no tests ran at all, treat as failure.
 # Without this, all fail_to_pass entries get silently skipped as "unrunnable"
 # (because all_output_tests is empty), producing a false reward of 1.
+# This covers build_result == 'FAILED' and build_result == None (silent crash).
 build_result = results.get('build_result')
-if build_result == 'FAILED' and not all_output_tests:
-    print("\nRESULT: FAILED (build failed, no tests ran)")
+if build_result != 'PASSED' and not all_output_tests:
+    print("\nRESULT: FAILED (build failed or produced no output, no tests ran)")
     sys.exit(1)
 
 def matches_any(required, test_set):
@@ -183,8 +193,8 @@ missing = []
 skipped_abstract = []
 for req in fail_to_pass:
     if not matches_any(req, all_output_tests):
-        if build_result == 'FAILED':
-            missing.append(req)  # build failed → test didn't run, not abstract
+        if build_result != 'PASSED':
+            missing.append(req)  # build failed/unknown → test didn't run, not abstract
         else:
             skipped_abstract.append(req)  # build passed → assume abstract/unrunnable
         continue
