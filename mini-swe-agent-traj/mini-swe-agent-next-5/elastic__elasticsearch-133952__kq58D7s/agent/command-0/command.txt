@@ -1,0 +1,15 @@
+mini -m gemini/gemini-3-flash-preview -t '# Task
+
+## Fix warning when creating an OTel data stream
+
+This was caused by LogsdbIndexModeSettingsProvider loading a filtered version of the mappings. It filters for `_doc.properties.host**` which contains host fields alias mappings from semconv-resource-to-ecs@mappings.yaml. As the filtered mappings don'"'"'t contain the alias target fields, this was causing an exception.
+
+Fixes https://github.com/elastic/elasticsearch/issues/132918
+
+---
+
+**Repo:** `elastic/elasticsearch`
+**Base commit:** `f406f025e1ced060b1845284319eb8e3ab671dd1`
+**Instance ID:** `elastic__elasticsearch-133952`
+**Language:** `Java`
+' -y -o /logs/agent/mini-swe-agent.trajectory.json -l 0 --exit-immediately 2>&1 </dev/null | tee /logs/agent/mini-swe-agent.txt

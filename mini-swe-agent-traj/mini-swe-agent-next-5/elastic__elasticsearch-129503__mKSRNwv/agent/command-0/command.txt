@@ -1,0 +1,48 @@
+mini -m gemini/gemini-3-flash-preview -t '# Task
+
+## ESQL: Pushdown Lookup Join past Project
+
+Closes https://github.com/elastic/elasticsearch/issues/119082.
+
+Alternative approach to https://github.com/elastic/elasticsearch/pull/127776 that doesn'"'"'t rely on renaming the lookup fields that `LOOKUP JOIN` adds.
+
+In general, we'"'"'re doing this simple transformation:
+```
+Join[LEFT][leftKeyField][rightKeyField]
+|_Project[leftKeyField, leftOtherField]
+| \_...
+\_EsRelation[LOOKUP][rightKeyField, rightOtherField]
+
+->
+
+Project[leftKeyField, leftOtherField, rightOtherField]
+\_Join[LEFT][leftKeyField][rightKeyField]
+  |_...
+  \_EsRelation[LOOKUP][rightKeyField, rightOtherField]
+```
+
+The tricky part is dealing with the case where the lookup fields added by `LOOKUP JOIN` would shadow some attributes if performed _after_ the `Project`; in this case, we leave `Eval`s in place that assign temporary names to any would-be shadowed attributes. This is the same approach that other pushdown rules take when they push down past an `Order` (`SORT`) - see `PushDownUtils#pushGeneratingPlanPastProjectAndOrderBy` for reference.
+
+Example with shadowing:
+```
+Join[LEFT][leftKeyField][rightKeyField]
+|_Project[leftKeyField, nameConflictField AS renamedField]
+| \_...
+\_EsRelation[LOOKUP][rightKeyField, nameConflictField]
+
+->
+
+Project[leftKeyField, $$nameConflictField$temp_name$ AS renamedField, nameConflictField]
+\_Join[LEFT][leftKeyField][rightKeyField]
+  |_Eval[nameConflictField AS $$nameConflictField$temp_name$]
+  |  \_...
+  \_EsRelation[LOOKUP][rightKeyField, nameConflictField]
+```
+
+---
+
+**Repo:** `elastic/elasticsearch`
+**Base commit:** `2502a363de7c42eb72fb78e3d1037f76afa399cc`
+**Instance ID:** `elastic__elasticsearch-129503`
+**Language:** `Java`
+' -y -o /logs/agent/mini-swe-agent.trajectory.json -l 0 --exit-immediately 2>&1 </dev/null | tee /logs/agent/mini-swe-agent.txt

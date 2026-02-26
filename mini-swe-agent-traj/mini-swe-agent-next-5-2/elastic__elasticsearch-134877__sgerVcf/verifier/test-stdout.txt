@@ -1,0 +1,12 @@
+test_patch applied successfully
+
+Found 2 JUnit XML file(s)
+Parsed 12 tests from XML files
+Wrote 12 test results -> output.json
+Summary: 10 passed, 2 failed, 0 skipped
+fail_to_pass: 2 required, 0 passed
+pass_to_pass: 14 required, 2 newly failing
+
+RESULT: FAILED
+fail_to_pass not satisfied (2): ['org.elasticsearch.xpack.kql.parser.KqlParserFieldQueryTests::testParseUnquotedLiteralMatchFieldsQuery', 'org.elasticsearch.xpack.kql.parser.KqlParserBooleanQueryTests::testParseNotQuery']
+pass_to_pass broken (2): ['org.elasticsearch.xpack.kql.parser.KqlParserFieldQueryTests::testParseUnquotedLiteralMatchFieldsQuery', 'org.elasticsearch.xpack.kql.parser.KqlParserBooleanQueryTests::testParseNotQuery']

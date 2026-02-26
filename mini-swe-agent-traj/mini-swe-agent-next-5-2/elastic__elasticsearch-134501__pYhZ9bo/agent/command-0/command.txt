@@ -1,0 +1,13 @@
+mini -m gemini/gemini-3-flash-preview -t '# Task
+
+## Increasing default limit for TS queries
+
+closes https://github.com/elastic/elasticsearch/issues/130173
+
+---
+
+**Repo:** `elastic/elasticsearch`
+**Base commit:** `47acb9a03aabbb35c9575cce1a6132ee1ad7a0a5`
+**Instance ID:** `elastic__elasticsearch-134501`
+**Language:** `Java`
+' -y -o /logs/agent/mini-swe-agent.trajectory.json -l 0 --exit-immediately 2>&1 </dev/null | tee /logs/agent/mini-swe-agent.txt
