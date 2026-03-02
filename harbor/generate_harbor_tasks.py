@@ -146,41 +146,27 @@ def build_combined_dockerfile(instance_id: str) -> str:
         "# run_script.sh drops to this user with 'su elasticsearch' before invoking Gradle.\n"
         "RUN useradd -m -u 1000 elasticsearch 2>/dev/null || true\n"
         "\n"
-        "# Create a separate non-root user for Gradle to run as.\n"
-        "# mini-swe-agent itself stays as root (Harbor needs root for apt installs),\n"
-        "# but Gradle/ES refuse to build as root — the gradlew wrapper below handles\n"
-        "# the privilege drop transparently.\n"
+        # ──────────────────────────────────────────────────────────────────────
+        # OPTION A — gradlew wrapper (active)
+        #
+        # Automatically drops to the 'agent' user whenever ./gradlew is called
+        # as root, so the agent never needs to handle the privilege switch.
+        # Figuring out the user-switching is NOT part of the benchmark difficulty.
+        #
+        # To use OPTION B instead: comment out this block and uncomment OPTION B.
+        # ──────────────────────────────────────────────────────────────────────
+        "# Create a dedicated non-root user that the gradlew wrapper su-s to.\n"
         "RUN useradd -m -u 1001 agent 2>/dev/null || true\n"
         "RUN chown -R agent:agent /app\n"
         "\n"
-        "# Replace ./gradlew with a thin wrapper that drops to the 'agent' user\n"
-        "# whenever it is invoked as root.\n"
-        "#\n"
-        "# How it works:\n"
-        "#   1. The real Gradle launcher is moved to /app/.gradlew-bin (hidden).\n"
-        "#      APP_BASE_NAME is patched to 'gradlew' so Gradle's own :help output\n"
-        "#      always says 'run gradlew <task>' — not '.gradlew-bin <task>'.\n"
-        "#   2. The wrapper is installed at ./gradlew, ./gradlew.real, AND\n"
-        "#      ./.gradlew-real. An agent reading any wrapper script will see the\n"
-        "#      reference to '.gradlew-bin', but all three entry points are wrappers\n"
-        "#      so any name the agent tries still goes through the su drop.\n"
-        "#   3. The wrapper checks 'id -u'. If root (UID 0), it first runs\n"
-        "#      'chown -R agent:agent /app' to fix ownership of any files the agent\n"
-        "#      wrote as root (edited source files, new directories, etc.), then\n"
-        "#      re-invokes Gradle via 'su -s /bin/bash -c ... -- agent _ \"$@\"':\n"
-        "#        - '-s /bin/bash'        run bash as the shell.\n"
-        "#        - '-c ...'              the mini-script to execute in that shell.\n"
-        "#        - '--'                  end of su's own options. su uses PERMUTE-\n"
-        "#          mode option parsing, so without '--' it keeps scanning and\n"
-        "#          mistakes Gradle flags like '--tests' or '-Dtests.class' for\n"
-        "#          its own options, producing 'su: unrecognized option' errors.\n"
-        "#        - 'agent'               the username to switch to.\n"
-        "#        - '_ \"$@\"'             '_' becomes $0 (a dummy script name); the\n"
-        "#          real Gradle args land in $1, $2, … so \"$@\" picks them all up.\n"
-        "#          Without the dummy, the first Gradle arg would be consumed as $0\n"
-        "#          and silently dropped, causing Gradle to run :help instead.\n"
-        "#   4. If already non-root (e.g. test.sh has already su-d to 'elasticsearch'),\n"
-        "#      the wrapper skips the su and calls .gradlew-real directly.\n"
+        "# Install a wrapper at ./gradlew, ./gradlew.real, and ./.gradlew-real\n"
+        "# that drops to the 'agent' user when invoked as root.\n"
+        "# The real launcher is hidden at .gradlew-bin.\n"
+        "# Notes on the su invocation:\n"
+        "#   su -s /bin/bash -c '...' -- agent _ \"$@\"\n"
+        "#   '--'  stops su's PERMUTE-mode option scanning so Gradle flags like\n"
+        "#         '--tests' or '-Dtests.class' aren't mistaken for su options.\n"
+        "#   '_'   is a dummy $0; real Gradle args land in $1..$n and '$@'.\n"
         "RUN mv /app/gradlew /app/.gradlew-bin\n"
         "RUN sed -i 's|APP_BASE_NAME=.*|APP_BASE_NAME=gradlew|' /app/.gradlew-bin\n"
         "RUN cat > /app/gradlew << 'GRADLEW_WRAPPER_EOF'\n"
@@ -194,6 +180,20 @@ def build_combined_dockerfile(instance_id: str) -> str:
         "RUN chmod +x /app/gradlew\n"
         "RUN cp /app/gradlew /app/gradlew.real\n"
         "RUN cp /app/gradlew /app/.gradlew-real\n"
+        "\n"
+        # ──────────────────────────────────────────────────────────────────────
+        # OPTION B — no wrapper (commented out)
+        #
+        # The original gradlew is left untouched. The agent runs as root and
+        # must discover the "can not run elasticsearch as root" restriction and
+        # handle user-switching itself (creating a user, chown, su, etc.).
+        # Only the verifier (test.sh) switches to the 'elasticsearch' user.
+        #
+        # To activate: comment out OPTION A above and uncomment these lines.
+        # ──────────────────────────────────────────────────────────────────────
+        # "# No gradlew wrapper — the agent must handle user switching.\n"
+        # "# Gradle pre-warm runs as root; --version does not trigger the\n"
+        # "# 'can not run as root' check so no user switch is needed here.\n"
         "\n"
         "# Write a mini-swe-agent config that:\n"
         "#   1. Restores the system_template from mini.yaml (lost when MSWEA_MINI_CONFIG_PATH\n"
@@ -243,10 +243,11 @@ def build_combined_dockerfile(instance_id: str) -> str:
         "MSWEA_CONFIG_EOF\n"
         "ENV MSWEA_MINI_CONFIG_PATH=/root/mini-swe-agent-config.yaml\n"
         "\n"
+        # Option A pre-warm: wrapper su-s to 'agent', cache lands in /home/agent/.gradle.
+        # Option B pre-warm: runs as root, cache lands in /root/.gradle (uncomment below).
         "# Pre-warm the Gradle distribution so the agent doesn't time out downloading it.\n"
-        "# Runs as root; the wrapper su-s to 'agent', so the cache lands in\n"
-        "# /home/agent/.gradle — the same location used at runtime.\n"
         "RUN cd /app && ./gradlew --version --no-daemon || true\n"
+        # "RUN cd /app && ./.gradlew-bin --version --no-daemon || true\n"  # Option B
     )
 
     return f"{base_content}\n\n# ── Instance-specific setup ──────────────────────────────────\n{instance_content}\n{harbor_additions}"
