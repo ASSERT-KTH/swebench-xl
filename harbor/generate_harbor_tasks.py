@@ -24,7 +24,8 @@ Output structure per instance (in harbor_tasks/):
         task.toml
         instruction.md
         environment/
-            Dockerfile          <- FROM es-bench-instance:{instance_id}
+            Dockerfile                   <- FROM es-bench-instance:{instance_id}
+            mini-swe-agent-config.yaml   <- copied from harbor_templates/
         solution/
             solve.sh
         tests/
@@ -32,6 +33,9 @@ Output structure per instance (in harbor_tasks/):
             run_script.sh       <- from harbor/run_scripts/
             parser.py           <- from harbor/run_scripts/
             config.json         <- full instance record
+
+To adjust agent behaviour (timeouts, step limits, prompts), edit:
+    harbor_templates/mini-swe-agent-config.yaml
 """
 
 from __future__ import annotations
@@ -195,52 +199,9 @@ def build_combined_dockerfile(instance_id: str) -> str:
         # "# Gradle pre-warm runs as root; --version does not trigger the\n"
         # "# 'can not run as root' check so no user switch is needed here.\n"
         "\n"
-        "# Write a mini-swe-agent config that:\n"
-        "#   1. Restores the system_template from mini.yaml (lost when MSWEA_MINI_CONFIG_PATH\n"
-        "#      fully replaces mini.yaml instead of merging with it).\n"
-        "#   2. Raises per-command timeout to 600s (default 30s is too short for Gradle).\n"
-        "#   3. Sets step_limit to 250.\n"
-        "#   4. Fixes the format_error_template to explicitly require ```bash blocks.\n"
-        "RUN cat > /root/mini-swe-agent-config.yaml << 'MSWEA_CONFIG_EOF'\n"
-        "env:\n"
-        "  timeout: 600\n"
-        "agent:\n"
-        "  step_limit: 250\n"
-        "  system_template: |\n"
-        "    You are a helpful assistant that can interact with a computer.\n"
-        "\n"
-        "    Your response must contain exactly ONE bash code block with ONE command (or\n"
-        "    commands connected with && or ||).\n"
-        "    Include a THOUGHT section before your command where you explain your reasoning\n"
-        "    process.\n"
-        "    Format your response as shown in <format_example>.\n"
-        "\n"
-        "    <format_example>\n"
-        "    Your reasoning and analysis here. Explain why you want to perform the action.\n"
-        "\n"
-        "    ```bash\n"
-        "    your_command_here\n"
-        "    ```\n"
-        "    </format_example>\n"
-        "\n"
-        "    Failure to follow these rules will cause your response to be rejected.\n"
-        "  format_error_template: |\n"
-        "    Please always provide EXACTLY ONE action in triple backticks, found {{actions|length}} actions.\n"
-        "    If you want to end the task, please issue the following command: `echo COMPLETE_TASK_AND_SUBMIT_FINAL_OUTPUT`\n"
-        "    without any other command.\n"
-        "    Else, please format your response exactly as follows:\n"
-        "\n"
-        "    <response_example>\n"
-        "    Here are some thoughts about why you want to perform the action.\n"
-        "\n"
-        "    ```bash\n"
-        "    <action>\n"
-        "    ```\n"
-        "    </response_example>\n"
-        "\n"
-        "    Note: In rare cases, if you need to reference a similar format in your command,\n"
-        "    you might have to proceed in two steps, first writing TRIPLEBACKTICKSBASH, then replacing them with ```bash.\n"
-        "MSWEA_CONFIG_EOF\n"
+        "# Copy the mini-swe-agent config (full config — replaces mini.yaml entirely).\n"
+        "# Edit harbor_templates/mini-swe-agent-config.yaml to adjust agent behaviour.\n"
+        "COPY mini-swe-agent-config.yaml /root/mini-swe-agent-config.yaml\n"
         "ENV MSWEA_MINI_CONFIG_PATH=/root/mini-swe-agent-config.yaml\n"
         "\n"
         # Option A pre-warm: wrapper su-s to 'agent', cache lands in /home/agent/.gradle.
@@ -325,6 +286,14 @@ def generate_task(
     # Docker BuildKit only needs the public eclipse-temurin base image.
     (task_dir / "environment" / "Dockerfile").write_text(
         build_combined_dockerfile(instance_id)
+    )
+
+    # ── environment/mini-swe-agent-config.yaml ───────────────────────────────
+    # The Dockerfile COPYs this into /root/ at build time.
+    # Edit harbor_templates/mini-swe-agent-config.yaml to change agent behaviour.
+    shutil.copy2(
+        TEMPLATES_DIR / "mini-swe-agent-config.yaml",
+        task_dir / "environment" / "mini-swe-agent-config.yaml",
     )
 
     # ── solution/solve.sh ────────────────────────────────────────────────────
