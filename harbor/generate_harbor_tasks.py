@@ -100,7 +100,7 @@ def read_template(name: str) -> str:
 
 # ─── Dockerfile construction ──────────────────────────────────────────────────
 
-def build_combined_dockerfile(instance_id: str) -> str:
+def build_combined_dockerfile(instance_id: str, *, gradlew_wrapper: bool = True) -> str:
     """
     Build a self-contained environment/Dockerfile by merging:
       1. base_dockerfile  (public FROM + apt installs + git clone)
@@ -110,6 +110,12 @@ def build_combined_dockerfile(instance_id: str) -> str:
     This avoids referencing any locally-named Docker image, so Docker BuildKit
     can resolve the base image (eclipse-temurin) from a public registry without
     needing DockerHub access for the instance image.
+
+    gradlew_wrapper=True  (OPTION A): installs a wrapper that auto-drops to the
+                          'agent' user, so the agent never deals with the
+                          "can not run as root" restriction.
+    gradlew_wrapper=False (OPTION B): leaves gradlew untouched; the agent must
+                          discover and handle user-switching itself.
     """
     instance_path = DOCKERFILES_INSTANCE_DIR / instance_id / "Dockerfile"
 
@@ -150,65 +156,59 @@ def build_combined_dockerfile(instance_id: str) -> str:
         "# run_script.sh drops to this user with 'su elasticsearch' before invoking Gradle.\n"
         "RUN useradd -m -u 1000 elasticsearch 2>/dev/null || true\n"
         "\n"
-        # ──────────────────────────────────────────────────────────────────────
-        # OPTION A — gradlew wrapper (active)
-        #
-        # Automatically drops to the 'agent' user whenever ./gradlew is called
-        # as root, so the agent never needs to handle the privilege switch.
-        # Figuring out the user-switching is NOT part of the benchmark difficulty.
-        #
-        # To use OPTION B instead: comment out this block and uncomment OPTION B.
-        # ──────────────────────────────────────────────────────────────────────
-        "# Create a dedicated non-root user that the gradlew wrapper su-s to.\n"
-        "RUN useradd -m -u 1001 agent 2>/dev/null || true\n"
-        "RUN chown -R agent:agent /app\n"
-        "\n"
-        "# Install a wrapper at ./gradlew, ./gradlew.real, and ./.gradlew-real\n"
-        "# that drops to the 'agent' user when invoked as root.\n"
-        "# The real launcher is hidden at .gradlew-bin.\n"
-        "# Notes on the su invocation:\n"
-        "#   su -s /bin/bash -c '...' -- agent _ \"$@\"\n"
-        "#   '--'  stops su's PERMUTE-mode option scanning so Gradle flags like\n"
-        "#         '--tests' or '-Dtests.class' aren't mistaken for su options.\n"
-        "#   '_'   is a dummy $0; real Gradle args land in $1..$n and '$@'.\n"
-        "RUN mv /app/gradlew /app/.gradlew-bin\n"
-        "RUN sed -i 's|APP_BASE_NAME=.*|APP_BASE_NAME=gradlew|' /app/.gradlew-bin\n"
-        "RUN cat > /app/gradlew << 'GRADLEW_WRAPPER_EOF'\n"
-        "#!/bin/sh\n"
-        "if [ \"$(id -u)\" = \"0\" ]; then\n"
-        "    chown -R agent:agent /app 2>/dev/null || true\n"
-        "    exec su -s /bin/bash -c 'exec /app/.gradlew-bin \"$@\"' -- agent _ \"$@\"\n"
-        "fi\n"
-        "exec /app/.gradlew-bin \"$@\"\n"
-        "GRADLEW_WRAPPER_EOF\n"
-        "RUN chmod +x /app/gradlew\n"
-        "RUN cp /app/gradlew /app/gradlew.real\n"
-        "RUN cp /app/gradlew /app/.gradlew-real\n"
-        "\n"
-        # ──────────────────────────────────────────────────────────────────────
-        # OPTION B — no wrapper (commented out)
-        #
-        # The original gradlew is left untouched. The agent runs as root and
-        # must discover the "can not run elasticsearch as root" restriction and
-        # handle user-switching itself (creating a user, chown, su, etc.).
-        # Only the verifier (test.sh) switches to the 'elasticsearch' user.
-        #
-        # To activate: comment out OPTION A above and uncomment these lines.
-        # ──────────────────────────────────────────────────────────────────────
-        # "# No gradlew wrapper — the agent must handle user switching.\n"
-        # "# Gradle pre-warm runs as root; --version does not trigger the\n"
-        # "# 'can not run as root' check so no user switch is needed here.\n"
-        "\n"
+    )
+
+    if gradlew_wrapper:
+        # OPTION A: install a wrapper that auto-drops to the 'agent' user.
+        # The agent never needs to handle the "can not run as root" restriction.
+        harbor_additions += (
+            "# Create a dedicated non-root user that the gradlew wrapper su-s to.\n"
+            "RUN useradd -m -u 1001 agent 2>/dev/null || true\n"
+            "RUN chown -R agent:agent /app\n"
+            "\n"
+            "# Install a wrapper at ./gradlew, ./gradlew.real, and ./.gradlew-real\n"
+            "# that drops to the 'agent' user when invoked as root.\n"
+            "# The real launcher is hidden at .gradlew-bin.\n"
+            "# Notes on the su invocation:\n"
+            "#   su -s /bin/bash -c '...' -- agent _ \"$@\"\n"
+            "#   '--'  stops su's PERMUTE-mode option scanning so Gradle flags like\n"
+            "#         '--tests' or '-Dtests.class' aren't mistaken for su options.\n"
+            "#   '_'   is a dummy $0; real Gradle args land in $1..$n and '$@'.\n"
+            "RUN mv /app/gradlew /app/.gradlew-bin\n"
+            "RUN sed -i 's|APP_BASE_NAME=.*|APP_BASE_NAME=gradlew|' /app/.gradlew-bin\n"
+            "RUN cat > /app/gradlew << 'GRADLEW_WRAPPER_EOF'\n"
+            "#!/bin/sh\n"
+            "if [ \"$(id -u)\" = \"0\" ]; then\n"
+            "    chown -R agent:agent /app 2>/dev/null || true\n"
+            "    exec su -s /bin/bash -c 'exec /app/.gradlew-bin \"$@\"' -- agent _ \"$@\"\n"
+            "fi\n"
+            "exec /app/.gradlew-bin \"$@\"\n"
+            "GRADLEW_WRAPPER_EOF\n"
+            "RUN chmod +x /app/gradlew\n"
+            "RUN cp /app/gradlew /app/gradlew.real\n"
+            "RUN cp /app/gradlew /app/.gradlew-real\n"
+            "\n"
+        )
+        prewarm_cmd = "./gradlew"
+    else:
+        # OPTION B: leave gradlew untouched. The agent runs as root and must
+        # discover the restriction and handle user-switching itself.
+        harbor_additions += (
+            "# No gradlew wrapper — the agent must handle user switching.\n"
+            "# Gradle pre-warm runs as root; --version does not trigger the\n"
+            "# 'can not run as root' check so no user switch is needed here.\n"
+            "\n"
+        )
+        prewarm_cmd = "./.gradlew-bin"
+
+    harbor_additions += (
         "# Copy the mini-swe-agent config (full config — replaces mini.yaml entirely).\n"
         "# Edit harbor_templates/mini-swe-agent-config.yaml to adjust agent behaviour.\n"
         "COPY mini-swe-agent-config.yaml /root/mini-swe-agent-config.yaml\n"
         "ENV MSWEA_MINI_CONFIG_PATH=/root/mini-swe-agent-config.yaml\n"
         "\n"
-        # Option A pre-warm: wrapper su-s to 'agent', cache lands in /home/agent/.gradle.
-        # Option B pre-warm: runs as root, cache lands in /root/.gradle (uncomment below).
         "# Pre-warm the Gradle distribution so the agent doesn't time out downloading it.\n"
-        "RUN cd /app && ./gradlew --version --no-daemon || true\n"
-        # "RUN cd /app && ./.gradlew-bin --version --no-daemon || true\n"  # Option B
+        f"RUN cd /app && {prewarm_cmd} --version --no-daemon || true\n"
     )
 
     return f"{base_content}\n\n# ── Instance-specific setup ──────────────────────────────────\n{instance_content}\n{harbor_additions}"
@@ -244,6 +244,7 @@ def generate_task(
     *,
     overwrite: bool = False,
     timeout_sec: float = 3600.0,
+    gradlew_wrapper: bool = True,
 ) -> Path:
     instance_id = rec["instance_id"]
     task_dir = output_root / instance_id
@@ -285,7 +286,7 @@ def generate_task(
     # Combine base + instance Dockerfiles into one self-contained file so that
     # Docker BuildKit only needs the public eclipse-temurin base image.
     (task_dir / "environment" / "Dockerfile").write_text(
-        build_combined_dockerfile(instance_id)
+        build_combined_dockerfile(instance_id, gradlew_wrapper=gradlew_wrapper)
     )
 
     # ── environment/mini-swe-agent-config.yaml ───────────────────────────────
@@ -370,6 +371,14 @@ def main() -> None:
         help="Overwrite existing task directories",
     )
     ap.add_argument(
+        "--no-gradlew-wrapper", action="store_true",
+        help=(
+            "OPTION B: leave gradlew untouched so the agent must discover and handle "
+            "the 'can not run as root' restriction itself. "
+            "Default (OPTION A): install a wrapper that auto-drops to a non-root user."
+        ),
+    )
+    ap.add_argument(
         "--limit", type=int, default=None,
         help="Maximum number of instances to generate (for testing)",
     )
@@ -409,7 +418,9 @@ def main() -> None:
     if args.limit is not None:
         ids_to_process = ids_to_process[: args.limit]
 
-    print(f"Generating {len(ids_to_process)} Harbor tasks into: {args.output_dir}\n")
+    gradlew_wrapper = not args.no_gradlew_wrapper
+    print(f"Generating {len(ids_to_process)} Harbor tasks into: {args.output_dir}")
+    print(f"  gradlew wrapper: {'enabled (OPTION A)' if gradlew_wrapper else 'disabled (OPTION B)'}\n")
 
     success, failures = [], []
     for i, iid in enumerate(ids_to_process, 1):
@@ -420,6 +431,7 @@ def main() -> None:
                 run_scripts_dir,
                 overwrite=args.overwrite,
                 timeout_sec=args.timeout,
+                gradlew_wrapper=gradlew_wrapper,
             )
             print(f"[{i:3d}/{len(ids_to_process)}] OK   {iid}")
             success.append(out)
