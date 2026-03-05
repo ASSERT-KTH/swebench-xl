@@ -1,0 +1,298 @@
+TEST PATCH FUZZ FALLBACK ANALYSIS
+===================================
+6 trajectories where the verifier logged:
+  "WARNING: git apply for test_patch failed, trying patch --fuzz=5"
+
+Background
+----------
+After the agent finishes, the verifier applies a "test patch" that adds the
+specific test cases that must pass for the instance to be considered resolved.
+This patch is applied via `git apply`. When that fails, the verifier retries
+with `patch --fuzz=5`, which is more tolerant of shifted context lines.
+
+Failure means the agent's edits left the repository in a state where the test
+patch could not be cleanly applied — either because the agent touched the same
+file as the patch, or because it changed code the patch depended on.
+
+WHY THE AGENT EDITS TEST FILES
+-------------------------------
+The agent is given a GitHub issue and a bash shell. It has no knowledge of the
+verifier or the test patch that will be applied afterward. From the agent's
+perspective, editing test files is completely rational. Three distinct reasons
+were observed across these 6 trajectories:
+
+  X1. CASCADE FROM SIGNATURE CHANGE
+      The agent changed a constructor or method signature in production code.
+      The existing tests immediately fail to compile. The agent fixes the tests
+      to make them compile again. It does not know the verifier's test patch
+      was written against the original test file.
+
+  X2. WRITING TESTS TO VERIFY THE FIX (TDD)
+      The agent implemented a fix and wrote test cases to confirm the new
+      behavior. This is standard practice. The problem is the verifier already
+      has a reserved test patch that adds the "official" tests for the same
+      behavior — both the agent and the verifier are trying to add tests for
+      the same thing.
+
+  X3. REMOVING A SKIP CONDITION
+      The agent sees an assumeTrue or similar guard in a test file that was
+      preventing tests from running. Its fix is supposed to make that code path
+      work, so it removes the guard. The verifier's test patch has hunks that
+      depended on that guard code still being present as context.
+
+In all cases the agent is behaving logically given what it can see. It has no
+signal that the test file it is editing is reserved for the verifier.
+
+FAILURE CATEGORIES
+------------------
+X. AGENT_EDITED_TEST_FILE  — Agent modified a test file (for reasons X1/X2/X3
+                             above) that the test patch also needs to modify.
+                             The patch can no longer find its expected context
+                             because lines have shifted or been rewritten.
+Y. SIGNATURE_MISMATCH      — Agent changed a method/return-type signature in a
+                             production file; the test patch contains call sites
+                             that use the old signature and cannot apply.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+INSTANCE-BY-INSTANCE BREAKDOWN
+────────────────────────────────────────────────────────────────────────────────
+
+1. elastic__elasticsearch-133558__YiW3Qkv  → Category X1: CASCADE FROM SIGNATURE CHANGE
+   Files agent edited  : BlobStoreRepository.java (production — changed
+                         ShardBlobsToDelete constructor signature)
+                         BlobStoreRepositoryTests.java (test)
+   Test patch touches  : TruncatedOutputStreamTests.java
+                         BlobStoreRepositoryTests.java
+   Overlapping file    : BlobStoreRepositoryTests.java
+   Why agent edited it : The agent changed ShardBlobsToDelete's constructor to
+                         require a new argument. The existing test called the
+                         old no-arg constructor and no longer compiled. The
+                         agent fixed the call site:
+                           sed -i '636s/new ShardBlobsToDelete()/
+                                        new ShardBlobsToDelete(Collections.emptyList())/'
+                         This is a direct cascade from its own signature change.
+   Fuzz=5 outcome      : PARTIAL FAILURE
+                         Hunk #1 (TruncatedOutputStreamTests.java) — succeeded
+                         Hunk #2 — succeeded
+                         Hunk #3 — FAILED at line 633
+                         (could not find context around testShardBlobsToDelete()
+                          and testUuidCreationLogging())
+   Explanation         : The agent's one-line fix to the test shifted context
+                         enough that the patch's third hunk — which expected to
+                         anchor on the closing brace of testShardBlobsToDelete()
+                         at line 631 — could no longer find its position, even
+                         with fuzz=5.
+
+────────────────────────────────────────────────────────────────────────────────
+
+2. elastic__elasticsearch-137944__WwJVXGe  → Category X2: WRITING TESTS TO VERIFY THE FIX
+   Files agent edited  : HistogramFieldMapper.java
+                         HistogramParser.java
+                         ExponentialHistogramFieldMapper.java (production —
+                         added coerce parameter)
+                         ExponentialHistogramFieldMapperTests.java (test)
+   Test patch touches  : ParsedHistogramConverterTests.java
+                         ExponentialHistogramFieldMapperTests.java
+   Overlapping file    : ExponentialHistogramFieldMapperTests.java
+   Why agent edited it : The agent added a `coerce` parameter to
+                         ExponentialHistogramFieldMapper. It then wrote tests
+                         to prove the feature works:
+                           "I'll update the registerParameters method to include
+                            a coerce check, and then add a testCoerceHistogram
+                            test case at the end of the class."
+                         This is TDD — the agent wrote tests for its own fix.
+                         The verifier's test patch was doing the same thing.
+   Fuzz=5 outcome      : PARTIAL FAILURE
+                         Hunk #1 — FAILED at line 7 (import section)
+                         Hunk #2 — succeeded at line 37 (2-line offset)
+                         Hunk #3 — succeeded at line 102 (fuzz 3, 2-line offset)
+   Explanation         : The agent added imports for its new test at the top of
+                         the file. The patch's first hunk also tries to add an
+                         import near line 7, but the import block no longer
+                         matches — the top of a file has too little unique
+                         context for fuzz=5 to locate the right insertion point.
+                         Hunks deeper in the file had enough context and applied
+                         with small line offsets.
+
+────────────────────────────────────────────────────────────────────────────────
+
+3. elastic__elasticsearch-138115__qgV2Sdn  → Category X1: CASCADE FROM SIGNATURE CHANGE
+   Files agent edited  : NodeDeprecationChecker.java
+                         NodesDeprecationCheckAction.java
+                         NodesDeprecationCheckRequest.java
+                         TransportDeprecationInfoAction.java
+                         TransportNodeDeprecationCheckAction.java (production —
+                         constructor signature changed)
+                         TransportNodeDeprecationCheckActionTests.java (test)
+                         BaseNodesRequest.java
+                         Settings.java
+   Test patch touches  : IndexDeprecationCheckerTests.java
+                         TransportDeprecationInfoActionTests.java
+                         TransportNodeDeprecationCheckActionTests.java
+   Overlapping file    : TransportNodeDeprecationCheckActionTests.java
+   Why agent edited it : The agent changed the constructor of
+                         TransportNodeDeprecationCheckAction and removed the
+                         BUILT_IN_CLUSTER_SETTINGS constant. The test directly
+                         instantiates the action class and uses the constant,
+                         so it immediately broke. The agent rewrote the entire
+                         test file wholesale with cat <<EOF to make it compile:
+                           "I'll update TransportNodeDeprecationCheckActionTests
+                            .java now."
+                         This is the most extreme form of cascade: rather than
+                         patching individual lines, the agent replaced the whole
+                         file.
+   Fuzz=5 outcome      : FAILED
+                         Hunk #3 — FAILED at line 147
+   Explanation         : With the test file completely rewritten, the patch
+                         cannot find any of its expected context. The structural
+                         changes are too large for fuzz=5 to bridge.
+
+────────────────────────────────────────────────────────────────────────────────
+
+4. elastic__elasticsearch-140394__FFWepxY  → Category Y: SIGNATURE_MISMATCH
+   Files agent edited  : RepositoryData.java (production — changed return type
+                         of indexMetaDataToRemoveAfterRemovingSnapshots() from
+                         Map<IndexId, Collection<String>> to
+                         Iterator<Map.Entry<IndexId, Collection<String>>>)
+   Test patch touches  : RepositoryDataTests.java (5 hunks)
+                         BlobStoreRepositoryTests.java
+   Overlapping file    : RepositoryData.java (indirectly — signature change
+                         breaks the test patch's call sites)
+   Fuzz=5 outcome      : FAILED
+                         Hunk #4 — FAILED at line 369 (offset 11 lines)
+                         Hunk #5 — FAILED at line 420
+                         2 out of 5 hunks FAILED
+   Explanation         : Unlike the other cases, the conflict is not about line
+                         numbers. The agent changed the public return type of
+                         indexMetaDataToRemoveAfterRemovingSnapshots(). The test
+                         patch adds test code that calls the method and assigns
+                         the result to Map<IndexId, Collection<String>>. That
+                         code cannot apply because the signature no longer
+                         matches — fuzz only helps with context shifts, not
+                         type incompatibilities. The agent also introduced a
+                         syntax error in RepositoryData.java (misplaced brace
+                         triggering the "unnamed class" Java preview warning),
+                         which compounds the problem.
+
+────────────────────────────────────────────────────────────────────────────────
+
+5. elastic__elasticsearch-141523__EGUvDfJ  → Category X2: WRITING TESTS TO VERIFY THE FIX
+   Files agent edited  : FuseScoreEval.java (production — added row-limit
+                         validation to FUSE command)
+                         VerifierTests.java (test — agent inserted assertThat
+                         blocks at line 2925 to verify its validation error)
+   Test patch touches  : VerifierTests.java (2 hunks)
+   Overlapping file    : VerifierTests.java
+   Why agent edited it : The agent added a validation error message to
+                         FuseScoreEval.java. It then inserted test assertions
+                         directly into VerifierTests.java to prove the error
+                         fires correctly:
+                           "I'll insert my new test case before the closing
+                            brace of the current test method at line 2925."
+                         The agent then spent several subsequent steps fighting
+                         sed line-number drift trying to place the assertions
+                         correctly, and even deliberately broke its own test
+                         string to verify the test infrastructure was working:
+                           "I'll modify VerifierTests.java to intentionally
+                            fail by looking for a different string [...]"
+                         This is TDD — the agent wrote tests to prove its fix,
+                         directly colliding with the verifier's test patch.
+   Fuzz=5 outcome      : SUCCEEDED (with offsets)
+                         Hunk #1 — succeeded at 2928 (fuzz 2, +7 lines)
+                         Hunk #2 — succeeded at 3619 (+6 lines)
+   Explanation         : The agent's inserted assertions pushed subsequent lines
+                         down by ~7. fuzz=5 recovered because the surrounding
+                         context was intact, just shifted. This is the only case
+                         where the patch applied fully. However, the runtime
+                         tests still failed — the agent's fix to FuseScoreEval
+                         was incomplete.
+
+────────────────────────────────────────────────────────────────────────────────
+
+6. elastic__elasticsearch-141775__R4V7hP9  → Category X3: REMOVING A SKIP CONDITION
+   Files agent edited  : AbstractAggregationTestCase.java (test — agent deleted
+                         the assumeTrue block at lines 349-354 that was skipping
+                         surrogate-based aggregation tests)
+   Test patch touches  : BlockTestUtils.java
+                         AbstractAggregationTestCase.java (9 hunks)
+                         AvgTests, CountTests, MaxTests, MedianTests, MinTests,
+                         PercentileTests, SampleTests, SumTests, ValuesTests,
+                         WeightedAvgTests (multiple aggregate test files)
+   Overlapping file    : AbstractAggregationTestCase.java
+   Why agent edited it : The test file contained an assumeTrue guard that
+                         caused all surrogate-based aggregation tests to be
+                         skipped. The agent's fix was supposed to make that
+                         code path work correctly, so it removed the guard:
+                           "I will now remove the assumeTrue block from
+                            AbstractAggregationTestCase.java to allow
+                            evaluation of surrogate-based aggregations."
+                           sed -i '349,354d' AbstractAggregationTestCase.java
+                         From the agent's perspective this is the right move —
+                         once your fix is in, remove the skip. It had no way of
+                         knowing the verifier's 9-hunk patch depended on that
+                         exact block being present as context.
+   Fuzz=5 outcome      : FAILED
+                         Hunk #1 of 9 — FAILED at line 583
+                         Compilation errors:
+                           "shouldReplace(AggregateFunction) has private access
+                            in ReplaceStatsFilteredOrNullAggWithEval" (line 531)
+                           "mapNullToValue(AggregateFunction) has private access"
+                            (line 532)
+   Explanation         : The deleted block was the anchor context for the
+                         patch's first hunk. With it gone entirely, no amount
+                         of fuzzing can recover — fuzz tolerates shifted lines,
+                         not absent ones. The compilation errors show that the
+                         deleted block also contained visibility declarations
+                         that the patch's re-added code depended on.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+SUMMARY TABLE
+─────────────────────────────────────────────────────────────────────────────────
+Instance          Category  Why agent edited the test file         Fuzz=5 result
+----------------  --------  -------------------------------------  -------------
+133558__YiW3Qkv   X1        Constructor signature change cascade   partial fail
+137944__WwJVXGe   X2        Wrote tests to verify own fix (TDD)    partial fail
+138115__qgV2Sdn   X1        Constructor change → rewrote whole     failed
+                            test file with cat <<EOF
+140394__FFWepxY   Y         Return type change in production file  failed
+141523__EGUvDfJ   X2        Wrote tests to verify own fix (TDD)    succeeded*
+141775__R4V7hP9   X3        Removed assumeTrue skip condition       failed
+
+* Patch applied but runtime tests still failed.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+KEY FINDINGS
+────────────────────────────────────────────────────────────────────────────────
+
+1. In all 5 category X cases the agent had a legitimate reason to touch the
+   test file. It was not making an error of judgement — it was doing exactly
+   what a developer would do in the same situation:
+
+   X1 (133558, 138115): The agent changed a constructor/method signature in
+      production code. The existing test immediately broke. The agent fixed
+      the test so the code would compile. Any developer would do the same.
+
+   X2 (137944, 141523): The agent implemented a fix and wrote a test case to
+      prove the new behavior works. This is standard TDD. The agent had no
+      way to know the verifier already had a reserved test patch doing the
+      exact same thing.
+
+   X3 (141775): The agent saw a test being skipped by an assumeTrue guard.
+      Its fix was supposed to make the skipped code path work, so it removed
+      the guard. This is also correct developer behavior after a fix.
+
+2. Category Y (140394) is a different failure mode: the agent changed a
+   public method's return type in a production file. The test patch contains
+   call sites using the old return type. This is a semantic conflict — fuzz
+   only handles positional drift, not type incompatibility.
+
+3. fuzz=5 fully recovered the patch in only one case (141523), because the
+   surrounding context was intact and only shifted by a few lines. In all
+   other cases the changes were too structural for fuzz to bridge.
+
+4. The root cause in every case is the same: the agent is never told which
+   test files are reserved for the verifier's test patch. It has no signal
+   that those files are off-limits.

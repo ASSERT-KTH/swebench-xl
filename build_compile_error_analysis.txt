@@ -1,0 +1,394 @@
+BUILD / COMPILE ERROR ANALYSIS
+================================
+23 trajectories with build_failed or compile_error verifier status.
+Analyzed: 2026-03-04
+
+FAILURE CATEGORIES
+------------------
+A. SYNTAX_ERROR          — Agent introduced syntactically invalid Java (bad sed,
+                           brace mismatch, injected stray characters, Java preview
+                           feature accidentally triggered).
+B. SCOPE_OR_INIT_ERROR   — Agent referenced a variable outside its scope or before
+                           it is initialized (field initializer order problems).
+C. INCOMPLETE_CROSS_FILE — Agent correctly changed one file but did not update the
+                           callers, subclasses, or test code that depend on it.
+D. TYPE_MISMATCH         — Agent passed the wrong type to a constructor/method, or
+                           introduced an unchecked generic cast that fails under
+                           -Werror.
+E. INVASIVE_REFACTORING  — Agent added a new interface/abstraction that requires
+                           all subclasses to be updated, but only updated some of
+                           them, causing the rest to fail to compile.
+F. ENVIRONMENT           — Infrastructure/toolchain issue unrelated to agent edits.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+INSTANCE-BY-INSTANCE BREAKDOWN
+────────────────────────────────────────────────────────────────────────────────
+
+1. elastic__elasticsearch-130857  [build_failed]  → Category E: INVASIVE_REFACTORING
+   Files edited : TransportBroadcastByNodeAction.java
+   Failing task : :server:compileJava
+   Key error    : Compilation failure after adding NodeContext interface and
+                  createNodeContext() method to TransportBroadcastByNodeAction.
+   Explanation  : The agent introduced a new NodeContext mechanism and updated
+                  shardOperation() to accept it. However, TransportBroadcastByNode-
+                  Action has ~10 subclasses (TransportIndicesStatsAction, TransportForceMergeAction,
+                  etc.). The agent used sed to make structural modifications and the
+                  resulting code had misplaced method bodies outside the class. The
+                  core issue is that adding a required context parameter to an
+                  abstract method forces all subclasses to be updated simultaneously.
+
+────────────────────────────────────────────────────────────────────────────────
+
+2. elastic__elasticsearch-132962  [build_failed]  → Category B: SCOPE_OR_INIT_ERROR
+   Files edited : BlobStoreRepository.java
+   Failing task : :server:compileJava
+   Key error    : "cannot find symbol: variable snapshotIds"
+                  location: class BlobStoreRepository.ShardBlobsToDelete
+   Explanation  : The agent moved the ShardBlobsToDelete field initializer but
+                  referenced snapshotIds at a point where it was not yet in scope.
+                  Field initializers in Java run before constructors, so variables
+                  set in the constructor body cannot be referenced during field
+                  initialization. Classic initialization-order misunderstanding.
+
+────────────────────────────────────────────────────────────────────────────────
+
+3. elastic__elasticsearch-133087  [compile_error]  → Category C: INCOMPLETE_CROSS_FILE
+   Files edited : Analyzer.java + IgnoreNullMetrics optimizer rule (x-pack/plugin/esql)
+   Failing task : :x-pack:plugin:esql:compileTestJava
+   Key error    : "reference not found" at IgnoreNullMetricsTests.java:50
+   Explanation  : The agent created a new optimizer rule (IgnoreNullMetrics) and
+                  wrote a test for it, but the test at line 50 references a symbol
+                  that the agent never actually created. An incomplete creation —
+                  the test was written against an API that doesn't fully exist yet.
+
+────────────────────────────────────────────────────────────────────────────────
+
+4. elastic__elasticsearch-133360  [compile_error]  → Category A: SYNTAX_ERROR
+   Files edited : BlobStoreRepository.java
+   Failing task : :server:compileJava
+   Key error    : "')' or ',' expected" at line 1697 of BlobStoreRepository.java
+   Explanation  : The agent introduced a syntax error (missing/extra parenthesis
+                  or comma) in BlobStoreRepository.java. Likely caused by a
+                  partial sed substitution that left the method call in an
+                  incomplete state.
+
+────────────────────────────────────────────────────────────────────────────────
+
+5. elastic__elasticsearch-133558  [compile_error]  → Category C: INCOMPLETE_CROSS_FILE
+   Files edited : FieldMapper.java (BuilderParams record) + several mapper classes
+   Failing task : :server:compileJava / :server:compileTestJava
+   Key error    : Compilation failure after adding a new field (isMultiField) to
+                  the BuilderParams record in FieldMapper.java.
+   Explanation  : Java records generate a canonical constructor that requires ALL
+                  fields to be passed. Adding a new field to BuilderParams means
+                  every call site that constructs a BuilderParams (and there are
+                  many across the codebase) must be updated. The agent updated the
+                  record definition and some usages but missed others. This is a
+                  pure lack-of-codebase-understanding failure: the agent did not
+                  recognize that a record-field addition cascades to all constructors.
+
+────────────────────────────────────────────────────────────────────────────────
+
+6. elastic__elasticsearch-134201  [compile_error]  → Category D: TYPE_MISMATCH
+   Files edited : RemediateProcessor.java (modules/ingest-common)
+   Failing task : :modules:ingest-common:compileJava
+   Key error    : "[unchecked] unchecked conversion" warning promoted to error
+                  by -Werror in Elasticsearch's build config.
+   Explanation  : The agent introduced an unchecked generic cast (e.g., assigning
+                  a raw List to a typed List<String>) in RemediateProcessor.java.
+                  In a normal project this would only warn; in Elasticsearch's
+                  build, warnings are errors. The agent did not know that Elasticsearch
+                  enforces strict Java generics compliance via -Werror.
+
+────────────────────────────────────────────────────────────────────────────────
+
+7. elastic__elasticsearch-134413  [compile_error]  → Category C: INCOMPLETE_CROSS_FILE
+   Files edited : Aggregate.java (x-pack/plugin/esql logical plan)
+   Failing task : :x-pack:plugin:esql:compileJava
+   Key error    : "cannot find symbol: class Bucket, location: class Aggregate"
+                  at Aggregate.java:363
+   Explanation  : The agent deleted or relocated the nested class Bucket from
+                  inside Aggregate.java. In Java, nested classes are public API —
+                  other files reference them as Aggregate.Bucket. The agent did
+                  not know the class was referenced externally and removed it,
+                  leaving dangling references across the esql plan layer.
+
+────────────────────────────────────────────────────────────────────────────────
+
+8. elastic__elasticsearch-134455  [build_failed]  → Category B: SCOPE_OR_INIT_ERROR
+   Files edited : BlobStoreRepository.java
+   Failing task : :server:compileJava
+   Key error    : "variable snapshotIds might not have been initialized"
+                  at field initializer: new ShardBlobsToDelete(snapshotIds)
+   Explanation  : Same root cause as instance 132962. The agent tried to pass
+                  snapshotIds into a field initializer, but snapshotIds is only
+                  set later in the constructor. Field initializers cannot reference
+                  constructor parameters or instance variables assigned in
+                  constructors.
+
+────────────────────────────────────────────────────────────────────────────────
+
+9. elastic__elasticsearch-134501  [build_failed]  → Category C: INCOMPLETE_CROSS_FILE
+   Files edited : EsqlPlugin.java (TimeSeries result-limit constants)
+   Failing task : :x-pack:plugin:esql:compileTestJava
+   Key error    : "cannot find symbol: variable QUERY_TIMESERIES_RESULT_TRUNCATION_MAX_SIZE,
+                   location: class EsqlPlugin" — in AbstractConfigurationFunctionTestCase,
+                   DayNameTests, MonthNameTests, and several other test files.
+   Explanation  : The agent renamed or removed two public constants from EsqlPlugin
+                  (QUERY_TIMESERIES_RESULT_TRUNCATION_MAX_SIZE and _DEFAULT_SIZE).
+                  These constants are used by many test files across the esql plugin
+                  as shared configuration values. Renaming a public constant in a
+                  central class breaks every file that references it by name —
+                  the agent had no visibility into how widely those names were used.
+
+────────────────────────────────────────────────────────────────────────────────
+
+10. elastic__elasticsearch-134955  [compile_error]  → Category C: INCOMPLETE_CROSS_FILE
+    Files edited : ClientTransformIndexer.java (x-pack/plugin/transform)
+    Failing task : :x-pack:plugin:transform:compileTestJava
+    Key error    : "cannot find symbol: method closePointInTime(()->assert[...]o(1)))"
+                   location: variable indexer of type MockClientTransformIndexer
+                   at ClientTransformIndexerTests.java:227
+    Explanation  : The agent changed the signature of closePointInTime() in the
+                   production class (likely changed the argument type or removed an
+                   overload). The test at line 227 calls the old signature with a
+                   lambda argument. Because the test creates a MockClientTransformIndexer
+                   directly rather than through a factory or interface, any signature
+                   change in the real class requires an identical change in the mock
+                   and all call sites.
+
+────────────────────────────────────────────────────────────────────────────────
+
+11. elastic__elasticsearch-135544  [build_failed]  → Category E: INVASIVE_REFACTORING
+    Files edited : HierarchicalKMeans / ML clustering code
+    Failing task : :libs:entitlement:bridge:compileMain23Java
+    Key error    : Compilation failure in the Java 23 entitlement bridge module.
+    Explanation  : The agent modified ML clustering code, which triggered a
+                   recompilation of the Java 23 entitlement bridge — a separate
+                   module that provides Java-version-specific APIs. The agent's
+                   change introduced a dependency or API change that the bridge
+                   module could not satisfy under Java 23's stricter module system.
+                   This reflects a lack of understanding of the multi-JVM-version
+                   build structure.
+
+────────────────────────────────────────────────────────────────────────────────
+
+12. elastic__elasticsearch-137040  [build_failed]  → Category E: INVASIVE_REFACTORING
+    Files edited : ESQL function classes (TimestampAware interface introduced)
+    Failing task : :x-pack:plugin:esql:compileJava
+    Key error    : Core esql plugin compilation failure.
+    Explanation  : The agent introduced a new TimestampAware interface that
+                   timestamp-dependent ESQL functions were supposed to implement.
+                   However, it did not update all the required ESQL function classes
+                   to implement this interface, or it changed method signatures in
+                   the interface without updating implementations. Adding interfaces
+                   to an existing hierarchy requires updating all downstream classes.
+
+────────────────────────────────────────────────────────────────────────────────
+
+13. elastic__elasticsearch-137138  [build_failed]  → Category C: INCOMPLETE_CROSS_FILE
+    Files edited : Multiple test utility classes (mutateInstance / randomValueOtherThan fixes)
+    Failing task : :server:compileTestJava
+    Key error    : Server test compilation failure.
+    Explanation  : The agent attempted to fix incorrect usage of randomValueOtherThan()
+                   across multiple test classes but introduced compilation errors —
+                   likely by using wrong method signatures or omitting required imports
+                   in some of the modified test files.
+
+────────────────────────────────────────────────────────────────────────────────
+
+14. elastic__elasticsearch-137430  [compile_error]  → Category A: SYNTAX_ERROR
+    Files edited : Match.java (x-pack/plugin/esql fulltext functions)
+    Failing task : :x-pack:plugin:esql:compileJava
+    Key error    : "';' expected" at Match.java:304 and Match.java:317
+    Explanation  : Plain syntax error inside Match.java itself — two missing
+                   semicolons introduced by a bad text edit. This was previously
+                   miscategorized as INCOMPLETE_CROSS_FILE; the actual error is
+                   entirely within the single file the agent edited.
+
+────────────────────────────────────────────────────────────────────────────────
+
+15. elastic__elasticsearch-138115  [compile_error]  → Category C: INCOMPLETE_CROSS_FILE
+    Files edited : TransportNodeDeprecationCheckAction.java (x-pack deprecation plugin)
+    Failing task : :x-pack:plugin:deprecation:compileTestJava
+    Key error    : (1) "constructor TransportNodeDeprecationCheckAction cannot be applied
+                       to given types" at TransportNodeDeprecationCheckActionTests.java:84
+                   (2) "cannot find symbol: variable BUILT_IN_CLUSTER_SETTINGS" at line 155
+                   (3) "cannot find symbol: class BaseMatcher / Matcher / Description"
+                       (missing Hamcrest imports) at lines 250-269
+    Explanation  : Three separate failures in the single test file. The agent changed
+                   the constructor signature of the action class and removed the
+                   BUILT_IN_CLUSTER_SETTINGS constant, both of which are used directly
+                   by the test. The Hamcrest import errors suggest the agent also
+                   accidentally removed import statements while editing the file.
+                   The test directly instantiates the action class, so any constructor
+                   change breaks it immediately.
+
+────────────────────────────────────────────────────────────────────────────────
+
+16. elastic__elasticsearch-138317  [build_failed]  → Category C: INCOMPLETE_CROSS_FILE
+    Files edited : Native vector library C/C++ code (AVX512 simdvec)
+    Failing task : :libs:native:compileTestJava
+    Key error    : Native library Java test compilation failure.
+    Explanation  : The agent modified the native C/C++ simdvec implementation
+                   (dot7u_bulk_2 AVX512 function) but the corresponding Java-side
+                   test bindings were not updated. The native and Java layers have
+                   a strict ABI contract; if the native method signature changes,
+                   the Java JNI bindings and their tests must also change.
+
+────────────────────────────────────────────────────────────────────────────────
+
+17. elastic__elasticsearch-139293  [build_failed]  → Category C: INCOMPLETE_CROSS_FILE
+    Files edited : SearchUsage.java (server/src/main/java)
+    Failing task : :server:compileTestJava
+    Key error    : Server test compilation failure.
+    Explanation  : The agent modified the SearchUsage API but did not update
+                   the test classes that construct or use SearchUsage objects
+                   directly. SearchUsage is used in many server tests; any
+                   constructor or method change cascades.
+
+────────────────────────────────────────────────────────────────────────────────
+
+18. elastic__elasticsearch-139530  [build_failed]  → Category C: INCOMPLETE_CROSS_FILE
+    Files edited : SearchUsageStats.java + SearchUsage.java
+    Failing task : :server:compileTestJava
+    Key error    : Server test compilation failure (same module as 139293).
+    Explanation  : Similar to 139293. The agent modified SearchUsage tracking
+                   classes but left test code incompatible with the new API.
+                   Two separate runs (139293 and 139530) hit the same class
+                   family, suggesting the SearchUsage API is a frequent pain
+                   point due to its wide usage across server tests.
+
+────────────────────────────────────────────────────────────────────────────────
+
+19. elastic__elasticsearch-139715  [build_failed]  → Category E: INVASIVE_REFACTORING
+    Files edited : SourceLoader.java, StreamInput.java, StreamOutput.java,
+                   GeoUtils.java, ElasticsearchException.java
+    Failing task : :server:compileJava
+    Key error    : Multiple "cannot find symbol" errors — SyntheticVectorPatch,
+                   TransportVersion, packages org.elasticsearch.index.fielddata,
+                   org.elasticsearch.cluster, org.elasticsearch.rest not found.
+    Explanation  : The agent attempted a wide refactoring spanning 5+ core server
+                   files but introduced references to non-existent classes
+                   (SyntheticVectorPatch) and used incorrect package paths. This
+                   is a clear codebase-understanding failure: the agent invented
+                   class names that do not exist in the codebase and used stale
+                   import paths for classes that have been moved.
+
+────────────────────────────────────────────────────────────────────────────────
+
+20. elastic__elasticsearch-139946  [compile_error]  → Category D: TYPE_MISMATCH
+    Files edited : DetectorTests.java (x-pack/plugin/core/src/test/java)
+    Failing task : :x-pack:plugin:core:compileTestJava
+    Key error    : "Detector.Builder(randomBoolean())" and "Detector.Builder(true)"
+                   — constructor expects Detector, not boolean.
+                   Lines 323 and 352 of DetectorTests.java.
+    Explanation  : The agent misread the Detector.Builder API. It assumed the
+                   constructor took a boolean (likely confusing it with a different
+                   builder pattern in the test suite), when it actually takes a
+                   Detector object. A straightforward API misread.
+
+────────────────────────────────────────────────────────────────────────────────
+
+21. elastic__elasticsearch-140394  [compile_error]  → Category A: SYNTAX_ERROR
+    Files edited : RepositoryData.java (server/src/main/java)
+    Failing task : :server:compileJava
+    Key error    : "unnamed classes are a preview feature", "class, interface,
+                   enum, or record expected", "unnamed class should not have
+                   package declaration" — lines 405, 407, 421, 1286.
+    Explanation  : The agent introduced a structural brace error that caused the
+                   compiler to see a method declaration (addSnapshot) as an
+                   unnamed top-level class — a Java 21 preview feature not enabled
+                   in Elasticsearch's build. The root cause is a misplaced or
+                   missing closing brace from a sed/text manipulation, which
+                   effectively closed the class early.
+
+────────────────────────────────────────────────────────────────────────────────
+
+22. elastic__elasticsearch-140693  [build_failed]  → Category A: SYNTAX_ERROR
+    Files edited : ESVectorUtil.java, DefaultESVectorUtilSupport.java
+                   (libs/simdvec/src/main/java)
+    Failing task : :libs:simdvec:compileJava
+    Key error    : "error: not a statement" and "<identifier> expected" on
+                   lines with prefix 'n' — "n    public static int countContinuation..."
+    Explanation  : A failed sed or text-replacement operation injected a stray
+                   'n' character (a literal newline escape that was not expanded)
+                   at the start of method declarations, making the class body
+                   syntactically invalid. Textual file manipulation without reading
+                   back the result is the direct cause.
+
+────────────────────────────────────────────────────────────────────────────────
+
+23. elastic__elasticsearch-141523  [compile_error]  → Category F: ENVIRONMENT
+    Files edited : (unclear; likely native module configuration)
+    Failing task : :libs:native:compileMain22Java
+    Key error    : "Cannot find a Java installation matching: {languageVersion=22}"
+                   — HTTP 504 from adoptium API when trying to auto-provision JDK 22.
+    Explanation  : This failure is NOT caused by agent code. Gradle's toolchain
+                   provisioning tried to download JDK 22 from adoptium.net and
+                   received a 504 Server Error. The build environment lacked the
+                   required JDK and could not fetch it. This is an infrastructure
+                   issue, not a codebase-understanding issue.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+SUMMARY BY CATEGORY
+────────────────────────────────────────────────────────────────────────────────
+
+Category                    Count  Instances
+--------------------------  -----  ---------------------------------------------------------
+C. INCOMPLETE_CROSS_FILE      10   133087, 133558, 134413, 134501, 134955, 137138,
+                                   138115, 138317, 139293, 139530
+E. INVASIVE_REFACTORING        4   130857, 135544, 137040, 139715
+A. SYNTAX_ERROR                5   133360, 137430, 140394, 140693, (134455 partial)
+B. SCOPE_OR_INIT_ERROR         2   132962, 134455
+D. TYPE_MISMATCH               2   134201, 139946
+F. ENVIRONMENT                 1   141523
+--------------------------  -----
+TOTAL                         23 (137430 recategorized from C to A after checking real errors;
+                                  134455 counted under B; overlap with A is partial)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+KEY FINDINGS
+────────────────────────────────────────────────────────────────────────────────
+
+1. INCOMPLETE_CROSS_FILE is the dominant failure mode (10/23, ~43%).
+   The agent correctly identifies the right file to change, makes a logically
+   reasonable edit, but does not understand that Java's build model requires
+   ALL callers, subclasses, and tests to be updated atomically. Three concrete
+   sub-patterns observed:
+   a) Renamed/removed public constants used by many files (134501: EsqlPlugin
+      constants referenced across dozens of test files).
+   b) Deleted/moved a nested class that was referenced externally (134413:
+      Aggregate.Bucket used outside Aggregate.java).
+   c) Changed a method/constructor signature without updating the test that
+      directly instantiates the class (134955: closePointInTime() in transform;
+      138115: TransportNodeDeprecationCheckAction constructor + constants).
+
+2. INVASIVE_REFACTORING (4/23) is a more severe version of the same problem:
+   the agent introduces a new abstraction (interface, method parameter, module
+   dependency) whose scope spans many files it did not edit.
+
+3. SYNTAX_ERROR (5/23) is caused exclusively by unsafe file editing — using sed
+   or printf/echo to patch files without verifying the result. The agent treats
+   the file as text but doesn't account for escaping, line numbering drift, or
+   the effect of prior edits on subsequent sed addresses. 137430 was previously
+   miscategorized as INCOMPLETE_CROSS_FILE; the actual error was two missing
+   semicolons inside the single edited file.
+
+4. The two SCOPE_OR_INIT_ERROR cases (132962, 134455) both hit BlobStoreRepository
+   and both involve the same misconception: that a field initializer can reference
+   a variable assigned in the constructor. This suggests the agent does not model
+   Java's field initialization order.
+
+5. One case (141523) is purely environmental and should be excluded from
+   agent-capability assessments.
+
+6. The esql plugin appears in multiple failures (133087, 134413, 134501, 137040,
+   137430) — 5 out of 22 agent-caused failures. The reasons vary: renamed
+   constants, deleted nested class, new interface with incomplete implementation,
+   and a plain syntax error. The common thread is not the plugin architecture
+   itself but the size of the esql codebase — more files means more implicit
+   dependents the agent did not grep for before editing.
