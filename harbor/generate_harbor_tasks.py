@@ -49,7 +49,7 @@ from textwrap import dedent
 
 ROOT = Path(__file__).parent.parent  # project root (one level above harbor/)
 HARBOR_DIR = Path(__file__).parent
-DATASET_PATH = ROOT / "swe-bench++tools" / "high_quality_instances.jsonl"
+DATASET_PATH = ROOT / "benchmark" / "filtered_dataset.jsonl"
 RUN_SCRIPTS_DIR = HARBOR_DIR / "run_scripts"
 TEMPLATES_DIR = ROOT / "harbor_templates"
 DEFAULT_OUTPUT_DIR = ROOT / "harbor_tasks"

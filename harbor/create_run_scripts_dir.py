@@ -6,7 +6,7 @@ def main():
     # Define paths relative to script location
     script_dir = Path(__file__).parent #/harbor directory
 
-    jsonl_file = script_dir / ".." / "swe-bench++tools" / "final_consistent_instances.jsonl"
+    jsonl_file = script_dir / ".." / "benchmark" / "filtered_dataset.jsonl"
     source_base = script_dir / ".." / "benchmark" / "run_scripts"
     dest_base = script_dir / "run_scripts"
     parser_file = script_dir / ".." / "benchmark" / "parser.py"

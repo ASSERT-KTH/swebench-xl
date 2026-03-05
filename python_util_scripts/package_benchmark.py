@@ -18,6 +18,7 @@ INPUT_FILE = ROOT_DIR / "fail_to_pass_results.json"
 INPUT_FILE_FULL = ROOT_DIR / "pr_analysis_results_full.json"
 OUTPUT_DIR = ROOT_DIR / "benchmark"
 DATASET_FILE = OUTPUT_DIR / "dataset.jsonl"
+FILTERED_DATASET_FILE = OUTPUT_DIR / "filtered_dataset.jsonl"
 RUN_SCRIPTS_DIR = OUTPUT_DIR / "run_scripts"
 
 
@@ -36,18 +37,14 @@ def load_verified_instances(path: Path, path_full: Path) -> list[dict]:
     print(f"Loaded {len(data)} total instances, {len(verified)} verified")
     return verified
 
-def update_problem_statements(
-    dataset_path: str = "../benchmark/dataset.jsonl",
-    pr_analysis_path: str = "../data/pr_analysis_results_full.json",
-    output_path: str = "../benchmark/dataset.jsonl",
-) -> None:
+def update_problem_statements() -> None:
     """
     For each entry in dataset.jsonl, find the matching entry in pr_analysis_results_full.json
     by instance_id and replace problem_statement_title and problem_statement_description
     with the combined titles and bodies from the matching entry's 'issues' array.
     """
     # Load pr_analysis_results_full.json and index by instance_id
-    with open(pr_analysis_path, "r", encoding="utf-8") as f:
+    with open(INPUT_FILE_FULL, "r", encoding="utf-8") as f:
         pr_data = json.load(f)
 
     pr_lookup: dict = {
@@ -60,7 +57,7 @@ def update_problem_statements(
     matched = 0
     skipped = 0
 
-    with open(dataset_path, "r", encoding="utf-8") as f:
+    with open(FILTERED_DATASET_FILE, "r", encoding="utf-8") as f:
         for line_num, line in enumerate(f, start=1):
             line = line.strip()
             if not line:
@@ -100,7 +97,7 @@ def update_problem_statements(
             updated_entries.append(entry)
 
     # Write updated entries back to output file
-    with open(output_path, "w", encoding="utf-8") as f:
+    with open(DATASET_FILE, "w", encoding="utf-8") as f:
         for entry in updated_entries:
             f.write(json.dumps(entry) + "\n")
 
