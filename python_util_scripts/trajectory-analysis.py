@@ -57,9 +57,10 @@ CATEGORY_PATTERNS = [
     # edit must come before read so "cat <<EOF" is classified as edit, not read
     ("edit",      re.compile(
         r"^\s*(sed|awk|tee|patch|nano|vim|vi|emacs)\b"
-        r"|^\s*(echo|printf).*>>?\s*\S"            # echo/printf redirecting to a file
-        r"|^\s*cat\s+<<"                           # heredoc write (cat <<EOF > file)
-        r"|^\s*python3?\s+-c\b.*open.*['\"]w['\"]" # python open(..., 'w')
+        r"|^\s*(echo|printf).*>>?\s*\S"                          # echo/printf redirecting to a file
+        r"|^\s*cat\s+<<"                                         # heredoc write (cat <<EOF > file)
+        r"|^\s*python3?\s+-c\b.*(?:>|open.*['\"]w['\"])"        # python -c with redirect or open('w')
+        r"|^\s*mv\b"                                             # mv overwrites destination
     )),
     # Negative lookahead: cat that is NOT a heredoc
     ("read",      re.compile(r"^\s*(?:cat(?!\s+<<)|head|tail|less|more)\b")),
@@ -87,6 +88,69 @@ def categorize_command(cmd: str) -> str:
     return "other"
 
 
+def strip_heredocs(cmd: str) -> str:
+    """Remove heredoc body lines so they aren't misclassified as commands."""
+    lines = cmd.split("\n")
+    result = []
+    i = 0
+    while i < len(lines):
+        line = lines[i]
+        m = re.search(r"<<-?['\"]?(\w+)['\"]?", line)
+        if m:
+            delimiter = m.group(1)
+            result.append(line)
+            i += 1
+            while i < len(lines) and lines[i].strip() != delimiter:
+                i += 1  # skip heredoc body
+            if i < len(lines):
+                i += 1  # skip closing delimiter line
+        else:
+            result.append(line)
+            i += 1
+    return "\n".join(result)
+
+
+def split_compound_command(cmd: str) -> list[str]:
+    """Split a bash compound command into individual sub-command segments.
+
+    Strips heredoc bodies first, then splits on &&, ||, ; and newlines —
+    but only outside of single- or double-quoted strings, so that
+    semicolons inside sed scripts (e.g. 's/a/b;c/') are not treated as
+    command separators.
+    """
+    cleaned = strip_heredocs(cmd)
+    segs: list[str] = []
+    current: list[str] = []
+    in_single = in_double = False
+    i = 0
+    while i < len(cleaned):
+        c = cleaned[i]
+        if c == "'" and not in_double:
+            in_single = not in_single
+            current.append(c)
+        elif c == '"' and not in_single:
+            in_double = not in_double
+            current.append(c)
+        elif not in_single and not in_double:
+            # && or ||
+            if c in ("&", "|") and i + 1 < len(cleaned) and cleaned[i + 1] == c:
+                segs.append("".join(current).strip())
+                current = []
+                i += 2
+                continue
+            elif c in (";", "\n"):
+                segs.append("".join(current).strip())
+                current = []
+            else:
+                current.append(c)
+        else:
+            current.append(c)
+        i += 1
+    if current:
+        segs.append("".join(current).strip())
+    return [s for s in segs if s]
+
+
 # --- File path extraction ---
 
 def _looks_like_path(tok: str) -> bool:
@@ -100,15 +164,15 @@ def _looks_like_path(tok: str) -> bool:
     return "/" in tok or ("." in tok and not tok.startswith("."))
 
 
-def extract_read_files(cmd: str) -> set[str]:
-    """Files passed to cat (non-heredoc), head, tail, less, more."""
+def extract_read_files(seg: str) -> set[str]:
+    """Files passed to cat (non-heredoc), head, tail, less, more in one segment."""
     files: set[str] = set()
-    if re.search(r"cat\s+<<", cmd):
-        return files  # heredoc – this is a write, not a read
-    m = re.match(r"\s*(?:cat|head|tail|less|more)\s+(.*)", cmd)
+    if re.search(r"cat\s+<<", seg):
+        return files  # heredoc write, not a read
+    m = re.match(r"\s*(?:cat|head|tail|less|more)\s+(.*)", seg)
     if not m:
         return files
-    args = m.group(1).split("|")[0]          # ignore piped commands
+    args = m.group(1).split("|")[0]          # ignore piped sub-commands
     args = re.sub(r"-\w+\s*\d*", "", args)   # strip flags and numeric values
     for tok in args.split():
         tok = tok.strip("'\"")
@@ -117,16 +181,15 @@ def extract_read_files(cmd: str) -> set[str]:
     return files
 
 
-def extract_grep_files(cmd: str) -> set[str]:
-    """Files/dirs passed to grep/rg/ag."""
+def extract_grep_files(seg: str) -> set[str]:
+    """Files/dirs passed to grep/rg/ag in one segment (may include pipes)."""
     files: set[str] = set()
-    for seg in cmd.split("|"):
-        seg = seg.strip()
-        if not re.match(r"\s*(grep|rg|ag)\b", seg):
+    for subseg in seg.split("|"):
+        subseg = subseg.strip()
+        if not re.match(r"\s*(grep|rg|ag)\b", subseg):
             continue
-        tokens = seg.split()
+        tokens = subseg.split()
         i, pattern_seen = 1, False
-        # Flags that consume the next token as their value
         value_flags = {"-A", "-B", "-C", "-m", "-e", "--include", "--exclude",
                        "--include-glob", "--exclude-glob"}
         while i < len(tokens):
@@ -144,43 +207,59 @@ def extract_grep_files(cmd: str) -> set[str]:
     return files
 
 
-def extract_edit_files(cmd: str) -> set[str]:
-    """Files written/modified by edit-category commands."""
+def extract_edit_files(seg: str) -> set[str]:
+    """Files written/modified by one edit-category command segment."""
     files: set[str] = set()
-    # cat <<EOF > file  (heredoc write)
-    m = re.search(r"cat\s+<<['\"]?\w+['\"]?\s+>\s*(\S+)", cmd)
-    if m:
-        tok = m.group(1).strip("'\"")
+
+    def add(tok: str) -> None:
+        tok = tok.strip("'\"")
         if _looks_like_path(tok):
             files.add(tok)
-        return files
-    # echo/printf ... > file  or  >> file
-    m = re.search(r"(?:echo|printf)\b.*?>>?\s*(\S+)", cmd)
+
+    # cat <<EOF > file
+    m = re.search(r"cat\s+<<['\"]?\w+['\"]?\s+>\s*(\S+)", seg)
     if m:
-        tok = m.group(1).strip("'\"")
-        if _looks_like_path(tok):
-            files.add(tok)
+        add(m.group(1))
         return files
+
+    # sed -i [backup] 'script' file
+    if re.match(r"\s*sed\b", seg):
+        rest = re.sub(r"-[iE]\S*", "", seg[seg.index("sed") + 3:])
+        rest = re.sub(r"'[^']*'", "", rest)
+        rest = re.sub(r'"[^"]*"', "", rest)
+        tokens = rest.split()
+        if tokens:
+            add(tokens[-1])
+        return files
+
+    # python3 -c '...' > outfile
+    if re.match(r"\s*python3?\s+-c\b", seg):
+        for rm in re.finditer(r">{1,2}\s*(\S+)", seg):
+            add(rm.group(1))
+        return files
+
+    # mv tmp realfile  (e.g. python writes to .tmp then mv-renames)
+    mm = re.match(r"\s*mv\s+\S+\s+(\S+)", seg)
+    if mm:
+        add(mm.group(1))
+        return files
+
+    # echo/printf > file  or  >> file
+    if re.match(r"\s*(?:echo|printf)\b", seg):
+        for rm in re.finditer(r">{1,2}\s*(\S+)", seg):
+            add(rm.group(1))
+        return files
+
     # tee file
-    m = re.search(r"\btee\s+(\S+)", cmd)
-    if m:
-        tok = m.group(1).strip("'\"")
-        if _looks_like_path(tok):
-            files.add(tok)
+    tm = re.match(r"\s*tee\s+(\S+)", seg)
+    if tm:
+        add(tm.group(1))
         return files
-    # sed -i '...' file
-    m = re.search(r"\bsed\b.*\s+([^\s|;]+)\s*$", cmd)
+
+    # Generic > redirect fallback
+    m = re.search(r">\s*([^\s|;]+)", seg)
     if m:
-        tok = m.group(1).strip("'\"")
-        if _looks_like_path(tok):
-            files.add(tok)
-        return files
-    # Generic > redirect
-    m = re.search(r">\s*([^\s|;]+)", cmd)
-    if m:
-        tok = m.group(1).strip("'\"")
-        if _looks_like_path(tok):
-            files.add(tok)
+        add(m.group(1))
     return files
 
 
@@ -336,15 +415,18 @@ def analyze_trajectory(traj_dir: Path) -> dict:
     for step in valid_steps:
         cmd = step["tool_calls"][0]["arguments"].get("command", "").strip()
 
-        cat = categorize_command(cmd)
-        action_counts[cat] += 1
-
-        if cat == "read":
-            files_read |= extract_read_files(cmd)
-        elif cat == "grep":
-            files_searched |= extract_grep_files(cmd)
-        elif cat == "edit":
-            files_edited |= extract_edit_files(cmd)
+        # Split compound commands (&&, ||, ;, newlines) so each sub-command is
+        # categorized and its touched files tracked independently.
+        segs = split_compound_command(cmd)
+        for seg in segs:
+            cat = categorize_command(seg)
+            action_counts[cat] += 1
+            if cat == "read":
+                files_read |= extract_read_files(seg)
+            elif cat == "grep":
+                files_searched |= extract_grep_files(seg)
+            elif cat == "edit":
+                files_edited |= extract_edit_files(seg)
 
         # Detect root-bypass attempt: command uses both useradd and su
         if ES_ROOT_BYPASS.search(cmd) and re.search(r"\bsu\b", cmd):
@@ -374,7 +456,7 @@ def analyze_trajectory(traj_dir: Path) -> dict:
             # tests (task ends in :test or --tests flag is present).
             # Plain compile tasks like :compileJava also match the "test"
             # action category but must not count here.
-            if GRADLE_TEST_RUN.match(cmd) and rc == 0:
+            if any(GRADLE_TEST_RUN.match(seg) for seg in segs) and rc == 0:
                 ran_tests_ok = True
 
     total_actions = sum(action_counts.values())
