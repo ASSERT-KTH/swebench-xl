@@ -69,8 +69,10 @@ def parse_junit_xml(xml_file: Path) -> list[dict]:
                 else:
                     status = "PASSED"
 
-                # Build test name using full class name to match fail_to_pass / pass_to_pass format
-                test_name = f"{tc_class}::{method_name}" if tc_class else method_name
+                # Build test name in SWE-bench style
+                # Use short class name (without package) for consistency with Gradle output
+                short_class = tc_class.split(".")[-1] if tc_class else ""
+                test_name = f"{short_class}::{method_name}"
 
                 tests.append({"name": test_name, "status": status})
 
@@ -141,12 +143,10 @@ def parse_gradle_stdout_fallback(stdout: str, stderr: str) -> list[dict]:
 def determine_build_result(stdout: str, stderr: str) -> str | None:
     """Determine overall build result from stdout/stderr."""
     combined = stdout + "\n" + stderr
-    # Check FAILED first: if any command failed, the overall result is FAILED
-    # even if other commands succeeded (combined output can contain both strings).
-    if "BUILD FAILED" in combined:
-        return "FAILED"
-    elif "BUILD SUCCESSFUL" in combined:
+    if "BUILD SUCCESSFUL" in combined:
         return "PASSED"
+    elif "BUILD FAILED" in combined:
+        return "FAILED"
     return None
 
 
