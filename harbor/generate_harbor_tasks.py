@@ -199,7 +199,7 @@ def build_combined_dockerfile(instance_id: str, *, gradlew_wrapper: bool = True)
             "# 'can not run as root' check so no user switch is needed here.\n"
             "\n"
         )
-        prewarm_cmd = "./.gradlew-bin"
+        prewarm_cmd = "./gradlew"
 
     harbor_additions += (
         "# Copy the mini-swe-agent config (full config — replaces mini.yaml entirely).\n"
