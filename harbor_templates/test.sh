@@ -32,13 +32,46 @@ export STDOUT_LOG STDERR_LOG
 # Apply test_patch to set up the test environment (adds/modifies test files).
 # This mirrors how eval.py works: test_patch is applied before the agent's
 # code fix so that the new/updated test classes exist when tests run.
+#
+# IMPORTANT: The agent may have edited the same test files that the test_patch
+# targets. To ensure the patch applies cleanly, we first restore those specific
+# files to their base-commit state (git checkout), then apply the test_patch.
+# The agent's source-code edits are left untouched.
 python3 -c "
-import json, subprocess, sys, tempfile, os
+import json, subprocess, sys, tempfile, os, re
+
 with open('/tests/config.json') as f:
     config = json.load(f)
 test_patch = config.get('test_patch', '').strip()
 if not test_patch:
     sys.exit(0)
+
+# Extract the list of files the test_patch touches.
+files_to_restore = set()
+for line in test_patch.split('\n'):
+    # Modified files: --- a/path and +++ b/path
+    if line.startswith('+++ b/'):
+        files_to_restore.add(line[6:].strip())
+    elif line.startswith('--- a/'):
+        files_to_restore.add(line[6:].strip())
+# Remove /dev/null entries (new files have --- /dev/null)
+files_to_restore.discard('/dev/null')
+
+# Restore test_patch target files to their base-commit state so the patch
+# applies cleanly, even if the agent modified them.
+base_commit = config.get('base_commit', '')
+if files_to_restore:
+    for fpath in sorted(files_to_restore):
+        result = subprocess.run(
+            ['git', 'checkout', base_commit or 'HEAD', '--', fpath],
+            capture_output=True, text=True
+        )
+        if result.returncode != 0:
+            # File may not exist at base commit (new file) — that's fine
+            subprocess.run(['rm', '-f', fpath], capture_output=True)
+    print(f'Restored {len(files_to_restore)} test_patch target file(s) to base-commit state')
+
+# Apply the test_patch
 with tempfile.NamedTemporaryFile(mode='w', suffix='.patch', delete=False) as tmp:
     if not test_patch.endswith('\n'):
         test_patch += '\n'
