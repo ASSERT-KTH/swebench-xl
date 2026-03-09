@@ -33,7 +33,9 @@ agent:
     3. Edit the source code to resolve the issue
     4. Verify your fix works by running your script again
     5. Test edge cases to ensure your fix is robust
-    6. Submit your changes and finish your work by issuing the following command: `echo COMPLETE_TASK_AND_SUBMIT_FINAL_OUTPUT`.
+    6. Make sure everything compiles using ./gradlew compileJava compileTestJava --no-daemon -x javadoc
+    7. Make sure all tests in the module you changed are passing using ./gradlew :<module>:test --no-daemon --stacktrace -x javadoc
+    8. Submit your changes and finish your work by issuing the following command: `echo COMPLETE_TASK_AND_SUBMIT_FINAL_OUTPUT`.
        Do not combine it with any other command. <important>After this command, you cannot continue working on this task.</important>
 
     ## Command Execution Rules
