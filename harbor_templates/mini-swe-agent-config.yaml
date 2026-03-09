@@ -35,7 +35,8 @@ agent:
     5. Test edge cases to ensure your fix is robust
     6. Make sure everything compiles using ./gradlew compileJava compileTestJava --no-daemon -x javadoc
     7. Make sure all tests in the module you changed are passing using ./gradlew :<module>:test --no-daemon --stacktrace -x javadoc
-    8. Submit your changes and finish your work by issuing the following command: `echo COMPLETE_TASK_AND_SUBMIT_FINAL_OUTPUT`.
+    8. If certain tests are not running when you expect the to, check that they are not inside any muted-tests.yml files, and if they are, remove them from those files before running the tests.
+    9. Submit your changes and finish your work by issuing the following command: `echo COMPLETE_TASK_AND_SUBMIT_FINAL_OUTPUT`.
        Do not combine it with any other command. <important>After this command, you cannot continue working on this task.</important>
 
     ## Command Execution Rules
