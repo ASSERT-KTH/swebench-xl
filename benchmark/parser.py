@@ -69,10 +69,8 @@ def parse_junit_xml(xml_file: Path) -> list[dict]:
                 else:
                     status = "PASSED"
 
-                # Build test name in SWE-bench style
-                # Use short class name (without package) for consistency with Gradle output
-                short_class = tc_class.split(".")[-1] if tc_class else ""
-                test_name = f"{short_class}::{method_name}"
+                # Build test name using fully-qualified class name to match config.json entries
+                test_name = f"{tc_class}::{method_name}"
 
                 tests.append({"name": test_name, "status": status})
 
