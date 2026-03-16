@@ -16,6 +16,7 @@ from gradle_runner import (
     build_test_commands,
     compile_tests,
     extract_missing_symbols,
+    extract_test_fqn,
     run_tests,
 )
 from test_parser import find_report_xmls, parse_results, parse_test_methods_from_source
