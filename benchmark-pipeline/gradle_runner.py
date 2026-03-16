@@ -125,9 +125,25 @@ def run_gradle(
             stdout = result.stdout.decode(errors="replace")
             stderr = result.stderr.decode(errors="replace")
             combined = (stdout + "\n" + stderr).strip()
-            # Keep last 80 lines for diagnostics
             lines = combined.split("\n")
-            all_output.append("\n".join(lines[-80:]))
+            # Preserve "cannot find symbol" error blocks (symbol:/location: context)
+            # plus the last 80 lines for general diagnostics.
+            error_indices: set[int] = set()
+            for idx, ln in enumerate(lines):
+                if "cannot find symbol" in ln.lower():
+                    for ei in range(max(0, idx - 1), min(len(lines), idx + 5)):
+                        error_indices.add(ei)
+            tail_start = max(0, len(lines) - 80)
+            merged: list[str] = []
+            # Error blocks first
+            for idx in sorted(error_indices):
+                if idx < tail_start:
+                    merged.append(lines[idx])
+            if merged and tail_start > 0:
+                merged.append("...")
+            # Then tail
+            merged.extend(lines[tail_start:])
+            all_output.append("\n".join(merged))
 
             if result.returncode != 0:
                 print(f"    FAILED (exit code {result.returncode})")
@@ -187,49 +203,93 @@ def parse_compile_errors(output: str) -> List[Dict[str, str]]:
         line = lines[i]
         if "cannot find symbol" in line.lower():
             error: dict[str, str] = {"raw": line.strip()}
-            # Look ahead for symbol and location lines
+            # Look ahead for symbol and location lines (stop once both found)
             for j in range(i + 1, min(i + 5, len(lines))):
                 stripped = lines[j].strip()
-                if stripped.startswith("symbol:"):
+                if stripped.startswith("symbol:") and "symbol" not in error:
                     error["symbol"] = stripped.replace("symbol:", "").strip()
-                elif stripped.startswith("location:"):
+                elif stripped.startswith("location:") and "location" not in error:
                     error["location"] = stripped.replace("location:", "").strip()
+                if "symbol" in error and "location" in error:
+                    break
             errors.append(error)
         i += 1
     return errors
 
 
-def extract_missing_methods(compile_output: str) -> List[Dict[str, str]]:
+def extract_missing_symbols(compile_output: str) -> List[Dict[str, str]]:
     """
-    From compile errors, extract method signatures that don't exist yet.
+    From compile errors, extract symbols (methods, classes, variables,
+    constructors) that don't exist yet.
 
-    Returns list of dicts: {method: str, class: str}
+    Returns list of dicts: {kind: str, name: str, params: str, class: str}
+    where kind is one of "method", "class", "variable", "constructor".
     """
-    methods: list[dict[str, str]] = []
+    symbols: list[dict[str, str]] = []
     errors = parse_compile_errors(compile_output)
     for err in errors:
         symbol = err.get("symbol", "")
         location = err.get("location", "")
-        # symbol looks like: "method someMethod(ParamType)"
+
+        loc_class = ""
+        loc_match = re.search(r"class\s+([\w.]+)", location)
+        if loc_match:
+            loc_class = loc_match.group(1)
+
+        # method someMethod(ParamType, OtherType)
         m = re.match(r"method\s+(\w+)\s*\(([^)]*)\)", symbol)
         if m:
-            method_name = m.group(1)
-            params = m.group(2)
-            loc_class = ""
-            loc_match = re.search(r"class\s+([\w.]+)", location)
-            if loc_match:
-                loc_class = loc_match.group(1)
-            methods.append({
-                "method": method_name,
-                "params": params,
+            symbols.append({
+                "kind": "method",
+                "name": m.group(1),
+                "params": m.group(2),
                 "class": loc_class,
             })
+            continue
+
+        # constructor ClassName(ParamType)
+        m = re.match(r"constructor\s+(\w+)\s*\(([^)]*)\)", symbol)
+        if m:
+            symbols.append({
+                "kind": "constructor",
+                "name": m.group(1),
+                "params": m.group(2),
+                "class": loc_class,
+            })
+            continue
+
+        # class ClassName
+        m = re.match(r"class\s+([\w.]+)", symbol)
+        if m:
+            symbols.append({
+                "kind": "class",
+                "name": m.group(1),
+                "params": "",
+                "class": loc_class,
+            })
+            continue
+
+        # variable SOME_NAME
+        m = re.match(r"variable\s+(\w+)", symbol)
+        if m:
+            symbols.append({
+                "kind": "variable",
+                "name": m.group(1),
+                "params": "",
+                "class": loc_class,
+            })
+            continue
+
     # Deduplicate
     seen: set[str] = set()
     unique: list[dict[str, str]] = []
-    for m in methods:
-        key = f"{m['class']}.{m['method']}({m['params']})"
+    for s in symbols:
+        key = f"{s['kind']}:{s['class']}.{s['name']}({s['params']})"
         if key not in seen:
             seen.add(key)
-            unique.append(m)
+            unique.append(s)
     return unique
+
+
+# Backward-compatible alias
+extract_missing_methods = extract_missing_symbols

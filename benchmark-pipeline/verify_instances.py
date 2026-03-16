@@ -400,7 +400,7 @@ def verify_pr(
     result["test_files"] = java_test_files
     result["source_files"] = source_files
     result["test_support_files"] = test_support_files
-    result["missing_methods"] = detection.missing_methods
+    result["missing_symbols"] = detection.missing_symbols
 
     return result
 

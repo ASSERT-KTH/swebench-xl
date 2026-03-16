@@ -276,7 +276,7 @@ def generate_harbor_task(
         instance_id, repo, base_commit, merge_commit, patch, test_patch,
         fail_to_pass, pass_to_pass, gradle_commands, test_files, source_files,
         version, problem_statement_title, problem_statement_description,
-        instance_type, missing_methods (optional)
+        instance_type, missing_symbols (optional)
     """
     instance_id = instance["instance_id"]
     task_dir = output_dir / instance_id
@@ -303,15 +303,25 @@ def generate_harbor_task(
     # For feature additions, append method signatures
     instance_type = instance.get("instance_type", "bug_fix")
     if instance_type == "feature_addition":
-        missing = instance.get("missing_methods", [])
+        missing = instance.get("missing_symbols", instance.get("missing_methods", []))
         if missing:
-            hint_lines = ["\n\n---\n\n## Hint: Method Signatures to Implement\n"]
-            hint_lines.append("The following methods need to be created as part of this task:\n")
-            for m in missing:
-                cls = m.get("class", "Unknown")
-                method = m.get("method", "unknown")
-                params = m.get("params", "")
-                hint_lines.append(f"- `{method}({params})` in `{cls}`")
+            hint_lines = ["\n\n---\n\n## Hint: Symbols to Implement\n"]
+            hint_lines.append("The following symbols need to be created as part of this task:\n")
+            for s in missing:
+                cls = s.get("class", "Unknown")
+                name = s.get("name", s.get("method", "unknown"))
+                kind = s.get("kind", "method")
+                params = s.get("params", "")
+                if kind == "method":
+                    hint_lines.append(f"- Method `{name}({params})` in `{cls}`")
+                elif kind == "constructor":
+                    hint_lines.append(f"- Constructor `{name}({params})` in `{cls}`")
+                elif kind == "class":
+                    hint_lines.append(f"- Class `{name}`")
+                elif kind == "variable":
+                    hint_lines.append(f"- Variable/field `{name}` in `{cls}`")
+                else:
+                    hint_lines.append(f"- `{name}` in `{cls}`")
             problem_statement += "\n".join(hint_lines)
 
     instr = _render(

@@ -15,7 +15,7 @@ from typing import List, Optional
 from gradle_runner import (
     build_test_commands,
     compile_tests,
-    extract_missing_methods,
+    extract_missing_symbols,
     run_tests,
 )
 from test_parser import find_report_xmls, parse_results, parse_test_methods_from_source
@@ -26,7 +26,7 @@ class DetectionResult:
     instance_type: str  # "bug_fix", "feature_addition", "invalid", "error"
     fail_to_pass: List[str] = field(default_factory=list)
     pass_to_pass: List[str] = field(default_factory=list)
-    missing_methods: List[dict] = field(default_factory=list)
+    missing_symbols: List[dict] = field(default_factory=list)
     compile_output: str = ""
     fail_phase_output: str = ""
     pass_phase_output: str = ""
@@ -83,6 +83,8 @@ def detect_instance_type(
     # Step 1: Try to compile tests
     print("    [detect] Compiling test files...")
     compiles, compile_output = compile_tests(java_test_files, repo_dir, timeout)
+    # Parse errors from full output before truncating for storage
+    missing = extract_missing_symbols(compile_output)
     result.compile_output = compile_output[-3000:]
 
     if compiles:
@@ -113,11 +115,10 @@ def detect_instance_type(
 
     # Tests don't compile — check if it's a feature addition
     print("    [detect] Tests don't compile. Analyzing errors...")
-    missing = extract_missing_methods(compile_output)
 
     if missing:
         result.instance_type = "feature_addition"
-        result.missing_methods = missing
+        result.missing_symbols = missing
         # Tests can't run (don't compile), so derive FAIL_TO_PASS from @Test methods in source
         test_ids = _read_test_methods_from_repo(java_test_files, repo_dir)
         if not test_ids:
@@ -126,7 +127,7 @@ def detect_instance_type(
             return result
         result.fail_to_pass = test_ids
         result.details = (
-            f"Feature addition: {len(missing)} missing method(s), "
+            f"Feature addition: {len(missing)} missing symbol(s), "
             f"{len(result.fail_to_pass)} test(s)"
         )
     else:
@@ -136,21 +137,36 @@ def detect_instance_type(
     return result
 
 
-def format_method_signatures(missing_methods: List[dict]) -> str:
+def format_symbol_hints(missing_symbols: List[dict]) -> str:
     """
-    Format missing method signatures for inclusion in the task instruction.
+    Format missing symbol info for inclusion in the task instruction.
+    Handles methods, classes, variables, and constructors.
     """
-    if not missing_methods:
+    if not missing_symbols:
         return ""
 
-    lines = ["## Hint: Method Signatures to Implement", ""]
+    lines = ["## Hint: Symbols to Implement", ""]
     lines.append(
-        "The following methods need to be created as part of this task:"
+        "The following symbols need to be created as part of this task:"
     )
     lines.append("")
-    for m in missing_methods:
-        cls = m.get("class", "Unknown")
-        method = m.get("method", "unknown")
-        params = m.get("params", "")
-        lines.append(f"- `{method}({params})` in `{cls}`")
+    for s in missing_symbols:
+        cls = s.get("class", "Unknown")
+        name = s.get("name", s.get("method", "unknown"))
+        kind = s.get("kind", "method")
+        params = s.get("params", "")
+        if kind == "method":
+            lines.append(f"- Method `{name}({params})` in `{cls}`")
+        elif kind == "constructor":
+            lines.append(f"- Constructor `{name}({params})` in `{cls}`")
+        elif kind == "class":
+            lines.append(f"- Class `{name}`")
+        elif kind == "variable":
+            lines.append(f"- Variable/field `{name}` in `{cls}`")
+        else:
+            lines.append(f"- `{name}` in `{cls}`")
     return "\n".join(lines)
+
+
+# Backward-compatible alias
+format_method_signatures = format_symbol_hints
