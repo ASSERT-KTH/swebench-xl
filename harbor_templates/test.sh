@@ -67,7 +67,7 @@ else:
 # (passing selected_test_files_to_run would trigger a generic --tests branch
 # that uses the wrong Gradle module and fails with "No tests found").
 set +e
-# Run as the elasticsearch user — Elasticsearch refuses to start as root.
+# Run as the {no_root_user} user — some apps refuse to start as root.
 # The container stays root so Harbor can install agents; we drop here for Gradle only.
 
 # Kill any Gradle daemon processes left behind by the agent.
@@ -80,12 +80,12 @@ pkill -f GradleDaemon 2>/dev/null || true
 find /app -path '*/build/test-results' -type d -exec rm -rf {} + 2>/dev/null || true
 # Fix ownership of the entire project directory. The agent runs as root and
 # creates root-owned files (build outputs, caches) throughout /app that the
-# elasticsearch user cannot write to.
-chown -R elasticsearch:elasticsearch /app 2>/dev/null || true
+# {no_root_user} user cannot write to.
+chown -R {no_root_user}:{no_root_user} /app 2>/dev/null || true
 # Use an isolated Gradle user home so the verifier is never affected by
 # anything the agent wrote to /root/.gradle (lock files, corrupted caches, etc).
 export GRADLE_USER_HOME=/tmp/gradle-verifier-home
-su -s /bin/bash elasticsearch -c "GRADLE_USER_HOME=/tmp/gradle-verifier-home bash /tests/run_script.sh" > "$STDOUT_LOG" 2> "$STDERR_LOG"
+su -s /bin/bash {no_root_user} -c "GRADLE_USER_HOME=/tmp/gradle-verifier-home bash /tests/run_script.sh" > "$STDOUT_LOG" 2> "$STDERR_LOG"
 RUN_EXIT_CODE=$?
 set -e
 

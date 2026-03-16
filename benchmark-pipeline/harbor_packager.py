@@ -30,17 +30,8 @@ from typing import Any, Dict, List, Optional
 ROOT = Path(__file__).resolve().parent.parent
 TEMPLATES_DIR = ROOT / "harbor_templates"
 
-# Per-repo configuration for Dockerfile generation
-REPO_CONFIG: dict[str, dict[str, Any]] = {
-    "elastic/elasticsearch": {
-        "base_image": "eclipse-temurin:21-jdk-jammy",
-        "system_packages": "git python3 python3-pip curl wget unzip jq",
-        "build_tool": "gradle",
-        "no_root_user": "elasticsearch",
-        "version_file": "build-tools-internal/version.properties",
-        "java_version_file": ".java-version",
-    },
-}
+# Import repo config instead of hardcoded dict
+from repo_config import RepoConfig, get_config
 
 
 def _read_template(name: str) -> str:
@@ -84,14 +75,14 @@ def _generate_dockerfile(
     jdk_version: Optional[str] = None,
 ) -> str:
     """Generate a self-contained Dockerfile for an instance."""
-    cfg = REPO_CONFIG.get(repo_slug, REPO_CONFIG["elastic/elasticsearch"])
-    base_image = cfg["base_image"]
+    cfg = get_config(repo_slug)
+    base_image = cfg.base_image
 
     # Allow JDK version override (e.g. from .java-version at the base commit)
     if jdk_version:
         base_image = f"eclipse-temurin:{jdk_version}-jdk-jammy"
 
-    packages = cfg["system_packages"]
+    packages = cfg.system_packages
 
     lines = [
         f"# Auto-generated Dockerfile for {instance_id}",
@@ -164,7 +155,10 @@ def _generate_dockerfile(
     ]
 
     # Create non-root users
-    no_root_user = cfg.get("no_root_user", "elasticsearch")
+    # Remove the default 'ubuntu' user (UID 1000) present in Noble-based images,
+    # then create the repo-specific user at UID 1000.
+    no_root_user = cfg.no_root_user
+    lines.append(f"RUN userdel -r ubuntu 2>/dev/null || true")
     lines.append(f"RUN useradd -m -u 1000 {no_root_user} 2>/dev/null || true")
 
     if gradlew_wrapper:
@@ -206,8 +200,9 @@ def _generate_dockerfile(
 # Run script generation
 # ---------------------------------------------------------------------------
 
-def _generate_run_script(instance_id: str, gradle_commands: List[str]) -> str:
+def _generate_run_script(instance_id: str, gradle_commands: List[str], gradle_flags: Optional[List[str]] = None) -> str:
     """Generate run_script.sh from gradle commands."""
+    flags_str = " ".join(gradle_flags) if gradle_flags else "--no-daemon --stacktrace --max-workers=2"
     commands_block = ""
     for i, cmd in enumerate(gradle_commands):
         if "--no-configuration-cache" not in cmd:
@@ -240,7 +235,7 @@ if [ $# -gt 0 ]; then
     TEST_FILES="$@"
     echo "Running with custom test files: $TEST_FILES"
     for tf in $(echo "$TEST_FILES" | tr ',' ' '); do
-        ./gradlew test --tests "$tf" --no-daemon --stacktrace -x javadoc --no-configuration-cache --max-workers=2
+        ./gradlew test --tests "$tf" {flags_str}
         CMD_EXIT=$?
         if [ $CMD_EXIT -ne 0 ]; then
             OVERALL_EXIT=1
@@ -294,6 +289,7 @@ def generate_harbor_task(
     repo_url = f"https://github.com/{repo}.git"
     repo_slug = repo
     base_commit = instance["base_commit"]
+    cfg = get_config(repo_slug)
 
     # ── instruction.md ──────────────────────────────────────────────
     problem_title = instance.get("problem_statement_title", instance.get("title", ""))
@@ -372,8 +368,9 @@ def generate_harbor_task(
     _make_executable(solve_path)
 
     # ── tests/test.sh ───────────────────────────────────────────────
+    test_sh = _render(_read_template("test.sh"), no_root_user=cfg.no_root_user)
     test_sh_path = task_dir / "tests" / "test.sh"
-    test_sh_path.write_text(_read_template("test.sh"))
+    test_sh_path.write_text(test_sh)
     _make_executable(test_sh_path)
 
     # ── tests/config.json ───────────────────────────────────────────
@@ -412,7 +409,7 @@ def generate_harbor_task(
     gradle_cmds = config_data["gradle_commands"]
     if isinstance(gradle_cmds, str):
         gradle_cmds = json.loads(gradle_cmds)
-    run_script = _generate_run_script(instance_id, gradle_cmds)
+    run_script = _generate_run_script(instance_id, gradle_cmds, cfg.gradle_flags)
     run_script_path = task_dir / "tests" / "run_script.sh"
     run_script_path.write_text(run_script)
     _make_executable(run_script_path)

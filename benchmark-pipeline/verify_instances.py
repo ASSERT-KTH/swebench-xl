@@ -36,12 +36,12 @@ from gradle_runner import (
 )
 from instance_detector import detect_instance_type
 from patch_builder import build_gold_patch, build_test_patch
+from repo_config import RepoConfig, get_config, registered_repos
 from test_parser import find_report_xmls, parse_results
 
 ROOT = Path(__file__).resolve().parent.parent
 DEFAULT_INPUT = ROOT / "pr_analysis_results_full.json"
 DEFAULT_OUTPUT = ROOT / "benchmark-pipeline" / "verified_instances.json"
-DEFAULT_CLONE_DIR = os.environ.get("ES_CLONE_DIR", "/tmp/elasticsearch-pipeline")
 
 TEST_TIMEOUT = 600  # 10 minutes per test run
 
@@ -112,26 +112,40 @@ def checkout_files(clone_dir: str, commit: str, files: List[str]) -> Tuple[bool,
     return True, ""
 
 
-def extract_version(clone_dir: str) -> str:
-    """Extract project version from the checked-out repo."""
-    for candidate in [
-        os.path.join(clone_dir, "build-tools-internal", "version.properties"),
-        os.path.join(clone_dir, "buildSrc", "version.properties"),
-    ]:
+def extract_version(clone_dir: str, config: Optional[RepoConfig] = None) -> str:
+    """Extract project version from the checked-out repo using config."""
+    version_files = (
+        config.version_files
+        if config
+        else [
+            "build-tools-internal/version.properties",
+            "buildSrc/version.properties",
+        ]
+    )
+    version_key = config.version_key if config else "elasticsearch"
+
+    if not version_key:
+        return ""
+
+    for relpath in version_files:
+        candidate = os.path.join(clone_dir, relpath)
         if os.path.isfile(candidate):
             try:
                 with open(candidate) as f:
                     for line in f:
-                        if line.strip().startswith("elasticsearch"):
+                        if line.strip().startswith(version_key):
                             return line.split("=", 1)[1].strip()
             except OSError:
                 pass
     return ""
 
 
-def detect_jdk_version(clone_dir: str) -> Optional[str]:
+def detect_jdk_version(clone_dir: str, config: Optional[RepoConfig] = None) -> Optional[str]:
     """Try to detect required JDK version from the repo."""
-    java_version_file = os.path.join(clone_dir, ".java-version")
+    java_version_file = os.path.join(
+        clone_dir,
+        config.java_version_file if config else ".java-version",
+    )
     if os.path.isfile(java_version_file):
         try:
             with open(java_version_file) as f:
@@ -143,8 +157,9 @@ def detect_jdk_version(clone_dir: str) -> Optional[str]:
     return None
 
 
-def check_jdk() -> bool:
-    """Check that JDK 21+ is available."""
+def check_jdk(config: Optional[RepoConfig] = None) -> bool:
+    """Check that JDK meets the minimum version for this repo."""
+    min_version = config.min_jdk_version if config else 21
     try:
         result = subprocess.run(
             ["java", "-version"],
@@ -157,9 +172,9 @@ def check_jdk() -> bool:
             token = token.strip('"')
             if token[0:1].isdigit():
                 major = int(token.split(".")[0])
-                if major >= 21:
+                if major >= min_version:
                     return True
-                print(f"  ERROR: JDK 21+ required, found JDK {major}")
+                print(f"  ERROR: JDK {min_version}+ required, found JDK {major}")
                 return False
     except Exception as e:
         print(f"  ERROR: Could not determine Java version: {e}")
@@ -168,23 +183,55 @@ def check_jdk() -> bool:
 
 # ─── Candidate filtering ─────────────────────────────────────────────────────
 
+def _has_java_test_files(pr: Dict) -> bool:
+    """Check if a PR's patches include Java test files."""
+    for p in pr.get("patches", []):
+        fn = p.get("filename", "")
+        if not fn.endswith(".java"):
+            continue
+        if "src/test/" in fn or fn.endswith(("Test.java", "Tests.java", "IT.java")):
+            return True
+    return False
+
+
 def load_candidates(
-    input_file: Path, repo_filter: Optional[str] = None
+    input_file: Path,
+    repo_filter: Optional[str] = None,
+    config: Optional[RepoConfig] = None,
 ) -> List[Dict]:
-    """Load PR data and filter to candidates."""
+    """
+    Load PR data and filter to candidates.
+
+    Works with both old-format JSON (with verifiability_audit from LLM) and
+    new-format JSON (from fetch_prs.py, no LLM fields).
+    """
     with open(input_file, "r", encoding="utf-8") as f:
         all_prs = json.load(f)
+
+    min_files = config.extra.get("min_files_changed", 2) if config else 2
+    max_files = config.extra.get("max_files_changed", 100) if config else 100
 
     candidates = []
     for pr in all_prs:
         if repo_filter and pr.get("repo") != repo_filter:
             continue
-        if not pr.get("verifiability_audit", {}).get("has_tests"):
+
+        # File count filter
+        files_changed = pr.get("files_changed", 0)
+        if files_changed < min_files or files_changed > max_files:
             continue
-        if pr.get("verifiability_audit", {}).get("test_type") != "unit":
-            continue
-        if pr.get("files_changed", 0) < 4 or pr.get("files_changed", 0) > 100:
-            continue
+
+        # Test presence: use LLM audit if available, otherwise detect from patches
+        audit = pr.get("verifiability_audit")
+        if audit:
+            if not audit.get("has_tests"):
+                continue
+            if audit.get("test_type") != "unit":
+                continue
+        else:
+            if not _has_java_test_files(pr):
+                continue
+
         candidates.append(pr)
 
     return candidates
@@ -214,6 +261,7 @@ def verify_pr(
     pr: Dict,
     shas: Dict[str, str],
     clone_dir: str,
+    config: Optional[RepoConfig] = None,
 ) -> Dict:
     """
     Run fail-to-pass verification on a single PR.
@@ -240,7 +288,7 @@ def verify_pr(
     }
 
     # Classify files
-    test_files, source_files, test_support_files = classify_files(pr["patches"])
+    test_files, source_files, test_support_files = classify_files(pr["patches"], config)
     java_test_files = [f for f in test_files if f.endswith(".java")]
 
     if not java_test_files:
@@ -272,8 +320,8 @@ def verify_pr(
         result["details"] = "No gradlew at base commit"
         return result
 
-    version = extract_version(clone_dir)
-    jdk_version = detect_jdk_version(clone_dir)
+    version = extract_version(clone_dir, config)
+    jdk_version = detect_jdk_version(clone_dir, config)
 
     # ── PHASE 2: Apply test patch and detect instance type ──
     all_test_files = test_files + test_support_files
@@ -417,7 +465,8 @@ def main() -> None:
         "--repo",
         type=str,
         default="elastic/elasticsearch",
-        help="Repository to filter PRs (default: elastic/elasticsearch)",
+        help="Repository slug (default: elastic/elasticsearch). "
+             f"Registered: {', '.join(registered_repos())}",
     )
     parser.add_argument(
         "--input",
@@ -434,8 +483,8 @@ def main() -> None:
     parser.add_argument(
         "--clone-dir",
         type=str,
-        default=DEFAULT_CLONE_DIR,
-        help=f"Directory for repo clone (default: {DEFAULT_CLONE_DIR})",
+        default=None,
+        help="Directory for repo clone (default: from repo config or /tmp/<repo>-pipeline)",
     )
     parser.add_argument(
         "--limit",
@@ -450,14 +499,21 @@ def main() -> None:
     )
     args = parser.parse_args()
 
+    # Load repo config
+    repo_config = get_config(args.repo)
+    clone_dir = args.clone_dir or repo_config.get_clone_dir()
+
     print("=" * 70)
     print("  Step 1: Verify Instances")
     print("=" * 70)
 
     # Prerequisites
     print("\n[Prerequisites]")
-    if not check_jdk():
-        print("JDK 21+ is required. Set JAVA_HOME or install JDK 21.")
+    if not check_jdk(repo_config):
+        print(
+            f"JDK {repo_config.min_jdk_version}+ is required. "
+            f"Set JAVA_HOME or install JDK {repo_config.min_jdk_version}."
+        )
         sys.exit(1)
 
     # Load candidates
@@ -466,7 +522,7 @@ def main() -> None:
         print(f"Error: {args.input} not found")
         sys.exit(1)
 
-    candidates = load_candidates(args.input, args.repo)
+    candidates = load_candidates(args.input, args.repo, repo_config)
     print(f"  {len(candidates)} candidates for {args.repo}")
 
     # Resume support
@@ -495,7 +551,7 @@ def main() -> None:
     # Ensure clone
     print(f"\n[Repository setup]")
     repo_url = f"https://github.com/{args.repo}.git"
-    if not ensure_clone(repo_url, args.clone_dir):
+    if not ensure_clone(repo_url, clone_dir):
         print("Failed to clone/update repo. Exiting.")
         sys.exit(1)
 
@@ -512,7 +568,7 @@ def main() -> None:
         print(f"  base={shas['base_commit'][:10]} merge={shas['merge_commit'][:10]}")
 
         try:
-            result = verify_pr(pr, shas, args.clone_dir)
+            result = verify_pr(pr, shas, clone_dir, repo_config)
         except Exception as e:
             result = {
                 "pr_number": pr_number,

@@ -9,10 +9,13 @@ Classifies files into three categories:
 """
 
 import re
-from typing import Dict, List, Tuple
+from typing import Dict, List, Optional, Set, Tuple
 
-# Files that control test execution and must be in the test patch
-TEST_CONFIG_FILES = {
+from repo_config import RepoConfig
+
+
+# Default test config filenames (used when no RepoConfig is provided)
+_DEFAULT_TEST_CONFIG_FILES: Set[str] = {
     "muted-tests.yml",
     "muted-tests.yaml",
 }
@@ -34,15 +37,19 @@ def _in_path(segment: str, filename: str) -> bool:
     return segment in filename or filename.startswith(segment.lstrip("/"))
 
 
-def is_test_file(filename: str) -> bool:
+def is_test_file(
+    filename: str,
+    extra_test_path_segments: Optional[List[str]] = None,
+) -> bool:
     """Check if a file lives in a test source tree."""
     if _in_path("/src/test/java/", filename):
         return True
     if _in_path("/src/test/resources/", filename):
         return True
-    # Elasticsearch compute/test module
-    if "/compute/test/" in filename:
-        return True
+    # Repo-specific extra test paths
+    for segment in (extra_test_path_segments or []):
+        if segment in filename:
+            return True
     # Basename heuristic, but NOT for files in production source trees.
     # Without this guard, a file like src/main/java/.../ConnectionTest.java
     # would be misclassified as a test file and excluded from the gold patch.
@@ -54,10 +61,14 @@ def is_test_file(filename: str) -> bool:
     return False
 
 
-def is_test_config_file(filename: str) -> bool:
+def is_test_config_file(
+    filename: str,
+    test_config_files: Optional[Set[str]] = None,
+) -> bool:
     """Check if a file is a test-execution config (e.g. muted-tests.yml)."""
     basename = filename.rsplit("/", 1)[-1]
-    return basename in TEST_CONFIG_FILES
+    cfgfiles = test_config_files if test_config_files is not None else _DEFAULT_TEST_CONFIG_FILES
+    return basename in cfgfiles
 
 
 def _looks_like_test_util(filename: str) -> bool:
@@ -69,6 +80,7 @@ def _looks_like_test_util(filename: str) -> bool:
 
 def classify_files(
     patches: List[Dict],
+    config: Optional[RepoConfig] = None,
 ) -> Tuple[List[str], List[str], List[str]]:
     """
     Split patch files into (test_files, source_files, test_support_files).
@@ -80,6 +92,9 @@ def classify_files(
 
     Only includes files that exist in the merge commit (skips 'removed').
     """
+    extra_segments = config.extra_test_path_segments if config else None
+    cfg_files = config.test_config_files if config else None
+
     test_files: list[str] = []
     source_files: list[str] = []
     test_support_files: list[str] = []
@@ -90,9 +105,9 @@ def classify_files(
         if status == "removed":
             continue
 
-        if is_test_config_file(filename):
+        if is_test_config_file(filename, cfg_files):
             test_support_files.append(filename)
-        elif is_test_file(filename):
+        elif is_test_file(filename, extra_segments):
             test_files.append(filename)
         else:
             source_files.append(filename)

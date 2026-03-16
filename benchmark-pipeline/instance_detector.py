@@ -133,7 +133,24 @@ def detect_instance_type(
         )
     else:
         result.instance_type = "error"
-        result.details = "Compilation failed for unknown reasons"
+        # Log a snippet of the compile output for debugging
+        error_lines = [
+            ln for ln in compile_output.splitlines()
+            if "error:" in ln.lower() or "error " in ln.lower()
+        ]
+        if error_lines:
+            snippet = "; ".join(error_lines[:5])
+            result.details = f"Compilation failed (no missing symbols found). Errors: {snippet[:500]}"
+            print(f"    [detect] Compile errors found but no missing symbols:")
+            for el in error_lines[:10]:
+                print(f"      {el.strip()}")
+        else:
+            result.details = "Compilation failed for unknown reasons"
+            # Show tail of output for debugging
+            tail = compile_output.strip().splitlines()[-10:]
+            print(f"    [detect] No error lines found in compile output. Tail:")
+            for tl in tail:
+                print(f"      {tl.strip()}")
 
     return result
 
