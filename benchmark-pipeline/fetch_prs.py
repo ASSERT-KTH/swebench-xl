@@ -299,8 +299,11 @@ def fetch_pr_files(owner: str, repo: str, pr_number: int) -> List[Dict[str, str]
 
 # ── Pre-filtering ─────────────────────────────────────────────────────────────
 
-def _has_test_and_source_files(patches: List[Dict[str, str]]) -> bool:
-    """Quick check: does this PR touch both test and non-test Java files?"""
+def _has_test_and_source_files(patches: List[Dict[str, str]], adapter=None) -> bool:
+    """Quick check: does this PR touch both test and non-test source files?"""
+    if adapter:
+        return adapter.has_test_and_source_files(patches)
+    # Fallback: Java heuristic for when no adapter is available
     has_test = False
     has_source = False
     for p in patches:
@@ -348,6 +351,7 @@ def fetch_repo_prs(
     min_files: int = MIN_FILES_CHANGED,
     max_files: int = MAX_FILES_CHANGED,
     resume: bool = False,
+    adapter=None,
 ) -> None:
     repo_slug = f"{owner}/{repo}"
 
@@ -397,8 +401,8 @@ def fetch_repo_prs(
                 skipped["file_count"] += 1
                 continue
 
-            # Pre-filter: must have both test and source Java files
-            if not _has_test_and_source_files(patches):
+            # Pre-filter: must have both test and source files
+            if not _has_test_and_source_files(patches, adapter):
                 skipped["no_test_source"] += 1
                 continue
 
@@ -483,6 +487,17 @@ def main() -> None:
     until = args.until or today
     output = args.output or Path(f"{owner}__{repo}_prs.json")
 
+    # Resolve adapter from repo config (if registered), else use default
+    adapter = None
+    try:
+        from repo_config import get_config
+        from adapters import get_adapter
+        cfg = get_config(args.repo)
+        adapter = get_adapter(cfg.adapter_name)
+        print(f"  Adapter: {adapter.language_name} + {adapter.build_tool_name}")
+    except (ValueError, ImportError):
+        print("  Adapter: default (Java + Gradle heuristic)")
+
     print("=" * 60)
     print(f"  Fetch PRs: {args.repo}")
     print(f"  Period: {since} → {until}")
@@ -495,6 +510,7 @@ def main() -> None:
         min_files=args.min_files,
         max_files=args.max_files,
         resume=args.resume,
+        adapter=adapter,
     )
 
 

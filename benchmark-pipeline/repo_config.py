@@ -24,6 +24,12 @@ class RepoConfig:
     # ── Identity ──────────────────────────────────────────────────────
     slug: str  # e.g. "elastic/elasticsearch"
 
+    # ── Adapter ───────────────────────────────────────────────────────
+    # Name of the LanguageAdapter to use (registered in adapters/__init__.py).
+    # See ``adapters/base.py`` for the interface and ``adapters/java_gradle.py``
+    # for the reference implementation.
+    adapter_name: str = "java-gradle"
+
     # ── Docker / environment ──────────────────────────────────────────
     base_image: str = "eclipse-temurin:21-jdk-jammy"
     system_packages: str = "git python3 python3-pip curl wget unzip jq patch"

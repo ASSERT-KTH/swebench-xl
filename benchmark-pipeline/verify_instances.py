@@ -28,17 +28,11 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # Local modules
-from file_classifier import classify_files
+from adapters import get_adapter
 from github_api import fetch_commit_shas
-from gradle_runner import (
-    build_test_commands,
-    extract_test_fqn,
-    run_tests,
-)
 from instance_detector import detect_instance_type
 from patch_builder import build_gold_patch, build_test_patch
 from repo_config import RepoConfig, get_config, registered_repos
-from test_parser import find_report_xmls, parse_results
 
 ROOT = Path(__file__).resolve().parent.parent
 DEFAULT_INPUT = ROOT / "pr_analysis_results_full.json"
@@ -135,58 +129,11 @@ def extract_version(clone_dir: str, config: Optional[RepoConfig] = None) -> str:
     return ""
 
 
-def detect_jdk_version(clone_dir: str, config: Optional[RepoConfig] = None) -> Optional[str]:
-    """Try to detect required JDK version from the repo."""
-    java_version_file = os.path.join(
-        clone_dir,
-        config.java_version_file if config else ".java-version",
-    )
-    if os.path.isfile(java_version_file):
-        try:
-            with open(java_version_file) as f:
-                version = f.read().strip()
-            if version:
-                return version
-        except OSError:
-            pass
-    return None
-
-
-def check_jdk(config: Optional[RepoConfig] = None) -> bool:
-    """Check that JDK meets the minimum version for this repo."""
-    min_version = config.min_jdk_version if config else 21
-    try:
-        result = subprocess.run(
-            ["java", "-version"],
-            capture_output=True,
-            timeout=10,
-        )
-        version_output = result.stderr.decode() + result.stdout.decode()
-        print(f"  Java: {version_output.strip().split(chr(10))[0]}")
-        for token in version_output.split():
-            token = token.strip('"')
-            if token[0:1].isdigit():
-                major = int(token.split(".")[0])
-                if major >= min_version:
-                    return True
-                print(f"  ERROR: JDK {min_version}+ required, found JDK {major}")
-                return False
-    except Exception as e:
-        print(f"  ERROR: Could not determine Java version: {e}")
-    return False
-
-
 # ─── Candidate filtering ─────────────────────────────────────────────────────
 
-def _has_java_test_files(pr: Dict) -> bool:
-    """Check if a PR's patches include Java test files."""
-    for p in pr.get("patches", []):
-        fn = p.get("filename", "")
-        if not fn.endswith(".java"):
-            continue
-        if "src/test/" in fn or fn.endswith(("Test.java", "Tests.java", "IT.java")):
-            return True
-    return False
+def _has_java_test_files(pr: Dict, adapter) -> bool:
+    """Check if a PR's patches include test files for the configured language."""
+    return adapter.has_test_files_in_pr(pr)
 
 
 def load_candidates(
@@ -200,6 +147,8 @@ def load_candidates(
     Works with both old-format JSON (with verifiability_audit from LLM) and
     new-format JSON (from fetch_prs.py, no LLM fields).
     """
+    adapter = get_adapter(config.adapter_name) if config else get_adapter("java-gradle")
+
     with open(input_file, "r", encoding="utf-8") as f:
         all_prs = json.load(f)
 
@@ -224,7 +173,7 @@ def load_candidates(
             if audit.get("test_type") != "unit":
                 continue
         else:
-            if not _has_java_test_files(pr):
+            if not _has_java_test_files(pr, adapter):
                 continue
 
         candidates.append(pr)
@@ -270,6 +219,8 @@ def verify_pr(
     owner, repo_name = repo.split("/")
     instance_id = f"{owner}__{repo_name}-{pr_number}"
 
+    adapter = get_adapter(config.adapter_name) if config else get_adapter("java-gradle")
+
     result: dict[str, Any] = {
         "pr_number": pr_number,
         "instance_id": instance_id,
@@ -282,13 +233,16 @@ def verify_pr(
         "details": "",
     }
 
-    # Classify files
-    test_files, source_files, test_support_files = classify_files(pr["patches"], config)
-    java_test_files = [f for f in test_files if f.endswith(".java")]
+    # Classify files using the adapter
+    test_files, source_files, test_support_files = adapter.classify_files(pr["patches"], config)
+    lang_test_files = [
+        f for f in test_files
+        if any(f.endswith(ext) for ext in adapter.source_file_extensions)
+    ]
 
-    if not java_test_files:
+    if not lang_test_files:
         result["status"] = "skipped"
-        result["details"] = "No Java test files found"
+        result["details"] = f"No {adapter.language_name} test files found"
         return result
 
     # Skip renamed files (not supported yet)
@@ -297,11 +251,11 @@ def verify_pr(
         result["details"] = "PR contains renamed files"
         return result
 
-    # Build gradle commands
-    gradle_cmds = build_test_commands(java_test_files)
-    if not gradle_cmds:
+    # Build test commands
+    test_cmds = adapter.build_test_commands(lang_test_files, config)
+    if not test_cmds:
         result["status"] = "skipped"
-        result["details"] = "Could not build Gradle test commands"
+        result["details"] = f"Could not build {adapter.build_tool_name} test commands"
         return result
 
     # ── PHASE 1: Reset to base commit ──
@@ -310,13 +264,13 @@ def verify_pr(
         result["details"] = "Failed to reset to base commit"
         return result
 
-    if not os.path.isfile(os.path.join(clone_dir, "gradlew")):
+    if not adapter.check_build_tool_exists(clone_dir, config):
         result["status"] = "skipped"
-        result["details"] = "No gradlew at base commit"
+        result["details"] = f"No {adapter.build_tool_name} wrapper at base commit"
         return result
 
     version = extract_version(clone_dir, config)
-    jdk_version = detect_jdk_version(clone_dir, config)
+    runtime_version = adapter.detect_runtime_version(clone_dir, config)
 
     # ── PHASE 2: Apply test patch and detect instance type ──
     all_test_files = test_files + test_support_files
@@ -327,7 +281,7 @@ def verify_pr(
         return result
 
     print(f"  [2/4] Detecting instance type...")
-    detection = detect_instance_type(java_test_files, clone_dir, TEST_TIMEOUT)
+    detection = detect_instance_type(lang_test_files, clone_dir, TEST_TIMEOUT, adapter, config)
 
     if detection.instance_type == "invalid":
         result["status"] = "invalid_tests_pass_without_fix"
@@ -349,12 +303,11 @@ def verify_pr(
         return result
 
     print(f"  [3/4] Running tests (expecting PASS)...")
-    tests_passed, pass_output = run_tests(java_test_files, clone_dir, TEST_TIMEOUT)
+    tests_passed, pass_output = adapter.run_tests(lang_test_files, clone_dir, TEST_TIMEOUT, config)
 
-    # Parse JUnit XML regardless of overall exit code — we need method-level
-    # results to cross-check fail_to_pass and collect pass_to_pass.
-    xml_files = find_report_xmls(gradle_cmds, clone_dir)
-    failed_in_pass, pass_to_pass = parse_results(xml_files)
+    # Parse test reports regardless of overall exit code
+    report_files = adapter.find_test_reports(test_cmds, clone_dir)
+    failed_in_pass, pass_to_pass = adapter.parse_test_results(report_files)
 
     if not tests_passed:
         result["status"] = "invalid_tests_fail_with_fix"
@@ -365,10 +318,6 @@ def verify_pr(
         return result
 
     # Cross-check: every fail_to_pass test from Phase 2 must now be passing.
-    # This catches cases where the overall run passes but a specific fail_to_pass
-    # test was skipped or never ran.
-    # For feature additions, also expand base IDs to actual JUnit IDs (e.g.
-    # ClassName::method -> ClassName::method[0], ClassName::method[1]).
     pass_set = set(pass_to_pass)
     not_confirmed: list[str] = []
     confirmed_fail_to_pass: list[str] = []
@@ -376,7 +325,6 @@ def verify_pr(
         if ftp in pass_set:
             confirmed_fail_to_pass.append(ftp)
         elif detection.instance_type == "feature_addition":
-            # Expand to actual JUnit IDs (handles parameterized tests)
             prefix = ftp + "["
             expanded = [p for p in pass_set if p.startswith(prefix)]
             if expanded:
@@ -429,9 +377,9 @@ def verify_pr(
     )
 
     # Store everything needed for packaging
-    result["repo_language"] = "Java"
+    result["repo_language"] = adapter.language_name
     result["version"] = version
-    result["jdk_version"] = jdk_version
+    result["runtime_version"] = runtime_version
     result["instance_type"] = detection.instance_type
     result["problem_statement_title"] = ps_title
     result["problem_statement_description"] = ps_desc
@@ -439,8 +387,8 @@ def verify_pr(
     result["test_patch"] = test_patch
     result["fail_to_pass"] = confirmed_fail_to_pass
     result["pass_to_pass"] = pass_to_pass
-    result["gradle_commands"] = gradle_cmds
-    result["test_files"] = java_test_files
+    result["test_commands"] = test_cmds
+    result["test_files"] = lang_test_files
     result["source_files"] = source_files
     result["test_support_files"] = test_support_files
     result["missing_symbols"] = detection.missing_symbols
@@ -496,19 +444,18 @@ def main() -> None:
 
     # Load repo config
     repo_config = get_config(args.repo)
+    adapter = get_adapter(repo_config.adapter_name)
     clone_dir = args.clone_dir or repo_config.get_clone_dir()
 
     print("=" * 70)
     print("  Step 1: Verify Instances")
+    print(f"  Adapter: {adapter.language_name} + {adapter.build_tool_name}")
     print("=" * 70)
 
     # Prerequisites
     print("\n[Prerequisites]")
-    if not check_jdk(repo_config):
-        print(
-            f"JDK {repo_config.min_jdk_version}+ is required. "
-            f"Set JAVA_HOME or install JDK {repo_config.min_jdk_version}."
-        )
+    if not adapter.check_prerequisites(repo_config):
+        print(f"Prerequisites not met for {adapter.language_name}/{adapter.build_tool_name}.")
         sys.exit(1)
 
     # Load candidates

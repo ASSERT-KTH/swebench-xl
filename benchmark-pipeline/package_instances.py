@@ -61,11 +61,6 @@ def main() -> None:
         help="Overwrite existing task directories",
     )
     parser.add_argument(
-        "--no-gradlew-wrapper",
-        action="store_true",
-        help="Don't install gradlew wrapper (agent must handle root user)",
-    )
-    parser.add_argument(
         "--limit",
         type=int,
         default=None,
@@ -103,15 +98,13 @@ def main() -> None:
         return
 
     args.output_dir.mkdir(parents=True, exist_ok=True)
-    gradlew_wrapper = not args.no_gradlew_wrapper
 
-    print(f"  Packaging {len(verified)} instances into: {args.output_dir}")
-    print(f"  Gradlew wrapper: {'enabled' if gradlew_wrapper else 'disabled'}\n")
+    print(f"  Packaging {len(verified)} instances into: {args.output_dir}\n")
 
     success, failures = [], []
     for i, instance in enumerate(verified, 1):
         instance_id = instance["instance_id"]
-        jdk_version = instance.get("jdk_version")
+        runtime_version = instance.get("runtime_version", instance.get("jdk_version"))
 
         try:
             task_dir = generate_harbor_task(
@@ -119,8 +112,7 @@ def main() -> None:
                 args.output_dir,
                 overwrite=args.overwrite,
                 timeout_sec=args.timeout,
-                gradlew_wrapper=gradlew_wrapper,
-                jdk_version=jdk_version,
+                runtime_version=runtime_version,
             )
             itype = instance.get("instance_type", "?")
             ftp = len(instance.get("fail_to_pass", []))

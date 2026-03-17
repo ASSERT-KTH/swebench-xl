@@ -30,7 +30,8 @@ from typing import Any, Dict, List, Optional
 ROOT = Path(__file__).resolve().parent.parent
 TEMPLATES_DIR = ROOT / "harbor_templates"
 
-# Import repo config instead of hardcoded dict
+# Import repo config and adapter
+from adapters import get_adapter
 from repo_config import RepoConfig, get_config
 
 
@@ -71,128 +72,16 @@ def _generate_dockerfile(
     repo_slug: str,
     instance_id: str,
     *,
-    gradlew_wrapper: bool = True,
-    jdk_version: Optional[str] = None,
+    runtime_version: Optional[str] = None,
 ) -> str:
-    """Generate a self-contained Dockerfile for an instance."""
+    """Generate a self-contained Dockerfile for an instance using the adapter."""
     cfg = get_config(repo_slug)
-    base_image = cfg.base_image
+    adapter = get_adapter(cfg.adapter_name)
 
-    # Allow JDK version override (e.g. from .java-version at the base commit)
-    if jdk_version:
-        base_image = f"eclipse-temurin:{jdk_version}-jdk-jammy"
-
-    packages = cfg.system_packages
-
-    lines = [
-        f"# Auto-generated Dockerfile for {instance_id}",
-        f"FROM {base_image}",
-        "",
-        "ENV DEBIAN_FRONTEND=noninteractive",
-        "",
-        "# System dependencies",
-        f"RUN apt-get update && apt-get install -y --no-install-recommends \\",
-        f"    {packages} \\",
-        "    && rm -rf /var/lib/apt/lists/*",
-        "",
-        "# Install junitparser for test result parsing inside the container",
-        "RUN pip3 install --no-cache-dir junitparser",
-        "",
-        "# Clone repository",
-        f"RUN mkdir /app && \\",
-        f"    git clone -o origin --single-branch {repo_url} /app",
-        "",
-        "WORKDIR /app",
-        "SHELL [\"/bin/bash\", \"-c\"]",
-        "",
-        f"# Reset to base commit (before the fix)",
-        f"RUN git checkout {base_commit} && \\",
-        f"    git reset --hard {base_commit} && \\",
-        f"    git clean -fdx",
-        "",
-        "# === Git History Cleanup ===",
-        "# Prevents agents from seeing future commits/tags.",
-        f"RUN git remote remove origin && \\",
-        f"    git branch -a | grep -v '\\*' | grep -v 'HEAD' | xargs -r git branch -D 2>/dev/null || true && \\",
-        f"    BASE_TIMESTAMP=$(git show -s --format=%ci {base_commit}) && \\",
-        f"    git tag -l | while read tag; do \\",
-        f"        TAG_COMMIT=$(git rev-list -n 1 \"$tag\" 2>/dev/null) || continue; \\",
-        f"        TAG_TIME=$(git show -s --format=%ci \"$TAG_COMMIT\" 2>/dev/null) || continue; \\",
-        f"        if [[ \"$TAG_TIME\" > \"$BASE_TIMESTAMP\" ]]; then \\",
-        f"            git tag -d \"$tag\" > /dev/null 2>&1; \\",
-        f"        fi; \\",
-        f"    done && \\",
-        f"    git reflog expire --expire=now --all && \\",
-        f"    git gc --prune=now",
-        "",
-        "# Verify no future commits accessible",
-        f"RUN FUTURE_COMMITS=$(git log --oneline --all "
-        f"--after=\"$(git show -s --format=%ci {base_commit})\" "
-        f"--not {base_commit} 2>/dev/null | wc -l | tr -d ' ') && \\",
-        f"    if [ \"$FUTURE_COMMITS\" -gt 0 ]; then \\",
-        f"        echo \"ERROR: $FUTURE_COMMITS future commits still accessible!\" && exit 1; \\",
-        f"    fi",
-        "",
-        f"# Verify HEAD at correct commit",
-        f"RUN CURRENT=$(git rev-parse HEAD) && \\",
-        f"    if [ \"$CURRENT\" != \"{base_commit}\" ]; then \\",
-        f"        echo \"ERROR: HEAD is $CURRENT, expected {base_commit}\" && exit 1; \\",
-        f"    fi",
-        "",
-        "# ── Harbor additions ──────────────────────────────────────",
-        "ENTRYPOINT []",
-        "WORKDIR /app",
-        "ENV PYTHONPATH=/app/lib:/app",
-        "# Cap Gradle JVM heap and parallelism for memory-constrained hosts",
-        "# GRADLE_OPTS applies to the wrapper/launcher JVM only.",
-        "# org.gradle.jvmargs (via gradle.properties) controls the daemon JVM that",
-        "# actually compiles code — this is what needs the extra heap.",
-        'ENV GRADLE_OPTS="-Xmx512m"',
-        'RUN echo "org.gradle.jvmargs=-Xmx2g -XX:MaxMetaspaceSize=512m" >> /app/gradle.properties',
-        "RUN mkdir -p /logs",
-        "RUN mkdir -p /installed-agent",
-        "",
-    ]
-
-    # Create non-root users
-    # Remove the default 'ubuntu' user (UID 1000) present in Noble-based images,
-    # then create the repo-specific user at UID 1000.
-    no_root_user = cfg.no_root_user
-    lines.append(f"RUN userdel -r ubuntu 2>/dev/null || true")
-    lines.append(f"RUN useradd -m -u 1000 {no_root_user} 2>/dev/null || true")
-
-    if gradlew_wrapper:
-        lines.extend([
-            "",
-            "# Gradlew wrapper: auto-drops to non-root user when invoked as root",
-            "RUN useradd -m -u 1001 agent 2>/dev/null || true",
-            "RUN chown -R agent:agent /app",
-            "",
-            "RUN mv /app/gradlew /app/.gradlew-bin",
-            "RUN sed -i 's|APP_BASE_NAME=.*|APP_BASE_NAME=gradlew|' /app/.gradlew-bin",
-            "RUN cat > /app/gradlew << 'GRADLEW_WRAPPER_EOF'",
-            "#!/bin/sh",
-            'if [ "$(id -u)" = "0" ]; then',
-            '    chown -R agent:agent /app 2>/dev/null || true',
-            '    exec su -s /bin/bash -c \'exec /app/.gradlew-bin "$@"\' -- agent _ "$@"',
-            "fi",
-            'exec /app/.gradlew-bin "$@"',
-            "GRADLEW_WRAPPER_EOF",
-            "RUN chmod +x /app/gradlew",
-            "RUN cp /app/gradlew /app/gradlew.real",
-            "RUN cp /app/gradlew /app/.gradlew-real",
-            "",
-        ])
-
-    lines.extend([
-        "# Agent config",
-        "COPY mini-swe-agent-config.yaml /root/mini-swe-agent-config.yaml",
-        "ENV MSWEA_MINI_CONFIG_PATH=/root/mini-swe-agent-config.yaml",
-        "",
-        "# Pre-warm Gradle distribution",
-        "RUN cd /app && ./gradlew --version --no-daemon || true",
-    ])
-
+    lines = adapter.generate_dockerfile_lines(
+        cfg, repo_url, base_commit, instance_id,
+        runtime_version=runtime_version,
+    )
     return "\n".join(lines) + "\n"
 
 
@@ -200,55 +89,11 @@ def _generate_dockerfile(
 # Run script generation
 # ---------------------------------------------------------------------------
 
-def _generate_run_script(instance_id: str, gradle_commands: List[str], gradle_flags: Optional[List[str]] = None) -> str:
-    """Generate run_script.sh from gradle commands."""
-    flags_str = " ".join(gradle_flags) if gradle_flags else "--no-daemon --stacktrace --max-workers=2"
-    commands_block = ""
-    for i, cmd in enumerate(gradle_commands):
-        if "--no-configuration-cache" not in cmd:
-            cmd = cmd + " --no-configuration-cache"
-        if "--max-workers" not in cmd:
-            cmd = cmd + " --max-workers=2"
-        commands_block += f"""
-echo "=== Running gradle command {i + 1}/{len(gradle_commands)} ==="
-{cmd}
-CMD_EXIT=$?
-if [ $CMD_EXIT -ne 0 ]; then
-    echo "Gradle command {i + 1} failed with exit code $CMD_EXIT"
-    OVERALL_EXIT=1
-fi
-"""
-
-    return f"""#!/bin/bash
-set -uo pipefail
-
-# Run script for {instance_id}
-# Auto-generated by the benchmark pipeline
-#
-# NOTE: set -e is intentionally NOT used. All gradle commands must run so that
-# JUnit XML is produced for every module, even if an earlier module fails.
-
-cd /app
-OVERALL_EXIT=0
-
-if [ $# -gt 0 ]; then
-    TEST_FILES="$@"
-    echo "Running with custom test files: $TEST_FILES"
-    for tf in $(echo "$TEST_FILES" | tr ',' ' '); do
-        ./gradlew test --tests "$tf" {flags_str}
-        CMD_EXIT=$?
-        if [ $CMD_EXIT -ne 0 ]; then
-            OVERALL_EXIT=1
-        fi
-    done
-else
-    echo "Running pre-configured gradle commands..."
-{commands_block}
-fi
-
-echo "=== Test execution complete ==="
-exit $OVERALL_EXIT
-"""
+def _generate_run_script(instance_id: str, commands: List[str], repo_slug: str) -> str:
+    """Generate run_script.sh using the adapter."""
+    cfg = get_config(repo_slug)
+    adapter = get_adapter(cfg.adapter_name)
+    return adapter.generate_run_script(instance_id, commands, cfg)
 
 
 # ---------------------------------------------------------------------------
@@ -261,15 +106,14 @@ def generate_harbor_task(
     *,
     overwrite: bool = False,
     timeout_sec: int = 3600,
-    gradlew_wrapper: bool = True,
-    jdk_version: Optional[str] = None,
+    runtime_version: Optional[str] = None,
 ) -> Path:
     """
     Generate a complete Harbor task directory for a verified instance.
 
     instance dict must contain:
         instance_id, repo, base_commit, merge_commit, patch, test_patch,
-        fail_to_pass, pass_to_pass, gradle_commands, test_files, source_files,
+        fail_to_pass, pass_to_pass, test_commands, test_files, source_files,
         version, problem_statement_title, problem_statement_description,
         instance_type, missing_symbols (optional)
     """
@@ -290,35 +134,19 @@ def generate_harbor_task(
     repo_slug = repo
     base_commit = instance["base_commit"]
     cfg = get_config(repo_slug)
+    adapter = get_adapter(cfg.adapter_name)
 
     # ── instruction.md ──────────────────────────────────────────────
     problem_title = instance.get("problem_statement_title", instance.get("title", ""))
     problem_desc = instance.get("problem_statement_description", instance.get("description", ""))
     problem_statement = f"## {problem_title}\n\n{problem_desc}" if problem_title else problem_desc
 
-    # For feature additions, append method signatures
+    # For feature additions, append symbol hints
     instance_type = instance.get("instance_type", "bug_fix")
     if instance_type == "feature_addition":
         missing = instance.get("missing_symbols", instance.get("missing_methods", []))
         if missing:
-            hint_lines = ["\n\n---\n\n## Hint: Symbols to Implement\n"]
-            hint_lines.append("The following symbols need to be created as part of this task:\n")
-            for s in missing:
-                cls = s.get("class", "Unknown")
-                name = s.get("name", s.get("method", "unknown"))
-                kind = s.get("kind", "method")
-                params = s.get("params", "")
-                if kind == "method":
-                    hint_lines.append(f"- Method `{name}({params})` in `{cls}`")
-                elif kind == "constructor":
-                    hint_lines.append(f"- Constructor `{name}({params})` in `{cls}`")
-                elif kind == "class":
-                    hint_lines.append(f"- Class `{name}`")
-                elif kind == "variable":
-                    hint_lines.append(f"- Variable/field `{name}` in `{cls}`")
-                else:
-                    hint_lines.append(f"- `{name}` in `{cls}`")
-            problem_statement += "\n".join(hint_lines)
+            problem_statement += "\n" + adapter.format_symbol_hints(missing)
 
     instr = _render(
         _read_template("instruction.md"),
@@ -326,7 +154,7 @@ def generate_harbor_task(
         repo=repo,
         base_commit=base_commit,
         instance_id=instance_id,
-        repo_language=instance.get("repo_language", "Java"),
+        repo_language=instance.get("repo_language", adapter.language_name),
     )
     if not instr.endswith("\n"):
         instr += "\n"
@@ -347,8 +175,7 @@ def generate_harbor_task(
     # ── environment/Dockerfile ──────────────────────────────────────
     dockerfile = _generate_dockerfile(
         repo_url, base_commit, repo_slug, instance_id,
-        gradlew_wrapper=gradlew_wrapper,
-        jdk_version=jdk_version,
+        runtime_version=runtime_version,
     )
     (task_dir / "environment" / "Dockerfile").write_text(dockerfile)
 
@@ -374,11 +201,11 @@ def generate_harbor_task(
     _make_executable(test_sh_path)
 
     # ── tests/config.json ───────────────────────────────────────────
-    # Store the full record so test.sh can read fail_to_pass / pass_to_pass
+    test_cmds = instance.get("test_commands", instance.get("gradle_commands", []))
     config_data = {
         "instance_id": instance_id,
         "repo": repo,
-        "repo_language": instance.get("repo_language", "Java"),
+        "repo_language": instance.get("repo_language", adapter.language_name),
         "base_commit": base_commit,
         "merge_commit": instance.get("merge_commit", ""),
         "version": instance.get("version", ""),
@@ -390,12 +217,12 @@ def generate_harbor_task(
         "test_patch": instance.get("test_patch", ""),
         "fail_to_pass": fail_to_pass,
         "pass_to_pass": instance.get("pass_to_pass", instance.get("PASS_TO_PASS", [])),
-        "gradle_commands": instance.get("gradle_commands", []),
+        "test_commands": test_cmds,
         "selected_test_files_to_run": instance.get("test_files", []),
         "source_files": instance.get("source_files", []),
     }
     # Ensure lists are actual lists (not JSON strings)
-    for key in ("pass_to_pass", "gradle_commands", "selected_test_files_to_run", "source_files"):
+    for key in ("pass_to_pass", "test_commands", "selected_test_files_to_run", "source_files"):
         val = config_data[key]
         if isinstance(val, str):
             try:
@@ -406,25 +233,28 @@ def generate_harbor_task(
     (task_dir / "tests" / "config.json").write_text(json.dumps(config_data, indent=2))
 
     # ── tests/run_script.sh ─────────────────────────────────────────
-    gradle_cmds = config_data["gradle_commands"]
-    if isinstance(gradle_cmds, str):
-        gradle_cmds = json.loads(gradle_cmds)
-    run_script = _generate_run_script(instance_id, gradle_cmds, cfg.gradle_flags)
+    cmds = config_data["test_commands"]
+    if isinstance(cmds, str):
+        cmds = json.loads(cmds)
+    run_script = _generate_run_script(instance_id, cmds, repo_slug)
     run_script_path = task_dir / "tests" / "run_script.sh"
     run_script_path.write_text(run_script)
     _make_executable(run_script_path)
 
     # ── tests/parser.py ─────────────────────────────────────────────
-    # Copy from harbor_templates or an existing task
-    parser_src = TEMPLATES_DIR / "parser.py"
-    if not parser_src.exists():
-        # Fall back to any existing task's parser
-        existing_parsers = list((ROOT / "harbor_tasks").glob("*/tests/parser.py"))
-        if existing_parsers:
-            parser_src = existing_parsers[0]
-    if parser_src.exists():
-        shutil.copy2(parser_src, task_dir / "tests" / "parser.py")
+    # Use adapter-provided parser if available, otherwise fall back to template
+    custom_parser = adapter.generate_test_parser_script()
+    if custom_parser:
+        (task_dir / "tests" / "parser.py").write_text(custom_parser)
     else:
-        print(f"  WARNING: No parser.py template found for {instance_id}")
+        parser_src = TEMPLATES_DIR / "parser.py"
+        if not parser_src.exists():
+            existing_parsers = list((ROOT / "harbor_tasks").glob("*/tests/parser.py"))
+            if existing_parsers:
+                parser_src = existing_parsers[0]
+        if parser_src.exists():
+            shutil.copy2(parser_src, task_dir / "tests" / "parser.py")
+        else:
+            print(f"  WARNING: No parser.py template found for {instance_id}")
 
     return task_dir

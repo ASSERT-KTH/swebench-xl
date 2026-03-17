@@ -7,19 +7,16 @@ After applying the test patch at the base commit:
   - Other compile errors → Error (skip)
 """
 
+from __future__ import annotations
+
 import os
 import re
 from dataclasses import dataclass, field
-from typing import List, Optional
+from typing import TYPE_CHECKING, List, Optional
 
-from gradle_runner import (
-    build_test_commands,
-    compile_tests,
-    extract_missing_symbols,
-    extract_test_fqn,
-    run_tests,
-)
-from test_parser import find_report_xmls, parse_results, parse_test_methods_from_source
+if TYPE_CHECKING:
+    from adapters.base import LanguageAdapter
+    from repo_config import RepoConfig
 
 
 @dataclass
@@ -35,17 +32,19 @@ class DetectionResult:
 
 
 def _read_test_methods_from_repo(
-    test_files: List[str], repo_dir: str
+    test_files: List[str],
+    repo_dir: str,
+    adapter: LanguageAdapter,
 ) -> List[str]:
     """
-    Read test source files from the repo and extract @Test method names.
+    Read test source files from the repo and extract test method names.
     Returns list of 'classname::methodName'.
     """
     test_ids: list[str] = []
     for filepath in test_files:
-        if not filepath.endswith(".java"):
+        if not any(filepath.endswith(ext) for ext in adapter.source_file_extensions):
             continue
-        fqn = extract_test_fqn(filepath)
+        fqn = adapter.extract_test_fqn(filepath)
         if not fqn:
             continue
         full_path = os.path.join(repo_dir, filepath)
@@ -54,7 +53,7 @@ def _read_test_methods_from_repo(
         try:
             with open(full_path) as f:
                 source = f.read()
-            methods = parse_test_methods_from_source(source)
+            methods = adapter.extract_test_methods_from_source(source)
             for method in methods:
                 test_ids.append(f"{fqn}::{method}")
         except OSError:
@@ -63,9 +62,11 @@ def _read_test_methods_from_repo(
 
 
 def detect_instance_type(
-    java_test_files: List[str],
+    test_files: List[str],
     repo_dir: str,
-    timeout: int = 600,
+    timeout: int,
+    adapter: LanguageAdapter,
+    config: RepoConfig,
 ) -> DetectionResult:
     """
     Determine if the current state represents a bug fix or feature addition.
@@ -75,24 +76,23 @@ def detect_instance_type(
       - Test patch has already been applied (test files exist at merge-commit versions)
 
     Steps:
-      1. Try compileTestJava
+      1. Try compiling tests
       2. If compiles → run tests → if they fail → bug fix
-      3. If doesn't compile → parse errors → if missing methods → feature addition
+      3. If doesn't compile → parse errors → if missing symbols → feature addition
     """
     result = DetectionResult(instance_type="error")
 
     # Step 1: Try to compile tests
     print("    [detect] Compiling test files...")
-    compiles, compile_output = compile_tests(java_test_files, repo_dir, timeout)
-    # Parse errors from full output before truncating for storage
-    missing = extract_missing_symbols(compile_output)
+    compiles, compile_output = adapter.compile_tests(test_files, repo_dir, timeout, config)
+    missing = adapter.extract_missing_symbols(compile_output)
     result.compile_output = compile_output[-3000:]
 
     if compiles:
         # Tests compile — this is a standard bug-fix candidate
         print("    [detect] Tests compile. Running tests (expecting FAIL)...")
-        gradle_cmds = build_test_commands(java_test_files)
-        passed, test_output = run_tests(java_test_files, repo_dir, timeout)
+        test_cmds = adapter.build_test_commands(test_files, config)
+        passed, test_output = adapter.run_tests(test_files, repo_dir, timeout, config)
         result.fail_phase_output = test_output[-3000:]
 
         if passed:
@@ -100,13 +100,13 @@ def detect_instance_type(
             result.details = "Tests pass without fix — not a valid candidate"
             return result
 
-        # Parse method-level failures from JUnit XML
-        xml_files = find_report_xmls(gradle_cmds, repo_dir)
-        failed, passed_tests = parse_results(xml_files)
+        # Parse method-level failures from test reports
+        report_files = adapter.find_test_reports(test_cmds, repo_dir)
+        failed, passed_tests = adapter.parse_test_results(report_files)
 
         if not failed:
             result.instance_type = "error"
-            result.details = "Tests failed but no JUnit XML results found"
+            result.details = "Tests failed but no test report results found"
             return result
 
         result.instance_type = "bug_fix"
@@ -119,9 +119,9 @@ def detect_instance_type(
 
     if missing:
         result.instance_type = "feature_addition"
-        result.missing_symbols = missing
-        # Tests can't run (don't compile), so derive FAIL_TO_PASS from @Test methods in source
-        test_ids = _read_test_methods_from_repo(java_test_files, repo_dir)
+        result.missing_symbols = [s.to_dict() for s in missing]
+        # Tests can't run (don't compile), so derive FAIL_TO_PASS from test methods in source
+        test_ids = _read_test_methods_from_repo(test_files, repo_dir, adapter)
         if not test_ids:
             result.instance_type = "error"
             result.details = "Feature addition detected but could not extract test methods from source"
@@ -133,7 +133,6 @@ def detect_instance_type(
         )
     else:
         result.instance_type = "error"
-        # Log a snippet of the compile output for debugging
         error_lines = [
             ln for ln in compile_output.splitlines()
             if "error:" in ln.lower() or "error " in ln.lower()
@@ -146,7 +145,6 @@ def detect_instance_type(
                 print(f"      {el.strip()}")
         else:
             result.details = "Compilation failed for unknown reasons"
-            # Show tail of output for debugging
             tail = compile_output.strip().splitlines()[-10:]
             print(f"    [detect] No error lines found in compile output. Tail:")
             for tl in tail:
