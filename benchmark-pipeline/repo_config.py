@@ -156,6 +156,60 @@ register_repo(RepoConfig(
     ],
 ))
 
+register_repo(RepoConfig(
+    slug="gradle/gradle",
+    base_image="eclipse-temurin:21-jdk-jammy",
+    no_root_user="gradle",
+    # Version lives in version.txt as a bare string, not a key=value pair.
+    version_files=["version.txt"],
+    version_key="",
+    min_jdk_version=21,
+    clone_dir_env_var="GRADLE_CLONE_DIR",
+    default_clone_dir="/tmp/gradle-pipeline",
+    test_config_files=set(),
+    extra_test_path_segments=["/testing/", "/integTest/"],
+    gradle_flags=[
+        "--no-daemon", "--stacktrace", "--max-workers=2",
+        "-Dorg.gradle.dependency.verification=lenient",
+    ],
+    gradle_env_overrides={"GRADLE_OPTS": "-Xmx4g"},
+))
+
+register_repo(RepoConfig(
+    slug="libgdx/libgdx",
+    base_image="eclipse-temurin:17-jdk-jammy",
+    no_root_user="libgdx",
+    version_files=["gradle.properties"],
+    version_key="version",
+    min_jdk_version=11,
+    clone_dir_env_var="LIBGDX_CLONE_DIR",
+    default_clone_dir="/tmp/libgdx-pipeline",
+    test_config_files=set(),
+    extra_test_path_segments=["/tests/"],
+    gradle_flags=[
+        "--no-daemon", "--stacktrace", "--max-workers=2",
+    ],
+    gradle_env_overrides={"GRADLE_OPTS": "-Xmx2g"},
+))
+
+register_repo(RepoConfig(
+    slug="signalapp/Signal-Android",
+    base_image="eclipse-temurin:17-jdk-jammy",
+    system_packages="git python3 python3-pip curl wget unzip jq patch android-sdk",
+    no_root_user="signal",
+    version_files=["gradle.properties"],
+    version_key="",
+    min_jdk_version=17,
+    clone_dir_env_var="SIGNAL_CLONE_DIR",
+    default_clone_dir="/tmp/signal-android-pipeline",
+    test_config_files=set(),
+    extra_test_path_segments=["/testFixtures/"],
+    gradle_flags=[
+        "--no-daemon", "--stacktrace", "--max-workers=2",
+    ],
+    gradle_env_overrides={"GRADLE_OPTS": "-Xmx4g"},
+))
+
 # ──────────────────────────────────────────────────────────────────────────────
 # To add a new repo, copy a block above and adjust.  Example:
 #
