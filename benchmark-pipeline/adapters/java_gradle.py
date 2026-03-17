@@ -532,7 +532,7 @@ class JavaGradleAdapter(LanguageAdapter):
             "",
             "# Clone repository",
             f"RUN mkdir /app && \\",
-            f"    git clone -o origin --single-branch {repo_url} /app",
+            f"    git clone -o origin {repo_url} /app",
             "",
             "WORKDIR /app",
             'SHELL ["/bin/bash", "-c"]',
