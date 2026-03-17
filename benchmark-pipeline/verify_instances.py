@@ -17,6 +17,7 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import shutil
 import subprocess
 import sys
 from pathlib import Path
@@ -49,16 +50,10 @@ TEST_TIMEOUT = 600  # 10 minutes per test run
 # ─── Git operations ───────────────────────────────────────────────────────────
 
 def ensure_clone(repo_url: str, clone_dir: str) -> bool:
-    """Ensure the repo is cloned. Returns True on success."""
-    if os.path.isdir(os.path.join(clone_dir, ".git")):
-        print(f"  Using existing clone at {clone_dir}")
-        result = subprocess.run(
-            ["git", "fetch", "--all"],
-            cwd=clone_dir,
-            capture_output=True,
-            timeout=300,
-        )
-        return result.returncode == 0
+    """Ensure a fresh clone of the repo. Removes any existing clone first. Returns True on success."""
+    if os.path.isdir(clone_dir):
+        print(f"  Removing existing clone at {clone_dir}")
+        shutil.rmtree(clone_dir)
 
     print(f"  Cloning to {clone_dir} (this will take a while)...")
     os.makedirs(os.path.dirname(clone_dir), exist_ok=True)
