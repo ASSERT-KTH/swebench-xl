@@ -44,5 +44,7 @@ def registered_adapters() -> list[str]:
 # ── Built-in adapters ────────────────────────────────────────────────────────
 
 from adapters.java_gradle import JavaGradleAdapter  # noqa: E402
+from adapters.kibana import KibanaAdapter  # noqa: E402
 
 register_adapter("java-gradle", JavaGradleAdapter())
+register_adapter("kibana", KibanaAdapter())

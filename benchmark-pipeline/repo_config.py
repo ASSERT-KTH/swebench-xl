@@ -120,6 +120,23 @@ register_repo(RepoConfig(
 ))
 
 register_repo(RepoConfig(
+    slug="elastic/kibana",
+    adapter_name="kibana",
+    base_image="node:20-bookworm",
+    system_packages="git python3 python3-pip curl wget unzip jq patch",
+    no_root_user="kibana",
+    version_files=["package.json"],
+    version_key="version",
+    clone_dir_env_var="KIBANA_CLONE_DIR",
+    default_clone_dir="/tmp/kibana-pipeline",
+    test_config_files={"jest.config.js", "jest.config.ts", "jest.integration.config.js"},
+    extra_test_path_segments=["/__tests__/", "/__mocks__/", "/test_helpers/"],
+    extra={
+        "jest_flags": ["--ci", "--no-cache", "--forceExit"],
+    },
+))
+
+register_repo(RepoConfig(
     slug="spring-projects/spring-framework",
     base_image="eclipse-temurin:21-jdk-jammy",
     no_root_user="spring",
