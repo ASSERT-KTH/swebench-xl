@@ -62,8 +62,12 @@ def ensure_clone(repo_url: str, clone_dir: str) -> bool:
     return True
 
 
-def reset_repo(clone_dir: str, commit: str) -> bool:
-    """Hard reset the repo to a specific commit."""
+def reset_repo(clone_dir: str, commit: str, exclude_patterns: Optional[List[str]] = None) -> bool:
+    """Hard reset the repo to a specific commit.
+    
+    Args:
+        exclude_patterns: paths to exclude from ``git clean`` (e.g. node_modules).
+    """
     result = subprocess.run(
         ["git", "checkout", "--force", commit],
         cwd=clone_dir,
@@ -74,8 +78,11 @@ def reset_repo(clone_dir: str, commit: str) -> bool:
         print(f"  git checkout failed: {result.stderr.decode()[:300]}")
         return False
 
+    clean_cmd = ["git", "clean", "-fdx"]
+    for pattern in (exclude_patterns or []):
+        clean_cmd.extend(["-e", pattern])
     result = subprocess.run(
-        ["git", "clean", "-fdx"],
+        clean_cmd,
         cwd=clone_dir,
         capture_output=True,
         timeout=120,
@@ -260,7 +267,7 @@ def verify_pr(
 
     # ── PHASE 1: Reset to base commit ──
     print(f"  [1/4] Resetting to base commit {base_commit[:10]}...")
-    if not reset_repo(clone_dir, base_commit):
+    if not reset_repo(clone_dir, base_commit, adapter.git_clean_excludes()):
         result["details"] = "Failed to reset to base commit"
         return result
 
@@ -271,6 +278,13 @@ def verify_pr(
 
     version = extract_version(clone_dir, config)
     runtime_version = adapter.detect_runtime_version(clone_dir, config)
+
+    # Bootstrap: install dependencies if the adapter requires it
+    print(f"  [1/4] Bootstrapping repo...")
+    boot_ok, boot_output = adapter.bootstrap_repo(clone_dir, config)
+    if not boot_ok:
+        result["details"] = f"Bootstrap failed: {boot_output[:300]}"
+        return result
 
     # ── PHASE 2: Apply test patch and detect instance type ──
     all_test_files = test_files + test_support_files

@@ -7,7 +7,6 @@ Produces complete harbor task directories ready for evaluation:
         instruction.md
         environment/
             Dockerfile
-            mini-swe-agent-config.yaml
         solution/
             solve.sh
         tests/
@@ -179,12 +178,6 @@ def generate_harbor_task(
     )
     (task_dir / "environment" / "Dockerfile").write_text(dockerfile)
 
-    # ── environment/mini-swe-agent-config.yaml ──────────────────────
-    shutil.copy2(
-        TEMPLATES_DIR / "mini-swe-agent-config.yaml",
-        task_dir / "environment" / "mini-swe-agent-config.yaml",
-    )
-
     # ── solution/solve.sh ───────────────────────────────────────────
     patch_text = (instance.get("patch", "") or "").strip()
     if patch_text and not patch_text.endswith("\n"):
@@ -195,7 +188,11 @@ def generate_harbor_task(
     _make_executable(solve_path)
 
     # ── tests/test.sh ───────────────────────────────────────────────
-    test_sh = _render(_read_template("test.sh"), no_root_user=cfg.no_root_user)
+    custom_test_sh = adapter.generate_test_script(cfg)
+    if custom_test_sh:
+        test_sh = custom_test_sh
+    else:
+        test_sh = _render(_read_template("test.sh"), no_root_user=cfg.no_root_user)
     test_sh_path = task_dir / "tests" / "test.sh"
     test_sh_path.write_text(test_sh)
     _make_executable(test_sh_path)

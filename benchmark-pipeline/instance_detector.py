@@ -105,6 +105,25 @@ def detect_instance_type(
         failed, passed_tests = adapter.parse_test_results(report_files)
 
         if not failed:
+            # No test report results — could be a feature addition where
+            # tests crashed at runtime (missing module/export/function).
+            # Check test output for missing symbols before giving up.
+            runtime_missing = adapter.extract_missing_symbols(test_output)
+            if runtime_missing:
+                result.instance_type = "feature_addition"
+                result.missing_symbols = [s.to_dict() for s in runtime_missing]
+                test_ids = _read_test_methods_from_repo(test_files, repo_dir, adapter)
+                if not test_ids:
+                    result.instance_type = "error"
+                    result.details = "Feature addition detected but could not extract test methods from source"
+                    return result
+                result.fail_to_pass = test_ids
+                result.details = (
+                    f"Feature addition (runtime): {len(runtime_missing)} missing symbol(s), "
+                    f"{len(result.fail_to_pass)} test(s)"
+                )
+                return result
+
             result.instance_type = "error"
             result.details = "Tests failed but no test report results found"
             return result

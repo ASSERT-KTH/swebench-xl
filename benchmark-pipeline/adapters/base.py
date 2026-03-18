@@ -14,6 +14,8 @@ To add support for a new language/build-tool combination:
 
 from __future__ import annotations
 
+import os
+import subprocess
 from abc import ABC, abstractmethod
 from dataclasses import dataclass, field
 from typing import TYPE_CHECKING, Any, Dict, List, Optional, Set, Tuple
@@ -162,20 +164,6 @@ class LanguageAdapter(ABC):
     ) -> List[str]:
         """Build commands to compile tests without running them."""
 
-    @abstractmethod
-    def run_commands(
-        self,
-        commands: List[str],
-        cwd: str,
-        timeout: int,
-        config: RepoConfig,
-    ) -> Tuple[bool, str, int]:
-        """
-        Run build/test commands sequentially.
-
-        Returns ``(all_passed, combined_output, last_exit_code)``.
-        """
-
     def compile_tests(
         self,
         test_files: List[str],
@@ -272,7 +260,43 @@ class LanguageAdapter(ABC):
         For Python: read ``.python-version``.
         """
 
+    # ── Environment / Docker ──────────────────────────────────────────
+    #
+    # ``generate_dockerfile_lines()`` is a concrete method that builds the
+    # full Dockerfile from a shared skeleton.  Adapters customise behavior
+    # by overriding three small hooks:
+    #
+    #   _dockerfile_install_deps_lines  – install language tooling / libs
+    #   _dockerfile_post_checkout_lines – wrapper scripts, dep install, etc.
+    #   _dockerfile_final_lines         – pre-warm caches, verify tooling
+    #
+    # This avoids duplicating the ~60 lines of git-clone / history-cleanup /
+    # Harbor boilerplate in every adapter.
+
     @abstractmethod
+    def resolve_base_image(
+        self, config: RepoConfig, runtime_version: Optional[str],
+    ) -> str:
+        """Return the Docker base image tag for this runtime version."""
+
+    def _dockerfile_install_deps_lines(
+        self, config: RepoConfig, runtime_version: Optional[str],
+    ) -> List[str]:
+        """Extra RUN lines after system packages (e.g. pip install, yarn)."""
+        return []
+
+    def _dockerfile_post_checkout_lines(
+        self, config: RepoConfig, runtime_version: Optional[str],
+    ) -> List[str]:
+        """Extra lines after git checkout/reset (e.g. yarn install, gradlew wrapper)."""
+        return []
+
+    def _dockerfile_final_lines(
+        self, config: RepoConfig, runtime_version: Optional[str],
+    ) -> List[str]:
+        """Extra lines at the very end (e.g. pre-warm Gradle, verify node)."""
+        return []
+
     def generate_dockerfile_lines(
         self,
         config: RepoConfig,
@@ -283,11 +307,106 @@ class LanguageAdapter(ABC):
         runtime_version: Optional[str] = None,
     ) -> List[str]:
         """
-        Generate Dockerfile lines for the build environment.
+        Generate a complete Dockerfile for the build environment.
 
-        Returns a list of Dockerfile instruction strings. The caller handles
-        the common parts (git clone, history cleanup, Harbor additions).
+        Shared skeleton handles: base image, system packages, git clone,
+        checkout, history cleanup, verification, and Harbor additions.
+        Adapter-specific parts are injected via the three hooks above.
         """
+        base_image = self.resolve_base_image(config, runtime_version)
+        packages = config.system_packages
+        no_root_user = config.no_root_user
+
+        lines = [
+            f"# Auto-generated Dockerfile for {instance_id}",
+            f"FROM {base_image}",
+            "",
+            "ENV DEBIAN_FRONTEND=noninteractive",
+            "",
+            "# System dependencies",
+            f"RUN apt-get update && apt-get install -y --no-install-recommends \\",
+            f"    {packages} \\",
+            "    && rm -rf /var/lib/apt/lists/*",
+            "",
+        ]
+
+        # ── Adapter: language-specific dependency installation ────────
+        lines.extend(self._dockerfile_install_deps_lines(config, runtime_version))
+
+        lines.extend([
+            "# Clone repository",
+            f"RUN mkdir /app && \\",
+            f"    git clone -o origin {repo_url} /app",
+            "",
+            "WORKDIR /app",
+            'SHELL ["/bin/bash", "-c"]',
+            "",
+            f"# Reset to base commit (before the fix)",
+            f"RUN git checkout {base_commit} && \\",
+            f"    git reset --hard {base_commit} && \\",
+            f"    git clean -fdx",
+            "",
+        ])
+
+        # ── Adapter: post-checkout lines (deps, wrapper scripts) ─────
+        lines.extend(self._dockerfile_post_checkout_lines(config, runtime_version))
+
+        # ── Git-history cleanup (shared) ─────────────────────────────
+        lines.extend([
+            "# === Git History Cleanup ===",
+            "# Prevents agents from seeing future commits/tags.",
+            f"RUN git remote remove origin && \\",
+            f"    git branch -a | grep -v '\\*' | grep -v 'HEAD' | xargs -r git branch -D 2>/dev/null || true && \\",
+            f"    BASE_TIMESTAMP=$(git show -s --format=%ci {base_commit}) && \\",
+            f"    git tag -l | while read tag; do \\",
+            f"        TAG_COMMIT=$(git rev-list -n 1 \"$tag\" 2>/dev/null) || continue; \\",
+            f"        TAG_TIME=$(git show -s --format=%ci \"$TAG_COMMIT\" 2>/dev/null) || continue; \\",
+            f"        if [[ \"$TAG_TIME\" > \"$BASE_TIMESTAMP\" ]]; then \\",
+            f"            git tag -d \"$tag\" > /dev/null 2>&1; \\",
+            f"        fi; \\",
+            f"    done && \\",
+            f"    git reflog expire --expire=now --all && \\",
+            f"    git gc --prune=now",
+            "",
+            "# Verify no future commits accessible",
+            f"RUN FUTURE_COMMITS=$(git log --oneline --all "
+            f"--after=\"$(git show -s --format=%ci {base_commit})\" "
+            f"--not {base_commit} 2>/dev/null | wc -l | tr -d ' ') && \\",
+            f"    if [ \"$FUTURE_COMMITS\" -gt 0 ]; then \\",
+            f"        echo \"ERROR: $FUTURE_COMMITS future commits still accessible!\" && exit 1; \\",
+            f"    fi",
+            "",
+            f"# Verify HEAD at correct commit",
+            f"RUN CURRENT=$(git rev-parse HEAD) && \\",
+            f"    if [ \"$CURRENT\" != \"{base_commit}\" ]; then \\",
+            f"        echo \"ERROR: HEAD is $CURRENT, expected {base_commit}\" && exit 1; \\",
+            f"    fi",
+            "",
+        ])
+
+        # ── Extra Dockerfile lines from config ───────────────────────
+        if config.dockerfile_extra_lines:
+            lines.extend(config.dockerfile_extra_lines)
+            lines.append("")
+
+        # ── Harbor additions (shared) ────────────────────────────────
+        lines.extend([
+            "# ── Harbor additions ──────────────────────────────────────",
+            "ENTRYPOINT []",
+            "WORKDIR /app",
+            "ENV PYTHONPATH=/app/lib:/app",
+            "RUN mkdir -p /logs",
+            "",
+            f"RUN userdel -r ubuntu 2>/dev/null || true",
+            f"RUN useradd -m -u 1000 {no_root_user} 2>/dev/null || true",
+            f"RUN chown -R {no_root_user}:{no_root_user} /app",
+            "",
+        ])
+
+        # ── Adapter: final lines ─────────────────────────────────────
+        lines.extend(self._dockerfile_final_lines(config, runtime_version))
+
+        return lines
 
     @abstractmethod
     def generate_run_script(
@@ -304,6 +423,124 @@ class LanguageAdapter(ABC):
         inside the container. Return None to use the default template.
         """
         return None
+
+    def generate_test_script(self, config: RepoConfig) -> Optional[str]:
+        """
+        Return the content of ``test.sh`` for the Harbor container.
+
+        Return None to use the default template from ``harbor_templates/test.sh``.
+        Override this when the default Gradle-centric test.sh doesn't apply
+        (e.g. for Node.js/Jest projects).
+        """
+        return None
+
+    def git_clean_excludes(self) -> List[str]:
+        """
+        Return paths to exclude from ``git clean -fdx`` when resetting between PRs.
+
+        For example, Node.js projects should exclude ``node_modules`` and
+        yarn caches so that ``yarn install`` is fast on subsequent resets.
+        The default returns an empty list (no exclusions).
+        """
+        return []
+
+    def bootstrap_repo(self, clone_dir: str, config: RepoConfig, timeout: int = 1800) -> Tuple[bool, str]:
+        """
+        Run one-time or per-reset setup after ``git checkout`` (install deps, etc.).
+
+        Called by ``verify_instances.py`` after resetting to a base commit.
+        The default is a no-op that returns ``(True, "")``.
+        Override for ecosystems that need explicit dependency installation
+        (e.g. ``yarn install`` for Node.js).
+        """
+        return True, ""
+
+    # ── Shared command runner ─────────────────────────────────────────
+
+    def _error_line_patterns(self) -> List[str]:
+        """
+        Substrings that mark error lines to preserve in truncated output.
+
+        Override in subclasses. Default: empty (only keep the tail).
+        """
+        return []
+
+    def _build_env(self, config: RepoConfig) -> Dict[str, str]:
+        """
+        Return environment variable overrides for subprocess calls.
+
+        Override in subclasses to add language-specific env vars.
+        The default returns an empty dict.
+        """
+        return {}
+
+    def run_commands(
+        self,
+        commands: List[str],
+        cwd: str,
+        timeout: int,
+        config: RepoConfig,
+    ) -> Tuple[bool, str, int]:
+        """
+        Run build/test commands sequentially.
+
+        Returns ``(all_passed, combined_output, last_exit_code)``.
+        Error lines matching ``_error_line_patterns()`` are preserved even
+        when the output is truncated to the last 100 lines.
+        """
+        all_output: list[str] = []
+        env = os.environ.copy()
+        for k, v in self._build_env(config).items():
+            env.setdefault(k, v)
+
+        error_patterns = self._error_line_patterns()
+        tail_size = 100
+
+        for cmd in commands:
+            print(f"    Running: {cmd[:120]}...")
+            try:
+                result = subprocess.run(
+                    cmd,
+                    shell=True,
+                    cwd=cwd,
+                    capture_output=True,
+                    timeout=timeout,
+                    env=env,
+                )
+                stdout = result.stdout.decode(errors="replace")
+                stderr = result.stderr.decode(errors="replace")
+                combined = (stdout + "\n" + stderr).strip()
+                lines = combined.split("\n")
+
+                # Preserve error-pattern blocks even when truncating
+                error_indices: set[int] = set()
+                if error_patterns:
+                    for idx, ln in enumerate(lines):
+                        ln_lower = ln.lower()
+                        if any(pat.lower() in ln_lower for pat in error_patterns):
+                            for ei in range(max(0, idx - 1), min(len(lines), idx + 5)):
+                                error_indices.add(ei)
+                tail_start = max(0, len(lines) - tail_size)
+                merged: list[str] = []
+                for idx in sorted(error_indices):
+                    if idx < tail_start:
+                        merged.append(lines[idx])
+                if merged and tail_start > 0:
+                    merged.append("...")
+                merged.extend(lines[tail_start:])
+                all_output.append("\n".join(merged))
+
+                if result.returncode != 0:
+                    print(f"    FAILED (exit code {result.returncode})")
+                    return False, "\n---\n".join(all_output), result.returncode
+                print(f"    PASSED")
+
+            except subprocess.TimeoutExpired:
+                all_output.append(f"TIMEOUT after {timeout}s")
+                print(f"    TIMEOUT")
+                return False, "\n---\n".join(all_output), -1
+
+        return True, "\n---\n".join(all_output), 0
 
     # ── Symbol hint formatting ────────────────────────────────────────
 

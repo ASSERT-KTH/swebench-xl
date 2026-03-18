@@ -1,18 +1,10 @@
-"""
-Java + Gradle adapter.
-
-Implements ``LanguageAdapter`` for repositories that use Java source code
-and the Gradle build system.  This is a direct extraction of the logic that
-was previously spread across ``gradle_runner.py``, ``test_parser.py``,
-``file_classifier.py``, and ``harbor_packager.py``.
-"""
+"""Java + Gradle adapter."""
 
 from __future__ import annotations
 
 import os
 import re
 import subprocess
-import stat
 from typing import TYPE_CHECKING, Any, Dict, List, Optional, Set, Tuple
 
 from junitparser import JUnitXml, TestCase, TestSuite
@@ -204,13 +196,13 @@ class JavaGradleAdapter(LanguageAdapter):
     # ── Build & test commands ─────────────────────────────────────────
 
     def _get_gradle_flags(self, config: RepoConfig) -> List[str]:
-        if config and config.gradle_flags:
-            return config.gradle_flags
+        if config and config.extra.get("gradle_flags"):
+            return config.extra["gradle_flags"]
         return DEFAULT_GRADLE_FLAGS
 
     def _get_gradle_env(self, config: RepoConfig) -> Dict[str, str]:
-        if config and config.gradle_env_overrides:
-            return config.gradle_env_overrides
+        if config and config.extra.get("gradle_env_overrides"):
+            return config.extra["gradle_env_overrides"]
         return DEFAULT_GRADLE_ENV
 
     def build_test_commands(
@@ -248,61 +240,13 @@ class JavaGradleAdapter(LanguageAdapter):
         flags = " ".join(self._get_gradle_flags(config))
         return [f"./gradlew {module}:compileTestJava {flags}" for module in sorted(modules)]
 
-    def run_commands(
-        self,
-        commands: List[str],
-        cwd: str,
-        timeout: int,
-        config: RepoConfig,
-    ) -> Tuple[bool, str, int]:
-        all_output: list[str] = []
-        env = os.environ.copy()
-        for k, v in self._get_gradle_env(config).items():
-            env.setdefault(k, v)
+    # ── Command runner hooks ─────────────────────────────────────────
 
-        for cmd in commands:
-            print(f"    Running: {cmd[:120]}...")
-            try:
-                result = subprocess.run(
-                    cmd,
-                    shell=True,
-                    cwd=cwd,
-                    capture_output=True,
-                    timeout=timeout,
-                    env=env,
-                )
-                stdout = result.stdout.decode(errors="replace")
-                stderr = result.stderr.decode(errors="replace")
-                combined = (stdout + "\n" + stderr).strip()
-                lines = combined.split("\n")
+    def _error_line_patterns(self) -> List[str]:
+        return ["cannot find symbol"]
 
-                # Preserve "cannot find symbol" error blocks
-                error_indices: set[int] = set()
-                for idx, ln in enumerate(lines):
-                    if "cannot find symbol" in ln.lower():
-                        for ei in range(max(0, idx - 1), min(len(lines), idx + 5)):
-                            error_indices.add(ei)
-                tail_start = max(0, len(lines) - 80)
-                merged: list[str] = []
-                for idx in sorted(error_indices):
-                    if idx < tail_start:
-                        merged.append(lines[idx])
-                if merged and tail_start > 0:
-                    merged.append("...")
-                merged.extend(lines[tail_start:])
-                all_output.append("\n".join(merged))
-
-                if result.returncode != 0:
-                    print(f"    FAILED (exit code {result.returncode})")
-                    return False, "\n---\n".join(all_output), result.returncode
-                print(f"    PASSED")
-
-            except subprocess.TimeoutExpired:
-                all_output.append(f"TIMEOUT after {timeout}s")
-                print(f"    TIMEOUT")
-                return False, "\n---\n".join(all_output), -1
-
-        return True, "\n---\n".join(all_output), 0
+    def _build_env(self, config: RepoConfig) -> Dict[str, str]:
+        return self._get_gradle_env(config)
 
     # ── Test result parsing ───────────────────────────────────────────
 
@@ -466,7 +410,7 @@ class JavaGradleAdapter(LanguageAdapter):
         return os.path.isfile(os.path.join(clone_dir, "gradlew"))
 
     def check_prerequisites(self, config: RepoConfig) -> bool:
-        min_version = config.min_jdk_version if config else 17
+        min_version = config.extra.get("min_jdk_version", 17) if config else 17
         try:
             result = subprocess.run(["java", "-version"], capture_output=True, timeout=10)
             version_output = result.stderr.decode() + result.stdout.decode()
@@ -488,7 +432,7 @@ class JavaGradleAdapter(LanguageAdapter):
     ) -> Optional[str]:
         java_version_file = os.path.join(
             clone_dir,
-            config.java_version_file if config else ".java-version",
+            config.extra.get("java_version_file", ".java-version") if config else ".java-version",
         )
         if os.path.isfile(java_version_file):
             try:
@@ -500,126 +444,56 @@ class JavaGradleAdapter(LanguageAdapter):
                 pass
         return None
 
-    def generate_dockerfile_lines(
-        self,
-        config: RepoConfig,
-        repo_url: str,
-        base_commit: str,
-        instance_id: str,
-        *,
-        runtime_version: Optional[str] = None,
-    ) -> List[str]:
-        base_image = config.base_image
+    # ── Dockerfile hooks ────────────────────────────────────────────
+
+    def resolve_base_image(
+        self, config: RepoConfig, runtime_version: Optional[str],
+    ) -> str:
         if runtime_version:
-            base_image = f"eclipse-temurin:{runtime_version}-jdk-jammy"
+            return f"eclipse-temurin:{runtime_version}-jdk-jammy"
+        return config.base_image
 
-        packages = config.system_packages
-        no_root_user = config.no_root_user
-
-        lines = [
-            f"# Auto-generated Dockerfile for {instance_id}",
-            f"FROM {base_image}",
-            "",
-            "ENV DEBIAN_FRONTEND=noninteractive",
-            "",
-            "# System dependencies",
-            f"RUN apt-get update && apt-get install -y --no-install-recommends \\",
-            f"    {packages} \\",
-            "    && rm -rf /var/lib/apt/lists/*",
-            "",
+    def _dockerfile_install_deps_lines(
+        self, config: RepoConfig, runtime_version: Optional[str],
+    ) -> List[str]:
+        return [
             "# Install junitparser for test result parsing inside the container",
             "RUN pip3 install --no-cache-dir junitparser",
             "",
-            "# Clone repository",
-            f"RUN mkdir /app && \\",
-            f"    git clone -o origin {repo_url} /app",
-            "",
-            "WORKDIR /app",
-            'SHELL ["/bin/bash", "-c"]',
-            "",
-            f"# Reset to base commit (before the fix)",
-            f"RUN git checkout {base_commit} && \\",
-            f"    git reset --hard {base_commit} && \\",
-            f"    git clean -fdx",
-            "",
-            "# === Git History Cleanup ===",
-            "# Prevents agents from seeing future commits/tags.",
-            f"RUN git remote remove origin && \\",
-            f"    git branch -a | grep -v '\\*' | grep -v 'HEAD' | xargs -r git branch -D 2>/dev/null || true && \\",
-            f"    BASE_TIMESTAMP=$(git show -s --format=%ci {base_commit}) && \\",
-            f"    git tag -l | while read tag; do \\",
-            f"        TAG_COMMIT=$(git rev-list -n 1 \"$tag\" 2>/dev/null) || continue; \\",
-            f"        TAG_TIME=$(git show -s --format=%ci \"$TAG_COMMIT\" 2>/dev/null) || continue; \\",
-            f"        if [[ \"$TAG_TIME\" > \"$BASE_TIMESTAMP\" ]]; then \\",
-            f"            git tag -d \"$tag\" > /dev/null 2>&1; \\",
-            f"        fi; \\",
-            f"    done && \\",
-            f"    git reflog expire --expire=now --all && \\",
-            f"    git gc --prune=now",
-            "",
-            "# Verify no future commits accessible",
-            f"RUN FUTURE_COMMITS=$(git log --oneline --all "
-            f"--after=\"$(git show -s --format=%ci {base_commit})\" "
-            f"--not {base_commit} 2>/dev/null | wc -l | tr -d ' ') && \\",
-            f"    if [ \"$FUTURE_COMMITS\" -gt 0 ]; then \\",
-            f"        echo \"ERROR: $FUTURE_COMMITS future commits still accessible!\" && exit 1; \\",
-            f"    fi",
-            "",
-            f"# Verify HEAD at correct commit",
-            f"RUN CURRENT=$(git rev-parse HEAD) && \\",
-            f"    if [ \"$CURRENT\" != \"{base_commit}\" ]; then \\",
-            f"        echo \"ERROR: HEAD is $CURRENT, expected {base_commit}\" && exit 1; \\",
-            f"    fi",
-            "",
-            "# ── Harbor additions ──────────────────────────────────────",
-            "ENTRYPOINT []",
-            "WORKDIR /app",
-            "ENV PYTHONPATH=/app/lib:/app",
+        ]
+
+    def _dockerfile_post_checkout_lines(
+        self, config: RepoConfig, runtime_version: Optional[str],
+    ) -> List[str]:
+        no_root_user = config.no_root_user
+        lines = [
             "# Cap Gradle JVM heap and parallelism for memory-constrained hosts",
             'ENV GRADLE_OPTS="-Xmx512m"',
             'RUN echo "org.gradle.jvmargs=-Xmx2g -XX:MaxMetaspaceSize=512m" >> /app/gradle.properties',
-            "RUN mkdir -p /logs",
-            "RUN mkdir -p /installed-agent",
-            "",
-        ]
-
-        # Create non-root users
-        lines.append(f"RUN userdel -r ubuntu 2>/dev/null || true")
-        lines.append(f"RUN useradd -m -u 1000 {no_root_user} 2>/dev/null || true")
-
-        # Gradlew wrapper: auto-drops to non-root user when invoked as root
-        lines.extend([
             "",
             "# Gradlew wrapper: auto-drops to non-root user when invoked as root",
-            "RUN useradd -m -u 1001 agent 2>/dev/null || true",
-            "RUN chown -R agent:agent /app",
-            "",
             "RUN mv /app/gradlew /app/.gradlew-bin",
             "RUN sed -i 's|APP_BASE_NAME=.*|APP_BASE_NAME=gradlew|' /app/.gradlew-bin",
             "RUN cat > /app/gradlew << 'GRADLEW_WRAPPER_EOF'",
             "#!/bin/sh",
             'if [ "$(id -u)" = "0" ]; then',
-            '    chown -R agent:agent /app 2>/dev/null || true',
-            '    exec su -s /bin/bash -c \'exec /app/.gradlew-bin "$@"\' -- agent _ "$@"',
+            f'    chown -R {no_root_user}:{no_root_user} /app 2>/dev/null || true',
+            f"    exec su -s /bin/bash -c 'exec /app/.gradlew-bin \"$@\"' -- {no_root_user} _ \"$@\"",
             "fi",
             'exec /app/.gradlew-bin "$@"',
             "GRADLEW_WRAPPER_EOF",
             "RUN chmod +x /app/gradlew",
-            "RUN cp /app/gradlew /app/gradlew.real",
-            "RUN cp /app/gradlew /app/.gradlew-real",
             "",
-        ])
+        ]
+        return lines
 
-        lines.extend([
-            "# Agent config",
-            "COPY mini-swe-agent-config.yaml /root/mini-swe-agent-config.yaml",
-            "ENV MSWEA_MINI_CONFIG_PATH=/root/mini-swe-agent-config.yaml",
-            "",
+    def _dockerfile_final_lines(
+        self, config: RepoConfig, runtime_version: Optional[str],
+    ) -> List[str]:
+        return [
             "# Pre-warm Gradle distribution",
             "RUN cd /app && ./gradlew --version --no-daemon || true",
-        ])
-
-        return lines
+        ]
 
     def generate_run_script(
         self,
