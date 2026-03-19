@@ -265,49 +265,47 @@ def _apply_patch(patch_text: str, cwd: str) -> bool:
         os.unlink(tmp_path)
 
 
-def step_local_oracle(
-    task_dir: Path,
+def _parse_test_list(test_data):
+    """Normalise a test list from JSON string or list."""
+    if isinstance(test_data, str):
+        try:
+            return json.loads(test_data)
+        except (json.JSONDecodeError, ValueError):
+            return []
+    elif isinstance(test_data, list):
+        return test_data
+    return []
+
+
+def run_local_oracle(
+    instance: Dict[str, Any],
     clone_dir: str,
+    adapter,
+    repo_cfg,
     *,
     nop: bool = False,
     timeout: int = 1800,
 ) -> int:
     """
-    Run the oracle locally without Docker — apply patches and run tests
-    directly on the host machine using the local repo clone.
+    Run the oracle locally without Docker using a verified instance dict.
+
+    Accepts the same dict returned by ``verify_pr()`` (or loaded from a
+    fixture / config.json).  Resets the repo, applies patches, runs tests,
+    and evaluates the result.
 
     When *nop* is True, skip applying the gold patch (empty solution) to
     verify that tests fail without the fix (reward should be 0).
 
     Returns 1 on success (all tests pass), 0 on test failure.
     """
-    config_path = task_dir / "tests" / "config.json"
-    with open(config_path) as f:
-        config = json.load(f)
+    base_commit = instance["base_commit"]
+    test_patch = instance.get("test_patch", "").strip()
+    gold_patch = instance.get("patch", "").strip()
+    instance_type = instance.get("instance_type", "bug_fix")
+    repo_language = instance.get("repo_language", "Java")
 
-    base_commit = config["base_commit"]
-    test_patch = config.get("test_patch", "").strip()
-    gold_patch = config.get("patch", "").strip()
-    instance_type = config.get("instance_type", "bug_fix")
-    repo_language = config.get("repo_language", "Java")
-    repo_slug = config.get("repo", "")
-
-    # Get the adapter for git_clean_excludes and bootstrap
-    repo_cfg = get_config(repo_slug)
-    adapter = get_adapter(repo_cfg.adapter_name)
-
-    def parse_tests(test_data):
-        if isinstance(test_data, str):
-            try:
-                return json.loads(test_data)
-            except (json.JSONDecodeError, ValueError):
-                return []
-        elif isinstance(test_data, list):
-            return test_data
-        return []
-
-    fail_to_pass = parse_tests(config.get("fail_to_pass", []))
-    pass_to_pass = parse_tests(config.get("pass_to_pass", []))
+    fail_to_pass = _parse_test_list(instance.get("fail_to_pass", []))
+    pass_to_pass = _parse_test_list(instance.get("pass_to_pass", []))
 
     mode_label = "NOP (empty patch)" if nop else "oracle (gold patch)"
     print(f"\n{'─' * 60}")
@@ -372,7 +370,7 @@ def step_local_oracle(
         shutil.rmtree(junit_dir, ignore_errors=True)
 
     # ── 5. Run test commands ──
-    test_commands = config.get("test_commands", config.get("gradle_commands", []))
+    test_commands = instance.get("test_commands", instance.get("gradle_commands", []))
     if isinstance(test_commands, str):
         test_commands = json.loads(test_commands)
 
@@ -525,6 +523,33 @@ def step_local_oracle(
         if broken:
             print(f"  pass_to_pass broken ({len(broken)}): {broken[:5]}")
         return 0
+
+
+def step_local_oracle(
+    task_dir: Path,
+    clone_dir: str,
+    *,
+    nop: bool = False,
+    timeout: int = 1800,
+) -> int:
+    """
+    Thin wrapper around :func:`run_local_oracle` that reads the instance
+    data from a packaged task directory's ``tests/config.json``.
+
+    Preserves backward compatibility for ``--task-dir`` and ``--local`` modes.
+    """
+    config_path = task_dir / "tests" / "config.json"
+    with open(config_path) as f:
+        instance = json.load(f)
+
+    repo_slug = instance.get("repo", "")
+    repo_cfg = get_config(repo_slug)
+    adapter = get_adapter(repo_cfg.adapter_name)
+
+    return run_local_oracle(
+        instance, clone_dir, adapter, repo_cfg,
+        nop=nop, timeout=timeout,
+    )
 
 
 def step_validate_structure(task_dir: Path) -> bool:
