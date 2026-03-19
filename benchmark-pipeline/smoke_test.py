@@ -343,14 +343,37 @@ def run_local_oracle(
         print(f"[local] Bootstrap failed: {boot_output[:300]}")
         return 0
 
-    # ── 2. Apply test patch ──
+    # ── 2. Reset files touched by the test patch ──
+    # An agent may have modified these files. Reset them to base-commit state
+    # so the test_patch applies cleanly.
+    test_files_to_reset = list(set(
+        instance.get("test_files", instance.get("selected_test_files_to_run", []))
+        + instance.get("test_support_files", [])
+    ))
+    if test_files_to_reset:
+        print(f"[local] Resetting {len(test_files_to_reset)} test-patch file(s) to base commit...")
+        for f in test_files_to_reset:
+            ret = subprocess.run(
+                ["git", "checkout", base_commit, "--", f],
+                cwd=clone_dir, capture_output=True, timeout=30,
+            )
+            fpath = os.path.join(clone_dir, f)
+            if ret.returncode == 0:
+                print(f"  reset: {f}")
+            elif os.path.exists(fpath):
+                os.remove(fpath)
+                print(f"  removed (new in patch): {f}")
+            else:
+                print(f"  skip (not present): {f}")
+
+    # ── 3. Apply test patch ──
     if test_patch:
         print(f"[local] Applying test_patch...")
         ok = _apply_patch(test_patch, clone_dir)
         if not ok:
             print(f"[local] WARNING: test_patch failed to apply")
 
-    # ── 3. Apply gold patch (unless NOP mode) ──
+    # ── 4. Apply gold patch (unless NOP mode) ──
     if nop:
         print(f"[local] NOP mode — skipping gold patch")
     elif gold_patch:
@@ -360,7 +383,7 @@ def run_local_oracle(
             print(f"[local] WARNING: gold patch failed to apply")
             return 0
 
-    # ── 4. Purge old test results ──
+    # ── 5. Purge old test results ──
     # Gradle: build/test-results/  |  Kibana/Jest: target/junit/
     for d in Path(clone_dir).rglob("test-results"):
         if d.is_dir():
@@ -369,7 +392,7 @@ def run_local_oracle(
     if junit_dir.is_dir():
         shutil.rmtree(junit_dir, ignore_errors=True)
 
-    # ── 5. Run test commands ──
+    # ── 6. Run test commands ──
     test_commands = instance.get("test_commands", instance.get("gradle_commands", []))
     if isinstance(test_commands, str):
         test_commands = json.loads(test_commands)
@@ -406,7 +429,7 @@ def run_local_oracle(
             for line in tail:
                 print(f"  | {line}")
 
-    # ── 6. Parse JUnit XML results ──
+    # ── 7. Parse JUnit XML results ──
     print(f"[local] Parsing test results...")
 
     from junitparser import JUnitXml, TestCase, TestSuite
@@ -476,7 +499,7 @@ def run_local_oracle(
 
     print(f"[local] Found {len(xml_files)} XML file(s), {len(tests)} test(s)")
 
-    # ── 7. Evaluate against fail_to_pass / pass_to_pass ──
+    # ── 8. Evaluate against fail_to_pass / pass_to_pass ──
     passed_tests = {t["name"] for t in tests if t["status"] == "PASSED"}
     all_output_tests = {t["name"] for t in tests}
 
@@ -559,6 +582,7 @@ def step_validate_structure(task_dir: Path) -> bool:
         "task.toml",
         "environment/Dockerfile",
         "tests/config.json",
+        "tests/reset_test_files.py",
         "tests/run_script.sh",
         "tests/test.sh",
         "tests/parser.py",
