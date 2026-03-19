@@ -291,34 +291,38 @@ class LanguageAdapter(ABC):
         """Extra lines after git checkout/reset (e.g. yarn install, gradlew wrapper)."""
         return []
 
+    def _dockerfile_base_env_lines(
+        self, config: RepoConfig, runtime_version: Optional[str],
+    ) -> List[str]:
+        """Stable env vars to bake into the base image (e.g. GRADLE_OPTS)."""
+        return []
+
     def _dockerfile_final_lines(
         self, config: RepoConfig, runtime_version: Optional[str],
     ) -> List[str]:
         """Extra lines at the very end (e.g. pre-warm Gradle, verify node)."""
         return []
 
-    def generate_dockerfile_lines(
+    def generate_base_dockerfile_lines(
         self,
         config: RepoConfig,
         repo_url: str,
-        base_commit: str,
-        instance_id: str,
         *,
         runtime_version: Optional[str] = None,
     ) -> List[str]:
         """
-        Generate a complete Dockerfile for the build environment.
+        Generate a repo-level base Dockerfile.
 
-        Shared skeleton handles: base image, system packages, git clone,
-        checkout, history cleanup, verification, and Harbor additions.
-        Adapter-specific parts are injected via the three hooks above.
+        Contains: upstream image, system packages, language deps, git clone,
+        Harbor boilerplate (users, PYTHONPATH, /logs), and stable env vars.
+        Does NOT contain any instance-specific checkout or history cleanup.
         """
         base_image = self.resolve_base_image(config, runtime_version)
         packages = config.system_packages
         no_root_user = config.no_root_user
 
         lines = [
-            f"# Auto-generated Dockerfile for {instance_id}",
+            f"# Base image for {config.slug} benchmark instances",
             f"FROM {base_image}",
             "",
             "ENV DEBIAN_FRONTEND=noninteractive",
@@ -341,12 +345,105 @@ class LanguageAdapter(ABC):
             "WORKDIR /app",
             'SHELL ["/bin/bash", "-c"]',
             "",
-            f"# Reset to base commit (before the fix)",
-            f"RUN git checkout {base_commit} && \\",
-            f"    git reset --hard {base_commit} && \\",
-            f"    git clean -fdx",
+        ])
+
+        # ── Stable env vars from adapter ──────────────────────────────
+        lines.extend(self._dockerfile_base_env_lines(config, runtime_version))
+
+        # ── Extra Dockerfile lines from config ───────────────────────
+        if config.dockerfile_extra_lines:
+            lines.extend(config.dockerfile_extra_lines)
+            lines.append("")
+
+        # ── Harbor additions (shared) ────────────────────────────────
+        lines.extend([
+            "# ── Harbor additions ──────────────────────────────────────",
+            "ENTRYPOINT []",
+            "WORKDIR /app",
+            "ENV PYTHONPATH=/app/lib:/app",
+            "RUN mkdir -p /logs",
+            "",
+            f"RUN userdel -r ubuntu 2>/dev/null || true",
+            f"RUN useradd -m -u 1000 {no_root_user} 2>/dev/null || true",
             "",
         ])
+
+        return lines
+
+    def generate_dockerfile_lines(
+        self,
+        config: RepoConfig,
+        repo_url: str,
+        base_commit: str,
+        instance_id: str,
+        *,
+        runtime_version: Optional[str] = None,
+        base_image_tag: Optional[str] = None,
+    ) -> List[str]:
+        """
+        Generate a Dockerfile for a single benchmark instance.
+
+        When *base_image_tag* is provided the generated Dockerfile starts
+        ``FROM <base_image_tag>`` and skips system packages, git clone,
+        dependency installation, and user creation (all baked into the base
+        image).  Only the checkout, post-checkout hooks, history cleanup,
+        verification, and final lines are emitted.
+
+        When *base_image_tag* is ``None`` a fully self-contained Dockerfile
+        is produced (the original behavior).
+        """
+        no_root_user = config.no_root_user
+
+        if base_image_tag:
+            # ── Layered mode: FROM the pre-built base image ──────────
+            lines = [
+                f"# Auto-generated Dockerfile for {instance_id}",
+                f"FROM {base_image_tag}",
+                "",
+                'SHELL ["/bin/bash", "-c"]',
+                "WORKDIR /app",
+                "",
+                f"# Reset to base commit (before the fix)",
+                f"RUN git checkout {base_commit} && \\",
+                f"    git reset --hard {base_commit} && \\",
+                f"    git clean -fdx",
+                "",
+            ]
+        else:
+            # ── Self-contained mode (original) ───────────────────────
+            base_image = self.resolve_base_image(config, runtime_version)
+            packages = config.system_packages
+
+            lines = [
+                f"# Auto-generated Dockerfile for {instance_id}",
+                f"FROM {base_image}",
+                "",
+                "ENV DEBIAN_FRONTEND=noninteractive",
+                "",
+                "# System dependencies",
+                f"RUN apt-get update && apt-get install -y --no-install-recommends \\",
+                f"    {packages} \\",
+                "    && rm -rf /var/lib/apt/lists/*",
+                "",
+            ]
+
+            # ── Adapter: language-specific dependency installation ────
+            lines.extend(self._dockerfile_install_deps_lines(config, runtime_version))
+
+            lines.extend([
+                "# Clone repository",
+                f"RUN mkdir /app && \\",
+                f"    git clone -o origin {repo_url} /app",
+                "",
+                "WORKDIR /app",
+                'SHELL ["/bin/bash", "-c"]',
+                "",
+                f"# Reset to base commit (before the fix)",
+                f"RUN git checkout {base_commit} && \\",
+                f"    git reset --hard {base_commit} && \\",
+                f"    git clean -fdx",
+                "",
+            ])
 
         # ── Adapter: post-checkout lines (deps, wrapper scripts) ─────
         lines.extend(self._dockerfile_post_checkout_lines(config, runtime_version))
@@ -384,21 +481,26 @@ class LanguageAdapter(ABC):
             "",
         ])
 
-        # ── Extra Dockerfile lines from config ───────────────────────
-        if config.dockerfile_extra_lines:
-            lines.extend(config.dockerfile_extra_lines)
-            lines.append("")
+        if not base_image_tag:
+            # ── Extra Dockerfile lines from config ───────────────────
+            if config.dockerfile_extra_lines:
+                lines.extend(config.dockerfile_extra_lines)
+                lines.append("")
 
-        # ── Harbor additions (shared) ────────────────────────────────
+            # ── Harbor additions (shared) — only in self-contained mode
+            lines.extend([
+                "# ── Harbor additions ──────────────────────────────────────",
+                "ENTRYPOINT []",
+                "WORKDIR /app",
+                "ENV PYTHONPATH=/app/lib:/app",
+                "RUN mkdir -p /logs",
+                "",
+                f"RUN userdel -r ubuntu 2>/dev/null || true",
+                f"RUN useradd -m -u 1000 {no_root_user} 2>/dev/null || true",
+            ])
+
+        # ── chown after checkout (both modes) ─────────────────────────
         lines.extend([
-            "# ── Harbor additions ──────────────────────────────────────",
-            "ENTRYPOINT []",
-            "WORKDIR /app",
-            "ENV PYTHONPATH=/app/lib:/app",
-            "RUN mkdir -p /logs",
-            "",
-            f"RUN userdel -r ubuntu 2>/dev/null || true",
-            f"RUN useradd -m -u 1000 {no_root_user} 2>/dev/null || true",
             f"RUN chown -R {no_root_user}:{no_root_user} /app",
             "",
         ])

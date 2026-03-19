@@ -474,10 +474,19 @@ class KibanaAdapter(LanguageAdapter):
     ) -> List[str]:
         return [
             "# Install junitparser for test result parsing inside the container",
-            "RUN pip3 install --no-cache-dir junitparser",
+            "RUN pip3 install --no-cache-dir --break-system-packages junitparser",
             "",
             "# Install yarn globally",
             "RUN corepack enable && corepack prepare yarn@stable --activate || npm install -g yarn",
+            "",
+        ]
+
+    def _dockerfile_base_env_lines(
+        self, config: RepoConfig, runtime_version: Optional[str],
+    ) -> List[str]:
+        return [
+            "# Set Node.js memory limit for build",
+            'ENV NODE_OPTIONS="--max-old-space-size=4096"',
             "",
         ]
 
@@ -486,9 +495,6 @@ class KibanaAdapter(LanguageAdapter):
     ) -> List[str]:
         no_root_user = config.no_root_user
         return [
-            "# Set Node.js memory limit for build",
-            'ENV NODE_OPTIONS="--max-old-space-size=4096"',
-            "",
             "# Install dependencies",
             "RUN yarn kbn bootstrap 2>&1 | tail -20 || yarn install --frozen-lockfile 2>&1 | tail -20",
             "",

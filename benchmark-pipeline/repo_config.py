@@ -59,6 +59,11 @@ class RepoConfig:
             safe = self.slug.replace("/", "-")
             self.default_clone_dir = f"/tmp/{safe}-pipeline"
 
+    @property
+    def base_image_tag(self) -> str:
+        """Docker tag for the per-repo base image (e.g. ``swebench-base-elastic-elasticsearch``)."""
+        return f"swebench-base-{self.slug.replace('/', '-')}"
+
     def get_clone_dir(self) -> str:
         """Resolve clone directory from env var or default."""
         import os
@@ -124,7 +129,7 @@ register_repo(RepoConfig(
     adapter_name="kibana",
     base_image="node:20-bookworm",
     system_packages="git python3 python3-pip curl wget unzip jq patch",
-    no_root_user="kibana",
+    no_root_user="node",
     version_files=["package.json"],
     version_key="version",
     clone_dir_env_var="KIBANA_CLONE_DIR",

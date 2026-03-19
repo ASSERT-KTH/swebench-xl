@@ -72,14 +72,23 @@ def _generate_dockerfile(
     instance_id: str,
     *,
     runtime_version: Optional[str] = None,
+    use_base_image: bool = True,
 ) -> str:
-    """Generate a self-contained Dockerfile for an instance using the adapter."""
+    """Generate a Dockerfile for an instance using the adapter.
+
+    When *use_base_image* is True the Dockerfile starts ``FROM`` the
+    pre-built repo base image and skips the expensive clone / dep-install
+    steps.  Set to False for a fully self-contained Dockerfile.
+    """
     cfg = get_config(repo_slug)
     adapter = get_adapter(cfg.adapter_name)
+
+    base_image_tag = cfg.base_image_tag if use_base_image else None
 
     lines = adapter.generate_dockerfile_lines(
         cfg, repo_url, base_commit, instance_id,
         runtime_version=runtime_version,
+        base_image_tag=base_image_tag,
     )
     return "\n".join(lines) + "\n"
 
@@ -106,6 +115,7 @@ def generate_harbor_task(
     overwrite: bool = False,
     timeout_sec: int = 3600,
     runtime_version: Optional[str] = None,
+    use_base_image: bool = True,
 ) -> Path:
     """
     Generate a complete Harbor task directory for a verified instance.
@@ -175,6 +185,7 @@ def generate_harbor_task(
     dockerfile = _generate_dockerfile(
         repo_url, base_commit, repo_slug, instance_id,
         runtime_version=runtime_version,
+        use_base_image=use_base_image,
     )
     (task_dir / "environment" / "Dockerfile").write_text(dockerfile)
 

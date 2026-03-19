@@ -81,6 +81,7 @@ from typing import Any, Dict, Optional
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 from adapters import get_adapter
+from base_image import ensure_base_image
 from harbor_packager import generate_harbor_task
 from repo_config import get_config
 
@@ -152,12 +153,19 @@ def step_verify(pr: Dict, repo: str, clone_dir: str) -> Dict[str, Any]:
     return verify_pr(pr, shas, clone_dir, config)
 
 
-def step_package(instance: Dict, output_dir: Path) -> Path:
+def step_package(instance: Dict, output_dir: Path, *, use_base_image: bool = True) -> Path:
     """Package a verified instance into a Harbor task directory."""
-    return generate_harbor_task(instance, output_dir, overwrite=True)
+    return generate_harbor_task(instance, output_dir, overwrite=True, use_base_image=use_base_image)
 
 
-def step_docker_oracle(task_dir: Path, timeout: int = 1800) -> int:
+def step_docker_oracle(
+    task_dir: Path,
+    timeout: int = 1800,
+    *,
+    repo_slug: Optional[str] = None,
+    use_base_image: bool = True,
+    rebuild_base: bool = False,
+) -> int:
     """
     Build Docker image, apply gold patch, run test.sh, return reward.
 
@@ -167,10 +175,19 @@ def step_docker_oracle(task_dir: Path, timeout: int = 1800) -> int:
     instance_id = task_dir.name
     image_tag = f"smoke-{instance_id}".lower()
 
+    # ── Ensure base image exists ──
+    if use_base_image and repo_slug:
+        if not ensure_base_image(repo_slug, rebuild=rebuild_base):
+            print("[docker] Base image build FAILED")
+            return -1
+
     # ── Build ──
     print(f"\n{'─' * 60}")
     print(f"[docker] Building image {image_tag}...")
-    print(f"[docker] This takes a while (git clone + dependency install)")
+    if use_base_image and repo_slug:
+        print(f"[docker] Using base image (fast — checkout + cleanup only)")
+    else:
+        print(f"[docker] Self-contained build (git clone + dependency install)")
     build = subprocess.run(
         ["docker", "build", "-t", image_tag, "."],
         cwd=env_dir,
@@ -292,6 +309,14 @@ def main() -> None:
         help="Skip Docker build+run (only test verify + package)",
     )
     parser.add_argument(
+        "--no-base-image", action="store_true",
+        help="Generate self-contained Dockerfiles (skip base image optimization)",
+    )
+    parser.add_argument(
+        "--rebuild-base", action="store_true",
+        help="Force rebuild of the repo base Docker image",
+    )
+    parser.add_argument(
         "--save-fixture", type=Path,
         help="Save the PR data + verified result as a fixture for future runs",
     )
@@ -314,7 +339,12 @@ def main() -> None:
             print("\nSMOKE TEST PASSED (structure only, --no-docker)")
             return
 
-        reward = step_docker_oracle(task_dir)
+        reward = step_docker_oracle(
+            task_dir,
+            repo_slug=args.repo,
+            use_base_image=not args.no_base_image,
+            rebuild_base=args.rebuild_base,
+        )
         _exit_with_reward(reward)
         return
 
@@ -376,7 +406,8 @@ def main() -> None:
     print(f"{'=' * 60}")
 
     output_dir = args.keep_task_dir or Path(tempfile.mkdtemp(prefix="smoke_"))
-    task_dir = step_package(result, output_dir)
+    use_base = not args.no_base_image
+    task_dir = step_package(result, output_dir, use_base_image=use_base)
     print(f"  Task dir: {task_dir}")
 
     if not step_validate_structure(task_dir):
@@ -404,7 +435,12 @@ def main() -> None:
     print("[step 3/3] Docker oracle (solve.sh → test.sh)")
     print(f"{'=' * 60}")
 
-    reward = step_docker_oracle(task_dir)
+    reward = step_docker_oracle(
+        task_dir,
+        repo_slug=args.repo,
+        use_base_image=use_base,
+        rebuild_base=args.rebuild_base,
+    )
     _cleanup_temp(output_dir, args.keep_task_dir)
     _exit_with_reward(reward)
 

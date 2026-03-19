@@ -462,13 +462,21 @@ class JavaGradleAdapter(LanguageAdapter):
             "",
         ]
 
+    def _dockerfile_base_env_lines(
+        self, config: RepoConfig, runtime_version: Optional[str],
+    ) -> List[str]:
+        return [
+            "# Cap Gradle JVM heap for memory-constrained hosts",
+            'ENV GRADLE_OPTS="-Xmx512m"',
+            "",
+        ]
+
     def _dockerfile_post_checkout_lines(
         self, config: RepoConfig, runtime_version: Optional[str],
     ) -> List[str]:
         no_root_user = config.no_root_user
         lines = [
             "# Cap Gradle JVM heap and parallelism for memory-constrained hosts",
-            'ENV GRADLE_OPTS="-Xmx512m"',
             'RUN echo "org.gradle.jvmargs=-Xmx2g -XX:MaxMetaspaceSize=512m" >> /app/gradle.properties',
             "",
             "# Gradlew wrapper: auto-drops to non-root user when invoked as root",
