@@ -355,16 +355,28 @@ def run_local_oracle(
         for f in test_files_to_reset:
             ret = subprocess.run(
                 ["git", "checkout", base_commit, "--", f],
-                cwd=clone_dir, capture_output=True, timeout=30,
+                cwd=clone_dir, capture_output=True, text=True, timeout=30,
             )
             fpath = os.path.join(clone_dir, f)
             if ret.returncode == 0:
                 print(f"  reset: {f}")
-            elif os.path.exists(fpath):
-                os.remove(fpath)
-                print(f"  removed (new in patch): {f}")
             else:
-                print(f"  skip (not present): {f}")
+                # git checkout failed — check if file exists at base_commit
+                probe = subprocess.run(
+                    ["git", "show", f"{base_commit}:{f}"],
+                    cwd=clone_dir, capture_output=True, timeout=30,
+                )
+                if probe.returncode == 0:
+                    os.makedirs(os.path.dirname(fpath) or ".", exist_ok=True)
+                    with open(fpath, "wb") as fh:
+                        fh.write(probe.stdout)
+                    print(f"  reset (fallback): {f}")
+                    print(f"    git checkout error was: {ret.stderr.strip()}")
+                elif os.path.exists(fpath):
+                    os.remove(fpath)
+                    print(f"  removed (new in patch): {f}")
+                else:
+                    print(f"  skip (not present): {f}")
 
     # ── 3. Apply test patch ──
     if test_patch:
@@ -429,81 +441,17 @@ def run_local_oracle(
             for line in tail:
                 print(f"  | {line}")
 
-    # ── 7. Parse JUnit XML results ──
+    # ── 7. Parse test results via adapter ──
     print(f"[local] Parsing test results...")
-
-    from junitparser import JUnitXml, TestCase, TestSuite
-
-    xml_files: List[Path] = []
-    # Gradle convention: build/test-results/**/*.xml
-    for test_results_dir in Path(clone_dir).rglob("test-results"):
-        if test_results_dir.is_dir():
-            for xf in test_results_dir.rglob("*.xml"):
-                if xf.is_file():
-                    xml_files.append(xf)
-    # Kibana/Jest convention: target/junit/**/*.xml
-    if junit_dir.is_dir():
-        for xf in junit_dir.rglob("*.xml"):
-            if xf.is_file():
-                xml_files.append(xf)
-
-    tests: List[Dict[str, str]] = []
-    seen: set = set()
-    for xml_file in xml_files:
-        try:
-            xml = JUnitXml.fromfile(str(xml_file))
-        except Exception as e:
-            print(f"[local] Warning: Failed to parse {xml_file}: {e}")
-            continue
-
-        suites: list = []
-        if isinstance(xml, TestSuite):
-            suites = [xml]
-        else:
-            for item in xml:
-                if isinstance(item, TestSuite):
-                    suites.append(item)
-
-        for suite in suites:
-            for case in suite:
-                if not isinstance(case, TestCase):
-                    continue
-                classname = case.classname or ""
-                name = case.name or ""
-                if not classname or not name:
-                    continue
-                test_name = f"{classname}::{name}"
-                if test_name in seen:
-                    continue
-                seen.add(test_name)
-
-                if case.result is None:
-                    status = "PASSED"
-                else:
-                    result_items = case.result if isinstance(case.result, list) else [case.result]
-                    is_failure = False
-                    is_skipped = False
-                    for r in result_items:
-                        rtype = type(r).__name__.lower()
-                        if "skip" in rtype:
-                            is_skipped = True
-                        elif "fail" in rtype or "error" in rtype:
-                            is_failure = True
-                    if is_skipped:
-                        status = "SKIPPED"
-                    elif is_failure:
-                        status = "FAILED"
-                    else:
-                        status = "PASSED"
-                tests.append({"name": test_name, "status": status})
-
-    print(f"[local] Found {len(xml_files)} XML file(s), {len(tests)} test(s)")
+    report_files = adapter.find_test_reports(test_commands, clone_dir)
+    failed_tests, passed_list = adapter.parse_test_results(report_files)
+    print(f"[local] Found {len(report_files)} report file(s), "
+          f"{len(passed_list)} passed, {len(failed_tests)} failed")
 
     # ── 8. Evaluate against fail_to_pass / pass_to_pass ──
-    passed_tests = {t["name"] for t in tests if t["status"] == "PASSED"}
-    all_output_tests = {t["name"] for t in tests}
+    passed_tests = set(passed_list)
 
-    if not all_output_tests:
+    if not passed_tests and not failed_tests:
         combined = "\n".join(stdout_parts + stderr_parts)
         if "BUILD FAILED" in combined or "FAIL" in combined:
             print(f"[local] Build/tests FAILED — no test results produced")
@@ -526,10 +474,7 @@ def run_local_oracle(
     missing = [req for req in fail_to_pass if not check_test_satisfied(req, passed_tests)]
     broken = [req for req in pass_to_pass if req not in passed_tests]
 
-    passed_count = sum(1 for t in tests if t["status"] == "PASSED")
-    failed_count = sum(1 for t in tests if t["status"] == "FAILED")
-    skipped_count = sum(1 for t in tests if t["status"] == "SKIPPED")
-    print(f"[local] Results: {passed_count} passed, {failed_count} failed, {skipped_count} skipped")
+    print(f"[local] Results: {len(passed_list)} passed, {len(failed_tests)} failed")
     print(f"[local] fail_to_pass: {len(fail_to_pass)} required, "
           f"{len(fail_to_pass) - len(missing)} satisfied, {len(missing)} missing")
     print(f"[local] pass_to_pass: {len(pass_to_pass)} required, {len(broken)} broken")

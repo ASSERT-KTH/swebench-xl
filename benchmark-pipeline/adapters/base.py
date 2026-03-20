@@ -451,19 +451,14 @@ class LanguageAdapter(ABC):
         # ── Git-history cleanup (shared) ─────────────────────────────
         lines.extend([
             "# === Git History Cleanup ===",
-            "# Prevents agents from seeing future commits/tags.",
+            "# Prevents agents from seeing future commits/tags (SWE-bench #465).",
             f"RUN git remote remove origin && \\",
             f"    git branch -a | grep -v '\\*' | grep -v 'HEAD' | xargs -r git branch -D 2>/dev/null || true && \\",
-            f"    BASE_TIMESTAMP=$(git show -s --format=%ci {base_commit}) && \\",
-            f"    git tag -l | while read tag; do \\",
-            f"        TAG_COMMIT=$(git rev-list -n 1 \"$tag\" 2>/dev/null) || continue; \\",
-            f"        TAG_TIME=$(git show -s --format=%ci \"$TAG_COMMIT\" 2>/dev/null) || continue; \\",
-            f"        if [[ \"$TAG_TIME\" > \"$BASE_TIMESTAMP\" ]]; then \\",
-            f"            git tag -d \"$tag\" > /dev/null 2>&1; \\",
-            f"        fi; \\",
-            f"    done && \\",
-            f"    git reflog expire --expire=now --all && \\",
-            f"    git gc --prune=now",
+            f"    BASE_TS=$(git show -s --format=%ct {base_commit}) && \\",
+            f"    git for-each-ref --format='%(refname:short) %(creatordate:unix)' refs/tags | \\",
+            f"        awk -v cutoff=\"$BASE_TS\" '$2 > cutoff {{print $1}}' | \\",
+            f"        xargs -r git tag -d > /dev/null 2>&1 || true && \\",
+            f"    git reflog expire --expire=now --all",
             "",
             "# Verify no future commits accessible",
             f"RUN FUTURE_COMMITS=$(git log --oneline --all "
@@ -500,8 +495,10 @@ class LanguageAdapter(ABC):
             ])
 
         # ── chown after checkout (both modes) ─────────────────────────
+        # Skip recursing into .git internals (huge on large repos like Kibana)
         lines.extend([
-            f"RUN chown -R {no_root_user}:{no_root_user} /app",
+            f"RUN find /app -maxdepth 1 -exec chown {no_root_user}:{no_root_user} {{}} + && \\",
+            f"    find /app -mindepth 1 -maxdepth 1 ! -name .git -exec chown -R {no_root_user}:{no_root_user} {{}} +",
             "",
         ])
 

@@ -55,7 +55,7 @@ if result.returncode != 0:
     with tempfile.NamedTemporaryFile(mode='w', suffix='.patch', delete=False) as tmp:
         tmp.write(test_patch)
         tmp_path = tmp.name
-    subprocess.run(['patch', '--fuzz=5', '-p1', '-i', tmp_path])
+    subprocess.run(['patch', '--batch', '--fuzz=5', '-p1', '-i', tmp_path])
     os.unlink(tmp_path)
 else:
     print('test_patch applied successfully')

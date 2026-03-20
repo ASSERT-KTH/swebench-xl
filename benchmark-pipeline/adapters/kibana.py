@@ -509,6 +509,71 @@ class KibanaAdapter(LanguageAdapter):
             "",
         ]
 
+    def generate_test_parser_script(self) -> Optional[str]:
+        """Return a Jest/JUnit parser that reads XML from a report directory."""
+        return '''#!/usr/bin/env python3
+"""Parser for Jest JUnit XML test results (Kibana)."""
+import argparse
+import json
+import os
+import sys
+from pathlib import Path
+from junitparser import JUnitXml, TestCase, TestSuite
+
+
+def parse_junit_dir(report_dir: str):
+    passed, failed = [], []
+    for xml_path in sorted(Path(report_dir).rglob("*.xml")):
+        try:
+            xml = JUnitXml.fromfile(str(xml_path))
+        except Exception:
+            continue
+        suites = [xml] if isinstance(xml, TestSuite) else [s for s in xml if isinstance(s, TestSuite)]
+        for suite in suites:
+            for case in suite:
+                if not isinstance(case, TestCase):
+                    continue
+                classname = case.classname or ""
+                name = case.name or ""
+                if not name:
+                    continue
+                test_id = f"{classname}::{name}" if classname else name
+                if case.result is None:
+                    passed.append(test_id)
+                else:
+                    results = case.result if isinstance(case.result, list) else [case.result]
+                    is_skip = any("skip" in type(r).__name__.lower() for r in results)
+                    is_fail = any("fail" in type(r).__name__.lower() or "error" in type(r).__name__.lower() for r in results)
+                    if is_skip:
+                        continue
+                    elif is_fail:
+                        failed.append(test_id)
+                    else:
+                        passed.append(test_id)
+    return passed, failed
+
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--report-dir", required=True)
+    ap.add_argument("--output", required=True)
+    args = ap.parse_args()
+
+    if not os.path.isdir(args.report_dir):
+        print(f"Report dir not found: {args.report_dir}", file=sys.stderr)
+        json.dump({"passed": [], "failed": []}, open(args.output, "w"))
+        return
+
+    passed, failed = parse_junit_dir(args.report_dir)
+    print(f"Parsed {len(passed)} passed, {len(failed)} failed")
+    with open(args.output, "w") as f:
+        json.dump({"passed": passed, "failed": failed}, f, indent=2)
+
+
+if __name__ == "__main__":
+    main()
+'''
+
     def git_clean_excludes(self) -> List[str]:
         return ["node_modules/", ".yarn/", ".pnp.*"]
 
@@ -612,14 +677,32 @@ mkdir -p "$LOG_DIR"
 
 # ── 1. Apply the test patch ──────────────────────────────────────────────────
 cd "$REPO_DIR"
-TEST_PATCH="$CONFIG_DIR/test_patch.diff"
-if [ -f "$TEST_PATCH" ] && [ -s "$TEST_PATCH" ]; then
-    echo "Applying test patch..."
-    git apply --allow-empty "$TEST_PATCH" 2>&1 | tee "$LOG_DIR/patch.log" || {{
-        echo "WARNING: git apply failed, trying patch -p1..."
-        patch -p1 < "$TEST_PATCH" 2>&1 | tee -a "$LOG_DIR/patch.log" || true
-    }}
-fi
+python3 -c "
+import json, subprocess, sys, tempfile, os
+with open('$CONFIG_DIR/config.json') as f:
+    config = json.load(f)
+test_patch = config.get('test_patch', '').strip()
+if not test_patch:
+    sys.exit(0)
+if not test_patch.endswith(chr(10)):
+    test_patch += chr(10)
+with tempfile.NamedTemporaryFile(mode='w', suffix='.patch', delete=False) as tmp:
+    tmp.write(test_patch)
+    tmp_path = tmp.name
+result = subprocess.run(['git', 'apply', '--verbose', tmp_path], capture_output=True, text=True)
+os.unlink(tmp_path)
+if result.returncode != 0:
+    print('WARNING: git apply for test_patch failed, trying patch --fuzz=5', file=sys.stderr)
+    print(result.stderr, file=sys.stderr)
+    with tempfile.NamedTemporaryFile(mode='w', suffix='.patch', delete=False) as tmp:
+        tmp.write(test_patch)
+        tmp_path = tmp.name
+    subprocess.run(['patch', '--batch', '--fuzz=5', '-p1', '-i', tmp_path])
+    os.unlink(tmp_path)
+else:
+    print('test_patch applied successfully')
+    print(result.stdout)
+"
 
 # ── 2. Run the tests ────────────────────────────────────────────────────────
 echo "Running tests..."
@@ -664,11 +747,13 @@ p2p_ok = len(p2p & failed) == 0
 
 reward = 1 if (f2p_ok and p2p_ok and len(f2p) > 0) else 0
 
-print(f'fail_to_pass ({{len(f2p)}}): {{\"PASS\" if f2p_ok else \"FAIL\"}}')
+f2p_label = 'PASS' if f2p_ok else 'FAIL'
+p2p_label = 'PASS' if p2p_ok else 'FAIL'
+print(f'fail_to_pass ({{len(f2p)}}): {{f2p_label}}')
 print(f'  expected pass: {{sorted(f2p)}}')
 print(f'  actually passed: {{sorted(f2p & passed)}}')
 print(f'  still failing: {{sorted(f2p - passed)}}')
-print(f'pass_to_pass ({{len(p2p)}}): {{\"PASS\" if p2p_ok else \"FAIL\"}}')
+print(f'pass_to_pass ({{len(p2p)}}): {{p2p_label}}')
 print(f'  newly broken: {{sorted(p2p & failed)}}')
 print(f'reward: {{reward}}')
 

@@ -170,38 +170,3 @@ def detect_instance_type(
                 print(f"      {tl.strip()}")
 
     return result
-
-
-def format_symbol_hints(missing_symbols: List[dict]) -> str:
-    """
-    Format missing symbol info for inclusion in the task instruction.
-    Handles methods, classes, variables, and constructors.
-    """
-    if not missing_symbols:
-        return ""
-
-    lines = ["## Hint: Symbols to Implement", ""]
-    lines.append(
-        "The following symbols need to be created as part of this task:"
-    )
-    lines.append("")
-    for s in missing_symbols:
-        cls = s.get("class", "Unknown")
-        name = s.get("name", s.get("method", "unknown"))
-        kind = s.get("kind", "method")
-        params = s.get("params", "")
-        if kind == "method":
-            lines.append(f"- Method `{name}({params})` in `{cls}`")
-        elif kind == "constructor":
-            lines.append(f"- Constructor `{name}({params})` in `{cls}`")
-        elif kind == "class":
-            lines.append(f"- Class `{name}`")
-        elif kind == "variable":
-            lines.append(f"- Variable/field `{name}` in `{cls}`")
-        else:
-            lines.append(f"- `{name}` in `{cls}`")
-    return "\n".join(lines)
-
-
-# Backward-compatible alias
-format_method_signatures = format_symbol_hints

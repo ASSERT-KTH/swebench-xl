@@ -87,6 +87,13 @@ for d in ("/app", "/testbed"):
         os.chdir(d)
         break
 
+# Prevent git "dubious ownership" errors when test.sh runs as root
+# but /app is owned by a non-root user.
+subprocess.run(
+    ["git", "config", "--global", "--add", "safe.directory", os.getcwd()],
+    capture_output=True,
+)
+
 config_path = os.path.join(os.path.dirname(__file__), "config.json")
 with open(config_path) as f:
     config = json.load(f)
@@ -110,9 +117,23 @@ for f in files_to_reset:
     if ret.returncode == 0:
         print(f"  reset: {f}")
     else:
-        # File may not exist at base commit (new file added by the test patch).
-        # Remove any agent-created version so the patch can add it cleanly.
-        if os.path.exists(f):
+        # git checkout failed — check whether the file exists at base_commit.
+        # If it does, the failure is due to something other than a new file
+        # (e.g. ownership mismatch) — use git show as a fallback.
+        probe = subprocess.run(
+            ["git", "show", f"{base_commit}:{f}"],
+            capture_output=True,
+        )
+        if probe.returncode == 0:
+            # File exists at base_commit — write it directly as fallback.
+            os.makedirs(os.path.dirname(f) or ".", exist_ok=True)
+            with open(f, "wb") as fh:
+                fh.write(probe.stdout)
+            print(f"  reset (fallback): {f}")
+            print(f"    git checkout error was: {ret.stderr.strip()}")
+        elif os.path.exists(f):
+            # File truly does not exist at base_commit (new file).
+            # Remove any agent-created version so the patch can add it cleanly.
             os.remove(f)
             print(f"  removed (new in patch): {f}")
         else:
