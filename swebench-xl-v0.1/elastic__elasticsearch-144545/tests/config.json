@@ -1,0 +1,54 @@
+{
+  "instance_id": "elastic__elasticsearch-144545",
+  "repo": "elastic/elasticsearch",
+  "repo_language": "Java",
+  "base_commit": "5c8c6e045f273fb8625c296a8132b943181abc4a",
+  "merge_commit": "490b789b5fa32746ac17d8932b1104e41afc2926",
+  "version": "9.4.0",
+  "pr_number": 144545,
+  "instance_type": "bug_fix",
+  "problem_statement_title": "\"Reset an anomaly detection job\" API fails with error 500",
+  "problem_statement_description": "### Elasticsearch Version\n\n9.3.4\n\n### Installed Plugins\n\n_No response_\n\n### Java Version\n\n_bundled_\n\n### OS Version\n\nlinux\n\n### Problem Description\n\nStacktrace:\n\norg.elasticsearch.transport.RemoteTransportException: [es-es-index-557d45596-5mtnc][100.64.17.99:9300][cluster:admin/xpack/ml/job/reset]\nCaused by: org.elasticsearch.common.io.stream.NotSerializableExceptionWrapper: no_such_element_exception: No value present\n\tat java.util.Optional.get(Optional.java:143)\n\tat org.elasticsearch.xpack.core.ml.utils.MlIndexAndAlias.latestIndex(MlIndexAndAlias.java:529)\n\tat org.elasticsearch.xpack.core.ml.utils.MlIndexAndAlias.latestIndexMatchingBaseName(MlIndexAndAlias.java:604)\n\tat org.elasticsearch.xpack.ml.job.persistence.JobResultsProvider.createJobResultIndex(JobResultsProvider.java:315)\n\tat org.elasticsearch.xpack.ml.action.TransportResetJobAction.lambda$resetJob$12(TransportResetJobAction.java:258)\n\tat org.elasticsearch.action.ActionListener$2.onResponse(ActionListener.java:258)\n\tat org.elasticsearch.xpack.ml.job.persistence.JobConfigProvider.parseJobLenientlyFromSource(JobConfigProvider.java:763)\n\tat org.elasticsearch.xpack.ml.job.persistence.JobConfigProvider$1.onResponse(JobConfigProvider.java:175)\n\tat org.elasticsearch.xpack.ml.job.persistence.JobConfigProvider$1.onResponse(JobConfigProvider.java:166)\n\tat org.elasticsearch.action.support.ContextPreservingActionListener.onResponse(ContextPreservingActionListener.java:33)\n\tat org.elasticsearch.tasks.TaskManager$1.onResponse(TaskManager.java:223)\n\tat org.elasticsearch.tasks.TaskManager$1.onResponse(TaskManager.java:217)\n\tat org.elasticsearch.action.ActionListenerImplementations$RunBeforeActionListener.onResponse(ActionListenerImplementations.java:350)\n\tat org.elasticsearch.action.support.ContextPreservingActionListener.onResponse(ContextPreservingActionListener.java:33)\n\tat org.elasticsearch.action.ActionListenerImplementations$MappedActionListener.onResponse(ActionListenerImplementations.java:111)\n\tat org.elasticsearch.action.ActionListenerResponseHandler.handleResponse(ActionListenerResponseHandler.java:49)\n\tat org.elasticsearch.transport.TransportService$ContextRestoreResponseHandler.handleResponse(TransportService.java:1514)\n\tat org.elasticsearch.transport.InboundHandler.doHandleResponse(InboundHandler.java:465)\n\tat org.elasticsearch.transport.InboundHandler$2.doRun(InboundHandler.java:425)\n\tat org.elasticsearch.common.util.concurrent.ThreadContext$ContextPreservingAbstractRunnable.doRun(ThreadContext.java:1114)\n\tat org.elasticsearch.common.util.concurrent.AbstractRunnable.run(AbstractRunnable.java:27)\n\tat java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1090)\n\tat java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:614)\n\tat java.lang.Thread.run(Thread.java:1474)\n\n### Steps to Reproduce\n\nunknown\n\n### Logs (if relevant)\n\n_No response_",
+  "patch": "diff --git a/docs/changelog/144545.yaml b/docs/changelog/144545.yaml\nnew file mode 100644\n--- /dev/null\n+++ b/docs/changelog/144545.yaml\n@@ -0,0 +1,6 @@\n+area: Machine Learning\n+issues:\n+ - 144544\n+pr: 144545\n+summary: Fix \"reset anomaly detection API\" crashing when only colliding indices exist\n+type: bug\ndiff --git a/x-pack/plugin/core/src/main/java/org/elasticsearch/xpack/core/ml/utils/MlIndexAndAlias.java b/x-pack/plugin/core/src/main/java/org/elasticsearch/xpack/core/ml/utils/MlIndexAndAlias.java\n--- a/x-pack/plugin/core/src/main/java/org/elasticsearch/xpack/core/ml/utils/MlIndexAndAlias.java\n+++ b/x-pack/plugin/core/src/main/java/org/elasticsearch/xpack/core/ml/utils/MlIndexAndAlias.java\n@@ -601,6 +601,10 @@ public static String latestIndexMatchingBaseName(\n             return i.equals(index) || (has6DigitSuffix(i) && i.length() == baseIndexName.length() + FIRST_INDEX_SIX_DIGIT_SUFFIX.length());\n         }).toArray(String[]::new);\n \n+        if (filtered.length == 0) {\n+            return index;\n+        }\n+\n         return MlIndexAndAlias.latestIndex(filtered);\n     }\n ",
+  "test_patch": "diff --git a/x-pack/plugin/core/src/test/java/org/elasticsearch/xpack/core/ml/utils/MlIndexAndAliasTests.java b/x-pack/plugin/core/src/test/java/org/elasticsearch/xpack/core/ml/utils/MlIndexAndAliasTests.java\n--- a/x-pack/plugin/core/src/test/java/org/elasticsearch/xpack/core/ml/utils/MlIndexAndAliasTests.java\n+++ b/x-pack/plugin/core/src/test/java/org/elasticsearch/xpack/core/ml/utils/MlIndexAndAliasTests.java\n@@ -507,6 +507,22 @@ public void testLatestIndexMatchingBaseName_CollidingIndexNames() {\n         assertEquals(\".ml-anomalies-custom-foo-notthisone-000002\", latest);\n     }\n \n+    public void testLatestIndexMatchingBaseName_OnlyCollidingIndicesExist() {\n+        Metadata.Builder metadata = Metadata.builder();\n+        metadata.put(createSharedResultsIndex(\".ml-anomalies-custom-foobar\", IndexVersion.current(), List.of(\"job1\")));\n+        metadata.put(createSharedResultsIndex(\".ml-anomalies-custom-foobaz\", IndexVersion.current(), List.of(\"job2\")));\n+        ClusterState.Builder csBuilder = ClusterState.builder(new ClusterName(\"_name\"));\n+        csBuilder.metadata(metadata);\n+        var state = csBuilder.build();\n+\n+        var latest = MlIndexAndAlias.latestIndexMatchingBaseName(\n+            \".ml-anomalies-custom-foo\",\n+            TestIndexNameExpressionResolver.newInstance(),\n+            state\n+        );\n+        assertEquals(\".ml-anomalies-custom-foo\", latest);\n+    }\n+\n     public void testBuildIndexAliasesRequest() {\n         var anomaliesIndex = \".ml-anomalies-sharedindex\";\n         var newIndex = anomaliesIndex + \"-000001\";",
+  "fail_to_pass": [
+    "org.elasticsearch.xpack.core.ml.utils.MlIndexAndAliasTests::testLatestIndexMatchingBaseName_OnlyCollidingIndicesExist"
+  ],
+  "pass_to_pass": [
+    "org.elasticsearch.xpack.core.ml.utils.MlIndexAndAliasTests::testBuildIndexAliasesRequest",
+    "org.elasticsearch.xpack.core.ml.utils.MlIndexAndAliasTests::testCreateStateIndexAndAliasIfNecessary_WriteAliasAlreadyExistsAndPointsAtInitialStateIndex",
+    "org.elasticsearch.xpack.core.ml.utils.MlIndexAndAliasTests::testLatestIndexMatchingBaseName_CollidingIndexNames",
+    "org.elasticsearch.xpack.core.ml.utils.MlIndexAndAliasTests::testInstallIndexTemplateIfRequired_GivenLegacyTemplateExistsAndModernCluster",
+    "org.elasticsearch.xpack.core.ml.utils.MlIndexAndAliasTests::testIndexIsReadWriteCompatibleInV9",
+    "org.elasticsearch.xpack.core.ml.utils.MlIndexAndAliasTests::testIsAnomaliesAlias",
+    "org.elasticsearch.xpack.core.ml.utils.MlIndexAndAliasTests::testLatestIndexMatchingBaseName_hasLater",
+    "org.elasticsearch.xpack.core.ml.utils.MlIndexAndAliasTests::testCreateStateIndexAndAliasIfNecessary_WriteAliasDoesNotExistButInitialStateIndexExists",
+    "org.elasticsearch.xpack.core.ml.utils.MlIndexAndAliasTests::testLatestIndex",
+    "org.elasticsearch.xpack.core.ml.utils.MlIndexAndAliasTests::testCreateStateIndexAndAliasIfNecessary_WriteAliasAlreadyExistsAndPointsAtLegacyStateIndex",
+    "org.elasticsearch.xpack.core.ml.utils.MlIndexAndAliasTests::testCreateStateIndexAndAliasIfNecessary_WriteAliasDoesNotExistButBothLegacyAndNewIndicesExist",
+    "org.elasticsearch.xpack.core.ml.utils.MlIndexAndAliasTests::testCreateStateIndexAndAliasIfNecessary_WriteAliasDoesNotExistButLegacyStateIndexExists",
+    "org.elasticsearch.xpack.core.ml.utils.MlIndexAndAliasTests::testIsAnomaliesSharedIndex",
+    "org.elasticsearch.xpack.core.ml.utils.MlIndexAndAliasTests::testLatestIndexMatchingBaseName_isLatest",
+    "org.elasticsearch.xpack.core.ml.utils.MlIndexAndAliasTests::testIndexNameComparator",
+    "org.elasticsearch.xpack.core.ml.utils.MlIndexAndAliasTests::testCreateStateIndexAndAliasIfNecessary_WriteAliasAlreadyExistsAndPointsAtDummyIndex",
+    "org.elasticsearch.xpack.core.ml.utils.MlIndexAndAliasTests::testCreateStateIndexAndAliasIfNecessary_CleanState",
+    "org.elasticsearch.xpack.core.ml.utils.MlIndexAndAliasTests::testInstallIndexTemplateIfRequired",
+    "org.elasticsearch.xpack.core.ml.utils.MlIndexAndAliasTests::testCreateStateIndexAndAliasIfNecessary_WriteAliasDoesNotExistButSubsequentStateIndicesExist",
+    "org.elasticsearch.xpack.core.ml.utils.MlIndexAndAliasTests::testInstallIndexTemplateIfRequired_GivenComposableTemplateExists",
+    "org.elasticsearch.xpack.core.ml.utils.MlIndexAndAliasTests::testHas6DigitSuffix",
+    "org.elasticsearch.xpack.core.ml.utils.MlIndexAndAliasTests::testCreateRolloverAliasAndNewIndexName",
+    "org.elasticsearch.xpack.core.ml.utils.MlIndexAndAliasTests::testCreateStateIndexAndAliasIfNecessary_WriteAliasAlreadyExistsAndPointsAtSubsequentStateIndex",
+    "org.elasticsearch.xpack.core.ml.utils.MlIndexAndAliasTests::testIsAnomaliesWriteAlias"
+  ],
+  "test_commands": [
+    "./gradlew :x-pack:plugin:core:test --tests org.elasticsearch.xpack.core.ml.utils.MlIndexAndAliasTests --no-daemon --stacktrace -x javadoc --no-configuration-cache --max-workers=2"
+  ],
+  "selected_test_files_to_run": [
+    "x-pack/plugin/core/src/test/java/org/elasticsearch/xpack/core/ml/utils/MlIndexAndAliasTests.java"
+  ],
+  "test_support_files": [],
+  "source_files": [
+    "docs/changelog/144545.yaml",
+    "x-pack/plugin/core/src/main/java/org/elasticsearch/xpack/core/ml/utils/MlIndexAndAlias.java"
+  ]
+}

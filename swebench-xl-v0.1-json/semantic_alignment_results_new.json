@@ -1,0 +1,377 @@
+[
+  {
+    "instance_id": "elastic__elasticsearch-144517",
+    "quality": "Medium",
+    "reason": "The core validation logic (null/empty checks in constructor, empty array check in parser) directly addresses the problem statement. However, the patch includes additional refactoring not mentioned in the issue (moving parse logic from InferenceStringGroup.parse() to EmbeddingRequest.parseStringOrContentObject(), making PARSER private, changing how string tokens are handled), and the tests include changes to mutateInstance() and EmbeddingRequestTests that go beyond what the problem statement implies."
+  },
+  {
+    "instance_id": "elastic__elasticsearch-144588",
+    "quality": "High",
+    "reason": "The problem statement clearly describes a failure where percentiles are non-monotonically decreasing in the exponential histogram quantile calculation. The source patch fixes a floating-point interpolation formula that could produce non-monotonic results, and the test oracle directly validates monotonicity (greaterThanOrEqualTo lastQuantile) in the quantile accuracy tests, which is exactly what the issue describes."
+  },
+  {
+    "instance_id": "elastic__elasticsearch-144545",
+    "quality": "High",
+    "reason": "The problem statement clearly shows a NoSuchElementException from Optional.get() in latestIndex() called from latestIndexMatchingBaseName(), and the fix directly addresses this by returning early when the filtered array is empty (preventing the empty Optional.get() call). The test oracle precisely validates the edge case described - when only colliding indices exist, the method should return the base index name rather than throwing an exception."
+  },
+  {
+    "instance_id": "elastic__elasticsearch-144388",
+    "quality": "High",
+    "reason": "The patch directly addresses both issues raised in the problem statement: it accepts NULL data type for change_point values (instead of rejecting them with a confusing error), and it improves the error messages to follow the pattern suggested in the issue (similar to grok/dissect). The tests validate both the new NULL acceptance behavior and the improved error messages for non-numeric types, which are exactly what the issue requested."
+  },
+  {
+    "instance_id": "elastic__elasticsearch-143810",
+    "quality": "High",
+    "reason": "The problem statement clearly describes that queries using full-text search (MATCH, match operator) with `unmapped_fields=\"load\"` should fail with an error instead of silently returning empty results. The source patch directly implements this by adding a verification check that fails analysis when full-text functions are used with the load mode, and the test oracle validates exactly this behavior across all full-text search functions (MATCH, match operator, MATCH_PHRASE, MULTI_MATCH, QSTR, KQL, KNN), matching the intent described in the issue."
+  },
+  {
+    "instance_id": "elastic__elasticsearch-144308",
+    "quality": "High",
+    "reason": "The problem statement describes a failing test for IP prefix matching in the terms enum API, the source patch fixes an edge case where a single '0' prefix should match IPv6 addresses like '0:1234::1' but was incorrectly returning EMPTY_AUTOMATON, and the test oracle directly validates this exact behavior by adding assertions for '0:1234::1', '0:abcd:...' and other IPv6 addresses while confirming that multi-zero prefixes and condensed forms still don't match. The fix and tests are tightly aligned with the reported failure."
+  },
+  {
+    "instance_id": "elastic__elasticsearch-144183",
+    "quality": "High",
+    "reason": "The problem statement clearly describes that passthrough fields (with subobjects:false) are incorrectly having intermediate path segments synthesized as 'object' type in field capabilities, causing false type conflicts in ES|QL. The source patch directly addresses this by checking if a field is under a subobjects:false mapper before synthesizing object parents, and both the unit test and YAML integration test precisely validate this exact scenario with passthrough mappers containing dot-separated field names across multiple indices."
+  },
+  {
+    "instance_id": "elastic__elasticsearch-144029",
+    "quality": "High",
+    "reason": "The problem statement clearly describes a bug where `unmapped_fields=nullify` fails with a verification error when using `STATS ... WHERE` after an `EVAL` that creates a dotted field name. The source patch directly fixes the root cause (collecting all UnresolvedAttribute instances per name, not just one, so `refreshPlan` can clear custom error messages on all occurrences), and the test oracle validates exactly the scenarios described in the issue (ROW + EVAL + STATS WHERE with dotted unmapped fields, and FROM + EVAL + STATS WHERE), making the alignment between problem, fix, and tests very clear and direct."
+  },
+  {
+    "instance_id": "elastic__elasticsearch-143938",
+    "quality": "High",
+    "reason": "The problem statement clearly identifies that 'boost' is being rejected as an illegal option in query_string queries despite being listed as an allowed option. The source patch directly fixes this by adding 'boost' to the allowed options map, and the test oracle validates both the default boost value and custom boost values, directly testing the reported bug."
+  },
+  {
+    "instance_id": "elastic__elasticsearch-143440",
+    "quality": "Medium",
+    "reason": "The patch correctly addresses the root cause (IllegalStateException from BoundedBreakIteratorScanner.first()) and the tests validate the fix, but the additional change to CustomPassageFormatter (replacing NULL_SEPARATOR with space instead of removing it) introduces behavior not clearly specified in the problem statement. The expected output in the issue shows separate highlighted snippets per array value, but the test oracle shows merged snippets with spaces (e.g., 'to be true the person' as one highlight), which partially diverges from the issue's stated expected behavior."
+  },
+  {
+    "instance_id": "elastic__elasticsearch-144067",
+    "quality": "High",
+    "reason": "The problem statement clearly describes a race condition where acquireLastIndexCommit with flushFirst=true can return an unflushed commit due to concurrent indexing between flush completion and commit acquisition. The patch directly fixes this by introducing a FlushResultListener callback that acquires the commit while the flush lock is still held, and the tests explicitly validate both the race condition scenario (testAcquireLastIndexCommitWithConcurrentFlush) and proper cleanup on failure (testAcquireLastIndexCommitReleasesCommitOnFailure), which are exactly what a developer would write to validate this fix."
+  },
+  {
+    "instance_id": "elastic__elasticsearch-144040",
+    "quality": "High",
+    "reason": "The problem statement clearly describes deprecation warnings from `default_metric` leaking to unrelated requests during cluster state application. The source patch directly addresses this by wrapping `mapperService.updateMapping()` in a stored context to prevent warning headers from escaping, and the test oracle validates exactly this behavior by creating a mapper with a deprecated parameter and asserting the warning doesn't appear in the thread pool's response headers after `updateMapping()` is called."
+  },
+  {
+    "instance_id": "elastic__elasticsearch-144031",
+    "quality": "High",
+    "reason": "The problem statement clearly describes a bug where LIMIT 0 with TS commands fails verification because the plan is replaced with LocalRelation (removing TimeSeriesAggregate), causing a mismatch in output attribute validation. The patch directly fixes the verifier logic to check the optimized plan's output directly rather than searching for TimeSeriesAggregate nodes, and the tests explicitly validate the three cases mentioned (rate aggregation, bare field with GROUP BY ALL, and bare field with bucket) all with LIMIT 0."
+  },
+  {
+    "instance_id": "elastic__elasticsearch-142763",
+    "quality": "High",
+    "reason": "The problem statement clearly describes validating that the TOP_SNIPPETS query argument is foldable at compile time, and both the source patch and test oracle directly implement this: the patch adds `PostOptimizationVerificationAware` to check foldability, and the tests validate that literal strings and CONCAT of constants work while field references produce the expected compile-time error. The test cases in VerifierTests, LogicalPlanOptimizerTests, and TopSnippetsTests all directly correspond to the examples given in the problem statement's Expected Behaviour table."
+  },
+  {
+    "instance_id": "elastic__elasticsearch-143893",
+    "quality": "High",
+    "reason": "The problem statement clearly describes that full-text functions fail on renamed fields (e.g., `rename type AS id` then `match_phrase(id, ...)`), and both the source patch (adding `resolveToFieldAttribute` to follow rename alias chains through Project nodes) and test oracle (testing simple rename, chained rename, shadowing, intervening commands, and rejection of non-index fields) directly and comprehensively address this exact issue. A developer reading the problem statement would naturally produce a very similar fix and test suite."
+  },
+  {
+    "instance_id": "elastic__elasticsearch-143668",
+    "quality": "High",
+    "reason": "The problem statement clearly describes that `zero_terms_query` is listed as a valid option but throws an error when used. The source patch directly fixes this by adding the missing `zero_terms_query` entry to `BUILDER_APPLIERS`, and the test oracle validates exactly this behavior by testing both 'all' and 'none' values for `zero_terms_query`, plus the CSV spec tests confirm end-to-end functionality. The fix and tests are a natural, direct response to the reported issue."
+  },
+  {
+    "instance_id": "elastic__elasticsearch-143807",
+    "quality": "Medium",
+    "reason": "The source patch correctly addresses the core issue by removing workarounds (sorting hacks) that were added due to non-deterministic iteration ordering, which aligns well with the problem statement's checklist items. However, the test oracle only validates a minor string format change (VotingConfiguration{} \u2192 VotingConfiguration[]) that is a side effect of the fix rather than testing the actual reproducibility behavior described in the issue, making the test coverage incomplete relative to the stated problem."
+  },
+  {
+    "instance_id": "elastic__elasticsearch-143726",
+    "quality": "Medium",
+    "reason": "The patch correctly addresses the root cause (metadata field mappers other than IgnoredSourceFieldMapper being included when a source filter is applied), and the test oracle validates this behavior at the unit level. However, the connection between the issue description (about `_timeseries` metadata field including `_doc_count` on downsampled indices in ES|QL) and the fix (in `ObjectMapper.innerSyntheticFieldLoader` treating metadata mappers differently under source filters) requires non-trivial domain knowledge to connect, and the changelog/fix summary mentions 'source filter on metadata field mappers' rather than the `_timeseries`/`_doc_count` display bug specifically, making the alignment only partial."
+  },
+  {
+    "instance_id": "elastic__elasticsearch-140217",
+    "quality": "High",
+    "reason": "The problem statement clearly describes that ROW should allow referencing previously-declared fields (like EVAL does), and the patch directly implements this by refactoring the analyzer to resolve ROW fields sequentially (reusing the same logic as EVAL). The tests directly validate the described behavior with the exact example from the issue (ROW x = 4, y = 2, z = x + y) plus comprehensive edge cases like shadowing, null handling, chained references, and non-deterministic functions."
+  },
+  {
+    "instance_id": "elastic__elasticsearch-143710",
+    "quality": "High",
+    "reason": "The problem statement clearly identifies that the `assert false` statement in `LifecyclePolicyUsageCalculator` incorrectly fails when system data streams have no matching template, and even suggests removing the assertion as the easiest fix. The source patch does exactly that (removes the assert), and the test oracle directly validates the scenario where a data stream exists without a matching template, confirming the calculator handles it gracefully by continuing rather than crashing."
+  },
+  {
+    "instance_id": "elastic__elasticsearch-143489",
+    "quality": "High",
+    "reason": "The problem statement clearly describes that aliases in the BY clause of TS STATS commands are ignored, and both the source patch and test oracle directly address this: the patch fixes the `addAttribute` method to use the group's name/id (preserving aliases) instead of the underlying attribute's name/id, while the tests explicitly verify that aliased groupings (e.g., `foobar = cluster`) produce output with the alias name and can be referenced in subsequent KEEP commands."
+  },
+  {
+    "instance_id": "elastic__elasticsearch-143533",
+    "quality": "High",
+    "reason": "The problem statement clearly describes that date fields fail to handle object/array values even with ignore_malformed enabled, the source patch directly fixes this by adding explicit handling for START_OBJECT and START_ARRAY tokens, and the tests directly validate both the ignore_malformed case (objects are silently ignored) and the non-ignore_malformed case (proper error is thrown). All three components are tightly aligned."
+  },
+  {
+    "instance_id": "elastic__elasticsearch-143463",
+    "quality": "High",
+    "reason": "The problem statement clearly describes a 'blocks is empty' error in LimitOperator when all columns are dropped, the source patch directly fixes the root cause by passing the position count explicitly to Page constructor when blocks array is empty, and the test oracle validates exactly this scenario by creating a Page with zero blocks and verifying the LimitOperator correctly truncates it. All three components are tightly aligned around the same specific bug."
+  },
+  {
+    "instance_id": "elastic__elasticsearch-143408",
+    "quality": "High",
+    "reason": "The problem statement describes a test failure where the SQL CLI fails to handle authentication responses with multiple WWW-Authenticate header values (array format). The source patch directly fixes the JSON parsing in RemoteFailure.java to handle array-valued headers, and the test oracle adds a specific test case with a JSON fixture containing array-format WWW-Authenticate headers, which precisely validates the fix. The alignment between issue, fix, and tests is clear and direct."
+  },
+  {
+    "instance_id": "elastic__elasticsearch-140982",
+    "quality": "High",
+    "reason": "The problem statement clearly describes the need to prune unused DISSECT/GROK (RegexExtract) nodes from the query plan when their extracted fields are not used downstream. The source patch directly implements this optimization in PruneColumns.java, and the test oracle comprehensively validates both the full-pruning case (all extracted fields unused \u2192 remove entire node) and the partial-pruning limitation (some fields used \u2192 keep entire node), exactly as implied by the issue description."
+  },
+  {
+    "instance_id": "elastic__elasticsearch-143249",
+    "quality": "High",
+    "reason": "The problem statement clearly describes an AssertionError when using multi_match with mv_expand, and the fix directly addresses this by forbidding full-text functions (including multi_match, match, kql, qstr, knn, etc.) after MV_EXPAND with appropriate verification errors. The tests validate exactly this behavior - checking that these functions throw verification errors when used after MV_EXPAND, while also adding positive test cases showing valid usage patterns (full-text functions before mv_expand)."
+  },
+  {
+    "instance_id": "elastic__elasticsearch-143241",
+    "quality": "High",
+    "reason": "The problem statement clearly describes an IndexOutOfBoundsException caused by integer overflow in bounds checks for segments larger than 2GB (the negative length -152026096 is a telltale sign of int overflow). The fix directly addresses this by changing `(int) a.byteSize()` casts to use the long-based `Objects.checkFromIndexSize` overload, and the tests explicitly validate the fix by allocating segments larger than Integer.MAX_VALUE and verifying correct results, which is exactly what a developer would produce from this bug report."
+  },
+  {
+    "instance_id": "elastic__elasticsearch-141896",
+    "quality": "Medium",
+    "reason": "The problem statement describes a flaky test with an assertion error where expected and actual values appear identical (`Expected: <[2]> but: was <[2]>`), suggesting a race condition. The fix addresses a real concurrency bug in queue/state handling, and the test changes fix the race condition by moving assertions inside `assertBusy` blocks. However, the specific root cause (reading queue elements after error state is set, and the `cancel()` method not setting an error cause) requires significant implementation knowledge beyond what the problem statement provides, making it non-trivially derivable from the issue alone."
+  },
+  {
+    "instance_id": "elastic__elasticsearch-142489",
+    "quality": "High",
+    "reason": "The patch directly addresses the stated problem: fixing incorrect ExchangeExec output attributes in the reduction plan by using `replaceChildAndUpdateOutput` instead of `replaceChild` in LateMaterializationPlanner, and adding a consistency check (PhysicalVerifier) in ComputeService as described. The test oracle updates golden test files to reflect the corrected ExchangeSinkExec output attributes (e.g., `[_doc{f}, hire_date{f}]` instead of old attributes like `[emp_no{f}, hire_date{f}, salary{f}]`), directly validating the fix."
+  },
+  {
+    "instance_id": "elastic__elasticsearch-143155",
+    "quality": "High",
+    "reason": "The problem statement clearly describes that unmapped_fields='nullify'/'load' should not silently nullify or load metadata fields like _score, and the fix directly implements this by excluding metadata attributes from the unresolved collection process. The tests comprehensively validate that metadata fields fail with proper verification errors across all command types (KEEP, EVAL, WHERE, SORT, STATS, RENAME, FORK, subquery) while also confirming that properly declared METADATA fields still work correctly."
+  },
+  {
+    "instance_id": "elastic__elasticsearch-143153",
+    "quality": "High",
+    "reason": "The problem statement clearly describes that ABS of Integer.MIN_VALUE (and Long.MIN_VALUE) throws a 500 ArithmeticException and suggests it should return null with a warning instead. The source patch implements exactly this by catching ArithmeticException and returning null with a warning, and the test oracle validates both the MIN_VALUE edge cases for int and long types with the expected warning messages."
+  },
+  {
+    "instance_id": "elastic__elasticsearch-142957",
+    "quality": "Low",
+    "reason": "The problem statement describes implementing PromQL vector matching with group modifiers (on/ignoring/group_left/group_right), but the patch instead focuses on fixing selector filter propagation in binary operations - specifically ensuring that conflicting label selectors (e.g., {pod=\"p1\"} vs {pod=\"p2\"}) get attached as filters to individual aggregate functions rather than being pushed to a shared source filter. The tests validate this filter propagation behavior, not vector matching group modifiers, and the patch even contains a comment explicitly deferring the actual vector matching semantics to a separate TODO issue."
+  },
+  {
+    "instance_id": "elastic__elasticsearch-143110",
+    "quality": "Medium",
+    "reason": "The fix (changing `cells.size() - 1` to `cells.size()` in `maxOrd()`) correctly addresses the root cause of the flaky test, but the problem statement only describes a symptom (wrong ordering in TermsAggregatorTests) without explaining the underlying off-by-one bug in LinearCounting.maxOrd(). A developer would need to trace through the code to discover that the cardinality ordering failure stems from this specific off-by-one error in HyperLogLogPlusPlus, making the connection non-obvious from the issue alone. The test oracle directly validates the fix with a clear exclusive upper bound assertion, which is well-aligned with the patch but requires understanding the root cause rather than the surface symptom."
+  },
+  {
+    "instance_id": "elastic__elasticsearch-141919",
+    "quality": "Medium",
+    "reason": "The patch correctly addresses the core issue (ClassCastException when merging TopDocs with incompatible sort field types like Float vs Long) and the tests validate this fix. However, the patch goes significantly beyond what the problem statement implies - it adds a full DOUBLE conversion pathway in SortFieldValidation, changes the behavior for Long/Double mixing from an error to a valid operation, and adds complex BytesRef handling in InternalTopHits, none of which are clearly implied by the simple 'prevent ClassCastException' description in the issue."
+  },
+  {
+    "instance_id": "elastic__elasticsearch-142882",
+    "quality": "High",
+    "reason": "The problem statement clearly describes a specific failure (IllegalStateException about missing StubRelation) when using INLINE STATS with aggregations of constants. The source patch directly addresses this by checking if StubRelation exists before attempting replacement, and the test oracle validates exactly the failing query patterns mentioned in the issue (min(123), min(123)+max(123), min(null)+median(null), etc.), making the alignment between problem, fix, and tests very clear and direct."
+  },
+  {
+    "instance_id": "elastic__elasticsearch-142575",
+    "quality": "Medium",
+    "reason": "The problem statement describes a flaky CI test (testFieldDataStats) failing with 'timed out waiting for green state', which is a symptom of a shard allocation bug. The fix correctly addresses a root cause in ReplicaShardAllocator where NOT_PREFERRED decisions were incorrectly treated like NO decisions (blocking allocation), and the tests validate this specific behavior. However, the connection between the flaky test symptom and the NOT_PREFERRED allocation bug requires significant domain knowledge to infer - a developer reading only the problem statement would not naturally arrive at this specific fix without additional investigation, making the alignment medium rather than high."
+  },
+  {
+    "instance_id": "elastic__elasticsearch-142401",
+    "quality": "High",
+    "reason": "The patch directly addresses both issues in the problem statement: (1) it adds `onResponseAfterTimeout` and `onFailureAfterTimeout` callbacks to fix the inconsistent logging of partial failures between async and sync requests, and (2) it implements severity-based logging (ERROR for 5xx, WARN for others) for store result failures. The tests validate exactly these behaviors - callback invocation after timeout and correct status classification - which are precisely what the problem statement describes."
+  },
+  {
+    "instance_id": "elastic__elasticsearch-142937",
+    "quality": "High",
+    "reason": "The problem statement clearly identifies that negative longs (specifically -1) are being passed to writeVLong in NodeGpuStatsResponse, causing serialization failure. The fix directly addresses this by changing the sentinel value from -1L to 0L and adding validation to reject negative values at construction time, while the tests explicitly verify serialization works with 0L (no GPU case), round-trips correctly with valid GPU data, and that negative values are rejected with appropriate error messages."
+  },
+  {
+    "instance_id": "elastic__elasticsearch-142386",
+    "quality": "High",
+    "reason": "The problem statement clearly describes a QlIllegalArgumentException when DATE_ADD with a field reference is used in a range query (non-foldable bounds), the fix directly addresses this by checking foldability before using RangeQuery and falling back to ScriptQuery, and the tests validate exactly this scenario - both unit tests for the foldability check and integration tests for the DATE_ADD with field reference case."
+  },
+  {
+    "instance_id": "elastic__elasticsearch-142450",
+    "quality": "High",
+    "reason": "The problem statement clearly describes transforms producing empty destination indexes when queries reference runtime fields. The source patch directly addresses the root causes (PIT index filter ignoring runtime mappings, missing runtime mappings in checkpoint and progress searches), and the tests directly validate each fix by checking that runtime mappings are included in search requests and that PIT index filters are omitted when runtime mappings are present."
+  },
+  {
+    "instance_id": "elastic__elasticsearch-142752",
+    "quality": "High",
+    "reason": "The problem statement clearly identifies that sentinel values (Long.MIN_VALUE/Long.MAX_VALUE) from DocValuesSkipper leak through SearchContextStats.min()/max() causing overflow in Rounding. The source patch directly fixes this by filtering sentinel values at the leaf level and returning null when no real values exist, while the test oracle validates exactly this scenario - creating indices without actual date field values and asserting null is returned instead of sentinel values that would cause Rounding to fail."
+  },
+  {
+    "instance_id": "elastic__elasticsearch-141056",
+    "quality": "Medium",
+    "reason": "The source patch directly addresses the two stated issues (inline stats pruning bug when dropping groupings, and PruneColumns skipping Projects), and the CSV spec tests clearly validate the first issue. However, the test oracle patch involves significant refactoring (moving many tests from LogicalPlanOptimizerTests to a new PruneColumnsTests class, changing the union index schema, and updating multiple unrelated test expectations) that goes well beyond what the problem statement implies, making it difficult to infer these specific test changes from the issue description alone."
+  },
+  {
+    "instance_id": "elastic__elasticsearch-142117",
+    "quality": "High",
+    "reason": "The problem statement clearly requests multi-valued field support for TOP_SNIPPETS (analogous to TO_LOWER), and the patch directly implements this by changing the evaluator to handle multi-valued field blocks, adding a new capability flag (TOP_SNIPPETS_MV), updating documentation, and adding CSV spec tests. The test oracle validates the core behavior (scoring order, multi-value handling) which directly corresponds to the implementation changes."
+  },
+  {
+    "instance_id": "elastic__elasticsearch-142330",
+    "quality": "High",
+    "reason": "The problem statement clearly describes the need to differentiate between client errors (4xx) logged at DEBUG and server errors (5xx) logged at ERROR level in the compute engine's Driver. The source patch directly implements this by changing WARN to ERROR for 5xx errors, and the test oracle validates exactly this behavior by testing that server errors (IllegalStateException, ArrayIndexOutOfBoundsException, etc.) are logged at ERROR level while client errors (bad request, illegal argument, circuit breaking) are logged at DEBUG level."
+  },
+  {
+    "instance_id": "elastic__elasticsearch-142328",
+    "quality": "High",
+    "reason": "The problem statement clearly identifies an NPE when a null query parameter value is passed, pointing directly to ExpressionBuilder.java:1321. The source patch fixes exactly that line by adding a null check and returning a proper error, while the test oracle validates this fix across multiple ES|QL commands using null parameter values - all directly implied by the issue description."
+  },
+  {
+    "instance_id": "elastic__elasticsearch-141777",
+    "quality": "Medium",
+    "reason": "The source patch correctly implements the core task (upgrading Jackson from 2.17.2 to 2.21.0) as described in the problem statement, but the test oracle only validates a minor side effect\u2014a changed error message format in Jackson 2.21.0\u2014rather than testing the upgrade itself or its primary behavioral changes. The test changes and several source patch additions (surrogate handling, parser token checks) address compatibility issues introduced by the upgrade that aren't mentioned in the problem statement, making them non-obvious from the issue alone."
+  },
+  {
+    "instance_id": "elastic__elasticsearch-141619",
+    "quality": "High",
+    "reason": "The problem statement clearly describes adding an implicit sort by timestamp DESC for TS queries without STATS or SORT commands. The source patch implements exactly this via `AddImplicitTimestampSort` rule in the analyzer, and the test oracle directly validates all the key cases: implicit sort added for basic TS queries, not added when STATS/explicit SORT present, and edge cases like dropped @timestamp fields."
+  },
+  {
+    "instance_id": "elastic__elasticsearch-141811",
+    "quality": "High",
+    "reason": "The problem statement clearly describes that decoding a malformed/old PIT ID causes an unhandled IllegalStateException (500 error) instead of a proper error response, and that the fix should bail out early when an unknown transport version is detected. The source patch directly implements this by checking `version.isKnown()` and throwing an `IllegalArgumentException` (which maps to a 400 error), and the test oracle validates exactly this behavior by encoding with an unknown transport version and asserting the correct exception is thrown."
+  },
+  {
+    "instance_id": "elastic__elasticsearch-141973",
+    "quality": "High",
+    "reason": "The problem statement clearly describes an NPE caused by a null field name in CollapseBuilder, the source patch directly addresses this by adding a null check with a descriptive error message, and the test oracle validates exactly this scenario by parsing an empty JSON collapse construct and expecting the specific error message. All three components are tightly aligned."
+  },
+  {
+    "instance_id": "elastic__elasticsearch-141815",
+    "quality": "High",
+    "reason": "The problem statement clearly describes the issue (large memory consumption from logging CancelTasksRequest descriptions with many nodes/actions) and the proposed solution (truncate arrays when too large). The patch directly implements truncation at a MAX_DESCRIPTION_ITEMS threshold, and the tests comprehensively validate all boundary cases: no truncation needed, truncating nodes only, truncating actions only, truncating both, and exactly at the limit. A developer reading the issue would naturally produce a very similar fix."
+  },
+  {
+    "instance_id": "elastic__elasticsearch-141592",
+    "quality": "High",
+    "reason": "The problem statement clearly describes the need for better error messages when FUSE is missing required columns (_id, _index, _score, _fork), and both the source patch and test oracle directly implement and validate exactly this behavior. The fix replaces generic 'Unknown column' messages with specific FUSE-context messages, and the tests verify these exact new error strings across the relevant scenarios."
+  },
+  {
+    "instance_id": "elastic__elasticsearch-141503",
+    "quality": "High",
+    "reason": "The problem statement describes an `UnresolvedException` crash when calling `dataType()` on an unresolved `@timestamp` object in the TS STATS command. The source patch directly fixes this by checking for `UnresolvedTimestamp` before calling `dataType()`, and the test oracle validates that a proper error message is returned instead of an exception, which is exactly what the issue describes."
+  },
+  {
+    "instance_id": "elastic__elasticsearch-141482",
+    "quality": "High",
+    "reason": "The problem statement clearly describes adding warnings when a SORT is followed by a LOOKUP JOIN (which doesn't preserve order), with the exception that no warning is needed if there's a SORT after the LOOKUP JOIN. The source patch implements exactly this via WarnLostSortOrder rule, and the test oracle validates all the key scenarios: SORT before LOOKUP JOIN warns, SORT before LOOKUP JOIN with SORT after doesn't warn, and LOOKUP JOIN without preceding SORT doesn't warn."
+  },
+  {
+    "instance_id": "elastic__elasticsearch-141532",
+    "quality": "Medium",
+    "reason": "The patch addresses the core issue (UnresolvedException when PromQL queries reference unmapped fields) by handling unresolved attributes gracefully and filtering nulls, which aligns with the stack trace. However, the problem statement only provides a stack trace without the actual query, so the extensive test cases for unmapped fields, null filtering behavior changes, and the new capability flag `promql_unmapped_fields_filter_nulls` go significantly beyond what could be inferred from the issue alone."
+  },
+  {
+    "instance_id": "elastic__elasticsearch-141523",
+    "quality": "High",
+    "reason": "The problem statement clearly describes that FUSE's validation incorrectly passes when only some subqueries have a LIMIT, and the fix directly addresses this by implementing a proper `hasLimitedInput` function that checks all branches of non-unary plans. The tests directly validate the exact scenario described in the issue (one subquery with LIMIT, one without) and also extend the fix to MMR as mentioned in the 'side note' of the problem statement."
+  },
+  {
+    "instance_id": "elastic__elasticsearch-141371",
+    "quality": "High",
+    "reason": "The problem statement clearly describes an infinite loop in the analyzer when subqueries reference indices with no fields, the source patch directly fixes the condition that causes repeated Project node insertion in `resolveFork`, and the tests validate exactly this scenario with both no-fields indices and empty indices in subquery FROM commands. The fix and tests are a natural, direct response to the described issue."
+  },
+  {
+    "instance_id": "elastic__elasticsearch-141519",
+    "quality": "High",
+    "reason": "The patch directly addresses the stated problem by removing synchronized from writeUnreportedCounts() and runningTotalStats(), replacing the unreportedStats field with an AtomicReference to avoid race conditions, and ensuring persistence is called outside any lock. The test oracle precisely validates the fix's intent by simulating a blocked persistence operation and verifying that concurrent stats reads (runningTotalStats) complete without blocking, which is exactly the acceptance criteria described in the issue."
+  },
+  {
+    "instance_id": "elastic__elasticsearch-140515",
+    "quality": "Medium",
+    "reason": "The patch correctly addresses the core problem (preventing OOM from too many IDs in IdsQuery) but uses `max_result_window` as the limit rather than the memory-based approach described in the issue. The problem statement explicitly says 'ideally based on the available memory of the node,' while the implementation reuses an existing index setting as a proxy, which is a reasonable but non-obvious design choice not implied by the issue description."
+  },
+  {
+    "instance_id": "elastic__elasticsearch-141242",
+    "quality": "High",
+    "reason": "The problem statement describes a flaky test where a constant BytesRef block returns wrong values (one book's data appears instead of another's), which is a classic aliasing/mutation bug. The fix correctly deep-copies the BytesRef when creating constant vectors so mutations to the original don't affect the stored value, and the test oracle directly validates this by modifying the original BytesRef after block creation and asserting the block still returns the original value."
+  },
+  {
+    "instance_id": "elastic__elasticsearch-141479",
+    "quality": "High",
+    "reason": "The problem statement clearly requests adding human-readable `start_time` formatting to the snapshot status API (analogous to how `time_in_millis`/`time` is handled), the source patch directly implements this by adding `timestampFieldsFromUnixEpochMillis`, and the test oracle explicitly validates that `start_time` appears as a formatted timestamp string alongside `start_time_in_millis` when human-readable output is enabled. All three components are tightly aligned."
+  },
+  {
+    "instance_id": "elastic__elasticsearch-141196",
+    "quality": "High",
+    "reason": "The fix and tests directly correspond to the reported error - replacing the cryptic 'expected named expression for grouping' exception with a helpful message, and the test validates exactly this scenario with a renamed timestamp field."
+  },
+  {
+    "instance_id": "elastic__elasticsearch-141249",
+    "quality": "Medium",
+    "reason": "The problem statement is very terse (just a title and a PR link), making it hard to fully evaluate alignment. The patch and tests do address 'scalar function arithmetic with raw instant vector selector' by fixing the output attribute computation in VectorBinaryOperator and making getType more permissive, and the tests validate scalar-function-with-instant-vector arithmetic (pi() - network.bytes_in) and scalar-scalar arithmetic. However, the specific implementation details (the assert, the interface method addition, the getType change) are not clearly derivable from the minimal problem description alone."
+  },
+  {
+    "instance_id": "elastic__elasticsearch-141157",
+    "quality": "High",
+    "reason": "The problem statement clearly describes an `illegal data type [time_duration]` error during constant folding in the `CASE` function, and the fix directly addresses this by overriding `fold()` in `Case.java` to handle `DATE_PERIOD` and `TIME_DURATION` types manually instead of going through evaluators. The test oracle validates exactly this behavior with both `TIME_DURATION` and `DATE_PERIOD` types, including true/false conditions and multiple conditions, which directly corresponds to the reported issue."
+  },
+  {
+    "instance_id": "elastic__elasticsearch-135899",
+    "quality": "High",
+    "reason": "The problem statement clearly describes that ascending sort with `missing: _first` on date fields fails because the sentinel value (Long.MIN_VALUE) is passed to the date formatter. The source patch directly fixes this by returning null for Long.MIN_VALUE or Long.MAX_VALUE in the DateTime format method, and the test oracle validates exactly this behavior - checking that formatSortValue returns null for both sentinel values across various date formats."
+  },
+  {
+    "instance_id": "elastic__elasticsearch-140027",
+    "quality": "High",
+    "reason": "The problem statement clearly describes a bug where INLINE STATS with null grouping returns null for the count instead of the correct value, the source patch directly fixes the root cause (PruneLeftJoinOnNullMatchingField incorrectly pruning InlineJoin when the join key is null), and the test oracle validates exactly this behavior with multiple scenarios covering the described issue. A developer reading the problem statement would naturally investigate the join pruning optimization and arrive at the same fix."
+  },
+  {
+    "instance_id": "elastic__elasticsearch-140791",
+    "quality": "Medium",
+    "reason": "The patch correctly addresses the root cause (a race condition where ReadinessService misses cluster state updates if the cluster is already started before the listener is registered), and the new unit test `testAlreadyReadyWhenStarted` directly validates this fix. However, the problem statement only describes a flaky test failure with an assertion error, without explaining the race condition root cause, so a developer couldn't fully infer the specific fix (moving `addListener` to `doStart`, checking lifecycle state, caching `lastClusterState`) from the issue description alone. The test improvements to `MockReadinessService` using `assertBusy` are reasonable but go beyond what the issue directly implies."
+  },
+  {
+    "instance_id": "elastic__elasticsearch-140594",
+    "quality": "High",
+    "reason": "The problem statement clearly describes the need to validate PromQL function input types (range vector vs instant vector), and both the patch and tests directly implement this: the patch adds type information to plan nodes and validates input types during parsing, while the tests verify that using a range vector where an instant vector is expected (and vice versa) produces appropriate error messages. The test cases directly mirror the examples given in the issue."
+  },
+  {
+    "instance_id": "elastic__elasticsearch-137678",
+    "quality": "Medium",
+    "reason": "The patch addresses the stated goal of improving field name resolution to avoid using wildcard '*' for subquery and FORK branch field caps calls, which aligns with the problem statement. However, the specific implementation details\u2014particularly the complex logic around `currentBranchKeepRefs`, `reduceColumnsAfterFork`, and `shouldCollectReferencedFields`\u2014and the nuanced test case changes (e.g., `testForkBranchWithKeep` changing from specific fields to `ALL_FIELDS`, while `testForkEval` changes from `*` to just `_index`) involve non-obvious behavioral decisions that a developer couldn't fully infer from the brief problem statement alone."
+  },
+  {
+    "instance_id": "elastic__elasticsearch-140094",
+    "quality": "High",
+    "reason": "The problem statement clearly requests base64 encoded output format for dense vector fields, and both the source patch and test oracle directly implement and validate exactly this: adding 'binary' (base64) and 'array' format options to docValueFormat, with tests confirming correct behavior for all element types (float, byte, bit, bfloat16) and rejecting invalid format names. The implementation choices (format names 'binary' vs 'array', error handling) are natural extensions of the stated requirements."
+  },
+  {
+    "instance_id": "elastic__elasticsearch-139873",
+    "quality": "High",
+    "reason": "The patch directly implements the 'clean' solution described in the issue (adjusting the PromQL grammar to support parameters in duration positions), and the tests clearly validate the exact use case shown in the problem statement (e.g., `rate(http_requests_total[?_step])`). Both named and positional parameters are tested, along with appropriate error cases for unknown parameters, invalid duration values, and wrong types."
+  },
+  {
+    "instance_id": "elastic__elasticsearch-140394",
+    "quality": "High",
+    "reason": "The patch directly addresses the problem statement by converting the up-front `HashMap<IndexId, Collection<String>>` construction in `indexMetaDataToRemoveAfterRemovingSnapshots` to a lazy `Iterator`, and integrating index-metadata blob tracking into the existing `ShardBlobsToDelete` (renamed `BlobsToDelete`) class which already enforces memory bounds. The tests validate both the new iterator-based API in `RepositoryDataTests` and the extended `BlobsToDelete` capacity behavior (now covering both shard-level and index-level records) in `BlobStoreRepositoryTests`, directly reflecting the fix's intent."
+  },
+  {
+    "instance_id": "elastic__elasticsearch-140227",
+    "quality": "High",
+    "reason": "The problem statement describes a ClassCastException caused by reading from the wrong block channel (hardcoded 0 instead of the actual channel), and the fix directly addresses this by changing `page.getBlock(0)` to `page.getBlock(channel)`. The test oracle validates this fix by adding prefix and suffix blocks to pages and parameterizing the channel index, directly testing the scenario where the values block is not at position 0."
+  },
+  {
+    "instance_id": "elastic__elasticsearch-140138",
+    "quality": "High",
+    "reason": "The problem statement clearly describes applying the same default limit (1M) to PromQL as is used for TS|STATS commands. The source patch directly implements this by checking for `PromqlCommand` alongside `TimeSeriesAggregate` in the limit detection logic, and the test oracle adds a specific test case for a PROMQL query expecting the timeseries default limit, which directly validates the fix. The alignment between problem, patch, and tests is clear and straightforward."
+  },
+  {
+    "instance_id": "elastic__elasticsearch-140099",
+    "quality": "High",
+    "reason": "The problem statement clearly describes wiring the range selector duration to the window for TimeSeriesAggregateFunctions to allow queries where step differs from range vector duration. The patch directly implements this by removing the step/range alignment restriction, passing the range selector duration as the window parameter, and the tests validate exactly this behavior with a new test case using step=5m with a [10m] range selector."
+  },
+  {
+    "instance_id": "elastic__elasticsearch-137744",
+    "quality": "High",
+    "reason": "The problem statement clearly describes a `DateTimeException` being thrown during date parsing that results in a 500 error instead of a proper 4xx response. The fix directly addresses this by catching `DateTimeException` and wrapping it in `IllegalArgumentException` in the relevant date parsing methods, and the test oracle validates exactly this scenario (parsing '2026-02-29' with format 'yyyy-MM-dd' producing a null result with the expected warning message about the leap year error)."
+  }
+]

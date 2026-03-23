@@ -1,0 +1,48 @@
+{
+  "instance_id": "elastic__elasticsearch-144588",
+  "repo": "elastic/elasticsearch",
+  "repo_language": "Java",
+  "base_commit": "880df183fc6e8bcf9b2369ba41a8a94010128df5",
+  "merge_commit": "251dc199344b834585e09e163aeebd7080978d01",
+  "version": "9.4.0",
+  "pr_number": 144588,
+  "instance_type": "bug_fix",
+  "problem_statement_title": "Failure in ExponentialHistogramPercentilesAggregatorTests.testCustomPercentiles",
+  "problem_statement_description": "### CI Link\n\nhttps://gradle-enterprise.elastic.co/s/pvktqhbmurnds/tests/task/:x-pack:plugin:analytics:test/details/org.elasticsearch.xpack.analytics.aggregations.metrics.ExponentialHistogramPercentilesAggregatorTests/testCustomPercentiles?top-execution=1\n\n### Repro line\n\n./gradlew \":x-pack:plugin:analytics:test\" --tests \"org.elasticsearch.xpack.analytics.aggregations.metrics.ExponentialHistogramPercentilesAggregatorTests.testCustomPercentiles\" -Dtests.seed=7C531DAE615C757 -Dtests.locale=es-SV -Dtests.timezone=SystemV/CST6CDT -Druntime.java=25\t\n\n### Does it reproduce?\n\nYes\n\n### Applicable branches\n\nmain\n\n### Failure history\n\nhttps://gradle-enterprise.elastic.co/scans/tests?search.startTimeMax=1773964799999&search.startTimeMin=1773273600000&search.timeZoneId=Europe%2FLondon&tests.container=org.elasticsearch.xpack.analytics.aggregations.metrics.ExponentialHistogramPercentilesAggregatorTests&tests.test=testCustomPercentiles\n\n### Failure excerpt\n\n```\njava.lang.AssertionError: Percentiles should be non-decreasing\n        at __randomizedtesting.SeedInfo.seed([7C531DAE615C757:BEBBB6D444D49997]:0)\n        at org.junit.Assert.fail(Assert.java:89)\n        at org.junit.Assert.assertTrue(Assert.java:42)\n        at org.elasticsearch.xpack.analytics.aggregations.metrics.ExponentialHistogramPercentilesAggregatorTests.lambda$testCustomPercentiles$17(ExponentialHistogramPercentilesAggregatorTests.java:138)\n        at org.elasticsearch.search.aggregations.AggregatorTestCase.testCase(AggregatorTestCase.java:881)\n        at org.elasticsearch.xpack.analytics.aggregations.metrics.ExponentialHistogramPercentilesAggregatorTests.testCase(ExponentialHistogramPercentilesAggregatorTests.java:204)\n        at org.elasticsearch.xpack.analytics.aggregations.metrics.ExponentialHistogramPercentilesAggregatorTests.testCustomPercentiles(ExponentialHistogramPercentilesAggregatorTests.java:130)\n```",
+  "patch": "diff --git a/libs/exponential-histogram/src/main/java/org/elasticsearch/exponentialhistogram/ExponentialHistogramQuantile.java b/libs/exponential-histogram/src/main/java/org/elasticsearch/exponentialhistogram/ExponentialHistogramQuantile.java\n--- a/libs/exponential-histogram/src/main/java/org/elasticsearch/exponentialhistogram/ExponentialHistogramQuantile.java\n+++ b/libs/exponential-histogram/src/main/java/org/elasticsearch/exponentialhistogram/ExponentialHistogramQuantile.java\n@@ -70,7 +70,8 @@ public static double getQuantile(ExponentialHistogram histo, double quantile) {\n         if (lowerRank == upperRank) {\n             result = values.valueAtRank();\n         } else {\n-            result = values.valueAtPreviousRank() * (1 - upperFactor) + values.valueAtRank() * upperFactor;\n+            double delta = values.valueAtRank() - values.valueAtPreviousRank();\n+            result = values.valueAtPreviousRank() + delta * upperFactor;\n         }\n         return removeNegativeZero(result);\n     }",
+  "test_patch": "diff --git a/libs/exponential-histogram/src/test/java/org/elasticsearch/exponentialhistogram/QuantileAccuracyTests.java b/libs/exponential-histogram/src/test/java/org/elasticsearch/exponentialhistogram/QuantileAccuracyTests.java\n--- a/libs/exponential-histogram/src/test/java/org/elasticsearch/exponentialhistogram/QuantileAccuracyTests.java\n+++ b/libs/exponential-histogram/src/test/java/org/elasticsearch/exponentialhistogram/QuantileAccuracyTests.java\n@@ -42,6 +42,7 @@\n import static org.elasticsearch.exponentialhistogram.ExponentialScaleUtils.computeIndex;\n import static org.hamcrest.Matchers.closeTo;\n import static org.hamcrest.Matchers.equalTo;\n+import static org.hamcrest.Matchers.greaterThanOrEqualTo;\n import static org.hamcrest.Matchers.lessThan;\n import static org.hamcrest.Matchers.lessThanOrEqualTo;\n import static org.hamcrest.Matchers.notANumber;\n@@ -275,22 +276,26 @@ private double testQuantileAccuracy(double[] values, int bucketCount) {\n         double maxError = 0;\n         double allowedError = getMaximumRelativeError(values, bucketCount);\n \n+        double lastQuantile = Double.NEGATIVE_INFINITY;\n         // Compare histogram quantiles with exact quantiles\n         for (double q : QUANTILES_TO_TEST) {\n             double percentileRank = q * (values.length - 1);\n             int lowerRank = (int) Math.floor(percentileRank);\n             int upperRank = (int) Math.ceil(percentileRank);\n             double upperFactor = percentileRank - lowerRank;\n \n+            double histoValue = ExponentialHistogramQuantile.getQuantile(histogram, q);\n+            // values should be monotonically increasing\n+            assertThat(histoValue, greaterThanOrEqualTo(lastQuantile));\n+            lastQuantile = histoValue;\n+\n             if (values[lowerRank] < 0 && values[upperRank] > 0) {\n                 // the percentile lies directly between a sign change and we interpolate linearly in-between\n                 // in this case the relative error bound does not hold\n                 continue;\n             }\n             double exactValue = values[lowerRank] * (1 - upperFactor) + values[upperRank] * upperFactor;\n \n-            double histoValue = ExponentialHistogramQuantile.getQuantile(histogram, q);\n-\n             // Skip comparison if exact value is close to zero to avoid false-positives due to numerical imprecision\n             if (Math.abs(exactValue) < 1e-100) {\n                 continue;",
+  "fail_to_pass": [
+    "org.elasticsearch.exponentialhistogram.QuantileAccuracyTests::testExplicitSkewedData"
+  ],
+  "pass_to_pass": [
+    "org.elasticsearch.exponentialhistogram.QuantileAccuracyTests::testGammaDistribution",
+    "org.elasticsearch.exponentialhistogram.QuantileAccuracyTests::testExponentialDistribution",
+    "org.elasticsearch.exponentialhistogram.QuantileAccuracyTests::testBasicSmall",
+    "org.elasticsearch.exponentialhistogram.QuantileAccuracyTests::testPercentilesClampedToMinMax",
+    "org.elasticsearch.exponentialhistogram.QuantileAccuracyTests::testMinMaxClampedPercentileAccuracy",
+    "org.elasticsearch.exponentialhistogram.QuantileAccuracyTests::testSkewedData",
+    "org.elasticsearch.exponentialhistogram.QuantileAccuracyTests::testBetaDistribution",
+    "org.elasticsearch.exponentialhistogram.QuantileAccuracyTests::testDataWithZeros",
+    "org.elasticsearch.exponentialhistogram.QuantileAccuracyTests::testEmptyHistogram",
+    "org.elasticsearch.exponentialhistogram.QuantileAccuracyTests::testSingleValueHistogram",
+    "org.elasticsearch.exponentialhistogram.QuantileAccuracyTests::testPercentileOverlapsZeroBucket",
+    "org.elasticsearch.exponentialhistogram.QuantileAccuracyTests::testMixedSignValues",
+    "org.elasticsearch.exponentialhistogram.QuantileAccuracyTests::testWeibullDistribution",
+    "org.elasticsearch.exponentialhistogram.QuantileAccuracyTests::testLogNormalDistribution",
+    "org.elasticsearch.exponentialhistogram.QuantileAccuracyTests::testBigJump",
+    "org.elasticsearch.exponentialhistogram.QuantileAccuracyTests::testBucketCountImpact",
+    "org.elasticsearch.exponentialhistogram.QuantileAccuracyTests::testUniformDistribution",
+    "org.elasticsearch.exponentialhistogram.QuantileAccuracyTests::testNoNegativeZeroReturned",
+    "org.elasticsearch.exponentialhistogram.QuantileAccuracyTests::testNormalDistribution"
+  ],
+  "test_commands": [
+    "./gradlew :libs:exponential-histogram:test --tests org.elasticsearch.exponentialhistogram.QuantileAccuracyTests --no-daemon --stacktrace -x javadoc --no-configuration-cache --max-workers=2"
+  ],
+  "selected_test_files_to_run": [
+    "libs/exponential-histogram/src/test/java/org/elasticsearch/exponentialhistogram/QuantileAccuracyTests.java"
+  ],
+  "test_support_files": [],
+  "source_files": [
+    "libs/exponential-histogram/src/main/java/org/elasticsearch/exponentialhistogram/ExponentialHistogramQuantile.java"
+  ]
+}
