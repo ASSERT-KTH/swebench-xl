@@ -200,7 +200,7 @@ def main() -> None:
         except Exception as e:
             result = {
                 "pr_number": pr_number,
-                "instance_id": f"{owner}__{repo_name}-{pr_number}",
+                "instance_id": f"{owner}__{repo_name}-{pr_number}".lower(),
                 "repo": args.repo,
                 "title": pr["title"],
                 "merge_commit": shas["merge_commit"],

@@ -388,11 +388,34 @@ def run_local_oracle(
     # ── 4. Apply gold patch (unless NOP mode) ──
     if nop:
         print(f"[local] NOP mode — skipping gold patch")
-    elif gold_patch:
-        print(f"[local] Applying gold patch...")
-        ok = _apply_patch(gold_patch, clone_dir)
-        if not ok:
-            print(f"[local] WARNING: gold patch failed to apply")
+    else:
+        # Prefer git checkout for source files — directly checks out the
+        # correct file content from the merge commit, avoiding CRLF /
+        # whitespace mismatches that can cause reconstructed patches to fail.
+        source_files = instance.get("source_files", [])
+        merge_commit = instance["merge_commit"]
+        applied = False
+
+        if source_files:
+            print(f"[local] Checking out {len(source_files)} source file(s) from {merge_commit[:10]}...")
+            ret = subprocess.run(
+                ["git", "checkout", merge_commit, "--"] + source_files,
+                cwd=clone_dir, capture_output=True, timeout=60,
+            )
+            if ret.returncode == 0:
+                applied = True
+            else:
+                print(f"[local] git checkout failed: {ret.stderr.decode()[:200]}")
+
+        if not applied and gold_patch:
+            print(f"[local] Applying gold patch...")
+            ok = _apply_patch(gold_patch, clone_dir)
+            if not ok:
+                print(f"[local] WARNING: gold patch failed to apply")
+                return 0
+
+        if not applied and not gold_patch and not source_files:
+            print(f"[local] WARNING: no source files or gold patch to apply")
             return 0
 
     # ── 5. Purge old test results ──

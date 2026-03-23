@@ -224,7 +224,7 @@ def verify_pr(
     merge_commit = shas["merge_commit"]
     base_commit = shas["base_commit"]
     owner, repo_name = repo.split("/")
-    instance_id = f"{owner}__{repo_name}-{pr_number}"
+    instance_id = f"{owner}__{repo_name}-{pr_number}".lower()
 
     adapter = get_adapter(config.adapter_name) if config else get_adapter("java-gradle")
 

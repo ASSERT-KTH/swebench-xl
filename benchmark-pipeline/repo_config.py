@@ -62,7 +62,7 @@ class RepoConfig:
     @property
     def base_image_tag(self) -> str:
         """Docker tag for the per-repo base image (e.g. ``swebench-base-elastic-elasticsearch``)."""
-        return f"swebench-base-{self.slug.replace('/', '-')}"
+        return f"swebench-base-{self.slug.replace('/', '-')}".lower()
 
     def get_clone_dir(self) -> str:
         """Resolve clone directory from env var or default."""
@@ -156,5 +156,23 @@ register_repo(RepoConfig(
         "gradle_flags": [
             "--no-daemon", "--stacktrace", "--max-workers=2",
         ],
+    },
+))
+
+register_repo(RepoConfig(
+    slug="BabylonJS/Babylon.js",
+    adapter_name="babylon",
+    base_image="node:20-bookworm",
+    system_packages="git python3 python3-pip curl wget unzip jq patch",
+    no_root_user="node",
+    version_files=["packages/public/umd/babylonjs/package.json"],
+    version_key="version",
+    clone_dir_env_var="BABYLONJS_CLONE_DIR",
+    default_clone_dir="/tmp/babylonjs-pipeline",
+    test_config_files={"jest.config.ts", "jest.config.js", "tsconfig.test.json"},
+    extra_test_path_segments=["/test/unit/", "/__tests__/"],
+    extra={
+        "jest_flags": ["--ci", "--no-cache", "--forceExit"],
+        "npm_memory_limit": 8192,
     },
 ))
