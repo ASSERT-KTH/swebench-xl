@@ -355,11 +355,16 @@ def main():
             print(line)
 
     if args.categorize:
-        # Collect unresolved instances with their stats
+        # Respect --resolved / --unresolved filters
         write_buckets = {k: [] for k in WRITE_CATEGORIES}
         read_buckets = {k: [] for k in READ_CATEGORIES}
         for file, instance_id in trajectory_files:
-            if is_resolved(instance_id):
+            resolved = is_resolved(instance_id)
+            if args.resolved and not resolved:
+                continue
+            if args.unresolved and resolved:
+                continue
+            if not args.resolved and not args.unresolved and resolved:
                 continue
             source_files = source_files_from_instance_id(instance_id)
             stats = get_recall_precision_stats(load_trajectory(file), source_files, exclude_tests=args.exclude_tests)
@@ -368,8 +373,9 @@ def main():
             write_buckets[w_cat].append((instance_id, stats))
             read_buckets[r_cat].append((instance_id, stats))
 
+        filter_label = "RESOLVED" if args.resolved else "UNRESOLVED" if args.unresolved else "UNRESOLVED"
         print("\n" + "=" * 70)
-        print("UNRESOLVED INSTANCES — WRITE CATEGORIES")
+        print(f"{filter_label} INSTANCES \u2014 WRITE CATEGORIES")
         print(f"  Thresholds: precision >= {args.precision_threshold}, recall >= {args.recall_threshold}")
         print("=" * 70)
         for cat_key, cat_info in WRITE_CATEGORIES.items():
@@ -381,7 +387,7 @@ def main():
                 print(f"    {iid}  write_recall={w['recall']:.2f}  write_precision={w['precision']:.2f}")
 
         print("\n" + "=" * 70)
-        print("UNRESOLVED INSTANCES — READ CATEGORIES")
+        print(f"{filter_label} INSTANCES \u2014 READ CATEGORIES")
         print(f"  Thresholds: precision >= {args.precision_threshold}, recall >= {args.recall_threshold}")
         print("=" * 70)
         for cat_key, cat_info in READ_CATEGORIES.items():
