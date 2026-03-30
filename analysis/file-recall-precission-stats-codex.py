@@ -46,7 +46,14 @@ def get_reads_and_writes(steps):
                     except (json.JSONDecodeError, TypeError):
                         pass
                 if cmd:
+                    # Match absolute /app/ paths
                     paths = re.findall(r'(/app/[^\s\'\"\\|>;]+)', cmd)
+                    # Match relative paths (e.g. x-pack/..., src/...) and normalise to /app/
+                    rel_paths = re.findall(r'(?:^|\s)([a-zA-Z0-9_.][^\s\'\"\\|>;]*\.[a-zA-Z0-9]+)', cmd)
+                    for p in rel_paths:
+                        clean = p.rstrip(".,;:)(")
+                        if '/' in clean and not clean.startswith('/'):
+                            paths.append(f"/app/{clean}")
                     for p in paths:
                         clean = p.rstrip(".,;:)(")
                         reads.add(clean)
@@ -92,6 +99,91 @@ def _precision_recall(predicted_set, gold_set):
 def _is_test_file(path):
     return os.path.basename(path).endswith("Tests.java")
 
+DEFAULT_RECALL_THRESHOLD = 0.7
+DEFAULT_PRECISION_THRESHOLD = 0.5
+
+WRITE_CATEGORIES = {
+    "high_prec_high_recall": {
+        "label": "High Precision, High Recall",
+        "explanation": "Agent edited the right files and covered most/all of them. "
+                       "Failure likely due to incorrect content in the edits, not file targeting.",
+    },
+    "high_prec_low_recall": {
+        "label": "High Precision, Low Recall",
+        "explanation": "Agent was accurate but incomplete — every file it edited was correct, "
+                       "but it missed files that needed changing. Patch is partial.",
+    },
+    "low_prec_high_recall": {
+        "label": "Low Precision, High Recall",
+        "explanation": "Agent touched all required files but also modified many unnecessary ones. "
+                       "Scattershot approach — finds the target but makes noisy, risky edits.",
+    },
+    "low_prec_low_recall": {
+        "label": "Low Precision, Low Recall",
+        "explanation": "Agent both missed required files and edited wrong ones. "
+                       "Poor file localization overall.",
+    },
+    "no_writes": {
+        "label": "No Writes",
+        "explanation": "Agent did not write to any files. It may have failed to produce a patch entirely.",
+    },
+}
+
+def categorize_write_stats(write_stats, precision_threshold=DEFAULT_PRECISION_THRESHOLD, recall_threshold=DEFAULT_RECALL_THRESHOLD):
+    if write_stats["true_positives"] == 0 and write_stats["false_positives"] == 0:
+        return "no_writes"
+    high_p = write_stats["precision"] >= precision_threshold
+    high_r = write_stats["recall"] >= recall_threshold
+    if high_p and high_r:
+        return "high_prec_high_recall"
+    elif high_p and not high_r:
+        return "high_prec_low_recall"
+    elif not high_p and high_r:
+        return "low_prec_high_recall"
+    else:
+        return "low_prec_low_recall"
+
+READ_CATEGORIES = {
+    "high_prec_high_recall": {
+        "label": "High Precision, High Recall",
+        "explanation": "Efficient and thorough — reads the relevant files without "
+                       "wasting time on irrelevant ones.",
+    },
+    "high_prec_low_recall": {
+        "label": "High Precision, Low Recall",
+        "explanation": "Focused but narrow — reads few files and they're relevant, "
+                       "but misses important context.",
+    },
+    "low_prec_high_recall": {
+        "label": "Low Precision, High Recall",
+        "explanation": "Thorough but noisy — reads everything including the right files, "
+                       "but wastes time exploring many irrelevant ones.",
+    },
+    "low_prec_low_recall": {
+        "label": "Low Precision, Low Recall",
+        "explanation": "Poor navigation — doesn't find the relevant files and reads "
+                       "the wrong ones.",
+    },
+    "no_reads": {
+        "label": "No Reads",
+        "explanation": "Agent did not read any files.",
+    },
+}
+
+def categorize_read_stats(read_stats, precision_threshold=DEFAULT_PRECISION_THRESHOLD, recall_threshold=DEFAULT_RECALL_THRESHOLD):
+    if read_stats["true_positives"] == 0 and read_stats["false_positives"] == 0:
+        return "no_reads"
+    high_p = read_stats["precision"] >= precision_threshold
+    high_r = read_stats["recall"] >= recall_threshold
+    if high_p and high_r:
+        return "high_prec_high_recall"
+    elif high_p and not high_r:
+        return "high_prec_low_recall"
+    elif not high_p and high_r:
+        return "low_prec_high_recall"
+    else:
+        return "low_prec_low_recall"
+
 def get_recall_precision_stats(trajectory, source_files, exclude_tests=False):
     steps = get_steps(trajectory)
     steps_with_tool_calls = get_steps_with_tool_calls(steps)
@@ -132,6 +224,12 @@ def main():
                         help="Only show resolved instances")
     parser.add_argument("--unresolved", action="store_true",
                         help="Only show unresolved instances")
+    parser.add_argument("--categorize", action="store_true",
+                        help="Group unresolved instances by write precision/recall category")
+    parser.add_argument("--recall-threshold", type=float, default=DEFAULT_RECALL_THRESHOLD,
+                        help=f"Recall threshold for high/low categorization (default: {DEFAULT_RECALL_THRESHOLD})")
+    parser.add_argument("--precision-threshold", type=float, default=DEFAULT_PRECISION_THRESHOLD,
+                        help=f"Precision threshold for high/low categorization (default: {DEFAULT_PRECISION_THRESHOLD})")
     args = parser.parse_args()
 
     trajectory_files = get_all_trajectory_files(TRAJECTORY_DIR)
@@ -181,6 +279,44 @@ def main():
             r, w = stats["read"], stats["write"]
             status = "RESOLVED" if resolved else "UNRESOLVED"
             print(f"{instance_id}  {status}  read_recall={r['recall']:.2f}  read_precision={r['precision']:.2f}  write_recall={w['recall']:.2f}  write_precision={w['precision']:.2f}")
+
+    if args.categorize:
+        # Collect unresolved instances with their stats
+        write_buckets = {k: [] for k in WRITE_CATEGORIES}
+        read_buckets = {k: [] for k in READ_CATEGORIES}
+        for file, instance_id in trajectory_files:
+            if is_resolved(instance_id):
+                continue
+            source_files = source_files_from_instance_id(instance_id)
+            stats = get_recall_precision_stats(load_trajectory(file), source_files, exclude_tests=args.exclude_tests)
+            w_cat = categorize_write_stats(stats["write"], args.precision_threshold, args.recall_threshold)
+            r_cat = categorize_read_stats(stats["read"], args.precision_threshold, args.recall_threshold)
+            write_buckets[w_cat].append((instance_id, stats))
+            read_buckets[r_cat].append((instance_id, stats))
+
+        print("\n" + "=" * 70)
+        print("UNRESOLVED INSTANCES — WRITE CATEGORIES")
+        print(f"  Thresholds: precision >= {args.precision_threshold}, recall >= {args.recall_threshold}")
+        print("=" * 70)
+        for cat_key, cat_info in WRITE_CATEGORIES.items():
+            instances = write_buckets[cat_key]
+            print(f"\n--- {cat_info['label']} ({len(instances)}) ---")
+            print(f"    {cat_info['explanation']}")
+            for iid, st in instances:
+                w = st["write"]
+                print(f"    {iid}  write_recall={w['recall']:.2f}  write_precision={w['precision']:.2f}")
+
+        print("\n" + "=" * 70)
+        print("UNRESOLVED INSTANCES — READ CATEGORIES")
+        print(f"  Thresholds: precision >= {args.precision_threshold}, recall >= {args.recall_threshold}")
+        print("=" * 70)
+        for cat_key, cat_info in READ_CATEGORIES.items():
+            instances = read_buckets[cat_key]
+            print(f"\n--- {cat_info['label']} ({len(instances)}) ---")
+            print(f"    {cat_info['explanation']}")
+            for iid, st in instances:
+                r = st["read"]
+                print(f"    {iid}  read_recall={r['recall']:.2f}  read_precision={r['precision']:.2f}")
 
 
 if __name__ == "__main__":
