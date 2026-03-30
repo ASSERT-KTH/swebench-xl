@@ -26,8 +26,19 @@ def get_steps_with_tool_calls(steps):
             steps_with_tool_calls.append(step)
     return steps_with_tool_calls
 
+def _is_non_read_command(cmd):
+    """Return True if the command is not investigative (doesn't read file content)."""
+    stripped = cmd.lstrip()
+    non_read_prefixes = (
+        "git add ", "git checkout ", "git restore ", "git reset ",
+        "git stash", "git commit", "git push", "git pull",
+        "git merge", "git rebase", "git cherry-pick",
+        "rm ", "mv ", "cp ", "mkdir ", "touch ", "chmod ", "chown ",
+    )
+    return stripped.startswith(non_read_prefixes)
+
 def get_reads_and_writes(steps):
-    reads = set()
+    reads = {}  # path -> [cmds]
     writes = set()
     for step in steps:
         for tool_call in step.get("tool_calls", []):
@@ -45,7 +56,7 @@ def get_reads_and_writes(steps):
                         cmd = parsed.get("cmd", "")
                     except (json.JSONDecodeError, TypeError):
                         pass
-                if cmd:
+                if cmd and not _is_non_read_command(cmd):
                     # Match absolute /app/ paths
                     paths = re.findall(r'(/app/[^\s\'\"\\|>;]+)', cmd)
                     # Match relative paths (e.g. x-pack/..., src/...) and normalise to /app/
@@ -56,14 +67,14 @@ def get_reads_and_writes(steps):
                             paths.append(f"/app/{clean}")
                     for p in paths:
                         clean = p.rstrip(".,;:)(")
-                        reads.add(clean)
+                        reads.setdefault(clean, []).append(cmd)
 
             elif fn == "apply_patch":
                 patch = raw_args if raw_args else str(args)
                 for match in re.findall(r'\*\*\*\s+(?:Update|Create)\s+File:\s*(\S+)', patch):
                     writes.add(match)
 
-    return list(reads), list(writes)
+    return reads, list(writes)
 
 def get_all_trajectory_files(trajectory_dir):
     trajectory_file_and_instance_id = []
@@ -230,6 +241,8 @@ def main():
                         help=f"Recall threshold for high/low categorization (default: {DEFAULT_RECALL_THRESHOLD})")
     parser.add_argument("--precision-threshold", type=float, default=DEFAULT_PRECISION_THRESHOLD,
                         help=f"Precision threshold for high/low categorization (default: {DEFAULT_PRECISION_THRESHOLD})")
+    parser.add_argument("--show-cmds", action="store_true",
+                        help="Show the commands used to read each file (only with --instance)")
     args = parser.parse_args()
 
     trajectory_files = get_all_trajectory_files(TRAJECTORY_DIR)
@@ -255,6 +268,9 @@ def main():
             print(f"Reads ({len(reads)}):")
             for r in sorted(reads):
                 print(f"  R: {r}")
+                if args.show_cmds:
+                    for cmd in reads[r]:
+                        print(f"     cmd: {cmd}")
             print(f"Writes ({len(writes)}):")
             for w in sorted(writes):
                 print(f"  W: {w}")
