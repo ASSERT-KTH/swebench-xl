@@ -93,6 +93,44 @@ def source_files_from_instance_id(instance_id):
             return instance.get("source_files", [])
     return []
 
+def _extract_semantic_dirs(path):
+    """Extract module, package, and parent directory from a path.
+
+    Given Elasticsearch's Maven layout: module/src/{main|test}/java/org/.../File.java
+    - module:  everything before /src/
+    - package: the Java package dir (between /java/ and the filename)
+    - parent:  immediate parent directory
+    """
+    parent = os.path.dirname(path)
+
+    # Module: prefix before /src/
+    src_idx = path.find("/src/")
+    if src_idx != -1:
+        module = path[:src_idx]
+    else:
+        # Fallback: first 3 components (e.g. /app/server -> /app/server)
+        parts = path.split("/")
+        module = "/".join(parts[:min(4, len(parts))])
+
+    # Package: dirname of the portion after /java/
+    java_idx = path.find("/java/")
+    if java_idx != -1:
+        after_java = path[java_idx + len("/java/"):]
+        package = os.path.dirname(after_java)
+    else:
+        # Fallback: use parent relative to module
+        package = parent
+
+    return {"module": module, "package": package, "parent": parent}
+
+def _map_to_dir_sets(file_set, level):
+    """Map a set of file paths to a set of directories at the given semantic level."""
+    dirs = set()
+    for path in file_set:
+        sem = _extract_semantic_dirs(path)
+        dirs.add(sem[level])
+    return dirs
+
 def _precision_recall(predicted_set, gold_set):
     tp = len(predicted_set.intersection(gold_set))
     fp = len(predicted_set.difference(gold_set))
@@ -209,10 +247,19 @@ def get_recall_precision_stats(trajectory, source_files, exclude_tests=False):
 
     source_set = set(f"/app/{s.lstrip('/')}" for s in source_files)
 
-    return {
+    result = {
         "read": _precision_recall(read_set, source_set),
         "write": _precision_recall(write_set, source_set),
     }
+
+    for level in ("module", "package", "parent"):
+        read_dirs = _map_to_dir_sets(read_set, level)
+        write_dirs = _map_to_dir_sets(write_set, level)
+        source_dirs = _map_to_dir_sets(source_set, level)
+        result[f"read_{level}"] = _precision_recall(read_dirs, source_dirs)
+        result[f"write_{level}"] = _precision_recall(write_dirs, source_dirs)
+
+    return result
 
 def is_resolved(instance_id):
     with open(RUN_RESULTS_JSON, "r") as f:
@@ -243,6 +290,8 @@ def main():
                         help=f"Precision threshold for high/low categorization (default: {DEFAULT_PRECISION_THRESHOLD})")
     parser.add_argument("--show-cmds", action="store_true",
                         help="Show the commands used to read each file (only with --instance)")
+    parser.add_argument("--dir-stats", action="store_true",
+                        help="Show directory-level (module/package/parent) precision/recall")
     args = parser.parse_args()
 
     trajectory_files = get_all_trajectory_files(TRAJECTORY_DIR)
@@ -277,12 +326,15 @@ def main():
             stats = get_recall_precision_stats(trajectory, source_files, exclude_tests=args.exclude_tests)
             for kind in ("read", "write"):
                 s = stats[kind]
-                print(f"\n{kind.upper()} stats:")
+                print(f"\n{kind.upper()} stats (file-level):")
                 print(f"  Recall:  {s['recall']:.2f}")
                 print(f"  Precision: {s['precision']:.2f}")
                 print(f"  True Positives:  {s['true_positives']}")
                 print(f"  False Positives: {s['false_positives']}")
                 print(f"  False Negatives: {s['false_negatives']}")
+                for level in ("module", "package", "parent"):
+                    d = stats[f"{kind}_{level}"]
+                    print(f"  {level:>7}: recall={d['recall']:.2f}  precision={d['precision']:.2f}  (TP={d['true_positives']} FP={d['false_positives']} FN={d['false_negatives']})")
     else:
         for file, instance_id in trajectory_files:
             resolved = is_resolved(instance_id)
@@ -294,7 +346,13 @@ def main():
             stats = get_recall_precision_stats(load_trajectory(file), source_files, exclude_tests=args.exclude_tests)
             r, w = stats["read"], stats["write"]
             status = "RESOLVED" if resolved else "UNRESOLVED"
-            print(f"{instance_id}  {status}  read_recall={r['recall']:.2f}  read_precision={r['precision']:.2f}  write_recall={w['recall']:.2f}  write_precision={w['precision']:.2f}")
+            line = f"{instance_id}  {status}  read_recall={r['recall']:.2f}  read_precision={r['precision']:.2f}  write_recall={w['recall']:.2f}  write_precision={w['precision']:.2f}"
+            if args.dir_stats:
+                for level in ("module", "package", "parent"):
+                    rd = stats[f"read_{level}"]
+                    wd = stats[f"write_{level}"]
+                    line += f"  r_{level[:3]}={rd['recall']:.2f}  w_{level[:3]}={wd['recall']:.2f}"
+            print(line)
 
     if args.categorize:
         # Collect unresolved instances with their stats
