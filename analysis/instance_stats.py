@@ -70,7 +70,7 @@ def analyze_instance(instance: dict) -> dict:
     p2p = instance.get("pass_to_pass", [])
 
     all_source_files = instance.get("source_files", [])
-    filtered_source = [f for f in all_source_files if f.endswith(".java")]
+    filtered_source = [f for f in all_source_files if f.endswith(".java") and "generated/" not in f]
 
     patch_text = instance.get("patch", "")
     per_file = count_patch_lines_per_file(patch_text)
@@ -78,7 +78,7 @@ def analyze_instance(instance: dict) -> dict:
     lines_added = 0
     lines_removed = 0
     for filepath, (added, removed) in per_file.items():
-        if filepath.endswith(".java"):
+        if filepath.endswith(".java") and "generated/" not in filepath:
             lines_added += added
             lines_removed += removed
 

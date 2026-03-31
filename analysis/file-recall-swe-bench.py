@@ -1,24 +1,58 @@
-
-
-
 import argparse
 import json
 import re
 import os
+import zipfile
+import io
 import matplotlib.pyplot as plt
 
-TRAJECTORY_DIR = "/Users/pontusberglund/Documents/full-run-trajectories/codex-gpt-5.4-analysis-final/"
-INSTANCE_STATS = "/Users/pontusberglund/Documents/GitHub/swebench-xl/analysis/instance_stats_output.json"
-RUN_RESULTS_JSON = "/Users/pontusberglund/Documents/full-run-trajectories/codex-gpt-5.4-analysis-final/result.json"
+TRAJECTORY_DIR = "/Users/pontusberglund/Documents/full-run-trajectories/swe-bench-verified/"
+
+# Zip file naming: sweb.eval.x86_64.{instance_id}-output.zip
+ZIP_PREFIX = "sweb.eval.x86_64."
+ZIP_SUFFIX = "-output.zip"
+
+# Prefix used inside the container
+TESTBED = "/testbed/"
+
+
+def _load_swebench_dataset():
+    """Load SWE-bench Verified dataset and build instance_id -> gold source files mapping."""
+    from datasets import load_dataset
+    ds = load_dataset("SWE-bench/SWE-bench_Verified", split="test")
+    mapping = {}
+    for row in ds:
+        instance_id = row["instance_id"]
+        patch = row["patch"]
+        files = re.findall(r"diff --git a/(\S+) b/\S+", patch)
+        mapping[instance_id] = files
+    return mapping
+
+# Cache the dataset mapping
+_SWEBENCH_CACHE = None
+
+def _get_swebench_mapping():
+    global _SWEBENCH_CACHE
+    if _SWEBENCH_CACHE is None:
+        _SWEBENCH_CACHE = _load_swebench_dataset()
+    return _SWEBENCH_CACHE
 
 
 def get_steps(trajectory):
     return trajectory["steps"]
 
-def load_trajectory(file_path):
-    with open(file_path, "r") as f:
-        trajectory = json.load(f)
-    return trajectory
+
+def load_trajectory_from_zip(zip_path):
+    with zipfile.ZipFile(zip_path, "r") as zf:
+        with zf.open("output/trajectories/trajectory.json") as f:
+            return json.load(f)
+
+
+def load_eval_from_zip(zip_path):
+    with zipfile.ZipFile(zip_path, "r") as zf:
+        with zf.open("output/eval.json") as f:
+            return json.load(f)
+
 
 def get_steps_with_tool_calls(steps):
     steps_with_tool_calls = []
@@ -26,6 +60,7 @@ def get_steps_with_tool_calls(steps):
         if "tool_calls" in step and step["tool_calls"]:
             steps_with_tool_calls.append(step)
     return steps_with_tool_calls
+
 
 def _is_non_read_command(cmd):
     """Return True if the command is not investigative (doesn't read file content)."""
@@ -38,99 +73,153 @@ def _is_non_read_command(cmd):
     )
     return stripped.startswith(non_read_prefixes)
 
+
+def _is_write_command(cmd):
+    """Return True if the command modifies files."""
+    stripped = cmd.lstrip()
+    write_prefixes = (
+        "sed ", "sed -i",
+        "echo ", "printf ",
+        "tee ",
+    )
+    if ">>" in cmd or re.search(r'[^>]>[^>]', cmd):
+        return True
+    return stripped.startswith(write_prefixes)
+
+
+def _extract_paths_from_command(cmd):
+    """Extract file paths from a bash command."""
+    paths = []
+    # Match absolute /testbed/ paths
+    abs_paths = re.findall(r'(/testbed/[^\s\'\"\\|>;]+)', cmd)
+    for p in abs_paths:
+        clean = p.rstrip(".,;:)(")
+        paths.append(clean)
+    # Match relative paths and normalise to /testbed/
+    rel_paths = re.findall(r'(?:^|\s)([a-zA-Z0-9_.][^\s\'\"\\|>;]*\.[a-zA-Z0-9]+)', cmd)
+    for p in rel_paths:
+        clean = p.rstrip(".,;:)(")
+        if '/' in clean and not clean.startswith('/'):
+            paths.append(f"/testbed/{clean}")
+    return paths
+
+
 def get_reads_and_writes(steps):
-    reads = {}  # path -> [cmds]
+    """Extract read and written file paths from Claude Code trajectory steps.
+
+    Tool mapping:
+      Read   -> read (file_path)
+      Grep   -> read (path, if present; otherwise repo-wide, skip)
+      Glob   -> skip (just lists file names)
+      Bash   -> read or write depending on command content
+      Edit   -> write (file_path)
+      Write  -> write (file_path) — only /testbed/ paths, not plan files
+      Agent  -> skip (sub-agent delegation)
+    """
+    reads = {}   # path -> [source descriptions]
     writes = set()
+
     for step in steps:
         for tool_call in step.get("tool_calls", []):
             fn = tool_call.get("function_name", "")
             args = tool_call.get("arguments", {})
-            raw_args = step.get("extra", {}).get("raw_arguments", "")
+            if not isinstance(args, dict):
+                continue
 
-            if fn == "exec_command":
-                cmd = ""
-                if isinstance(args, dict):
-                    cmd = args.get("cmd", "")
-                if not cmd and raw_args:
-                    try:
-                        parsed = json.loads(raw_args)
-                        cmd = parsed.get("cmd", "")
-                    except (json.JSONDecodeError, TypeError):
-                        pass
-                if cmd and not _is_non_read_command(cmd):
-                    # Match absolute /app/ paths
-                    paths = re.findall(r'(/app/[^\s\'\"\\|>;]+)', cmd)
-                    # Match relative paths (e.g. x-pack/..., src/...) and normalise to /app/
-                    rel_paths = re.findall(r'(?:^|\s)([a-zA-Z0-9_.][^\s\'\"\\|>;]*\.[a-zA-Z0-9]+)', cmd)
-                    for p in rel_paths:
-                        clean = p.rstrip(".,;:)(")
-                        if '/' in clean and not clean.startswith('/'):
-                            paths.append(f"/app/{clean}")
-                    for p in paths:
-                        clean = p.rstrip(".,;:)(")
-                        reads.setdefault(clean, []).append(cmd)
+            if fn == "Read":
+                file_path = args.get("file_path", "")
+                if file_path:
+                    reads.setdefault(file_path, []).append(f"Read {file_path}")
 
-            elif fn == "apply_patch":
-                patch = raw_args if raw_args else str(args)
-                for match in re.findall(r'\*\*\*\s+(?:Update|Create)\s+File:\s*(\S+)', patch):
-                    writes.add(match)
+            elif fn == "Grep":
+                path = args.get("path", "")
+                if path:
+                    reads.setdefault(path, []).append(
+                        f"Grep pattern={args.get('pattern', '')} path={path}"
+                    )
+
+            elif fn == "Bash":
+                cmd = args.get("command", "")
+                if not cmd:
+                    continue
+                extracted = _extract_paths_from_command(cmd)
+                if _is_write_command(cmd):
+                    for p in extracted:
+                        writes.add(p)
+                elif not _is_non_read_command(cmd):
+                    for p in extracted:
+                        reads.setdefault(p, []).append(f"Bash: {cmd}")
+
+            elif fn == "Edit":
+                file_path = args.get("file_path", "")
+                if file_path:
+                    writes.add(file_path)
+
+            elif fn == "Write":
+                file_path = args.get("file_path", "")
+                if file_path and file_path.startswith("/testbed/"):
+                    writes.add(file_path)
 
     return reads, list(writes)
 
-def get_all_trajectory_files(trajectory_dir):
-    trajectory_file_and_instance_id = []
-    for root, _, files in os.walk(trajectory_dir):
-        for file in files:
-            if file.endswith("trajectory.json"):
-                instance_id = os.path.basename(os.path.dirname(root)).rsplit("__", 1)[0]
-                trajectory_file_and_instance_id.append((os.path.join(root, file), instance_id))
-    return trajectory_file_and_instance_id
+
+def _instance_id_from_zip(filename):
+    """Extract instance_id from zip filename like sweb.eval.x86_64.astropy__astropy-12907-output.zip"""
+    if filename.startswith(ZIP_PREFIX) and filename.endswith(ZIP_SUFFIX):
+        return filename[len(ZIP_PREFIX):-len(ZIP_SUFFIX)]
+    return None
+
+
+def get_all_trajectory_zips(trajectory_dir):
+    """Return (zip_path, instance_id) pairs for all trajectory zips."""
+    results = []
+    for filename in os.listdir(trajectory_dir):
+        if not filename.endswith(ZIP_SUFFIX):
+            continue
+        instance_id = _instance_id_from_zip(filename)
+        if instance_id is None:
+            continue
+        zip_path = os.path.join(trajectory_dir, filename)
+        results.append((zip_path, instance_id))
+    return sorted(results, key=lambda x: x[1])
+
 
 def source_files_from_instance_id(instance_id):
-    with open(INSTANCE_STATS, "r") as f:
-        instance_stats = json.load(f)
-    for instance in instance_stats["instances"]:
-        if instance["instance_id"] == instance_id:
-            return instance.get("source_files", [])
-    return []
+    mapping = _get_swebench_mapping()
+    return mapping.get(instance_id, [])
+
 
 def _extract_semantic_dirs(path):
-    """Extract module, package, and parent directory from a path.
+    """Extract module, package, and parent directory from a Python project path.
 
-    Given Elasticsearch's Maven layout: module/src/{main|test}/java/org/.../File.java
-    - module:  everything before /src/
-    - package: the Java package dir (between /java/ and the filename)
+    For typical Python projects: package/subpackage/module.py
+    - module:  top-level package (first directory component after /testbed/)
+    - package: parent package path
     - parent:  immediate parent directory
     """
     parent = os.path.dirname(path)
 
-    # Module: prefix before /src/
-    src_idx = path.find("/src/")
-    if src_idx != -1:
-        module = path[:src_idx]
+    # Module: first meaningful directory component after /testbed/
+    parts = path.split("/")
+    # /testbed/django/db/models/fields.py -> module = /testbed/django
+    if len(parts) >= 3:
+        module = "/".join(parts[:3])
     else:
-        # Fallback: first 3 components (e.g. /app/server -> /app/server)
-        parts = path.split("/")
-        module = "/".join(parts[:min(4, len(parts))])
+        module = parent
 
-    # Package: dirname of the portion after /java/
-    java_idx = path.find("/java/")
-    if java_idx != -1:
-        after_java = path[java_idx + len("/java/"):]
-        package = os.path.dirname(after_java)
-    else:
-        # Fallback: use parent relative to module
-        package = parent
+    # Package: parent directory relative to root
+    package = parent
 
     return {"module": module, "package": package, "parent": parent}
 
+
 def _map_to_dir_sets(file_set, level):
-    """Map a set of file paths to a set of directories at the given semantic level."""
     dirs = set()
     for path in file_set:
         sem = _extract_semantic_dirs(path)
         dirs.add(sem[level])
     return dirs
+
 
 def _precision_recall(predicted_set, gold_set):
     tp = len(predicted_set.intersection(gold_set))
@@ -146,8 +235,12 @@ def _precision_recall(predicted_set, gold_set):
         "false_negatives": fn,
     }
 
+
 def _is_test_file(path):
-    return os.path.basename(path).endswith("Tests.java")
+    basename = os.path.basename(path)
+    return (basename.startswith("test_") or basename.endswith("_test.py") or
+            "/tests/" in path or "/test/" in path)
+
 
 DEFAULT_RECALL_THRESHOLD = 0.67
 DEFAULT_PRECISION_THRESHOLD = 0.67
@@ -179,6 +272,7 @@ WRITE_CATEGORIES = {
     },
 }
 
+
 def categorize_write_stats(write_stats, precision_threshold=DEFAULT_PRECISION_THRESHOLD, recall_threshold=DEFAULT_RECALL_THRESHOLD):
     if write_stats["true_positives"] == 0 and write_stats["false_positives"] == 0:
         return "no_writes"
@@ -192,6 +286,7 @@ def categorize_write_stats(write_stats, precision_threshold=DEFAULT_PRECISION_TH
         return "low_prec_high_recall"
     else:
         return "low_prec_low_recall"
+
 
 READ_CATEGORIES = {
     "high_prec_high_recall": {
@@ -220,6 +315,7 @@ READ_CATEGORIES = {
     },
 }
 
+
 def categorize_read_stats(read_stats, precision_threshold=DEFAULT_PRECISION_THRESHOLD, recall_threshold=DEFAULT_RECALL_THRESHOLD):
     if read_stats["true_positives"] == 0 and read_stats["false_positives"] == 0:
         return "no_reads"
@@ -234,6 +330,7 @@ def categorize_read_stats(read_stats, precision_threshold=DEFAULT_PRECISION_THRE
     else:
         return "low_prec_low_recall"
 
+
 def get_recall_precision_stats(trajectory, source_files, exclude_tests=False):
     steps = get_steps(trajectory)
     steps_with_tool_calls = get_steps_with_tool_calls(steps)
@@ -246,7 +343,7 @@ def get_recall_precision_stats(trajectory, source_files, exclude_tests=False):
         read_set = {p for p in read_set if not _is_test_file(p)}
         write_set = {p for p in write_set if not _is_test_file(p)}
 
-    source_set = set(f"/app/{s.lstrip('/')}" for s in source_files)
+    source_set = set(f"/testbed/{s.lstrip('/')}" for s in source_files)
 
     result = {
         "read": _precision_recall(read_set, source_set),
@@ -262,29 +359,31 @@ def get_recall_precision_stats(trajectory, source_files, exclude_tests=False):
 
     return result
 
-def is_resolved(instance_id):
-    with open(RUN_RESULTS_JSON, "r") as f:
-        run_results = json.load(f)
-    
-    resolved = run_results["stats"]["evals"]["azure-codex__gpt-5.4__swebench-xl-v0.1"]["reward_stats"]["reward"]["1.0"]
-    for iid in resolved:
-        resolved_iid = iid.rsplit("__", 1)[0]
-        if resolved_iid == instance_id:
+
+def is_resolved(zip_path):
+    """Check resolution from the eval.json inside the zip."""
+    try:
+        eval_data = load_eval_from_zip(zip_path)
+    except (KeyError, zipfile.BadZipFile):
+        return False
+    for iid, info in eval_data.items():
+        if info.get("resolved", False):
             return True
     return False
 
+
 def main():
-    parser = argparse.ArgumentParser(description="File recall/precision stats for codex trajectories")
+    parser = argparse.ArgumentParser(description="File recall/precision stats for SWE-bench Verified (Claude Code) trajectories")
     parser.add_argument("--instance", type=str, default=None,
                         help="Instance ID to inspect (prints source files and all reads/writes)")
     parser.add_argument("--exclude-tests", action="store_true",
-                        help="Exclude *Tests.java files from reads/writes")
+                        help="Exclude test files from reads/writes")
     parser.add_argument("--resolved", action="store_true",
                         help="Only show resolved instances")
     parser.add_argument("--unresolved", action="store_true",
                         help="Only show unresolved instances")
     parser.add_argument("--categorize", action="store_true",
-                        help="Group unresolved instances by write precision/recall category")
+                        help="Group instances by write/read precision/recall category")
     parser.add_argument("--recall-threshold", type=float, default=DEFAULT_RECALL_THRESHOLD,
                         help=f"Recall threshold for high/low categorization (default: {DEFAULT_RECALL_THRESHOLD})")
     parser.add_argument("--precision-threshold", type=float, default=DEFAULT_PRECISION_THRESHOLD,
@@ -297,26 +396,27 @@ def main():
                         help="Generate a scatter plot of write recall vs precision")
     args = parser.parse_args()
 
-    trajectory_files = get_all_trajectory_files(TRAJECTORY_DIR)
+    trajectory_zips = get_all_trajectory_zips(TRAJECTORY_DIR)
 
     if args.instance:
-        matched = [(f, iid) for f, iid in trajectory_files if iid == args.instance]
+        matched = [(f, iid) for f, iid in trajectory_zips if iid == args.instance]
         if not matched:
             print(f"No trajectory found for instance: {args.instance}")
             return
-        resolved = is_resolved(args.instance)
+        zip_path = matched[0][0]
+        resolved = is_resolved(zip_path)
         source_files = source_files_from_instance_id(args.instance)
         print(f"Instance: {args.instance}")
         print(f"Resolved: {resolved}")
         print(f"\nSource files ({len(source_files)}):")
         for sf in sorted(source_files):
             print(f"  {sf}")
-        for file, _ in matched:
-            trajectory = load_trajectory(file)
+        for zp, _ in matched:
+            trajectory = load_trajectory_from_zip(zp)
             steps = get_steps(trajectory)
             steps_with_tool_calls = get_steps_with_tool_calls(steps)
             reads, writes = get_reads_and_writes(steps_with_tool_calls)
-            print(f"\nTrajectory: {file}")
+            print(f"\nTrajectory: {zp}")
             print(f"Reads ({len(reads)}):")
             for r in sorted(reads):
                 print(f"  R: {r}")
@@ -343,14 +443,14 @@ def main():
         all_read_precisions = []
         all_write_recalls = []
         all_write_precisions = []
-        for file, instance_id in trajectory_files:
-            resolved = is_resolved(instance_id)
+        for zip_path, instance_id in trajectory_zips:
+            resolved = is_resolved(zip_path)
             if args.resolved and not resolved:
                 continue
             if args.unresolved and resolved:
                 continue
             source_files = source_files_from_instance_id(instance_id)
-            stats = get_recall_precision_stats(load_trajectory(file), source_files, exclude_tests=args.exclude_tests)
+            stats = get_recall_precision_stats(load_trajectory_from_zip(zip_path), source_files, exclude_tests=args.exclude_tests)
             r, w = stats["read"], stats["write"]
             all_read_recalls.append(r["recall"])
             all_read_precisions.append(r["precision"])
@@ -367,20 +467,19 @@ def main():
 
         n = len(all_read_recalls)
         if n > 0:
-            print(f"\n{'=' * 50}")
+            print(f"\n{'=' * 70}")
             print(f"AVERAGES ({n} instances)")
-            print(f"  Avg Read Recall:     {sum(all_read_recalls) / n:.2f}")
-            print(f"  Avg Read Precision:  {sum(all_read_precisions) / n:.2f}")
-            print(f"  Avg Write Recall:    {sum(all_write_recalls) / n:.2f}")
-            print(f"  Avg Write Precision: {sum(all_write_precisions) / n:.2f}")
-            print(f"{'=' * 50}")
+            print(f"{'=' * 70}")
+            print(f"  Read  Recall:    {sum(all_read_recalls) / n:.2f}")
+            print(f"  Read  Precision: {sum(all_read_precisions) / n:.2f}")
+            print(f"  Write Recall:    {sum(all_write_recalls) / n:.2f}")
+            print(f"  Write Precision: {sum(all_write_precisions) / n:.2f}")
 
     if args.categorize:
-        # Respect --resolved / --unresolved filters
         write_buckets = {k: [] for k in WRITE_CATEGORIES}
         read_buckets = {k: [] for k in READ_CATEGORIES}
-        for file, instance_id in trajectory_files:
-            resolved = is_resolved(instance_id)
+        for zip_path, instance_id in trajectory_zips:
+            resolved = is_resolved(zip_path)
             if args.resolved and not resolved:
                 continue
             if args.unresolved and resolved:
@@ -388,7 +487,7 @@ def main():
             if not args.resolved and not args.unresolved and resolved:
                 continue
             source_files = source_files_from_instance_id(instance_id)
-            stats = get_recall_precision_stats(load_trajectory(file), source_files, exclude_tests=args.exclude_tests)
+            stats = get_recall_precision_stats(load_trajectory_from_zip(zip_path), source_files, exclude_tests=args.exclude_tests)
             w_cat = categorize_write_stats(stats["write"], args.precision_threshold, args.recall_threshold)
             r_cat = categorize_read_stats(stats["read"], args.precision_threshold, args.recall_threshold)
             write_buckets[w_cat].append((instance_id, stats))
@@ -405,12 +504,7 @@ def main():
             print(f"    {cat_info['explanation']}")
             for iid, st in instances:
                 w = st["write"]
-                line = f"    {iid}  write_recall={w['recall']:.2f}  write_precision={w['precision']:.2f}"
-                if args.dir_stats:
-                    for level in ("module", "package", "parent"):
-                        wd = st[f"write_{level}"]
-                        line += f"  w_{level[:3]}={wd['recall']:.2f}/{wd['precision']:.2f}"
-                print(line)
+                print(f"    {iid}  write_recall={w['recall']:.2f}  write_precision={w['precision']:.2f}")
 
         print("\n" + "=" * 70)
         print(f"{filter_label} INSTANCES \u2014 READ CATEGORIES")
@@ -422,25 +516,20 @@ def main():
             print(f"    {cat_info['explanation']}")
             for iid, st in instances:
                 r = st["read"]
-                line = f"    {iid}  read_recall={r['recall']:.2f}  read_precision={r['precision']:.2f}"
-                if args.dir_stats:
-                    for level in ("module", "package", "parent"):
-                        rd = st[f"read_{level}"]
-                        line += f"  r_{level[:3]}={rd['recall']:.2f}/{rd['precision']:.2f}"
-                print(line)
+                print(f"    {iid}  read_recall={r['recall']:.2f}  read_precision={r['precision']:.2f}")
 
 
     if args.plot:
-        resolved_points = []   # (recall, precision)
-        unresolved_points = [] # (recall, precision)
-        for file, instance_id in trajectory_files:
-            resolved = is_resolved(instance_id)
+        resolved_points = []
+        unresolved_points = []
+        for zip_path, instance_id in trajectory_zips:
+            resolved = is_resolved(zip_path)
             if args.resolved and not resolved:
                 continue
             if args.unresolved and resolved:
                 continue
             source_files = source_files_from_instance_id(instance_id)
-            stats = get_recall_precision_stats(load_trajectory(file), source_files, exclude_tests=args.exclude_tests)
+            stats = get_recall_precision_stats(load_trajectory_from_zip(zip_path), source_files, exclude_tests=args.exclude_tests)
             w = stats["write"]
             if resolved:
                 resolved_points.append((w["recall"], w["precision"]))
@@ -460,7 +549,7 @@ def main():
                    label=f"Recall threshold ({args.recall_threshold})")
         ax.set_xlabel("Write Recall", fontsize=13)
         ax.set_ylabel("Write Precision", fontsize=13)
-        ax.set_title("Codex — Write Recall vs Precision", fontsize=15)
+        ax.set_title("SWE-bench Verified (Claude Code) \u2014 Write Recall vs Precision", fontsize=15)
         ax.set_xlim(-0.05, 1.05)
         ax.set_ylim(-0.05, 1.05)
         ax.legend()
@@ -471,4 +560,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-    
