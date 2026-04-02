@@ -56,6 +56,20 @@ def _is_write_command(cmd):
     return stripped.startswith(write_prefixes)
 
 
+def _is_valid_source_path(path):
+    """Return True if path looks like an actual source file, not a dir or build artifact."""
+    if path.endswith('/'):
+        return False
+    basename = os.path.basename(path)
+    if '.' not in basename:
+        return False
+    if '/build/' in path or '/target/' in path:
+        return False
+    if path.endswith('.class'):
+        return False
+    return True
+
+
 def _extract_paths_from_command(cmd):
     """Extract file paths from a bash command."""
     paths = []
@@ -70,7 +84,7 @@ def _extract_paths_from_command(cmd):
         clean = p.rstrip(".,;:)(")
         if '/' in clean and not clean.startswith('/'):
             paths.append(f"/app/{clean}")
-    return paths
+    return [p for p in paths if _is_valid_source_path(p)]
 
 
 def get_reads_and_writes(steps):
@@ -97,12 +111,12 @@ def get_reads_and_writes(steps):
 
             if fn == "Read":
                 file_path = args.get("file_path", "")
-                if file_path:
+                if file_path and _is_valid_source_path(file_path):
                     reads.setdefault(file_path, []).append(f"Read {file_path}")
 
             elif fn == "Grep":
                 path = args.get("path", "")
-                if path:
+                if path and _is_valid_source_path(path):
                     reads.setdefault(path, []).append(
                         f"Grep pattern={args.get('pattern', '')} path={path}"
                     )
@@ -121,13 +135,13 @@ def get_reads_and_writes(steps):
 
             elif fn == "Edit":
                 file_path = args.get("file_path", "")
-                if file_path:
+                if file_path and _is_valid_source_path(file_path):
                     writes.add(file_path)
 
             elif fn == "Write":
                 file_path = args.get("file_path", "")
                 # Only count writes to /app/ (ignore plan files etc.)
-                if file_path and file_path.startswith("/app/"):
+                if file_path and file_path.startswith("/app/") and _is_valid_source_path(file_path):
                     writes.add(file_path)
 
     return reads, list(writes)
@@ -215,6 +229,11 @@ def _is_test_file(path):
 
 DEFAULT_RECALL_THRESHOLD = 0.67
 DEFAULT_PRECISION_THRESHOLD = 0.67
+
+# Gold patch files to exclude from source set (matched by basename)
+EXCLUDED_GOLD_FILES = [
+    "EsqlCapabilities.java",
+]
 
 WRITE_CATEGORIES = {
     "high_prec_high_recall": {
@@ -315,6 +334,7 @@ def get_recall_precision_stats(trajectory, source_files, exclude_tests=False):
         write_set = {p for p in write_set if not _is_test_file(p)}
 
     source_set = set(f"/app/{s.lstrip('/')}" for s in source_files)
+    source_set = {s for s in source_set if os.path.basename(s) not in EXCLUDED_GOLD_FILES}
 
     result = {
         "read": _precision_recall(read_set, source_set),

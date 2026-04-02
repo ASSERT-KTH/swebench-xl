@@ -38,6 +38,19 @@ def _is_non_read_command(cmd):
     )
     return stripped.startswith(non_read_prefixes)
 
+def _is_valid_source_path(path):
+    """Return True if path looks like an actual source file, not a dir or build artifact."""
+    if path.endswith('/'):
+        return False
+    basename = os.path.basename(path)
+    if '.' not in basename:
+        return False
+    if '/build/' in path or '/target/' in path:
+        return False
+    if path.endswith('.class'):
+        return False
+    return True
+
 def get_reads_and_writes(steps):
     reads = {}  # path -> [cmds]
     writes = set()
@@ -68,12 +81,14 @@ def get_reads_and_writes(steps):
                             paths.append(f"/app/{clean}")
                     for p in paths:
                         clean = p.rstrip(".,;:)(")
-                        reads.setdefault(clean, []).append(cmd)
+                        if _is_valid_source_path(clean):
+                            reads.setdefault(clean, []).append(cmd)
 
             elif fn == "apply_patch":
                 patch = raw_args if raw_args else str(args)
                 for match in re.findall(r'\*\*\*\s+(?:Update|Create)\s+File:\s*(\S+)', patch):
-                    writes.add(match)
+                    if _is_valid_source_path(match):
+                        writes.add(match)
 
     return reads, list(writes)
 
@@ -151,6 +166,11 @@ def _is_test_file(path):
 
 DEFAULT_RECALL_THRESHOLD = 0.67
 DEFAULT_PRECISION_THRESHOLD = 0.67
+
+# Gold patch files to exclude from source set (matched by basename)
+EXCLUDED_GOLD_FILES = [
+    "EsqlCapabilities.java",
+]
 
 WRITE_CATEGORIES = {
     "high_prec_high_recall": {
@@ -247,6 +267,7 @@ def get_recall_precision_stats(trajectory, source_files, exclude_tests=False):
         write_set = {p for p in write_set if not _is_test_file(p)}
 
     source_set = set(f"/app/{s.lstrip('/')}" for s in source_files)
+    source_set = {s for s in source_set if os.path.basename(s) not in EXCLUDED_GOLD_FILES}
 
     result = {
         "read": _precision_recall(read_set, source_set),
