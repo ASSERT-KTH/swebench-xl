@@ -2,6 +2,8 @@ import argparse
 import json
 import re
 import os
+import statistics
+from collections import Counter, defaultdict
 import matplotlib.pyplot as plt
 
 TRAJECTORY_DIR = "/Users/pontusberglund/Documents/full-run-trajectories/claude-code-full-msbench/outputs/"
@@ -20,6 +22,12 @@ def load_trajectory(file_path):
     with open(file_path, "r") as f:
         trajectory = json.load(f)
     return trajectory
+
+
+def load_legacy_trajectory(file_path):
+    """Load trajectory_legacy.json which is a flat list of all tool calls."""
+    with open(file_path, "r") as f:
+        return json.load(f)
 
 
 def get_steps_with_tool_calls(steps):
@@ -147,6 +155,148 @@ def get_reads_and_writes(steps):
     return reads, list(writes)
 
 
+def _parse_legacy_action(action_str):
+    """Parse the 'action' field from legacy trajectory (JSON string -> dict)."""
+    if not action_str:
+        return {}
+    try:
+        return json.loads(action_str)
+    except (json.JSONDecodeError, TypeError):
+        return {}
+
+
+def get_reads_and_writes_legacy(legacy_items, include_subagents=True):
+    """Extract read and written file paths from legacy trajectory items.
+
+    Each item has 'tool', 'action' (JSON string), and optionally 'parent_tool_use_id'.
+    If include_subagents is False, items with parent_tool_use_id are skipped.
+
+    Returns (reads, writes, subagent_stats) where subagent_stats is a dict with
+    sub-agent usage information.
+    """
+    reads = {}   # path -> [source descriptions]
+    writes = set()
+    # Sub-agent tracking
+    subagent_calls = []  # list of Agent call items
+    subagent_steps = defaultdict(list)  # parent_id -> [items]
+    main_tool_count = 0
+    total_items = len(legacy_items)
+
+    for item in legacy_items:
+        fn = item.get("tool", "")
+        parent_id = item.get("parent_tool_use_id")
+        args = _parse_legacy_action(item.get("action", ""))
+
+        # Track sub-agent structure
+        if fn == "Agent" and not parent_id:
+            subagent_calls.append(item)
+            main_tool_count += 1
+            continue
+        if parent_id:
+            subagent_steps[parent_id].append(item)
+            if not include_subagents:
+                continue
+        else:
+            main_tool_count += 1
+
+        # Extract reads/writes (same logic as get_reads_and_writes)
+        if fn == "Read":
+            file_path = args.get("file_path", "")
+            if file_path and _is_valid_source_path(file_path):
+                src = f"[sub-agent] Read {file_path}" if parent_id else f"Read {file_path}"
+                reads.setdefault(file_path, []).append(src)
+
+        elif fn == "Grep":
+            path = args.get("path", "")
+            if path and _is_valid_source_path(path):
+                src = f"[sub-agent] Grep" if parent_id else "Grep"
+                reads.setdefault(path, []).append(
+                    f"{src} pattern={args.get('pattern', '')} path={path}"
+                )
+
+        elif fn == "Bash":
+            cmd = args.get("command", "")
+            if not cmd:
+                continue
+            extracted = _extract_paths_from_command(cmd)
+            if _is_write_command(cmd):
+                for p in extracted:
+                    writes.add(p)
+            elif not _is_non_read_command(cmd):
+                for p in extracted:
+                    src = f"[sub-agent] Bash: {cmd}" if parent_id else f"Bash: {cmd}"
+                    reads.setdefault(p, []).append(src)
+
+        elif fn == "Edit":
+            file_path = args.get("file_path", "")
+            if file_path and _is_valid_source_path(file_path):
+                writes.add(file_path)
+
+        elif fn == "Write":
+            file_path = args.get("file_path", "")
+            if file_path and file_path.startswith("/app/") and _is_valid_source_path(file_path):
+                writes.add(file_path)
+
+    # Build sub-agent stats
+    subagent_details = []
+    for ac in subagent_calls:
+        ac_args = _parse_legacy_action(ac.get("action", ""))
+        # Match by looking for items whose parent_tool_use_id could match;
+        # in legacy format we match by order: Agent calls don't have an ID field,
+        # but sub-agent items have parent_tool_use_id. Collect all parent IDs.
+        pass
+
+    # Collect unique parent IDs
+    all_parent_ids = set()
+    for item in legacy_items:
+        pid = item.get("parent_tool_use_id")
+        if pid:
+            all_parent_ids.add(pid)
+
+    total_subagent_steps = sum(len(v) for v in subagent_steps.values())
+    per_invocation_steps = [len(subagent_steps[pid]) for pid in all_parent_ids] if all_parent_ids else []
+
+    # Tool breakdown across all sub-agent steps
+    subagent_tool_counts = Counter()
+    for steps_list in subagent_steps.values():
+        for s in steps_list:
+            subagent_tool_counts[s.get("tool", "unknown")] += 1
+
+    # Per sub-agent type breakdown
+    type_counts = Counter()
+    for ac in subagent_calls:
+        ac_args = _parse_legacy_action(ac.get("action", ""))
+        type_counts[ac_args.get("subagent_type", "unknown")] += 1
+
+    subagent_stats = {
+        "num_subagent_calls": len(subagent_calls),
+        "num_unique_parent_ids": len(all_parent_ids),
+        "total_subagent_steps": total_subagent_steps,
+        "main_tool_count": main_tool_count,
+        "total_items": total_items,
+        "per_invocation_steps": per_invocation_steps,
+        "subagent_tool_counts": dict(subagent_tool_counts),
+        "subagent_type_counts": dict(type_counts),
+    }
+
+    return reads, list(writes), subagent_stats
+
+
+def _safe_stats(values):
+    """Compute mean/median/min/max/stdev for a list of numbers."""
+    if not values:
+        return {"mean": 0, "median": 0, "min": 0, "max": 0}
+    result = {
+        "mean": round(statistics.mean(values), 2),
+        "median": round(statistics.median(values), 1),
+        "min": min(values),
+        "max": max(values),
+    }
+    if len(values) >= 2:
+        result["stdev"] = round(statistics.stdev(values), 2)
+    return result
+
+
 def _instance_id_from_dirname(dirname):
     """Extract instance_id (e.g. 'elastic__elasticsearch-135899') from directory name."""
     # Pattern: swebench-xl-v1.eval.x86_64.{instance_id}-output
@@ -156,17 +306,20 @@ def _instance_id_from_dirname(dirname):
 
 
 def get_all_trajectory_files(trajectory_dir):
-    """Walk the outputs directory and return (trajectory_path, instance_id) pairs."""
+    """Walk the outputs directory and return (legacy_path, instance_id) pairs.
+
+    Uses trajectory_legacy.json which includes both main-agent and sub-agent tool calls.
+    """
     trajectory_file_and_instance_id = []
     for dirname in os.listdir(trajectory_dir):
         instance_id = _instance_id_from_dirname(dirname)
         if instance_id is None:
             continue
-        traj_path = os.path.join(
-            trajectory_dir, dirname, "output", "trajectories", "trajectory.json"
+        legacy_path = os.path.join(
+            trajectory_dir, dirname, "output", "trajectories", "trajectory_legacy.json"
         )
-        if os.path.isfile(traj_path):
-            trajectory_file_and_instance_id.append((traj_path, instance_id))
+        if os.path.isfile(legacy_path):
+            trajectory_file_and_instance_id.append((legacy_path, instance_id))
     return sorted(trajectory_file_and_instance_id, key=lambda x: x[1])
 
 
@@ -321,10 +474,9 @@ def categorize_read_stats(read_stats, precision_threshold=DEFAULT_PRECISION_THRE
         return "low_prec_low_recall"
 
 
-def get_recall_precision_stats(trajectory, source_files, exclude_tests=False):
-    steps = get_steps(trajectory)
-    steps_with_tool_calls = get_steps_with_tool_calls(steps)
-    reads, writes = get_reads_and_writes(steps_with_tool_calls)
+def get_recall_precision_stats_legacy(legacy_items, source_files, exclude_tests=False, include_subagents=True):
+    """Compute recall/precision from legacy trajectory items."""
+    reads, writes, subagent_stats = get_reads_and_writes_legacy(legacy_items, include_subagents=include_subagents)
 
     read_set = set(reads)
     write_set = set(writes)
@@ -339,6 +491,7 @@ def get_recall_precision_stats(trajectory, source_files, exclude_tests=False):
     result = {
         "read": _precision_recall(read_set, source_set),
         "write": _precision_recall(write_set, source_set),
+        "subagent_stats": subagent_stats,
     }
 
     for level in ("module", "package", "parent"):
@@ -348,7 +501,7 @@ def get_recall_precision_stats(trajectory, source_files, exclude_tests=False):
         result[f"read_{level}"] = _precision_recall(read_dirs, source_dirs)
         result[f"write_{level}"] = _precision_recall(write_dirs, source_dirs)
 
-    return result
+    return result, reads, writes
 
 
 def is_resolved(instance_id):
@@ -391,7 +544,11 @@ def main():
                         help="Show directory-level (module/package/parent) precision/recall")
     parser.add_argument("--plot", action="store_true",
                         help="Generate a scatter plot of write recall vs precision")
+    parser.add_argument("--no-subagents", action="store_true",
+                        help="Exclude sub-agent reads/writes (main agent only)")
     args = parser.parse_args()
+
+    include_sa = not args.no_subagents
 
     trajectory_files = get_all_trajectory_files(TRAJECTORY_DIR)
 
@@ -408,12 +565,26 @@ def main():
         for sf in sorted(source_files):
             print(f"  {sf}")
         for file, _ in matched:
-            trajectory = load_trajectory(file)
-            steps = get_steps(trajectory)
-            steps_with_tool_calls = get_steps_with_tool_calls(steps)
-            reads, writes = get_reads_and_writes(steps_with_tool_calls)
+            legacy_items = load_legacy_trajectory(file)
+            stats, reads, writes = get_recall_precision_stats_legacy(
+                legacy_items, source_files, exclude_tests=args.exclude_tests,
+                include_subagents=include_sa,
+            )
+            sa = stats["subagent_stats"]
             print(f"\nTrajectory: {file}")
-            print(f"Reads ({len(reads)}):")
+            print(f"Total tool calls: {sa['total_items']}  (main: {sa['main_tool_count']}, sub-agent: {sa['total_subagent_steps']})")
+            print(f"Sub-agent invocations: {sa['num_subagent_calls']}")
+            if sa["subagent_type_counts"]:
+                for stype, cnt in sorted(sa["subagent_type_counts"].items()):
+                    print(f"  {stype}: {cnt}")
+            if sa["per_invocation_steps"]:
+                inv_stats = _safe_stats(sa["per_invocation_steps"])
+                print(f"  Steps per invocation: mean={inv_stats['mean']}, median={inv_stats['median']}, min={inv_stats['min']}, max={inv_stats['max']}")
+            if sa["subagent_tool_counts"]:
+                print(f"  Sub-agent tool breakdown:")
+                for tool, cnt in sorted(sa["subagent_tool_counts"].items(), key=lambda x: -x[1]):
+                    print(f"    {tool}: {cnt}")
+            print(f"\nReads ({len(reads)}):")
             for r in sorted(reads):
                 print(f"  R: {r}")
                 if args.show_cmds:
@@ -422,7 +593,6 @@ def main():
             print(f"Writes ({len(writes)}):")
             for w in sorted(writes):
                 print(f"  W: {w}")
-            stats = get_recall_precision_stats(trajectory, source_files, exclude_tests=args.exclude_tests)
             for kind in ("read", "write"):
                 s = stats[kind]
                 print(f"\n{kind.upper()} stats (file-level):")
@@ -439,6 +609,11 @@ def main():
         all_read_precisions = []
         all_write_recalls = []
         all_write_precisions = []
+        all_subagent_counts = []
+        all_subagent_steps = []
+        all_main_steps = []
+        all_total_steps = []
+        instances_with_subagents = 0
         for file, instance_id in trajectory_files:
             resolved = is_resolved(instance_id)
             if args.resolved and not resolved:
@@ -446,14 +621,25 @@ def main():
             if args.unresolved and resolved:
                 continue
             source_files = source_files_from_instance_id(instance_id)
-            stats = get_recall_precision_stats(load_trajectory(file), source_files, exclude_tests=args.exclude_tests)
+            legacy_items = load_legacy_trajectory(file)
+            stats, _, _ = get_recall_precision_stats_legacy(
+                legacy_items, source_files, exclude_tests=args.exclude_tests,
+                include_subagents=include_sa,
+            )
             r, w = stats["read"], stats["write"]
+            sa = stats["subagent_stats"]
             all_read_recalls.append(r["recall"])
             all_read_precisions.append(r["precision"])
             all_write_recalls.append(w["recall"])
             all_write_precisions.append(w["precision"])
+            all_subagent_counts.append(sa["num_subagent_calls"])
+            all_subagent_steps.append(sa["total_subagent_steps"])
+            all_main_steps.append(sa["main_tool_count"])
+            all_total_steps.append(sa["total_items"])
+            if sa["num_subagent_calls"] > 0:
+                instances_with_subagents += 1
             status = "RESOLVED" if resolved else "UNRESOLVED"
-            line = f"{instance_id}  {status}  read_recall={r['recall']:.2f}  read_precision={r['precision']:.2f}  write_recall={w['recall']:.2f}  write_precision={w['precision']:.2f}"
+            line = f"{instance_id}  {status}  read_recall={r['recall']:.2f}  read_precision={r['precision']:.2f}  write_recall={w['recall']:.2f}  write_precision={w['precision']:.2f}  subagents={sa['num_subagent_calls']}  sa_steps={sa['total_subagent_steps']}"
             if args.dir_stats:
                 for level in ("module", "package", "parent"):
                     rd = stats[f"read_{level}"]
@@ -463,13 +649,24 @@ def main():
 
         n = len(all_read_recalls)
         if n > 0:
-            print(f"\n{'=' * 50}")
+            print(f"\n{'=' * 60}")
             print(f"AVERAGES ({n} instances)")
             print(f"  Avg Read Recall:     {sum(all_read_recalls) / n:.2f}")
             print(f"  Avg Read Precision:  {sum(all_read_precisions) / n:.2f}")
             print(f"  Avg Write Recall:    {sum(all_write_recalls) / n:.2f}")
             print(f"  Avg Write Precision: {sum(all_write_precisions) / n:.2f}")
-            print(f"{'=' * 50}")
+            print(f"{'=' * 60}")
+            print(f"\nSUB-AGENT STATISTICS ({n} instances)")
+            print(f"  Instances with sub-agents: {instances_with_subagents}/{n}")
+            sa_count_stats = _safe_stats(all_subagent_counts)
+            print(f"  Sub-agent calls per instance: mean={sa_count_stats['mean']}, median={sa_count_stats['median']}, min={sa_count_stats['min']}, max={sa_count_stats['max']}")
+            sa_step_stats = _safe_stats(all_subagent_steps)
+            print(f"  Sub-agent steps per instance: mean={sa_step_stats['mean']}, median={sa_step_stats['median']}, min={sa_step_stats['min']}, max={sa_step_stats['max']}")
+            main_stats = _safe_stats(all_main_steps)
+            print(f"  Main-agent steps per instance: mean={main_stats['mean']}, median={main_stats['median']}, min={main_stats['min']}, max={main_stats['max']}")
+            total_stats = _safe_stats(all_total_steps)
+            print(f"  Total steps per instance: mean={total_stats['mean']}, median={total_stats['median']}, min={total_stats['min']}, max={total_stats['max']}")
+            print(f"{'=' * 60}")
 
     if args.categorize:
         write_buckets = {k: [] for k in WRITE_CATEGORIES}
@@ -483,7 +680,11 @@ def main():
             if not args.resolved and not args.unresolved and resolved:
                 continue
             source_files = source_files_from_instance_id(instance_id)
-            stats = get_recall_precision_stats(load_trajectory(file), source_files, exclude_tests=args.exclude_tests)
+            legacy_items = load_legacy_trajectory(file)
+            stats, _, _ = get_recall_precision_stats_legacy(
+                legacy_items, source_files, exclude_tests=args.exclude_tests,
+                include_subagents=include_sa,
+            )
             w_cat = categorize_write_stats(stats["write"], args.precision_threshold, args.recall_threshold)
             r_cat = categorize_read_stats(stats["read"], args.precision_threshold, args.recall_threshold)
             write_buckets[w_cat].append((instance_id, stats))
@@ -535,7 +736,11 @@ def main():
             if args.unresolved and resolved:
                 continue
             source_files = source_files_from_instance_id(instance_id)
-            stats = get_recall_precision_stats(load_trajectory(file), source_files, exclude_tests=args.exclude_tests)
+            legacy_items = load_legacy_trajectory(file)
+            stats, _, _ = get_recall_precision_stats_legacy(
+                legacy_items, source_files, exclude_tests=args.exclude_tests,
+                include_subagents=include_sa,
+            )
             w = stats["write"]
             if resolved:
                 resolved_points.append((w["recall"], w["precision"]))
