@@ -475,22 +475,23 @@ class JavaGradleAdapter(LanguageAdapter):
         self, config: RepoConfig, runtime_version: Optional[str],
     ) -> List[str]:
         no_root_user = config.no_root_user
+        repo_dir = config.repo_dir
         lines = [
             "# Cap Gradle JVM heap and parallelism for memory-constrained hosts",
-            'RUN echo "org.gradle.jvmargs=-Xmx2g -XX:MaxMetaspaceSize=512m" >> /app/gradle.properties',
+            f'RUN echo "org.gradle.jvmargs=-Xmx2g -XX:MaxMetaspaceSize=512m" >> {repo_dir}/gradle.properties',
             "",
             "# Gradlew wrapper: auto-drops to non-root user when invoked as root",
-            "RUN mv /app/gradlew /app/.gradlew-bin",
-            "RUN sed -i 's|APP_BASE_NAME=.*|APP_BASE_NAME=gradlew|' /app/.gradlew-bin",
-            "RUN cat > /app/gradlew << 'GRADLEW_WRAPPER_EOF'",
+            f"RUN mv {repo_dir}/gradlew {repo_dir}/.gradlew-bin",
+            f"RUN sed -i 's|APP_BASE_NAME=.*|APP_BASE_NAME=gradlew|' {repo_dir}/.gradlew-bin",
+            f"RUN cat > {repo_dir}/gradlew << 'GRADLEW_WRAPPER_EOF'",
             "#!/bin/sh",
             'if [ "$(id -u)" = "0" ]; then',
-            f'    chown -R {no_root_user}:{no_root_user} /app 2>/dev/null || true',
-            f"    exec su -s /bin/bash -c 'exec /app/.gradlew-bin \"$@\"' -- {no_root_user} _ \"$@\"",
+            f'    chown -R {no_root_user}:{no_root_user} {repo_dir} 2>/dev/null || true',
+            f"    exec su -s /bin/bash -c 'exec {repo_dir}/.gradlew-bin \"$@\"' -- {no_root_user} _ \"$@\"",
             "fi",
-            'exec /app/.gradlew-bin "$@"',
+            f'exec {repo_dir}/.gradlew-bin "$@"',
             "GRADLEW_WRAPPER_EOF",
-            "RUN chmod +x /app/gradlew",
+            f"RUN chmod +x {repo_dir}/gradlew",
             "",
         ]
         return lines
@@ -498,9 +499,10 @@ class JavaGradleAdapter(LanguageAdapter):
     def _dockerfile_final_lines(
         self, config: RepoConfig, runtime_version: Optional[str],
     ) -> List[str]:
+        repo_dir = config.repo_dir
         return [
             "# Pre-warm Gradle distribution",
-            "RUN cd /app && ./gradlew --version --no-daemon || true",
+            f"RUN cd {repo_dir} && ./gradlew --version --no-daemon || true",
         ]
 
     def generate_run_script(
@@ -528,6 +530,7 @@ if [ $CMD_EXIT -ne 0 ]; then
 fi
 """
 
+        repo_dir = config.repo_dir
         return f"""#!/bin/bash
 set -uo pipefail
 
@@ -537,7 +540,7 @@ set -uo pipefail
 # NOTE: set -e is intentionally NOT used. All gradle commands must run so that
 # JUnit XML is produced for every module, even if an earlier module fails.
 
-cd /app
+cd {repo_dir}
 OVERALL_EXIT=0
 
 if [ $# -gt 0 ]; then

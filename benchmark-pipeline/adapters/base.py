@@ -320,6 +320,8 @@ class LanguageAdapter(ABC):
         base_image = self.resolve_base_image(config, runtime_version)
         packages = config.system_packages
         no_root_user = config.no_root_user
+        repo_dir = config.repo_dir
+        docker_workdir = config.docker_workdir
 
         lines = [
             f"# Base image for {config.slug} benchmark instances",
@@ -339,10 +341,26 @@ class LanguageAdapter(ABC):
 
         lines.extend([
             "# Clone repository",
-            f"RUN mkdir /app && \\",
-            f"    git clone -o origin {repo_url} /app",
+            f"RUN mkdir -p {repo_dir} && \\",
+            f"    git clone -o origin {repo_url} {repo_dir}",
             "",
-            "WORKDIR /app",
+        ])
+
+        # ── Noise repos (shallow clones alongside the main repo) ─────
+        if config.noise_repos:
+            clone_cmds = []
+            for slug in config.noise_repos:
+                name = slug.split("/")[-1]
+                clone_cmds.append(
+                    f"git clone --depth=1 https://github.com/{slug}.git"
+                    f" {docker_workdir}/{name}"
+                )
+            lines.append("# Clone noise repos for a realistic multi-repo workspace")
+            lines.append("RUN " + " && \\\n    ".join(clone_cmds))
+            lines.append("")
+
+        lines.extend([
+            f"WORKDIR {docker_workdir}",
             'SHELL ["/bin/bash", "-c"]',
             "",
         ])
@@ -359,8 +377,8 @@ class LanguageAdapter(ABC):
         lines.extend([
             "# ── Harbor additions ──────────────────────────────────────",
             "ENTRYPOINT []",
-            "WORKDIR /app",
-            "ENV PYTHONPATH=/app/lib:/app",
+            f"WORKDIR {docker_workdir}",
+            f"ENV PYTHONPATH={repo_dir}/lib:{repo_dir}",
             "RUN mkdir -p /logs",
             "",
             f"RUN userdel -r ubuntu 2>/dev/null || true",
@@ -393,6 +411,8 @@ class LanguageAdapter(ABC):
         is produced (the original behavior).
         """
         no_root_user = config.no_root_user
+        repo_dir = config.repo_dir
+        docker_workdir = config.docker_workdir
 
         if base_image_tag:
             # ── Layered mode: FROM the pre-built base image ──────────
@@ -401,7 +421,7 @@ class LanguageAdapter(ABC):
                 f"FROM {base_image_tag}",
                 "",
                 'SHELL ["/bin/bash", "-c"]',
-                "WORKDIR /app",
+                f"WORKDIR {repo_dir}",
                 "",
                 f"# Reset to base commit (before the fix)",
                 f"RUN git checkout {base_commit} && \\",
@@ -432,10 +452,10 @@ class LanguageAdapter(ABC):
 
             lines.extend([
                 "# Clone repository",
-                f"RUN mkdir /app && \\",
-                f"    git clone -o origin {repo_url} /app",
+                f"RUN mkdir -p {repo_dir} && \\",
+                f"    git clone -o origin {repo_url} {repo_dir}",
                 "",
-                "WORKDIR /app",
+                f"WORKDIR {repo_dir}",
                 'SHELL ["/bin/bash", "-c"]',
                 "",
                 f"# Reset to base commit (before the fix)",
@@ -486,8 +506,8 @@ class LanguageAdapter(ABC):
             lines.extend([
                 "# ── Harbor additions ──────────────────────────────────────",
                 "ENTRYPOINT []",
-                "WORKDIR /app",
-                "ENV PYTHONPATH=/app/lib:/app",
+                f"WORKDIR {repo_dir}",
+                f"ENV PYTHONPATH={repo_dir}/lib:{repo_dir}",
                 "RUN mkdir -p /logs",
                 "",
                 f"RUN userdel -r ubuntu 2>/dev/null || true",
@@ -497,8 +517,8 @@ class LanguageAdapter(ABC):
         # ── chown after checkout (both modes) ─────────────────────────
         # Skip recursing into .git internals (huge on large repos like Kibana)
         lines.extend([
-            f"RUN find /app -maxdepth 1 -exec chown {no_root_user}:{no_root_user} {{}} + && \\",
-            f"    find /app -mindepth 1 -maxdepth 1 ! -name .git -exec chown -R {no_root_user}:{no_root_user} {{}} +",
+            f"RUN find {repo_dir} -maxdepth 1 -exec chown {no_root_user}:{no_root_user} {{}} + && \\",
+            f"    find {repo_dir} -mindepth 1 -maxdepth 1 ! -name .git -exec chown -R {no_root_user}:{no_root_user} {{}} +",
             "",
         ])
 

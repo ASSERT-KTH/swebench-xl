@@ -82,13 +82,13 @@ import subprocess
 import sys
 
 # Find the repo root
-for d in ("/app", "/testbed"):
+for d in ("{repo_dir}", "/app", "/testbed"):
     if os.path.isdir(d):
         os.chdir(d)
         break
 
 # Prevent git "dubious ownership" errors when test.sh runs as root
-# but /app is owned by a non-root user.
+# but the repo dir is owned by a non-root user.
 subprocess.run(
     ["git", "config", "--global", "--add", "safe.directory", os.getcwd()],
     capture_output=True,
@@ -297,7 +297,7 @@ def generate_harbor_task(
     patch_text = (instance.get("patch", "") or "").strip()
     if patch_text and not patch_text.endswith("\n"):
         patch_text += "\n"
-    solve_sh = _render(_read_template("solve.sh"), patch=patch_text)
+    solve_sh = _render(_read_template("solve.sh"), patch=patch_text, repo_dir=cfg.repo_dir)
     solve_path = task_dir / "solution" / "solve.sh"
     solve_path.write_text(solve_sh)
     _make_executable(solve_path)
@@ -307,7 +307,7 @@ def generate_harbor_task(
     if custom_test_sh:
         test_sh = custom_test_sh
     else:
-        test_sh = _render(_read_template("test.sh"), no_root_user=cfg.no_root_user)
+        test_sh = _render(_read_template("test.sh"), no_root_user=cfg.no_root_user, repo_dir=cfg.repo_dir)
 
     # Inject the reset call into test.sh so it always runs before the
     # test_patch is applied, regardless of which adapter generated it.
@@ -320,7 +320,9 @@ def generate_harbor_task(
     # ── tests/reset_test_files.py ───────────────────────────────────
     # Standalone script that resets test-patch files to base-commit state.
     # Always generated so the injected call in test.sh works.
-    (task_dir / "tests" / "reset_test_files.py").write_text(_RESET_SCRIPT)
+    (task_dir / "tests" / "reset_test_files.py").write_text(
+        _RESET_SCRIPT.replace("{repo_dir}", cfg.repo_dir)
+    )
 
     # ── tests/config.json ───────────────────────────────────────────
     test_cmds = instance.get("test_commands", instance.get("gradle_commands", []))
