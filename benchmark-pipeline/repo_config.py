@@ -51,9 +51,6 @@ class RepoConfig:
     # ── Dockerfile extras ─────────────────────────────────────────────
     dockerfile_extra_lines: List[str] = field(default_factory=list)
 
-    # ── Noise repos (cloned alongside the main repo) ─────────────────
-    noise_repos: List[str] = field(default_factory=list)
-
     # ── Arbitrary extras (forward-compatible) ─────────────────────────
     extra: Dict[str, Any] = field(default_factory=dict)
 
@@ -61,29 +58,6 @@ class RepoConfig:
         if not self.default_clone_dir:
             safe = self.slug.replace("/", "-")
             self.default_clone_dir = f"/tmp/{safe}-pipeline"
-
-    @property
-    def repo_dir(self) -> str:
-        """Container path to the main repository.
-
-        When noise repos are configured the main repo lives under
-        ``/workspace/<repo-short-name>`` so that sibling noise repos
-        can sit alongside it.  Otherwise falls back to ``/app``.
-        """
-        if self.noise_repos:
-            return f"/workspace/{self.slug.split('/')[-1]}"
-        return "/app"
-
-    @property
-    def docker_workdir(self) -> str:
-        """WORKDIR for the Docker image.
-
-        ``/workspace`` when noise repos are present (so the agent sees
-        all repos), ``/app`` otherwise.
-        """
-        if self.noise_repos:
-            return "/workspace"
-        return "/app"
 
     @property
     def base_image_tag(self) -> str:
@@ -141,17 +115,6 @@ register_repo(RepoConfig(
     default_clone_dir="/tmp/elasticsearch-pipeline",
     test_config_files={"muted-tests.yml", "muted-tests.yaml"},
     extra_test_path_segments=["/compute/test/"],
-    noise_repos=[
-        "elastic/kibana",
-        "elastic/logstash",
-        "elastic/beats",
-        "elastic/apm-server",
-        "elastic/elasticsearch-py",
-        "elastic/go-elasticsearch",
-        "elastic/elasticsearch-js",
-        "elastic/elastic-agent",
-        "elastic/elasticsearch-specification",
-    ],
     extra={
         "min_jdk_version": 21,
         "gradle_flags": [
