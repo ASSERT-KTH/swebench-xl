@@ -176,3 +176,25 @@ register_repo(RepoConfig(
         "npm_memory_limit": 8192,
     },
 ))
+
+register_repo(RepoConfig(
+    slug="huggingface/transformers",
+    adapter_name="transformers",
+    base_image="python:3.12-bookworm",
+    system_packages="git python3 python3-pip curl wget unzip jq patch",
+    no_root_user="app",
+    version_files=["setup.py", "pyproject.toml"],
+    version_key="version",
+    clone_dir_env_var="TRANSFORMERS_CLONE_DIR",
+    default_clone_dir="/tmp/transformers-pipeline",
+    test_config_files={"conftest.py", "pyproject.toml"},
+    extra_test_path_segments=["/fixtures/", "/testing_utils"],
+    extra={
+        "pytest_flags": [
+            "--tb=short",
+            "--no-header",
+            "-rN",
+            "--junitxml=test-results/junit.xml",
+        ],
+    },
+))

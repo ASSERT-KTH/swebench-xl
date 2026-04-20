@@ -46,7 +46,9 @@ def registered_adapters() -> list[str]:
 from adapters.java_gradle import JavaGradleAdapter  # noqa: E402
 from adapters.kibana import KibanaAdapter  # noqa: E402
 from adapters.babylon import BabylonAdapter  # noqa: E402
+from adapters.transformers import TransformersAdapter  # noqa: E402
 
 register_adapter("java-gradle", JavaGradleAdapter())
 register_adapter("kibana", KibanaAdapter())
 register_adapter("babylon", BabylonAdapter())
+register_adapter("transformers", TransformersAdapter())
