@@ -441,6 +441,32 @@ def run_local_oracle(
         jest_report_dir = str(junit_dir)
         run_env["JEST_REPORT_DIR"] = jest_report_dir
         os.makedirs(jest_report_dir, exist_ok=True)
+        # VS Code's MochaJUnitReporter needs this to know where to write XML
+        run_env["BUILD_ARTIFACTSTAGINGDIRECTORY"] = clone_dir
+        run_env["VSCODE_SKIP_NODE_VERSION_CHECK"] = "1"
+
+    # For adapters whose test runner loads compiled output (e.g. VS Code
+    # loads .js from out/), we must recompile after any .ts change so
+    # the runner sees the current source state.  The out/ directory is
+    # preserved across git resets to avoid 20+ minute full rebuilds, so
+    # without an explicit compile the runner would execute stale JS.
+    compile_cmds = adapter.build_compile_commands([], repo_cfg)
+    if compile_cmds:
+        print(f"[local] Compiling before running tests...")
+        for cmd in compile_cmds:
+            ret = subprocess.run(
+                ["bash", "-c", cmd],
+                cwd=clone_dir,
+                capture_output=True,
+                timeout=timeout,
+                env=run_env,
+            )
+            if ret.returncode != 0:
+                print(f"[local] Compile failed (exit {ret.returncode})")
+                tail = ret.stdout.decode(errors="replace").strip().split("\n")[-15:]
+                for line in tail:
+                    print(f"  | {line}")
+                return 0
 
     print(f"[local] Running {len(test_commands)} test command(s)...")
     stdout_parts: List[str] = []

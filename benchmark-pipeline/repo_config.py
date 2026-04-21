@@ -178,6 +178,23 @@ register_repo(RepoConfig(
 ))
 
 register_repo(RepoConfig(
+    slug="microsoft/vscode",
+    adapter_name="vscode",
+    base_image="node:22-bookworm",
+    system_packages="git python3 python3-pip curl wget unzip jq patch libx11-dev libxkbfile-dev libsecret-1-dev pkg-config make g++",
+    no_root_user="node",
+    version_files=["package.json"],
+    version_key="version",
+    clone_dir_env_var="VSCODE_CLONE_DIR",
+    default_clone_dir="/tmp/vscode-pipeline",
+    test_config_files={"mocha.opts", ".mocharc.yml", ".mocharc.yaml"},
+    extra_test_path_segments=["/test/"],
+    extra={
+        "npm_memory_limit": 8192,
+    },
+))
+
+register_repo(RepoConfig(
     slug="huggingface/transformers",
     adapter_name="transformers",
     base_image="python:3.12-bookworm",
