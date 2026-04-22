@@ -442,7 +442,7 @@ def run_local_oracle(
         run_env["JEST_REPORT_DIR"] = jest_report_dir
         os.makedirs(jest_report_dir, exist_ok=True)
         # VS Code's MochaJUnitReporter needs this to know where to write XML
-        run_env["BUILD_ARTIFACTSTAGINGDIRECTORY"] = clone_dir
+        run_env["BUILD_ARTIFACTSTAGINGDIRECTORY"] = os.path.abspath(clone_dir)
         run_env["VSCODE_SKIP_NODE_VERSION_CHECK"] = "1"
 
     # For adapters whose test runner loads compiled output (e.g. VS Code
