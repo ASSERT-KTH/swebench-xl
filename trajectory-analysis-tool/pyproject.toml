@@ -1,0 +1,12 @@
+[build-system]
+requires = ["setuptools>=68.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "trajectory-analysis-tool"
+version = "0.1.0"
+description = "Normalise agent trajectories into Read/Write/Explore operations"
+requires-python = ">=3.10"
+
+[project.scripts]
+traj = "traj.cli:main"
