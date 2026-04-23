@@ -27,10 +27,8 @@ class OpenHandsAdapter(BaseAdapter):
             elif tool == "execute_bash":
                 ops.extend(self._handle_bash(entry, step))
             else:
-                ops.append(Operation(
-                    step=step, action="Other", path="", tool=tool,
-                    detail=f"{tool}: {str(entry.get('action', ''))[:200]}",
-                ))
+                # Unknown tool with no path — skip
+                pass
 
         return "openhands", "", ops
 
@@ -57,6 +55,5 @@ class OpenHandsAdapter(BaseAdapter):
         elif isinstance(action, str):
             command = action
         else:
-            return [Operation(step=step, action="Other", path="", tool="execute_bash",
-                              detail=f"execute_bash: {str(action)[:200]}")]
+            return []
         return classify_bash(command, step)

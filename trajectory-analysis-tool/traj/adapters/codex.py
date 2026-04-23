@@ -25,10 +25,8 @@ class CodexAdapter(BaseAdapter):
             elif tool == "bash":
                 ops.extend(self._handle_bash(entry, step))
             else:
-                ops.append(Operation(
-                    step=step, action="Other", path="", tool=tool,
-                    detail=f"{tool}: {str(entry.get('action', ''))[:200]}",
-                ))
+                # Unknown tool with no path — skip
+                pass
 
         return "codex", "", ops
 
@@ -52,7 +50,4 @@ class CodexAdapter(BaseAdapter):
         action = entry.get("action", "")
         if isinstance(action, str):
             return classify_bash(action, step)
-        return [Operation(
-            step=step, action="Other", path="", tool="bash",
-            detail=f"bash: {str(action)[:200]}",
-        )]
+        return []

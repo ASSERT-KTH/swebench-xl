@@ -25,7 +25,7 @@ def main():
     )
     extract_parser.add_argument(
         "path",
-        help="Path to a trajectory JSON file or directory of trajectories",
+        help="Path to a trajectory JSON file, zip archive, or directory of trajectories",
     )
     extract_parser.add_argument(
         "-o", "--output",
@@ -43,7 +43,7 @@ def main():
     )
     analyse_parser.add_argument(
         "path",
-        help="Path to a trajectory JSON file or directory of trajectories",
+        help="Path to a trajectory JSON file, zip archive, or directory of trajectories",
     )
     analyse_parser.add_argument(
         "-o", "--output",
@@ -77,11 +77,6 @@ def main():
     abw_parser.add_argument(
         "trajectory_dir",
         help="Directory containing benchmark run output",
-    )
-    abw_parser.add_argument(
-        "--instance-stats",
-        required=True,
-        help="Path to instance_stats_output.json",
     )
     abw_parser.add_argument(
         "-o", "--output",
@@ -118,7 +113,9 @@ def _cmd_extract(args):
         Path(args.output).write_text(json_str)
         print(f"Written to {args.output}")
     else:
-        print(json_str)
+        for r in results:
+            for op in r.operations:
+                print(f"{op.action:<8} {op.path}")
 
 
 def _cmd_analyse(args):
@@ -189,7 +186,7 @@ def _print_file_recall_summary(result: dict):
 def _cmd_actions_before_write(args):
     from traj.scripts.actions_before_write import analyse_directory, print_summary
 
-    result = analyse_directory(args.trajectory_dir, args.instance_stats)
+    result = analyse_directory(args.trajectory_dir)
     json_str = json.dumps(result, indent=2)
 
     if args.output:

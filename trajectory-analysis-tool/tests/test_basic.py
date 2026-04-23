@@ -56,7 +56,13 @@ class TestBashClassifier:
         assert ops[0].action == "Explore"
 
     def test_rg_content_is_explore_and_read(self):
+        # rg against a directory path -> Explore only (not a file read)
         ops = classify_bash("rg 'pattern' /app/src", step=1)
+        assert len(ops) == 1
+        assert ops[0].action == "Explore"
+
+        # rg against a file path -> Explore + Read
+        ops = classify_bash("rg 'pattern' /app/src/Main.java", step=1)
         assert len(ops) == 2
         actions = {op.action for op in ops}
         assert "Explore" in actions
@@ -82,9 +88,9 @@ class TestBashClassifier:
         assert ops[0].path == "/app/file.java"
 
     def test_unknown_command_is_other(self):
+        # Unknown commands with no file path produce no operations
         ops = classify_bash("some-unknown-command --flag", step=1)
-        assert len(ops) == 1
-        assert ops[0].action == "Other"
+        assert len(ops) == 0
 
     def test_sub_agent_flag(self):
         ops = classify_bash("cat /file.txt", step=1, sub_agent=True, sub_agent_name="test-agent")

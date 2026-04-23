@@ -95,12 +95,9 @@ class CopilotAdapter(BaseAdapter):
             agent_type = args.get("agent_type", "")
             name = args.get("name", "")
             if agent_type in ("explore", "task", "general-purpose"):
-                return [Operation(
-                    step=step_id, action="Explore", path="",
-                    tool=f"task:{agent_type}",
-                    detail=f"task agent_type={agent_type} name={name}",
-                    sub_agent=sub_agent, sub_agent_name=sub_agent_name,
-                )]
+                # Sub-agent delegation — no file path for the delegation itself.
+                # Inner sub-agent steps are extracted separately.
+                return []
             return []
 
         # --- view (Read) ---
@@ -182,12 +179,8 @@ class CopilotAdapter(BaseAdapter):
         if func in ("update_plan", "write_stdin"):
             return []
 
-        # Unknown tool — record as Other
-        return [Operation(
-            step=step_id, action="Other", path="", tool=func,
-            detail=f"{func} {str(args)[:200]}",
-            sub_agent=sub_agent, sub_agent_name=sub_agent_name,
-        )]
+        # Unknown tool — skip (no meaningful path)
+        return []
 
     def _extract_sub_agent_steps(self, sub_data: dict, parent_step_id: int,
                                  ops: list[Operation]) -> None:

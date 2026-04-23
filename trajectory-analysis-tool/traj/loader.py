@@ -3,15 +3,47 @@ from __future__ import annotations
 
 import json
 import os
+import zipfile
 from pathlib import Path
 from traj.models import TrajectoryResult
 from traj.adapters.copilot import CopilotAdapter
 from traj.adapters.codex import CodexAdapter
 from traj.adapters.openhands import OpenHandsAdapter
 
+# Known paths where a trajectory JSON may live inside an output zip.
+_ZIP_TRAJECTORY_PATHS = [
+    "output/trajectories/trajectory.json",
+    "trajectory.json",
+]
+
+
+def _load_trajectory_from_zip(zip_path: str) -> TrajectoryResult:
+    """Load a trajectory from inside a zip archive."""
+    with zipfile.ZipFile(zip_path) as zf:
+        names = zf.namelist()
+        for candidate in _ZIP_TRAJECTORY_PATHS:
+            if candidate in names:
+                data = json.loads(zf.read(candidate))
+                source_file = os.path.basename(zip_path)
+                adapter = _detect_adapter(data)
+                agent, session_id, ops = adapter.extract(data, source_file)
+                return TrajectoryResult(
+                    source_file=source_file,
+                    agent=agent,
+                    session_id=session_id,
+                    operations=ops,
+                )
+        raise FileNotFoundError(
+            f"No trajectory JSON found in {zip_path} "
+            f"(looked for {_ZIP_TRAJECTORY_PATHS})"
+        )
+
 
 def load_trajectory(path: str) -> TrajectoryResult:
     """Load a single trajectory file and return normalised operations."""
+    if path.endswith(".zip"):
+        return _load_trajectory_from_zip(path)
+
     with open(path) as f:
         data = json.load(f)
 
@@ -30,7 +62,7 @@ def load_trajectory(path: str) -> TrajectoryResult:
 def load_trajectories(path: str) -> list[TrajectoryResult]:
     """Load one or many trajectory files.
 
-    If path is a file, load that single file.
+    If path is a file (.json or .zip), load that single file.
     If path is a directory, recursively find all .json files and load them.
     """
     p = Path(path)

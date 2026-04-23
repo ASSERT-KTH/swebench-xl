@@ -47,7 +47,8 @@ def classify_bash(command: str, step: int, sub_agent: bool = False,
     ops: list[Operation] = []
     for seg in segments:
         ops.extend(_classify_segment(seg.strip(), step, sub_agent, sub_agent_name))
-    return ops if ops else [_make_op("Other", "", command, "bash", step, sub_agent, sub_agent_name)]
+    ops = [op for op in ops if op is not None]
+    return ops if ops else []
 
 
 def _split_chains(cmd: str) -> list[str]:
@@ -94,51 +95,53 @@ def _classify_segment(seg: str, step: int, sub_agent: bool,
     if base_cmd in ("grep", "egrep", "fgrep", "rg"):
         actions = _classify_grep(primary, base_cmd)
         for action, path in actions:
-            ops.append(_make_op(action, path, seg, base_cmd, step, sub_agent, sub_agent_name))
+            op = _make_op(action, path, seg, base_cmd, step, sub_agent, sub_agent_name)
+            if op is not None:
+                ops.append(op)
         return ops
 
     # --- sed ---
     if base_cmd == "sed":
         if "-i" in primary or "--in-place" in primary:
             path = _extract_last_path(primary)
-            return [_make_op("Write", path, seg, "sed", step, sub_agent, sub_agent_name)]
+            return [op for op in [_make_op("Write", path, seg, "sed", step, sub_agent, sub_agent_name)] if op]
         elif "-n" in primary:
             path = _extract_last_path(primary)
-            return [_make_op("Read", path, seg, "sed", step, sub_agent, sub_agent_name)]
+            return [op for op in [_make_op("Read", path, seg, "sed", step, sub_agent, sub_agent_name)] if op]
         path = _extract_last_path(primary)
-        return [_make_op("Read", path, seg, "sed", step, sub_agent, sub_agent_name)]
+        return [op for op in [_make_op("Read", path, seg, "sed", step, sub_agent, sub_agent_name)] if op]
 
     # --- simple read commands ---
     if base_cmd in READ_COMMANDS:
         path = _extract_last_path(primary)
-        return [_make_op("Read", path, seg, base_cmd, step, sub_agent, sub_agent_name)]
+        return [op for op in [_make_op("Read", path, seg, base_cmd, step, sub_agent, sub_agent_name)] if op]
 
     # --- simple write commands ---
     if base_cmd in WRITE_COMMANDS:
         path = _extract_last_path(primary)
-        return [_make_op("Write", path, seg, base_cmd, step, sub_agent, sub_agent_name)]
+        return [op for op in [_make_op("Write", path, seg, base_cmd, step, sub_agent, sub_agent_name)] if op]
 
     # --- explore commands ---
     if base_cmd in EXPLORE_COMMANDS:
         path = _extract_path_for_explore(primary, base_cmd)
-        return [_make_op("Explore", path, seg, base_cmd, step, sub_agent, sub_agent_name)]
+        return [op for op in [_make_op("Explore", path, seg, base_cmd, step, sub_agent, sub_agent_name)] if op]
 
     # --- redirections (echo/printf > file) ---
     if ">" in seg:
         redir_path = _extract_redirect_target(seg)
         if redir_path:
-            return [_make_op("Write", redir_path, seg, base_cmd, step, sub_agent, sub_agent_name)]
+            return [op for op in [_make_op("Write", redir_path, seg, base_cmd, step, sub_agent, sub_agent_name)] if op]
 
     # --- cp / mv / mkdir / touch ---
     if base_cmd in ("cp", "mv"):
         path = _extract_last_path(primary)
-        return [_make_op("Write", path, seg, base_cmd, step, sub_agent, sub_agent_name)]
+        return [op for op in [_make_op("Write", path, seg, base_cmd, step, sub_agent, sub_agent_name)] if op]
     if base_cmd in ("mkdir", "touch", "rm", "rmdir"):
         path = _extract_last_path(primary)
-        return [_make_op("Write", path, seg, base_cmd, step, sub_agent, sub_agent_name)]
+        return [op for op in [_make_op("Write", path, seg, base_cmd, step, sub_agent, sub_agent_name)] if op]
     if base_cmd == "tee":
         path = _extract_last_path(primary)
-        return [_make_op("Write", path, seg, base_cmd, step, sub_agent, sub_agent_name)]
+        return [op for op in [_make_op("Write", path, seg, base_cmd, step, sub_agent, sub_agent_name)] if op]
 
     # --- git ---
     if base_cmd == "git":
@@ -173,7 +176,9 @@ def _classify_grep(cmd: str, base_cmd: str) -> list[tuple[str, str]]:
     # Default: grep shows content (Explore + Read)
     path = _extract_path_for_explore(cmd, base_cmd)
     results.append(("Explore", path))
-    results.append(("Read", path))
+    # Only emit a Read if the path looks like a file (has an extension)
+    if path and "." in path.split("/")[-1]:
+        results.append(("Read", path))
     return results
 
 
@@ -186,12 +191,12 @@ def _classify_git(cmd: str, full_seg: str, step: int, sub_agent: bool,
     subcmd = parts[1] if parts[1] != "--no-pager" else (parts[2] if len(parts) > 2 else "")
 
     if subcmd in ("diff", "log", "show", "blame", "status"):
-        return [_make_op("Read", "", full_seg, f"git {subcmd}", step, sub_agent, sub_agent_name)]
+        return [op for op in [_make_op("Read", "", full_seg, f"git {subcmd}", step, sub_agent, sub_agent_name)] if op]
     if subcmd in ("add", "commit", "checkout", "apply", "stash"):
         path = _extract_last_path(cmd)
-        return [_make_op("Write", path, full_seg, f"git {subcmd}", step, sub_agent, sub_agent_name)]
+        return [op for op in [_make_op("Write", path, full_seg, f"git {subcmd}", step, sub_agent, sub_agent_name)] if op]
     if subcmd in ("ls-files", "branch", "tag"):
-        return [_make_op("Explore", "", full_seg, f"git {subcmd}", step, sub_agent, sub_agent_name)]
+        return [op for op in [_make_op("Explore", "", full_seg, f"git {subcmd}", step, sub_agent, sub_agent_name)] if op]
     return []
 
 
@@ -283,7 +288,10 @@ def _extract_redirect_target(cmd: str) -> str:
 
 
 def _make_op(action: str, path: str, detail: str, tool: str, step: int,
-             sub_agent: bool, sub_agent_name: str | None) -> Operation:
+             sub_agent: bool, sub_agent_name: str | None) -> Operation | None:
+    # No path means no meaningful file operation
+    if not path:
+        return None
     return Operation(
         step=step,
         action=action,
