@@ -83,6 +83,21 @@ def main():
         help="Write output to a file instead of stdout",
     )
 
+    # --- subagent-usage ---
+    sub_parser = subparsers.add_parser(
+        "subagent-usage",
+        help="Analyse subagent (task tool) usage in Copilot CLI trajectories",
+    )
+    sub_parser.add_argument(
+        "trajectory_dirs",
+        nargs="+",
+        help="One or more directories containing benchmark run output zips",
+    )
+    sub_parser.add_argument(
+        "-o", "--output",
+        help="Write output to a file instead of stdout",
+    )
+
     args = parser.parse_args()
 
     if args.command is None:
@@ -97,6 +112,8 @@ def main():
         _cmd_file_recall(args)
     elif args.command == "actions-before-write":
         _cmd_actions_before_write(args)
+    elif args.command == "subagent-usage":
+        _cmd_subagent_usage(args)
 
 
 def _cmd_extract(args):
@@ -194,6 +211,26 @@ def _cmd_actions_before_write(args):
         print(f"Written to {args.output}")
     else:
         print_summary(result)
+
+
+def _cmd_subagent_usage(args):
+    from traj.scripts.subagent_usage import (
+        analyse_directory, analyse_directories, print_summary,
+    )
+
+    dirs = args.trajectory_dirs
+    if len(dirs) == 1:
+        result = analyse_directory(dirs[0])
+        full_result = {"comparison": [result], "runs": [result]}
+    else:
+        full_result = analyse_directories(dirs)
+
+    if args.output:
+        json_str = json.dumps(full_result, indent=2)
+        Path(args.output).write_text(json_str)
+        print(f"Written to {args.output}")
+    else:
+        print_summary(full_result)
 
 
 def _load_script(name: str):
