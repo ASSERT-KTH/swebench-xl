@@ -56,7 +56,7 @@ def _extract_instance_id(zip_name: str) -> str:
     # Strip common prefixes and -output suffix
     basename = re.sub(r'-output$', '', basename)
     # Try to find owner__repo-id pattern
-    match = re.search(r'([a-zA-Z0-9_]+__[a-zA-Z0-9_]+-[a-zA-Z0-9_-]+)', basename)
+    match = re.search(r'([a-zA-Z0-9_-]+__[a-zA-Z0-9_-]+-[a-zA-Z0-9_-]+)', basename)
     if match:
         return match.group(1)
     return basename

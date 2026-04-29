@@ -195,6 +195,46 @@ def main():
         help="Include per-repository breakdown in output",
     )
 
+    # --- collect ---
+    collect_parser = subparsers.add_parser(
+        "collect",
+        help="Run all analyses and export a flat per-instance CSV",
+    )
+    collect_parser.add_argument(
+        "trajectory_dir",
+        help="Directory containing benchmark run output (zips or instance dirs)",
+    )
+    collect_parser.add_argument(
+        "--agent",
+        required=True,
+        help="Agent identifier (e.g. copilot-cli-opus-4.6)",
+    )
+    collect_parser.add_argument(
+        "--benchmark",
+        required=True,
+        help="Benchmark identifier (e.g. swebench-verified)",
+    )
+    collect_parser.add_argument(
+        "--size-metrics",
+        required=True,
+        help="Path to CSV with per-instance size metrics (source_code_files, etc.)",
+    )
+    collect_parser.add_argument(
+        "--instance-stats",
+        default=None,
+        help="Path to instance_stats_output.json (optional; file_recall/time_to_correct/read_to_write columns will be NaN if omitted)",
+    )
+    collect_parser.add_argument(
+        "-o", "--output",
+        required=True,
+        help="Path to output CSV file",
+    )
+    collect_parser.add_argument(
+        "--append",
+        action="store_true",
+        help="Append to existing CSV instead of overwriting",
+    )
+
     # --- read-to-write ---
     rtw_parser = subparsers.add_parser(
         "read-to-write",
@@ -246,6 +286,8 @@ def main():
         _cmd_time_to_correct(args)
     elif args.command == "read-to-write":
         _cmd_read_to_write(args)
+    elif args.command == "collect":
+        _cmd_collect(args)
 
 
 def _print_run_header(directory: str, index: int, total: int):
@@ -486,6 +528,19 @@ def _cmd_read_to_write(args):
             if len(results) > 1:
                 _print_run_header(args.trajectory_dirs[i], i + 1, len(results))
             print_summary(result, per_repo=args.per_repo)
+
+
+def _cmd_collect(args):
+    from traj.scripts.collect import collect, write_csv
+
+    rows = collect(
+        run_dir=args.trajectory_dir,
+        agent=args.agent,
+        benchmark=args.benchmark,
+        size_metrics_csv=args.size_metrics,
+        instance_stats=args.instance_stats,
+    )
+    write_csv(rows, args.output, append=args.append)
 
 
 def _load_script(name: str):
