@@ -1,56 +1,82 @@
-"""Actions before first Write analysis.
+"""Exploration breadth/depth analysis for benchmark runs.
 
-Counts how many operations occur before the agent makes its first Write,
-comparing resolved vs unresolved instances.
+Measures how broadly and deeply an agent explores the directory tree:
+- Breadth: number of distinct directories touched
+- Depth: how deep in the file tree the agent operates (max and average)
+- Spread: number of distinct top-level directories (packages/modules) touched
+
+Breakdowns are provided per resolved/unresolved status and per repository.
 
 Usage:
-    traj actions-before-write <trajectory_dir>
+    traj exploration-breadth <trajectory_dir> [-o output.json]
 """
 from __future__ import annotations
 
 import json
-import os
-from pathlib import Path
+from collections import defaultdict
+from pathlib import Path, PurePosixPath
 
 from traj.scripts.file_recall import (
     _detect_run_format,
     _collect_instances_zip,
     _collect_instances_dir,
+    _normalise_path,
 )
 from traj.loader import _detect_adapter
 from traj.scripts import extract_repo
 
 
-def _count_before_first_write(traj_data: list | dict, source_file: str = "") -> dict:
-    """Count operations before the first Write action.
+def _compute_exploration_metrics(traj_data: list | dict, source_file: str = "") -> dict:
+    """Compute exploration breadth/depth metrics from a single trajectory.
 
-    Returns a dict with total ops, actions before first write,
-    and a breakdown by action type.
+    Returns a dict with:
+    - unique_files: number of distinct files touched (Read or Write)
+    - unique_dirs: number of distinct directories touched
+    - max_depth: deepest directory level reached
+    - avg_depth: average depth across all touched files
+    - top_level_dirs: list of distinct top-level directories
+    - top_level_count: number of distinct top-level directories
     """
     adapter = _detect_adapter(traj_data)
     _, _, ops = adapter.extract(traj_data, source_file)
 
-    total = len(ops)
-    before_counts = {"Read": 0, "Write": 0, "Explore": 0, "Other": 0}
-    first_write_index = None
+    files: set[str] = set()
+    dirs: set[str] = set()
+    depths: list[int] = []
 
-    for i, op in enumerate(ops):
-        if op.action == "Write":
-            first_write_index = i
-            break
-        before_counts[op.action] = before_counts.get(op.action, 0) + 1
+    for op in ops:
+        if op.action not in ("Read", "Write") or not op.path:
+            continue
+        normalised = _normalise_path(op.path)
+        if not normalised:
+            continue
+
+        p = PurePosixPath(normalised)
+        # Count depth as number of path components (file itself excluded)
+        parts = p.parts
+        depth = len(parts) - 1  # directory depth (0 = root-level file)
+
+        files.add(normalised)
+        depths.append(depth)
+
+        # Collect all ancestor directories
+        for i in range(1, len(parts)):
+            dirs.add(str(PurePosixPath(*parts[:i])))
+
+    top_level = sorted({PurePosixPath(f).parts[0] for f in files if len(PurePosixPath(f).parts) > 1})
 
     return {
-        "total_operations": total,
-        "first_write_at": first_write_index,
-        "actions_before_first_write": first_write_index if first_write_index is not None else total,
-        "breakdown_before_write": before_counts,
-        "has_write": first_write_index is not None,
+        "unique_files": len(files),
+        "unique_dirs": len(dirs),
+        "max_depth": max(depths) if depths else 0,
+        "avg_depth": round(sum(depths) / len(depths), 2) if depths else 0.0,
+        "top_level_dirs": top_level,
+        "top_level_count": len(top_level),
     }
 
 
 def analyse_directory(trajectory_dir: str) -> dict:
-    """Run actions-before-write analysis on a benchmark run directory."""
+    """Run exploration breadth/depth analysis on a benchmark run directory."""
     traj_dir = Path(trajectory_dir)
     run_format = _detect_run_format(traj_dir)
     if run_format == "dir":
@@ -63,7 +89,7 @@ def analyse_directory(trajectory_dir: str) -> dict:
     unresolved_results = []
 
     for instance_id, traj_data, resolved in instance_data:
-        metrics = _count_before_first_write(traj_data, instance_id)
+        metrics = _compute_exploration_metrics(traj_data, instance_id)
         result = {
             "instance_id": instance_id,
             "resolved": resolved,
@@ -84,13 +110,14 @@ def analyse_directory(trajectory_dir: str) -> dict:
     def _section(results: list[dict]) -> dict:
         return {
             "count": len(results),
-            "avg_actions_before_first_write": _avg(results, "actions_before_first_write"),
-            "avg_total_operations": _avg(results, "total_operations"),
-            "instances_without_write": sum(1 for r in results if not r["has_write"]),
+            "avg_unique_files": _avg(results, "unique_files"),
+            "avg_unique_dirs": _avg(results, "unique_dirs"),
+            "avg_max_depth": _avg(results, "max_depth"),
+            "avg_avg_depth": _avg(results, "avg_depth"),
+            "avg_top_level_count": _avg(results, "top_level_count"),
         }
 
     # Group by repo
-    from collections import defaultdict
     repo_groups: dict[str, list[dict]] = defaultdict(list)
     for result in per_instance:
         repo = extract_repo(result["instance_id"])
@@ -125,16 +152,18 @@ def analyse_directory(trajectory_dir: str) -> dict:
 def print_summary(result: dict, *, per_repo: bool = False):
     """Print a human-readable summary."""
     s = result["summary"]
-    print("Actions Before First Write")
-    print("=" * 60)
+    print("Exploration Breadth/Depth Analysis")
+    print("=" * 70)
     print(f"Instances: {s['total_instances']} total, "
           f"{s['resolved']['count']} resolved, {s['unresolved']['count']} unresolved")
     print()
 
     def _row(label: str, data: dict):
-        print(f"  {label:<14} avg_before_write={data['avg_actions_before_first_write']:<8} "
-              f"avg_total_ops={data['avg_total_operations']:<8} "
-              f"no_write={data['instances_without_write']}")
+        print(f"  {label:<14} files={data['avg_unique_files']:<8} "
+              f"dirs={data['avg_unique_dirs']:<8} "
+              f"max_depth={data['avg_max_depth']:<8} "
+              f"avg_depth={data['avg_avg_depth']:<8} "
+              f"top_level={data['avg_top_level_count']}")
 
     _row("Overall", s["overall"])
     _row("Resolved", s["resolved"])
@@ -145,7 +174,7 @@ def print_summary(result: dict, *, per_repo: bool = False):
         if repo_data:
             print()
             print("Per Repository")
-            print("-" * 60)
+            print("-" * 70)
             for repo, data in repo_data.items():
                 count = data["total_instances"]
                 print(f"\n{repo} ({count} instances):")
@@ -160,9 +189,9 @@ def print_summary(result: dict, *, per_repo: bool = False):
 if __name__ == "__main__":
     import argparse
 
-    parser = argparse.ArgumentParser(description="Actions before first Write analysis")
+    parser = argparse.ArgumentParser(description="Exploration breadth/depth analysis")
     parser.add_argument("trajectory_dir", help="Directory with benchmark run output")
-    parser.add_argument("-o", "--output", help="Write output to file instead of stdout")
+    parser.add_argument("-o", "--output", help="Write output to a file instead of stdout")
     parser.add_argument("--per-repo", action="store_true", help="Include per-repository breakdown")
     args = parser.parse_args()
 

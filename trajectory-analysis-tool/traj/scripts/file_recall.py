@@ -26,6 +26,7 @@ from collections import defaultdict
 
 from traj.loader import _detect_adapter
 from traj.models import TrajectoryResult
+from traj.scripts import extract_repo
 
 
 # Files to exclude from ground truth when calculating metrics.
@@ -54,7 +55,7 @@ def _extract_instance_id_from_zip(zip_path: str) -> str | None:
     or SWE-bench Pro style:
     prefix.ansible__ansible-0fd88717c953b92ed8a50495d55e630eb5d59166-vba6da65a0f3baefda7a058ebbd0a8dcafb8512f5-output.zip"""
     basename = os.path.basename(zip_path)
-    match = re.search(r'\.([a-zA-Z0-9_]+__[a-zA-Z0-9_]+-[a-zA-Z0-9_-]+)-output\.zip$', basename)
+    match = re.search(r'\.([a-zA-Z0-9_-]+__[a-zA-Z0-9_-]+-[a-zA-Z0-9_-]+)-output\.zip$', basename)
     if match:
         return match.group(1)
     return None
@@ -125,9 +126,9 @@ def _is_resolved(eval_data: dict | None, instance_id: str) -> bool | None:
     """Check if an instance was resolved from eval.json."""
     if eval_data is None:
         return None
-    for key, val in eval_data.items():
-        if isinstance(val, dict):
-            return val.get("resolved", None)
+    entry = eval_data.get(instance_id)
+    if isinstance(entry, dict):
+        return entry.get("resolved", None)
     return None
 
 
@@ -136,7 +137,7 @@ def _extract_instance_id_from_dir(dir_name: str) -> str | None:
     elastic__elasticsearch-135899__2UFCwGH
     or SWE-bench Pro style:
     ansible__ansible-0fd88717c953b92ed8a50495d55e630eb5d59166-vba6da65a0f3baefda7a058ebbd0a8dcafb8512f5__SUFFIX"""
-    match = re.match(r'^([a-zA-Z0-9_]+__[a-zA-Z0-9_]+-[a-zA-Z0-9_-]+)__\w+$', dir_name)
+    match = re.match(r'^([a-zA-Z0-9_-]+__[a-zA-Z0-9_-]+-[a-zA-Z0-9_-]+)__\w+$', dir_name)
     if match:
         return match.group(1)
     return None
@@ -247,12 +248,14 @@ def analyse_directory(trajectory_dir: str, instance_stats_path: str) -> dict:
     with open(instance_stats_path) as f:
         stats_data = json.load(f)
 
-    # Build lookup: instance_id -> source_files
+    # Build lookup: instance_id -> source_files (case-insensitive keys)
     instances = stats_data if isinstance(stats_data, list) else stats_data.get("instances", [])
     source_files_map: dict[str, list[str]] = {}
+    canonical_id_map: dict[str, str] = {}
     for inst in instances:
         iid = inst["instance_id"]
         source_files_map[iid] = inst.get("source_files", [])
+        canonical_id_map[iid.lower()] = iid
 
     # Detect format and collect instances
     traj_dir = Path(trajectory_dir)
@@ -266,10 +269,14 @@ def analyse_directory(trajectory_dir: str, instance_stats_path: str) -> dict:
     per_instance = []
     resolved_results = []
     unresolved_results = []
+    skipped_no_ground_truth = []
 
     for instance_id, traj_data, resolved in instance_data:
-        ground_truth = set(source_files_map.get(instance_id, []))
+        # Resolve case differences between zip filenames and stats IDs
+        canonical_id = canonical_id_map.get(instance_id.lower(), instance_id)
+        ground_truth = set(source_files_map.get(canonical_id, []))
         if not ground_truth:
+            skipped_no_ground_truth.append(instance_id)
             continue
 
         read_files, written_files = _extract_files_by_action(traj_data, instance_id)
@@ -282,7 +289,7 @@ def analyse_directory(trajectory_dir: str, instance_stats_path: str) -> dict:
         read_excl_metrics = _calc_metrics(gt_filtered, read_files)
 
         result = {
-            "instance_id": instance_id,
+            "instance_id": canonical_id,
             "resolved": resolved,
             "ground_truth_files": sorted(ground_truth),
             "excluded_files": sorted(ground_truth - gt_filtered),
@@ -321,8 +328,51 @@ def analyse_directory(trajectory_dir: str, instance_stats_path: str) -> dict:
             "avg_f1": _avg(results, section, "f1"),
         }
 
+    # Group by repo
+    repo_groups: dict[str, list[dict]] = defaultdict(list)
+    for result in per_instance:
+        repo = extract_repo(result["instance_id"])
+        repo_groups[repo].append(result)
+
+    def _repo_summary(results: list[dict]) -> dict:
+        resolved = [r for r in results if r["resolved"] is True]
+        unresolved = [r for r in results if r["resolved"] is False]
+        return {
+            "total_instances": len(results),
+            "resolved_count": len(resolved),
+            "unresolved_count": len(unresolved),
+            "overall": {
+                "write": _section_avgs(results, "write"),
+                "read": _section_avgs(results, "read"),
+                "write_excluding": _section_avgs(results, "write_excluding"),
+                "read_excluding": _section_avgs(results, "read_excluding"),
+            },
+            "resolved": {
+                "count": len(resolved),
+                "write": _section_avgs(resolved, "write"),
+                "read": _section_avgs(resolved, "read"),
+                "write_excluding": _section_avgs(resolved, "write_excluding"),
+                "read_excluding": _section_avgs(resolved, "read_excluding"),
+            },
+            "unresolved": {
+                "count": len(unresolved),
+                "write": _section_avgs(unresolved, "write"),
+                "read": _section_avgs(unresolved, "read"),
+                "write_excluding": _section_avgs(unresolved, "write_excluding"),
+                "read_excluding": _section_avgs(unresolved, "read_excluding"),
+            },
+        }
+
+    per_repo = {repo: _repo_summary(results) for repo, results in sorted(repo_groups.items())}
+
+    if skipped_no_ground_truth:
+        ellipsis = "..." if len(skipped_no_ground_truth) > 5 else ""
+        print(f"Warning: {len(skipped_no_ground_truth)} instance(s) skipped (no ground-truth source files): "
+              f"{', '.join(skipped_no_ground_truth[:5])}{ellipsis}")
+
     summary = {
         "total_instances": len(per_instance),
+        "skipped_no_ground_truth": len(skipped_no_ground_truth),
         "resolved_count": len(resolved_results),
         "unresolved_count": len(unresolved_results),
         "excluded_files": EXCLUDED_FILES,
@@ -350,6 +400,7 @@ def analyse_directory(trajectory_dir: str, instance_stats_path: str) -> dict:
 
     return {
         "summary": summary,
+        "per_repo": per_repo,
         "per_instance": per_instance,
     }
 

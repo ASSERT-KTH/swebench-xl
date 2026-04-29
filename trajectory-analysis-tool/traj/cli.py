@@ -56,8 +56,9 @@ def main():
         help="Calculate file recall/precision for a benchmark run",
     )
     file_recall_parser.add_argument(
-        "trajectory_dir",
-        help="Directory containing output zips from a benchmark run",
+        "trajectory_dirs",
+        nargs="+",
+        help="One or more directories containing benchmark run output",
     )
     file_recall_parser.add_argument(
         "--instance-stats",
@@ -68,6 +69,11 @@ def main():
         "-o", "--output",
         help="Write output to a file instead of stdout",
     )
+    file_recall_parser.add_argument(
+        "--per-repo",
+        action="store_true",
+        help="Include per-repository breakdown in output",
+    )
 
     # --- actions-before-write ---
     abw_parser = subparsers.add_parser(
@@ -75,12 +81,18 @@ def main():
         help="Count operations before the first Write action",
     )
     abw_parser.add_argument(
-        "trajectory_dir",
-        help="Directory containing benchmark run output",
+        "trajectory_dirs",
+        nargs="+",
+        help="One or more directories containing benchmark run output",
     )
     abw_parser.add_argument(
         "-o", "--output",
         help="Write output to a file instead of stdout",
+    )
+    abw_parser.add_argument(
+        "--per-repo",
+        action="store_true",
+        help="Include per-repository breakdown in output",
     )
 
     # --- subagent-usage ---
@@ -96,6 +108,116 @@ def main():
     sub_parser.add_argument(
         "-o", "--output",
         help="Write output to a file instead of stdout",
+    )
+
+    # --- reread-rate ---
+    rr_parser = subparsers.add_parser(
+        "reread-rate",
+        help="Analyse how often an agent re-reads the same file",
+    )
+    rr_parser.add_argument(
+        "trajectory_dirs",
+        nargs="+",
+        help="One or more directories containing benchmark run output",
+    )
+    rr_parser.add_argument(
+        "-o", "--output",
+        help="Write output to a file instead of stdout",
+    )
+    rr_parser.add_argument(
+        "--per-repo",
+        action="store_true",
+        help="Include per-repository breakdown in output",
+    )
+
+    # --- exploration-breadth ---
+    eb_parser = subparsers.add_parser(
+        "exploration-breadth",
+        help="Analyse how broadly and deeply an agent explores the directory tree",
+    )
+    eb_parser.add_argument(
+        "trajectory_dirs",
+        nargs="+",
+        help="One or more directories containing benchmark run output",
+    )
+    eb_parser.add_argument(
+        "-o", "--output",
+        help="Write output to a file instead of stdout",
+    )
+    eb_parser.add_argument(
+        "--per-repo",
+        action="store_true",
+        help="Include per-repository breakdown in output",
+    )
+
+    # --- edit-churn ---
+    ec_parser = subparsers.add_parser(
+        "edit-churn",
+        help="Analyse how often an agent rewrites the same file",
+    )
+    ec_parser.add_argument(
+        "trajectory_dirs",
+        nargs="+",
+        help="One or more directories containing benchmark run output",
+    )
+    ec_parser.add_argument(
+        "-o", "--output",
+        help="Write output to a file instead of stdout",
+    )
+    ec_parser.add_argument(
+        "--per-repo",
+        action="store_true",
+        help="Include per-repository breakdown in output",
+    )
+
+    # --- time-to-correct ---
+    ttc_parser = subparsers.add_parser(
+        "time-to-correct",
+        help="Count operations before the agent first touches a correct file",
+    )
+    ttc_parser.add_argument(
+        "trajectory_dirs",
+        nargs="+",
+        help="One or more directories containing benchmark run output",
+    )
+    ttc_parser.add_argument(
+        "--instance-stats",
+        required=True,
+        help="Path to instance_stats_output.json with ground-truth source files",
+    )
+    ttc_parser.add_argument(
+        "-o", "--output",
+        help="Write output to a file instead of stdout",
+    )
+    ttc_parser.add_argument(
+        "--per-repo",
+        action="store_true",
+        help="Include per-repository breakdown in output",
+    )
+
+    # --- read-to-write ---
+    rtw_parser = subparsers.add_parser(
+        "read-to-write",
+        help="Analyse read-to-write conversion for ground-truth files",
+    )
+    rtw_parser.add_argument(
+        "trajectory_dirs",
+        nargs="+",
+        help="One or more directories containing benchmark run output",
+    )
+    rtw_parser.add_argument(
+        "--instance-stats",
+        required=True,
+        help="Path to instance_stats_output.json with ground-truth source files",
+    )
+    rtw_parser.add_argument(
+        "-o", "--output",
+        help="Write output to a file instead of stdout",
+    )
+    rtw_parser.add_argument(
+        "--per-repo",
+        action="store_true",
+        help="Include per-repository breakdown in output",
     )
 
     args = parser.parse_args()
@@ -114,6 +236,25 @@ def main():
         _cmd_actions_before_write(args)
     elif args.command == "subagent-usage":
         _cmd_subagent_usage(args)
+    elif args.command == "reread-rate":
+        _cmd_reread_rate(args)
+    elif args.command == "exploration-breadth":
+        _cmd_exploration_breadth(args)
+    elif args.command == "edit-churn":
+        _cmd_edit_churn(args)
+    elif args.command == "time-to-correct":
+        _cmd_time_to_correct(args)
+    elif args.command == "read-to-write":
+        _cmd_read_to_write(args)
+
+
+def _print_run_header(directory: str, index: int, total: int):
+    """Print a header separating output from different run directories."""
+    name = Path(directory).name
+    print(f"\n{'#' * 70}")
+    print(f"# Run {index}/{total}: {name}")
+    print(f"# {directory}")
+    print(f"{'#' * 70}\n")
 
 
 def _cmd_extract(args):
@@ -157,17 +298,22 @@ def _cmd_analyse(args):
 def _cmd_file_recall(args):
     from traj.scripts.file_recall import analyse_directory
 
-    result = analyse_directory(args.trajectory_dir, args.instance_stats)
-    json_str = json.dumps(result, indent=2)
+    results = []
+    for traj_dir in args.trajectory_dirs:
+        results.append(analyse_directory(traj_dir, args.instance_stats))
 
     if args.output:
-        Path(args.output).write_text(json_str)
+        output = results if len(results) > 1 else results[0]
+        Path(args.output).write_text(json.dumps(output, indent=2))
         print(f"Written to {args.output}")
     else:
-        _print_file_recall_summary(result)
+        for i, result in enumerate(results):
+            if len(results) > 1:
+                _print_run_header(args.trajectory_dirs[i], i + 1, len(results))
+            _print_file_recall_summary(result, per_repo=args.per_repo)
 
 
-def _print_file_recall_summary(result: dict):
+def _print_file_recall_summary(result: dict, *, per_repo: bool = False):
     """Print a human-readable summary table to stdout."""
     s = result["summary"]
     excluded = s.get("excluded_files", [])
@@ -197,20 +343,39 @@ def _print_file_recall_summary(result: dict):
             _row("Read (excl)", group["read_excluding"])
         print()
 
+    # Per-repo breakdown
+    if per_repo:
+        per_repo_data = result.get("per_repo", {})
+        if per_repo_data:
+            print(f"Per Repository")
+            print(f"{'-'*60}")
+            for repo, repo_data in per_repo_data.items():
+                count = repo_data["total_instances"]
+                resolved = repo_data["resolved_count"]
+                print(f"\n{repo} ({count} instances, {resolved} resolved):")
+                _row("Write", repo_data["overall"]["write"])
+                _row("Read", repo_data["overall"]["read"])
+
+    print()
     print(f"Use -o <file> to save full per-instance JSON results.")
 
 
 def _cmd_actions_before_write(args):
     from traj.scripts.actions_before_write import analyse_directory, print_summary
 
-    result = analyse_directory(args.trajectory_dir)
-    json_str = json.dumps(result, indent=2)
+    results = []
+    for traj_dir in args.trajectory_dirs:
+        results.append(analyse_directory(traj_dir))
 
     if args.output:
-        Path(args.output).write_text(json_str)
+        output = results if len(results) > 1 else results[0]
+        Path(args.output).write_text(json.dumps(output, indent=2))
         print(f"Written to {args.output}")
     else:
-        print_summary(result)
+        for i, result in enumerate(results):
+            if len(results) > 1:
+                _print_run_header(args.trajectory_dirs[i], i + 1, len(results))
+            print_summary(result, per_repo=args.per_repo)
 
 
 def _cmd_subagent_usage(args):
@@ -231,6 +396,96 @@ def _cmd_subagent_usage(args):
         print(f"Written to {args.output}")
     else:
         print_summary(full_result)
+
+
+def _cmd_reread_rate(args):
+    from traj.scripts.reread_rate import analyse_directory, print_summary
+
+    results = []
+    for traj_dir in args.trajectory_dirs:
+        results.append(analyse_directory(traj_dir))
+
+    if args.output:
+        output = results if len(results) > 1 else results[0]
+        Path(args.output).write_text(json.dumps(output, indent=2))
+        print(f"Written to {args.output}")
+    else:
+        for i, result in enumerate(results):
+            if len(results) > 1:
+                _print_run_header(args.trajectory_dirs[i], i + 1, len(results))
+            print_summary(result, per_repo=args.per_repo)
+
+
+def _cmd_exploration_breadth(args):
+    from traj.scripts.exploration_breadth import analyse_directory, print_summary
+
+    results = []
+    for traj_dir in args.trajectory_dirs:
+        results.append(analyse_directory(traj_dir))
+
+    if args.output:
+        output = results if len(results) > 1 else results[0]
+        Path(args.output).write_text(json.dumps(output, indent=2))
+        print(f"Written to {args.output}")
+    else:
+        for i, result in enumerate(results):
+            if len(results) > 1:
+                _print_run_header(args.trajectory_dirs[i], i + 1, len(results))
+            print_summary(result, per_repo=args.per_repo)
+
+
+def _cmd_edit_churn(args):
+    from traj.scripts.edit_churn import analyse_directory, print_summary
+
+    results = []
+    for traj_dir in args.trajectory_dirs:
+        results.append(analyse_directory(traj_dir))
+
+    if args.output:
+        output = results if len(results) > 1 else results[0]
+        Path(args.output).write_text(json.dumps(output, indent=2))
+        print(f"Written to {args.output}")
+    else:
+        for i, result in enumerate(results):
+            if len(results) > 1:
+                _print_run_header(args.trajectory_dirs[i], i + 1, len(results))
+            print_summary(result, per_repo=args.per_repo)
+
+
+def _cmd_time_to_correct(args):
+    from traj.scripts.time_to_correct import analyse_directory, print_summary
+
+    results = []
+    for traj_dir in args.trajectory_dirs:
+        results.append(analyse_directory(traj_dir, args.instance_stats))
+
+    if args.output:
+        output = results if len(results) > 1 else results[0]
+        Path(args.output).write_text(json.dumps(output, indent=2))
+        print(f"Written to {args.output}")
+    else:
+        for i, result in enumerate(results):
+            if len(results) > 1:
+                _print_run_header(args.trajectory_dirs[i], i + 1, len(results))
+            print_summary(result, per_repo=args.per_repo)
+
+
+def _cmd_read_to_write(args):
+    from traj.scripts.read_to_write import analyse_directory, print_summary
+
+    results = []
+    for traj_dir in args.trajectory_dirs:
+        results.append(analyse_directory(traj_dir, args.instance_stats))
+
+    if args.output:
+        output = results if len(results) > 1 else results[0]
+        Path(args.output).write_text(json.dumps(output, indent=2))
+        print(f"Written to {args.output}")
+    else:
+        for i, result in enumerate(results):
+            if len(results) > 1:
+                _print_run_header(args.trajectory_dirs[i], i + 1, len(results))
+            print_summary(result, per_repo=args.per_repo)
 
 
 def _load_script(name: str):

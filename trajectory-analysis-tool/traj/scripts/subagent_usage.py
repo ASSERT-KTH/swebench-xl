@@ -13,8 +13,10 @@ from __future__ import annotations
 import json
 import os
 import zipfile
-from collections import Counter
+from collections import Counter, defaultdict
 from pathlib import Path
+
+from traj.scripts import extract_repo
 
 
 def _load_from_zip(zip_path: str) -> tuple[dict | None, bool | None]:
@@ -152,6 +154,42 @@ def analyse_directory(trajectory_dir: str) -> dict:
     counts_list = [inst["subagent_count"] for inst in per_instance]
     nonzero = [c for c in counts_list if c > 0]
 
+    # Group by repo
+    repo_groups: dict[str, list[dict]] = defaultdict(list)
+    for inst in per_instance:
+        repo = extract_repo(inst["instance_id"])
+        repo_groups[repo].append(inst)
+
+    def _repo_summary(instances: list[dict]) -> dict:
+        total = len(instances)
+        with_sub = sum(1 for i in instances if i["subagent_count"] > 0)
+        all_counts = [i["subagent_count"] for i in instances]
+        nz = [c for c in all_counts if c > 0]
+        r_with = sum(1 for i in instances if i["resolved"] is True and i["subagent_count"] > 0)
+        r_without = sum(1 for i in instances if i["resolved"] is True and i["subagent_count"] == 0)
+        u_with = sum(1 for i in instances if i["resolved"] is False and i["subagent_count"] > 0)
+        u_without = sum(1 for i in instances if i["resolved"] is False and i["subagent_count"] == 0)
+        type_counts = Counter()
+        for i in instances:
+            for k, v in i["agent_types"].items():
+                type_counts[k] += v
+        return {
+            "total_instances": total,
+            "instances_with_subagent": with_sub,
+            "pct_with_subagent": round(100.0 * with_sub / total, 1) if total else 0,
+            "total_invocations": sum(all_counts),
+            "avg_per_instance": round(sum(all_counts) / total, 2) if total else 0,
+            "avg_when_used": round(sum(nz) / len(nz), 2) if nz else 0,
+            "max_per_instance": max(all_counts) if all_counts else 0,
+            "agent_type_counts": dict(type_counts),
+            "resolved_with_subagent": r_with,
+            "resolved_without_subagent": r_without,
+            "unresolved_with_subagent": u_with,
+            "unresolved_without_subagent": u_without,
+        }
+
+    per_repo = {repo: _repo_summary(instances) for repo, instances in sorted(repo_groups.items())}
+
     return {
         "directory": str(traj_dir),
         "label": traj_dir.name,
@@ -169,6 +207,7 @@ def analyse_directory(trajectory_dir: str) -> dict:
         "resolved_without_subagent": resolved_without,
         "unresolved_with_subagent": unresolved_with,
         "unresolved_without_subagent": unresolved_without,
+        "per_repo": per_repo,
         "per_instance": per_instance,
     }
 

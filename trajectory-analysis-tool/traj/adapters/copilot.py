@@ -130,7 +130,7 @@ class CopilotAdapter(BaseAdapter):
                 sub_agent=sub_agent, sub_agent_name=sub_agent_name,
             )]
 
-        # --- grep / rg (Explore) ---
+        # --- grep / rg (Explore, and Read if targeting a specific file) ---
         if func in ("grep", "rg"):
             pattern = args.get("pattern", "")
             paths = args.get("paths", "") or args.get("path", "")
@@ -141,11 +141,20 @@ class CopilotAdapter(BaseAdapter):
             if glob_pat:
                 detail += f" glob={glob_pat}"
             search_path = paths if isinstance(paths, str) else (paths[0] if paths else "")
-            return [Operation(
-                step=step_id, action="Explore", path=search_path or glob_pat,
+            effective_path = search_path or glob_pat
+            ops = [Operation(
+                step=step_id, action="Explore", path=effective_path,
                 tool=func, detail=detail,
                 sub_agent=sub_agent, sub_agent_name=sub_agent_name,
             )]
+            # If the path targets a specific file (has an extension), also count as Read
+            if effective_path and "." in effective_path.split("/")[-1]:
+                ops.append(Operation(
+                    step=step_id, action="Read", path=effective_path,
+                    tool=func, detail=detail,
+                    sub_agent=sub_agent, sub_agent_name=sub_agent_name,
+                ))
+            return ops
 
         # --- glob (Explore) ---
         if func == "glob":

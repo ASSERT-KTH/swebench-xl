@@ -1,56 +1,73 @@
-"""Actions before first Write analysis.
+"""Re-read rate analysis for benchmark runs.
 
-Counts how many operations occur before the agent makes its first Write,
-comparing resolved vs unresolved instances.
+Measures how often an agent reads the same file multiple times, computing:
+- Re-read rate: fraction of Read operations targeting an already-read file
+- Avg reads per file: average number of times each unique file is read
+
+Breakdowns are provided per resolved/unresolved status and per repository.
 
 Usage:
-    traj actions-before-write <trajectory_dir>
+    traj reread-rate <trajectory_dir> [-o output.json]
 """
 from __future__ import annotations
 
 import json
 import os
+from collections import Counter, defaultdict
 from pathlib import Path
 
 from traj.scripts.file_recall import (
     _detect_run_format,
     _collect_instances_zip,
     _collect_instances_dir,
+    _normalise_path,
 )
 from traj.loader import _detect_adapter
 from traj.scripts import extract_repo
 
 
-def _count_before_first_write(traj_data: list | dict, source_file: str = "") -> dict:
-    """Count operations before the first Write action.
+def _compute_reread_metrics(traj_data: list | dict, source_file: str = "") -> dict:
+    """Compute re-read metrics from a single trajectory.
 
-    Returns a dict with total ops, actions before first write,
-    and a breakdown by action type.
+    Returns a dict with:
+    - total_reads: total number of Read operations
+    - unique_files_read: number of distinct files read
+    - rereads: number of reads that target an already-read file
+    - reread_rate: rereads / total_reads (0.0 if no reads)
+    - avg_reads_per_file: total_reads / unique_files_read
+    - read_counts: dict mapping file -> number of times read
     """
     adapter = _detect_adapter(traj_data)
     _, _, ops = adapter.extract(traj_data, source_file)
 
-    total = len(ops)
-    before_counts = {"Read": 0, "Write": 0, "Explore": 0, "Other": 0}
-    first_write_index = None
+    read_counts: Counter[str] = Counter()
+    for op in ops:
+        if op.action != "Read" or not op.path:
+            continue
+        normalised = _normalise_path(op.path)
+        if not normalised or normalised.endswith("/"):
+            continue
+        # Only count actual files (must have an extension in the last segment)
+        if "." not in normalised.split("/")[-1]:
+            continue
+        read_counts[normalised] += 1
 
-    for i, op in enumerate(ops):
-        if op.action == "Write":
-            first_write_index = i
-            break
-        before_counts[op.action] = before_counts.get(op.action, 0) + 1
+    total_reads = sum(read_counts.values())
+    unique_files = len(read_counts)
+    rereads = total_reads - unique_files  # each file's first read is not a re-read
 
     return {
-        "total_operations": total,
-        "first_write_at": first_write_index,
-        "actions_before_first_write": first_write_index if first_write_index is not None else total,
-        "breakdown_before_write": before_counts,
-        "has_write": first_write_index is not None,
+        "total_reads": total_reads,
+        "unique_files_read": unique_files,
+        "rereads": rereads,
+        "reread_rate": round(rereads / total_reads, 4) if total_reads > 0 else 0.0,
+        "avg_reads_per_file": round(total_reads / unique_files, 2) if unique_files > 0 else 0.0,
+        "read_counts": dict(read_counts.most_common()),
     }
 
 
 def analyse_directory(trajectory_dir: str) -> dict:
-    """Run actions-before-write analysis on a benchmark run directory."""
+    """Run re-read rate analysis on a benchmark run directory."""
     traj_dir = Path(trajectory_dir)
     run_format = _detect_run_format(traj_dir)
     if run_format == "dir":
@@ -63,11 +80,19 @@ def analyse_directory(trajectory_dir: str) -> dict:
     unresolved_results = []
 
     for instance_id, traj_data, resolved in instance_data:
-        metrics = _count_before_first_write(traj_data, instance_id)
+        metrics = _compute_reread_metrics(traj_data, instance_id)
+        # Don't include per-file breakdown in the instance result (too verbose)
+        read_counts = metrics.pop("read_counts")
+        most_reread = []
+        for f, count in sorted(read_counts.items(), key=lambda x: -x[1])[:5]:
+            if count > 1:
+                most_reread.append({"file": f, "reads": count})
+
         result = {
             "instance_id": instance_id,
             "resolved": resolved,
             **metrics,
+            "most_reread_files": most_reread,
         }
         per_instance.append(result)
 
@@ -79,18 +104,19 @@ def analyse_directory(trajectory_dir: str) -> dict:
     def _avg(results: list[dict], key: str) -> float:
         if not results:
             return 0.0
-        return round(sum(r[key] for r in results) / len(results), 2)
+        return round(sum(r[key] for r in results) / len(results), 4)
 
     def _section(results: list[dict]) -> dict:
         return {
             "count": len(results),
-            "avg_actions_before_first_write": _avg(results, "actions_before_first_write"),
-            "avg_total_operations": _avg(results, "total_operations"),
-            "instances_without_write": sum(1 for r in results if not r["has_write"]),
+            "avg_reread_rate": _avg(results, "reread_rate"),
+            "avg_reads_per_file": _avg(results, "avg_reads_per_file"),
+            "avg_total_reads": _avg(results, "total_reads"),
+            "avg_unique_files_read": _avg(results, "unique_files_read"),
+            "avg_rereads": _avg(results, "rereads"),
         }
 
     # Group by repo
-    from collections import defaultdict
     repo_groups: dict[str, list[dict]] = defaultdict(list)
     for result in per_instance:
         repo = extract_repo(result["instance_id"])
@@ -125,16 +151,17 @@ def analyse_directory(trajectory_dir: str) -> dict:
 def print_summary(result: dict, *, per_repo: bool = False):
     """Print a human-readable summary."""
     s = result["summary"]
-    print("Actions Before First Write")
+    print("Re-read Rate Analysis")
     print("=" * 60)
     print(f"Instances: {s['total_instances']} total, "
           f"{s['resolved']['count']} resolved, {s['unresolved']['count']} unresolved")
     print()
 
     def _row(label: str, data: dict):
-        print(f"  {label:<14} avg_before_write={data['avg_actions_before_first_write']:<8} "
-              f"avg_total_ops={data['avg_total_operations']:<8} "
-              f"no_write={data['instances_without_write']}")
+        print(f"  {label:<14} reread_rate={data['avg_reread_rate']:<8.4f} "
+              f"reads/file={data['avg_reads_per_file']:<8} "
+              f"total_reads={data['avg_total_reads']:<8} "
+              f"rereads={data['avg_rereads']}")
 
     _row("Overall", s["overall"])
     _row("Resolved", s["resolved"])
@@ -160,9 +187,9 @@ def print_summary(result: dict, *, per_repo: bool = False):
 if __name__ == "__main__":
     import argparse
 
-    parser = argparse.ArgumentParser(description="Actions before first Write analysis")
+    parser = argparse.ArgumentParser(description="Re-read rate analysis")
     parser.add_argument("trajectory_dir", help="Directory with benchmark run output")
-    parser.add_argument("-o", "--output", help="Write output to file instead of stdout")
+    parser.add_argument("-o", "--output", help="Write output to a file instead of stdout")
     parser.add_argument("--per-repo", action="store_true", help="Include per-repository breakdown")
     args = parser.parse_args()
 
