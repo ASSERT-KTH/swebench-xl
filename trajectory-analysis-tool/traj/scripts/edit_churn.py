@@ -20,6 +20,7 @@ from traj.scripts.file_recall import (
     _detect_run_format,
     _collect_instances_zip,
     _collect_instances_dir,
+    _collect_instances_output_dir,
     _normalise_path,
 )
 from traj.loader import _detect_adapter
@@ -78,6 +79,8 @@ def analyse_directory(trajectory_dir: str) -> dict:
     run_format = _detect_run_format(traj_dir)
     if run_format == "dir":
         instance_data = _collect_instances_dir(traj_dir)
+    elif run_format == "output_dir":
+        instance_data = _collect_instances_output_dir(traj_dir)
     else:
         instance_data = _collect_instances_zip(traj_dir)
 

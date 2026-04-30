@@ -49,10 +49,39 @@ def _load_from_zip(zip_path: str) -> tuple[dict | None, bool | None]:
         return None, None
 
 
-def _extract_instance_id(zip_name: str) -> str:
-    """Extract a readable instance id from the zip filename."""
+def _load_from_output_dir(output_dir: str) -> tuple[dict | None, bool | None]:
+    """Load trajectory.json and resolved status from an unzipped output directory."""
+    traj_path = os.path.join(output_dir, "output", "trajectories", "trajectory.json")
+    eval_path = os.path.join(output_dir, "output", "eval.json")
+
+    traj_data = None
+    resolved = None
+
+    try:
+        if os.path.exists(traj_path):
+            with open(traj_path) as f:
+                traj_data = json.load(f)
+    except (json.JSONDecodeError, OSError) as e:
+        print(f"Warning: failed to read {traj_path}: {e}")
+
+    try:
+        if os.path.exists(eval_path):
+            with open(eval_path) as f:
+                eval_data = json.load(f)
+            for val in eval_data.values():
+                if isinstance(val, dict):
+                    resolved = val.get("resolved")
+                    break
+    except (json.JSONDecodeError, OSError) as e:
+        print(f"Warning: failed to read {eval_path}: {e}")
+
+    return traj_data, resolved
+
+
+def _extract_instance_id(name: str) -> str:
+    """Extract a readable instance id from a zip filename or output directory name."""
     import re
-    basename = os.path.splitext(zip_name)[0]
+    basename = name.removesuffix(".zip")
     # Strip common prefixes and -output suffix
     basename = re.sub(r'-output$', '', basename)
     # Try to find owner__repo-id pattern
@@ -89,9 +118,20 @@ def _analyse_trajectory(traj_data: dict) -> list[dict]:
 def analyse_directory(trajectory_dir: str) -> dict:
     """Analyse subagent usage for a single run directory."""
     traj_dir = Path(trajectory_dir)
+
+    # Collect instances from zips and/or unzipped output directories
+    entries: list[tuple[str, str]] = []  # (name, source_type)
     zip_files = sorted(traj_dir.glob("*-output.zip"))
     if not zip_files:
         zip_files = sorted(traj_dir.glob("*.zip"))
+    for zf in zip_files:
+        entries.append((str(zf), "zip"))
+
+    # Also check for unzipped output directories
+    for entry in sorted(traj_dir.iterdir()):
+        if entry.is_dir() and entry.name.endswith("-output"):
+            if (entry / "output" / "trajectories" / "trajectory.json").exists():
+                entries.append((str(entry), "output_dir"))
 
     per_instance = []
     agent_type_counts = Counter()
@@ -104,9 +144,15 @@ def analyse_directory(trajectory_dir: str) -> dict:
     unresolved_with = 0
     unresolved_without = 0
 
-    for zip_path in zip_files:
-        instance_id = _extract_instance_id(zip_path.name)
-        traj_data, resolved = _load_from_zip(str(zip_path))
+    for path, source_type in entries:
+        name = os.path.basename(path)
+        instance_id = _extract_instance_id(name)
+
+        if source_type == "zip":
+            traj_data, resolved = _load_from_zip(path)
+        else:
+            traj_data, resolved = _load_from_output_dir(path)
+
         if traj_data is None:
             continue
 

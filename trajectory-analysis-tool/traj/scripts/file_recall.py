@@ -143,6 +143,17 @@ def _extract_instance_id_from_dir(dir_name: str) -> str | None:
     return None
 
 
+def _extract_instance_id_from_output_dir(dir_name: str) -> str | None:
+    """Extract instance_id from an unzipped output directory name like
+    swebench-xl-v1.eval.x86_64.elastic__elasticsearch-135899-output
+    or SWE-bench Pro style:
+    prefix.ansible__ansible-0fd88717c953b92ed8a50495d55e630eb5d59166-vba6da65a0f3baefda7a058ebbd0a8dcafb8512f5-output"""
+    match = re.search(r'\.([a-zA-Z0-9_-]+__[a-zA-Z0-9_-]+-[a-zA-Z0-9_-]+)-output$', dir_name)
+    if match:
+        return match.group(1)
+    return None
+
+
 def _load_trajectory_from_dir(instance_dir: str) -> tuple[list | dict | None, bool | None]:
     """Load trajectory and resolved status from an instance directory.
 
@@ -176,13 +187,50 @@ def _load_trajectory_from_dir(instance_dir: str) -> tuple[list | dict | None, bo
     return traj_data, resolved
 
 
-def _detect_run_format(traj_dir: Path) -> str:
-    """Detect whether the run directory uses zip or directory format.
+def _load_trajectory_from_output_dir(output_dir: str) -> tuple[list | dict | None, dict | None]:
+    """Load trajectory.json and eval.json from an unzipped output directory.
 
-    Returns 'zip' or 'dir'.
+    Expects the same structure as the zip files:
+        output/trajectories/trajectory.json
+        output/eval.json
+
+    Returns (trajectory_data, eval_data) or (None, None) on failure.
+    """
+    traj_path = os.path.join(output_dir, "output", "trajectories", "trajectory.json")
+    eval_path = os.path.join(output_dir, "output", "eval.json")
+
+    traj_data = None
+    eval_data = None
+
+    try:
+        if os.path.exists(traj_path):
+            with open(traj_path) as f:
+                traj_data = json.load(f)
+    except (json.JSONDecodeError, OSError) as e:
+        print(f"Warning: failed to read {traj_path}: {e}")
+
+    try:
+        if os.path.exists(eval_path):
+            with open(eval_path) as f:
+                eval_data = json.load(f)
+    except (json.JSONDecodeError, OSError) as e:
+        print(f"Warning: failed to read {eval_path}: {e}")
+
+    return traj_data, eval_data
+
+
+def _detect_run_format(traj_dir: Path) -> str:
+    """Detect whether the run directory uses zip, unzipped output dir, or instance dir format.
+
+    Returns 'zip', 'output_dir', or 'dir'.
     """
     if list(traj_dir.glob("*-output.zip")):
         return "zip"
+    # Check for unzipped output directories (*-output/)
+    for entry in traj_dir.iterdir():
+        if entry.is_dir() and entry.name.endswith("-output"):
+            if (entry / "output" / "trajectories" / "trajectory.json").exists():
+                return "output_dir"
     # Check for instance subdirectories with agent/trajectory.json
     for entry in traj_dir.iterdir():
         if entry.is_dir() and (entry / "agent" / "trajectory.json").exists():
@@ -217,6 +265,23 @@ def _collect_instances_dir(traj_dir: Path) -> list[tuple[str, list | dict, bool 
         traj_data, resolved = _load_trajectory_from_dir(str(entry))
         if traj_data is None:
             continue
+        results.append((instance_id, traj_data, resolved))
+    return results
+
+
+def _collect_instances_output_dir(traj_dir: Path) -> list[tuple[str, list | dict, bool | None]]:
+    """Collect (instance_id, traj_data, resolved) from unzipped output directory runs."""
+    results = []
+    for entry in sorted(traj_dir.iterdir()):
+        if not entry.is_dir() or not entry.name.endswith("-output"):
+            continue
+        instance_id = _extract_instance_id_from_output_dir(entry.name)
+        if not instance_id:
+            continue
+        traj_data, eval_data = _load_trajectory_from_output_dir(str(entry))
+        if traj_data is None:
+            continue
+        resolved = _is_resolved(eval_data, instance_id)
         results.append((instance_id, traj_data, resolved))
     return results
 
@@ -263,6 +328,8 @@ def analyse_directory(trajectory_dir: str, instance_stats_path: str) -> dict:
 
     if run_format == "dir":
         instance_data = _collect_instances_dir(traj_dir)
+    elif run_format == "output_dir":
+        instance_data = _collect_instances_output_dir(traj_dir)
     else:
         instance_data = _collect_instances_zip(traj_dir)
 
