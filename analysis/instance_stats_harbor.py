@@ -102,22 +102,25 @@ def extract_tests_from_manifest(manifest_path: Path) -> tuple[list[str], list[st
 
     # Newer format: "generated_tests" + "existing_tests"
     for entry in data.get("generated_tests", []):
+        test_path = entry.get("path") or entry.get("file", "")
         if entry.get("type") == "FAIL_TO_PASS":
-            f2p.append(entry["path"])
+            f2p.append(test_path)
         elif entry.get("type") == "PASS_TO_PASS":
-            p2p.append(entry["path"])
+            p2p.append(test_path)
     for entry in data.get("existing_tests", []):
+        test_path = entry.get("path") or entry.get("file", "")
         if entry.get("type") == "FAIL_TO_PASS":
-            f2p.append(entry["path"])
+            f2p.append(test_path)
         elif entry.get("type") == "PASS_TO_PASS":
-            p2p.append(entry["path"])
+            p2p.append(test_path)
 
     # e2e-style format: just "tests"
     for entry in data.get("tests", []):
+        test_path = entry.get("path") or entry.get("file", "")
         if entry.get("type") == "FAIL_TO_PASS":
-            f2p.append(entry["path"])
+            f2p.append(test_path)
         elif entry.get("type") == "PASS_TO_PASS":
-            p2p.append(entry["path"])
+            p2p.append(test_path)
 
     return f2p, p2p
 
