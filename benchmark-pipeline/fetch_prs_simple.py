@@ -6,10 +6,9 @@ Simplified fetcher with no adapter dependency. Filters by excluded directories,
 file-change range, and requires both source and test file changes.
 
 Usage:
-    python fetch_prs_simple.py --repo nodejs/node --since 2025-01-01 --until 2025-06-01
-    python fetch_prs_simple.py --repo nodejs/node --since 2025-01-01 --min-files 4 --max-files 8
-    python fetch_prs_simple.py --repo nodejs/node --since 2025-01-01 --exclude-dirs src/ deps/ tools/ benchmark/
-    python fetch_prs_simple.py --repo nodejs/node --since 2025-01-01 --resume
+    python fetch_prs_simple.py --repo microsoft/TypeScript --since 2025-01-01 --until 2025-06-01 --test-dirs tests/ --source-dirs src/
+    python fetch_prs_simple.py --repo nodejs/node --since 2025-01-01 --test-dirs test/ --source-dirs lib/ --exclude-dirs src/ deps/
+    python fetch_prs_simple.py --repo nodejs/node --since 2025-01-01 --resume --test-dirs test/ --source-dirs lib/
 """
 
 from __future__ import annotations
@@ -43,8 +42,7 @@ DEFAULT_DAYS_BACK = 365
 DEFAULT_MIN_FILES = 2
 DEFAULT_MAX_FILES = 100
 
-# nodejs/node defaults
-DEFAULT_EXCLUDE_DIRS = ["src/", "deps/", "tools/", "benchmark/"]
+DEFAULT_EXCLUDE_DIRS: list[str] = []
 
 
 # ── GitHub API helpers ────────────────────────────────────────────────────────
@@ -453,10 +451,9 @@ def main() -> None:
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog=(
             "Examples:\n"
-            "  python fetch_prs_simple.py --repo nodejs/node --since 2025-01-01 --until 2025-06-01\n"
-            "  python fetch_prs_simple.py --repo nodejs/node --since 2025-01-01 --min-files 4 --max-files 8\n"
-            "  python fetch_prs_simple.py --repo nodejs/node --exclude-dirs src/ deps/ tools/ benchmark/\n"
-            "  python fetch_prs_simple.py --repo nodejs/node --since 2025-01-01 --resume\n"
+            "  python fetch_prs_simple.py --repo microsoft/TypeScript --since 2025-01-01 --test-dirs tests/ --source-dirs src/\n"
+            "  python fetch_prs_simple.py --repo nodejs/node --since 2025-01-01 --test-dirs test/ --source-dirs lib/ --exclude-dirs src/ deps/\n"
+            "  python fetch_prs_simple.py --repo nodejs/node --since 2025-01-01 --resume --test-dirs test/ --source-dirs lib/\n"
         ),
     )
     parser.add_argument("--repo", required=True, help="Repository slug (e.g. nodejs/node)")
@@ -468,15 +465,15 @@ def main() -> None:
     parser.add_argument("--max-files", type=int, default=DEFAULT_MAX_FILES, help=f"Max files changed (default: {DEFAULT_MAX_FILES})")
     parser.add_argument(
         "--exclude-dirs", nargs="*", default=DEFAULT_EXCLUDE_DIRS,
-        help=f"Directory prefixes to exclude (default: {' '.join(DEFAULT_EXCLUDE_DIRS)})",
+        help="Directory prefixes to exclude (default: none)",
     )
     parser.add_argument(
-        "--test-dirs", nargs="*", default=["test/"],
-        help="Directory prefixes that identify test files (default: test/)",
+        "--test-dirs", nargs="*", required=True,
+        help="Directory prefixes that identify test files (e.g. test/ or tests/)",
     )
     parser.add_argument(
-        "--source-dirs", nargs="*", default=["lib/"],
-        help="Directory prefixes that identify source files (default: lib/)",
+        "--source-dirs", nargs="*", required=True,
+        help="Directory prefixes that identify source files (e.g. src/ or lib/)",
     )
     parser.add_argument("--resume", action="store_true", help="Resume from previous output file")
 
