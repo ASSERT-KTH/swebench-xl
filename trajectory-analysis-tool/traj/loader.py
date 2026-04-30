@@ -88,8 +88,19 @@ def _detect_adapter(data):
         schema = data.get("schema_version", "")
         if isinstance(schema, str) and schema.startswith("ATIF"):
             return CopilotAdapter()
-        # Could also be ATIF without explicit schema but with "steps"
+
+        # Distinguish Copilot ATIF vs Codex dict by inspecting step structure.
+        # Copilot ATIF steps have "tool_calls" / "step_id" fields.
+        # Codex dict steps have "tool" + "action" fields without "tool_calls".
         if "steps" in data:
+            steps = data["steps"]
+            if isinstance(steps, list) and len(steps) > 0:
+                first = steps[0]
+                if isinstance(first, dict):
+                    # Codex format: steps have "tool" and "action" but no "tool_calls"
+                    if "tool" in first and "action" in first and "tool_calls" not in first:
+                        return CodexAdapter()
+            # Fallback for dicts with "steps" that look like ATIF
             return CopilotAdapter()
 
     # Flat array formats: Codex or OpenHands

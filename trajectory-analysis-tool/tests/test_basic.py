@@ -3,7 +3,9 @@ import json
 import os
 import pytest
 from pathlib import Path
-from traj.loader import load_trajectory, load_trajectories
+from traj.loader import load_trajectory, load_trajectories, _detect_adapter
+from traj.adapters.codex import CodexAdapter
+from traj.adapters.copilot import CopilotAdapter
 from traj.bash_classifier import classify_bash
 from traj.models import Operation
 
@@ -200,3 +202,96 @@ class TestOutputFormat:
                        sub_agent=True, sub_agent_name="test")
         d = op.to_dict()
         assert d["sub_agent_name"] == "test"
+
+
+# --- adapter detection tests ---
+
+class TestDetectAdapter:
+
+    def test_codex_dict_format(self):
+        """Codex dict wrapper with steps containing 'tool' + 'action' fields."""
+        data = {
+            "steps": [
+                {"tool": "bash", "action": "/bin/bash -lc 'ls'", "observation": "file.txt"},
+                {"tool": "file_edit", "action": "file_change: [{\"path\":\"/app/file.java\"}]", "observation": "ok"},
+            ],
+            "final_metrics": {},
+        }
+        adapter = _detect_adapter(data)
+        assert isinstance(adapter, CodexAdapter)
+
+    def test_copilot_atif_format(self):
+        """Copilot ATIF format with schema_version."""
+        data = {"schema_version": "ATIF-1.0", "steps": []}
+        adapter = _detect_adapter(data)
+        assert isinstance(adapter, CopilotAdapter)
+
+    def test_copilot_dict_with_tool_calls(self):
+        """Copilot ATIF dict without schema_version but with tool_calls in steps."""
+        data = {
+            "steps": [
+                {"step_id": 1, "tool_calls": [{"function_name": "view", "arguments": {}}]},
+            ],
+        }
+        adapter = _detect_adapter(data)
+        assert isinstance(adapter, CopilotAdapter)
+
+    def test_codex_flat_list(self):
+        """Codex flat list format (legacy)."""
+        data = [
+            {"tool": "bash", "action": "ls"},
+            {"tool": "file_edit", "action": "edit"},
+        ]
+        adapter = _detect_adapter(data)
+        assert isinstance(adapter, CodexAdapter)
+
+    def test_empty_steps_defaults_to_copilot(self):
+        """Empty steps list falls back to Copilot."""
+        data = {"steps": []}
+        adapter = _detect_adapter(data)
+        assert isinstance(adapter, CopilotAdapter)
+
+
+# --- codex dict wrapper tests ---
+
+class TestCodexDictWrapper:
+
+    def test_extract_from_dict(self):
+        """CodexAdapter handles dict wrapper format."""
+        data = {
+            "steps": [
+                {"tool": "bash", "action": "/bin/bash -lc 'cat /app/src/Main.java'"},
+                {"tool": "file_edit", "action": "file_change: [{\"path\":\"/app/src/Main.java\",\"kind\":\"update\"}]"},
+                {"tool": "Finish", "action": "done"},
+            ],
+            "final_metrics": {"total_tokens": 1000},
+        }
+        adapter = CodexAdapter()
+        agent, session_id, ops = adapter.extract(data, "test.json")
+
+        assert agent == "codex"
+        assert len(ops) >= 2  # bash + file_edit (Finish skipped)
+
+        # Check file_edit produces Write with correct path
+        writes = [op for op in ops if op.action == "Write" and op.tool == "file_edit"]
+        assert len(writes) == 1
+        assert writes[0].path == "/app/src/Main.java"
+
+    def test_extract_from_flat_list(self):
+        """CodexAdapter still handles flat list format."""
+        data = [
+            {"tool": "bash", "action": "/bin/bash -lc 'ls /app'"},
+            {"tool": "file_edit", "action": "file_change: [{\"path\":\"/app/file.java\",\"kind\":\"update\"}]"},
+        ]
+        adapter = CodexAdapter()
+        agent, session_id, ops = adapter.extract(data, "test.json")
+
+        assert agent == "codex"
+        assert len(ops) >= 2
+
+    def test_invalid_steps_type_raises(self):
+        """CodexAdapter raises ValueError for invalid steps type."""
+        data = {"steps": "not a list"}
+        adapter = CodexAdapter()
+        with pytest.raises(ValueError, match="must be a list"):
+            adapter.extract(data, "test.json")

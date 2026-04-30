@@ -10,10 +10,20 @@ SKIP_TOOLS = {"Finish"}
 
 class CodexAdapter(BaseAdapter):
 
-    def extract(self, data: list, source_file: str) -> tuple[str, str, list[Operation]]:
+    def extract(self, data: list | dict, source_file: str) -> tuple[str, str, list[Operation]]:
+        # Handle dict wrapper format: {"steps": [...], "final_metrics": {...}}
+        if isinstance(data, dict):
+            entries = data.get("steps", [])
+            if not isinstance(entries, list):
+                raise ValueError(
+                    f"Codex dict wrapper 'steps' must be a list, got {type(entries).__name__}"
+                )
+        else:
+            entries = data
+
         ops: list[Operation] = []
 
-        for i, entry in enumerate(data):
+        for i, entry in enumerate(entries):
             tool = entry.get("tool", "")
             step = i + 1
 
