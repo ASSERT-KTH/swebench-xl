@@ -96,12 +96,28 @@ is why this is a separate script rather than a `--metrics` config.
 
    ```bash
    PYTHONPATH="$(pwd)" harbor run -d "<org/dataset@version>" \
-     --agent tokenizer_agent:RepoTokenizerAgent
+     --agent tokenizer_agent:RepoTokenizerAgent \
+     --disable-verification
    ```
 
    No `-m/--model` flag is needed — the agent doesn't call any LLM. For a
    local dataset directory, swap `-d "<org/dataset@version>"` for
    `-p "<path/to/dataset>"`.
+
+   **`--disable-verification` is recommended.** This agent never attempts the
+   task, so every trial's verifier reward is guaranteed to be a failing
+   `0.0` regardless — running the task's test suite just to confirm that
+   costs real time (and, for repos like SWE-bench's larger scientific-Python
+   ones, it can dominate the run). Skipping it doesn't lose you anything this
+   agent's stats depend on: `token_counts.json` and
+   `AgentContext.metadata["repo_tokenizer"]` are both written during the
+   agent phase, before verification would even run. The only visible effect
+   is `result.json`'s `verifier_result` becoming `null` instead of a `0.0`
+   reward.
+
+   Note: `harbor job resume` (see below) doesn't expose this as a flag — to
+   apply it to a resumed job you have to hand-edit `verifier: {"disable":
+   true}` into that job's `config.json` before resuming.
 
    Optional agent kwargs (via `--ak key=value`):
    - `--ak testbed_dir=/some/other/path` — skip auto-discovery.
@@ -129,7 +145,8 @@ cd tokenizer-agent   # this directory, so tokenizer_agent.py is importable
 PYTHONPATH="$(pwd)" harbor run \
   -d "swebench-verified@1.0" \
   -l 10 \
-  -a "tokenizer_agent:RepoTokenizerAgent"
+  -a "tokenizer_agent:RepoTokenizerAgent" \
+  --disable-verification
 ```
 
 - `-l 10` (`--n-tasks`) caps the run to the first 10 tasks. To pin specific
