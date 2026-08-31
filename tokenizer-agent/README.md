@@ -28,11 +28,19 @@ For each trial, `RepoTokenizerAgent.run()`:
    file-graded, SWE-bench-style tasks) if present, else the agent user's
    default working directory (via `pwd -P`). Override explicitly with the
    `testbed_dir` agent kwarg if a task uses a different layout.
-2. **Downloads that directory to the host** with
-   `BaseEnvironment.download_dir_with_exclusions`, skipping VCS/dependency/
-   build noise (`.git`, `node_modules`, `venv`, `build`, `dist`, ...). This
+2. **Downloads that directory to the host** by archiving it inside the
+   environment (skipping VCS/dependency/build noise — `.git`, `node_modules`,
+   `venv`, `build`, `dist`, ...) and extracting that archive locally. This
    works against any Harbor environment backend (local Docker, remote
    sandboxes, etc.), not just ones with a directly mounted filesystem.
+   Extraction uses tarfile's `"tar"` filter rather than Harbor's own
+   `download_dir_with_exclusions` (which uses the stricter `"data"` filter):
+   some repos ship test fixtures with a symlink to an absolute path on
+   purpose (e.g. Helm's chart-loader tests symlink to `/dev/null` to test
+   that case), and `"data"` refuses to extract those, failing the trial with
+   `tarfile.AbsoluteLinkError` before tokenization even starts. Safe to
+   relax here since we generate the archive ourselves from a container we
+   already control — see `_download_repo` in `tokenizer_agent.py`.
 3. **Tokenizes every text file** with `tiktoken` (`cl100k_base` by default,
    override via `TIKTOKEN_ENCODING` or the `encoding_name` agent kwarg),
    chunking large files to avoid tiktoken's regex backtracking on

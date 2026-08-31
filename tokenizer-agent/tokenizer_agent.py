@@ -8,10 +8,15 @@ the host, and tokenizes every text file with tiktoken (via ``tiktoken``'s
 token breakdown that's useful for estimating how large a benchmark instance's
 repository is, independent of whether any agent can actually solve it.
 
-- The repository is fetched via ``BaseEnvironment.download_dir_with_exclusions``
-  instead of being walked in place, so this works against any Harbor
-  environment backend (local Docker, remote sandboxes, ...), not just one
-  where the filesystem is directly mounted.
+- The repository is fetched by archiving it inside the environment (with
+  VCS/dependency/build noise excluded) and extracting that archive on the
+  host, so this works against any Harbor environment backend (local Docker,
+  remote sandboxes, ...), not just one where the filesystem is directly
+  mounted. Extraction uses tarfile's permissive ``"tar"`` filter rather than
+  Harbor's own stricter ``"data"`` filter (see ``_download_repo`` below) —
+  some repos' test fixtures intentionally contain symlinks to absolute paths
+  (e.g. Helm's chart-loader tests, which symlink to ``/dev/null``), and
+  ``"data"`` refuses to extract those.
 - Results are written using Harbor's own conventions: a detailed
   ``token_counts.json`` and an ATIF ``trajectories/trajectory.json`` under the
   agent's log directory (``self.logs_dir``, i.e. ``<trial_dir>/agent/``), and
@@ -24,8 +29,11 @@ from __future__ import annotations
 
 import json
 import os
+import shlex
+import tarfile
 import tempfile
 import time
+import uuid
 from pathlib import Path
 from typing import Any, override
 
@@ -263,6 +271,67 @@ def build_token_result(
 
 
 # ---------------------------------------------------------------------------
+# Repo transfer
+# ---------------------------------------------------------------------------
+
+# Container-side scratch location for the transfer archive.
+_TRANSFER_TAR_DIR = "/tmp"
+
+
+async def _download_repo(
+    environment: BaseEnvironment, source_dir: str, target_dir: Path
+) -> None:
+    """Archive `source_dir` inside the environment (excluding SKIP_DIRS) and
+    extract it into `target_dir` on the host.
+
+    This is a near-identical reimplementation of Harbor's own
+    ``BaseEnvironment.download_dir_with_exclusions``, with one deliberate
+    difference: extraction uses tarfile's ``"tar"`` filter instead of
+    Harbor's ``"data"`` filter. ``"data"`` (Python's strictest, meant for
+    untrusted archives) refuses to extract any symlink or hardlink that
+    targets an absolute path, raising ``tarfile.AbsoluteLinkError``. Some
+    repos' test fixtures do this intentionally — e.g. Helm's chart-loader
+    tests ship a fixture symlinked to ``/dev/null`` specifically to exercise
+    that edge case — which made every task built on such a repo fail before
+    tokenization even started. ``"tar"`` still blocks path traversal and
+    absolute *destination* paths; it's only the "trust this symlink target"
+    check that's relaxed, which is fine here since the archive is one we
+    generate ourselves from a container we already control, not third-party
+    input.
+    """
+    exclude_flags = " ".join(f"--exclude={shlex.quote(p)}" for p in sorted(SKIP_DIRS))
+    tar_name = f".repo-tokenizer-transfer-{uuid.uuid4()}.tar.gz"
+    remote_tar_path = f"{_TRANSFER_TAR_DIR}/{tar_name}"
+
+    result = await environment.exec(
+        command=(
+            f"tar czf {shlex.quote(remote_tar_path)} {exclude_flags} "
+            f"-C {shlex.quote(source_dir)} ."
+        ),
+        user="root",
+        timeout_sec=120,
+    )
+    if result.return_code != 0:
+        raise RuntimeError(
+            f"Failed to archive {source_dir!r} for download "
+            f"(exit {result.return_code}): {result.stderr or result.stdout}"
+        )
+
+    try:
+        with tempfile.TemporaryDirectory(prefix="repo-tokenizer-tar-") as host_tmp:
+            host_tar_path = Path(host_tmp) / tar_name
+            await environment.download_file(remote_tar_path, host_tar_path)
+            with tarfile.open(host_tar_path, "r:gz") as tf:
+                tf.extractall(path=target_dir, filter="tar")
+    finally:
+        await environment.exec(
+            command=f"rm -f {shlex.quote(remote_tar_path)}",
+            user="root",
+            timeout_sec=120,
+        )
+
+
+# ---------------------------------------------------------------------------
 # Harbor agent
 # ---------------------------------------------------------------------------
 
@@ -338,11 +407,7 @@ class RepoTokenizerAgent(BaseAgent):
 
         with tempfile.TemporaryDirectory(prefix="repo-tokenizer-") as tmp_dir:
             local_repo = Path(tmp_dir)
-            await environment.download_dir_with_exclusions(
-                source_dir=testbed_dir,
-                target_dir=local_repo,
-                exclude=sorted(SKIP_DIRS),
-            )
+            await _download_repo(environment, testbed_dir, local_repo)
 
             enc = tiktoken.get_encoding(self._encoding_name)
             file_results, by_extension = walk_and_count(local_repo, enc)
