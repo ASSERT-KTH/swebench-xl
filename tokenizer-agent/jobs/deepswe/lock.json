@@ -1,0 +1,3983 @@
+{
+    "schema_version": 3,
+    "created_at": "2026-08-31T14:10:00.834815Z",
+    "harbor": {
+        "version": "0.22.0",
+        "is_editable": false
+    },
+    "n_concurrent_trials": 4,
+    "retry": {
+        "max_retries": 0,
+        "exclude_exceptions": [
+            "VerifierOutputParseError",
+            "AgentAuthenticationError",
+            "RewardFileEmptyError",
+            "AgentTimeoutError",
+            "RewardFileNotFoundError",
+            "VerifierTimeoutError",
+            "AgentSafetyRefusalError",
+            "ApiUsageLimitError",
+            "ModelNotFoundError"
+        ],
+        "wait_multiplier": 1.0,
+        "min_wait_sec": 1.0,
+        "max_wait_sec": 60.0
+    },
+    "trials": [
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "datacurve/kcp-go-multiplexed-kcp-streams",
+                "type": "package",
+                "digest": "sha256:07027a97fd6e37b40e10f198dc7fa811d1d66f03966bc4cd93e7535a6ec0a7d5",
+                "source": "datacurve/deep-swe-1-1"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "separate"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "datacurve/python-statemachine-state-data-scoping",
+                "type": "package",
+                "digest": "sha256:4e60f53bc07b9fc4be7affe1c0bbd8470586b28ff7ef0eb3dc76c109b9440b47",
+                "source": "datacurve/deep-swe-1-1"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "separate"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "datacurve/prometheus-typed-label-sorting",
+                "type": "package",
+                "digest": "sha256:dcc97a6c938cb2934daff1b85d53d84db9af583b34178b45fa190fe0c43b337e",
+                "source": "datacurve/deep-swe-1-1"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "separate"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "datacurve/obsidian-linter-auto-table-of-contents",
+                "type": "package",
+                "digest": "sha256:1bcb7fe29280fd033a74851a1901dd115a4184f21809d1f96f332ca9408e9eb6",
+                "source": "datacurve/deep-swe-1-1"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "separate"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "datacurve/etree-xml-diff-patch",
+                "type": "package",
+                "digest": "sha256:22c37a934fc48b6ab469494c18968cc165a8af4ac5f29800f55fa1c319716f39",
+                "source": "datacurve/deep-swe-1-1"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "separate"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "datacurve/katex-multicolumn-array-spans",
+                "type": "package",
+                "digest": "sha256:27da72e69f984905e100e9d374dfe5b59bb66bfebf46c8f7350bb18f2b135eea",
+                "source": "datacurve/deep-swe-1-1"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "separate"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "datacurve/yaegi-go-embed-directives",
+                "type": "package",
+                "digest": "sha256:85d5af1af6e3a5abfdbd43a0c84171bc73cf9a9d9f2dffc9fe102c511ebb7ca5",
+                "source": "datacurve/deep-swe-1-1"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "separate"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "datacurve/cliffy-config-file-parsing",
+                "type": "package",
+                "digest": "sha256:3db686ba7c0e904ddb4750b14eba840593c882f6016d9ad6e38dcedfa5167546",
+                "source": "datacurve/deep-swe-1-1"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "separate"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "datacurve/sqlfmt-create-table-ddl-formatting",
+                "type": "package",
+                "digest": "sha256:92c25ed0aebbc26672419bee27148beac5f089f0731cb672756b6ef69ac81e5f",
+                "source": "datacurve/deep-swe-1-1"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "separate"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "datacurve/clack-async-autocomplete-options",
+                "type": "package",
+                "digest": "sha256:5cb8b7f3c5e920d8a3839eac5951223526dc2d5b3ba4fcff8b1b0bb73d22a9b5",
+                "source": "datacurve/deep-swe-1-1"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "separate"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "datacurve/prometheus-transactional-reload-status",
+                "type": "package",
+                "digest": "sha256:d37ff0876e1d1acdecf1dc9f3223cf4cd3d4c95655db7392277535f238db228b",
+                "source": "datacurve/deep-swe-1-1"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "separate"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "datacurve/boa-hierarchical-evaluation-cancellation",
+                "type": "package",
+                "digest": "sha256:e98e8e39ecc474432a016106ca72e62aace81e496d42bc56fdb237f0c09f5db6",
+                "source": "datacurve/deep-swe-1-1"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "separate"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "datacurve/sqlite-utils-safe-import-checkpoints",
+                "type": "package",
+                "digest": "sha256:5d9d80d43d1b03a42c89830805fe01cf7b6837d0fc1eb6047bbfaf7292192414",
+                "source": "datacurve/deep-swe-1-1"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "separate"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "datacurve/task-task-graph-export",
+                "type": "package",
+                "digest": "sha256:0b45ecab817ccb8268cb45ede35a486e4cca67710f1b5d7896ca853462b7a032",
+                "source": "datacurve/deep-swe-1-1"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "separate"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "datacurve/fastapi-deprecation-response-headers",
+                "type": "package",
+                "digest": "sha256:8c87b641fa41ffdc06af1baca23650068bd00294e6cb2c9879e51691bdc67f67",
+                "source": "datacurve/deep-swe-1-1"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "separate"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "datacurve/koota-query-predicates",
+                "type": "package",
+                "digest": "sha256:fa3f9d7e38e7d3770a49dff0123fb00bd2f42f046509d5cae22d0a4fc7888f68",
+                "source": "datacurve/deep-swe-1-1"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "separate"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "datacurve/scc-bounded-memory-spilling",
+                "type": "package",
+                "digest": "sha256:52b0fbf109608f749676af2cfcf2093cb973292873ce6402e3d3b7013dede2b0",
+                "source": "datacurve/deep-swe-1-1"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "separate"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "datacurve/pwntools-tube-multiplexing",
+                "type": "package",
+                "digest": "sha256:8d8d89e217490aab2415e141e61564fe7b41dff28cbb8dc59e7f0a4734c4daeb",
+                "source": "datacurve/deep-swe-1-1"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "separate"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "datacurve/obsidian-linter-scoped-ignore-markers",
+                "type": "package",
+                "digest": "sha256:5ffe854a4225a8a5b7cdd806c497a0500eca9a0cd1bee940d26b03caea6973b7",
+                "source": "datacurve/deep-swe-1-1"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "separate"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "datacurve/valibot-recursive-schema-composition",
+                "type": "package",
+                "digest": "sha256:7f44721ef788e748119750216919ce3ba3aa0f4a7fd6670b1a9e5baf48e1500c",
+                "source": "datacurve/deep-swe-1-1"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "separate"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "datacurve/go-critic-doc-link-checker",
+                "type": "package",
+                "digest": "sha256:aad55565e30845d350fceaaf90114d9fc4c93baa57ce4ff772dd4f9bb7f42435",
+                "source": "datacurve/deep-swe-1-1"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "separate"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "datacurve/tengo-destructuring-bindings",
+                "type": "package",
+                "digest": "sha256:8ea15df51604d185e90c6821c9f324bf58884e68f8fc3f45efbde6c1f91541da",
+                "source": "datacurve/deep-swe-1-1"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "separate"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "datacurve/mashumaro-flattened-dataclass-fields",
+                "type": "package",
+                "digest": "sha256:f70b0edaa8df27807abad42d8ac142973f4f19b41a4a4c1e6bf999781b19c505",
+                "source": "datacurve/deep-swe-1-1"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "separate"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "datacurve/onedump-dump-encryption-pipeline",
+                "type": "package",
+                "digest": "sha256:f79402380b7562e1c5ff26a44d9542384fc87a48f12ff084f64e3a940fbef737",
+                "source": "datacurve/deep-swe-1-1"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "separate"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "datacurve/bandit-structured-nosec-directives",
+                "type": "package",
+                "digest": "sha256:eb7a3d6f669d2035b18e7caffc8d1c92c5c6fd86fb9845dd838504bbced6b38d",
+                "source": "datacurve/deep-swe-1-1"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "separate"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "datacurve/tomlkit-toml-table-converters",
+                "type": "package",
+                "digest": "sha256:cd9cba3f39e22f0827cd1922bb9dc9f6c386496cb96b8b0a4bc48d9fe0454573",
+                "source": "datacurve/deep-swe-1-1"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "separate"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "datacurve/pest-character-class-coalescing",
+                "type": "package",
+                "digest": "sha256:2db976b6eeb361bd715b74de2d1ad66d09d310ea99c0a3c118d812bdafdce9f8",
+                "source": "datacurve/deep-swe-1-1"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "separate"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "datacurve/aiomonitor-task-snapshots-diff",
+                "type": "package",
+                "digest": "sha256:cd39150f2255d54ef64b31d282e3ee1b12c622ecd6dc5a12ceb97e298099354c",
+                "source": "datacurve/deep-swe-1-1"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "separate"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "datacurve/koota-composite-trait-aspects",
+                "type": "package",
+                "digest": "sha256:94ac4d52d173cc22827714c56d74f098cc46fa7d041a8efbc77aba27f95691b7",
+                "source": "datacurve/deep-swe-1-1"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "separate"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "datacurve/kombu-virtual-queue-dead-lettering",
+                "type": "package",
+                "digest": "sha256:90adbb6e0f62123f6929e77cd9c0b25e0db69c7151836dba238aa174a6e8d2ec",
+                "source": "datacurve/deep-swe-1-1"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "separate"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "datacurve/scriggo-method-declarations",
+                "type": "package",
+                "digest": "sha256:6892464f5a019db9a70d766a3186c60936f36189b3886b8b32da93a13d4746bb",
+                "source": "datacurve/deep-swe-1-1"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "separate"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "datacurve/vulture-persistent-analysis-cache",
+                "type": "package",
+                "digest": "sha256:5850dd035f091b3ebe9fa2085100cd62b3e34c1112169d46aa64827d38211526",
+                "source": "datacurve/deep-swe-1-1"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "separate"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "datacurve/psd-tools-blend-range-api",
+                "type": "package",
+                "digest": "sha256:60ceb52ff33c3e5d78909917d048cc792c6a8f4d8c29c363b85dfd56ba68be4d",
+                "source": "datacurve/deep-swe-1-1"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "separate"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "datacurve/testem-per-launcher-reports",
+                "type": "package",
+                "digest": "sha256:25426902b331da6b88b0449d654c26992f095f2e234c3094b800be4a2ab15f97",
+                "source": "datacurve/deep-swe-1-1"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "separate"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "datacurve/returns-validated-error-accumulation",
+                "type": "package",
+                "digest": "sha256:c3b8a00551c152d9c2cca35ae1a1ff84f18b57bbdb3e0247c2da20a1dd0b7dfc",
+                "source": "datacurve/deep-swe-1-1"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "separate"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "datacurve/ink-grid-box-layout",
+                "type": "package",
+                "digest": "sha256:5d1499ab0b27daafc310ab4a23866d61b2731aa0c7a3ffea6ecd693ac63abc5f",
+                "source": "datacurve/deep-swe-1-1"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "separate"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "datacurve/helm-unified-manifest-stream",
+                "type": "package",
+                "digest": "sha256:a53d99658adf5b83a55a589328bf3f3b33c6655a1e35e38eb5bc455d0b508f6e",
+                "source": "datacurve/deep-swe-1-1"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "separate"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "datacurve/geo-shapeindex-serialization",
+                "type": "package",
+                "digest": "sha256:a9cc6e848523164a85b2936115a78288e4d8aa5c7817c78d6da1daa55160aa42",
+                "source": "datacurve/deep-swe-1-1"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "separate"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "datacurve/anko-default-function-arguments",
+                "type": "package",
+                "digest": "sha256:e99368c8e599e7fc1687ac11dd92d6d9b9985329168e204d519f730e363d7057",
+                "source": "datacurve/deep-swe-1-1"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "separate"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "datacurve/superjson-error-stack-serialization",
+                "type": "package",
+                "digest": "sha256:6f121e4c4b22c53bbbe748184b11edc8551eccddcfd1bbf522be277cd9d0d6ac",
+                "source": "datacurve/deep-swe-1-1"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "separate"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "datacurve/tengo-callable-instance-isolation",
+                "type": "package",
+                "digest": "sha256:b9cf4a673c7cb5c1e31eb274a3b1a792f9cb0a134d09f50258c0151be717df9e",
+                "source": "datacurve/deep-swe-1-1"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "separate"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "datacurve/dynamodb-toolbox-lazy-recursive-schemas",
+                "type": "package",
+                "digest": "sha256:07f03e1561f68a79fe2fdb2b4b03576b42dcdb0b61d28a091dbadf8deea8df93",
+                "source": "datacurve/deep-swe-1-1"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "separate"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "datacurve/abs-module-cache-flags",
+                "type": "package",
+                "digest": "sha256:7c7a9538898c286060dbb26e43ad41e6049696b281d2e09cf89eedf1c048d03e",
+                "source": "datacurve/deep-swe-1-1"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "separate"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "datacurve/query-persist-restored-query-state",
+                "type": "package",
+                "digest": "sha256:094bff49447345e312b90876036a2c5d873474417a89baed34cdf2ac29c84355",
+                "source": "datacurve/deep-swe-1-1"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "separate"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "datacurve/drizzle-orm-window-function-builders",
+                "type": "package",
+                "digest": "sha256:48a84e2dd7940812c995728546455dffc5ae6c1a00851fe951a5deb86b12df29",
+                "source": "datacurve/deep-swe-1-1"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "separate"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "datacurve/yjs-map-conflict-detection",
+                "type": "package",
+                "digest": "sha256:2843c1255f538c711421b7e2309c1cb6c5fb9f8ffb2736fb44c9dc1369c7ca0a",
+                "source": "datacurve/deep-swe-1-1"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "separate"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "datacurve/csstree-shorthand-expansion-compression",
+                "type": "package",
+                "digest": "sha256:c5f68db8033392429210330682221d03878495c7932b01da714335c3d3c8799a",
+                "source": "datacurve/deep-swe-1-1"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "separate"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "datacurve/actionlint-action-pinning-lint",
+                "type": "package",
+                "digest": "sha256:af94035dc7d0fa0c283b1c1a055dd47b1d7d460b89348bb69866090d4a750a65",
+                "source": "datacurve/deep-swe-1-1"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "separate"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "datacurve/kea-atomic-signal-selectors",
+                "type": "package",
+                "digest": "sha256:b96867a209b86c984ee174f0ae3cf831c676a05d49afdfba173a0fc6681ba0e7",
+                "source": "datacurve/deep-swe-1-1"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "separate"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "datacurve/sql-formatter-bigquery-pipe-formatting",
+                "type": "package",
+                "digest": "sha256:ce2d4b906c1eddcd2bdb95d51b6702df0c1117965c61134818f879b9cef7fbe8",
+                "source": "datacurve/deep-swe-1-1"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "separate"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "datacurve/happy-dom-abort-pending-body-reads",
+                "type": "package",
+                "digest": "sha256:da529b872cc6e4c87c932ab57a0c927961068efacb47ddebd337ca93c640b9f8",
+                "source": "datacurve/deep-swe-1-1"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "separate"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "datacurve/fd-deterministic-multi-key-sorting",
+                "type": "package",
+                "digest": "sha256:c5c495db94fb63a009998012d15ac636af856c5ac73713c0224d946d2e22728d",
+                "source": "datacurve/deep-swe-1-1"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "separate"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "datacurve/claude-code-by-agents-recursive-delegation",
+                "type": "package",
+                "digest": "sha256:6291cdc99a21eb0cf772e98bdde21cd88d07d186814ee7fa379f99b9f7c5c31b",
+                "source": "datacurve/deep-swe-1-1"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "separate"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "datacurve/pebble-durability-wait-apis",
+                "type": "package",
+                "digest": "sha256:d64e09b3aaf3d27559180739c37a3fa61b2891c55f4c0007babe30fddff28cfd",
+                "source": "datacurve/deep-swe-1-1"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "separate"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "datacurve/textual-kitty-key-phases",
+                "type": "package",
+                "digest": "sha256:11e8bcc74ae78928040965b2f03dddf7d2c8ff9480e96b268cae47455693f0cd",
+                "source": "datacurve/deep-swe-1-1"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "separate"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "datacurve/wasmi-trap-coredumps",
+                "type": "package",
+                "digest": "sha256:bc89e8cb76b8d98981d5045bfcf2d32260d0803157ee1d63b074e38c09ad27df",
+                "source": "datacurve/deep-swe-1-1"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "separate"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "datacurve/obsidian-linter-link-format-conversion",
+                "type": "package",
+                "digest": "sha256:a7481d395cea5a0bdf4515ff98695367044422a1b3d1b08e961114039dddb6b2",
+                "source": "datacurve/deep-swe-1-1"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "separate"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "datacurve/wazero-multi-module-snapshots",
+                "type": "package",
+                "digest": "sha256:6126d0dc5baef7a87464886cdfe546e5b2f310e818f495ac2ee12982ad5afb5e",
+                "source": "datacurve/deep-swe-1-1"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "separate"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "datacurve/dynamodb-toolbox-conditional-attribute-requirements",
+                "type": "package",
+                "digest": "sha256:b0269234491e42ec0d81c41ae515919c93ff2e8e301e87b238c88c410a846349",
+                "source": "datacurve/deep-swe-1-1"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "separate"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "datacurve/updo-policy-alerting",
+                "type": "package",
+                "digest": "sha256:105759ee3bd1e251e1030de14bcad581c79afeb3f72dac16d701f8ab5f8b2587",
+                "source": "datacurve/deep-swe-1-1"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "separate"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "datacurve/testem-bail-on-test-failure",
+                "type": "package",
+                "digest": "sha256:463d4dc48acd83678d24f5e2792261227386c1d120d36b568ddd8b12a1c80c51",
+                "source": "datacurve/deep-swe-1-1"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "separate"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "datacurve/awilix-async-container-initialization",
+                "type": "package",
+                "digest": "sha256:05516741d7cdd2027c7eb905db0a80908f3ee66aeb687a156df00adaa42df742",
+                "source": "datacurve/deep-swe-1-1"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "separate"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "datacurve/vitest-duration-sharding",
+                "type": "package",
+                "digest": "sha256:fb861d5b1d28c0081a47dda1967e4912eb44f38ecab0659b3d02b02434f0ed75",
+                "source": "datacurve/deep-swe-1-1"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "separate"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "datacurve/langchain-request-coalescing",
+                "type": "package",
+                "digest": "sha256:dfd9fe394fe8f00fc7466cecce0d4f039b312afd7b2b1e43fabee92b9d5ffd3b",
+                "source": "datacurve/deep-swe-1-1"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "separate"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "datacurve/bandit-incremental-cache-control",
+                "type": "package",
+                "digest": "sha256:0f6dbee6811a71463c1097003d927db232a2f04bc5c58d0ce59b4c6fe4390568",
+                "source": "datacurve/deep-swe-1-1"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "separate"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "datacurve/bandit-interprocedural-taint-checks",
+                "type": "package",
+                "digest": "sha256:b978571338a06b865ed0d016d121f0dd36770e6321c62a7951c36de72b10035e",
+                "source": "datacurve/deep-swe-1-1"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "separate"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "datacurve/kombu-single-active-consumer-priority",
+                "type": "package",
+                "digest": "sha256:8b0ebd5b6cb7e08a0e7479fabfd842c7ca982515e1667cfaac60adfab0c874b9",
+                "source": "datacurve/deep-swe-1-1"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "separate"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "datacurve/abs-stepped-slices",
+                "type": "package",
+                "digest": "sha256:602b5b3144f5386bc54107a58e9bb9eef276e9cdae98610b482f95eb4e960310",
+                "source": "datacurve/deep-swe-1-1"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "separate"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "datacurve/dasel-html-document-format",
+                "type": "package",
+                "digest": "sha256:ed40e92c29778c2488fa271593417cf4daa7488352472a990b0340ff8fb49541",
+                "source": "datacurve/deep-swe-1-1"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "separate"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "datacurve/skrub-duration-encoding",
+                "type": "package",
+                "digest": "sha256:e8fc99fd2a2e3a87f189bf2e6cd8f59c1f99838d9e7356d443f633f196c95320",
+                "source": "datacurve/deep-swe-1-1"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "separate"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "datacurve/kysely-window-grouping-helpers",
+                "type": "package",
+                "digest": "sha256:9c0ee62f485df64106929aa0a279804f0f9c480931d772ae58fd5ccabfaa40b8",
+                "source": "datacurve/deep-swe-1-1"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "separate"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "datacurve/meriyah-explicit-resource-declarations",
+                "type": "package",
+                "digest": "sha256:69009265abe2719be213265d9bc74502ea1ea6b1f695c7740484d5fbd688d27a",
+                "source": "datacurve/deep-swe-1-1"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "separate"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "datacurve/termenv-preserve-ansi-resets",
+                "type": "package",
+                "digest": "sha256:8d45235aa23f2436c067153316ecf3871106a82a492f1d7f94a6eb508989456c",
+                "source": "datacurve/deep-swe-1-1"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "separate"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "datacurve/ts-pattern-match-each",
+                "type": "package",
+                "digest": "sha256:736f6ffe471cbe4f6d40fb0193e799b18d0d412932210a346754d865ef35de1a",
+                "source": "datacurve/deep-swe-1-1"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "separate"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "datacurve/koota-entity-snapshot-rollback",
+                "type": "package",
+                "digest": "sha256:0b3959499ae647777c54f335fc7af0bdd33a90436cb9eee16ef668462c83c8b3",
+                "source": "datacurve/deep-swe-1-1"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "separate"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "datacurve/kgateway-consistent-hash-policy",
+                "type": "package",
+                "digest": "sha256:5370617bee8f22a990307b2fd79d81471313f889cc9b06e5379951309190764a",
+                "source": "datacurve/deep-swe-1-1"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "separate"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "datacurve/expr-try-catch-errors",
+                "type": "package",
+                "digest": "sha256:e9a238759c40b324f109b5c33aec49687150a02fbd97d9ef67876e9b3946f02c",
+                "source": "datacurve/deep-swe-1-1"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "separate"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "datacurve/participle-grammar-conflict-analysis",
+                "type": "package",
+                "digest": "sha256:6dd35e9b390369311e1dac3bd78394e7bfbbdc06b4dbda56202f0191157c9afe",
+                "source": "datacurve/deep-swe-1-1"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "separate"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "datacurve/arktype-json-schema-refs-dependencies",
+                "type": "package",
+                "digest": "sha256:a1bb7f7ea8e64bb8514a063282d16c55d55510aa8af5baaa7ab53d9c279a9d18",
+                "source": "datacurve/deep-swe-1-1"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "separate"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "datacurve/happy-dom-deterministic-intersectionobserver",
+                "type": "package",
+                "digest": "sha256:ea50ea0bf6bf750cd56c9663e188d677edb562c71dc585dcb6a8095822c93687",
+                "source": "datacurve/deep-swe-1-1"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "separate"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "datacurve/eicrud-keyset-pagination-cursor",
+                "type": "package",
+                "digest": "sha256:b26098d27ae2b022b5e39854f6e8e56060642888715dc17f6b33d8559982bb14",
+                "source": "datacurve/deep-swe-1-1"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "separate"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "datacurve/httpx-deterministic-cookie-store",
+                "type": "package",
+                "digest": "sha256:2dbb399641406d1f7f0cdaca58cbb5037cbeec7e800abb5b6b8590a24f871bc1",
+                "source": "datacurve/deep-swe-1-1"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "separate"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "datacurve/textual-richlog-follow-state",
+                "type": "package",
+                "digest": "sha256:c797d90c439169b30f8cff3d240f47a8bc0de27ab63d75cfb96a1da6f1910033",
+                "source": "datacurve/deep-swe-1-1"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "separate"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "datacurve/ipython-session-bundle-replay",
+                "type": "package",
+                "digest": "sha256:d393b59283ddf78e2fc879ce6ead5ef4fdce4abbcc95fc8d78aeab15165ba944",
+                "source": "datacurve/deep-swe-1-1"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "separate"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "datacurve/optique-conditional-option-dependencies",
+                "type": "package",
+                "digest": "sha256:519c85ca2cb4e7de5fd360036915346000fef21a0c82b8204ad3c2172baf27ac",
+                "source": "datacurve/deep-swe-1-1"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "separate"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "datacurve/mobly-grouped-test-barriers",
+                "type": "package",
+                "digest": "sha256:173913b8ac027368002ee00034be08f53e71d18805ab47e010a38e90e660550c",
+                "source": "datacurve/deep-swe-1-1"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "separate"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "datacurve/ytt-jsonpath-query-api",
+                "type": "package",
+                "digest": "sha256:9edb768177592440b86f0f7bd13e18f613f3443df744372f44ce66f20e2c539a",
+                "source": "datacurve/deep-swe-1-1"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "separate"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "datacurve/arcane-drift-detection-baselines",
+                "type": "package",
+                "digest": "sha256:6b6c66c21be08226b4f6b91f43dc2c353a1ef783d613d3c3254eb48fc2b2d905",
+                "source": "datacurve/deep-swe-1-1"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "separate"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "datacurve/httpx-multipart-response-parsing",
+                "type": "package",
+                "digest": "sha256:4c9fa057813a0afa3aeac8447dee362a9d2284ad483f960b9dd782cad163185c",
+                "source": "datacurve/deep-swe-1-1"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "separate"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "datacurve/anko-typed-variable-bindings",
+                "type": "package",
+                "digest": "sha256:c747b7b24f06c5b6ea2185a90c5a13c1f206a43cd0d5f3c29ac5e1c4ae405242",
+                "source": "datacurve/deep-swe-1-1"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "separate"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "datacurve/adaptix-name-mapping-aliases",
+                "type": "package",
+                "digest": "sha256:43fc3e5164e8796f6b555cc435af2c53e00914e452179bd9b05259db04e56d73",
+                "source": "datacurve/deep-swe-1-1"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "separate"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "datacurve/effect-sse-httpapi-streaming",
+                "type": "package",
+                "digest": "sha256:9dd6da79dad487169809e48d058710977d9284dff9ab852519b2960b6b777a7c",
+                "source": "datacurve/deep-swe-1-1"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "separate"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "datacurve/cattrs-partial-structuring-recovery",
+                "type": "package",
+                "digest": "sha256:fdaa45123a8384c59ca4b3229f6f1a6d9865d1a006cf11736cbcca780629af23",
+                "source": "datacurve/deep-swe-1-1"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "separate"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "datacurve/koota-pair-relation-tracking",
+                "type": "package",
+                "digest": "sha256:3f1750a3c0408cbe6e6eb6ffda9a067b1b37761c51c1af95bc50e363eb016ff2",
+                "source": "datacurve/deep-swe-1-1"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "separate"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "datacurve/opa-template-string-reconstruction",
+                "type": "package",
+                "digest": "sha256:0566a599a5b5485f2964bc1d2ff6ff55903bf39a6e394e6ec061b76c0598cddc",
+                "source": "datacurve/deep-swe-1-1"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "separate"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "datacurve/true-myth-iterable-collection-combinators",
+                "type": "package",
+                "digest": "sha256:18e557e6812a5f8cc94dee7a2cb8308b0de8e26957b0e743a67632d7fdfa9fb5",
+                "source": "datacurve/deep-swe-1-1"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "separate"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "datacurve/ofetch-per-origin-circuit-breaker",
+                "type": "package",
+                "digest": "sha256:223f6c4ed9710fe1b1929327b3575fe2cf43414c9c4b3ef3321d87cb2857a4df",
+                "source": "datacurve/deep-swe-1-1"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "separate"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "datacurve/opa-rego-rule-profiling",
+                "type": "package",
+                "digest": "sha256:374e548cdc309cc37dab8b8c31d8b8224ac1651c75caf10198ff00fa743acf4e",
+                "source": "datacurve/deep-swe-1-1"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "separate"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "datacurve/gql-incremental-graphql-delivery",
+                "type": "package",
+                "digest": "sha256:5cc48a17e7f9da72032fe66d33420fce9d3d4ec6bff4b57c059ce81943918ef2",
+                "source": "datacurve/deep-swe-1-1"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "separate"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "datacurve/go-genai-streamed-function-args",
+                "type": "package",
+                "digest": "sha256:2229c6b14185443fc04ab2dd6eb0d0cef68a8917af287d129d4830ecd65573ce",
+                "source": "datacurve/deep-swe-1-1"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "separate"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "datacurve/oxvg-structural-selector-preservation",
+                "type": "package",
+                "digest": "sha256:a0ffff637b54c8d172b988e7875b9e78e0fb41431eca7b7b8864b7a5b1278e43",
+                "source": "datacurve/deep-swe-1-1"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "separate"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "datacurve/mnamer-daemon-watch-lifecycle",
+                "type": "package",
+                "digest": "sha256:ee5eee3f9a97948a5cff7cdbd836311aa35af0163e63478645cd59695117b9e5",
+                "source": "datacurve/deep-swe-1-1"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "separate"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "datacurve/goreleaser-retry-publish-auditing",
+                "type": "package",
+                "digest": "sha256:f225e65cfced7c05c2c085c5b0b4e96ef460a0cd24954f06c5a502277eaede99",
+                "source": "datacurve/deep-swe-1-1"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "separate"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "datacurve/go-git-worktree-merge-conflicts",
+                "type": "package",
+                "digest": "sha256:316ee0992fc224e2e11ec421fe0b815cffe8ec6f46d462a2c76847d4aca56e30",
+                "source": "datacurve/deep-swe-1-1"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "separate"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "datacurve/httpx-streaming-json-iteration",
+                "type": "package",
+                "digest": "sha256:02512d67c53caa9d4c3394519f12af9c44d11ee505e2c077a3cf4070a2c1983b",
+                "source": "datacurve/deep-swe-1-1"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "separate"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "datacurve/quill-shared-toolbar-focus",
+                "type": "package",
+                "digest": "sha256:83cdb03701ccc1db30182b0452e30d1af6365ed9296f5e5aed1cf039664874e4",
+                "source": "datacurve/deep-swe-1-1"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "separate"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "datacurve/narwhals-rolling-window-suite",
+                "type": "package",
+                "digest": "sha256:5c2fd65054d4e75bc14f62fac49165e4a88186c6f615ca3b19592f6d3d9a950e",
+                "source": "datacurve/deep-swe-1-1"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "separate"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "datacurve/igel-persist-feature-schema",
+                "type": "package",
+                "digest": "sha256:b894c4bde79a000ede96dc6ae517eac6d3dd148c11476135a916763d85f0b23d",
+                "source": "datacurve/deep-swe-1-1"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "separate"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "datacurve/numba-stencil-boundary-modes",
+                "type": "package",
+                "digest": "sha256:ca591eeeb75a5306bfc4ed2e7e6ab392d93c993c7a90958d213491121e1c8ead",
+                "source": "datacurve/deep-swe-1-1"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "separate"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "datacurve/koota-deferred-mutation-buffer",
+                "type": "package",
+                "digest": "sha256:d0c5f8383d819221f04c1fe10da6310d9ad92878c7fc68ab30b866d6b1ad706f",
+                "source": "datacurve/deep-swe-1-1"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "separate"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "datacurve/fastapi-implicit-head-options",
+                "type": "package",
+                "digest": "sha256:f871b4d12ae65f2c2a011dc321be399c0938c4839102cf6dbaa00ae8c3fa9f3f",
+                "source": "datacurve/deep-swe-1-1"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "separate"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "datacurve/helm-array-merge-strategies",
+                "type": "package",
+                "digest": "sha256:7bf7c15480dfbb9ab41407280c9d1c935a76136aba7d6ca70c643cf1ab053366",
+                "source": "datacurve/deep-swe-1-1"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "separate"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "datacurve/dateutil-rfc5545-timezone-interop",
+                "type": "package",
+                "digest": "sha256:25087ee006dd601e5385dcf7e2c179f1c71e912c041c0746568c181a2e2d57d7",
+                "source": "datacurve/deep-swe-1-1"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "separate"
+            }
+        }
+    ]
+}

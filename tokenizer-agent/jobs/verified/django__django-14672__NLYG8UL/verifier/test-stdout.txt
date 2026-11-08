@@ -1,0 +1,256 @@
+++ cd /testbed
+++ set +x
+++ python -m pip install -e .
+Obtaining file:///testbed
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Checking if build backend supports build_editable: started
+  Checking if build backend supports build_editable: finished with status 'done'
+  Getting requirements to build editable: started
+  Getting requirements to build editable: finished with status 'done'
+  Preparing editable metadata (pyproject.toml): started
+  Preparing editable metadata (pyproject.toml): finished with status 'done'
+Requirement already satisfied: asgiref>=3.3.2 in /opt/miniconda3/envs/testbed/lib/python3.8/site-packages (from Django==4.0.dev20260815061252) (3.8.1)
+Requirement already satisfied: pytz in /opt/miniconda3/envs/testbed/lib/python3.8/site-packages (from Django==4.0.dev20260815061252) (2024.2)
+Requirement already satisfied: sqlparse>=0.2.2 in /opt/miniconda3/envs/testbed/lib/python3.8/site-packages (from Django==4.0.dev20260815061252) (0.5.1)
+Requirement already satisfied: typing-extensions>=4 in /opt/miniconda3/envs/testbed/lib/python3.8/site-packages (from asgiref>=3.3.2->Django==4.0.dev20260815061252) (4.12.2)
+Building wheels for collected packages: Django
+  Building editable for Django (pyproject.toml): started
+  Building editable for Django (pyproject.toml): finished with status 'done'
+  Created wheel for Django: filename=django-4.0.dev20260815061252-0.editable-py3-none-any.whl size=26249 sha256=eda8bd4ae1dca29e0989a90d0ede3308f39f373a613b0d6db328fe81d4c45f5c
+  Stored in directory: /tmp/pip-ephem-wheel-cache-_qt9lu49/wheels/b2/50/f1/218f2e9962a80d01a4b1297698978f9fb3b60056aa24343f24
+Successfully built Django
+Installing collected packages: Django
+  Attempting uninstall: Django
+    Found existing installation: Django 4.0.dev20210723111041
+    Uninstalling Django-4.0.dev20210723111041:
+      Successfully uninstalled Django-4.0.dev20210723111041
+Successfully installed Django-4.0.dev20260815061252
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable.It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+++ git checkout 00ea883ef56fb5e092cbe4a6f7ff2e7470886ac4 tests/invalid_models_tests/test_models.py tests/m2m_through/models.py tests/m2m_through/tests.py
+Updated 3 paths from f3ac2d410b
+++ git clean -fd
+++ echo 'diff --git a/tests/invalid_models_tests/test_models.py b/tests/invalid_models_tests/test_models.py
+--- a/tests/invalid_models_tests/test_models.py
++++ b/tests/invalid_models_tests/test_models.py
+@@ -821,6 +821,33 @@ class Child(Parent):
+             )
+         ])
+
++    def test_field_name_clash_with_m2m_through(self):
++        class Parent(models.Model):
++            clash_id = models.IntegerField()
++
++        class Child(Parent):
++            clash = models.ForeignKey('\''Child'\'', models.CASCADE)
++
++        class Model(models.Model):
++            parents = models.ManyToManyField(
++                to=Parent,
++                through='\''Through'\'',
++                through_fields=['\''parent'\'', '\''model'\''],
++            )
++
++        class Through(models.Model):
++            parent = models.ForeignKey(Parent, models.CASCADE)
++            model = models.ForeignKey(Model, models.CASCADE)
++
++        self.assertEqual(Child.check(), [
++            Error(
++                "The field '\''clash'\'' clashes with the field '\''clash_id'\'' from "
++                "model '\''invalid_models_tests.parent'\''.",
++                obj=Child._meta.get_field('\''clash'\''),
++                id='\''models.E006'\'',
++            )
++        ])
++
+     def test_multiinheritance_clash(self):
+         class Mother(models.Model):
+             clash = models.IntegerField()
+diff --git a/tests/m2m_through/models.py b/tests/m2m_through/models.py
+--- a/tests/m2m_through/models.py
++++ b/tests/m2m_through/models.py
+@@ -11,6 +11,10 @@ class Meta:
+         ordering = ('\''name'\'',)
+
+
++class PersonChild(Person):
++    pass
++
++
+ class Group(models.Model):
+     name = models.CharField(max_length=128)
+     members = models.ManyToManyField(Person, through='\''Membership'\'')
+@@ -85,8 +89,9 @@ class SymmetricalFriendship(models.Model):
+ class Event(models.Model):
+     title = models.CharField(max_length=50)
+     invitees = models.ManyToManyField(
+-        Person, through='\''Invitation'\'',
+-        through_fields=('\''event'\'', '\''invitee'\''),
++        to=Person,
++        through='\''Invitation'\'',
++        through_fields=['\''event'\'', '\''invitee'\''],
+         related_name='\''events_invited'\'',
+     )
+
+diff --git a/tests/m2m_through/tests.py b/tests/m2m_through/tests.py
+--- a/tests/m2m_through/tests.py
++++ b/tests/m2m_through/tests.py
+@@ -6,8 +6,8 @@
+
+ from .models import (
+     CustomMembership, Employee, Event, Friendship, Group, Ingredient,
+-    Invitation, Membership, Person, PersonSelfRefM2M, Recipe, RecipeIngredient,
+-    Relationship, SymmetricalFriendship,
++    Invitation, Membership, Person, PersonChild, PersonSelfRefM2M, Recipe,
++    RecipeIngredient, Relationship, SymmetricalFriendship,
+ )
+
+
+@@ -20,6 +20,13 @@ def setUpTestData(cls):
+         cls.rock = Group.objects.create(name='\''Rock'\'')
+         cls.roll = Group.objects.create(name='\''Roll'\'')
+
++    def test_reverse_inherited_m2m_with_through_fields_list_hashable(self):
++        reverse_m2m = Person._meta.get_field('\''events_invited'\'')
++        self.assertEqual(reverse_m2m.through_fields, ['\''event'\'', '\''invitee'\''])
++        inherited_reverse_m2m = PersonChild._meta.get_field('\''events_invited'\'')
++        self.assertEqual(inherited_reverse_m2m.through_fields, ['\''event'\'', '\''invitee'\''])
++        self.assertEqual(hash(reverse_m2m), hash(inherited_reverse_m2m))
++
+     def test_retrieve_intermediate_items(self):
+         Membership.objects.create(person=self.jim, group=self.rock)
+         Membership.objects.create(person=self.jane, group=self.rock)
+'
+++ git apply --check /tmp/test_patch.diff
+++ git apply /tmp/test_patch.diff
++++ mktemp
+++ LOG_FILE=/tmp/tmp.13x1BBQO2P
+++ export LOG_FILE
+++ exec
+++ exec
++++ tee /tmp/tmp.13x1BBQO2P
+++ set +x
+Testing against Django installed in '/testbed/django'
+Importing application invalid_models_tests
+Importing application m2m_through
+Found 178 test(s).
+Operations to perform:
+  Synchronize unmigrated apps: auth, contenttypes, invalid_models_tests, m2m_through, messages, sessions, staticfiles
+  Apply all migrations: admin, sites
+Synchronizing apps without migrations:
+  Creating tables...
+    Creating table django_content_type
+    Creating table auth_permission
+    Creating table auth_group
+    Creating table auth_user
+    Creating table django_session
+    Creating table m2m_through_person
+    Creating table m2m_through_personchild
+    Creating table m2m_through_group
+    Creating table m2m_through_membership
+    Creating table test_table
+    Creating table m2m_through_testnodefaultsornulls
+    Creating table m2m_through_personselfrefm2m
+    Creating table m2m_through_friendship
+    Creating table m2m_through_symmetricalfriendship
+    Creating table m2m_through_event
+    Creating table m2m_through_invitation
+    Creating table m2m_through_employee
+    Creating table m2m_through_relationship
+    Creating table m2m_through_ingredient
+    Creating table m2m_through_recipe
+    Creating table m2m_through_recipeingredient
+    Running deferred SQL...
+Running migrations:
+  Applying admin.0001_initial... OK
+  Applying admin.0002_logentry_remove_auto_add... OK
+  Applying admin.0003_logentry_add_action_flag_choices... OK
+  Applying sites.0001_initial... OK
+  Applying sites.0002_alter_domain_unique... OK
+Creating test database for alias 'default' ('file:memorydb_default?mode=memory&cache=shared')...
+Operations to perform:
+  Synchronize unmigrated apps: auth, contenttypes, invalid_models_tests, m2m_through, messages, sessions, staticfiles
+  Apply all migrations: admin, sites
+Synchronizing apps without migrations:
+  Creating tables...
+    Creating table django_content_type
+    Creating table auth_permission
+    Creating table auth_group
+    Creating table auth_user
+    Creating table django_session
+    Creating table m2m_through_person
+    Creating table m2m_through_personchild
+    Creating table m2m_through_group
+    Creating table m2m_through_membership
+    Creating table test_table
+    Creating table m2m_through_testnodefaultsornulls
+    Creating table m2m_through_personselfrefm2m
+    Creating table m2m_through_friendship
+    Creating table m2m_through_symmetricalfriendship
+    Creating table m2m_through_event
+    Creating table m2m_through_invitation
+    Creating table m2m_through_employee
+    Creating table m2m_through_relationship
+    Creating table m2m_through_ingredient
+    Creating table m2m_through_recipe
+    Creating table m2m_through_recipeingredient
+    Running deferred SQL...
+Running migrations:
+  Applying admin.0001_initial... OK
+  Applying admin.0002_logentry_remove_auto_add... OK
+  Applying admin.0003_logentry_add_action_flag_choices... OK
+  Applying sites.0001_initial... OK
+  Applying sites.0002_alter_domain_unique... OK
+Creating test database for alias 'other' ('file:memorydb_other?mode=memory&cache=shared')...
+Destroying test database for alias 'default' ('file:memorydb_default?mode=memory&cache=shared')...
+Destroying test database for alias 'other' ('file:memorydb_other?mode=memory&cache=shared')...
+Traceback (most recent call last):
+  File "./tests/runtests.py", line 659, in <module>
+    failures = django_tests(
+  File "./tests/runtests.py", line 385, in django_tests
+    failures = test_runner.run_tests(test_labels)
+  File "/testbed/django/test/runner.py", line 899, in run_tests
+    self.run_checks(databases)
+  File "/testbed/django/test/runner.py", line 818, in run_checks
+    call_command('check', verbosity=self.verbosity, databases=databases)
+  File "/testbed/django/core/management/__init__.py", line 181, in call_command
+    return command.execute(*args, **defaults)
+  File "/testbed/django/core/management/base.py", line 398, in execute
+    output = self.handle(*args, **options)
+  File "/testbed/django/core/management/commands/check.py", line 63, in handle
+    self.check(
+  File "/testbed/django/core/management/base.py", line 419, in check
+    all_issues = checks.run_checks(
+  File "/testbed/django/core/checks/registry.py", line 77, in run_checks
+    new_errors = check(app_configs=app_configs, databases=databases)
+  File "/testbed/django/core/checks/model_checks.py", line 34, in check_all_models
+    errors.extend(model.check(**kwargs))
+  File "/testbed/django/db/models/base.py", line 1281, in check
+    *cls._check_field_name_clashes(),
+  File "/testbed/django/db/models/base.py", line 1471, in _check_field_name_clashes
+    if f not in used_fields:
+  File "/testbed/django/db/models/fields/reverse_related.py", line 139, in __hash__
+    return hash(self.identity)
+TypeError: unhashable type: 'list'
+Updated 3 paths from f3ac2d410b
+Downloading aiohttp (1.7MiB)
+Downloading numpy (16.1MiB)
+Downloading pygments (1.2MiB)
+Downloading chardet (1.4MiB)
+Downloading virtualenv (5.1MiB)
+Downloading pandas (10.8MiB)
+Downloading hf-xet (4.3MiB)
+Downloading pyarrow (47.7MiB)
+ Downloading pygments
+ Downloading chardet
+ Downloading aiohttp
+ Downloading hf-xet
+ Downloading virtualenv
+ Downloading pandas
+ Downloading numpy
+ Downloading pyarrow
+Installed 73 packages in 90ms
+SWEBench results starts here
+FAILED
+SWEBench results ends here

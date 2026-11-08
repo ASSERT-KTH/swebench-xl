@@ -1,0 +1,244 @@
+++ cd /testbed
+++ set +x
+++ sed -i '/en_US.UTF-8/s/^# //g' /etc/locale.gen
+++ locale-gen
+Generating locales (this might take a while)...
+  en_US.UTF-8... done
+Generation complete.
+++ export LANG=en_US.UTF-8
+++ LANG=en_US.UTF-8
+++ export LANGUAGE=en_US:en
+++ LANGUAGE=en_US:en
+++ export LC_ALL=en_US.UTF-8
+++ LC_ALL=en_US.UTF-8
+++ python -m pip install -e .
+Obtaining file:///testbed
+Requirement already satisfied: pytz in /opt/miniconda3/envs/testbed/lib/python3.6/site-packages (from Django==3.1) (2024.2)
+Requirement already satisfied: sqlparse in /opt/miniconda3/envs/testbed/lib/python3.6/site-packages (from Django==3.1) (0.4.4)
+Requirement already satisfied: asgiref in /opt/miniconda3/envs/testbed/lib/python3.6/site-packages (from Django==3.1) (3.4.1)
+Requirement already satisfied: typing-extensions in /opt/miniconda3/envs/testbed/lib/python3.6/site-packages (from asgiref->Django==3.1) (4.1.1)
+Installing collected packages: Django
+  Attempting uninstall: Django
+    Found existing installation: Django 3.1
+    Uninstalling Django-3.1:
+      Successfully uninstalled Django-3.1
+  Running setup.py develop for Django
+Successfully installed Django-3.1
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv
+++ git checkout e02f67ef2d03d48128e7a118bf75f0418e24e8ac tests/migrations/test_writer.py
+Updated 1 path from 8430cb2f3f
+++ git clean -fd
+++ echo 'diff --git a/tests/migrations/test_writer.py b/tests/migrations/test_writer.py
+--- a/tests/migrations/test_writer.py
++++ b/tests/migrations/test_writer.py
+@@ -257,6 +257,10 @@ class TextEnum(enum.Enum):
+             A = '\''a-value'\''
+             B = '\''value-b'\''
+
++        class TextTranslatedEnum(enum.Enum):
++            A = _('\''a-value'\'')
++            B = _('\''value-b'\'')
++
+         class BinaryEnum(enum.Enum):
+             A = b'\''a-value'\''
+             B = b'\''value-b'\''
+@@ -267,15 +271,19 @@ class IntEnum(enum.IntEnum):
+
+         self.assertSerializedResultEqual(
+             TextEnum.A,
+-            ("migrations.test_writer.TextEnum('\''a-value'\'')", {'\''import migrations.test_writer'\''})
++            ("migrations.test_writer.TextEnum['\''A'\'']", {'\''import migrations.test_writer'\''})
++        )
++        self.assertSerializedResultEqual(
++            TextTranslatedEnum.A,
++            ("migrations.test_writer.TextTranslatedEnum['\''A'\'']", {'\''import migrations.test_writer'\''})
+         )
+         self.assertSerializedResultEqual(
+             BinaryEnum.A,
+-            ("migrations.test_writer.BinaryEnum(b'\''a-value'\'')", {'\''import migrations.test_writer'\''})
++            ("migrations.test_writer.BinaryEnum['\''A'\'']", {'\''import migrations.test_writer'\''})
+         )
+         self.assertSerializedResultEqual(
+             IntEnum.B,
+-            ("migrations.test_writer.IntEnum(2)", {'\''import migrations.test_writer'\''})
++            ("migrations.test_writer.IntEnum['\''B'\'']", {'\''import migrations.test_writer'\''})
+         )
+
+         field = models.CharField(default=TextEnum.B, choices=[(m.value, m) for m in TextEnum])
+@@ -283,27 +291,39 @@ class IntEnum(enum.IntEnum):
+         self.assertEqual(
+             string,
+             "models.CharField(choices=["
+-            "('\''a-value'\'', migrations.test_writer.TextEnum('\''a-value'\'')), "
+-            "('\''value-b'\'', migrations.test_writer.TextEnum('\''value-b'\''))], "
+-            "default=migrations.test_writer.TextEnum('\''value-b'\''))"
++            "('\''a-value'\'', migrations.test_writer.TextEnum['\''A'\'']), "
++            "('\''value-b'\'', migrations.test_writer.TextEnum['\''B'\''])], "
++            "default=migrations.test_writer.TextEnum['\''B'\''])"
++        )
++        field = models.CharField(
++            default=TextTranslatedEnum.A,
++            choices=[(m.value, m) for m in TextTranslatedEnum],
++        )
++        string = MigrationWriter.serialize(field)[0]
++        self.assertEqual(
++            string,
++            "models.CharField(choices=["
++            "('\''a-value'\'', migrations.test_writer.TextTranslatedEnum['\''A'\'']), "
++            "('\''value-b'\'', migrations.test_writer.TextTranslatedEnum['\''B'\''])], "
++            "default=migrations.test_writer.TextTranslatedEnum['\''A'\''])"
+         )
+         field = models.CharField(default=BinaryEnum.B, choices=[(m.value, m) for m in BinaryEnum])
+         string = MigrationWriter.serialize(field)[0]
+         self.assertEqual(
+             string,
+             "models.CharField(choices=["
+-            "(b'\''a-value'\'', migrations.test_writer.BinaryEnum(b'\''a-value'\'')), "
+-            "(b'\''value-b'\'', migrations.test_writer.BinaryEnum(b'\''value-b'\''))], "
+-            "default=migrations.test_writer.BinaryEnum(b'\''value-b'\''))"
++            "(b'\''a-value'\'', migrations.test_writer.BinaryEnum['\''A'\'']), "
++            "(b'\''value-b'\'', migrations.test_writer.BinaryEnum['\''B'\''])], "
++            "default=migrations.test_writer.BinaryEnum['\''B'\''])"
+         )
+         field = models.IntegerField(default=IntEnum.A, choices=[(m.value, m) for m in IntEnum])
+         string = MigrationWriter.serialize(field)[0]
+         self.assertEqual(
+             string,
+             "models.IntegerField(choices=["
+-            "(1, migrations.test_writer.IntEnum(1)), "
+-            "(2, migrations.test_writer.IntEnum(2))], "
+-            "default=migrations.test_writer.IntEnum(1))"
++            "(1, migrations.test_writer.IntEnum['\''A'\'']), "
++            "(2, migrations.test_writer.IntEnum['\''B'\''])], "
++            "default=migrations.test_writer.IntEnum['\''A'\''])"
+         )
+
+     def test_serialize_choices(self):
+@@ -454,7 +474,7 @@ def test_serialize_class_based_validators(self):
+         # Test a string regex with flag
+         validator = RegexValidator(r'\''^[0-9]+$'\'', flags=re.S)
+         string = MigrationWriter.serialize(validator)[0]
+-        self.assertEqual(string, "django.core.validators.RegexValidator('\''^[0-9]+$'\'', flags=re.RegexFlag(16))")
++        self.assertEqual(string, "django.core.validators.RegexValidator('\''^[0-9]+$'\'', flags=re.RegexFlag['\''DOTALL'\''])")
+         self.serialize_round_trip(validator)
+
+         # Test message and code
+'
+++ git apply --check /tmp/test_patch.diff
+++ git apply /tmp/test_patch.diff
++++ mktemp
+++ LOG_FILE=/tmp/tmp.TuxPh1CfNh
+++ export LOG_FILE
+++ exec
+++ exec
++++ tee /tmp/tmp.TuxPh1CfNh
+++ set +x
+test_args_kwargs_signature (migrations.test_writer.OperationWriterTests) ... ok
+test_args_signature (migrations.test_writer.OperationWriterTests) ... ok
+test_empty_signature (migrations.test_writer.OperationWriterTests) ... ok
+test_expand_args_signature (migrations.test_writer.OperationWriterTests) ... ok
+test_kwargs_signature (migrations.test_writer.OperationWriterTests) ... ok
+test_multiline_args_signature (migrations.test_writer.OperationWriterTests) ... ok
+test_nested_args_signature (migrations.test_writer.OperationWriterTests) ... ok
+test_nested_operation_expand_args_signature (migrations.test_writer.OperationWriterTests) ... ok
+test_custom_operation (migrations.test_writer.WriterTests) ... ok
+test_deconstruct_class_arguments (migrations.test_writer.WriterTests) ... ok
+test_migration_file_header_comments (migrations.test_writer.WriterTests) ... ok
+test_migration_path (migrations.test_writer.WriterTests) ... ok
+test_models_import_omitted (migrations.test_writer.WriterTests) ... ok
+test_register_non_serializer (migrations.test_writer.WriterTests) ... ok
+test_register_serializer (migrations.test_writer.WriterTests) ... ok
+test_serialize_builtin_types (migrations.test_writer.WriterTests) ... ok
+test_serialize_builtins (migrations.test_writer.WriterTests) ... ok
+test_serialize_choices (migrations.test_writer.WriterTests) ... ok
+test_serialize_class_based_validators (migrations.test_writer.WriterTests) ... FAIL
+test_serialize_collections (migrations.test_writer.WriterTests) ... ok
+test_serialize_compiled_regex (migrations.test_writer.WriterTests) ... ok
+test_serialize_constants (migrations.test_writer.WriterTests) ... ok
+test_serialize_datetime (migrations.test_writer.WriterTests) ... ok
+test_serialize_empty_nonempty_tuple (migrations.test_writer.WriterTests) ... ok
+test_serialize_enums (migrations.test_writer.WriterTests) ... FAIL
+test_serialize_fields (migrations.test_writer.WriterTests) ... ok
+test_serialize_frozensets (migrations.test_writer.WriterTests) ... ok
+test_serialize_functions (migrations.test_writer.WriterTests) ... ok
+test_serialize_functools_partial (migrations.test_writer.WriterTests) ... ok
+test_serialize_functools_partialmethod (migrations.test_writer.WriterTests) ... ok
+test_serialize_iterators (migrations.test_writer.WriterTests) ... ok
+test_serialize_lazy_objects (migrations.test_writer.WriterTests) ... ok
+test_serialize_local_function_reference (migrations.test_writer.WriterTests)
+A reference in a local scope can't be serialized. ... ok
+test_serialize_managers (migrations.test_writer.WriterTests) ... ok
+test_serialize_multiline_strings (migrations.test_writer.WriterTests) ... ok
+test_serialize_numbers (migrations.test_writer.WriterTests) ... ok
+test_serialize_range (migrations.test_writer.WriterTests) ... ok
+test_serialize_set (migrations.test_writer.WriterTests) ... ok
+test_serialize_settings (migrations.test_writer.WriterTests) ... ok
+test_serialize_strings (migrations.test_writer.WriterTests) ... ok
+test_serialize_timedelta (migrations.test_writer.WriterTests) ... ok
+test_serialize_type_none (migrations.test_writer.WriterTests) ... ok
+test_serialize_unbound_method_reference (migrations.test_writer.WriterTests)
+An unbound method used within a class body can be serialized. ... ok
+test_serialize_uuid (migrations.test_writer.WriterTests) ... ok
+test_simple_migration (migrations.test_writer.WriterTests) ... ok
+test_sorted_imports (migrations.test_writer.WriterTests) ... ok
+
+======================================================================
+FAIL: test_serialize_class_based_validators (migrations.test_writer.WriterTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/testbed/tests/migrations/test_writer.py", line 477, in test_serialize_class_based_validators
+    self.assertEqual(string, "django.core.validators.RegexValidator('^[0-9]+$', flags=re.RegexFlag['DOTALL'])")
+AssertionError: "djan[13 chars]ators.RegexValidator('^[0-9]+$', flags=re.RegexFlag(16))" != "djan[13 chars]ators.RegexValidator('^[0-9]+$', flags=re.RegexFlag['DOTALL'])"
+- django.core.validators.RegexValidator('^[0-9]+$', flags=re.RegexFlag(16))
+?                                                                     ^^^^
++ django.core.validators.RegexValidator('^[0-9]+$', flags=re.RegexFlag['DOTALL'])
+?                                                                     ^^^^^^^^^^
+
+
+======================================================================
+FAIL: test_serialize_enums (migrations.test_writer.WriterTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/testbed/tests/migrations/test_writer.py", line 274, in test_serialize_enums
+    ("migrations.test_writer.TextEnum['A']", {'import migrations.test_writer'})
+  File "/testbed/tests/migrations/test_writer.py", line 187, in assertSerializedResultEqual
+    self.assertEqual(MigrationWriter.serialize(value), target)
+AssertionError: Tuples differ: ("mig[13 chars]writer.TextEnum('a-value')", {'import migrations.test_writer'}) != ("mig[13 chars]writer.TextEnum['A']", {'import migrations.test_writer'})
+
+First differing element 0:
+"migrations.test_writer.TextEnum('a-value')"
+"migrations.test_writer.TextEnum['A']"
+
++ ("migrations.test_writer.TextEnum['A']", {'import migrations.test_writer'})
+- ("migrations.test_writer.TextEnum('a-value')",
+-  {'import migrations.test_writer'})
+
+----------------------------------------------------------------------
+Ran 46 tests in 0.014s
+
+FAILED (failures=2)
+Testing against Django installed in '/testbed/django'
+Importing application migrations
+Skipping setup of unused database(s): default, other.
+System check identified no issues (0 silenced).
+Updated 1 path from 8430cb2f3f
+Downloading hf-xet (4.3MiB)
+Downloading aiohttp (1.7MiB)
+Downloading pyarrow (47.7MiB)
+Downloading chardet (1.4MiB)
+Downloading pygments (1.2MiB)
+Downloading pandas (10.8MiB)
+Downloading virtualenv (5.1MiB)
+Downloading numpy (16.1MiB)
+ Downloading pygments
+ Downloading chardet
+ Downloading aiohttp
+ Downloading hf-xet
+ Downloading virtualenv
+ Downloading pandas
+ Downloading numpy
+ Downloading pyarrow
+Installed 73 packages in 91ms
+SWEBench results starts here
+FAILED
+SWEBench results ends here

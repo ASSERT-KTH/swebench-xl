@@ -1,0 +1,232 @@
+++ cd /testbed
+++ set +x
+++ python -m pip install .
+DEPRECATION: Python 2.7 will reach the end of its life on January 1st, 2020. Please upgrade your Python as Python 2.7 won't be maintained after that date. A future version of pip will drop support for Python 2.7. More details about Python 2 support in pip, can be found at https://pip.pypa.io/en/latest/development/release-process/#python-2-support
+Processing /testbed
+Building wheels for collected packages: requests
+  Building wheel for requests (setup.py): started
+  Building wheel for requests (setup.py): finished with status 'done'
+  Created wheel for requests: filename=requests-2.0.1-cp27-none-any.whl size=434232 sha256=057d5000a17be1dc9898f74ff2e3d3074fe028b9f019fba829fd46980e41f872
+  Stored in directory: /tmp/pip-ephem-wheel-cache-n_69LV/wheels/ea/50/3b/882c57ef788071c9c28d3c985a3abb962245d0042a24037070
+Successfully built requests
+Installing collected packages: requests
+  Found existing installation: requests 2.0.1
+    Uninstalling requests-2.0.1:
+      Successfully uninstalled requests-2.0.1
+Successfully installed requests-2.0.1
+++ git checkout 1ba83c47ce7b177efe90d5f51f7760680f72eda0 test_requests.py
+Updated 1 path from c8e845a
+++ git clean -fd
+++ echo 'diff --git a/test_requests.py b/test_requests.py
+--- a/test_requests.py
++++ b/test_requests.py
+@@ -433,6 +433,11 @@ def test_unicode_multipart_post_fieldnames(self):
+         prep = r.prepare()
+         assert b'\''name="stuff"'\'' in prep.body
+         assert b'\''name="b\'\''stuff\'\''"'\'' not in prep.body
++    
++    def test_unicode_method_name(self):
++        files = {'\''file'\'': open('\''test_requests.py'\'', '\''rb'\'')}
++        r = requests.request(method=u'\''POST'\'', url=httpbin('\''post'\''), files=files)
++        assert r.status_code == 200
+
+     def test_custom_content_type(self):
+         r = requests.post(httpbin('\''post'\''),
+'
+++ git apply --check /tmp/test_patch.diff
+++ git apply /tmp/test_patch.diff
+/tmp/test_patch.diff:8: trailing whitespace.
+    
+warning: 1 line adds whitespace errors.
++++ mktemp
+++ LOG_FILE=/tmp/tmp.TTt1fcJGAx
+++ export LOG_FILE
+++ exec
+++ exec
++++ tee /tmp/tmp.TTt1fcJGAx
+++ set +x
+============================= test session starts ==============================
+platform linux2 -- Python 2.7.18, pytest-4.6.4, py-1.10.0, pluggy-0.13.1
+rootdir: /testbed
+collected 88 items
+
+test_requests.py ....................................................... [ 62%]
+..F..............................                                        [100%]
+
+=================================== FAILURES ===================================
+__________________ RequestsTestCase.test_unicode_method_name ___________________
+
+self = <test_requests.RequestsTestCase testMethod=test_unicode_method_name>
+
+    def test_unicode_method_name(self):
+        files = {'file': open('test_requests.py', 'rb')}
+>       r = requests.request(method=u'POST', url=httpbin('post'), files=files)
+
+test_requests.py:439: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+requests/api.py:44: in request
+    return session.request(method=method, url=url, **kwargs)
+requests/sessions.py:361: in request
+    resp = self.send(prep, **send_kwargs)
+requests/sessions.py:464: in send
+    r = adapter.send(request, **kwargs)
+requests/adapters.py:321: in send
+    timeout=timeout
+requests/packages/urllib3/connectionpool.py:471: in urlopen
+    body=body, headers=headers)
+requests/packages/urllib3/connectionpool.py:285: in _make_request
+    conn.request(method, url, **httplib_request_kw)
+/opt/miniconda3/envs/testbed/lib/python2.7/httplib.py:1082: in request
+    self._send_request(method, url, body, headers)
+/opt/miniconda3/envs/testbed/lib/python2.7/httplib.py:1122: in _send_request
+    self.endheaders(body)
+/opt/miniconda3/envs/testbed/lib/python2.7/httplib.py:1078: in endheaders
+    self._send_output(message_body)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <httplib.HTTPConnection instance at 0x7fd007666af0>
+message_body = '--757fdfcc0618497ebbc6c32151fdb15b\r\nContent-Disposition: form-data; name="file"; filename="test_requests.py"\r\n\r\...me way...\')) == 25\n\nif __name__ == \'__main__\':\n    unittest.main()\n\r\n--757fdfcc0618497ebbc6c32151fdb15b--\r\n'
+
+    def _send_output(self, message_body=None):
+        """Send the currently buffered request and clear the buffer.
+    
+        Appends an extra \\r\\n to the buffer.
+        A message_body may be specified, to be appended to the request.
+        """
+        self._buffer.extend(("", ""))
+        msg = "\r\n".join(self._buffer)
+        del self._buffer[:]
+        # If msg and message_body are sent in a single send() call,
+        # it will avoid performance problems caused by the interaction
+        # between delayed ack and the Nagle algorithm.
+        if isinstance(message_body, str):
+>           msg += message_body
+E           UnicodeDecodeError: 'ascii' codec can't decode byte 0xc3 in position 12331: ordinal not in range(128)
+
+/opt/miniconda3/envs/testbed/lib/python2.7/httplib.py:892: UnicodeDecodeError
+=============================== warnings summary ===============================
+test_requests.py::RequestsTestCase::test_conflicting_post_params
+  /testbed/test_requests.py:362: PytestDeprecationWarning: raises(..., 'code(as_a_string)') is deprecated, use the context manager form or use `exec()` directly
+  
+  See https://docs.pytest.org/en/latest/deprecations.html#raises-warns-exec
+    pytest.raises(ValueError, "requests.post(url, data='[{\"some\": \"data\"}]', files={'some': f})")
+
+test_requests.py::RequestsTestCase::test_conflicting_post_params
+  /testbed/test_requests.py:363: PytestDeprecationWarning: raises(..., 'code(as_a_string)') is deprecated, use the context manager form or use `exec()` directly
+  
+  See https://docs.pytest.org/en/latest/deprecations.html#raises-warns-exec
+    pytest.raises(ValueError, "requests.post(url, data=u'[{\"some\": \"data\"}]', files={'some': f})")
+
+-- Docs: https://docs.pytest.org/en/latest/warnings.html
+==================================== PASSES ====================================
+=========================== short test summary info ============================
+PASSED test_requests.py::RequestsTestCase::test_BASICAUTH_TUPLE_HTTP_200_OK_GET
+PASSED test_requests.py::RequestsTestCase::test_DIGESTAUTH_WRONG_HTTP_401_GET
+PASSED test_requests.py::RequestsTestCase::test_DIGEST_AUTH_RETURNS_COOKIE
+PASSED test_requests.py::RequestsTestCase::test_DIGEST_AUTH_SETS_SESSION_COOKIES
+PASSED test_requests.py::RequestsTestCase::test_DIGEST_HTTP_200_OK_GET
+PASSED test_requests.py::RequestsTestCase::test_DIGEST_STREAM
+PASSED test_requests.py::RequestsTestCase::test_HTTP_200_OK_GET_ALTERNATIVE
+PASSED test_requests.py::RequestsTestCase::test_HTTP_200_OK_GET_WITH_MIXED_PARAMS
+PASSED test_requests.py::RequestsTestCase::test_HTTP_200_OK_GET_WITH_PARAMS
+PASSED test_requests.py::RequestsTestCase::test_HTTP_200_OK_HEAD
+PASSED test_requests.py::RequestsTestCase::test_HTTP_200_OK_PUT
+PASSED test_requests.py::RequestsTestCase::test_HTTP_302_ALLOW_REDIRECT_GET
+PASSED test_requests.py::RequestsTestCase::test_POSTBIN_GET_POST_FILES
+PASSED test_requests.py::RequestsTestCase::test_POSTBIN_GET_POST_FILES_WITH_DATA
+PASSED test_requests.py::RequestsTestCase::test_autoset_header_values_are_native
+PASSED test_requests.py::RequestsTestCase::test_basic_building
+PASSED test_requests.py::RequestsTestCase::test_basicauth_with_netrc
+PASSED test_requests.py::RequestsTestCase::test_can_send_nonstring_objects_with_files
+PASSED test_requests.py::RequestsTestCase::test_cannot_send_unprepared_requests
+PASSED test_requests.py::RequestsTestCase::test_conflicting_post_params
+PASSED test_requests.py::RequestsTestCase::test_cookie_parameters
+PASSED test_requests.py::RequestsTestCase::test_cookie_persists_via_api
+PASSED test_requests.py::RequestsTestCase::test_cookie_quote_wrapped
+PASSED test_requests.py::RequestsTestCase::test_cookie_removed_on_expire
+PASSED test_requests.py::RequestsTestCase::test_cookie_sent_on_redirect
+PASSED test_requests.py::RequestsTestCase::test_custom_content_type
+PASSED test_requests.py::RequestsTestCase::test_decompress_gzip
+PASSED test_requests.py::RequestsTestCase::test_different_encodings_dont_break_post
+PASSED test_requests.py::RequestsTestCase::test_entry_points
+PASSED test_requests.py::RequestsTestCase::test_fixes_1329
+PASSED test_requests.py::RequestsTestCase::test_generic_cookiejar_works
+PASSED test_requests.py::RequestsTestCase::test_get_auth_from_url
+PASSED test_requests.py::RequestsTestCase::test_header_keys_are_native
+PASSED test_requests.py::RequestsTestCase::test_header_remove_is_case_insensitive
+PASSED test_requests.py::RequestsTestCase::test_hook_receives_request_arguments
+PASSED test_requests.py::RequestsTestCase::test_http_error
+PASSED test_requests.py::RequestsTestCase::test_invalid_url
+PASSED test_requests.py::RequestsTestCase::test_links
+PASSED test_requests.py::RequestsTestCase::test_long_authinfo_in_url
+PASSED test_requests.py::RequestsTestCase::test_mixed_case_scheme_acceptable
+PASSED test_requests.py::RequestsTestCase::test_no_content_length
+PASSED test_requests.py::RequestsTestCase::test_params_are_added_before_fragment
+PASSED test_requests.py::RequestsTestCase::test_params_are_merged_case_sensitive
+PASSED test_requests.py::RequestsTestCase::test_path_is_not_double_encoded
+PASSED test_requests.py::RequestsTestCase::test_prepared_from_session
+PASSED test_requests.py::RequestsTestCase::test_prepared_request_hook
+PASSED test_requests.py::RequestsTestCase::test_request_cookie_overrides_session_cookie
+PASSED test_requests.py::RequestsTestCase::test_request_ok_set
+PASSED test_requests.py::RequestsTestCase::test_requests_in_history_are_not_overridden
+PASSED test_requests.py::RequestsTestCase::test_response_is_iterable
+PASSED test_requests.py::RequestsTestCase::test_session_pickling
+PASSED test_requests.py::RequestsTestCase::test_set_cookie_on_301
+PASSED test_requests.py::RequestsTestCase::test_status_raising
+PASSED test_requests.py::RequestsTestCase::test_time_elapsed_blank
+PASSED test_requests.py::RequestsTestCase::test_transport_adapter_ordering
+PASSED test_requests.py::RequestsTestCase::test_unicode_get
+PASSED test_requests.py::RequestsTestCase::test_unicode_header_name
+PASSED test_requests.py::RequestsTestCase::test_unicode_multipart_post
+PASSED test_requests.py::RequestsTestCase::test_unicode_multipart_post_fieldnames
+PASSED test_requests.py::RequestsTestCase::test_uppercase_scheme_redirect
+PASSED test_requests.py::RequestsTestCase::test_urlencoded_get_query_multivalued_param
+PASSED test_requests.py::RequestsTestCase::test_user_agent_transfers
+PASSED test_requests.py::TestContentEncodingDetection::test_html4_pragma
+PASSED test_requests.py::TestContentEncodingDetection::test_html_charset
+PASSED test_requests.py::TestContentEncodingDetection::test_none
+PASSED test_requests.py::TestContentEncodingDetection::test_precedence
+PASSED test_requests.py::TestContentEncodingDetection::test_xhtml_pragma
+PASSED test_requests.py::TestContentEncodingDetection::test_xml
+PASSED test_requests.py::TestCaseInsensitiveDict::test_contains
+PASSED test_requests.py::TestCaseInsensitiveDict::test_delitem
+PASSED test_requests.py::TestCaseInsensitiveDict::test_docstring_example
+PASSED test_requests.py::TestCaseInsensitiveDict::test_equality
+PASSED test_requests.py::TestCaseInsensitiveDict::test_fixes_649
+PASSED test_requests.py::TestCaseInsensitiveDict::test_get
+PASSED test_requests.py::TestCaseInsensitiveDict::test_getitem
+PASSED test_requests.py::TestCaseInsensitiveDict::test_iter
+PASSED test_requests.py::TestCaseInsensitiveDict::test_iterable_init
+PASSED test_requests.py::TestCaseInsensitiveDict::test_kwargs_init
+PASSED test_requests.py::TestCaseInsensitiveDict::test_len
+PASSED test_requests.py::TestCaseInsensitiveDict::test_lower_items
+PASSED test_requests.py::TestCaseInsensitiveDict::test_mapping_init
+PASSED test_requests.py::TestCaseInsensitiveDict::test_preserve_key_case
+PASSED test_requests.py::TestCaseInsensitiveDict::test_preserve_last_key_case
+PASSED test_requests.py::TestCaseInsensitiveDict::test_setdefault
+PASSED test_requests.py::TestCaseInsensitiveDict::test_update
+PASSED test_requests.py::TestCaseInsensitiveDict::test_update_retains_unchanged
+PASSED test_requests.py::UtilsTestCase::test_super_len_io_streams
+FAILED test_requests.py::RequestsTestCase::test_unicode_method_name - Unicode...
+=============== 1 failed, 87 passed, 2 warnings in 37.86 seconds ===============
+Updated 1 path from c8e845a
+Downloading chardet (1.4MiB)
+Downloading numpy (16.1MiB)
+Downloading virtualenv (5.1MiB)
+Downloading aiohttp (1.7MiB)
+Downloading hf-xet (4.3MiB)
+Downloading pyarrow (47.7MiB)
+Downloading pandas (10.8MiB)
+Downloading pygments (1.2MiB)
+ Downloading pygments
+ Downloading chardet
+ Downloading aiohttp
+ Downloading hf-xet
+ Downloading virtualenv
+ Downloading pandas
+ Downloading numpy
+ Downloading pyarrow
+Installed 73 packages in 86ms
+SWEBench results starts here
+FAILED
+SWEBench results ends here

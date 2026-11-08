@@ -1,0 +1,216 @@
+++ cd /testbed
+++ set +x
+++ git checkout 6ab8c86c383dd847a1be7103ad115f174fe23ffd sklearn/tree/tests/test_export.py
+Updated 1 path from c154d0ae8
+++ git clean -fd
+++ echo 'diff --git a/sklearn/tree/tests/test_export.py b/sklearn/tree/tests/test_export.py
+--- a/sklearn/tree/tests/test_export.py
++++ b/sklearn/tree/tests/test_export.py
+@@ -396,6 +396,21 @@ def test_export_text():
+     assert export_text(reg, decimals=1) == expected_report
+     assert export_text(reg, decimals=1, show_weights=True) == expected_report
+
++    X_single = [[-2], [-1], [-1], [1], [1], [2]]
++    reg = DecisionTreeRegressor(max_depth=2, random_state=0)
++    reg.fit(X_single, y_mo)
++
++    expected_report = dedent("""
++    |--- first <= 0.0
++    |   |--- value: [-1.0, -1.0]
++    |--- first >  0.0
++    |   |--- value: [1.0, 1.0]
++    """).lstrip()
++    assert export_text(reg, decimals=1,
++                       feature_names=['\''first'\'']) == expected_report
++    assert export_text(reg, decimals=1, show_weights=True,
++                       feature_names=['\''first'\'']) == expected_report
++
+
+ def test_plot_tree_entropy(pyplot):
+     # mostly smoke tests
+'
+++ git apply --check /tmp/test_patch.diff
+++ git apply /tmp/test_patch.diff
++++ mktemp
+++ LOG_FILE=/tmp/tmp.1D3dTJGfaR
+++ export LOG_FILE
+++ exec
+++ exec
++++ tee /tmp/tmp.1D3dTJGfaR
+++ set +x
+============================= test session starts ==============================
+platform linux -- Python 3.6.13, pytest-6.2.4, py-1.11.0, pluggy-0.13.1
+rootdir: /testbed, configfile: setup.cfg
+collected 8 items
+
+sklearn/tree/tests/test_export.py .....FEE                               [100%]
+
+==================================== ERRORS ====================================
+___________________ ERROR at setup of test_plot_tree_entropy ___________________
+
+    @pytest.fixture(scope='function')
+    def pyplot():
+        """Setup and teardown fixture for matplotlib.
+    
+        This fixture checks if we can import matplotlib. If not, the tests will be
+        skipped. Otherwise, we setup matplotlib backend and close the figures
+        after running the functions.
+    
+        Returns
+        -------
+        pyplot : module
+            The ``matplotlib.pyplot`` module.
+        """
+        matplotlib = pytest.importorskip('matplotlib')
+>       matplotlib.use('agg', warn=False, force=True)
+E       TypeError: use() got an unexpected keyword argument 'warn'
+
+sklearn/conftest.py:18: TypeError
+____________________ ERROR at setup of test_plot_tree_gini _____________________
+
+    @pytest.fixture(scope='function')
+    def pyplot():
+        """Setup and teardown fixture for matplotlib.
+    
+        This fixture checks if we can import matplotlib. If not, the tests will be
+        skipped. Otherwise, we setup matplotlib backend and close the figures
+        after running the functions.
+    
+        Returns
+        -------
+        pyplot : module
+            The ``matplotlib.pyplot`` module.
+        """
+        matplotlib = pytest.importorskip('matplotlib')
+>       matplotlib.use('agg', warn=False, force=True)
+E       TypeError: use() got an unexpected keyword argument 'warn'
+
+sklearn/conftest.py:18: TypeError
+=================================== FAILURES ===================================
+_______________________________ test_export_text _______________________________
+
+    def test_export_text():
+        clf = DecisionTreeClassifier(max_depth=2, random_state=0)
+        clf.fit(X, y)
+    
+        expected_report = dedent("""
+        |--- feature_1 <= 0.00
+        |   |--- class: -1
+        |--- feature_1 >  0.00
+        |   |--- class: 1
+        """).lstrip()
+    
+        assert export_text(clf) == expected_report
+        # testing that leaves at level 1 are not truncated
+        assert export_text(clf, max_depth=0) == expected_report
+        # testing that the rest of the tree is truncated
+        assert export_text(clf, max_depth=10) == expected_report
+    
+        expected_report = dedent("""
+        |--- b <= 0.00
+        |   |--- class: -1
+        |--- b >  0.00
+        |   |--- class: 1
+        """).lstrip()
+        assert export_text(clf, feature_names=['a', 'b']) == expected_report
+    
+        expected_report = dedent("""
+        |--- feature_1 <= 0.00
+        |   |--- weights: [3.00, 0.00] class: -1
+        |--- feature_1 >  0.00
+        |   |--- weights: [0.00, 3.00] class: 1
+        """).lstrip()
+        assert export_text(clf, show_weights=True) == expected_report
+    
+        expected_report = dedent("""
+        |- feature_1 <= 0.00
+        | |- class: -1
+        |- feature_1 >  0.00
+        | |- class: 1
+        """).lstrip()
+        assert export_text(clf, spacing=1) == expected_report
+    
+        X_l = [[-2, -1], [-1, -1], [-1, -2], [1, 1], [1, 2], [2, 1], [-1, 1]]
+        y_l = [-1, -1, -1, 1, 1, 1, 2]
+        clf = DecisionTreeClassifier(max_depth=4, random_state=0)
+        clf.fit(X_l, y_l)
+        expected_report = dedent("""
+        |--- feature_1 <= 0.00
+        |   |--- class: -1
+        |--- feature_1 >  0.00
+        |   |--- truncated branch of depth 2
+        """).lstrip()
+        assert export_text(clf, max_depth=0) == expected_report
+    
+        X_mo = [[-2, -1], [-1, -1], [-1, -2], [1, 1], [1, 2], [2, 1]]
+        y_mo = [[-1, -1], [-1, -1], [-1, -1], [1, 1], [1, 1], [1, 1]]
+    
+        reg = DecisionTreeRegressor(max_depth=2, random_state=0)
+        reg.fit(X_mo, y_mo)
+    
+        expected_report = dedent("""
+        |--- feature_1 <= 0.0
+        |   |--- value: [-1.0, -1.0]
+        |--- feature_1 >  0.0
+        |   |--- value: [1.0, 1.0]
+        """).lstrip()
+        assert export_text(reg, decimals=1) == expected_report
+        assert export_text(reg, decimals=1, show_weights=True) == expected_report
+    
+        X_single = [[-2], [-1], [-1], [1], [1], [2]]
+        reg = DecisionTreeRegressor(max_depth=2, random_state=0)
+        reg.fit(X_single, y_mo)
+    
+        expected_report = dedent("""
+        |--- first <= 0.0
+        |   |--- value: [-1.0, -1.0]
+        |--- first >  0.0
+        |   |--- value: [1.0, 1.0]
+        """).lstrip()
+>       assert export_text(reg, decimals=1,
+                           feature_names=['first']) == expected_report
+
+sklearn/tree/tests/test_export.py:409: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+sklearn/tree/export.py:893: in export_text
+    feature_names_ = [feature_names[i] for i in tree_.feature]
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+.0 = <iterator object at 0x7fea0c6bdf28>
+
+>   feature_names_ = [feature_names[i] for i in tree_.feature]
+E   IndexError: list index out of range
+
+sklearn/tree/export.py:893: IndexError
+==================================== PASSES ====================================
+=========================== short test summary info ============================
+PASSED sklearn/tree/tests/test_export.py::test_graphviz_toy
+PASSED sklearn/tree/tests/test_export.py::test_graphviz_errors
+PASSED sklearn/tree/tests/test_export.py::test_friedman_mse_in_graphviz
+PASSED sklearn/tree/tests/test_export.py::test_precision
+PASSED sklearn/tree/tests/test_export.py::test_export_text_errors
+ERROR sklearn/tree/tests/test_export.py::test_plot_tree_entropy - TypeError: ...
+ERROR sklearn/tree/tests/test_export.py::test_plot_tree_gini - TypeError: use...
+FAILED sklearn/tree/tests/test_export.py::test_export_text - IndexError: list...
+=============== 1 failed, 5 passed, 1 warning, 2 errors in 0.28s ===============
+Updated 1 path from c154d0ae8
+Downloading chardet (1.4MiB)
+Downloading pygments (1.2MiB)
+Downloading virtualenv (5.1MiB)
+Downloading hf-xet (4.3MiB)
+Downloading pyarrow (47.7MiB)
+Downloading pandas (10.8MiB)
+Downloading numpy (16.1MiB)
+Downloading aiohttp (1.7MiB)
+ Downloading pygments
+ Downloading chardet
+ Downloading aiohttp
+ Downloading hf-xet
+ Downloading virtualenv
+ Downloading pandas
+ Downloading numpy
+ Downloading pyarrow
+Installed 73 packages in 122ms
+SWEBench results starts here
+FAILED
+SWEBench results ends here

@@ -1,0 +1,1569 @@
+++ cd /testbed
+++ set +x
+++ python -m pip install -e .
+Obtaining file:///testbed
+  Preparing metadata (setup.py): started
+  Preparing metadata (setup.py): finished with status 'done'
+Requirement already satisfied: numpy>=1.15 in /opt/miniconda3/envs/testbed/lib/python3.10/site-packages (from xarray==0.16.1.dev51+ge88eb9163) (1.23.0)
+Requirement already satisfied: pandas>=0.25 in /opt/miniconda3/envs/testbed/lib/python3.10/site-packages (from xarray==0.16.1.dev51+ge88eb9163) (1.5.3)
+Requirement already satisfied: setuptools>=38.4 in /opt/miniconda3/envs/testbed/lib/python3.10/site-packages (from xarray==0.16.1.dev51+ge88eb9163) (68.0.0)
+Requirement already satisfied: python-dateutil>=2.8.1 in /opt/miniconda3/envs/testbed/lib/python3.10/site-packages (from pandas>=0.25->xarray==0.16.1.dev51+ge88eb9163) (2.8.2)
+Requirement already satisfied: pytz>=2020.1 in /opt/miniconda3/envs/testbed/lib/python3.10/site-packages (from pandas>=0.25->xarray==0.16.1.dev51+ge88eb9163) (2023.3)
+Requirement already satisfied: six>=1.5 in /opt/miniconda3/envs/testbed/lib/python3.10/site-packages (from python-dateutil>=2.8.1->pandas>=0.25->xarray==0.16.1.dev51+ge88eb9163) (1.16.0)
+Installing collected packages: xarray
+  Attempting uninstall: xarray
+    Found existing installation: xarray 0.16.1.dev50+ge05fddea8
+    Uninstalling xarray-0.16.1.dev50+ge05fddea8:
+      Successfully uninstalled xarray-0.16.1.dev50+ge05fddea8
+  DEPRECATION: Legacy editable install of xarray==0.16.1.dev51+ge88eb9163 from file:///testbed (setup.py develop) is deprecated. pip 25.0 will enforce this behaviour change. A possible replacement is to add a pyproject.toml or enable --use-pep517, and use setuptools >= 64. If the resulting installation is not behaving as expected, try using --config-settings editable_mode=compat. Please consult the setuptools documentation for more information. Discussion can be found at https://github.com/pypa/pip/issues/11457
+  Running setup.py develop for xarray
+Successfully installed xarray
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable.It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+++ git checkout e05fddea852d08fc0845f954b79deb9e9f9ff883 xarray/tests/test_duck_array_ops.py
+Updated 0 paths from 72fb5379
+++ git clean -fd
+++ echo 'diff --git a/xarray/tests/test_duck_array_ops.py b/xarray/tests/test_duck_array_ops.py
+--- a/xarray/tests/test_duck_array_ops.py
++++ b/xarray/tests/test_duck_array_ops.py
+@@ -595,6 +595,24 @@ def test_min_count(dim_num, dtype, dask, func, aggdim):
+     assert_dask_array(actual, dask)
+
+
++@pytest.mark.parametrize("dtype", [float, int, np.float32, np.bool_])
++@pytest.mark.parametrize("dask", [False, True])
++@pytest.mark.parametrize("func", ["sum", "prod"])
++def test_min_count_nd(dtype, dask, func):
++    if dask and not has_dask:
++        pytest.skip("requires dask")
++
++    min_count = 3
++    dim_num = 3
++    da = construct_dataarray(dim_num, dtype, contains_nan=True, dask=dask)
++    actual = getattr(da, func)(dim=["x", "y", "z"], skipna=True, min_count=min_count)
++    # Supplying all dims is equivalent to supplying `...` or `None`
++    expected = getattr(da, func)(dim=..., skipna=True, min_count=min_count)
++
++    assert_allclose(actual, expected)
++    assert_dask_array(actual, dask)
++
++
+ @pytest.mark.parametrize("func", ["sum", "prod"])
+ def test_min_count_dataset(func):
+     da = construct_dataarray(2, dtype=float, contains_nan=True, dask=False)
+@@ -606,14 +624,15 @@ def test_min_count_dataset(func):
+
+ @pytest.mark.parametrize("dtype", [float, int, np.float32, np.bool_])
+ @pytest.mark.parametrize("dask", [False, True])
++@pytest.mark.parametrize("skipna", [False, True])
+ @pytest.mark.parametrize("func", ["sum", "prod"])
+-def test_multiple_dims(dtype, dask, func):
++def test_multiple_dims(dtype, dask, skipna, func):
+     if dask and not has_dask:
+         pytest.skip("requires dask")
+     da = construct_dataarray(3, dtype, contains_nan=True, dask=dask)
+
+-    actual = getattr(da, func)(("x", "y"))
+-    expected = getattr(getattr(da, func)("x"), func)("y")
++    actual = getattr(da, func)(("x", "y"), skipna=skipna)
++    expected = getattr(getattr(da, func)("x", skipna=skipna), func)("y", skipna=skipna)
+     assert_allclose(actual, expected)
+
+
+'
+++ git apply --check /tmp/test_patch.diff
+++ git apply /tmp/test_patch.diff
++++ mktemp
+++ LOG_FILE=/tmp/tmp.GVKozFKv8j
+++ export LOG_FILE
+++ exec
+++ exec
++++ tee /tmp/tmp.GVKozFKv8j
+++ set +x
+============================= test session starts ==============================
+platform linux -- Python 3.10.15, pytest-7.4.0, pluggy-1.5.0
+rootdir: /testbed
+configfile: setup.cfg
+plugins: hypothesis-6.114.0, cov-5.0.0, env-1.1.5, xdist-3.6.1
+collected 820 items
+
+xarray/tests/test_duck_array_ops.py .................................... [  4%]
+..ss..............ss..............ss......ss......ss..............ss.... [ 13%]
+..................................................ss......ss............ [ 21%]
+..................ss..............ss..............ss......ss......ss.... [ 30%]
+..........ss......................................................ss.... [ 39%]
+..ss................ssssssssss..........ssssssssss..........ssssssssss.. [ 48%]
+........ssssssssss..........ssssss..............ssssss..............ssss [ 57%]
+ss..............ssssss..............sssssssssss.s.s.s.s.sssssssssss.s.s. [ 65%]
+s.s.sssssssssss.s.s.s.s.sssssssssss.s.s.s.s.sssssss.s.s.s.s.s.s.sssssss. [ 74%]
+s.s.s.s.s.s.sssssss.s.s.s.s.s.s.sssssss.s.s.s.s.s.s..................... [ 83%]
+.....................................................................FFF [ 92%]
+FFFFFFFFFFFFF...................................................         [100%]
+
+=================================== FAILURES ===================================
+______________________ test_min_count_nd[sum-False-float] ______________________
+
+dtype = <class 'float'>, dask = False, func = 'sum'
+
+    @pytest.mark.parametrize("dtype", [float, int, np.float32, np.bool_])
+    @pytest.mark.parametrize("dask", [False, True])
+    @pytest.mark.parametrize("func", ["sum", "prod"])
+    def test_min_count_nd(dtype, dask, func):
+        if dask and not has_dask:
+            pytest.skip("requires dask")
+    
+        min_count = 3
+        dim_num = 3
+        da = construct_dataarray(dim_num, dtype, contains_nan=True, dask=dask)
+>       actual = getattr(da, func)(dim=["x", "y", "z"], skipna=True, min_count=min_count)
+
+xarray/tests/test_duck_array_ops.py:608: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+xarray/core/common.py:46: in wrapped_func
+    return self.reduce(func, dim, axis, skipna=skipna, **kwargs)
+xarray/core/dataarray.py:2347: in reduce
+    var = self.variable.reduce(func, dim, axis, keep_attrs, keepdims, **kwargs)
+xarray/core/variable.py:1640: in reduce
+    data = func(input_data, axis=axis, **kwargs)
+xarray/core/duck_array_ops.py:335: in f
+    return func(values, axis=axis, **kwargs)
+xarray/core/nanops.py:115: in nansum
+    return _maybe_null_out(result, axis, mask, min_count)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+result = -10.034684691231666, axis = (0, 1, 2)
+mask = array([[[False, False, False,  True],
+        [False, False, False, False],
+        [False, False, False,  True],
+    ...e],
+        [False, False, False, False],
+        [ True, False, False,  True],
+        [False, False, False, False]]])
+min_count = 3
+
+    def _maybe_null_out(result, axis, mask, min_count=1):
+        """
+        xarray version of pandas.core.nanops._maybe_null_out
+        """
+        if hasattr(axis, "__len__"):  # if tuple or list
+>           raise ValueError(
+                "min_count is not available for reduction with more than one dimensions."
+            )
+E           ValueError: min_count is not available for reduction with more than one dimensions.
+
+xarray/core/nanops.py:30: ValueError
+_______________________ test_min_count_nd[sum-False-int] _______________________
+
+dtype = <class 'int'>, dask = False, func = 'sum'
+
+    @pytest.mark.parametrize("dtype", [float, int, np.float32, np.bool_])
+    @pytest.mark.parametrize("dask", [False, True])
+    @pytest.mark.parametrize("func", ["sum", "prod"])
+    def test_min_count_nd(dtype, dask, func):
+        if dask and not has_dask:
+            pytest.skip("requires dask")
+    
+        min_count = 3
+        dim_num = 3
+        da = construct_dataarray(dim_num, dtype, contains_nan=True, dask=dask)
+>       actual = getattr(da, func)(dim=["x", "y", "z"], skipna=True, min_count=min_count)
+
+xarray/tests/test_duck_array_ops.py:608: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+xarray/core/common.py:46: in wrapped_func
+    return self.reduce(func, dim, axis, skipna=skipna, **kwargs)
+xarray/core/dataarray.py:2347: in reduce
+    var = self.variable.reduce(func, dim, axis, keep_attrs, keepdims, **kwargs)
+xarray/core/variable.py:1640: in reduce
+    data = func(input_data, axis=axis, **kwargs)
+xarray/core/duck_array_ops.py:335: in f
+    return func(values, axis=axis, **kwargs)
+xarray/core/nanops.py:115: in nansum
+    return _maybe_null_out(result, axis, mask, min_count)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+result = 1904.0, axis = (0, 1, 2)
+mask = array([[[False, False, False,  True],
+        [False, False, False, False],
+        [False, False, False, False],
+    ...e],
+        [False, False, False, False],
+        [False, False, False,  True],
+        [ True, False, False, False]]])
+min_count = 3
+
+    def _maybe_null_out(result, axis, mask, min_count=1):
+        """
+        xarray version of pandas.core.nanops._maybe_null_out
+        """
+        if hasattr(axis, "__len__"):  # if tuple or list
+>           raise ValueError(
+                "min_count is not available for reduction with more than one dimensions."
+            )
+E           ValueError: min_count is not available for reduction with more than one dimensions.
+
+xarray/core/nanops.py:30: ValueError
+_____________________ test_min_count_nd[sum-False-float32] _____________________
+
+dtype = <class 'numpy.float32'>, dask = False, func = 'sum'
+
+    @pytest.mark.parametrize("dtype", [float, int, np.float32, np.bool_])
+    @pytest.mark.parametrize("dask", [False, True])
+    @pytest.mark.parametrize("func", ["sum", "prod"])
+    def test_min_count_nd(dtype, dask, func):
+        if dask and not has_dask:
+            pytest.skip("requires dask")
+    
+        min_count = 3
+        dim_num = 3
+        da = construct_dataarray(dim_num, dtype, contains_nan=True, dask=dask)
+>       actual = getattr(da, func)(dim=["x", "y", "z"], skipna=True, min_count=min_count)
+
+xarray/tests/test_duck_array_ops.py:608: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+xarray/core/common.py:46: in wrapped_func
+    return self.reduce(func, dim, axis, skipna=skipna, **kwargs)
+xarray/core/dataarray.py:2347: in reduce
+    var = self.variable.reduce(func, dim, axis, keep_attrs, keepdims, **kwargs)
+xarray/core/variable.py:1640: in reduce
+    data = func(input_data, axis=axis, **kwargs)
+xarray/core/duck_array_ops.py:335: in f
+    return func(values, axis=axis, **kwargs)
+xarray/core/nanops.py:115: in nansum
+    return _maybe_null_out(result, axis, mask, min_count)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+result = -10.034684, axis = (0, 1, 2)
+mask = array([[[False, False, False,  True],
+        [False, False, False, False],
+        [False, False, False,  True],
+    ...e],
+        [False, False, False, False],
+        [ True, False, False,  True],
+        [False, False, False, False]]])
+min_count = 3
+
+    def _maybe_null_out(result, axis, mask, min_count=1):
+        """
+        xarray version of pandas.core.nanops._maybe_null_out
+        """
+        if hasattr(axis, "__len__"):  # if tuple or list
+>           raise ValueError(
+                "min_count is not available for reduction with more than one dimensions."
+            )
+E           ValueError: min_count is not available for reduction with more than one dimensions.
+
+xarray/core/nanops.py:30: ValueError
+______________________ test_min_count_nd[sum-False-bool_] ______________________
+
+dtype = <class 'numpy.bool_'>, dask = False, func = 'sum'
+
+    @pytest.mark.parametrize("dtype", [float, int, np.float32, np.bool_])
+    @pytest.mark.parametrize("dask", [False, True])
+    @pytest.mark.parametrize("func", ["sum", "prod"])
+    def test_min_count_nd(dtype, dask, func):
+        if dask and not has_dask:
+            pytest.skip("requires dask")
+    
+        min_count = 3
+        dim_num = 3
+        da = construct_dataarray(dim_num, dtype, contains_nan=True, dask=dask)
+>       actual = getattr(da, func)(dim=["x", "y", "z"], skipna=True, min_count=min_count)
+
+xarray/tests/test_duck_array_ops.py:608: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+xarray/core/common.py:46: in wrapped_func
+    return self.reduce(func, dim, axis, skipna=skipna, **kwargs)
+xarray/core/dataarray.py:2347: in reduce
+    var = self.variable.reduce(func, dim, axis, keep_attrs, keepdims, **kwargs)
+xarray/core/variable.py:1640: in reduce
+    data = func(input_data, axis=axis, **kwargs)
+xarray/core/duck_array_ops.py:335: in f
+    return func(values, axis=axis, **kwargs)
+xarray/core/nanops.py:115: in nansum
+    return _maybe_null_out(result, axis, mask, min_count)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+result = 0, axis = (0, 1, 2)
+mask = array([[[False, False, False, False],
+        [False, False, False, False],
+        [False,  True, False, False],
+    ...e],
+        [False, False, False, False],
+        [False, False, False, False],
+        [False, False,  True, False]]])
+min_count = 3
+
+    def _maybe_null_out(result, axis, mask, min_count=1):
+        """
+        xarray version of pandas.core.nanops._maybe_null_out
+        """
+        if hasattr(axis, "__len__"):  # if tuple or list
+>           raise ValueError(
+                "min_count is not available for reduction with more than one dimensions."
+            )
+E           ValueError: min_count is not available for reduction with more than one dimensions.
+
+xarray/core/nanops.py:30: ValueError
+______________________ test_min_count_nd[sum-True-float] _______________________
+
+dtype = <class 'float'>, dask = True, func = 'sum'
+
+    @pytest.mark.parametrize("dtype", [float, int, np.float32, np.bool_])
+    @pytest.mark.parametrize("dask", [False, True])
+    @pytest.mark.parametrize("func", ["sum", "prod"])
+    def test_min_count_nd(dtype, dask, func):
+        if dask and not has_dask:
+            pytest.skip("requires dask")
+    
+        min_count = 3
+        dim_num = 3
+        da = construct_dataarray(dim_num, dtype, contains_nan=True, dask=dask)
+>       actual = getattr(da, func)(dim=["x", "y", "z"], skipna=True, min_count=min_count)
+
+xarray/tests/test_duck_array_ops.py:608: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+xarray/core/common.py:46: in wrapped_func
+    return self.reduce(func, dim, axis, skipna=skipna, **kwargs)
+xarray/core/dataarray.py:2347: in reduce
+    var = self.variable.reduce(func, dim, axis, keep_attrs, keepdims, **kwargs)
+xarray/core/variable.py:1640: in reduce
+    data = func(input_data, axis=axis, **kwargs)
+xarray/core/duck_array_ops.py:335: in f
+    return func(values, axis=axis, **kwargs)
+xarray/core/nanops.py:115: in nansum
+    return _maybe_null_out(result, axis, mask, min_count)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+result = dask.array<sum-aggregate, shape=(), dtype=float64, chunksize=(), chunktype=numpy.ndarray>
+axis = (0, 1, 2)
+mask = dask.array<isnan, shape=(16, 8, 4), dtype=bool, chunksize=(4, 4, 4), chunktype=numpy.ndarray>
+min_count = 3
+
+    def _maybe_null_out(result, axis, mask, min_count=1):
+        """
+        xarray version of pandas.core.nanops._maybe_null_out
+        """
+        if hasattr(axis, "__len__"):  # if tuple or list
+>           raise ValueError(
+                "min_count is not available for reduction with more than one dimensions."
+            )
+E           ValueError: min_count is not available for reduction with more than one dimensions.
+
+xarray/core/nanops.py:30: ValueError
+_______________________ test_min_count_nd[sum-True-int] ________________________
+
+dtype = <class 'int'>, dask = True, func = 'sum'
+
+    @pytest.mark.parametrize("dtype", [float, int, np.float32, np.bool_])
+    @pytest.mark.parametrize("dask", [False, True])
+    @pytest.mark.parametrize("func", ["sum", "prod"])
+    def test_min_count_nd(dtype, dask, func):
+        if dask and not has_dask:
+            pytest.skip("requires dask")
+    
+        min_count = 3
+        dim_num = 3
+        da = construct_dataarray(dim_num, dtype, contains_nan=True, dask=dask)
+>       actual = getattr(da, func)(dim=["x", "y", "z"], skipna=True, min_count=min_count)
+
+xarray/tests/test_duck_array_ops.py:608: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+xarray/core/common.py:46: in wrapped_func
+    return self.reduce(func, dim, axis, skipna=skipna, **kwargs)
+xarray/core/dataarray.py:2347: in reduce
+    var = self.variable.reduce(func, dim, axis, keep_attrs, keepdims, **kwargs)
+xarray/core/variable.py:1640: in reduce
+    data = func(input_data, axis=axis, **kwargs)
+xarray/core/duck_array_ops.py:335: in f
+    return func(values, axis=axis, **kwargs)
+xarray/core/nanops.py:115: in nansum
+    return _maybe_null_out(result, axis, mask, min_count)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+result = dask.array<sum-aggregate, shape=(), dtype=float64, chunksize=(), chunktype=numpy.ndarray>
+axis = (0, 1, 2)
+mask = dask.array<isnan, shape=(16, 8, 4), dtype=bool, chunksize=(4, 4, 4), chunktype=numpy.ndarray>
+min_count = 3
+
+    def _maybe_null_out(result, axis, mask, min_count=1):
+        """
+        xarray version of pandas.core.nanops._maybe_null_out
+        """
+        if hasattr(axis, "__len__"):  # if tuple or list
+>           raise ValueError(
+                "min_count is not available for reduction with more than one dimensions."
+            )
+E           ValueError: min_count is not available for reduction with more than one dimensions.
+
+xarray/core/nanops.py:30: ValueError
+_____________________ test_min_count_nd[sum-True-float32] ______________________
+
+dtype = <class 'numpy.float32'>, dask = True, func = 'sum'
+
+    @pytest.mark.parametrize("dtype", [float, int, np.float32, np.bool_])
+    @pytest.mark.parametrize("dask", [False, True])
+    @pytest.mark.parametrize("func", ["sum", "prod"])
+    def test_min_count_nd(dtype, dask, func):
+        if dask and not has_dask:
+            pytest.skip("requires dask")
+    
+        min_count = 3
+        dim_num = 3
+        da = construct_dataarray(dim_num, dtype, contains_nan=True, dask=dask)
+>       actual = getattr(da, func)(dim=["x", "y", "z"], skipna=True, min_count=min_count)
+
+xarray/tests/test_duck_array_ops.py:608: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+xarray/core/common.py:46: in wrapped_func
+    return self.reduce(func, dim, axis, skipna=skipna, **kwargs)
+xarray/core/dataarray.py:2347: in reduce
+    var = self.variable.reduce(func, dim, axis, keep_attrs, keepdims, **kwargs)
+xarray/core/variable.py:1640: in reduce
+    data = func(input_data, axis=axis, **kwargs)
+xarray/core/duck_array_ops.py:335: in f
+    return func(values, axis=axis, **kwargs)
+xarray/core/nanops.py:115: in nansum
+    return _maybe_null_out(result, axis, mask, min_count)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+result = dask.array<sum-aggregate, shape=(), dtype=float32, chunksize=(), chunktype=numpy.ndarray>
+axis = (0, 1, 2)
+mask = dask.array<isnan, shape=(16, 8, 4), dtype=bool, chunksize=(4, 4, 4), chunktype=numpy.ndarray>
+min_count = 3
+
+    def _maybe_null_out(result, axis, mask, min_count=1):
+        """
+        xarray version of pandas.core.nanops._maybe_null_out
+        """
+        if hasattr(axis, "__len__"):  # if tuple or list
+>           raise ValueError(
+                "min_count is not available for reduction with more than one dimensions."
+            )
+E           ValueError: min_count is not available for reduction with more than one dimensions.
+
+xarray/core/nanops.py:30: ValueError
+______________________ test_min_count_nd[sum-True-bool_] _______________________
+
+dtype = <class 'numpy.bool_'>, dask = True, func = 'sum'
+
+    @pytest.mark.parametrize("dtype", [float, int, np.float32, np.bool_])
+    @pytest.mark.parametrize("dask", [False, True])
+    @pytest.mark.parametrize("func", ["sum", "prod"])
+    def test_min_count_nd(dtype, dask, func):
+        if dask and not has_dask:
+            pytest.skip("requires dask")
+    
+        min_count = 3
+        dim_num = 3
+        da = construct_dataarray(dim_num, dtype, contains_nan=True, dask=dask)
+>       actual = getattr(da, func)(dim=["x", "y", "z"], skipna=True, min_count=min_count)
+
+xarray/tests/test_duck_array_ops.py:608: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+xarray/core/common.py:46: in wrapped_func
+    return self.reduce(func, dim, axis, skipna=skipna, **kwargs)
+xarray/core/dataarray.py:2347: in reduce
+    var = self.variable.reduce(func, dim, axis, keep_attrs, keepdims, **kwargs)
+xarray/core/variable.py:1640: in reduce
+    data = func(input_data, axis=axis, **kwargs)
+xarray/core/duck_array_ops.py:335: in f
+    return func(values, axis=axis, **kwargs)
+xarray/core/nanops.py:115: in nansum
+    return _maybe_null_out(result, axis, mask, min_count)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+result = dask.array<sum-aggregate, shape=(), dtype=object, chunksize=(), chunktype=numpy.ndarray>
+axis = (0, 1, 2)
+mask = dask.array<_asarray_isnull, shape=(16, 8, 4), dtype=bool, chunksize=(4, 4, 4), chunktype=numpy.ndarray>
+min_count = 3
+
+    def _maybe_null_out(result, axis, mask, min_count=1):
+        """
+        xarray version of pandas.core.nanops._maybe_null_out
+        """
+        if hasattr(axis, "__len__"):  # if tuple or list
+>           raise ValueError(
+                "min_count is not available for reduction with more than one dimensions."
+            )
+E           ValueError: min_count is not available for reduction with more than one dimensions.
+
+xarray/core/nanops.py:30: ValueError
+_____________________ test_min_count_nd[prod-False-float] ______________________
+
+dtype = <class 'float'>, dask = False, func = 'prod'
+
+    @pytest.mark.parametrize("dtype", [float, int, np.float32, np.bool_])
+    @pytest.mark.parametrize("dask", [False, True])
+    @pytest.mark.parametrize("func", ["sum", "prod"])
+    def test_min_count_nd(dtype, dask, func):
+        if dask and not has_dask:
+            pytest.skip("requires dask")
+    
+        min_count = 3
+        dim_num = 3
+        da = construct_dataarray(dim_num, dtype, contains_nan=True, dask=dask)
+>       actual = getattr(da, func)(dim=["x", "y", "z"], skipna=True, min_count=min_count)
+
+xarray/tests/test_duck_array_ops.py:608: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+xarray/core/common.py:46: in wrapped_func
+    return self.reduce(func, dim, axis, skipna=skipna, **kwargs)
+xarray/core/dataarray.py:2347: in reduce
+    var = self.variable.reduce(func, dim, axis, keep_attrs, keepdims, **kwargs)
+xarray/core/variable.py:1640: in reduce
+    data = func(input_data, axis=axis, **kwargs)
+xarray/core/duck_array_ops.py:335: in f
+    return func(values, axis=axis, **kwargs)
+xarray/core/nanops.py:185: in nanprod
+    return _maybe_null_out(result, axis, mask, min_count)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+result = 3.272935136334528e-109, axis = (0, 1, 2)
+mask = array([[[False, False, False,  True],
+        [False, False, False, False],
+        [False, False, False,  True],
+    ...e],
+        [False, False, False, False],
+        [ True, False, False,  True],
+        [False, False, False, False]]])
+min_count = 3
+
+    def _maybe_null_out(result, axis, mask, min_count=1):
+        """
+        xarray version of pandas.core.nanops._maybe_null_out
+        """
+        if hasattr(axis, "__len__"):  # if tuple or list
+>           raise ValueError(
+                "min_count is not available for reduction with more than one dimensions."
+            )
+E           ValueError: min_count is not available for reduction with more than one dimensions.
+
+xarray/core/nanops.py:30: ValueError
+______________________ test_min_count_nd[prod-False-int] _______________________
+
+dtype = <class 'int'>, dask = False, func = 'prod'
+
+    @pytest.mark.parametrize("dtype", [float, int, np.float32, np.bool_])
+    @pytest.mark.parametrize("dask", [False, True])
+    @pytest.mark.parametrize("func", ["sum", "prod"])
+    def test_min_count_nd(dtype, dask, func):
+        if dask and not has_dask:
+            pytest.skip("requires dask")
+    
+        min_count = 3
+        dim_num = 3
+        da = construct_dataarray(dim_num, dtype, contains_nan=True, dask=dask)
+>       actual = getattr(da, func)(dim=["x", "y", "z"], skipna=True, min_count=min_count)
+
+xarray/tests/test_duck_array_ops.py:608: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+xarray/core/common.py:46: in wrapped_func
+    return self.reduce(func, dim, axis, skipna=skipna, **kwargs)
+xarray/core/dataarray.py:2347: in reduce
+    var = self.variable.reduce(func, dim, axis, keep_attrs, keepdims, **kwargs)
+xarray/core/variable.py:1640: in reduce
+    data = func(input_data, axis=axis, **kwargs)
+xarray/core/duck_array_ops.py:335: in f
+    return func(values, axis=axis, **kwargs)
+xarray/core/nanops.py:185: in nanprod
+    return _maybe_null_out(result, axis, mask, min_count)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+result = 0.0, axis = (0, 1, 2)
+mask = array([[[False, False, False,  True],
+        [False, False, False, False],
+        [False, False, False, False],
+    ...e],
+        [False, False, False, False],
+        [False, False, False,  True],
+        [ True, False, False, False]]])
+min_count = 3
+
+    def _maybe_null_out(result, axis, mask, min_count=1):
+        """
+        xarray version of pandas.core.nanops._maybe_null_out
+        """
+        if hasattr(axis, "__len__"):  # if tuple or list
+>           raise ValueError(
+                "min_count is not available for reduction with more than one dimensions."
+            )
+E           ValueError: min_count is not available for reduction with more than one dimensions.
+
+xarray/core/nanops.py:30: ValueError
+____________________ test_min_count_nd[prod-False-float32] _____________________
+
+dtype = <class 'numpy.float32'>, dask = False, func = 'prod'
+
+    @pytest.mark.parametrize("dtype", [float, int, np.float32, np.bool_])
+    @pytest.mark.parametrize("dask", [False, True])
+    @pytest.mark.parametrize("func", ["sum", "prod"])
+    def test_min_count_nd(dtype, dask, func):
+        if dask and not has_dask:
+            pytest.skip("requires dask")
+    
+        min_count = 3
+        dim_num = 3
+        da = construct_dataarray(dim_num, dtype, contains_nan=True, dask=dask)
+>       actual = getattr(da, func)(dim=["x", "y", "z"], skipna=True, min_count=min_count)
+
+xarray/tests/test_duck_array_ops.py:608: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+xarray/core/common.py:46: in wrapped_func
+    return self.reduce(func, dim, axis, skipna=skipna, **kwargs)
+xarray/core/dataarray.py:2347: in reduce
+    var = self.variable.reduce(func, dim, axis, keep_attrs, keepdims, **kwargs)
+xarray/core/variable.py:1640: in reduce
+    data = func(input_data, axis=axis, **kwargs)
+xarray/core/duck_array_ops.py:335: in f
+    return func(values, axis=axis, **kwargs)
+xarray/core/nanops.py:185: in nanprod
+    return _maybe_null_out(result, axis, mask, min_count)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+result = 0.0, axis = (0, 1, 2)
+mask = array([[[False, False, False,  True],
+        [False, False, False, False],
+        [False, False, False,  True],
+    ...e],
+        [False, False, False, False],
+        [ True, False, False,  True],
+        [False, False, False, False]]])
+min_count = 3
+
+    def _maybe_null_out(result, axis, mask, min_count=1):
+        """
+        xarray version of pandas.core.nanops._maybe_null_out
+        """
+        if hasattr(axis, "__len__"):  # if tuple or list
+>           raise ValueError(
+                "min_count is not available for reduction with more than one dimensions."
+            )
+E           ValueError: min_count is not available for reduction with more than one dimensions.
+
+xarray/core/nanops.py:30: ValueError
+_____________________ test_min_count_nd[prod-False-bool_] ______________________
+
+dtype = <class 'numpy.bool_'>, dask = False, func = 'prod'
+
+    @pytest.mark.parametrize("dtype", [float, int, np.float32, np.bool_])
+    @pytest.mark.parametrize("dask", [False, True])
+    @pytest.mark.parametrize("func", ["sum", "prod"])
+    def test_min_count_nd(dtype, dask, func):
+        if dask and not has_dask:
+            pytest.skip("requires dask")
+    
+        min_count = 3
+        dim_num = 3
+        da = construct_dataarray(dim_num, dtype, contains_nan=True, dask=dask)
+>       actual = getattr(da, func)(dim=["x", "y", "z"], skipna=True, min_count=min_count)
+
+xarray/tests/test_duck_array_ops.py:608: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+xarray/core/common.py:46: in wrapped_func
+    return self.reduce(func, dim, axis, skipna=skipna, **kwargs)
+xarray/core/dataarray.py:2347: in reduce
+    var = self.variable.reduce(func, dim, axis, keep_attrs, keepdims, **kwargs)
+xarray/core/variable.py:1640: in reduce
+    data = func(input_data, axis=axis, **kwargs)
+xarray/core/duck_array_ops.py:335: in f
+    return func(values, axis=axis, **kwargs)
+xarray/core/nanops.py:185: in nanprod
+    return _maybe_null_out(result, axis, mask, min_count)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+result = 0, axis = (0, 1, 2)
+mask = array([[[False, False, False, False],
+        [False, False, False, False],
+        [False,  True, False, False],
+    ...e],
+        [False, False, False, False],
+        [False, False, False, False],
+        [False, False,  True, False]]])
+min_count = 3
+
+    def _maybe_null_out(result, axis, mask, min_count=1):
+        """
+        xarray version of pandas.core.nanops._maybe_null_out
+        """
+        if hasattr(axis, "__len__"):  # if tuple or list
+>           raise ValueError(
+                "min_count is not available for reduction with more than one dimensions."
+            )
+E           ValueError: min_count is not available for reduction with more than one dimensions.
+
+xarray/core/nanops.py:30: ValueError
+______________________ test_min_count_nd[prod-True-float] ______________________
+
+dtype = <class 'float'>, dask = True, func = 'prod'
+
+    @pytest.mark.parametrize("dtype", [float, int, np.float32, np.bool_])
+    @pytest.mark.parametrize("dask", [False, True])
+    @pytest.mark.parametrize("func", ["sum", "prod"])
+    def test_min_count_nd(dtype, dask, func):
+        if dask and not has_dask:
+            pytest.skip("requires dask")
+    
+        min_count = 3
+        dim_num = 3
+        da = construct_dataarray(dim_num, dtype, contains_nan=True, dask=dask)
+>       actual = getattr(da, func)(dim=["x", "y", "z"], skipna=True, min_count=min_count)
+
+xarray/tests/test_duck_array_ops.py:608: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+xarray/core/common.py:46: in wrapped_func
+    return self.reduce(func, dim, axis, skipna=skipna, **kwargs)
+xarray/core/dataarray.py:2347: in reduce
+    var = self.variable.reduce(func, dim, axis, keep_attrs, keepdims, **kwargs)
+xarray/core/variable.py:1640: in reduce
+    data = func(input_data, axis=axis, **kwargs)
+xarray/core/duck_array_ops.py:335: in f
+    return func(values, axis=axis, **kwargs)
+xarray/core/nanops.py:185: in nanprod
+    return _maybe_null_out(result, axis, mask, min_count)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+result = dask.array<prod-aggregate, shape=(), dtype=float64, chunksize=(), chunktype=numpy.ndarray>
+axis = (0, 1, 2)
+mask = dask.array<isnan, shape=(16, 8, 4), dtype=bool, chunksize=(4, 4, 4), chunktype=numpy.ndarray>
+min_count = 3
+
+    def _maybe_null_out(result, axis, mask, min_count=1):
+        """
+        xarray version of pandas.core.nanops._maybe_null_out
+        """
+        if hasattr(axis, "__len__"):  # if tuple or list
+>           raise ValueError(
+                "min_count is not available for reduction with more than one dimensions."
+            )
+E           ValueError: min_count is not available for reduction with more than one dimensions.
+
+xarray/core/nanops.py:30: ValueError
+_______________________ test_min_count_nd[prod-True-int] _______________________
+
+dtype = <class 'int'>, dask = True, func = 'prod'
+
+    @pytest.mark.parametrize("dtype", [float, int, np.float32, np.bool_])
+    @pytest.mark.parametrize("dask", [False, True])
+    @pytest.mark.parametrize("func", ["sum", "prod"])
+    def test_min_count_nd(dtype, dask, func):
+        if dask and not has_dask:
+            pytest.skip("requires dask")
+    
+        min_count = 3
+        dim_num = 3
+        da = construct_dataarray(dim_num, dtype, contains_nan=True, dask=dask)
+>       actual = getattr(da, func)(dim=["x", "y", "z"], skipna=True, min_count=min_count)
+
+xarray/tests/test_duck_array_ops.py:608: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+xarray/core/common.py:46: in wrapped_func
+    return self.reduce(func, dim, axis, skipna=skipna, **kwargs)
+xarray/core/dataarray.py:2347: in reduce
+    var = self.variable.reduce(func, dim, axis, keep_attrs, keepdims, **kwargs)
+xarray/core/variable.py:1640: in reduce
+    data = func(input_data, axis=axis, **kwargs)
+xarray/core/duck_array_ops.py:335: in f
+    return func(values, axis=axis, **kwargs)
+xarray/core/nanops.py:185: in nanprod
+    return _maybe_null_out(result, axis, mask, min_count)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+result = dask.array<prod-aggregate, shape=(), dtype=float64, chunksize=(), chunktype=numpy.ndarray>
+axis = (0, 1, 2)
+mask = dask.array<isnan, shape=(16, 8, 4), dtype=bool, chunksize=(4, 4, 4), chunktype=numpy.ndarray>
+min_count = 3
+
+    def _maybe_null_out(result, axis, mask, min_count=1):
+        """
+        xarray version of pandas.core.nanops._maybe_null_out
+        """
+        if hasattr(axis, "__len__"):  # if tuple or list
+>           raise ValueError(
+                "min_count is not available for reduction with more than one dimensions."
+            )
+E           ValueError: min_count is not available for reduction with more than one dimensions.
+
+xarray/core/nanops.py:30: ValueError
+_____________________ test_min_count_nd[prod-True-float32] _____________________
+
+dtype = <class 'numpy.float32'>, dask = True, func = 'prod'
+
+    @pytest.mark.parametrize("dtype", [float, int, np.float32, np.bool_])
+    @pytest.mark.parametrize("dask", [False, True])
+    @pytest.mark.parametrize("func", ["sum", "prod"])
+    def test_min_count_nd(dtype, dask, func):
+        if dask and not has_dask:
+            pytest.skip("requires dask")
+    
+        min_count = 3
+        dim_num = 3
+        da = construct_dataarray(dim_num, dtype, contains_nan=True, dask=dask)
+>       actual = getattr(da, func)(dim=["x", "y", "z"], skipna=True, min_count=min_count)
+
+xarray/tests/test_duck_array_ops.py:608: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+xarray/core/common.py:46: in wrapped_func
+    return self.reduce(func, dim, axis, skipna=skipna, **kwargs)
+xarray/core/dataarray.py:2347: in reduce
+    var = self.variable.reduce(func, dim, axis, keep_attrs, keepdims, **kwargs)
+xarray/core/variable.py:1640: in reduce
+    data = func(input_data, axis=axis, **kwargs)
+xarray/core/duck_array_ops.py:335: in f
+    return func(values, axis=axis, **kwargs)
+xarray/core/nanops.py:185: in nanprod
+    return _maybe_null_out(result, axis, mask, min_count)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+result = dask.array<prod-aggregate, shape=(), dtype=float32, chunksize=(), chunktype=numpy.ndarray>
+axis = (0, 1, 2)
+mask = dask.array<isnan, shape=(16, 8, 4), dtype=bool, chunksize=(4, 4, 4), chunktype=numpy.ndarray>
+min_count = 3
+
+    def _maybe_null_out(result, axis, mask, min_count=1):
+        """
+        xarray version of pandas.core.nanops._maybe_null_out
+        """
+        if hasattr(axis, "__len__"):  # if tuple or list
+>           raise ValueError(
+                "min_count is not available for reduction with more than one dimensions."
+            )
+E           ValueError: min_count is not available for reduction with more than one dimensions.
+
+xarray/core/nanops.py:30: ValueError
+______________________ test_min_count_nd[prod-True-bool_] ______________________
+
+dtype = <class 'numpy.bool_'>, dask = True, func = 'prod'
+
+    @pytest.mark.parametrize("dtype", [float, int, np.float32, np.bool_])
+    @pytest.mark.parametrize("dask", [False, True])
+    @pytest.mark.parametrize("func", ["sum", "prod"])
+    def test_min_count_nd(dtype, dask, func):
+        if dask and not has_dask:
+            pytest.skip("requires dask")
+    
+        min_count = 3
+        dim_num = 3
+        da = construct_dataarray(dim_num, dtype, contains_nan=True, dask=dask)
+>       actual = getattr(da, func)(dim=["x", "y", "z"], skipna=True, min_count=min_count)
+
+xarray/tests/test_duck_array_ops.py:608: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+xarray/core/common.py:46: in wrapped_func
+    return self.reduce(func, dim, axis, skipna=skipna, **kwargs)
+xarray/core/dataarray.py:2347: in reduce
+    var = self.variable.reduce(func, dim, axis, keep_attrs, keepdims, **kwargs)
+xarray/core/variable.py:1640: in reduce
+    data = func(input_data, axis=axis, **kwargs)
+xarray/core/duck_array_ops.py:335: in f
+    return func(values, axis=axis, **kwargs)
+xarray/core/nanops.py:185: in nanprod
+    return _maybe_null_out(result, axis, mask, min_count)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+result = dask.array<prod-aggregate, shape=(), dtype=object, chunksize=(), chunktype=numpy.ndarray>
+axis = (0, 1, 2)
+mask = dask.array<_asarray_isnull, shape=(16, 8, 4), dtype=bool, chunksize=(4, 4, 4), chunktype=numpy.ndarray>
+min_count = 3
+
+    def _maybe_null_out(result, axis, mask, min_count=1):
+        """
+        xarray version of pandas.core.nanops._maybe_null_out
+        """
+        if hasattr(axis, "__len__"):  # if tuple or list
+>           raise ValueError(
+                "min_count is not available for reduction with more than one dimensions."
+            )
+E           ValueError: min_count is not available for reduction with more than one dimensions.
+
+xarray/core/nanops.py:30: ValueError
+=============================== warnings summary ===============================
+xarray/__init__.py:1
+  /testbed/xarray/__init__.py:1: DeprecationWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html
+    import pkg_resources
+
+xarray/core/dask_array_compat.py:16
+xarray/core/dask_array_compat.py:16
+  /testbed/xarray/core/dask_array_compat.py:16: DeprecationWarning: distutils Version classes are deprecated. Use packaging.version instead.
+    if LooseVersion(dask_version) >= LooseVersion("2.0.0"):
+
+xarray/core/dask_array_compat.py:149
+xarray/core/dask_array_compat.py:149
+  /testbed/xarray/core/dask_array_compat.py:149: DeprecationWarning: distutils Version classes are deprecated. Use packaging.version instead.
+    if LooseVersion(dask_version) >= LooseVersion("2.8.1"):
+
+xarray/core/dask_array_compat.py:186
+xarray/core/dask_array_compat.py:186
+  /testbed/xarray/core/dask_array_compat.py:186: DeprecationWarning: distutils Version classes are deprecated. Use packaging.version instead.
+    if LooseVersion(dask_version) > LooseVersion("2.9.0"):
+
+xarray/core/pdcompat.py:45
+  /testbed/xarray/core/pdcompat.py:45: DeprecationWarning: distutils Version classes are deprecated. Use packaging.version instead.
+    if LooseVersion(pd.__version__) < "0.25.0":
+
+../opt/miniconda3/envs/testbed/lib/python3.10/site-packages/setuptools/_distutils/version.py:345
+xarray/tests/test_duck_array_ops.py::test_cftime_datetime_mean_dask_error
+  /opt/miniconda3/envs/testbed/lib/python3.10/site-packages/setuptools/_distutils/version.py:345: DeprecationWarning: distutils Version classes are deprecated. Use packaging.version instead.
+    other = LooseVersion(other)
+
+xarray/tests/__init__.py:58
+xarray/tests/__init__.py:58
+  /testbed/xarray/tests/__init__.py:58: DeprecationWarning: distutils Version classes are deprecated. Use packaging.version instead.
+    return version.LooseVersion(vstring)
+
+xarray/tests/test_duck_array_ops.py::test_cftime_datetime_mean
+xarray/tests/test_duck_array_ops.py::test_cftime_datetime_mean
+xarray/tests/test_duck_array_ops.py::test_cftime_datetime_mean_dask_error
+xarray/tests/test_duck_array_ops.py::test_cftime_datetime_mean_dask_error
+xarray/tests/test_duck_array_ops.py::test_datetime_to_numeric_cftime
+xarray/tests/test_duck_array_ops.py::test_datetime_to_numeric_cftime
+xarray/tests/test_duck_array_ops.py::test_datetime_to_numeric_potential_overflow
+xarray/tests/test_duck_array_ops.py::test_datetime_to_numeric_potential_overflow
+  /testbed/xarray/coding/cftimeindex.py:122: DeprecationWarning: distutils Version classes are deprecated. Use packaging.version instead.
+    if LooseVersion(cftime.__version__) < LooseVersion("1.0.4"):
+
+xarray/tests/test_duck_array_ops.py::test_cftime_datetime_mean_dask_error
+  /testbed/xarray/core/variable.py:1043: DeprecationWarning: distutils Version classes are deprecated. Use packaging.version instead.
+    if LooseVersion(dask.__version__) < "2.0.0":
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+==================================== PASSES ====================================
+=========================== short test summary info ============================
+PASSED xarray/tests/test_duck_array_ops.py::TestOps::test_first
+PASSED xarray/tests/test_duck_array_ops.py::TestOps::test_last
+PASSED xarray/tests/test_duck_array_ops.py::TestOps::test_count
+PASSED xarray/tests/test_duck_array_ops.py::TestOps::test_where_type_promotion
+PASSED xarray/tests/test_duck_array_ops.py::TestOps::test_stack_type_promotion
+PASSED xarray/tests/test_duck_array_ops.py::TestOps::test_concatenate_type_promotion
+PASSED xarray/tests/test_duck_array_ops.py::TestOps::test_all_nan_arrays
+PASSED xarray/tests/test_duck_array_ops.py::test_cumsum_1d
+PASSED xarray/tests/test_duck_array_ops.py::test_cumsum_2d
+PASSED xarray/tests/test_duck_array_ops.py::test_cumprod_2d
+PASSED xarray/tests/test_duck_array_ops.py::TestArrayNotNullEquiv::test_equal[arr10-arr20]
+PASSED xarray/tests/test_duck_array_ops.py::TestArrayNotNullEquiv::test_equal[arr11-arr21]
+PASSED xarray/tests/test_duck_array_ops.py::TestArrayNotNullEquiv::test_equal[arr12-arr22]
+PASSED xarray/tests/test_duck_array_ops.py::TestArrayNotNullEquiv::test_some_not_equal
+PASSED xarray/tests/test_duck_array_ops.py::TestArrayNotNullEquiv::test_wrong_shape
+PASSED xarray/tests/test_duck_array_ops.py::TestArrayNotNullEquiv::test_types[val10-val20-val30-null0]
+PASSED xarray/tests/test_duck_array_ops.py::TestArrayNotNullEquiv::test_types[1.0-2.0-3.0-nan]
+PASSED xarray/tests/test_duck_array_ops.py::TestArrayNotNullEquiv::test_types[foo-bar-baz-None]
+PASSED xarray/tests/test_duck_array_ops.py::TestArrayNotNullEquiv::test_types[foo-bar-baz-nan]
+PASSED xarray/tests/test_duck_array_ops.py::test_datetime_mean[False]
+PASSED xarray/tests/test_duck_array_ops.py::test_datetime_mean[True]
+PASSED xarray/tests/test_duck_array_ops.py::test_cftime_datetime_mean
+PASSED xarray/tests/test_duck_array_ops.py::test_cftime_datetime_mean_long_time_period
+PASSED xarray/tests/test_duck_array_ops.py::test_cftime_datetime_mean_dask_error
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[None-False-sum-False-float-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[None-False-sum-False-float-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[None-False-sum-False-int-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[None-False-sum-False-int-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[None-False-sum-False-float32-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[None-False-sum-False-float32-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[None-False-sum-False-bool_-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[None-False-sum-False-bool_-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[None-False-sum-True-float-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[None-False-sum-True-float-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[None-False-sum-True-int-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[None-False-sum-True-int-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[None-False-sum-True-float32-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[None-False-sum-True-float32-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[None-False-min-False-float-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[None-False-min-False-float-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[None-False-min-False-int-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[None-False-min-False-int-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[None-False-min-False-float32-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[None-False-min-False-float32-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[None-False-min-False-bool_-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[None-False-min-False-bool_-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[None-False-min-True-float-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[None-False-min-True-float-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[None-False-min-True-int-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[None-False-min-True-int-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[None-False-min-True-float32-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[None-False-min-True-float32-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[None-False-max-False-float-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[None-False-max-False-float-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[None-False-max-False-int-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[None-False-max-False-int-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[None-False-max-False-float32-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[None-False-max-False-float32-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[None-False-max-False-bool_-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[None-False-max-False-bool_-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[None-False-max-True-float-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[None-False-max-True-float-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[None-False-max-True-int-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[None-False-max-True-int-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[None-False-max-True-float32-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[None-False-max-True-float32-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[None-False-mean-False-float-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[None-False-mean-False-float-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[None-False-mean-False-int-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[None-False-mean-False-int-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[None-False-mean-False-float32-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[None-False-mean-False-float32-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[None-False-mean-True-float-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[None-False-mean-True-float-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[None-False-mean-True-int-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[None-False-mean-True-int-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[None-False-mean-True-float32-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[None-False-mean-True-float32-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[None-False-var-False-float-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[None-False-var-False-float-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[None-False-var-False-int-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[None-False-var-False-int-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[None-False-var-False-float32-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[None-False-var-False-float32-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[None-False-var-False-bool_-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[None-False-var-False-bool_-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[None-False-var-True-float-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[None-False-var-True-float-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[None-False-var-True-int-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[None-False-var-True-int-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[None-False-var-True-float32-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[None-False-var-True-float32-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[None-True-sum-False-float-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[None-True-sum-False-float-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[None-True-sum-False-int-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[None-True-sum-False-int-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[None-True-sum-False-float32-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[None-True-sum-False-float32-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[None-True-sum-False-bool_-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[None-True-sum-False-bool_-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[None-True-sum-True-float-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[None-True-sum-True-float-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[None-True-sum-True-int-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[None-True-sum-True-int-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[None-True-sum-True-float32-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[None-True-sum-True-float32-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[None-True-sum-True-bool_-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[None-True-sum-True-bool_-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[None-True-min-False-float-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[None-True-min-False-float-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[None-True-min-False-int-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[None-True-min-False-int-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[None-True-min-False-float32-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[None-True-min-False-float32-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[None-True-min-False-bool_-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[None-True-min-False-bool_-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[None-True-min-True-float-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[None-True-min-True-float-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[None-True-min-True-int-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[None-True-min-True-int-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[None-True-min-True-float32-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[None-True-min-True-float32-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[None-True-min-True-bool_-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[None-True-min-True-bool_-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[None-True-max-False-float-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[None-True-max-False-float-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[None-True-max-False-int-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[None-True-max-False-int-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[None-True-max-False-float32-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[None-True-max-False-float32-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[None-True-max-False-bool_-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[None-True-max-False-bool_-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[None-True-max-True-float-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[None-True-max-True-float-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[None-True-max-True-int-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[None-True-max-True-int-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[None-True-max-True-float32-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[None-True-max-True-float32-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[None-True-max-True-bool_-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[None-True-max-True-bool_-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[None-True-mean-False-float-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[None-True-mean-False-float-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[None-True-mean-False-int-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[None-True-mean-False-int-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[None-True-mean-False-float32-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[None-True-mean-False-float32-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[None-True-mean-True-float-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[None-True-mean-True-float-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[None-True-mean-True-int-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[None-True-mean-True-int-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[None-True-mean-True-float32-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[None-True-mean-True-float32-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[None-True-var-False-float-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[None-True-var-False-float-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[None-True-var-False-int-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[None-True-var-False-int-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[None-True-var-False-float32-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[None-True-var-False-float32-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[None-True-var-False-bool_-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[None-True-var-False-bool_-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[None-True-var-True-float-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[None-True-var-True-float-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[None-True-var-True-int-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[None-True-var-True-int-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[None-True-var-True-float32-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[None-True-var-True-float32-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[None-True-var-True-bool_-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[None-True-var-True-bool_-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[x-False-sum-False-float-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[x-False-sum-False-float-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[x-False-sum-False-int-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[x-False-sum-False-int-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[x-False-sum-False-float32-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[x-False-sum-False-float32-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[x-False-sum-False-bool_-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[x-False-sum-False-bool_-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[x-False-sum-True-float-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[x-False-sum-True-float-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[x-False-sum-True-int-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[x-False-sum-True-int-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[x-False-sum-True-float32-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[x-False-sum-True-float32-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[x-False-min-False-float-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[x-False-min-False-float-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[x-False-min-False-int-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[x-False-min-False-int-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[x-False-min-False-float32-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[x-False-min-False-float32-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[x-False-min-False-bool_-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[x-False-min-False-bool_-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[x-False-min-True-float-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[x-False-min-True-float-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[x-False-min-True-int-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[x-False-min-True-int-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[x-False-min-True-float32-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[x-False-min-True-float32-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[x-False-max-False-float-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[x-False-max-False-float-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[x-False-max-False-int-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[x-False-max-False-int-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[x-False-max-False-float32-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[x-False-max-False-float32-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[x-False-max-False-bool_-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[x-False-max-False-bool_-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[x-False-max-True-float-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[x-False-max-True-float-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[x-False-max-True-int-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[x-False-max-True-int-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[x-False-max-True-float32-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[x-False-max-True-float32-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[x-False-mean-False-float-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[x-False-mean-False-float-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[x-False-mean-False-int-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[x-False-mean-False-int-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[x-False-mean-False-float32-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[x-False-mean-False-float32-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[x-False-mean-True-float-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[x-False-mean-True-float-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[x-False-mean-True-int-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[x-False-mean-True-int-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[x-False-mean-True-float32-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[x-False-mean-True-float32-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[x-False-var-False-float-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[x-False-var-False-float-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[x-False-var-False-int-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[x-False-var-False-int-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[x-False-var-False-float32-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[x-False-var-False-float32-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[x-False-var-False-bool_-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[x-False-var-False-bool_-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[x-False-var-True-float-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[x-False-var-True-float-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[x-False-var-True-int-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[x-False-var-True-int-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[x-False-var-True-float32-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[x-False-var-True-float32-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[x-True-sum-False-float-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[x-True-sum-False-float-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[x-True-sum-False-int-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[x-True-sum-False-int-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[x-True-sum-False-float32-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[x-True-sum-False-float32-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[x-True-sum-False-bool_-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[x-True-sum-False-bool_-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[x-True-sum-True-float-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[x-True-sum-True-float-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[x-True-sum-True-int-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[x-True-sum-True-int-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[x-True-sum-True-float32-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[x-True-sum-True-float32-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[x-True-sum-True-bool_-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[x-True-sum-True-bool_-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[x-True-min-False-float-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[x-True-min-False-float-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[x-True-min-False-int-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[x-True-min-False-int-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[x-True-min-False-float32-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[x-True-min-False-float32-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[x-True-min-False-bool_-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[x-True-min-False-bool_-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[x-True-min-True-float-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[x-True-min-True-float-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[x-True-min-True-int-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[x-True-min-True-int-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[x-True-min-True-float32-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[x-True-min-True-float32-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[x-True-min-True-bool_-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[x-True-min-True-bool_-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[x-True-max-False-float-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[x-True-max-False-float-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[x-True-max-False-int-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[x-True-max-False-int-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[x-True-max-False-float32-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[x-True-max-False-float32-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[x-True-max-False-bool_-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[x-True-max-False-bool_-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[x-True-max-True-float-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[x-True-max-True-float-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[x-True-max-True-int-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[x-True-max-True-int-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[x-True-max-True-float32-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[x-True-max-True-float32-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[x-True-max-True-bool_-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[x-True-max-True-bool_-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[x-True-mean-False-float-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[x-True-mean-False-float-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[x-True-mean-False-int-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[x-True-mean-False-int-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[x-True-mean-False-float32-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[x-True-mean-False-float32-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[x-True-mean-True-float-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[x-True-mean-True-float-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[x-True-mean-True-int-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[x-True-mean-True-int-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[x-True-mean-True-float32-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[x-True-mean-True-float32-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[x-True-var-False-float-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[x-True-var-False-float-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[x-True-var-False-int-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[x-True-var-False-int-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[x-True-var-False-float32-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[x-True-var-False-float32-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[x-True-var-False-bool_-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[x-True-var-False-bool_-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[x-True-var-True-float-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[x-True-var-True-float-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[x-True-var-True-int-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[x-True-var-True-int-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[x-True-var-True-float32-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[x-True-var-True-float32-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[x-True-var-True-bool_-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_reduce[x-True-var-True-bool_-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_argmin_max[x-False-min-False-False-float-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_argmin_max[x-False-min-False-False-float-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_argmin_max[x-False-min-False-False-int-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_argmin_max[x-False-min-False-False-int-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_argmin_max[x-False-min-False-False-float32-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_argmin_max[x-False-min-False-False-float32-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_argmin_max[x-False-min-False-False-bool_-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_argmin_max[x-False-min-False-False-bool_-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_argmin_max[x-False-min-False-False-str-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_argmin_max[x-False-min-False-False-str-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_argmin_max[x-False-min-True-False-float-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_argmin_max[x-False-min-True-False-float-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_argmin_max[x-False-min-True-False-int-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_argmin_max[x-False-min-True-False-int-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_argmin_max[x-False-min-True-False-float32-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_argmin_max[x-False-min-True-False-float32-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_argmin_max[x-False-min-True-False-bool_-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_argmin_max[x-False-min-True-False-bool_-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_argmin_max[x-False-min-True-False-str-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_argmin_max[x-False-min-True-False-str-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_argmin_max[x-False-max-False-False-float-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_argmin_max[x-False-max-False-False-float-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_argmin_max[x-False-max-False-False-int-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_argmin_max[x-False-max-False-False-int-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_argmin_max[x-False-max-False-False-float32-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_argmin_max[x-False-max-False-False-float32-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_argmin_max[x-False-max-False-False-bool_-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_argmin_max[x-False-max-False-False-bool_-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_argmin_max[x-False-max-False-False-str-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_argmin_max[x-False-max-False-False-str-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_argmin_max[x-False-max-True-False-float-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_argmin_max[x-False-max-True-False-float-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_argmin_max[x-False-max-True-False-int-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_argmin_max[x-False-max-True-False-int-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_argmin_max[x-False-max-True-False-float32-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_argmin_max[x-False-max-True-False-float32-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_argmin_max[x-False-max-True-False-bool_-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_argmin_max[x-False-max-True-False-bool_-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_argmin_max[x-False-max-True-False-str-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_argmin_max[x-False-max-True-False-str-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_argmin_max[x-True-min-False-True-bool_-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_argmin_max[x-True-min-False-True-bool_-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_argmin_max[x-True-min-False-True-str-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_argmin_max[x-True-min-False-True-str-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_argmin_max[x-True-min-False-False-float-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_argmin_max[x-True-min-False-False-float-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_argmin_max[x-True-min-False-False-int-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_argmin_max[x-True-min-False-False-int-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_argmin_max[x-True-min-False-False-float32-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_argmin_max[x-True-min-False-False-float32-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_argmin_max[x-True-min-False-False-bool_-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_argmin_max[x-True-min-False-False-bool_-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_argmin_max[x-True-min-False-False-str-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_argmin_max[x-True-min-False-False-str-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_argmin_max[x-True-min-True-True-bool_-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_argmin_max[x-True-min-True-True-bool_-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_argmin_max[x-True-min-True-True-str-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_argmin_max[x-True-min-True-True-str-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_argmin_max[x-True-min-True-False-float-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_argmin_max[x-True-min-True-False-float-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_argmin_max[x-True-min-True-False-int-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_argmin_max[x-True-min-True-False-int-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_argmin_max[x-True-min-True-False-float32-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_argmin_max[x-True-min-True-False-float32-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_argmin_max[x-True-min-True-False-bool_-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_argmin_max[x-True-min-True-False-bool_-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_argmin_max[x-True-min-True-False-str-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_argmin_max[x-True-min-True-False-str-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_argmin_max[x-True-max-False-True-bool_-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_argmin_max[x-True-max-False-True-bool_-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_argmin_max[x-True-max-False-True-str-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_argmin_max[x-True-max-False-True-str-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_argmin_max[x-True-max-False-False-float-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_argmin_max[x-True-max-False-False-float-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_argmin_max[x-True-max-False-False-int-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_argmin_max[x-True-max-False-False-int-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_argmin_max[x-True-max-False-False-float32-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_argmin_max[x-True-max-False-False-float32-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_argmin_max[x-True-max-False-False-bool_-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_argmin_max[x-True-max-False-False-bool_-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_argmin_max[x-True-max-False-False-str-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_argmin_max[x-True-max-False-False-str-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_argmin_max[x-True-max-True-True-bool_-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_argmin_max[x-True-max-True-True-bool_-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_argmin_max[x-True-max-True-True-str-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_argmin_max[x-True-max-True-True-str-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_argmin_max[x-True-max-True-False-float-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_argmin_max[x-True-max-True-False-float-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_argmin_max[x-True-max-True-False-int-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_argmin_max[x-True-max-True-False-int-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_argmin_max[x-True-max-True-False-float32-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_argmin_max[x-True-max-True-False-float32-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_argmin_max[x-True-max-True-False-bool_-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_argmin_max[x-True-max-True-False-bool_-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_argmin_max[x-True-max-True-False-str-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_argmin_max[x-True-max-True-False-str-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_argmin_max[y-False-min-False-False-float-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_argmin_max[y-False-min-False-False-int-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_argmin_max[y-False-min-False-False-float32-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_argmin_max[y-False-min-False-False-bool_-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_argmin_max[y-False-min-False-False-str-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_argmin_max[y-False-min-True-False-float-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_argmin_max[y-False-min-True-False-int-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_argmin_max[y-False-min-True-False-float32-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_argmin_max[y-False-min-True-False-bool_-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_argmin_max[y-False-min-True-False-str-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_argmin_max[y-False-max-False-False-float-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_argmin_max[y-False-max-False-False-int-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_argmin_max[y-False-max-False-False-float32-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_argmin_max[y-False-max-False-False-bool_-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_argmin_max[y-False-max-False-False-str-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_argmin_max[y-False-max-True-False-float-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_argmin_max[y-False-max-True-False-int-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_argmin_max[y-False-max-True-False-float32-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_argmin_max[y-False-max-True-False-bool_-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_argmin_max[y-False-max-True-False-str-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_argmin_max[y-True-min-False-True-bool_-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_argmin_max[y-True-min-False-True-str-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_argmin_max[y-True-min-False-False-float-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_argmin_max[y-True-min-False-False-int-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_argmin_max[y-True-min-False-False-float32-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_argmin_max[y-True-min-False-False-bool_-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_argmin_max[y-True-min-False-False-str-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_argmin_max[y-True-min-True-True-bool_-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_argmin_max[y-True-min-True-True-str-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_argmin_max[y-True-min-True-False-float-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_argmin_max[y-True-min-True-False-int-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_argmin_max[y-True-min-True-False-float32-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_argmin_max[y-True-min-True-False-bool_-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_argmin_max[y-True-min-True-False-str-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_argmin_max[y-True-max-False-True-bool_-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_argmin_max[y-True-max-False-True-str-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_argmin_max[y-True-max-False-False-float-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_argmin_max[y-True-max-False-False-int-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_argmin_max[y-True-max-False-False-float32-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_argmin_max[y-True-max-False-False-bool_-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_argmin_max[y-True-max-False-False-str-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_argmin_max[y-True-max-True-True-bool_-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_argmin_max[y-True-max-True-True-str-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_argmin_max[y-True-max-True-False-float-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_argmin_max[y-True-max-True-False-int-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_argmin_max[y-True-max-True-False-float32-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_argmin_max[y-True-max-True-False-bool_-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_argmin_max[y-True-max-True-False-str-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_argmin_max_error
+PASSED xarray/tests/test_duck_array_ops.py::test_isnull[array0]
+PASSED xarray/tests/test_duck_array_ops.py::test_isnull[array1]
+PASSED xarray/tests/test_duck_array_ops.py::test_isnull[array2]
+PASSED xarray/tests/test_duck_array_ops.py::test_isnull[array3]
+PASSED xarray/tests/test_duck_array_ops.py::test_isnull[array4]
+PASSED xarray/tests/test_duck_array_ops.py::test_isnull_with_dask
+PASSED xarray/tests/test_duck_array_ops.py::test_dask_rolling[True-3-0]
+PASSED xarray/tests/test_duck_array_ops.py::test_dask_rolling[True-3--1]
+PASSED xarray/tests/test_duck_array_ops.py::test_dask_rolling[True-8-0]
+PASSED xarray/tests/test_duck_array_ops.py::test_dask_rolling[True-8--1]
+PASSED xarray/tests/test_duck_array_ops.py::test_dask_rolling[True-11-0]
+PASSED xarray/tests/test_duck_array_ops.py::test_dask_rolling[True-11--1]
+PASSED xarray/tests/test_duck_array_ops.py::test_dask_rolling[False-3-0]
+PASSED xarray/tests/test_duck_array_ops.py::test_dask_rolling[False-3--1]
+PASSED xarray/tests/test_duck_array_ops.py::test_dask_rolling[False-8-0]
+PASSED xarray/tests/test_duck_array_ops.py::test_dask_rolling[False-8--1]
+PASSED xarray/tests/test_duck_array_ops.py::test_dask_rolling[False-11-0]
+PASSED xarray/tests/test_duck_array_ops.py::test_dask_rolling[False-11--1]
+PASSED xarray/tests/test_duck_array_ops.py::test_dask_gradient[1-0]
+PASSED xarray/tests/test_duck_array_ops.py::test_dask_gradient[1--1]
+PASSED xarray/tests/test_duck_array_ops.py::test_dask_gradient[1-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_dask_gradient[2-0]
+PASSED xarray/tests/test_duck_array_ops.py::test_dask_gradient[2--1]
+PASSED xarray/tests/test_duck_array_ops.py::test_dask_gradient[2-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_min_count[None-sum-False-float-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_min_count[None-sum-False-float-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_min_count[None-sum-False-int-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_min_count[None-sum-False-int-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_min_count[None-sum-False-float32-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_min_count[None-sum-False-float32-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_min_count[None-sum-False-bool_-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_min_count[None-sum-False-bool_-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_min_count[None-sum-True-float-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_min_count[None-sum-True-float-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_min_count[None-sum-True-int-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_min_count[None-sum-True-int-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_min_count[None-sum-True-float32-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_min_count[None-sum-True-float32-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_min_count[None-sum-True-bool_-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_min_count[None-sum-True-bool_-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_min_count[None-prod-False-float-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_min_count[None-prod-False-float-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_min_count[None-prod-False-int-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_min_count[None-prod-False-int-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_min_count[None-prod-False-float32-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_min_count[None-prod-False-float32-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_min_count[None-prod-False-bool_-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_min_count[None-prod-False-bool_-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_min_count[None-prod-True-float-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_min_count[None-prod-True-float-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_min_count[None-prod-True-int-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_min_count[None-prod-True-int-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_min_count[None-prod-True-float32-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_min_count[None-prod-True-float32-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_min_count[None-prod-True-bool_-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_min_count[None-prod-True-bool_-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_min_count[x-sum-False-float-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_min_count[x-sum-False-float-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_min_count[x-sum-False-int-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_min_count[x-sum-False-int-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_min_count[x-sum-False-float32-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_min_count[x-sum-False-float32-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_min_count[x-sum-False-bool_-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_min_count[x-sum-False-bool_-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_min_count[x-sum-True-float-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_min_count[x-sum-True-float-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_min_count[x-sum-True-int-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_min_count[x-sum-True-int-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_min_count[x-sum-True-float32-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_min_count[x-sum-True-float32-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_min_count[x-sum-True-bool_-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_min_count[x-sum-True-bool_-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_min_count[x-prod-False-float-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_min_count[x-prod-False-float-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_min_count[x-prod-False-int-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_min_count[x-prod-False-int-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_min_count[x-prod-False-float32-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_min_count[x-prod-False-float32-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_min_count[x-prod-False-bool_-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_min_count[x-prod-False-bool_-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_min_count[x-prod-True-float-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_min_count[x-prod-True-float-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_min_count[x-prod-True-int-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_min_count[x-prod-True-int-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_min_count[x-prod-True-float32-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_min_count[x-prod-True-float32-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_min_count[x-prod-True-bool_-1]
+PASSED xarray/tests/test_duck_array_ops.py::test_min_count[x-prod-True-bool_-2]
+PASSED xarray/tests/test_duck_array_ops.py::test_min_count_dataset[sum]
+PASSED xarray/tests/test_duck_array_ops.py::test_min_count_dataset[prod]
+PASSED xarray/tests/test_duck_array_ops.py::test_multiple_dims[sum-False-False-float]
+PASSED xarray/tests/test_duck_array_ops.py::test_multiple_dims[sum-False-False-int]
+PASSED xarray/tests/test_duck_array_ops.py::test_multiple_dims[sum-False-False-float32]
+PASSED xarray/tests/test_duck_array_ops.py::test_multiple_dims[sum-False-False-bool_]
+PASSED xarray/tests/test_duck_array_ops.py::test_multiple_dims[sum-False-True-float]
+PASSED xarray/tests/test_duck_array_ops.py::test_multiple_dims[sum-False-True-int]
+PASSED xarray/tests/test_duck_array_ops.py::test_multiple_dims[sum-False-True-float32]
+PASSED xarray/tests/test_duck_array_ops.py::test_multiple_dims[sum-False-True-bool_]
+PASSED xarray/tests/test_duck_array_ops.py::test_multiple_dims[sum-True-False-float]
+PASSED xarray/tests/test_duck_array_ops.py::test_multiple_dims[sum-True-False-int]
+PASSED xarray/tests/test_duck_array_ops.py::test_multiple_dims[sum-True-False-float32]
+PASSED xarray/tests/test_duck_array_ops.py::test_multiple_dims[sum-True-False-bool_]
+PASSED xarray/tests/test_duck_array_ops.py::test_multiple_dims[sum-True-True-float]
+PASSED xarray/tests/test_duck_array_ops.py::test_multiple_dims[sum-True-True-int]
+PASSED xarray/tests/test_duck_array_ops.py::test_multiple_dims[sum-True-True-float32]
+PASSED xarray/tests/test_duck_array_ops.py::test_multiple_dims[sum-True-True-bool_]
+PASSED xarray/tests/test_duck_array_ops.py::test_multiple_dims[prod-False-False-float]
+PASSED xarray/tests/test_duck_array_ops.py::test_multiple_dims[prod-False-False-int]
+PASSED xarray/tests/test_duck_array_ops.py::test_multiple_dims[prod-False-False-float32]
+PASSED xarray/tests/test_duck_array_ops.py::test_multiple_dims[prod-False-False-bool_]
+PASSED xarray/tests/test_duck_array_ops.py::test_multiple_dims[prod-False-True-float]
+PASSED xarray/tests/test_duck_array_ops.py::test_multiple_dims[prod-False-True-int]
+PASSED xarray/tests/test_duck_array_ops.py::test_multiple_dims[prod-False-True-float32]
+PASSED xarray/tests/test_duck_array_ops.py::test_multiple_dims[prod-False-True-bool_]
+PASSED xarray/tests/test_duck_array_ops.py::test_multiple_dims[prod-True-False-float]
+PASSED xarray/tests/test_duck_array_ops.py::test_multiple_dims[prod-True-False-int]
+PASSED xarray/tests/test_duck_array_ops.py::test_multiple_dims[prod-True-False-float32]
+PASSED xarray/tests/test_duck_array_ops.py::test_multiple_dims[prod-True-False-bool_]
+PASSED xarray/tests/test_duck_array_ops.py::test_multiple_dims[prod-True-True-float]
+PASSED xarray/tests/test_duck_array_ops.py::test_multiple_dims[prod-True-True-int]
+PASSED xarray/tests/test_duck_array_ops.py::test_multiple_dims[prod-True-True-float32]
+PASSED xarray/tests/test_duck_array_ops.py::test_multiple_dims[prod-True-True-bool_]
+PASSED xarray/tests/test_duck_array_ops.py::test_docs
+PASSED xarray/tests/test_duck_array_ops.py::test_datetime_to_numeric_datetime64
+PASSED xarray/tests/test_duck_array_ops.py::test_datetime_to_numeric_cftime
+PASSED xarray/tests/test_duck_array_ops.py::test_datetime_to_numeric_potential_overflow
+PASSED xarray/tests/test_duck_array_ops.py::test_py_timedelta_to_float
+PASSED xarray/tests/test_duck_array_ops.py::test_np_timedelta64_to_float[td0-86400000000000.0]
+PASSED xarray/tests/test_duck_array_ops.py::test_np_timedelta64_to_float[td1-1.0]
+PASSED xarray/tests/test_duck_array_ops.py::test_pd_timedelta_to_float[td0-86400000000000.0]
+PASSED xarray/tests/test_duck_array_ops.py::test_pd_timedelta_to_float[td1-1.0]
+PASSED xarray/tests/test_duck_array_ops.py::test_timedelta_to_numeric[td0]
+PASSED xarray/tests/test_duck_array_ops.py::test_timedelta_to_numeric[td1]
+PASSED xarray/tests/test_duck_array_ops.py::test_timedelta_to_numeric[td2]
+PASSED xarray/tests/test_duck_array_ops.py::test_timedelta_to_numeric[1 day]
+PASSED xarray/tests/test_duck_array_ops.py::test_least_squares[True-True]
+PASSED xarray/tests/test_duck_array_ops.py::test_least_squares[True-False]
+PASSED xarray/tests/test_duck_array_ops.py::test_least_squares[False-True]
+PASSED xarray/tests/test_duck_array_ops.py::test_least_squares[False-False]
+SKIPPED [16] xarray/tests/test_duck_array_ops.py:398: dask does not compute object-typed array
+SKIPPED [16] xarray/tests/test_duck_array_ops.py:392: numpy does not support this
+SKIPPED [60] xarray/tests/test_duck_array_ops.py:487: numpy's argmin (not nanargmin) does not handle object-dtype
+SKIPPED [36] xarray/tests/test_duck_array_ops.py:491: numpy's nanargmin raises ValueError for all nan axis
+SKIPPED [80] xarray/tests/test_duck_array_ops.py:480: dim not in this test
+FAILED xarray/tests/test_duck_array_ops.py::test_min_count_nd[sum-False-float]
+FAILED xarray/tests/test_duck_array_ops.py::test_min_count_nd[sum-False-int]
+FAILED xarray/tests/test_duck_array_ops.py::test_min_count_nd[sum-False-float32]
+FAILED xarray/tests/test_duck_array_ops.py::test_min_count_nd[sum-False-bool_]
+FAILED xarray/tests/test_duck_array_ops.py::test_min_count_nd[sum-True-float]
+FAILED xarray/tests/test_duck_array_ops.py::test_min_count_nd[sum-True-int]
+FAILED xarray/tests/test_duck_array_ops.py::test_min_count_nd[sum-True-float32]
+FAILED xarray/tests/test_duck_array_ops.py::test_min_count_nd[sum-True-bool_]
+FAILED xarray/tests/test_duck_array_ops.py::test_min_count_nd[prod-False-float]
+FAILED xarray/tests/test_duck_array_ops.py::test_min_count_nd[prod-False-int]
+FAILED xarray/tests/test_duck_array_ops.py::test_min_count_nd[prod-False-float32]
+FAILED xarray/tests/test_duck_array_ops.py::test_min_count_nd[prod-False-bool_]
+FAILED xarray/tests/test_duck_array_ops.py::test_min_count_nd[prod-True-float]
+FAILED xarray/tests/test_duck_array_ops.py::test_min_count_nd[prod-True-int]
+FAILED xarray/tests/test_duck_array_ops.py::test_min_count_nd[prod-True-float32]
+FAILED xarray/tests/test_duck_array_ops.py::test_min_count_nd[prod-True-bool_]
+=========== 16 failed, 596 passed, 208 skipped, 21 warnings in 5.58s ===========
+Updated 1 path from 72fb5379
+Downloading pyarrow (47.7MiB)
+Downloading pygments (1.2MiB)
+Downloading aiohttp (1.7MiB)
+Downloading virtualenv (5.1MiB)
+Downloading chardet (1.4MiB)
+Downloading numpy (16.1MiB)
+Downloading hf-xet (4.3MiB)
+Downloading pandas (10.8MiB)
+ Downloading pygments
+ Downloading chardet
+ Downloading aiohttp
+ Downloading hf-xet
+ Downloading virtualenv
+ Downloading pandas
+ Downloading numpy
+ Downloading pyarrow
+Installed 73 packages in 81ms
+SWEBench results starts here
+FAILED
+SWEBench results ends here

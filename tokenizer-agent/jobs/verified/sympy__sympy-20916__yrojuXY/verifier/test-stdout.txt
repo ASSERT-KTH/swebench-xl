@@ -1,0 +1,112 @@
+++ cd /testbed
+++ set +x
+++ python -m pip install -e .
+Obtaining file:///testbed
+  Preparing metadata (setup.py): started
+  Preparing metadata (setup.py): finished with status 'done'
+Requirement already satisfied: mpmath>=0.19 in /opt/miniconda3/envs/testbed/lib/python3.9/site-packages (from sympy==1.8.dev0) (1.3.0)
+Installing collected packages: sympy
+  Attempting uninstall: sympy
+    Found existing installation: sympy 1.8.dev0
+    Uninstalling sympy-1.8.dev0:
+      Successfully uninstalled sympy-1.8.dev0
+  DEPRECATION: Legacy editable install of sympy==1.8.dev0 from file:///testbed (setup.py develop) is deprecated. pip 25.0 will enforce this behaviour change. A possible replacement is to add a pyproject.toml or enable --use-pep517, and use setuptools >= 64. If the resulting installation is not behaving as expected, try using --config-settings editable_mode=compat. Please consult the setuptools documentation for more information. Discussion can be found at https://github.com/pypa/pip/issues/11457
+  Running setup.py develop for sympy
+Successfully installed sympy
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable.It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+++ git checkout 82298df6a51491bfaad0c6d1980e7e3ca808ae93 sympy/printing/tests/test_conventions.py sympy/testing/quality_unicode.py
+Updated 2 paths from 8294ddc56e
+++ git clean -fd
+++ echo 'diff --git a/sympy/printing/tests/test_conventions.py b/sympy/printing/tests/test_conventions.py
+--- a/sympy/printing/tests/test_conventions.py
++++ b/sympy/printing/tests/test_conventions.py
+@@ -1,3 +1,5 @@
++# -*- coding: utf-8 -*-
++
+ from sympy import symbols, Derivative, Integral, exp, cos, oo, Function
+ from sympy.functions.special.bessel import besselj
+ from sympy.functions.special.polynomials import legendre
+@@ -29,6 +31,17 @@ def test_super_sub():
+     assert split_super_sub("x__a__b__c__d") == ("x", ["a", "b", "c", "d"], [])
+     assert split_super_sub("alpha_11") == ("alpha", [], ["11"])
+     assert split_super_sub("alpha_11_11") == ("alpha", [], ["11", "11"])
++    assert split_super_sub("w1") == ("w", [], ["1"])
++    assert split_super_sub("w𝟙") == ("w", [], ["𝟙"])
++    assert split_super_sub("w11") == ("w", [], ["11"])
++    assert split_super_sub("w𝟙𝟙") == ("w", [], ["𝟙𝟙"])
++    assert split_super_sub("w𝟙2𝟙") == ("w", [], ["𝟙2𝟙"])
++    assert split_super_sub("w1^a") == ("w", ["a"], ["1"])
++    assert split_super_sub("ω1") == ("ω", [], ["1"])
++    assert split_super_sub("ω11") == ("ω", [], ["11"])
++    assert split_super_sub("ω1^a") == ("ω", ["a"], ["1"])
++    assert split_super_sub("ω𝟙^α") == ("ω", ["α"], ["𝟙"])
++    assert split_super_sub("ω𝟙2^3α") == ("ω", ["3α"], ["𝟙2"])
+     assert split_super_sub("") == ("", [], [])
+
+
+diff --git a/sympy/testing/quality_unicode.py b/sympy/testing/quality_unicode.py
+--- a/sympy/testing/quality_unicode.py
++++ b/sympy/testing/quality_unicode.py
+@@ -44,6 +44,7 @@
+     r'\''*/sympy/vector/tests/test_printing.py'\'',
+     r'\''*/sympy/parsing/tests/test_sympy_parser.py'\'',
+     r'\''*/sympy/printing/pretty/tests/test_pretty.py'\'',
++    r'\''*/sympy/printing/tests/test_conventions.py'\'',
+     r'\''*/sympy/printing/tests/test_preview.py'\'',
+     r'\''*/liealgebras/type_g.py'\'',
+     r'\''*/liealgebras/weyl_group.py'\'',
+'
+++ git apply --check /tmp/test_patch.diff
+++ git apply /tmp/test_patch.diff
++++ mktemp
+++ LOG_FILE=/tmp/tmp.ABfI9Y5OOA
+++ export LOG_FILE
+++ exec
+++ exec
++++ tee /tmp/tmp.ABfI9Y5OOA
+++ set +x
+============================= test process starts ==============================
+executable:         /opt/miniconda3/envs/testbed/bin/python  (3.9.20-final-0) [CPython]
+architecture:       64-bit
+cache:              no
+ground types:       python 
+numpy:              None
+random seed:        23191711
+hash randomization: on (PYTHONHASHSEED=236008840)
+
+sympy/printing/tests/test_conventions.py[3] 
+test_super_sub F
+test_requires_partial ok
+test_requires_partial_unspecified_variables f                             [FAIL]
+
+
+________________________________________________________________________________
+___________ sympy/printing/tests/test_conventions.py:test_super_sub ____________
+Traceback (most recent call last):
+  File "/testbed/sympy/printing/tests/test_conventions.py", line 35, in test_super_sub
+    assert split_super_sub("w𝟙") == ("w", [], ["𝟙"])
+AssertionError
+
+=== tests finished: 1 passed, 1 failed, 1 expected to fail, in 0.05 seconds ====
+DO *NOT* COMMIT!
+Updated 2 paths from 8294ddc56e
+Downloading pygments (1.2MiB)
+Downloading aiohttp (1.7MiB)
+Downloading chardet (1.4MiB)
+Downloading pyarrow (47.7MiB)
+Downloading hf-xet (4.3MiB)
+Downloading pandas (10.8MiB)
+Downloading numpy (16.1MiB)
+Downloading virtualenv (5.1MiB)
+ Downloading pygments
+ Downloading chardet
+ Downloading aiohttp
+ Downloading hf-xet
+ Downloading virtualenv
+ Downloading pandas
+ Downloading numpy
+ Downloading pyarrow
+Installed 73 packages in 86ms
+SWEBench results starts here
+FAILED
+SWEBench results ends here

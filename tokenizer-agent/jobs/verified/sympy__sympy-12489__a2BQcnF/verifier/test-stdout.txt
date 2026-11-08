@@ -1,0 +1,143 @@
+++ cd /testbed
+++ set +x
+++ python -m pip install -e .
+Obtaining file:///testbed
+  Preparing metadata (setup.py): started
+  Preparing metadata (setup.py): finished with status 'done'
+Requirement already satisfied: mpmath>=0.19 in /opt/miniconda3/envs/testbed/lib/python3.9/site-packages (from sympy==1.0.1.dev0) (1.3.0)
+Installing collected packages: sympy
+  Attempting uninstall: sympy
+    Found existing installation: sympy 1.0.1.dev0
+    Uninstalling sympy-1.0.1.dev0:
+      Successfully uninstalled sympy-1.0.1.dev0
+  DEPRECATION: Legacy editable install of sympy==1.0.1.dev0 from file:///testbed (setup.py develop) is deprecated. pip 25.0 will enforce this behaviour change. A possible replacement is to add a pyproject.toml or enable --use-pep517, and use setuptools >= 64. If the resulting installation is not behaving as expected, try using --config-settings editable_mode=compat. Please consult the setuptools documentation for more information. Discussion can be found at https://github.com/pypa/pip/issues/11457
+  Running setup.py develop for sympy
+Successfully installed sympy
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable.It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+++ git checkout aa9780761ad8c3c0f68beeef3a0ce5caac9e100b sympy/combinatorics/tests/test_permutations.py
+Updated 1 path from 9a926891e
+++ git clean -fd
+++ echo 'diff --git a/sympy/combinatorics/tests/test_permutations.py b/sympy/combinatorics/tests/test_permutations.py
+--- a/sympy/combinatorics/tests/test_permutations.py
++++ b/sympy/combinatorics/tests/test_permutations.py
+@@ -217,6 +217,52 @@ def test_Permutation():
+     assert b.cycle_structure == {2: 1, 3: 1, 1: 2}
+
+
++def test_Permutation_subclassing():
++    # Subclass that adds permutation application on iterables
++    class CustomPermutation(Permutation):
++        def __call__(self, *i):
++            try:
++                return super(CustomPermutation, self).__call__(*i)
++            except TypeError:
++                pass
++
++            try:
++                perm_obj = i[0]
++                return [self._array_form[j] for j in perm_obj]
++            except Exception:
++                raise TypeError('\''unrecognized argument'\'')
++
++        def __eq__(self, other):
++            if isinstance(other, Permutation):
++                return self._hashable_content() == other._hashable_content()
++            else:
++                return super(CustomPermutation, self).__eq__(other)
++
++        def __hash__(self):
++            return super(CustomPermutation, self).__hash__()
++
++    p = CustomPermutation([1, 2, 3, 0])
++    q = Permutation([1, 2, 3, 0])
++
++    assert p == q
++    raises(TypeError, lambda: q([1, 2]))
++    assert [2, 3] == p([1, 2])
++
++    assert type(p * q) == CustomPermutation
++    assert type(q * p) == Permutation  # True because q.__mul__(p) is called!
++
++    # Run all tests for the Permutation class also on the subclass
++    def wrapped_test_Permutation():
++        # Monkeypatch the class definition in the globals
++        globals()['\''__Perm'\''] = globals()['\''Permutation'\'']
++        globals()['\''Permutation'\''] = CustomPermutation
++        test_Permutation()
++        globals()['\''Permutation'\''] = globals()['\''__Perm'\'']  # Restore
++        del globals()['\''__Perm'\'']
++
++    wrapped_test_Permutation()
++
++
+ def test_josephus():
+     assert Permutation.josephus(4, 6, 1) == Permutation([3, 1, 0, 2, 5, 4])
+     assert Permutation.josephus(1, 5, 1).is_Identity
+'
+++ git apply --check /tmp/test_patch.diff
+++ git apply /tmp/test_patch.diff
++++ mktemp
+++ LOG_FILE=/tmp/tmp.wRqiTCHvEk
+++ export LOG_FILE
+++ exec
+++ exec
++++ tee /tmp/tmp.wRqiTCHvEk
+++ set +x
+/testbed/sympy/core/basic.py:3: DeprecationWarning: Using or importing the ABCs from 'collections' instead of from 'collections.abc' is deprecated since Python 3.3, and in 3.10 it will stop working
+  from collections import Mapping
+/testbed/sympy/plotting/plot.py:28: DeprecationWarning: Using or importing the ABCs from 'collections' instead of from 'collections.abc' is deprecated since Python 3.3, and in 3.10 it will stop working
+  from collections import Callable
+/testbed/sympy/core/basic.py:3: DeprecationWarning: Using or importing the ABCs from 'collections' instead of from 'collections.abc' is deprecated since Python 3.3, and in 3.10 it will stop working
+  from collections import Mapping
+/testbed/sympy/plotting/plot.py:28: DeprecationWarning: Using or importing the ABCs from 'collections' instead of from 'collections.abc' is deprecated since Python 3.3, and in 3.10 it will stop working
+  from collections import Callable
+============================= test process starts ==============================
+executable:         /opt/miniconda3/envs/testbed/bin/python  (3.9.20-final-0) [CPython]
+architecture:       64-bit
+cache:              no
+ground types:       python 
+random seed:        73058921
+hash randomization: on (PYTHONHASHSEED=3184985536)
+
+sympy/combinatorics/tests/test_permutations.py[10] 
+test_Permutation ok
+test_Permutation_subclassing F
+test_josephus ok
+test_ranking ok
+test_mul ok
+test_args ok
+test_Cycle ok
+test_from_sequence ok
+test_printing_cyclic ok
+test_printing_non_cyclic ok                                               [FAIL]
+
+
+________________________________________________________________________________
+_ sympy/combinatorics/tests/test_permutations.py:test_Permutation_subclassing __
+  File "/testbed/sympy/combinatorics/tests/test_permutations.py", line 251, in test_Permutation_subclassing
+    assert type(p * q) == CustomPermutation
+AssertionError
+
+============= tests finished: 9 passed, 1 failed, in 0.06 seconds ==============
+DO *NOT* COMMIT!
+Updated 1 path from 9a926891e
+Downloading aiohttp (1.7MiB)
+Downloading hf-xet (4.3MiB)
+Downloading chardet (1.4MiB)
+Downloading pygments (1.2MiB)
+Downloading virtualenv (5.1MiB)
+Downloading numpy (16.1MiB)
+Downloading pyarrow (47.7MiB)
+Downloading pandas (10.8MiB)
+ Downloading pygments
+ Downloading chardet
+ Downloading aiohttp
+ Downloading hf-xet
+ Downloading virtualenv
+ Downloading pandas
+ Downloading numpy
+ Downloading pyarrow
+Installed 73 packages in 94ms
+SWEBench results starts here
+FAILED
+SWEBench results ends here

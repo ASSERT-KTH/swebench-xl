@@ -1,0 +1,752 @@
+{
+  "instance_id": "elastic__elasticsearch-141519",
+  "encoding": "cl100k_base",
+  "total_tokens": 71285112,
+  "total_files": 35849,
+  "source_code_tokens": 44448913,
+  "source_code_files": 26897,
+  "by_extension": {
+    ".java": {
+      "tokens": 43996084,
+      "files": 26209
+    },
+    ".json": {
+      "tokens": 8944096,
+      "files": 1421
+    },
+    ".csv": {
+      "tokens": 8412834,
+      "files": 402
+    },
+    ".yml": {
+      "tokens": 3126762,
+      "files": 1882
+    },
+    ".md": {
+      "tokens": 1750617,
+      "files": 2354
+    },
+    ".txt": {
+      "tokens": 1301122,
+      "files": 780
+    },
+    ".csv-spec": {
+      "tokens": 1116950,
+      "files": 171
+    },
+    ".dict": {
+      "tokens": 421858,
+      "files": 1
+    },
+    ".key": {
+      "tokens": 298474,
+      "files": 235
+    },
+    ".gradle": {
+      "tokens": 270743,
+      "files": 526
+    },
+    ".crt": {
+      "tokens": 227321,
+      "files": 259
+    },
+    ".xml": {
+      "tokens": 211142,
+      "files": 73
+    },
+    ".interp": {
+      "tokens": 131267,
+      "files": 6
+    },
+    ".ndjson": {
+      "tokens": 124266,
+      "files": 7
+    },
+    ".groovy": {
+      "tokens": 111974,
+      "files": 76
+    },
+    "(no extension)": {
+      "tokens": 104719,
+      "files": 168
+    },
+    ".st": {
+      "tokens": 75844,
+      "files": 37
+    },
+    ".properties": {
+      "tokens": 68925,
+      "files": 51
+    },
+    ".toml": {
+      "tokens": 65853,
+      "files": 14
+    },
+    ".pem": {
+      "tokens": 65290,
+      "files": 86
+    },
+    ".yaml": {
+      "tokens": 43694,
+      "files": 549
+    },
+    ".asciidoc": {
+      "tokens": 43567,
+      "files": 40
+    },
+    ".sql-spec": {
+      "tokens": 37023,
+      "files": 17
+    },
+    ".expected": {
+      "tokens": 33836,
+      "files": 41
+    },
+    ".xsd": {
+      "tokens": 32060,
+      "files": 12
+    },
+    ".cpp": {
+      "tokens": 28980,
+      "files": 4
+    },
+    ".sh": {
+      "tokens": 27661,
+      "files": 62
+    },
+    ".data": {
+      "tokens": 27492,
+      "files": 8
+    },
+    ".g4": {
+      "tokens": 22940,
+      "files": 31
+    },
+    ".tdd": {
+      "tokens": 21204,
+      "files": 1
+    },
+    ".tds": {
+      "tokens": 16012,
+      "files": 2
+    },
+    ".vm": {
+      "tokens": 12792,
+      "files": 16
+    },
+    ".tokens": {
+      "tokens": 9671,
+      "files": 13
+    },
+    ".eql": {
+      "tokens": 8092,
+      "files": 2
+    },
+    ".bat": {
+      "tokens": 8020,
+      "files": 26
+    },
+    ".sql": {
+      "tokens": 7197,
+      "files": 13
+    },
+    ".promql": {
+      "tokens": 7070,
+      "files": 3
+    },
+    ".py": {
+      "tokens": 5498,
+      "files": 5
+    },
+    ".aff": {
+      "tokens": 5456,
+      "files": 4
+    },
+    ".ldif": {
+      "tokens": 4848,
+      "files": 5
+    },
+    ".policy": {
+      "tokens": 4730,
+      "files": 15
+    },
+    ".mapping": {
+      "tokens": 2930,
+      "files": 9
+    },
+    ".ts": {
+      "tokens": 2905,
+      "files": 5
+    },
+    ".security": {
+      "tokens": 2792,
+      "files": 4
+    },
+    ".template": {
+      "tokens": 2520,
+      "files": 3
+    },
+    ".snap": {
+      "tokens": 2449,
+      "files": 1
+    },
+    ".csv-spec-ignored": {
+      "tokens": 2099,
+      "files": 1
+    },
+    ".ps1": {
+      "tokens": 1899,
+      "files": 3
+    },
+    ".prefs": {
+      "tokens": 1698,
+      "files": 3
+    },
+    ".cnf": {
+      "tokens": 1691,
+      "files": 2
+    },
+    ".css": {
+      "tokens": 1649,
+      "files": 3
+    },
+    ".h": {
+      "tokens": 1615,
+      "files": 4
+    },
+    ".rbbi": {
+      "tokens": 1568,
+      "files": 3
+    },
+    ".log": {
+      "tokens": 1474,
+      "files": 1
+    },
+    ".series-spec": {
+      "tokens": 1369,
+      "files": 1
+    },
+    ".scenarios": {
+      "tokens": 1357,
+      "files": 1
+    },
+    ".markdown": {
+      "tokens": 1299,
+      "files": 1
+    },
+    ".bash": {
+      "tokens": 1242,
+      "files": 1
+    },
+    ".asc": {
+      "tokens": 1240,
+      "files": 1
+    },
+    ".featurespecification": {
+      "tokens": 1135,
+      "files": 14
+    },
+    ".chain": {
+      "tokens": 1040,
+      "files": 1
+    },
+    ".el": {
+      "tokens": 887,
+      "files": 1
+    },
+    ".conf": {
+      "tokens": 862,
+      "files": 6
+    },
+    ".test": {
+      "tokens": 855,
+      "files": 1
+    },
+    ".cert": {
+      "tokens": 846,
+      "files": 1
+    },
+    ".mod": {
+      "tokens": 844,
+      "files": 2
+    },
+    ".options": {
+      "tokens": 720,
+      "files": 1
+    },
+    ".sha1": {
+      "tokens": 664,
+      "files": 29
+    },
+    ".csr": {
+      "tokens": 576,
+      "files": 1
+    },
+    ".html": {
+      "tokens": 564,
+      "files": 4
+    },
+    ".service": {
+      "tokens": 486,
+      "files": 1
+    },
+    ".knnvectorsformat": {
+      "tokens": 444,
+      "files": 2
+    },
+    ".reservedstatehandlerprovider": {
+      "tokens": 431,
+      "files": 6
+    },
+    ".disabled": {
+      "tokens": 430,
+      "files": 1
+    },
+    ".ess": {
+      "tokens": 420,
+      "files": 1
+    },
+    ".ini": {
+      "tokens": 396,
+      "files": 3
+    },
+    ".js": {
+      "tokens": 312,
+      "files": 2
+    },
+    ".painlessextension": {
+      "tokens": 311,
+      "files": 16
+    },
+    ".clitoolprovider": {
+      "tokens": 304,
+      "files": 10
+    },
+    ".cfg": {
+      "tokens": 292,
+      "files": 2
+    },
+    ".codec": {
+      "tokens": 270,
+      "files": 2
+    },
+    ".docvaluesformat": {
+      "tokens": 262,
+      "files": 2
+    },
+    ".postingsformat": {
+      "tokens": 259,
+      "files": 2
+    },
+    ".actionloggingfieldsprovider": {
+      "tokens": 221,
+      "files": 2
+    },
+    ".esql": {
+      "tokens": 214,
+      "files": 6
+    },
+    ".lookup": {
+      "tokens": 208,
+      "files": 1
+    },
+    ".tdr": {
+      "tokens": 170,
+      "files": 1
+    },
+    ".diff": {
+      "tokens": 165,
+      "files": 1
+    },
+    ".dynamic": {
+      "tokens": 152,
+      "files": 1
+    },
+    ".pluginsservicetests$testextensionpoint": {
+      "tokens": 144,
+      "files": 1
+    },
+    ".estimatedheapusagecollector": {
+      "tokens": 139,
+      "files": 1
+    },
+    ".indexmetadatarestoretransformer": {
+      "tokens": 137,
+      "files": 1
+    },
+    ".instrumentationservice": {
+      "tokens": 132,
+      "files": 1
+    },
+    ".iglobalextension": {
+      "tokens": 129,
+      "files": 1
+    },
+    ".ldiff": {
+      "tokens": 128,
+      "files": 1
+    },
+    ".testservice": {
+      "tokens": 128,
+      "files": 1
+    },
+    ".alias-shadow": {
+      "tokens": 113,
+      "files": 1
+    },
+    ".dockerfile": {
+      "tokens": 94,
+      "files": 1
+    },
+    ".alias": {
+      "tokens": 93,
+      "files": 1
+    },
+    ".annotation": {
+      "tokens": 83,
+      "files": 1
+    },
+    ".remoteclustersecurityextension$provider": {
+      "tokens": 74,
+      "files": 1
+    },
+    ".amd64": {
+      "tokens": 74,
+      "files": 1
+    },
+    ".aarch64": {
+      "tokens": 74,
+      "files": 1
+    },
+    ".autoscalingextension": {
+      "tokens": 73,
+      "files": 1
+    },
+    ".config": {
+      "tokens": 72,
+      "files": 1
+    },
+    ".geometryformatterextension": {
+      "tokens": 72,
+      "files": 1
+    },
+    ".sslprofileextension": {
+      "tokens": 71,
+      "files": 1
+    },
+    ".cuvsserviceprovider": {
+      "tokens": 70,
+      "files": 1
+    },
+    ".inferenceserviceextension": {
+      "tokens": 68,
+      "files": 1
+    },
+    ".blockfactoryparameters": {
+      "tokens": 66,
+      "files": 1
+    },
+    ".this": {
+      "tokens": 66,
+      "files": 1
+    },
+    ".ftl": {
+      "tokens": 65,
+      "files": 3
+    },
+    ".unknown": {
+      "tokens": 50,
+      "files": 1
+    },
+    ".unknown_with_options": {
+      "tokens": 40,
+      "files": 1
+    },
+    ".componentversionnumber": {
+      "tokens": 38,
+      "files": 1
+    },
+    ".processor": {
+      "tokens": 32,
+      "files": 1
+    },
+    ".importorder": {
+      "tokens": 30,
+      "files": 1
+    },
+    ".securityextension": {
+      "tokens": 29,
+      "files": 3
+    },
+    ".namedxcontentprovider": {
+      "tokens": 28,
+      "files": 2
+    },
+    ".kver": {
+      "tokens": 21,
+      "files": 1
+    },
+    ".mustache": {
+      "tokens": 20,
+      "files": 1
+    },
+    ".configurationpropertiessource": {
+      "tokens": 17,
+      "files": 1
+    },
+    ".tsv": {
+      "tokens": 15,
+      "files": 1
+    },
+    ".projectresolverfactory": {
+      "tokens": 13,
+      "files": 1
+    },
+    ".xcontentbuilderextension": {
+      "tokens": 12,
+      "files": 1
+    },
+    ".erroronunknown": {
+      "tokens": 12,
+      "files": 1
+    },
+    ".secondaryauthactions": {
+      "tokens": 11,
+      "files": 1
+    },
+    ".painless": {
+      "tokens": 11,
+      "files": 1
+    },
+    ".xcontentprovider": {
+      "tokens": 10,
+      "files": 1
+    },
+    ".driver": {
+      "tokens": 9,
+      "files": 1
+    },
+    ".password": {
+      "tokens": 8,
+      "files": 1
+    },
+    ".keystore": {
+      "tokens": 8,
+      "files": 1
+    },
+    ".loggingdataprovider": {
+      "tokens": 8,
+      "files": 1
+    },
+    ".help": {
+      "tokens": 5,
+      "files": 2
+    },
+    ".keytab": {
+      "tokens": 0,
+      "files": 1
+    }
+  },
+  "top_files": [
+    {
+      "path": "x-pack/plugin/esql/qa/testFixtures/src/main/resources/data/many_numbers.csv",
+      "tokens": 7504504
+    },
+    {
+      "path": "x-pack/plugin/inference/qa/inference-service-tests/src/javaRestTest/resources/multilingual-e5-small.vocab.json",
+      "tokens": 5551325
+    },
+    {
+      "path": "x-pack/plugin/inference/qa/inference-service-tests/src/javaRestTest/resources/rerank-v1.vocab.json",
+      "tokens": 1453808
+    },
+    {
+      "path": "x-pack/plugin/ml/src/main/resources/org/elasticsearch/xpack/ml/aggs/categorization/ml-en.dict",
+      "tokens": 421858
+    },
+    {
+      "path": "x-pack/plugin/core/src/test/resources/org/elasticsearch/xpack/core/ml/inference/ngram_examples.json",
+      "tokens": 397383
+    },
+    {
+      "path": "x-pack/plugin/ml/src/main/resources/org/elasticsearch/xpack/ml/inference/persistence/lang_ident_model_1.json",
+      "tokens": 378364
+    },
+    {
+      "path": "x-pack/plugin/sql/src/test/resources/org/elasticsearch/xpack/sql/expression/function/scalar/datetime/tochar-generated.csv",
+      "tokens": 219539
+    },
+    {
+      "path": "x-pack/plugin/ml/src/main/resources/org/elasticsearch/xpack/ml/inference.nlp.tokenizers/spm_precompiled_normalizer.txt",
+      "tokens": 212262
+    },
+    {
+      "path": "x-pack/plugin/esql/qa/testFixtures/src/main/resources/data/airport_city_boundaries.csv",
+      "tokens": 181087
+    },
+    {
+      "path": "modules/lang-painless/src/main/generated/whitelist-json/painless-common.json",
+      "tokens": 141971
+    },
+    {
+      "path": "x-pack/plugin/esql/src/test/java/org/elasticsearch/xpack/esql/optimizer/LogicalPlanOptimizerTests.java",
+      "tokens": 129850
+    },
+    {
+      "path": "x-pack/plugin/inference/qa/inference-service-tests/src/javaRestTest/resources/elser_model_2.vocab.json",
+      "tokens": 126730
+    },
+    {
+      "path": "x-pack/plugin/esql/src/test/java/org/elasticsearch/xpack/esql/optimizer/PhysicalPlanOptimizerTests.java",
+      "tokens": 120148
+    },
+    {
+      "path": "gradle/verification-metadata.xml",
+      "tokens": 110190
+    },
+    {
+      "path": "x-pack/plugin/esql/src/main/java/org/elasticsearch/xpack/esql/parser/EsqlBaseParser.java",
+      "tokens": 104522
+    },
+    {
+      "path": "x-pack/plugin/esql/qa/testFixtures/src/main/resources/data/k8s.csv",
+      "tokens": 86365
+    },
+    {
+      "path": "x-pack/plugin/sql/src/main/java/org/elasticsearch/xpack/sql/parser/SqlBaseParser.java",
+      "tokens": 83003
+    },
+    {
+      "path": "x-pack/plugin/esql/qa/testFixtures/src/main/resources/data/exp_histo_sample.csv",
+      "tokens": 75706
+    },
+    {
+      "path": "x-pack/plugin/profiling/src/internalClusterTest/resources/data/profiling-stackframes.ndjson",
+      "tokens": 75146
+    },
+    {
+      "path": "x-pack/plugin/esql/src/main/java/org/elasticsearch/xpack/esql/parser/EsqlBaseLexer.java",
+      "tokens": 72111
+    },
+    {
+      "path": "server/src/test/java/org/elasticsearch/index/engine/InternalEngineTests.java",
+      "tokens": 69601
+    },
+    {
+      "path": "x-pack/plugin/esql/src/main/java/org/elasticsearch/xpack/esql/parser/EsqlBaseLexer.interp",
+      "tokens": 69013
+    },
+    {
+      "path": "modules/ingest-user-agent/src/main/resources/regexes.yml",
+      "tokens": 67958
+    },
+    {
+      "path": "x-pack/plugin/esql/qa/testFixtures/src/main/resources/data/tdigest_standard_index.csv",
+      "tokens": 66063
+    },
+    {
+      "path": "x-pack/plugin/esql/qa/testFixtures/src/main/resources/inlinestats.csv-spec",
+      "tokens": 61845
+    },
+    {
+      "path": "docs/release-notes/index.md",
+      "tokens": 59408
+    },
+    {
+      "path": "x-pack/plugin/esql/src/test/java/org/elasticsearch/xpack/esql/analysis/AnalyzerTests.java",
+      "tokens": 58506
+    },
+    {
+      "path": "x-pack/plugin/esql/qa/testFixtures/src/main/resources/data/histogram_standard_index.csv",
+      "tokens": 56968
+    },
+    {
+      "path": "x-pack/plugin/core/src/test/java/org/elasticsearch/xpack/core/security/authz/store/ReservedRolesStoreTests.java",
+      "tokens": 55172
+    },
+    {
+      "path": "x-pack/plugin/esql/qa/testFixtures/src/main/resources/lookup-join.csv-spec",
+      "tokens": 54763
+    },
+    {
+      "path": "server/src/test/java/org/elasticsearch/index/shard/IndexShardTests.java",
+      "tokens": 53619
+    },
+    {
+      "path": "docs/reference/elasticsearch/configuration-reference/security-settings.md",
+      "tokens": 50795
+    },
+    {
+      "path": "modules/lang-painless/src/main/java/org/elasticsearch/painless/antlr/PainlessParser.java",
+      "tokens": 50602
+    },
+    {
+      "path": "x-pack/plugin/ml/src/main/resources/org/elasticsearch/xpack/ml/utils/exact.properties",
+      "tokens": 49840
+    },
+    {
+      "path": "modules/lang-painless/src/yamlRestTest/resources/rest-api-spec/test/painless/50_script_doc_values.yml",
+      "tokens": 49694
+    },
+    {
+      "path": "x-pack/plugin/esql/qa/testFixtures/src/main/resources/data/airports.csv",
+      "tokens": 49544
+    },
+    {
+      "path": "x-pack/plugin/esql/src/test/java/org/elasticsearch/xpack/esql/parser/StatementParserTests.java",
+      "tokens": 49534
+    },
+    {
+      "path": "x-pack/plugin/esql/src/test/java/org/elasticsearch/xpack/esql/analysis/AnalyzerUnmappedTests.java",
+      "tokens": 43850
+    },
+    {
+      "path": "server/src/main/java/org/elasticsearch/index/shard/IndexShard.java",
+      "tokens": 43803
+    },
+    {
+      "path": "x-pack/plugin/esql/qa/testFixtures/src/main/resources/spatial.csv-spec",
+      "tokens": 43647
+    },
+    {
+      "path": "x-pack/plugin/esql/qa/testFixtures/src/main/resources/union_types.csv-spec",
+      "tokens": 43108
+    },
+    {
+      "path": "server/src/test/java/org/elasticsearch/search/aggregations/bucket/composite/CompositeAggregatorTests.java",
+      "tokens": 42165
+    },
+    {
+      "path": "x-pack/plugin/esql/src/test/java/org/elasticsearch/xpack/esql/analysis/VerifierTests.java",
+      "tokens": 41953
+    },
+    {
+      "path": "server/src/main/java/org/elasticsearch/search/aggregations/metrics/AbstractHyperLogLog.java",
+      "tokens": 41775
+    },
+    {
+      "path": "rest-api-spec/src/yamlRestTest/resources/rest-api-spec/test/search.vectors/60_dense_vector_dynamic_mapping.yml",
+      "tokens": 40920
+    },
+    {
+      "path": "x-pack/plugin/security/src/test/java/org/elasticsearch/xpack/security/authz/IndicesAndAliasesResolverTests.java",
+      "tokens": 40132
+    },
+    {
+      "path": "server/src/main/java/org/elasticsearch/repositories/blobstore/BlobStoreRepository.java",
+      "tokens": 40083
+    },
+    {
+      "path": "x-pack/plugin/security/src/test/java/org/elasticsearch/xpack/security/authz/store/CompositeRolesStoreTests.java",
+      "tokens": 38190
+    },
+    {
+      "path": "modules/lang-painless/src/test/java/org/elasticsearch/painless/StandardCastTests.java",
+      "tokens": 37968
+    },
+    {
+      "path": "x-pack/plugin/security/src/test/java/org/elasticsearch/xpack/security/audit/logfile/LoggingAuditTrailTests.java",
+      "tokens": 37157
+    }
+  ]
+}

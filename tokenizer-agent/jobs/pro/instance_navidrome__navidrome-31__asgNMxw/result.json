@@ -1,0 +1,120 @@
+{
+    "id": "bca95b00-0a6d-4bec-af30-ad03377f5b85",
+    "task_name": "scale-ai/instance_navidrome__navidrome-31799662706fedddf5bcc1a76b50409d1f91d327",
+    "trial_name": "instance_navidrome__navidrome-31__asgNMxw",
+    "trial_uri": "file:///home/pontus/Documents/GitHub/swebench-xl/tokenizer-agent/jobs/2026-08-31__17-03-08/instance_navidrome__navidrome-31__asgNMxw",
+    "task_id": {
+        "org": "scale-ai",
+        "name": "instance_navidrome__navidrome-31799662706fedddf5bcc1a76b50409d1f91d327",
+        "ref": "sha256:78c7897bd9e522d2c0272ab7f0050e0b1134b9477ba3d494dfb6ff71c356b3f5"
+    },
+    "source": "scale-ai/swe-bench-pro",
+    "task_checksum": "973406e58b491bcbf65ccd5cf680e2d18258e032c5e7c4d3905361699e7b9723",
+    "config": {
+        "task": {
+            "path": null,
+            "git_url": null,
+            "git_commit_id": null,
+            "name": "scale-ai/instance_navidrome__navidrome-31799662706fedddf5bcc1a76b50409d1f91d327",
+            "ref": "sha256:78c7897bd9e522d2c0272ab7f0050e0b1134b9477ba3d494dfb6ff71c356b3f5",
+            "overwrite": false,
+            "download_dir": null,
+            "source": "scale-ai/swe-bench-pro"
+        },
+        "trial_name": "instance_navidrome__navidrome-31__asgNMxw",
+        "trials_dir": "jobs/2026-08-31__17-03-08",
+        "install_only": false,
+        "timeout_multiplier": 1.0,
+        "agent_timeout_multiplier": null,
+        "verifier_timeout_multiplier": null,
+        "agent_setup_timeout_multiplier": null,
+        "environment_build_timeout_multiplier": null,
+        "agent": {
+            "name": "tokenizer_agent:RepoTokenizerAgent",
+            "import_path": null,
+            "model_name": null,
+            "n_concurrent": null,
+            "concurrency_group": null,
+            "skills": [],
+            "override_timeout_sec": null,
+            "override_setup_timeout_sec": null,
+            "max_timeout_sec": null,
+            "resume_trajectory": false,
+            "load_trajectory": null,
+            "extra_allowed_hosts": [],
+            "kwargs": {},
+            "mcp_servers": []
+        },
+        "user_agent": null,
+        "environment": {
+            "type": "docker",
+            "import_path": null,
+            "force_build": false,
+            "delete": true,
+            "cpu_enforcement_policy": "auto",
+            "memory_enforcement_policy": "auto",
+            "override_cpus": null,
+            "override_memory_mb": null,
+            "override_storage_mb": null,
+            "override_gpus": null,
+            "override_tpu": null,
+            "mounts": null,
+            "extra_docker_compose": [],
+            "kwargs": {},
+            "extra_allowed_hosts": []
+        },
+        "verifier": {
+            "override_timeout_sec": null,
+            "max_timeout_sec": null,
+            "disable": true
+        },
+        "artifacts": [],
+        "extra_instruction_paths": [],
+        "extra_instructions": [],
+        "job_id": "304012e7-3e96-4d6d-a75d-c3baf05e8461",
+        "source_trial": null
+    },
+    "agent_info": {
+        "name": "repo-tokenizer",
+        "version": "1.0.0",
+        "model_info": null
+    },
+    "agent_result": {
+        "n_input_tokens": null,
+        "n_cache_tokens": null,
+        "n_output_tokens": null,
+        "cost_usd": null,
+        "rollout_details": null,
+        "metadata": {
+            "repo_tokenizer": {
+                "instance_id": "instance_navidrome__navidrome-31799662706fedddf5bcc1a76b50409d1f91d327",
+                "testbed_dir": "/app",
+                "encoding": "cl100k_base",
+                "total_tokens": 982292,
+                "total_files": 908,
+                "source_code_tokens": 496481,
+                "source_code_files": 673,
+                "elapsed_sec": 2.54
+            }
+        }
+    },
+    "verifier_result": null,
+    "verifier_environment_mode": "shared",
+    "exception_info": null,
+    "started_at": "2026-08-31T16:22:00.386938Z",
+    "finished_at": "2026-08-31T16:22:47.246122Z",
+    "environment_setup": {
+        "started_at": "2026-08-31T16:22:00.389594Z",
+        "finished_at": "2026-08-31T16:22:33.684941Z"
+    },
+    "agent_setup": {
+        "started_at": "2026-08-31T16:22:33.684962Z",
+        "finished_at": "2026-08-31T16:22:33.684987Z"
+    },
+    "agent_execution": {
+        "started_at": "2026-08-31T16:22:33.685027Z",
+        "finished_at": "2026-08-31T16:22:36.229925Z"
+    },
+    "verifier": null,
+    "step_results": null
+}

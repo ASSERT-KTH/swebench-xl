@@ -1,0 +1,121 @@
+++ cd /testbed
+++ set +x
+++ python -m pip install -e .
+Obtaining file:///testbed
+  Preparing metadata (setup.py): started
+  Preparing metadata (setup.py): finished with status 'done'
+Requirement already satisfied: mpmath>=0.19 in /opt/miniconda3/envs/testbed/lib/python3.9/site-packages (from sympy==1.4.dev0) (1.3.0)
+Installing collected packages: sympy
+  Attempting uninstall: sympy
+    Found existing installation: sympy 1.4.dev0
+    Uninstalling sympy-1.4.dev0:
+      Successfully uninstalled sympy-1.4.dev0
+  DEPRECATION: Legacy editable install of sympy==1.4.dev0 from file:///testbed (setup.py develop) is deprecated. pip 25.0 will enforce this behaviour change. A possible replacement is to add a pyproject.toml or enable --use-pep517, and use setuptools >= 64. If the resulting installation is not behaving as expected, try using --config-settings editable_mode=compat. Please consult the setuptools documentation for more information. Discussion can be found at https://github.com/pypa/pip/issues/11457
+  Running setup.py develop for sympy
+Successfully installed sympy
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable.It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+++ git checkout 768da1c6f6ec907524b8ebbf6bf818c92b56101b sympy/algebras/tests/test_quaternion.py
+Updated 1 path from a86265912
+++ git clean -fd
+++ echo 'diff --git a/sympy/algebras/tests/test_quaternion.py b/sympy/algebras/tests/test_quaternion.py
+--- a/sympy/algebras/tests/test_quaternion.py
++++ b/sympy/algebras/tests/test_quaternion.py
+@@ -96,12 +96,12 @@ def test_quaternion_conversions():
+                                    2 * acos(sqrt(30)/30))
+
+     assert q1.to_rotation_matrix() == Matrix([[-S(2)/3, S(2)/15, S(11)/15],
+-                                     [S(2)/3, -S(1)/3, S(14)/15],
++                                     [S(2)/3, -S(1)/3, S(2)/3],
+                                      [S(1)/3, S(14)/15, S(2)/15]])
+
+     assert q1.to_rotation_matrix((1, 1, 1)) == Matrix([[-S(2)/3, S(2)/15, S(11)/15, S(4)/5],
+-                                                  [S(2)/3, -S(1)/3, S(14)/15, -S(4)/15],
+-                                                  [S(1)/3, S(14)/15, S(2)/15, -S(2)/5],
++                                                  [S(2)/3, -S(1)/3, S(2)/3, S(0)],
++                                                       [S(1)/3, S(14)/15, S(2)/15, -S(2)/5],
+                                                   [S(0), S(0), S(0), S(1)]])
+
+     theta = symbols("theta", real=True)
+@@ -120,3 +120,19 @@ def test_quaternion_conversions():
+                [sin(theta),  cos(theta), 0, -sin(theta) - cos(theta) + 1],
+                [0,           0,          1,  0],
+                [0,           0,          0,  1]])
++
++
++def test_quaternion_rotation_iss1593():
++    """
++    There was a sign mistake in the definition,
++    of the rotation matrix. This tests that particular sign mistake.
++    See issue 1593 for reference.
++    See wikipedia
++    https://en.wikipedia.org/wiki/Quaternions_and_spatial_rotation#Quaternion-derived_rotation_matrix
++    for the correct definition
++    """
++    q = Quaternion(cos(x/2), sin(x/2), 0, 0)
++    assert(trigsimp(q.to_rotation_matrix()) == Matrix([
++                [1,      0,      0],
++                [0, cos(x), -sin(x)],
++                [0, sin(x), cos(x)]]))
+'
+++ git apply --check /tmp/test_patch.diff
+++ git apply /tmp/test_patch.diff
++++ mktemp
+++ LOG_FILE=/tmp/tmp.8C2grcvT9T
+++ export LOG_FILE
+++ exec
+++ exec
++++ tee /tmp/tmp.8C2grcvT9T
+++ set +x
+============================= test process starts ==============================
+executable:         /opt/miniconda3/envs/testbed/bin/python  (3.9.20-final-0) [CPython]
+architecture:       64-bit
+cache:              no
+ground types:       python 
+numpy:              None
+random seed:        54100574
+hash randomization: on (PYTHONHASHSEED=2316909732)
+
+sympy/algebras/tests/test_quaternion.py[5] 
+test_quaternion_construction ok
+test_quaternion_complex_real_addition ok
+test_quaternion_functions ok
+test_quaternion_conversions F
+test_quaternion_rotation_iss1593 F                                        [FAIL]
+
+
+________________________________________________________________________________
+_____ sympy/algebras/tests/test_quaternion.py:test_quaternion_conversions ______
+Traceback (most recent call last):
+  File "/testbed/sympy/algebras/tests/test_quaternion.py", line 98, in test_quaternion_conversions
+    assert q1.to_rotation_matrix() == Matrix([[-S(2)/3, S(2)/15, S(11)/15],
+AssertionError
+________________________________________________________________________________
+___ sympy/algebras/tests/test_quaternion.py:test_quaternion_rotation_iss1593 ___
+Traceback (most recent call last):
+  File "/testbed/sympy/algebras/tests/test_quaternion.py", line 135, in test_quaternion_rotation_iss1593
+    assert(trigsimp(q.to_rotation_matrix()) == Matrix([
+AssertionError
+
+============= tests finished: 3 passed, 2 failed, in 0.48 seconds ==============
+DO *NOT* COMMIT!
+Updated 1 path from a86265912
+Downloading virtualenv (5.1MiB)
+Downloading chardet (1.4MiB)
+Downloading aiohttp (1.7MiB)
+Downloading pygments (1.2MiB)
+Downloading numpy (16.1MiB)
+Downloading pandas (10.8MiB)
+Downloading hf-xet (4.3MiB)
+Downloading pyarrow (47.7MiB)
+ Downloading pygments
+ Downloading chardet
+ Downloading aiohttp
+ Downloading hf-xet
+ Downloading virtualenv
+ Downloading pandas
+ Downloading numpy
+ Downloading pyarrow
+Installed 73 packages in 89ms
+SWEBench results starts here
+FAILED
+SWEBench results ends here

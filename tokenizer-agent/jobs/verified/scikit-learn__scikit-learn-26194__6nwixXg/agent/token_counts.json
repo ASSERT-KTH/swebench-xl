@@ -1,0 +1,324 @@
+{
+  "instance_id": "scikit-learn__scikit-learn-26194",
+  "encoding": "cl100k_base",
+  "total_tokens": 34861084,
+  "total_files": 1442,
+  "source_code_tokens": 33783133,
+  "source_code_files": 1111,
+  "by_extension": {
+    ".c": {
+      "tokens": 23949509,
+      "files": 53
+    },
+    ".cpp": {
+      "tokens": 6369238,
+      "files": 20
+    },
+    ".py": {
+      "tokens": 3105569,
+      "files": 909
+    },
+    ".rst": {
+      "tokens": 634659,
+      "files": 150
+    },
+    ".pyx": {
+      "tokens": 284320,
+      "files": 65
+    },
+    ".csv": {
+      "tokens": 115632,
+      "files": 6
+    },
+    ".lock": {
+      "tokens": 101278,
+      "files": 13
+    },
+    ".tp": {
+      "tokens": 84205,
+      "files": 20
+    },
+    ".css": {
+      "tokens": 53102,
+      "files": 2
+    },
+    ".js": {
+      "tokens": 40964,
+      "files": 2
+    },
+    ".pxi": {
+      "tokens": 24011,
+      "files": 3
+    },
+    ".txt": {
+      "tokens": 20525,
+      "files": 54
+    },
+    ".pxd": {
+      "tokens": 19537,
+      "files": 28
+    },
+    ".yml": {
+      "tokens": 17490,
+      "files": 41
+    },
+    ".sh": {
+      "tokens": 10461,
+      "files": 26
+    },
+    "(no extension)": {
+      "tokens": 10211,
+      "files": 19
+    },
+    ".html": {
+      "tokens": 9204,
+      "files": 6
+    },
+    ".h": {
+      "tokens": 3535,
+      "files": 8
+    },
+    ".md": {
+      "tokens": 2259,
+      "files": 6
+    },
+    ".json": {
+      "tokens": 2029,
+      "files": 2
+    },
+    ".bat": {
+      "tokens": 1146,
+      "files": 1
+    },
+    ".cfg": {
+      "tokens": 824,
+      "files": 1
+    },
+    ".toml": {
+      "tokens": 385,
+      "files": 1
+    },
+    ".star": {
+      "tokens": 376,
+      "files": 1
+    },
+    ".in": {
+      "tokens": 252,
+      "files": 2
+    },
+    ".yaml": {
+      "tokens": 189,
+      "files": 1
+    },
+    ".inc": {
+      "tokens": 128,
+      "files": 1
+    },
+    ".conf": {
+      "tokens": 46,
+      "files": 1
+    }
+  },
+  "top_files": [
+    {
+      "path": "sklearn/_loss/_loss.c",
+      "tokens": 2633673
+    },
+    {
+      "path": "sklearn/metrics/_dist_metrics.c",
+      "tokens": 1199452
+    },
+    {
+      "path": "sklearn/utils/sparsefuncs_fast.c",
+      "tokens": 874576
+    },
+    {
+      "path": "sklearn/tree/_tree.cpp",
+      "tokens": 768260
+    },
+    {
+      "path": "sklearn/neighbors/_kd_tree.c",
+      "tokens": 761823
+    },
+    {
+      "path": "sklearn/neighbors/_ball_tree.c",
+      "tokens": 755064
+    },
+    {
+      "path": "sklearn/datasets/_svmlight_format_fast.c",
+      "tokens": 699545
+    },
+    {
+      "path": "sklearn/utils/_cython_blas.c",
+      "tokens": 661236
+    },
+    {
+      "path": "sklearn/metrics/_pairwise_distances_reduction/_datasets_pair.cpp",
+      "tokens": 658135
+    },
+    {
+      "path": "sklearn/metrics/_pairwise_distances_reduction/_middle_term_computer.cpp",
+      "tokens": 651256
+    },
+    {
+      "path": "sklearn/linear_model/_cd_fast.c",
+      "tokens": 648486
+    },
+    {
+      "path": "sklearn/preprocessing/_target_encoder_fast.cpp",
+      "tokens": 596791
+    },
+    {
+      "path": "sklearn/linear_model/_sgd_fast.c",
+      "tokens": 568964
+    },
+    {
+      "path": "sklearn/tree/_splitter.c",
+      "tokens": 560599
+    },
+    {
+      "path": "sklearn/metrics/_pairwise_distances_reduction/_radius_neighbors.cpp",
+      "tokens": 542439
+    },
+    {
+      "path": "sklearn/cluster/_k_means_common.c",
+      "tokens": 531223
+    },
+    {
+      "path": "sklearn/cluster/_k_means_elkan.c",
+      "tokens": 521872
+    },
+    {
+      "path": "sklearn/metrics/_pairwise_distances_reduction/_argkmin.cpp",
+      "tokens": 518864
+    },
+    {
+      "path": "sklearn/ensemble/_hist_gradient_boosting/splitting.c",
+      "tokens": 512651
+    },
+    {
+      "path": "sklearn/tree/_criterion.c",
+      "tokens": 500727
+    },
+    {
+      "path": "sklearn/neighbors/_quad_tree.c",
+      "tokens": 496585
+    },
+    {
+      "path": "sklearn/svm/_libsvm.c",
+      "tokens": 482785
+    },
+    {
+      "path": "sklearn/metrics/_pairwise_distances_reduction/_argkmin_classmode.cpp",
+      "tokens": 479948
+    },
+    {
+      "path": "sklearn/utils/_seq_dataset.c",
+      "tokens": 467540
+    },
+    {
+      "path": "sklearn/ensemble/_hist_gradient_boosting/histogram.c",
+      "tokens": 466902
+    },
+    {
+      "path": "sklearn/linear_model/_sag_fast.c",
+      "tokens": 461121
+    },
+    {
+      "path": "sklearn/metrics/_pairwise_distances_reduction/_base.cpp",
+      "tokens": 459794
+    },
+    {
+      "path": "sklearn/cluster/_hierarchical_fast.cpp",
+      "tokens": 449939
+    },
+    {
+      "path": "sklearn/svm/_libsvm_sparse.c",
+      "tokens": 435744
+    },
+    {
+      "path": "sklearn/preprocessing/_csr_polynomial_expansion.c",
+      "tokens": 431281
+    },
+    {
+      "path": "sklearn/cluster/_k_means_lloyd.c",
+      "tokens": 424281
+    },
+    {
+      "path": "sklearn/decomposition/_online_lda_fast.c",
+      "tokens": 414873
+    },
+    {
+      "path": "sklearn/tree/_utils.c",
+      "tokens": 411515
+    },
+    {
+      "path": "sklearn/metrics/_pairwise_fast.c",
+      "tokens": 402060
+    },
+    {
+      "path": "sklearn/utils/_isfinite.c",
+      "tokens": 400889
+    },
+    {
+      "path": "sklearn/ensemble/_gradient_boosting.c",
+      "tokens": 386538
+    },
+    {
+      "path": "sklearn/_isotonic.c",
+      "tokens": 381921
+    },
+    {
+      "path": "sklearn/cluster/_k_means_minibatch.c",
+      "tokens": 381315
+    },
+    {
+      "path": "sklearn/utils/_random.c",
+      "tokens": 378615
+    },
+    {
+      "path": "sklearn/utils/murmurhash.c",
+      "tokens": 373359
+    },
+    {
+      "path": "sklearn/utils/_fast_dict.cpp",
+      "tokens": 368728
+    },
+    {
+      "path": "sklearn/ensemble/_hist_gradient_boosting/_predictor.c",
+      "tokens": 366977
+    },
+    {
+      "path": "sklearn/ensemble/_hist_gradient_boosting/utils.c",
+      "tokens": 366665
+    },
+    {
+      "path": "sklearn/manifold/_barnes_hut_tsne.c",
+      "tokens": 362515
+    },
+    {
+      "path": "sklearn/svm/_liblinear.c",
+      "tokens": 360043
+    },
+    {
+      "path": "sklearn/utils/_typedefs.c",
+      "tokens": 355206
+    },
+    {
+      "path": "sklearn/utils/arrayfuncs.c",
+      "tokens": 354489
+    },
+    {
+      "path": "sklearn/metrics/cluster/_expected_mutual_info_fast.c",
+      "tokens": 352935
+    },
+    {
+      "path": "sklearn/ensemble/_hist_gradient_boosting/_bitset.c",
+      "tokens": 343655
+    },
+    {
+      "path": "sklearn/ensemble/_hist_gradient_boosting/_gradient_boosting.c",
+      "tokens": 338383
+    }
+  ]
+}

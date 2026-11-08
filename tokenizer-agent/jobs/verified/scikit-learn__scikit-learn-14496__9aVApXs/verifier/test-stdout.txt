@@ -1,0 +1,271 @@
+++ cd /testbed
+++ set +x
+++ git checkout d49a6f13af2f22228d430ac64ac2b518937800d0 sklearn/cluster/tests/test_optics.py
+Updated 1 path from a03b3bd56
+++ git clean -fd
+++ echo 'diff --git a/sklearn/cluster/tests/test_optics.py b/sklearn/cluster/tests/test_optics.py
+--- a/sklearn/cluster/tests/test_optics.py
++++ b/sklearn/cluster/tests/test_optics.py
+@@ -101,6 +101,12 @@ def test_extract_xi():
+                    xi=0.4).fit(X)
+     assert_array_equal(clust.labels_, expected_labels)
+
++    # check float min_samples and min_cluster_size
++    clust = OPTICS(min_samples=0.1, min_cluster_size=0.08,
++                   max_eps=20, cluster_method='\''xi'\'',
++                   xi=0.4).fit(X)
++    assert_array_equal(clust.labels_, expected_labels)
++
+     X = np.vstack((C1, C2, C3, C4, C5, np.array([[100, 100]] * 2), C6))
+     expected_labels = np.r_[[1] * 5, [3] * 5, [2] * 5, [0] * 5, [2] * 5,
+                             -1, -1, [4] * 5]
+'
+++ git apply --check /tmp/test_patch.diff
+++ git apply /tmp/test_patch.diff
++++ mktemp
+++ LOG_FILE=/tmp/tmp.zo1ofL43UL
+++ export LOG_FILE
+++ exec
+++ exec
++++ tee /tmp/tmp.zo1ofL43UL
+++ set +x
+============================= test session starts ==============================
+platform linux -- Python 3.6.13, pytest-6.2.4, py-1.11.0, pluggy-0.13.1
+rootdir: /testbed, configfile: setup.cfg
+collected 40 items
+
+sklearn/cluster/tests/test_optics.py ............F...................... [ 87%]
+.....                                                                    [100%]
+
+=================================== FAILURES ===================================
+_______________________________ test_extract_xi ________________________________
+
+    def test_extract_xi():
+        # small and easy test (no clusters around other clusters)
+        # but with a clear noise data.
+        rng = np.random.RandomState(0)
+        n_points_per_cluster = 5
+    
+        C1 = [-5, -2] + .8 * rng.randn(n_points_per_cluster, 2)
+        C2 = [4, -1] + .1 * rng.randn(n_points_per_cluster, 2)
+        C3 = [1, -2] + .2 * rng.randn(n_points_per_cluster, 2)
+        C4 = [-2, 3] + .3 * rng.randn(n_points_per_cluster, 2)
+        C5 = [3, -2] + .6 * rng.randn(n_points_per_cluster, 2)
+        C6 = [5, 6] + .2 * rng.randn(n_points_per_cluster, 2)
+    
+        X = np.vstack((C1, C2, C3, C4, C5, np.array([[100, 100]]), C6))
+        expected_labels = np.r_[[2] * 5, [0] * 5, [1] * 5, [3] * 5, [1] * 5,
+                                -1, [4] * 5]
+        X, expected_labels = shuffle(X, expected_labels, random_state=rng)
+    
+        clust = OPTICS(min_samples=3, min_cluster_size=2,
+                       max_eps=20, cluster_method='xi',
+                       xi=0.4).fit(X)
+        assert_array_equal(clust.labels_, expected_labels)
+    
+        # check float min_samples and min_cluster_size
+        clust = OPTICS(min_samples=0.1, min_cluster_size=0.08,
+                       max_eps=20, cluster_method='xi',
+>                      xi=0.4).fit(X)
+
+sklearn/cluster/tests/test_optics.py:107: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+sklearn/cluster/optics_.py:248: in fit
+    max_eps=self.max_eps)
+sklearn/cluster/optics_.py:456: in compute_optics_graph
+    nbrs.fit(X)
+sklearn/neighbors/base.py:932: in fit
+    return self._fit(X)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = NearestNeighbors(algorithm='auto', leaf_size=30, metric='minkowski',
+                 metric_params=None, n_jobs=None, n_neighbors=3.1, p=2,
+                 radius=1.0)
+X = array([[  4.01440436,  -0.85457265],
+       [ -2.11619805,   2.90930917],
+       [  1.0091517 ,  -2.03743677],
+       ...     ],
+       [ -3.50595361,  -2.7818223 ],
+       [  4.89783897,   5.76387356],
+       [  2.24832278,  -1.53350579]])
+
+    def _fit(self, X):
+        self._check_algorithm_metric()
+        if self.metric_params is None:
+            self.effective_metric_params_ = {}
+        else:
+            self.effective_metric_params_ = self.metric_params.copy()
+    
+        effective_p = self.effective_metric_params_.get('p', self.p)
+        if self.metric in ['wminkowski', 'minkowski']:
+            self.effective_metric_params_['p'] = effective_p
+    
+        self.effective_metric_ = self.metric
+        # For minkowski distance, use more efficient methods where available
+        if self.metric == 'minkowski':
+            p = self.effective_metric_params_.pop('p', 2)
+            if p < 1:
+                raise ValueError("p must be greater than one "
+                                 "for minkowski metric")
+            elif p == 1:
+                self.effective_metric_ = 'manhattan'
+            elif p == 2:
+                self.effective_metric_ = 'euclidean'
+            elif p == np.inf:
+                self.effective_metric_ = 'chebyshev'
+            else:
+                self.effective_metric_params_['p'] = p
+    
+        if isinstance(X, NeighborsBase):
+            self._fit_X = X._fit_X
+            self._tree = X._tree
+            self._fit_method = X._fit_method
+            return self
+    
+        elif isinstance(X, BallTree):
+            self._fit_X = X.data
+            self._tree = X
+            self._fit_method = 'ball_tree'
+            return self
+    
+        elif isinstance(X, KDTree):
+            self._fit_X = X.data
+            self._tree = X
+            self._fit_method = 'kd_tree'
+            return self
+    
+        X = check_array(X, accept_sparse='csr')
+    
+        n_samples = X.shape[0]
+        if n_samples == 0:
+            raise ValueError("n_samples must be greater than 0")
+    
+        if issparse(X):
+            if self.algorithm not in ('auto', 'brute'):
+                warnings.warn("cannot use tree with sparse input: "
+                              "using brute force")
+            if self.effective_metric_ not in VALID_METRICS_SPARSE['brute'] \
+                    and not callable(self.effective_metric_):
+                raise ValueError("Metric '%s' not valid for sparse input. "
+                                 "Use sorted(sklearn.neighbors."
+                                 "VALID_METRICS_SPARSE['brute']) "
+                                 "to get valid options. "
+                                 "Metric can also be a callable function."
+                                 % (self.effective_metric_))
+            self._fit_X = X.copy()
+            self._tree = None
+            self._fit_method = 'brute'
+            return self
+    
+        self._fit_method = self.algorithm
+        self._fit_X = X
+    
+        if self._fit_method == 'auto':
+            # A tree approach is better for small number of neighbors,
+            # and KDTree is generally faster when available
+            if ((self.n_neighbors is None or
+                 self.n_neighbors < self._fit_X.shape[0] // 2) and
+                    self.metric != 'precomputed'):
+                if self.effective_metric_ in VALID_METRICS['kd_tree']:
+                    self._fit_method = 'kd_tree'
+                elif (callable(self.effective_metric_) or
+                        self.effective_metric_ in VALID_METRICS['ball_tree']):
+                    self._fit_method = 'ball_tree'
+                else:
+                    self._fit_method = 'brute'
+            else:
+                self._fit_method = 'brute'
+    
+        if self._fit_method == 'ball_tree':
+            self._tree = BallTree(X, self.leaf_size,
+                                  metric=self.effective_metric_,
+                                  **self.effective_metric_params_)
+        elif self._fit_method == 'kd_tree':
+            self._tree = KDTree(X, self.leaf_size,
+                                metric=self.effective_metric_,
+                                **self.effective_metric_params_)
+        elif self._fit_method == 'brute':
+            self._tree = None
+        else:
+            raise ValueError("algorithm = '%s' not recognized"
+                             % self.algorithm)
+    
+        if self.n_neighbors is not None:
+            if self.n_neighbors <= 0:
+                raise ValueError(
+                    "Expected n_neighbors > 0. Got %d" %
+                    self.n_neighbors
+                )
+            else:
+                if not isinstance(self.n_neighbors, numbers.Integral):
+                    raise TypeError(
+                        "n_neighbors does not take %s value, "
+                        "enter integer value" %
+>                       type(self.n_neighbors))
+E                   TypeError: n_neighbors does not take <class 'float'> value, enter integer value
+
+sklearn/neighbors/base.py:276: TypeError
+==================================== PASSES ====================================
+=========================== short test summary info ============================
+PASSED sklearn/cluster/tests/test_optics.py::test_extend_downward[r_plot0-3]
+PASSED sklearn/cluster/tests/test_optics.py::test_extend_downward[r_plot1-0]
+PASSED sklearn/cluster/tests/test_optics.py::test_extend_downward[r_plot2-4]
+PASSED sklearn/cluster/tests/test_optics.py::test_extend_downward[r_plot3-4]
+PASSED sklearn/cluster/tests/test_optics.py::test_extend_upward[r_plot0-6]
+PASSED sklearn/cluster/tests/test_optics.py::test_extend_upward[r_plot1-0]
+PASSED sklearn/cluster/tests/test_optics.py::test_extend_upward[r_plot2-0]
+PASSED sklearn/cluster/tests/test_optics.py::test_extend_upward[r_plot3-2]
+PASSED sklearn/cluster/tests/test_optics.py::test_the_extract_xi_labels[ordering0-clusters0-expected0]
+PASSED sklearn/cluster/tests/test_optics.py::test_the_extract_xi_labels[ordering1-clusters1-expected1]
+PASSED sklearn/cluster/tests/test_optics.py::test_the_extract_xi_labels[ordering2-clusters2-expected2]
+PASSED sklearn/cluster/tests/test_optics.py::test_the_extract_xi_labels[ordering3-clusters3-expected3]
+PASSED sklearn/cluster/tests/test_optics.py::test_cluster_hierarchy_
+PASSED sklearn/cluster/tests/test_optics.py::test_correct_number_of_clusters
+PASSED sklearn/cluster/tests/test_optics.py::test_minimum_number_of_sample_check
+PASSED sklearn/cluster/tests/test_optics.py::test_bad_extract
+PASSED sklearn/cluster/tests/test_optics.py::test_bad_reachability
+PASSED sklearn/cluster/tests/test_optics.py::test_close_extract
+PASSED sklearn/cluster/tests/test_optics.py::test_dbscan_optics_parity[3-0.1]
+PASSED sklearn/cluster/tests/test_optics.py::test_dbscan_optics_parity[3-0.3]
+PASSED sklearn/cluster/tests/test_optics.py::test_dbscan_optics_parity[3-0.5]
+PASSED sklearn/cluster/tests/test_optics.py::test_dbscan_optics_parity[10-0.1]
+PASSED sklearn/cluster/tests/test_optics.py::test_dbscan_optics_parity[10-0.3]
+PASSED sklearn/cluster/tests/test_optics.py::test_dbscan_optics_parity[10-0.5]
+PASSED sklearn/cluster/tests/test_optics.py::test_dbscan_optics_parity[20-0.1]
+PASSED sklearn/cluster/tests/test_optics.py::test_dbscan_optics_parity[20-0.3]
+PASSED sklearn/cluster/tests/test_optics.py::test_dbscan_optics_parity[20-0.5]
+PASSED sklearn/cluster/tests/test_optics.py::test_min_samples_edge_case
+PASSED sklearn/cluster/tests/test_optics.py::test_min_cluster_size[2]
+PASSED sklearn/cluster/tests/test_optics.py::test_min_cluster_size_invalid[0]
+PASSED sklearn/cluster/tests/test_optics.py::test_min_cluster_size_invalid[-1]
+PASSED sklearn/cluster/tests/test_optics.py::test_min_cluster_size_invalid[1.1]
+PASSED sklearn/cluster/tests/test_optics.py::test_min_cluster_size_invalid[2.2]
+PASSED sklearn/cluster/tests/test_optics.py::test_min_cluster_size_invalid2
+PASSED sklearn/cluster/tests/test_optics.py::test_processing_order
+PASSED sklearn/cluster/tests/test_optics.py::test_compare_to_ELKI
+PASSED sklearn/cluster/tests/test_optics.py::test_wrong_cluster_method
+PASSED sklearn/cluster/tests/test_optics.py::test_extract_dbscan
+PASSED sklearn/cluster/tests/test_optics.py::test_precomputed_dists
+FAILED sklearn/cluster/tests/test_optics.py::test_extract_xi - TypeError: n_n...
+=================== 1 failed, 39 passed, 1 warning in 1.67s ====================
+Updated 1 path from a03b3bd56
+Downloading aiohttp (1.7MiB)
+Downloading hf-xet (4.3MiB)
+Downloading pyarrow (47.7MiB)
+Downloading pandas (10.8MiB)
+Downloading pygments (1.2MiB)
+Downloading virtualenv (5.1MiB)
+Downloading numpy (16.1MiB)
+Downloading chardet (1.4MiB)
+ Downloading pygments
+ Downloading chardet
+ Downloading aiohttp
+ Downloading hf-xet
+ Downloading virtualenv
+ Downloading pandas
+ Downloading numpy
+ Downloading pyarrow
+Installed 73 packages in 107ms
+SWEBench results starts here
+FAILED
+SWEBench results ends here

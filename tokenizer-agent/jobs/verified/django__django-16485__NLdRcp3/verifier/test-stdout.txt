@@ -1,0 +1,106 @@
+++ cd /testbed
+++ set +x
+++ python -m pip install -e .
+Obtaining file:///testbed
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Checking if build backend supports build_editable: started
+  Checking if build backend supports build_editable: finished with status 'done'
+  Getting requirements to build editable: started
+  Getting requirements to build editable: finished with status 'done'
+  Preparing editable metadata (pyproject.toml): started
+  Preparing editable metadata (pyproject.toml): finished with status 'done'
+Requirement already satisfied: asgiref>=3.6.0 in /opt/miniconda3/envs/testbed/lib/python3.11/site-packages (from Django==5.0.dev20260813014451) (3.8.1)
+Requirement already satisfied: sqlparse>=0.2.2 in /opt/miniconda3/envs/testbed/lib/python3.11/site-packages (from Django==5.0.dev20260813014451) (0.5.1)
+Building wheels for collected packages: Django
+  Building editable for Django (pyproject.toml): started
+  Building editable for Django (pyproject.toml): finished with status 'done'
+  Created wheel for Django: filename=django-5.0.dev20260813014451-0.editable-py3-none-any.whl size=27379 sha256=dacbec027c055adb8f11b1eadb6d432ebf8c678b8b5bdcf81e10c6e629e0ce17
+  Stored in directory: /tmp/pip-ephem-wheel-cache-uuhrg5ke/wheels/49/5f/4f/01b7d31ea6ddac9643da788242d33e5fd3467d95d17b032c6b
+Successfully built Django
+Installing collected packages: Django
+  Attempting uninstall: Django
+    Found existing installation: Django 5.0.dev20230119053428
+    Uninstalling Django-5.0.dev20230119053428:
+      Successfully uninstalled Django-5.0.dev20230119053428
+Successfully installed Django-5.0.dev20260813014451
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable.It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+++ git checkout 39f83765e12b0e5d260b7939fc3fe281d879b279 tests/template_tests/filter_tests/test_floatformat.py
+Updated 1 path from 83dc8ce09c
+++ git clean -fd
+++ echo 'diff --git a/tests/template_tests/filter_tests/test_floatformat.py b/tests/template_tests/filter_tests/test_floatformat.py
+--- a/tests/template_tests/filter_tests/test_floatformat.py
++++ b/tests/template_tests/filter_tests/test_floatformat.py
+@@ -111,6 +111,8 @@ def test_zero_values(self):
+         self.assertEqual(
+             floatformat(0.000000000000000000015, 20), "0.00000000000000000002"
+         )
++        self.assertEqual(floatformat("0.00", 0), "0")
++        self.assertEqual(floatformat(Decimal("0.00"), 0), "0")
+
+     def test_negative_zero_values(self):
+         tests = [
+'
+++ git apply --check /tmp/test_patch.diff
+++ git apply /tmp/test_patch.diff
++++ mktemp
+++ LOG_FILE=/tmp/tmp.zaZ8Jb2aDZ
+++ export LOG_FILE
+++ exec
+++ exec
++++ tee /tmp/tmp.zaZ8Jb2aDZ
+++ set +x
+Testing against Django installed in '/testbed/django'
+Importing application template_tests
+Found 10 test(s).
+Skipping setup of unused database(s): default, other.
+System check identified no issues (0 silenced).
+test_floatformat01 (template_tests.filter_tests.test_floatformat.FloatformatTests.test_floatformat01) ... ok
+test_floatformat02 (template_tests.filter_tests.test_floatformat.FloatformatTests.test_floatformat02) ... ok
+test_float_dunder_method (template_tests.filter_tests.test_floatformat.FunctionTests.test_float_dunder_method) ... ok
+test_force_grouping (template_tests.filter_tests.test_floatformat.FunctionTests.test_force_grouping) ... ok
+test_infinity (template_tests.filter_tests.test_floatformat.FunctionTests.test_infinity) ... ok
+test_inputs (template_tests.filter_tests.test_floatformat.FunctionTests.test_inputs) ... ok
+test_low_decimal_precision (template_tests.filter_tests.test_floatformat.FunctionTests.test_low_decimal_precision)
+#15789 ... ok
+test_negative_zero_values (template_tests.filter_tests.test_floatformat.FunctionTests.test_negative_zero_values) ... ok
+test_unlocalize (template_tests.filter_tests.test_floatformat.FunctionTests.test_unlocalize) ... ok
+test_zero_values (template_tests.filter_tests.test_floatformat.FunctionTests.test_zero_values) ... ERROR
+
+======================================================================
+ERROR: test_zero_values (template_tests.filter_tests.test_floatformat.FunctionTests.test_zero_values)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/testbed/tests/template_tests/filter_tests/test_floatformat.py", line 114, in test_zero_values
+    self.assertEqual(floatformat("0.00", 0), "0")
+                     ^^^^^^^^^^^^^^^^^^^^^^
+  File "/testbed/django/template/defaultfilters.py", line 190, in floatformat
+    rounded_d = d.quantize(exp, ROUND_HALF_UP, Context(prec=prec))
+                                               ^^^^^^^^^^^^^^^^^^
+ValueError: valid range for prec is [1, MAX_PREC]
+
+----------------------------------------------------------------------
+Ran 10 tests in 0.006s
+
+FAILED (errors=1)
+Updated 1 path from 83dc8ce09c
+Downloading pandas (10.8MiB)
+Downloading pyarrow (47.7MiB)
+Downloading numpy (16.1MiB)
+Downloading pygments (1.2MiB)
+Downloading chardet (1.4MiB)
+Downloading hf-xet (4.3MiB)
+Downloading aiohttp (1.7MiB)
+Downloading virtualenv (5.1MiB)
+ Downloading pygments
+ Downloading chardet
+ Downloading aiohttp
+ Downloading hf-xet
+ Downloading virtualenv
+ Downloading pandas
+ Downloading numpy
+ Downloading pyarrow
+Installed 73 packages in 85ms
+SWEBench results starts here
+FAILED
+SWEBench results ends here

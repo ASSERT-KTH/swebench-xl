@@ -1,0 +1,255 @@
+++ cd /testbed
+++ set +x
+++ python -m pip install -e .
+Obtaining file:///testbed
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Checking if build backend supports build_editable: started
+  Checking if build backend supports build_editable: finished with status 'done'
+  Getting requirements to build editable: started
+  Getting requirements to build editable: finished with status 'done'
+  Preparing editable metadata (pyproject.toml): started
+  Preparing editable metadata (pyproject.toml): finished with status 'done'
+Requirement already satisfied: asgiref>=3.5.2 in /opt/miniconda3/envs/testbed/lib/python3.9/site-packages (from Django==4.2.dev20260815062319) (3.8.1)
+Requirement already satisfied: sqlparse>=0.2.2 in /opt/miniconda3/envs/testbed/lib/python3.9/site-packages (from Django==4.2.dev20260815062319) (0.5.1)
+Requirement already satisfied: typing-extensions>=4 in /opt/miniconda3/envs/testbed/lib/python3.9/site-packages (from asgiref>=3.5.2->Django==4.2.dev20260815062319) (4.12.2)
+Building wheels for collected packages: Django
+  Building editable for Django (pyproject.toml): started
+  Building editable for Django (pyproject.toml): finished with status 'done'
+  Created wheel for Django: filename=django-4.2.dev20260815062319-0.editable-py3-none-any.whl size=27300 sha256=9c102768ca0919c5482ebfc93ea8673d4839e3b5aa5f23e7d2c65df8289886ac
+  Stored in directory: /tmp/pip-ephem-wheel-cache-91djv_qj/wheels/7d/66/67/70d1ee2124ccf21d601c352e25cdca10f611f7c8b3f9ffb9e4
+Successfully built Django
+Installing collected packages: Django
+  Attempting uninstall: Django
+    Found existing installation: Django 4.2.dev20221104112025
+    Uninstalling Django-4.2.dev20221104112025:
+      Successfully uninstalled Django-4.2.dev20221104112025
+Successfully installed Django-4.2.dev20260815062319
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable.It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+++ git checkout 444b6da7cc229a58a2c476a52e45233001dc7073 tests/sitemaps_tests/test_http.py tests/sitemaps_tests/urls/http.py
+Updated 2 paths from 71c4678e3b
+++ git clean -fd
+++ echo 'diff --git a/tests/sitemaps_tests/test_http.py b/tests/sitemaps_tests/test_http.py
+--- a/tests/sitemaps_tests/test_http.py
++++ b/tests/sitemaps_tests/test_http.py
+@@ -507,6 +507,16 @@ def test_callable_sitemod_full(self):
+         self.assertXMLEqual(index_response.content.decode(), expected_content_index)
+         self.assertXMLEqual(sitemap_response.content.decode(), expected_content_sitemap)
+
++    def test_callable_sitemod_no_items(self):
++        index_response = self.client.get("/callable-lastmod-no-items/index.xml")
++        self.assertNotIn("Last-Modified", index_response)
++        expected_content_index = """<?xml version="1.0" encoding="UTF-8"?>
++        <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
++        <sitemap><loc>http://example.com/simple/sitemap-callable-lastmod.xml</loc></sitemap>
++        </sitemapindex>
++        """
++        self.assertXMLEqual(index_response.content.decode(), expected_content_index)
++
+
+ # RemovedInDjango50Warning
+ class DeprecatedTests(SitemapTestsBase):
+diff --git a/tests/sitemaps_tests/urls/http.py b/tests/sitemaps_tests/urls/http.py
+--- a/tests/sitemaps_tests/urls/http.py
++++ b/tests/sitemaps_tests/urls/http.py
+@@ -114,6 +114,16 @@ def lastmod(self, obj):
+         return obj.lastmod
+
+
++class CallableLastmodNoItemsSitemap(Sitemap):
++    location = "/location/"
++
++    def items(self):
++        return []
++
++    def lastmod(self, obj):
++        return obj.lastmod
++
++
+ class GetLatestLastmodNoneSiteMap(Sitemap):
+     changefreq = "never"
+     priority = 0.5
+@@ -233,6 +243,10 @@ def testmodelview(request, id):
+     "callable-lastmod": CallableLastmodFullSitemap,
+ }
+
++callable_lastmod_no_items_sitemap = {
++    "callable-lastmod": CallableLastmodNoItemsSitemap,
++}
++
+ urlpatterns = [
+     path("simple/index.xml", views.index, {"sitemaps": simple_sitemaps}),
+     path("simple-paged/index.xml", views.index, {"sitemaps": simple_sitemaps_paged}),
+@@ -417,6 +431,11 @@ def testmodelview(request, id):
+         views.sitemap,
+         {"sitemaps": callable_lastmod_full_sitemap},
+     ),
++    path(
++        "callable-lastmod-no-items/index.xml",
++        views.index,
++        {"sitemaps": callable_lastmod_no_items_sitemap},
++    ),
+     path(
+         "generic-lastmod/index.xml",
+         views.index,
+'
+++ git apply --check /tmp/test_patch.diff
+++ git apply /tmp/test_patch.diff
++++ mktemp
+++ LOG_FILE=/tmp/tmp.qUaV6CId09
+++ export LOG_FILE
+++ exec
+++ exec
++++ tee /tmp/tmp.qUaV6CId09
+++ set +x
+Creating test database for alias 'default' ('file:memorydb_default?mode=memory&cache=shared')...
+Testing against Django installed in '/testbed/django'
+Importing application sitemaps_tests
+Found 40 test(s).
+Skipping setup of unused database(s): other.
+Operations to perform:
+  Synchronize unmigrated apps: auth, contenttypes, messages, sessions, sitemaps_tests, staticfiles
+  Apply all migrations: admin, sites
+Synchronizing apps without migrations:
+  Creating tables...
+    Creating table django_content_type
+    Creating table auth_permission
+    Creating table auth_group
+    Creating table auth_user
+    Creating table django_session
+    Creating table sitemaps_tests_testmodel
+    Creating table sitemaps_tests_i18ntestmodel
+    Running deferred SQL...
+Running migrations:
+  Applying admin.0001_initial... OK
+  Applying admin.0002_logentry_remove_auto_add... OK
+  Applying admin.0003_logentry_add_action_flag_choices... OK
+  Applying sites.0001_initial... OK
+  Applying sites.0002_alter_domain_unique... OK
+System check identified no issues (0 silenced).
+test_simple_sitemap_custom_index (sitemaps_tests.test_http.DeprecatedTests)
+A simple sitemap index can be rendered with a custom template ... ok
+test_simple_sitemap_custom_index_warning (sitemaps_tests.test_http.DeprecatedTests) ... ok
+test_alternate_i18n_sitemap_index (sitemaps_tests.test_http.HTTPSitemapTests)
+A i18n sitemap with alternate/hreflang links can be rendered. ... ok
+test_alternate_i18n_sitemap_limited (sitemaps_tests.test_http.HTTPSitemapTests)
+A i18n sitemap index with limited languages can be rendered. ... ok
+test_alternate_i18n_sitemap_xdefault (sitemaps_tests.test_http.HTTPSitemapTests)
+A i18n sitemap index with x-default can be rendered. ... ok
+test_cached_sitemap_index (sitemaps_tests.test_http.HTTPSitemapTests)
+A cached sitemap index can be rendered (#2713). ... ok
+test_callable_sitemod_full (sitemaps_tests.test_http.HTTPSitemapTests)
+All items in the sitemap have `lastmod`. The `Last-Modified` header ... ok
+test_callable_sitemod_no_items (sitemaps_tests.test_http.HTTPSitemapTests) ... ERROR
+test_callable_sitemod_partial (sitemaps_tests.test_http.HTTPSitemapTests)
+Not all items have `lastmod`. Therefore the `Last-Modified` header ... ok
+test_empty_page (sitemaps_tests.test_http.HTTPSitemapTests) ... ok
+test_empty_sitemap (sitemaps_tests.test_http.HTTPSitemapTests) ... ok
+test_localized_priority (sitemaps_tests.test_http.HTTPSitemapTests)
+The priority value should not be localized. ... ok
+test_no_section (sitemaps_tests.test_http.HTTPSitemapTests) ... ok
+test_page_not_int (sitemaps_tests.test_http.HTTPSitemapTests) ... ok
+test_paged_sitemap (sitemaps_tests.test_http.HTTPSitemapTests)
+A sitemap may have multiple pages. ... ok
+test_requestsite_sitemap (sitemaps_tests.test_http.HTTPSitemapTests) ... ok
+test_simple_custom_sitemap (sitemaps_tests.test_http.HTTPSitemapTests)
+A simple sitemap can be rendered with a custom template ... ok
+test_simple_i18n_sitemap_index (sitemaps_tests.test_http.HTTPSitemapTests)
+A simple i18n sitemap index can be rendered, without logging variable ... ok
+test_simple_sitemap (sitemaps_tests.test_http.HTTPSitemapTests)
+A simple sitemap can be rendered ... ok
+test_simple_sitemap_custom_lastmod_index (sitemaps_tests.test_http.HTTPSitemapTests)
+A simple sitemap index can be rendered with a custom template ... ok
+test_simple_sitemap_index (sitemaps_tests.test_http.HTTPSitemapTests)
+A simple sitemap index can be rendered ... ok
+test_simple_sitemap_section (sitemaps_tests.test_http.HTTPSitemapTests)
+A simple sitemap section can be rendered ... ok
+test_sitemap_get_latest_lastmod (sitemaps_tests.test_http.HTTPSitemapTests)
+sitemapindex.lastmod is included when Sitemap.lastmod is ... ok
+test_sitemap_get_latest_lastmod_none (sitemaps_tests.test_http.HTTPSitemapTests)
+sitemapindex.lastmod is omitted when Sitemap.lastmod is ... ok
+test_sitemap_get_urls_no_site_1 (sitemaps_tests.test_http.HTTPSitemapTests)
+Check we get ImproperlyConfigured if we don't pass a site object to ... ok
+test_sitemap_get_urls_no_site_2 (sitemaps_tests.test_http.HTTPSitemapTests)
+Check we get ImproperlyConfigured when we don't pass a site object to ... ok
+test_sitemap_item (sitemaps_tests.test_http.HTTPSitemapTests)
+Check to make sure that the raw item is included with each ... ok
+test_sitemap_last_modified (sitemaps_tests.test_http.HTTPSitemapTests)
+Last-Modified header is set correctly ... ok
+test_sitemap_last_modified_date (sitemaps_tests.test_http.HTTPSitemapTests)
+The Last-Modified header should be support dates (without time). ... ok
+test_sitemap_last_modified_missing (sitemaps_tests.test_http.HTTPSitemapTests)
+Last-Modified header is missing when sitemap has no lastmod ... ok
+test_sitemap_last_modified_mixed (sitemaps_tests.test_http.HTTPSitemapTests)
+Last-Modified header is omitted when lastmod not on all items ... ok
+test_sitemap_last_modified_tz (sitemaps_tests.test_http.HTTPSitemapTests)
+The Last-Modified header should be converted from timezone aware dates ... ok
+test_sitemap_latest_lastmod_timezone (sitemaps_tests.test_http.HTTPSitemapTests)
+lastmod datestamp shows timezones if Sitemap.get_latest_lastmod ... ok
+test_sitemap_not_callable (sitemaps_tests.test_http.HTTPSitemapTests)
+A sitemap may not be callable. ... ok
+test_sitemap_without_entries (sitemaps_tests.test_http.HTTPSitemapTests) ... ok
+test_sitemaps_lastmod_ascending (sitemaps_tests.test_http.HTTPSitemapTests)
+The Last-Modified header is set to the most recent sitemap lastmod. ... ok
+test_sitemaps_lastmod_descending (sitemaps_tests.test_http.HTTPSitemapTests)
+The Last-Modified header is set to the most recent sitemap lastmod. ... ok
+test_sitemaps_lastmod_mixed_ascending_last_modified_missing (sitemaps_tests.test_http.HTTPSitemapTests)
+The Last-Modified header is omitted when lastmod isn't found in all ... ok
+test_sitemaps_lastmod_mixed_descending_last_modified_missing (sitemaps_tests.test_http.HTTPSitemapTests)
+The Last-Modified header is omitted when lastmod isn't found in all ... ok
+test_x_robots_sitemap (sitemaps_tests.test_http.HTTPSitemapTests) ... ok
+
+======================================================================
+ERROR: test_callable_sitemod_no_items (sitemaps_tests.test_http.HTTPSitemapTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/testbed/tests/sitemaps_tests/test_http.py", line 511, in test_callable_sitemod_no_items
+    index_response = self.client.get("/callable-lastmod-no-items/index.xml")
+  File "/testbed/django/test/client.py", line 839, in get
+    response = super().get(path, data=data, secure=secure, **extra)
+  File "/testbed/django/test/client.py", line 427, in get
+    return self.generic(
+  File "/testbed/django/test/client.py", line 544, in generic
+    return self.request(**r)
+  File "/testbed/django/test/client.py", line 813, in request
+    self.check_exception(response)
+  File "/testbed/django/test/client.py", line 666, in check_exception
+    raise exc_value
+  File "/testbed/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/testbed/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/testbed/django/contrib/sitemaps/views.py", line 34, in inner
+    response = func(request, *args, **kwargs)
+  File "/testbed/django/contrib/sitemaps/views.py", line 76, in index
+    site_lastmod = site.get_latest_lastmod()
+  File "/testbed/django/contrib/sitemaps/__init__.py", line 170, in get_latest_lastmod
+    return max([self.lastmod(item) for item in self.items()])
+ValueError: max() arg is an empty sequence
+
+----------------------------------------------------------------------
+Ran 40 tests in 0.058s
+
+FAILED (errors=1)
+Destroying test database for alias 'default' ('file:memorydb_default?mode=memory&cache=shared')...
+Updated 2 paths from 71c4678e3b
+Downloading aiohttp (1.7MiB)
+Downloading pandas (10.8MiB)
+Downloading numpy (16.1MiB)
+Downloading virtualenv (5.1MiB)
+Downloading hf-xet (4.3MiB)
+Downloading pygments (1.2MiB)
+Downloading chardet (1.4MiB)
+Downloading pyarrow (47.7MiB)
+ Downloading pygments
+ Downloading chardet
+ Downloading aiohttp
+ Downloading hf-xet
+ Downloading virtualenv
+ Downloading pandas
+ Downloading numpy
+ Downloading pyarrow
+Installed 73 packages in 89ms
+SWEBench results starts here
+FAILED
+SWEBench results ends here

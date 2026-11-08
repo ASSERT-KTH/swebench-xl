@@ -1,0 +1,119 @@
+++ cd /testbed
+++ set +x
+++ python -m pip install -e .
+Obtaining file:///testbed
+  Preparing metadata (setup.py): started
+  Preparing metadata (setup.py): finished with status 'done'
+Requirement already satisfied: mpmath>=0.19 in /opt/miniconda3/envs/testbed/lib/python3.9/site-packages (from sympy==1.9.dev0) (1.3.0)
+Installing collected packages: sympy
+  Attempting uninstall: sympy
+    Found existing installation: sympy 1.9.dev0
+    Uninstalling sympy-1.9.dev0:
+      Successfully uninstalled sympy-1.9.dev0
+  DEPRECATION: Legacy editable install of sympy==1.9.dev0 from file:///testbed (setup.py develop) is deprecated. pip 25.0 will enforce this behaviour change. A possible replacement is to add a pyproject.toml or enable --use-pep517, and use setuptools >= 64. If the resulting installation is not behaving as expected, try using --config-settings editable_mode=compat. Please consult the setuptools documentation for more information. Discussion can be found at https://github.com/pypa/pip/issues/11457
+  Running setup.py develop for sympy
+Successfully installed sympy
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable.It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+++ git checkout d9b18c518d64d0ebe8e35a98c2fb519938b9b151 sympy/polys/tests/test_monomials.py
+Updated 1 path from af271a28d4
+++ git clean -fd
+++ echo 'diff --git a/sympy/polys/tests/test_monomials.py b/sympy/polys/tests/test_monomials.py
+--- a/sympy/polys/tests/test_monomials.py
++++ b/sympy/polys/tests/test_monomials.py
+@@ -15,7 +15,6 @@
+ from sympy.core import S, symbols
+ from sympy.testing.pytest import raises
+
+-
+ def test_monomials():
+
+     # total_degree tests
+@@ -114,6 +113,9 @@ def test_monomials():
+     assert set(itermonomials([x], [3], [1])) == {x, x**3, x**2}
+     assert set(itermonomials([x], [3], [2])) == {x**3, x**2}
+
++    assert set(itermonomials([x, y], 3, 3)) == {x**3, x**2*y, x*y**2, y**3}
++    assert set(itermonomials([x, y], 3, 2)) == {x**2, x*y, y**2, x**3, x**2*y, x*y**2, y**3}
++
+     assert set(itermonomials([x, y], [0, 0])) == {S.One}
+     assert set(itermonomials([x, y], [0, 1])) == {S.One, y}
+     assert set(itermonomials([x, y], [0, 2])) == {S.One, y, y**2}
+@@ -132,6 +134,15 @@ def test_monomials():
+             {S.One, y**2, x*y**2, x, x*y, x**2, x**2*y**2, y, x**2*y}
+
+     i, j, k = symbols('\''i j k'\'', commutative=False)
++    assert set(itermonomials([i, j, k], 2, 2)) == \
++            {k*i, i**2, i*j, j*k, j*i, k**2, j**2, k*j, i*k}
++    assert set(itermonomials([i, j, k], 3, 2)) == \
++            {j*k**2, i*k**2, k*i*j, k*i**2, k**2, j*k*j, k*j**2, i*k*i, i*j,
++                    j**2*k, i**2*j, j*i*k, j**3, i**3, k*j*i, j*k*i, j*i,
++                    k**2*j, j*i**2, k*j, k*j*k, i*j*i, j*i*j, i*j**2, j**2,
++                    k*i*k, i**2, j*k, i*k, i*k*j, k**3, i**2*k, j**2*i, k**2*i,
++                    i*j*k, k*i
++            }
+     assert set(itermonomials([i, j, k], [0, 0, 0])) == {S.One}
+     assert set(itermonomials([i, j, k], [0, 0, 1])) == {1, k}
+     assert set(itermonomials([i, j, k], [0, 1, 0])) == {1, j}
+'
+++ git apply --check /tmp/test_patch.diff
+++ git apply /tmp/test_patch.diff
++++ mktemp
+++ LOG_FILE=/tmp/tmp.SpL7MzE7Z1
+++ export LOG_FILE
+++ exec
+++ exec
++++ tee /tmp/tmp.SpL7MzE7Z1
+++ set +x
+============================= test process starts ==============================
+executable:         /opt/miniconda3/envs/testbed/bin/python  (3.9.20-final-0) [CPython]
+architecture:       64-bit
+cache:              no
+ground types:       python 
+numpy:              None
+random seed:        31265289
+hash randomization: on (PYTHONHASHSEED=3926062225)
+
+sympy/polys/tests/test_monomials.py[11] 
+test_monomials F
+test_monomial_count ok
+test_monomial_mul ok
+test_monomial_div ok
+test_monomial_gcd ok
+test_monomial_lcm ok
+test_monomial_max ok
+test_monomial_pow ok
+test_monomial_min ok
+test_monomial_divides ok
+test_Monomial ok                                                          [FAIL]
+
+
+________________________________________________________________________________
+______________ sympy/polys/tests/test_monomials.py:test_monomials ______________
+Traceback (most recent call last):
+  File "/testbed/sympy/polys/tests/test_monomials.py", line 116, in test_monomials
+    assert set(itermonomials([x, y], 3, 3)) == {x**3, x**2*y, x*y**2, y**3}
+AssertionError
+
+============= tests finished: 10 passed, 1 failed, in 0.06 seconds =============
+DO *NOT* COMMIT!
+Updated 1 path from af271a28d4
+Downloading hf-xet (4.3MiB)
+Downloading pandas (10.8MiB)
+Downloading numpy (16.1MiB)
+Downloading pyarrow (47.7MiB)
+Downloading chardet (1.4MiB)
+Downloading pygments (1.2MiB)
+Downloading aiohttp (1.7MiB)
+Downloading virtualenv (5.1MiB)
+ Downloading pygments
+ Downloading chardet
+ Downloading aiohttp
+ Downloading hf-xet
+ Downloading virtualenv
+ Downloading pandas
+ Downloading numpy
+ Downloading pyarrow
+Installed 73 packages in 103ms
+SWEBench results starts here
+FAILED
+SWEBench results ends here

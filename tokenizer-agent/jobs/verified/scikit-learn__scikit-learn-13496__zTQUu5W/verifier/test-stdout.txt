@@ -1,0 +1,115 @@
+++ cd /testbed
+++ set +x
+++ git checkout 3aefc834dce72e850bff48689bea3c7dff5f3fad sklearn/ensemble/tests/test_iforest.py
+Updated 1 path from e85645a93
+++ git clean -fd
+++ echo 'diff --git a/sklearn/ensemble/tests/test_iforest.py b/sklearn/ensemble/tests/test_iforest.py
+--- a/sklearn/ensemble/tests/test_iforest.py
++++ b/sklearn/ensemble/tests/test_iforest.py
+@@ -295,6 +295,28 @@ def test_score_samples():
+                        clf2.score_samples([[2., 2.]]))
+
+
++@pytest.mark.filterwarnings('\''ignore:default contamination'\'')
++@pytest.mark.filterwarnings('\''ignore:behaviour="old"'\'')
++def test_iforest_warm_start():
++    """Test iterative addition of iTrees to an iForest """
++
++    rng = check_random_state(0)
++    X = rng.randn(20, 2)
++
++    # fit first 10 trees
++    clf = IsolationForest(n_estimators=10, max_samples=20,
++                          random_state=rng, warm_start=True)
++    clf.fit(X)
++    # remember the 1st tree
++    tree_1 = clf.estimators_[0]
++    # fit another 10 trees
++    clf.set_params(n_estimators=20)
++    clf.fit(X)
++    # expecting 20 fitted trees and no overwritten trees
++    assert len(clf.estimators_) == 20
++    assert clf.estimators_[0] is tree_1
++
++
+ @pytest.mark.filterwarnings('\''ignore:default contamination'\'')
+ @pytest.mark.filterwarnings('\''ignore:behaviour="old"'\'')
+ def test_deprecation():
+'
+++ git apply --check /tmp/test_patch.diff
+++ git apply /tmp/test_patch.diff
++++ mktemp
+++ LOG_FILE=/tmp/tmp.n9D3Z10752
+++ export LOG_FILE
+++ exec
+++ exec
++++ tee /tmp/tmp.n9D3Z10752
+++ set +x
+============================= test session starts ==============================
+platform linux -- Python 3.6.13, pytest-6.2.4, py-1.11.0, pluggy-0.13.1
+rootdir: /testbed, configfile: setup.cfg
+collected 20 items
+
+sklearn/ensemble/tests/test_iforest.py .............F......              [100%]
+
+=================================== FAILURES ===================================
+___________________________ test_iforest_warm_start ____________________________
+
+    @pytest.mark.filterwarnings('ignore:default contamination')
+    @pytest.mark.filterwarnings('ignore:behaviour="old"')
+    def test_iforest_warm_start():
+        """Test iterative addition of iTrees to an iForest """
+    
+        rng = check_random_state(0)
+        X = rng.randn(20, 2)
+    
+        # fit first 10 trees
+        clf = IsolationForest(n_estimators=10, max_samples=20,
+>                             random_state=rng, warm_start=True)
+E       TypeError: __init__() got an unexpected keyword argument 'warm_start'
+
+sklearn/ensemble/tests/test_iforest.py:308: TypeError
+==================================== PASSES ====================================
+=========================== short test summary info ============================
+PASSED sklearn/ensemble/tests/test_iforest.py::test_iforest
+PASSED sklearn/ensemble/tests/test_iforest.py::test_iforest_sparse
+PASSED sklearn/ensemble/tests/test_iforest.py::test_iforest_error
+PASSED sklearn/ensemble/tests/test_iforest.py::test_recalculate_max_depth
+PASSED sklearn/ensemble/tests/test_iforest.py::test_max_samples_attribute
+PASSED sklearn/ensemble/tests/test_iforest.py::test_iforest_parallel_regression
+PASSED sklearn/ensemble/tests/test_iforest.py::test_iforest_performance
+PASSED sklearn/ensemble/tests/test_iforest.py::test_iforest_works[0.25]
+PASSED sklearn/ensemble/tests/test_iforest.py::test_iforest_works[auto]
+PASSED sklearn/ensemble/tests/test_iforest.py::test_max_samples_consistency
+PASSED sklearn/ensemble/tests/test_iforest.py::test_iforest_subsampled_features
+PASSED sklearn/ensemble/tests/test_iforest.py::test_iforest_average_path_length
+PASSED sklearn/ensemble/tests/test_iforest.py::test_score_samples
+PASSED sklearn/ensemble/tests/test_iforest.py::test_deprecation
+PASSED sklearn/ensemble/tests/test_iforest.py::test_behaviour_param
+PASSED sklearn/ensemble/tests/test_iforest.py::test_iforest_chunks_works1[0.25-3]
+PASSED sklearn/ensemble/tests/test_iforest.py::test_iforest_chunks_works1[auto-2]
+PASSED sklearn/ensemble/tests/test_iforest.py::test_iforest_chunks_works2[0.25-3]
+PASSED sklearn/ensemble/tests/test_iforest.py::test_iforest_chunks_works2[auto-2]
+FAILED sklearn/ensemble/tests/test_iforest.py::test_iforest_warm_start - Type...
+========================= 1 failed, 19 passed in 1.96s =========================
+Updated 1 path from e85645a93
+Downloading pandas (10.8MiB)
+Downloading aiohttp (1.7MiB)
+Downloading virtualenv (5.1MiB)
+Downloading pygments (1.2MiB)
+Downloading pyarrow (47.7MiB)
+Downloading chardet (1.4MiB)
+Downloading hf-xet (4.3MiB)
+Downloading numpy (16.1MiB)
+ Downloading pygments
+ Downloading chardet
+ Downloading aiohttp
+ Downloading hf-xet
+ Downloading virtualenv
+ Downloading pandas
+ Downloading numpy
+ Downloading pyarrow
+Installed 73 packages in 86ms
+SWEBench results starts here
+FAILED
+SWEBench results ends here

@@ -1,0 +1,36 @@
+{
+    "schema_version": 2,
+    "task": {
+        "name": "elastic__elasticsearch-144029",
+        "type": "local",
+        "digest": "sha256:eb8c9be19ee3844958409da8c4cfbede01db6c881e63ba58542737ff2bdd3212",
+        "source": "instances",
+        "path": "/home/pontus/Downloads/swebench-xl/instances/elastic__elasticsearch-144029"
+    },
+    "install_only": false,
+    "timeout_multiplier": 1.0,
+    "agent": {
+        "name": "tokenizer_agent:RepoTokenizerAgent",
+        "skills": [],
+        "resume_trajectory": false,
+        "extra_allowed_hosts": [],
+        "kwargs": {},
+        "mcp_servers": []
+    },
+    "bridge_inputs": {},
+    "skills": [],
+    "environment": {
+        "type": "docker",
+        "force_build": false,
+        "delete": true,
+        "cpu_enforcement_policy": "auto",
+        "memory_enforcement_policy": "auto",
+        "extra_docker_compose": [],
+        "kwargs": {},
+        "extra_allowed_hosts": []
+    },
+    "verifier": {
+        "disable": true,
+        "environment_mode": "shared"
+    }
+}

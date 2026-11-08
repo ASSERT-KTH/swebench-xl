@@ -1,0 +1,45 @@
+{
+  "schema_version": "ATIF-v1.7",
+  "session_id": "instance_gravitational__teleport__d93biL9__agent",
+  "agent": {
+    "name": "repo-tokenizer",
+    "version": "1.0.0"
+  },
+  "steps": [
+    {
+      "step_id": 1,
+      "source": "agent",
+      "message": "Tokenized '/app' for instance 'instance_gravitational__teleport-db89206db6c2969266e664c7c0fb51b70e958b64'",
+      "tool_calls": [
+        {
+          "tool_call_id": "tc_1",
+          "function_name": "walk_and_count",
+          "arguments": {
+            "testbed_dir": "/app",
+            "encoding": "cl100k_base"
+          }
+        }
+      ],
+      "observation": {
+        "results": [
+          {
+            "source_call_id": "tc_1",
+            "content": "{\"total_tokens\": 26212683, \"total_files\": 5617, \"source_code_tokens\": 22065832, \"source_code_files\": 4160, \"top_extension\": \".go\"}"
+          }
+        ]
+      },
+      "llm_call_count": 0
+    }
+  ],
+  "notes": "Deterministic repo-sizing agent: does not attempt the task, only tokenizes its working directory with tiktoken.",
+  "final_metrics": {
+    "total_steps": 1,
+    "extra": {
+      "repo_total_tokens": 26212683,
+      "repo_source_code_tokens": 22065832,
+      "repo_total_files": 5617,
+      "repo_source_code_files": 4160,
+      "elapsed_seconds": 10.2
+    }
+  }
+}

@@ -1,0 +1,101 @@
+++ cd /testbed
+++ set +x
+++ python -m pip install -e .
+Obtaining file:///testbed
+  Preparing metadata (setup.py): started
+  Preparing metadata (setup.py): finished with status 'done'
+Requirement already satisfied: mpmath>=0.19 in /opt/miniconda3/envs/testbed/lib/python3.9/site-packages (from sympy==1.4.dev0) (1.3.0)
+Installing collected packages: sympy
+  Attempting uninstall: sympy
+    Found existing installation: sympy 1.4.dev0
+    Uninstalling sympy-1.4.dev0:
+      Successfully uninstalled sympy-1.4.dev0
+  DEPRECATION: Legacy editable install of sympy==1.4.dev0 from file:///testbed (setup.py develop) is deprecated. pip 25.0 will enforce this behaviour change. A possible replacement is to add a pyproject.toml or enable --use-pep517, and use setuptools >= 64. If the resulting installation is not behaving as expected, try using --config-settings editable_mode=compat. Please consult the setuptools documentation for more information. Discussion can be found at https://github.com/pypa/pip/issues/11457
+  Running setup.py develop for sympy
+Successfully installed sympy
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable.It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+++ git checkout 9ef28fba5b4d6d0168237c9c005a550e6dc27d81 sympy/printing/tests/test_mathematica.py
+Updated 1 path from 2a16dcf22
+++ git clean -fd
+++ echo 'diff --git a/sympy/printing/tests/test_mathematica.py b/sympy/printing/tests/test_mathematica.py
+--- a/sympy/printing/tests/test_mathematica.py
++++ b/sympy/printing/tests/test_mathematica.py
+@@ -2,7 +2,7 @@
+                         Rational, Integer, Tuple, Derivative)
+ from sympy.integrals import Integral
+ from sympy.concrete import Sum
+-from sympy.functions import exp, sin, cos, conjugate
++from sympy.functions import exp, sin, cos, conjugate, Max, Min
+
+ from sympy import mathematica_code as mcode
+
+@@ -28,6 +28,7 @@ def test_Function():
+     assert mcode(f(x, y, z)) == "f[x, y, z]"
+     assert mcode(sin(x) ** cos(x)) == "Sin[x]^Cos[x]"
+     assert mcode(conjugate(x)) == "Conjugate[x]"
++    assert mcode(Max(x,y,z)*Min(y,z)) == "Max[x, y, z]*Min[y, z]"
+
+
+ def test_Pow():
+'
+++ git apply --check /tmp/test_patch.diff
+++ git apply /tmp/test_patch.diff
++++ mktemp
+++ LOG_FILE=/tmp/tmp.JDktBTOlkq
+++ export LOG_FILE
+++ exec
+++ exec
++++ tee /tmp/tmp.JDktBTOlkq
+++ set +x
+============================= test process starts ==============================
+executable:         /opt/miniconda3/envs/testbed/bin/python  (3.9.20-final-0) [CPython]
+architecture:       64-bit
+cache:              no
+ground types:       python 
+numpy:              None
+random seed:        30324277
+hash randomization: on (PYTHONHASHSEED=274197488)
+
+sympy/printing/tests/test_mathematica.py[10] 
+test_Integer ok
+test_Rational ok
+test_Function F
+test_Pow ok
+test_Mul ok
+test_constants ok
+test_containers ok
+test_Integral ok
+test_Derivative ok
+test_Sum ok                                                               [FAIL]
+
+
+________________________________________________________________________________
+____________ sympy/printing/tests/test_mathematica.py:test_Function ____________
+Traceback (most recent call last):
+  File "/testbed/sympy/printing/tests/test_mathematica.py", line 31, in test_Function
+    assert mcode(Max(x,y,z)*Min(y,z)) == "Max[x, y, z]*Min[y, z]"
+AssertionError
+
+============= tests finished: 9 passed, 1 failed, in 0.02 seconds ==============
+DO *NOT* COMMIT!
+Updated 1 path from 2a16dcf22
+Downloading aiohttp (1.7MiB)
+Downloading numpy (16.1MiB)
+Downloading chardet (1.4MiB)
+Downloading pygments (1.2MiB)
+Downloading hf-xet (4.3MiB)
+Downloading virtualenv (5.1MiB)
+Downloading pandas (10.8MiB)
+Downloading pyarrow (47.7MiB)
+ Downloading pygments
+ Downloading chardet
+ Downloading aiohttp
+ Downloading hf-xet
+ Downloading virtualenv
+ Downloading pandas
+ Downloading numpy
+ Downloading pyarrow
+Installed 73 packages in 103ms
+SWEBench results starts here
+FAILED
+SWEBench results ends here

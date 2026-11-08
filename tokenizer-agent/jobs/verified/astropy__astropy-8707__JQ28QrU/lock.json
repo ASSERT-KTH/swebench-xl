@@ -1,0 +1,38 @@
+{
+    "schema_version": 2,
+    "task": {
+        "name": "astropy__astropy-8707",
+        "type": "git",
+        "digest": "sha256:b3f7e53f7e6b4370e64ed935676c360d294a05a2c7b287530f29e6b5ab3e33b1",
+        "source": "swebench-verified",
+        "path": "datasets/swebench-verified/astropy__astropy-8707",
+        "git_url": "https://github.com/laude-institute/harbor-datasets.git",
+        "git_commit_id": "86723674f04e4209ac479d0fb75d9d9f44b4377e"
+    },
+    "install_only": false,
+    "timeout_multiplier": 1.0,
+    "agent": {
+        "name": "tokenizer_agent:RepoTokenizerAgent",
+        "skills": [],
+        "resume_trajectory": false,
+        "extra_allowed_hosts": [],
+        "kwargs": {},
+        "mcp_servers": []
+    },
+    "bridge_inputs": {},
+    "skills": [],
+    "environment": {
+        "type": "docker",
+        "force_build": false,
+        "delete": true,
+        "cpu_enforcement_policy": "auto",
+        "memory_enforcement_policy": "auto",
+        "extra_docker_compose": [],
+        "kwargs": {},
+        "extra_allowed_hosts": []
+    },
+    "verifier": {
+        "disable": false,
+        "environment_mode": "shared"
+    }
+}

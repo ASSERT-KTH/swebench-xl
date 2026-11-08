@@ -1,0 +1,118 @@
+{
+    "id": "1aa92b85-8587-4cc7-b7a1-76a7e6885f83",
+    "task_name": "microsoft__vscode-315324",
+    "trial_name": "microsoft__vscode-315324__ipL3LSn",
+    "trial_uri": "file:///home/pontus/Documents/GitHub/swebench-xl/tokenizer-agent/jobs/2026-09-01__16-19-17/microsoft__vscode-315324__ipL3LSn",
+    "task_id": {
+        "path": "/home/pontus/Downloads/swebench-xl/instances/microsoft__vscode-315324"
+    },
+    "source": "instances",
+    "task_checksum": "c735bf544601b539c5cbe065e90362bcc456de5fcb8da783b302d1c9249269e6",
+    "config": {
+        "task": {
+            "path": "/home/pontus/Downloads/swebench-xl/instances/microsoft__vscode-315324",
+            "git_url": null,
+            "git_commit_id": null,
+            "name": null,
+            "ref": null,
+            "overwrite": false,
+            "download_dir": null,
+            "source": "instances"
+        },
+        "trial_name": "microsoft__vscode-315324__ipL3LSn",
+        "trials_dir": "jobs/2026-09-01__16-19-17",
+        "install_only": false,
+        "timeout_multiplier": 1.0,
+        "agent_timeout_multiplier": null,
+        "verifier_timeout_multiplier": null,
+        "agent_setup_timeout_multiplier": null,
+        "environment_build_timeout_multiplier": null,
+        "agent": {
+            "name": "tokenizer_agent:RepoTokenizerAgent",
+            "import_path": null,
+            "model_name": null,
+            "n_concurrent": null,
+            "concurrency_group": null,
+            "skills": [],
+            "override_timeout_sec": null,
+            "override_setup_timeout_sec": null,
+            "max_timeout_sec": null,
+            "resume_trajectory": false,
+            "load_trajectory": null,
+            "extra_allowed_hosts": [],
+            "kwargs": {},
+            "mcp_servers": []
+        },
+        "user_agent": null,
+        "environment": {
+            "type": "docker",
+            "import_path": null,
+            "force_build": false,
+            "delete": true,
+            "cpu_enforcement_policy": "auto",
+            "memory_enforcement_policy": "auto",
+            "override_cpus": null,
+            "override_memory_mb": null,
+            "override_storage_mb": null,
+            "override_gpus": null,
+            "override_tpu": null,
+            "mounts": null,
+            "extra_docker_compose": [],
+            "kwargs": {},
+            "extra_allowed_hosts": []
+        },
+        "verifier": {
+            "override_timeout_sec": null,
+            "max_timeout_sec": null,
+            "disable": true
+        },
+        "artifacts": [],
+        "extra_instruction_paths": [],
+        "extra_instructions": [],
+        "job_id": "65de59c4-9a1f-4770-9ad7-46be8a047c24",
+        "source_trial": null
+    },
+    "agent_info": {
+        "name": "repo-tokenizer",
+        "version": "1.0.0",
+        "model_info": null
+    },
+    "agent_result": {
+        "n_input_tokens": null,
+        "n_cache_tokens": null,
+        "n_output_tokens": null,
+        "cost_usd": null,
+        "rollout_details": null,
+        "metadata": {
+            "repo_tokenizer": {
+                "instance_id": "microsoft__vscode-315324",
+                "testbed_dir": "/testbed",
+                "encoding": "cl100k_base",
+                "total_tokens": 131355189,
+                "total_files": 22281,
+                "source_code_tokens": 102316858,
+                "source_code_files": 17129,
+                "elapsed_sec": 39.08
+            }
+        }
+    },
+    "verifier_result": null,
+    "verifier_environment_mode": "shared",
+    "exception_info": null,
+    "started_at": "2026-09-01T16:08:47.115542Z",
+    "finished_at": "2026-09-01T16:11:59.230663Z",
+    "environment_setup": {
+        "started_at": "2026-09-01T16:08:47.116129Z",
+        "finished_at": "2026-09-01T16:11:08.868473Z"
+    },
+    "agent_setup": {
+        "started_at": "2026-09-01T16:11:08.868492Z",
+        "finished_at": "2026-09-01T16:11:08.868516Z"
+    },
+    "agent_execution": {
+        "started_at": "2026-09-01T16:11:08.868550Z",
+        "finished_at": "2026-09-01T16:11:47.962276Z"
+    },
+    "verifier": null,
+    "step_results": null
+}

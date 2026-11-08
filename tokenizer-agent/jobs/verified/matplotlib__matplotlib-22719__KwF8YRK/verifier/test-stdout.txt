@@ -1,0 +1,298 @@
+++ cd /testbed
+++ set +x
+++ python -m pip install -e .
+Obtaining file:///testbed
+  Preparing metadata (setup.py): started
+  Preparing metadata (setup.py): finished with status 'done'
+Requirement already satisfied: cycler>=0.10 in /opt/miniconda3/envs/testbed/lib/python3.11/site-packages (from matplotlib==3.6.0.dev1932+g3cd319a26d) (0.11.0)
+Requirement already satisfied: fonttools>=4.22.0 in /opt/miniconda3/envs/testbed/lib/python3.11/site-packages (from matplotlib==3.6.0.dev1932+g3cd319a26d) (4.42.1)
+Requirement already satisfied: kiwisolver>=1.0.1 in /opt/miniconda3/envs/testbed/lib/python3.11/site-packages (from matplotlib==3.6.0.dev1932+g3cd319a26d) (1.4.5)
+Requirement already satisfied: numpy>=1.19 in /opt/miniconda3/envs/testbed/lib/python3.11/site-packages (from matplotlib==3.6.0.dev1932+g3cd319a26d) (1.25.2)
+Requirement already satisfied: packaging>=20.0 in /opt/miniconda3/envs/testbed/lib/python3.11/site-packages (from matplotlib==3.6.0.dev1932+g3cd319a26d) (23.1)
+Requirement already satisfied: pillow>=6.2.0 in /opt/miniconda3/envs/testbed/lib/python3.11/site-packages (from matplotlib==3.6.0.dev1932+g3cd319a26d) (10.0.0)
+Requirement already satisfied: pyparsing<3.0.0,>=2.2.1 in /opt/miniconda3/envs/testbed/lib/python3.11/site-packages (from matplotlib==3.6.0.dev1932+g3cd319a26d) (2.4.7)
+Requirement already satisfied: python-dateutil>=2.7 in /opt/miniconda3/envs/testbed/lib/python3.11/site-packages (from matplotlib==3.6.0.dev1932+g3cd319a26d) (2.8.2)
+Requirement already satisfied: setuptools_scm>=4 in /opt/miniconda3/envs/testbed/lib/python3.11/site-packages (from matplotlib==3.6.0.dev1932+g3cd319a26d) (7.1.0)
+Requirement already satisfied: six>=1.5 in /opt/miniconda3/envs/testbed/lib/python3.11/site-packages (from python-dateutil>=2.7->matplotlib==3.6.0.dev1932+g3cd319a26d) (1.16.0)
+Requirement already satisfied: setuptools in /opt/miniconda3/envs/testbed/lib/python3.11/site-packages (from setuptools_scm>=4->matplotlib==3.6.0.dev1932+g3cd319a26d) (68.1.2)
+Requirement already satisfied: typing-extensions in /opt/miniconda3/envs/testbed/lib/python3.11/site-packages (from setuptools_scm>=4->matplotlib==3.6.0.dev1932+g3cd319a26d) (4.7.1)
+Installing collected packages: matplotlib
+  Attempting uninstall: matplotlib
+    Found existing installation: matplotlib 3.6.0.dev1931+ga2a1b0a11b
+    Uninstalling matplotlib-3.6.0.dev1931+ga2a1b0a11b:
+      Successfully uninstalled matplotlib-3.6.0.dev1931+ga2a1b0a11b
+  DEPRECATION: Legacy editable install of matplotlib==3.6.0.dev1932+g3cd319a26d from file:///testbed (setup.py develop) is deprecated. pip 25.0 will enforce this behaviour change. A possible replacement is to add a pyproject.toml or enable --use-pep517, and use setuptools >= 64. If the resulting installation is not behaving as expected, try using --config-settings editable_mode=compat. Please consult the setuptools documentation for more information. Discussion can be found at https://github.com/pypa/pip/issues/11457
+  Running setup.py develop for matplotlib
+Successfully installed matplotlib-3.6.0.dev1932+g3cd319a26d
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable.It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+++ git checkout a2a1b0a11b993fe5f8fab64b6161e99243a6393c lib/matplotlib/tests/test_category.py
+Updated 0 paths from 1f760b9199
+++ git clean -fd
+++ echo 'diff --git a/lib/matplotlib/tests/test_category.py b/lib/matplotlib/tests/test_category.py
+--- a/lib/matplotlib/tests/test_category.py
++++ b/lib/matplotlib/tests/test_category.py
+@@ -307,6 +307,15 @@ def test_overriding_units_in_plot(fig_test, fig_ref):
+         assert y_units is ax.yaxis.units
+
+
++def test_no_deprecation_on_empty_data():
++    """
++    Smoke test to check that no deprecation warning is emitted. See #22640.
++    """
++    f, ax = plt.subplots()
++    ax.xaxis.update_units(["a", "b"])
++    ax.plot([], [])
++
++
+ def test_hist():
+     fig, ax = plt.subplots()
+     n, bins, patches = ax.hist(['\''a'\'', '\''b'\'', '\''a'\'', '\''c'\'', '\''ff'\''])
+'
+++ git apply --check /tmp/test_patch.diff
+++ git apply /tmp/test_patch.diff
++++ mktemp
+++ LOG_FILE=/tmp/tmp.uaquTsSJFX
+++ export LOG_FILE
+++ exec
+++ exec
++++ tee /tmp/tmp.uaquTsSJFX
+++ set +x
+============================= test session starts ==============================
+platform linux -- Python 3.11.10, pytest-8.3.3, pluggy-1.5.0
+rootdir: /testbed
+configfile: pytest.ini
+plugins: cov-5.0.0, rerunfailures-14.0, timeout-2.3.1, xdist-3.6.1
+collected 98 items
+
+lib/matplotlib/tests/test_category.py .................................. [ 34%]
+.......................................x..x..x..x..x..x..x..x.F.         [100%]
+
+=================================== FAILURES ===================================
+______________________ test_no_deprecation_on_empty_data _______________________
+
+self = <matplotlib.axis.XAxis object at 0x7fa569547550>
+x = array([], dtype=float64)
+
+    def convert_units(self, x):
+        # If x is natively supported by Matplotlib, doesn't need converting
+        if munits._is_natively_supported(x):
+            return x
+    
+        if self.converter is None:
+            self.converter = munits.registry.get_converter(x)
+    
+        if self.converter is None:
+            return x
+        try:
+>           ret = self.converter.convert(x, self.units, self)
+
+lib/matplotlib/axis.py:1622: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+lib/matplotlib/category.py:62: in convert
+    _api.warn_deprecated(
+lib/matplotlib/_api/deprecation.py:96: in warn_deprecated
+    warn_external(warning, category=MatplotlibDeprecationWarning)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+message = MatplotlibDeprecationWarning('Support for passing numbers through unit converters is deprecated since 3.5 and support will be removed two minor releases later; use Axis.convert_units instead.')
+category = <class 'matplotlib._api.deprecation.MatplotlibDeprecationWarning'>
+
+    def warn_external(message, category=None):
+        """
+        `warnings.warn` wrapper that sets *stacklevel* to "outside Matplotlib".
+    
+        The original emitter of the warning can be obtained by patching this
+        function back to `warnings.warn`, i.e. ``_api.warn_external =
+        warnings.warn`` (or ``functools.partial(warnings.warn, stacklevel=2)``,
+        etc.).
+        """
+        frame = sys._getframe()
+        for stacklevel in itertools.count(1):  # lgtm[py/unused-loop-variable]
+            if frame is None:
+                # when called in embedded context may hit frame is None
+                break
+            if not re.match(r"\A(matplotlib|mpl_toolkits)(\Z|\.(?!tests\.))",
+                            # Work around sphinx-gallery not setting __name__.
+                            frame.f_globals.get("__name__", "")):
+                break
+            frame = frame.f_back
+>       warnings.warn(message, category, stacklevel)
+E       matplotlib._api.deprecation.MatplotlibDeprecationWarning: Support for passing numbers through unit converters is deprecated since 3.5 and support will be removed two minor releases later; use Axis.convert_units instead.
+
+lib/matplotlib/_api/__init__.py:361: MatplotlibDeprecationWarning
+
+The above exception was the direct cause of the following exception:
+
+    def test_no_deprecation_on_empty_data():
+        """
+        Smoke test to check that no deprecation warning is emitted. See #22640.
+        """
+        f, ax = plt.subplots()
+        ax.xaxis.update_units(["a", "b"])
+>       ax.plot([], [])
+
+lib/matplotlib/tests/test_category.py:316: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+lib/matplotlib/axes/_axes.py:1640: in plot
+    self.add_line(line)
+lib/matplotlib/axes/_base.py:2301: in add_line
+    self._update_line_limits(line)
+lib/matplotlib/axes/_base.py:2324: in _update_line_limits
+    path = line.get_path()
+lib/matplotlib/lines.py:995: in get_path
+    self.recache()
+lib/matplotlib/lines.py:647: in recache
+    xconv = self.convert_xunits(self._xorig)
+lib/matplotlib/artist.py:250: in convert_xunits
+    return ax.xaxis.convert_units(x)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <matplotlib.axis.XAxis object at 0x7fa569547550>
+x = array([], dtype=float64)
+
+    def convert_units(self, x):
+        # If x is natively supported by Matplotlib, doesn't need converting
+        if munits._is_natively_supported(x):
+            return x
+    
+        if self.converter is None:
+            self.converter = munits.registry.get_converter(x)
+    
+        if self.converter is None:
+            return x
+        try:
+            ret = self.converter.convert(x, self.units, self)
+        except Exception as e:
+>           raise munits.ConversionError('Failed to convert value(s) to axis '
+                                         f'units: {x!r}') from e
+E           matplotlib.units.ConversionError: Failed to convert value(s) to axis units: array([], dtype=float64)
+
+lib/matplotlib/axis.py:1624: ConversionError
+=============================== warnings summary ===============================
+../opt/miniconda3/envs/testbed/lib/python3.11/site-packages/pyparsing.py:108
+  /opt/miniconda3/envs/testbed/lib/python3.11/site-packages/pyparsing.py:108: DeprecationWarning: module 'sre_constants' is deprecated
+    import sre_constants
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+==================================== PASSES ====================================
+=========================== short test summary info ============================
+PASSED lib/matplotlib/tests/test_category.py::TestUnitData::test_unit[single]
+PASSED lib/matplotlib/tests/test_category.py::TestUnitData::test_unit[unicode]
+PASSED lib/matplotlib/tests/test_category.py::TestUnitData::test_unit[mixed]
+PASSED lib/matplotlib/tests/test_category.py::TestUnitData::test_update
+PASSED lib/matplotlib/tests/test_category.py::TestUnitData::test_non_string_fails[single]
+PASSED lib/matplotlib/tests/test_category.py::TestUnitData::test_non_string_fails[unicode]
+PASSED lib/matplotlib/tests/test_category.py::TestUnitData::test_non_string_fails[mixed]
+PASSED lib/matplotlib/tests/test_category.py::TestUnitData::test_non_string_update_fails[single]
+PASSED lib/matplotlib/tests/test_category.py::TestUnitData::test_non_string_update_fails[unicode]
+PASSED lib/matplotlib/tests/test_category.py::TestUnitData::test_non_string_update_fails[mixed]
+PASSED lib/matplotlib/tests/test_category.py::TestStrCategoryConverter::test_convert[unicode]
+PASSED lib/matplotlib/tests/test_category.py::TestStrCategoryConverter::test_convert[ascii]
+PASSED lib/matplotlib/tests/test_category.py::TestStrCategoryConverter::test_convert[single]
+PASSED lib/matplotlib/tests/test_category.py::TestStrCategoryConverter::test_convert[integer string]
+PASSED lib/matplotlib/tests/test_category.py::TestStrCategoryConverter::test_convert[single + values>10]
+PASSED lib/matplotlib/tests/test_category.py::TestStrCategoryConverter::test_convert_one_string[ascii]
+PASSED lib/matplotlib/tests/test_category.py::TestStrCategoryConverter::test_convert_one_string[unicode]
+PASSED lib/matplotlib/tests/test_category.py::TestStrCategoryConverter::test_convert_one_number
+PASSED lib/matplotlib/tests/test_category.py::TestStrCategoryConverter::test_convert_float_array
+PASSED lib/matplotlib/tests/test_category.py::TestStrCategoryConverter::test_convert_fail[mixed]
+PASSED lib/matplotlib/tests/test_category.py::TestStrCategoryConverter::test_convert_fail[string integer]
+PASSED lib/matplotlib/tests/test_category.py::TestStrCategoryConverter::test_axisinfo
+PASSED lib/matplotlib/tests/test_category.py::TestStrCategoryConverter::test_default_units
+PASSED lib/matplotlib/tests/test_category.py::TestStrCategoryLocator::test_StrCategoryLocator
+PASSED lib/matplotlib/tests/test_category.py::TestStrCategoryLocator::test_StrCategoryLocatorPlot[scatter]
+PASSED lib/matplotlib/tests/test_category.py::TestStrCategoryLocator::test_StrCategoryLocatorPlot[plot]
+PASSED lib/matplotlib/tests/test_category.py::TestStrCategoryLocator::test_StrCategoryLocatorPlot[bar]
+PASSED lib/matplotlib/tests/test_category.py::TestStrCategoryFormatter::test_StrCategoryFormatter[ascii]
+PASSED lib/matplotlib/tests/test_category.py::TestStrCategoryFormatter::test_StrCategoryFormatter[unicode]
+PASSED lib/matplotlib/tests/test_category.py::TestStrCategoryFormatter::test_StrCategoryFormatterPlot[scatter-ascii]
+PASSED lib/matplotlib/tests/test_category.py::TestStrCategoryFormatter::test_StrCategoryFormatterPlot[scatter-unicode]
+PASSED lib/matplotlib/tests/test_category.py::TestStrCategoryFormatter::test_StrCategoryFormatterPlot[plot-ascii]
+PASSED lib/matplotlib/tests/test_category.py::TestStrCategoryFormatter::test_StrCategoryFormatterPlot[plot-unicode]
+PASSED lib/matplotlib/tests/test_category.py::TestStrCategoryFormatter::test_StrCategoryFormatterPlot[bar-ascii]
+PASSED lib/matplotlib/tests/test_category.py::TestStrCategoryFormatter::test_StrCategoryFormatterPlot[bar-unicode]
+PASSED lib/matplotlib/tests/test_category.py::TestPlotBytes::test_plot_bytes[string list-scatter]
+PASSED lib/matplotlib/tests/test_category.py::TestPlotBytes::test_plot_bytes[string list-plot]
+PASSED lib/matplotlib/tests/test_category.py::TestPlotBytes::test_plot_bytes[string list-bar]
+PASSED lib/matplotlib/tests/test_category.py::TestPlotBytes::test_plot_bytes[bytes list-scatter]
+PASSED lib/matplotlib/tests/test_category.py::TestPlotBytes::test_plot_bytes[bytes list-plot]
+PASSED lib/matplotlib/tests/test_category.py::TestPlotBytes::test_plot_bytes[bytes list-bar]
+PASSED lib/matplotlib/tests/test_category.py::TestPlotBytes::test_plot_bytes[bytes ndarray-scatter]
+PASSED lib/matplotlib/tests/test_category.py::TestPlotBytes::test_plot_bytes[bytes ndarray-plot]
+PASSED lib/matplotlib/tests/test_category.py::TestPlotBytes::test_plot_bytes[bytes ndarray-bar]
+PASSED lib/matplotlib/tests/test_category.py::TestPlotNumlike::test_plot_numlike[string list-scatter]
+PASSED lib/matplotlib/tests/test_category.py::TestPlotNumlike::test_plot_numlike[string list-plot]
+PASSED lib/matplotlib/tests/test_category.py::TestPlotNumlike::test_plot_numlike[string list-bar]
+PASSED lib/matplotlib/tests/test_category.py::TestPlotNumlike::test_plot_numlike[string ndarray-scatter]
+PASSED lib/matplotlib/tests/test_category.py::TestPlotNumlike::test_plot_numlike[string ndarray-plot]
+PASSED lib/matplotlib/tests/test_category.py::TestPlotNumlike::test_plot_numlike[string ndarray-bar]
+PASSED lib/matplotlib/tests/test_category.py::TestPlotNumlike::test_plot_numlike[bytes list-scatter]
+PASSED lib/matplotlib/tests/test_category.py::TestPlotNumlike::test_plot_numlike[bytes list-plot]
+PASSED lib/matplotlib/tests/test_category.py::TestPlotNumlike::test_plot_numlike[bytes list-bar]
+PASSED lib/matplotlib/tests/test_category.py::TestPlotNumlike::test_plot_numlike[bytes ndarray-scatter]
+PASSED lib/matplotlib/tests/test_category.py::TestPlotNumlike::test_plot_numlike[bytes ndarray-plot]
+PASSED lib/matplotlib/tests/test_category.py::TestPlotNumlike::test_plot_numlike[bytes ndarray-bar]
+PASSED lib/matplotlib/tests/test_category.py::TestPlotTypes::test_plot_unicode[scatter]
+PASSED lib/matplotlib/tests/test_category.py::TestPlotTypes::test_plot_unicode[plot]
+PASSED lib/matplotlib/tests/test_category.py::TestPlotTypes::test_plot_unicode[bar]
+PASSED lib/matplotlib/tests/test_category.py::TestPlotTypes::test_plot_xaxis[scatter]
+PASSED lib/matplotlib/tests/test_category.py::TestPlotTypes::test_plot_xaxis[plot]
+PASSED lib/matplotlib/tests/test_category.py::TestPlotTypes::test_plot_xaxis[bar]
+PASSED lib/matplotlib/tests/test_category.py::TestPlotTypes::test_plot_yaxis[scatter]
+PASSED lib/matplotlib/tests/test_category.py::TestPlotTypes::test_plot_yaxis[plot]
+PASSED lib/matplotlib/tests/test_category.py::TestPlotTypes::test_plot_yaxis[bar]
+PASSED lib/matplotlib/tests/test_category.py::TestPlotTypes::test_plot_xyaxis[scatter]
+PASSED lib/matplotlib/tests/test_category.py::TestPlotTypes::test_plot_xyaxis[plot]
+PASSED lib/matplotlib/tests/test_category.py::TestPlotTypes::test_plot_xyaxis[bar]
+PASSED lib/matplotlib/tests/test_category.py::TestPlotTypes::test_update_plot[scatter]
+PASSED lib/matplotlib/tests/test_category.py::TestPlotTypes::test_update_plot[plot]
+PASSED lib/matplotlib/tests/test_category.py::TestPlotTypes::test_update_plot[bar]
+PASSED lib/matplotlib/tests/test_category.py::TestPlotTypes::test_mixed_type_exception[mixed-scatter]
+PASSED lib/matplotlib/tests/test_category.py::TestPlotTypes::test_mixed_type_exception[mixed-bar]
+PASSED lib/matplotlib/tests/test_category.py::TestPlotTypes::test_mixed_type_exception[number integer-scatter]
+PASSED lib/matplotlib/tests/test_category.py::TestPlotTypes::test_mixed_type_exception[number integer-bar]
+PASSED lib/matplotlib/tests/test_category.py::TestPlotTypes::test_mixed_type_exception[string integer-scatter]
+PASSED lib/matplotlib/tests/test_category.py::TestPlotTypes::test_mixed_type_exception[string integer-bar]
+PASSED lib/matplotlib/tests/test_category.py::TestPlotTypes::test_mixed_type_exception[missing-scatter]
+PASSED lib/matplotlib/tests/test_category.py::TestPlotTypes::test_mixed_type_exception[missing-bar]
+PASSED lib/matplotlib/tests/test_category.py::TestPlotTypes::test_mixed_type_update_exception[mixed-scatter]
+PASSED lib/matplotlib/tests/test_category.py::TestPlotTypes::test_mixed_type_update_exception[mixed-bar]
+PASSED lib/matplotlib/tests/test_category.py::TestPlotTypes::test_mixed_type_update_exception[number integer-scatter]
+PASSED lib/matplotlib/tests/test_category.py::TestPlotTypes::test_mixed_type_update_exception[number integer-bar]
+PASSED lib/matplotlib/tests/test_category.py::TestPlotTypes::test_mixed_type_update_exception[string integer-scatter]
+PASSED lib/matplotlib/tests/test_category.py::TestPlotTypes::test_mixed_type_update_exception[string integer-bar]
+PASSED lib/matplotlib/tests/test_category.py::TestPlotTypes::test_mixed_type_update_exception[missing-scatter]
+PASSED lib/matplotlib/tests/test_category.py::TestPlotTypes::test_mixed_type_update_exception[missing-bar]
+PASSED lib/matplotlib/tests/test_category.py::test_overriding_units_in_plot[png]
+PASSED lib/matplotlib/tests/test_category.py::test_hist
+XFAIL lib/matplotlib/tests/test_category.py::TestPlotTypes::test_mixed_type_exception[mixed-plot]
+XFAIL lib/matplotlib/tests/test_category.py::TestPlotTypes::test_mixed_type_exception[number integer-plot]
+XFAIL lib/matplotlib/tests/test_category.py::TestPlotTypes::test_mixed_type_exception[string integer-plot]
+XFAIL lib/matplotlib/tests/test_category.py::TestPlotTypes::test_mixed_type_exception[missing-plot]
+XFAIL lib/matplotlib/tests/test_category.py::TestPlotTypes::test_mixed_type_update_exception[mixed-plot]
+XFAIL lib/matplotlib/tests/test_category.py::TestPlotTypes::test_mixed_type_update_exception[number integer-plot]
+XFAIL lib/matplotlib/tests/test_category.py::TestPlotTypes::test_mixed_type_update_exception[string integer-plot]
+XFAIL lib/matplotlib/tests/test_category.py::TestPlotTypes::test_mixed_type_update_exception[missing-plot]
+FAILED lib/matplotlib/tests/test_category.py::test_no_deprecation_on_empty_data
+============== 1 failed, 89 passed, 8 xfailed, 1 warning in 2.03s ==============
+Updated 1 path from 1f760b9199
+Downloading pandas (10.8MiB)
+Downloading hf-xet (4.3MiB)
+Downloading pyarrow (47.7MiB)
+Downloading chardet (1.4MiB)
+Downloading virtualenv (5.1MiB)
+Downloading pygments (1.2MiB)
+Downloading aiohttp (1.7MiB)
+Downloading numpy (16.1MiB)
+ Downloading pygments
+ Downloading chardet
+ Downloading aiohttp
+ Downloading hf-xet
+ Downloading virtualenv
+ Downloading pandas
+ Downloading numpy
+ Downloading pyarrow
+Installed 73 packages in 90ms
+SWEBench results starts here
+FAILED
+SWEBench results ends here

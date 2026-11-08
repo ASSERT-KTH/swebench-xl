@@ -1,0 +1,130 @@
+++ cd /testbed
+++ set +x
+++ python -m pip install -e .
+Obtaining file:///testbed
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Checking if build backend supports build_editable: started
+  Checking if build backend supports build_editable: finished with status 'done'
+  Getting requirements to build editable: started
+  Getting requirements to build editable: finished with status 'done'
+  Preparing editable metadata (pyproject.toml): started
+  Preparing editable metadata (pyproject.toml): finished with status 'done'
+Requirement already satisfied: asgiref>=3.5.2 in /opt/miniconda3/envs/testbed/lib/python3.9/site-packages (from Django==4.2.dev20260813014102) (3.8.1)
+Requirement already satisfied: sqlparse>=0.2.2 in /opt/miniconda3/envs/testbed/lib/python3.9/site-packages (from Django==4.2.dev20260813014102) (0.5.1)
+Requirement already satisfied: typing-extensions>=4 in /opt/miniconda3/envs/testbed/lib/python3.9/site-packages (from asgiref>=3.5.2->Django==4.2.dev20260813014102) (4.12.2)
+Building wheels for collected packages: Django
+  Building editable for Django (pyproject.toml): started
+  Building editable for Django (pyproject.toml): finished with status 'done'
+  Created wheel for Django: filename=django-4.2.dev20260813014102-0.editable-py3-none-any.whl size=27257 sha256=d6525c711baf8d03776dc5218be2554757d551711f3d4e3502e37e266b63d01b
+  Stored in directory: /tmp/pip-ephem-wheel-cache-on5ofub9/wheels/7d/66/67/70d1ee2124ccf21d601c352e25cdca10f611f7c8b3f9ffb9e4
+Successfully built Django
+Installing collected packages: Django
+  Attempting uninstall: Django
+    Found existing installation: Django 4.2.dev20220929112014
+    Uninstalling Django-4.2.dev20220929112014:
+      Successfully uninstalled Django-4.2.dev20220929112014
+Successfully installed Django-4.2.dev20260813014102
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable.It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+++ git checkout 19e6efa50b603af325e7f62058364f278596758f tests/async/tests.py
+Updated 1 path from 040b2ad074
+++ git clean -fd
+++ echo 'diff --git a/tests/async/tests.py b/tests/async/tests.py
+--- a/tests/async/tests.py
++++ b/tests/async/tests.py
+@@ -6,8 +6,8 @@
+
+ from django.core.cache import DEFAULT_CACHE_ALIAS, caches
+ from django.core.exceptions import ImproperlyConfigured, SynchronousOnlyOperation
+-from django.http import HttpResponse
+-from django.test import SimpleTestCase
++from django.http import HttpResponse, HttpResponseNotAllowed
++from django.test import RequestFactory, SimpleTestCase
+ from django.utils.asyncio import async_unsafe
+ from django.views.generic.base import View
+
+@@ -119,6 +119,25 @@ def test_options_handler_responds_correctly(self):
+
+                 self.assertIsInstance(response, HttpResponse)
+
++    def test_http_method_not_allowed_responds_correctly(self):
++        request_factory = RequestFactory()
++        tests = [
++            (SyncView, False),
++            (AsyncView, True),
++        ]
++        for view_cls, is_coroutine in tests:
++            with self.subTest(view_cls=view_cls, is_coroutine=is_coroutine):
++                instance = view_cls()
++                response = instance.http_method_not_allowed(request_factory.post("/"))
++                self.assertIs(
++                    asyncio.iscoroutine(response),
++                    is_coroutine,
++                )
++                if is_coroutine:
++                    response = asyncio.run(response)
++
++                self.assertIsInstance(response, HttpResponseNotAllowed)
++
+     def test_base_view_class_is_sync(self):
+         """
+         View and by extension any subclasses that don'\''t define handlers are
+'
+++ git apply --check /tmp/test_patch.diff
+++ git apply /tmp/test_patch.diff
++++ mktemp
+++ LOG_FILE=/tmp/tmp.hUEgVdSAfh
+++ export LOG_FILE
+++ exec
+++ exec
++++ tee /tmp/tmp.hUEgVdSAfh
+++ set +x
+test_async_unsafe (async.tests.AsyncUnsafeTest) ... ok
+test_async_unsafe_suppressed (async.tests.AsyncUnsafeTest)
+Utility class which turns an awaitable that only works on the thread with ... ok
+test_caches_local (async.tests.CacheTest) ... ok
+test_get_async_connection (async.tests.DatabaseConnectionTest) ... ok
+test_base_view_class_is_sync (async.tests.ViewTests)
+View and by extension any subclasses that don't define handlers are ... ok
+test_http_method_not_allowed_responds_correctly (async.tests.ViewTests) ... test_mixed_views_raise_error (async.tests.ViewTests) ... ok
+test_options_handler_responds_correctly (async.tests.ViewTests) ... ok
+test_views_are_correctly_marked (async.tests.ViewTests) ... ok
+
+======================================================================
+FAIL: test_http_method_not_allowed_responds_correctly (async.tests.ViewTests) (view_cls=<class 'async.tests.AsyncView'>, is_coroutine=True)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/testbed/tests/async/tests.py", line 132, in test_http_method_not_allowed_responds_correctly
+    self.assertIs(
+AssertionError: False is not True
+
+----------------------------------------------------------------------
+Ran 9 tests in 0.007s
+
+FAILED (failures=1)
+Testing against Django installed in '/testbed/django'
+Importing application async
+Found 9 test(s).
+Skipping setup of unused database(s): default, other.
+System check identified no issues (0 silenced).
+Updated 1 path from 040b2ad074
+Downloading hf-xet (4.3MiB)
+Downloading pyarrow (47.7MiB)
+Downloading aiohttp (1.7MiB)
+Downloading pandas (10.8MiB)
+Downloading numpy (16.1MiB)
+Downloading virtualenv (5.1MiB)
+Downloading pygments (1.2MiB)
+Downloading chardet (1.4MiB)
+ Downloading pygments
+ Downloading chardet
+ Downloading aiohttp
+ Downloading hf-xet
+ Downloading virtualenv
+ Downloading pandas
+ Downloading numpy
+ Downloading pyarrow
+Installed 73 packages in 99ms
+SWEBench results starts here
+FAILED
+SWEBench results ends here

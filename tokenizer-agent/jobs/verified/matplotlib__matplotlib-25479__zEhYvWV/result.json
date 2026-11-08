@@ -1,0 +1,127 @@
+{
+    "id": "0d0dae77-8d1b-4736-b9f2-92af6bc3537c",
+    "task_name": "matplotlib__matplotlib-25479",
+    "trial_name": "matplotlib__matplotlib-25479__zEhYvWV",
+    "trial_uri": "file:///home/pontus/Documents/GitHub/swebench-xl/tokenizer-agent/jobs/2026-08-31__12-35-16/matplotlib__matplotlib-25479__zEhYvWV",
+    "task_id": {
+        "git_url": "https://github.com/laude-institute/harbor-datasets.git",
+        "git_commit_id": "86723674f04e4209ac479d0fb75d9d9f44b4377e",
+        "path": "datasets/swebench-verified/matplotlib__matplotlib-25479"
+    },
+    "source": "swebench-verified",
+    "task_checksum": "cfab55f723ec1f796aa35ad38c97df477767490eec7942fbd057519d5fbfe108",
+    "config": {
+        "task": {
+            "path": "datasets/swebench-verified/matplotlib__matplotlib-25479",
+            "git_url": "https://github.com/laude-institute/harbor-datasets.git",
+            "git_commit_id": "86723674f04e4209ac479d0fb75d9d9f44b4377e",
+            "name": null,
+            "ref": null,
+            "overwrite": false,
+            "download_dir": null,
+            "source": "swebench-verified"
+        },
+        "trial_name": "matplotlib__matplotlib-25479__zEhYvWV",
+        "trials_dir": "jobs/2026-08-31__12-35-16",
+        "install_only": false,
+        "timeout_multiplier": 1.0,
+        "agent_timeout_multiplier": null,
+        "verifier_timeout_multiplier": null,
+        "agent_setup_timeout_multiplier": null,
+        "environment_build_timeout_multiplier": null,
+        "agent": {
+            "name": "tokenizer_agent:RepoTokenizerAgent",
+            "import_path": null,
+            "model_name": null,
+            "n_concurrent": null,
+            "concurrency_group": null,
+            "skills": [],
+            "override_timeout_sec": null,
+            "override_setup_timeout_sec": null,
+            "max_timeout_sec": null,
+            "resume_trajectory": false,
+            "load_trajectory": null,
+            "extra_allowed_hosts": [],
+            "kwargs": {},
+            "mcp_servers": []
+        },
+        "user_agent": null,
+        "environment": {
+            "type": "docker",
+            "import_path": null,
+            "force_build": false,
+            "delete": true,
+            "cpu_enforcement_policy": "auto",
+            "memory_enforcement_policy": "auto",
+            "override_cpus": null,
+            "override_memory_mb": null,
+            "override_storage_mb": null,
+            "override_gpus": null,
+            "override_tpu": null,
+            "mounts": null,
+            "extra_docker_compose": [],
+            "kwargs": {},
+            "extra_allowed_hosts": []
+        },
+        "verifier": {
+            "override_timeout_sec": null,
+            "max_timeout_sec": null,
+            "disable": false
+        },
+        "artifacts": [],
+        "extra_instruction_paths": [],
+        "extra_instructions": [],
+        "job_id": "d29290c5-a758-4156-ab4d-8568cd4bae52",
+        "source_trial": null
+    },
+    "agent_info": {
+        "name": "repo-tokenizer",
+        "version": "1.0.0",
+        "model_info": null
+    },
+    "agent_result": {
+        "n_input_tokens": null,
+        "n_cache_tokens": null,
+        "n_output_tokens": null,
+        "cost_usd": null,
+        "rollout_details": null,
+        "metadata": {
+            "repo_tokenizer": {
+                "instance_id": "matplotlib__matplotlib-25479",
+                "testbed_dir": "/testbed",
+                "encoding": "cl100k_base",
+                "total_tokens": 5565629,
+                "total_files": 1817,
+                "source_code_tokens": 3222067,
+                "source_code_files": 1198,
+                "elapsed_sec": 2.88
+            }
+        }
+    },
+    "verifier_result": {
+        "rewards": {
+            "reward": 0.0
+        }
+    },
+    "verifier_environment_mode": "shared",
+    "exception_info": null,
+    "started_at": "2026-08-31T11:21:21.524552Z",
+    "finished_at": "2026-08-31T11:23:17.641997Z",
+    "environment_setup": {
+        "started_at": "2026-08-31T11:21:21.524949Z",
+        "finished_at": "2026-08-31T11:22:15.256239Z"
+    },
+    "agent_setup": {
+        "started_at": "2026-08-31T11:22:15.256261Z",
+        "finished_at": "2026-08-31T11:22:15.256287Z"
+    },
+    "agent_execution": {
+        "started_at": "2026-08-31T11:22:15.256321Z",
+        "finished_at": "2026-08-31T11:22:18.142191Z"
+    },
+    "verifier": {
+        "started_at": "2026-08-31T11:22:18.287638Z",
+        "finished_at": "2026-08-31T11:23:06.056123Z"
+    },
+    "step_results": null
+}

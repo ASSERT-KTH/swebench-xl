@@ -1,0 +1,105 @@
+++ cd /testbed
+++ set +x
+++ python -m pip install -e .
+Obtaining file:///testbed
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Checking if build backend supports build_editable: started
+  Checking if build backend supports build_editable: finished with status 'done'
+  Getting requirements to build editable: started
+  Getting requirements to build editable: finished with status 'done'
+  Preparing editable metadata (pyproject.toml): started
+  Preparing editable metadata (pyproject.toml): finished with status 'done'
+Requirement already satisfied: asgiref>=3.5.2 in /opt/miniconda3/envs/testbed/lib/python3.9/site-packages (from Django==4.2.dev20260813013856) (3.8.1)
+Requirement already satisfied: sqlparse>=0.2.2 in /opt/miniconda3/envs/testbed/lib/python3.9/site-packages (from Django==4.2.dev20260813013856) (0.5.1)
+Requirement already satisfied: typing-extensions>=4 in /opt/miniconda3/envs/testbed/lib/python3.9/site-packages (from asgiref>=3.5.2->Django==4.2.dev20260813013856) (4.12.2)
+Building wheels for collected packages: Django
+  Building editable for Django (pyproject.toml): started
+  Building editable for Django (pyproject.toml): finished with status 'done'
+  Created wheel for Django: filename=django-4.2.dev20260813013856-0.editable-py3-none-any.whl size=27261 sha256=1c88c347139471f32605eade792e0569911cec9583bdb1c607ab5cb4e907c013
+  Stored in directory: /tmp/pip-ephem-wheel-cache-g9bs4s0a/wheels/7d/66/67/70d1ee2124ccf21d601c352e25cdca10f611f7c8b3f9ffb9e4
+Successfully built Django
+Installing collected packages: Django
+  Attempting uninstall: Django
+    Found existing installation: Django 4.2.dev20221014041050
+    Uninstalling Django-4.2.dev20221014041050:
+      Successfully uninstalled Django-4.2.dev20221014041050
+Successfully installed Django-4.2.dev20260813013856
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable.It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+++ git checkout 37c5b8c07be104fd5288cd87f101e48cb7a40298 tests/template_tests/filter_tests/test_floatformat.py
+Updated 1 path from 9621bd8a3d
+++ git clean -fd
+++ echo 'diff --git a/tests/template_tests/filter_tests/test_floatformat.py b/tests/template_tests/filter_tests/test_floatformat.py
+--- a/tests/template_tests/filter_tests/test_floatformat.py
++++ b/tests/template_tests/filter_tests/test_floatformat.py
+@@ -56,6 +56,10 @@ def test_inputs(self):
+         self.assertEqual(floatformat(0.12345, 2), "0.12")
+         self.assertEqual(floatformat(Decimal("555.555"), 2), "555.56")
+         self.assertEqual(floatformat(Decimal("09.000")), "9")
++        self.assertEqual(
++            floatformat(Decimal("123456.123456789012345678901"), 21),
++            "123456.123456789012345678901",
++        )
+         self.assertEqual(floatformat("foo"), "")
+         self.assertEqual(floatformat(13.1031, "bar"), "13.1031")
+         self.assertEqual(floatformat(18.125, 2), "18.13")
+'
+++ git apply --check /tmp/test_patch.diff
+++ git apply /tmp/test_patch.diff
++++ mktemp
+++ LOG_FILE=/tmp/tmp.cGnNBds8iX
+++ export LOG_FILE
+++ exec
+++ exec
++++ tee /tmp/tmp.cGnNBds8iX
+++ set +x
+test_floatformat01 (template_tests.filter_tests.test_floatformat.FloatformatTests) ... ok
+test_floatformat02 (template_tests.filter_tests.test_floatformat.FloatformatTests) ... ok
+test_float_dunder_method (template_tests.filter_tests.test_floatformat.FunctionTests) ... ok
+test_force_grouping (template_tests.filter_tests.test_floatformat.FunctionTests) ... ok
+test_infinity (template_tests.filter_tests.test_floatformat.FunctionTests) ... ok
+test_inputs (template_tests.filter_tests.test_floatformat.FunctionTests) ... FAIL
+test_low_decimal_precision (template_tests.filter_tests.test_floatformat.FunctionTests)
+#15789 ... ok
+test_negative_zero_values (template_tests.filter_tests.test_floatformat.FunctionTests) ... ok
+test_unlocalize (template_tests.filter_tests.test_floatformat.FunctionTests) ... ok
+test_zero_values (template_tests.filter_tests.test_floatformat.FunctionTests) ... ok
+
+======================================================================
+FAIL: test_inputs (template_tests.filter_tests.test_floatformat.FunctionTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/testbed/tests/template_tests/filter_tests/test_floatformat.py", line 59, in test_inputs
+    self.assertEqual(
+AssertionError: '123456.123456789000000000000' != '123456.123456789012345678901'
+
+----------------------------------------------------------------------
+Ran 10 tests in 0.004s
+
+FAILED (failures=1)
+Testing against Django installed in '/testbed/django'
+Importing application template_tests
+Found 10 test(s).
+Skipping setup of unused database(s): default, other.
+System check identified no issues (0 silenced).
+Updated 1 path from 9621bd8a3d
+Downloading virtualenv (5.1MiB)
+Downloading pyarrow (47.7MiB)
+Downloading pandas (10.8MiB)
+Downloading chardet (1.4MiB)
+Downloading hf-xet (4.3MiB)
+Downloading aiohttp (1.7MiB)
+Downloading numpy (16.1MiB)
+Downloading pygments (1.2MiB)
+ Downloading pygments
+ Downloading chardet
+ Downloading aiohttp
+ Downloading hf-xet
+ Downloading virtualenv
+ Downloading pandas
+ Downloading numpy
+ Downloading pyarrow
+Installed 73 packages in 89ms
+SWEBench results starts here
+FAILED
+SWEBench results ends here

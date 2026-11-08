@@ -1,0 +1,370 @@
+++ cd /testbed
+++ set +x
+++ python -m pip install -e .
+Obtaining file:///testbed
+  Preparing metadata (setup.py): started
+  Preparing metadata (setup.py): finished with status 'done'
+Requirement already satisfied: numpy>=1.12 in /opt/miniconda3/envs/testbed/lib/python3.10/site-packages (from xarray==0.12.3+22.gb7a361f1) (1.23.0)
+Requirement already satisfied: pandas>=0.19.2 in /opt/miniconda3/envs/testbed/lib/python3.10/site-packages (from xarray==0.12.3+22.gb7a361f1) (1.5.3)
+Requirement already satisfied: python-dateutil>=2.8.1 in /opt/miniconda3/envs/testbed/lib/python3.10/site-packages (from pandas>=0.19.2->xarray==0.12.3+22.gb7a361f1) (2.8.2)
+Requirement already satisfied: pytz>=2020.1 in /opt/miniconda3/envs/testbed/lib/python3.10/site-packages (from pandas>=0.19.2->xarray==0.12.3+22.gb7a361f1) (2023.3)
+Requirement already satisfied: six>=1.5 in /opt/miniconda3/envs/testbed/lib/python3.10/site-packages (from python-dateutil>=2.8.1->pandas>=0.19.2->xarray==0.12.3+22.gb7a361f1) (1.16.0)
+Installing collected packages: xarray
+  Attempting uninstall: xarray
+    Found existing installation: xarray 0.12.3+21.g118f4d99
+    Uninstalling xarray-0.12.3+21.g118f4d99:
+      Successfully uninstalled xarray-0.12.3+21.g118f4d99
+  DEPRECATION: Legacy editable install of xarray==0.12.3+22.gb7a361f1 from file:///testbed (setup.py develop) is deprecated. pip 25.0 will enforce this behaviour change. A possible replacement is to add a pyproject.toml or enable --use-pep517, and use setuptools >= 64. If the resulting installation is not behaving as expected, try using --config-settings editable_mode=compat. Please consult the setuptools documentation for more information. Discussion can be found at https://github.com/pypa/pip/issues/11457
+  Running setup.py develop for xarray
+Successfully installed xarray
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable.It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+++ git checkout 118f4d996e7711c9aced916e6049af9f28d5ec66 xarray/tests/test_combine.py
+Updated 0 paths from 088330d4
+++ git clean -fd
+++ echo 'diff --git a/xarray/tests/test_combine.py b/xarray/tests/test_combine.py
+--- a/xarray/tests/test_combine.py
++++ b/xarray/tests/test_combine.py
+@@ -581,6 +581,25 @@ def test_infer_order_from_coords(self):
+         expected = data
+         assert expected.broadcast_equals(actual)
+
++    def test_combine_leaving_bystander_dimensions(self):
++        # Check non-monotonic bystander dimension coord doesn'\''t raise
++        # ValueError on combine (https://github.com/pydata/xarray/issues/3150)
++        ycoord = ['\''a'\'', '\''c'\'', '\''b'\'']
++
++        data = np.random.rand(7, 3)
++
++        ds1 = Dataset(data_vars=dict(data=(['\''x'\'', '\''y'\''], data[:3, :])),
++                      coords=dict(x=[1, 2, 3], y=ycoord))
++
++        ds2 = Dataset(data_vars=dict(data=(['\''x'\'', '\''y'\''], data[3:, :])),
++                      coords=dict(x=[4, 5, 6, 7], y=ycoord))
++
++        expected = Dataset(data_vars=dict(data=(['\''x'\'', '\''y'\''], data)),
++                           coords=dict(x=[1, 2, 3, 4, 5, 6, 7], y=ycoord))
++
++        actual = combine_by_coords((ds1, ds2))
++        assert_identical(expected, actual)
++
+     def test_combine_by_coords_previously_failed(self):
+         # In the above scenario, one file is missing, containing the data for
+         # one year'\''s data for one variable.
+'
+++ git apply --check /tmp/test_patch.diff
+++ git apply /tmp/test_patch.diff
++++ mktemp
+++ LOG_FILE=/tmp/tmp.UtkoUiKt3N
+++ export LOG_FILE
+++ exec
+++ exec
++++ tee /tmp/tmp.UtkoUiKt3N
+++ set +x
+============================= test session starts ==============================
+platform linux -- Python 3.10.15, pytest-7.4.0, pluggy-1.5.0
+rootdir: /testbed
+configfile: setup.cfg
+plugins: hypothesis-6.114.0, cov-5.0.0, env-1.1.5, xdist-3.6.1
+collected 68 items
+
+xarray/tests/test_combine.py ..................................x........ [ 63%]
+........F................                                                [100%]
+
+=================================== FAILURES ===================================
+__________ TestCombineAuto.test_combine_leaving_bystander_dimensions ___________
+
+self = <xarray.tests.test_combine.TestCombineAuto object at 0x7f3e32d694b0>
+
+    def test_combine_leaving_bystander_dimensions(self):
+        # Check non-monotonic bystander dimension coord doesn't raise
+        # ValueError on combine (https://github.com/pydata/xarray/issues/3150)
+        ycoord = ['a', 'c', 'b']
+    
+        data = np.random.rand(7, 3)
+    
+        ds1 = Dataset(data_vars=dict(data=(['x', 'y'], data[:3, :])),
+                      coords=dict(x=[1, 2, 3], y=ycoord))
+    
+        ds2 = Dataset(data_vars=dict(data=(['x', 'y'], data[3:, :])),
+                      coords=dict(x=[4, 5, 6, 7], y=ycoord))
+    
+        expected = Dataset(data_vars=dict(data=(['x', 'y'], data)),
+                           coords=dict(x=[1, 2, 3, 4, 5, 6, 7], y=ycoord))
+    
+>       actual = combine_by_coords((ds1, ds2))
+
+xarray/tests/test_combine.py:600: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+datasets = (<xarray.Dataset>
+Dimensions:  (x: 3, y: 3)
+Coordinates:
+  * x        (x) int64 1 2 3
+  * y        (y) <U1 'a' 'c' 'b'...     (y) <U1 'a' 'c' 'b'
+Data variables:
+    data     (x, y) float64 0.13 0.251 0.6361 0.7119 ... 0.8089 0.2078 0.1463)
+compat = 'no_conflicts', data_vars = 'all', coords = 'different'
+fill_value = <NA>
+
+    def combine_by_coords(datasets, compat='no_conflicts', data_vars='all',
+                          coords='different', fill_value=dtypes.NA):
+        """
+        Attempt to auto-magically combine the given datasets into one by using
+        dimension coordinates.
+    
+        This method attempts to combine a group of datasets along any number of
+        dimensions into a single entity by inspecting coords and metadata and using
+        a combination of concat and merge.
+    
+        Will attempt to order the datasets such that the values in their dimension
+        coordinates are monotonic along all dimensions. If it cannot determine the
+        order in which to concatenate the datasets, it will raise a ValueError.
+        Non-coordinate dimensions will be ignored, as will any coordinate
+        dimensions which do not vary between each dataset.
+    
+        Aligns coordinates, but different variables on datasets can cause it
+        to fail under some scenarios. In complex cases, you may need to clean up
+        your data and use concat/merge explicitly (also see `manual_combine`).
+    
+        Works well if, for example, you have N years of data and M data variables,
+        and each combination of a distinct time period and set of data variables is
+        saved as its own dataset. Also useful for if you have a simulation which is
+        parallelized in multiple dimensions, but has global coordinates saved in
+        each file specifying the positions of points within the global domain.
+    
+        Parameters
+        ----------
+        datasets : sequence of xarray.Dataset
+            Dataset objects to combine.
+        compat : {'identical', 'equals', 'broadcast_equals',
+                  'no_conflicts'}, optional
+            String indicating how to compare variables of the same name for
+            potential conflicts:
+    
+            - 'broadcast_equals': all values must be equal when variables are
+              broadcast against each other to ensure common dimensions.
+            - 'equals': all values and dimensions must be the same.
+            - 'identical': all values, dimensions and attributes must be the
+              same.
+            - 'no_conflicts': only values which are not null in both datasets
+              must be equal. The returned dataset then contains the combination
+              of all non-null values.
+        data_vars : {'minimal', 'different', 'all' or list of str}, optional
+            Details are in the documentation of concat
+        coords : {'minimal', 'different', 'all' or list of str}, optional
+            Details are in the documentation of concat
+        fill_value : scalar, optional
+            Value to use for newly missing values
+    
+        Returns
+        -------
+        combined : xarray.Dataset
+    
+        See also
+        --------
+        concat
+        merge
+        combine_nested
+    
+        Examples
+        --------
+    
+        Combining two datasets using their common dimension coordinates. Notice
+        they are concatenated based on the values in their dimension coordinates,
+        not on their position in the list passed to `combine_by_coords`.
+    
+        >>> x1
+        <xarray.Dataset>
+        Dimensions:         (x: 3)
+        Coords:
+          * position        (x) int64   0 1 2
+        Data variables:
+            temperature     (x) float64 11.04 23.57 20.77 ...
+    
+        >>> x2
+        <xarray.Dataset>
+        Dimensions:         (x: 3)
+        Coords:
+          * position        (x) int64   3 4 5
+        Data variables:
+            temperature     (x) float64 6.97 8.13 7.42 ...
+    
+        >>> combined = xr.combine_by_coords([x2, x1])
+        <xarray.Dataset>
+        Dimensions:         (x: 6)
+        Coords:
+          * position        (x) int64   0 1 2 3 4 5
+        Data variables:
+            temperature     (x) float64 11.04 23.57 20.77 ...
+        """
+    
+        # Group by data vars
+        sorted_datasets = sorted(datasets, key=vars_as_keys)
+        grouped_by_vars = itertools.groupby(sorted_datasets, key=vars_as_keys)
+    
+        # Perform the multidimensional combine on each group of data variables
+        # before merging back together
+        concatenated_grouped_by_data_vars = []
+        for vars, datasets_with_same_vars in grouped_by_vars:
+            combined_ids, concat_dims = _infer_concat_order_from_coords(
+                list(datasets_with_same_vars))
+    
+            _check_shape_tile_ids(combined_ids)
+    
+            # Concatenate along all of concat_dims one by one to create single ds
+            concatenated = _combine_nd(combined_ids, concat_dims=concat_dims,
+                                       data_vars=data_vars, coords=coords,
+                                       fill_value=fill_value)
+    
+            # Check the overall coordinates are monotonically increasing
+            for dim in concatenated.dims:
+                if dim in concatenated:
+                    indexes = concatenated.indexes.get(dim)
+                    if not (indexes.is_monotonic_increasing
+                            or indexes.is_monotonic_decreasing):
+>                       raise ValueError("Resulting object does not have monotonic"
+                                         " global indexes along dimension {}"
+                                         .format(dim))
+E                       ValueError: Resulting object does not have monotonic global indexes along dimension y
+
+xarray/core/combine.py:509: ValueError
+=============================== warnings summary ===============================
+xarray/core/dask_array_ops.py:11
+xarray/core/dask_array_ops.py:11
+  /testbed/xarray/core/dask_array_ops.py:11: DeprecationWarning: distutils Version classes are deprecated. Use packaging.version instead.
+    if LooseVersion(dask.__version__) <= LooseVersion('0.18.2'):
+
+xarray/core/npcompat.py:135
+xarray/core/npcompat.py:135
+  /testbed/xarray/core/npcompat.py:135: DeprecationWarning: distutils Version classes are deprecated. Use packaging.version instead.
+    if LooseVersion(np.__version__) >= LooseVersion('1.13'):
+
+xarray/core/dask_array_compat.py:43
+xarray/core/dask_array_compat.py:43
+  /testbed/xarray/core/dask_array_compat.py:43: DeprecationWarning: distutils Version classes are deprecated. Use packaging.version instead.
+    if LooseVersion(dask_version) > LooseVersion('0.19.2'):
+
+xarray/plot/utils.py:17
+xarray/plot/utils.py:17
+  /testbed/xarray/plot/utils.py:17: DeprecationWarning: distutils Version classes are deprecated. Use packaging.version instead.
+    if LooseVersion(nc_time_axis.__version__) < LooseVersion('1.2.0'):
+
+xarray/plot/plot.py:243
+  /testbed/xarray/plot/plot.py:243: SyntaxWarning: "is" with a literal. Did you mean "=="?
+    if args is ():
+
+xarray/core/pdcompat.py:46
+  /testbed/xarray/core/pdcompat.py:46: DeprecationWarning: distutils Version classes are deprecated. Use packaging.version instead.
+    if LooseVersion(pd.__version__) < '0.25.0':
+
+../opt/miniconda3/envs/testbed/lib/python3.10/site-packages/setuptools/_distutils/version.py:345
+../opt/miniconda3/envs/testbed/lib/python3.10/site-packages/setuptools/_distutils/version.py:345
+  /opt/miniconda3/envs/testbed/lib/python3.10/site-packages/setuptools/_distutils/version.py:345: DeprecationWarning: distutils Version classes are deprecated. Use packaging.version instead.
+    other = LooseVersion(other)
+
+xarray/tests/__init__.py:57: 15 warnings
+  /testbed/xarray/tests/__init__.py:57: DeprecationWarning: distutils Version classes are deprecated. Use packaging.version instead.
+    return version.LooseVersion(vstring)
+
+xarray/tests/test_combine.py: 14 warnings
+  /testbed/xarray/core/alignment.py:125: FutureWarning: Index.__or__ operating as a set operation is deprecated, in the future this will be a logical operation matching Series.__or__.  Use index.union(other) instead.
+    index = joiner(matching_indexes)
+
+xarray/tests/test_combine.py: 28 warnings
+  /testbed/xarray/core/formatting.py:147: DeprecationWarning: `np.float` is a deprecated alias for the builtin `float`. To silence this warning, use `float` by itself. Doing this will not modify any behavior and is safe. If you specifically wanted the numpy scalar type, use `np.float64` here.
+  Deprecated in NumPy 1.20; for more details and guidance: https://numpy.org/devdocs/release/1.20.0-notes.html#deprecations
+    elif isinstance(x, (float, np.float)):
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+==================================== PASSES ====================================
+=========================== short test summary info ============================
+PASSED xarray/tests/test_combine.py::TestTileIDsFromNestedList::test_1d
+PASSED xarray/tests/test_combine.py::TestTileIDsFromNestedList::test_2d
+PASSED xarray/tests/test_combine.py::TestTileIDsFromNestedList::test_3d
+PASSED xarray/tests/test_combine.py::TestTileIDsFromNestedList::test_single_dataset
+PASSED xarray/tests/test_combine.py::TestTileIDsFromNestedList::test_redundant_nesting
+PASSED xarray/tests/test_combine.py::TestTileIDsFromNestedList::test_ignore_empty_list
+PASSED xarray/tests/test_combine.py::TestTileIDsFromNestedList::test_uneven_depth_input
+PASSED xarray/tests/test_combine.py::TestTileIDsFromNestedList::test_uneven_length_input
+PASSED xarray/tests/test_combine.py::TestTileIDsFromNestedList::test_infer_from_datasets
+PASSED xarray/tests/test_combine.py::TestTileIDsFromCoords::test_1d
+PASSED xarray/tests/test_combine.py::TestTileIDsFromCoords::test_2d
+PASSED xarray/tests/test_combine.py::TestTileIDsFromCoords::test_no_dimension_coords
+PASSED xarray/tests/test_combine.py::TestTileIDsFromCoords::test_coord_not_monotonic
+PASSED xarray/tests/test_combine.py::TestTileIDsFromCoords::test_coord_monotonically_decreasing
+PASSED xarray/tests/test_combine.py::TestTileIDsFromCoords::test_no_concatenation_needed
+PASSED xarray/tests/test_combine.py::TestTileIDsFromCoords::test_2d_plus_bystander_dim
+PASSED xarray/tests/test_combine.py::TestTileIDsFromCoords::test_string_coords
+PASSED xarray/tests/test_combine.py::TestTileIDsFromCoords::test_lexicographic_sort_string_coords
+PASSED xarray/tests/test_combine.py::TestTileIDsFromCoords::test_datetime_coords
+PASSED xarray/tests/test_combine.py::TestNewTileIDs::test_new_tile_id[old_id0-new_id0]
+PASSED xarray/tests/test_combine.py::TestNewTileIDs::test_new_tile_id[old_id1-new_id1]
+PASSED xarray/tests/test_combine.py::TestNewTileIDs::test_new_tile_id[old_id2-new_id2]
+PASSED xarray/tests/test_combine.py::TestNewTileIDs::test_new_tile_id[old_id3-new_id3]
+PASSED xarray/tests/test_combine.py::TestNewTileIDs::test_new_tile_id[old_id4-new_id4]
+PASSED xarray/tests/test_combine.py::TestNewTileIDs::test_get_new_tile_ids
+PASSED xarray/tests/test_combine.py::TestCombineND::test_concat_once[dim1]
+PASSED xarray/tests/test_combine.py::TestCombineND::test_concat_once[new_dim]
+PASSED xarray/tests/test_combine.py::TestCombineND::test_concat_only_first_dim
+PASSED xarray/tests/test_combine.py::TestCombineND::test_concat_twice[dim1]
+PASSED xarray/tests/test_combine.py::TestCombineND::test_concat_twice[new_dim]
+PASSED xarray/tests/test_combine.py::TestCheckShapeTileIDs::test_check_depths
+PASSED xarray/tests/test_combine.py::TestCheckShapeTileIDs::test_check_lengths
+PASSED xarray/tests/test_combine.py::TestManualCombine::test_manual_concat
+PASSED xarray/tests/test_combine.py::TestManualCombine::test_empty_input
+PASSED xarray/tests/test_combine.py::TestManualCombine::test_manual_concat_along_new_dim
+PASSED xarray/tests/test_combine.py::TestManualCombine::test_manual_merge
+PASSED xarray/tests/test_combine.py::TestManualCombine::test_concat_multiple_dims
+PASSED xarray/tests/test_combine.py::TestManualCombine::test_concat_name_symmetry
+PASSED xarray/tests/test_combine.py::TestManualCombine::test_concat_one_dim_merge_another
+PASSED xarray/tests/test_combine.py::TestManualCombine::test_auto_combine_2d
+PASSED xarray/tests/test_combine.py::TestManualCombine::test_manual_combine_missing_data_new_dim
+PASSED xarray/tests/test_combine.py::TestManualCombine::test_invalid_hypercube_input
+PASSED xarray/tests/test_combine.py::TestManualCombine::test_merge_one_dim_concat_another
+PASSED xarray/tests/test_combine.py::TestManualCombine::test_combine_concat_over_redundant_nesting
+PASSED xarray/tests/test_combine.py::TestManualCombine::test_manual_combine_but_need_auto_combine
+PASSED xarray/tests/test_combine.py::TestManualCombine::test_combine_nested_fill_value[fill_value0]
+PASSED xarray/tests/test_combine.py::TestManualCombine::test_combine_nested_fill_value[2]
+PASSED xarray/tests/test_combine.py::TestManualCombine::test_combine_nested_fill_value[2.0]
+PASSED xarray/tests/test_combine.py::TestCombineAuto::test_combine_by_coords
+PASSED xarray/tests/test_combine.py::TestCombineAuto::test_infer_order_from_coords
+PASSED xarray/tests/test_combine.py::TestCombineAuto::test_combine_by_coords_previously_failed
+PASSED xarray/tests/test_combine.py::TestCombineAuto::test_combine_by_coords_still_fails
+PASSED xarray/tests/test_combine.py::TestCombineAuto::test_combine_by_coords_no_concat
+PASSED xarray/tests/test_combine.py::TestCombineAuto::test_check_for_impossible_ordering
+PASSED xarray/tests/test_combine.py::TestAutoCombineOldAPI::test_auto_combine
+PASSED xarray/tests/test_combine.py::TestAutoCombineOldAPI::test_auto_combine_previously_failed
+PASSED xarray/tests/test_combine.py::TestAutoCombineOldAPI::test_auto_combine_still_fails
+PASSED xarray/tests/test_combine.py::TestAutoCombineOldAPI::test_auto_combine_no_concat
+PASSED xarray/tests/test_combine.py::TestAutoCombineOldAPI::test_auto_combine_order_by_appearance_not_coords
+PASSED xarray/tests/test_combine.py::TestAutoCombineOldAPI::test_auto_combine_fill_value[fill_value0]
+PASSED xarray/tests/test_combine.py::TestAutoCombineOldAPI::test_auto_combine_fill_value[2]
+PASSED xarray/tests/test_combine.py::TestAutoCombineOldAPI::test_auto_combine_fill_value[2.0]
+PASSED xarray/tests/test_combine.py::TestAutoCombineDeprecation::test_auto_combine_with_concat_dim
+PASSED xarray/tests/test_combine.py::TestAutoCombineDeprecation::test_auto_combine_with_merge_and_concat
+PASSED xarray/tests/test_combine.py::TestAutoCombineDeprecation::test_auto_combine_with_coords
+PASSED xarray/tests/test_combine.py::TestAutoCombineDeprecation::test_auto_combine_without_coords
+XFAIL xarray/tests/test_combine.py::TestManualCombine::test_manual_concat_too_many_dims_at_once
+FAILED xarray/tests/test_combine.py::TestCombineAuto::test_combine_leaving_bystander_dimensions
+============= 1 failed, 66 passed, 1 xfailed, 69 warnings in 2.49s =============
+Updated 1 path from 088330d4
+Downloading pygments (1.2MiB)
+Downloading numpy (16.1MiB)
+Downloading chardet (1.4MiB)
+Downloading virtualenv (5.1MiB)
+Downloading pyarrow (47.7MiB)
+Downloading aiohttp (1.7MiB)
+Downloading pandas (10.8MiB)
+Downloading hf-xet (4.3MiB)
+ Downloading pygments
+ Downloading chardet
+ Downloading aiohttp
+ Downloading hf-xet
+ Downloading virtualenv
+ Downloading pandas
+ Downloading numpy
+ Downloading pyarrow
+Installed 73 packages in 97ms
+SWEBench results starts here
+FAILED
+SWEBench results ends here

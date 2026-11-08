@@ -1,0 +1,188 @@
+++ cd /testbed
+++ set +x
+++ python -m pip install -e .
+Obtaining file:///testbed
+  Preparing metadata (setup.py): started
+  Preparing metadata (setup.py): finished with status 'done'
+Requirement already satisfied: numpy>=1.14 in /opt/miniconda3/envs/testbed/lib/python3.10/site-packages (from xarray==0.14.1+41.gdeda502c) (1.23.0)
+Requirement already satisfied: pandas>=0.24 in /opt/miniconda3/envs/testbed/lib/python3.10/site-packages (from xarray==0.14.1+41.gdeda502c) (1.5.3)
+Requirement already satisfied: python-dateutil>=2.8.1 in /opt/miniconda3/envs/testbed/lib/python3.10/site-packages (from pandas>=0.24->xarray==0.14.1+41.gdeda502c) (2.8.2)
+Requirement already satisfied: pytz>=2020.1 in /opt/miniconda3/envs/testbed/lib/python3.10/site-packages (from pandas>=0.24->xarray==0.14.1+41.gdeda502c) (2023.3)
+Requirement already satisfied: six>=1.5 in /opt/miniconda3/envs/testbed/lib/python3.10/site-packages (from python-dateutil>=2.8.1->pandas>=0.24->xarray==0.14.1+41.gdeda502c) (1.16.0)
+Installing collected packages: xarray
+  Attempting uninstall: xarray
+    Found existing installation: xarray 0.14.1+40.gef6e6a7b
+    Uninstalling xarray-0.14.1+40.gef6e6a7b:
+      Successfully uninstalled xarray-0.14.1+40.gef6e6a7b
+  DEPRECATION: Legacy editable install of xarray==0.14.1+41.gdeda502c from file:///testbed (setup.py develop) is deprecated. pip 25.0 will enforce this behaviour change. A possible replacement is to add a pyproject.toml or enable --use-pep517, and use setuptools >= 64. If the resulting installation is not behaving as expected, try using --config-settings editable_mode=compat. Please consult the setuptools documentation for more information. Discussion can be found at https://github.com/pypa/pip/issues/11457
+  Running setup.py develop for xarray
+Successfully installed xarray
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable.It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+++ git checkout ef6e6a7b86f8479b9a1fecf15ad5b88a2326b31e xarray/tests/test_merge.py
+Updated 0 paths from 1fdcd5db
+++ git clean -fd
+++ echo 'diff --git a/xarray/tests/test_merge.py b/xarray/tests/test_merge.py
+--- a/xarray/tests/test_merge.py
++++ b/xarray/tests/test_merge.py
+@@ -3,6 +3,7 @@
+
+ import xarray as xr
+ from xarray.core import dtypes, merge
++from xarray.testing import assert_identical
+
+ from . import raises_regex
+ from .test_dataset import create_test_data
+@@ -253,3 +254,9 @@ def test_merge_no_conflicts(self):
+         with pytest.raises(xr.MergeError):
+             ds3 = xr.Dataset({"a": ("y", [2, 3]), "y": [1, 2]})
+             ds1.merge(ds3, compat="no_conflicts")
++
++    def test_merge_dataarray(self):
++        ds = xr.Dataset({"a": 0})
++        da = xr.DataArray(data=1, name="b")
++
++        assert_identical(ds.merge(da), xr.merge([ds, da]))
+'
+++ git apply --check /tmp/test_patch.diff
+++ git apply /tmp/test_patch.diff
++++ mktemp
+++ LOG_FILE=/tmp/tmp.ww9YVz28ci
+++ export LOG_FILE
+++ exec
+++ exec
++++ tee /tmp/tmp.ww9YVz28ci
+++ set +x
+============================= test session starts ==============================
+platform linux -- Python 3.10.15, pytest-7.4.0, pluggy-1.5.0
+rootdir: /testbed
+configfile: setup.cfg
+plugins: hypothesis-6.114.0, cov-5.0.0, env-1.1.5, xdist-3.6.1
+collected 22 items
+
+xarray/tests/test_merge.py .....................F                        [100%]
+
+=================================== FAILURES ===================================
+_____________________ TestMergeMethod.test_merge_dataarray _____________________
+
+self = <xarray.tests.test_merge.TestMergeMethod object at 0x7f7f82ec8d30>
+
+    def test_merge_dataarray(self):
+        ds = xr.Dataset({"a": 0})
+        da = xr.DataArray(data=1, name="b")
+    
+>       assert_identical(ds.merge(da), xr.merge([ds, da]))
+
+xarray/tests/test_merge.py:262: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+xarray/core/dataset.py:3607: in merge
+    merge_result = dataset_merge_method(
+xarray/core/merge.py:834: in dataset_merge_method
+    return merge_core(
+xarray/core/merge.py:548: in merge_core
+    coerced = coerce_pandas_values(objects)
+xarray/core/merge.py:394: in coerce_pandas_values
+    for k, v in obj.items():
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <xarray.DataArray 'b' ()>
+array(1), name = 'items'
+
+    def __getattr__(self, name: str) -> Any:
+        if name not in {"__dict__", "__setstate__"}:
+            # this avoids an infinite loop when pickle looks for the
+            # __setstate__ attribute before the xarray object is initialized
+            for source in self._attr_sources:
+                with suppress(KeyError):
+                    return source[name]
+>       raise AttributeError(
+            "{!r} object has no attribute {!r}".format(type(self).__name__, name)
+        )
+E       AttributeError: 'DataArray' object has no attribute 'items'. Did you mean: 'item'?
+
+xarray/core/common.py:232: AttributeError
+=============================== warnings summary ===============================
+xarray/core/dask_array_compat.py:13
+xarray/core/dask_array_compat.py:13
+  /testbed/xarray/core/dask_array_compat.py:13: DeprecationWarning: distutils Version classes are deprecated. Use packaging.version instead.
+    if LooseVersion(dask_version) >= LooseVersion("2.0.0"):
+
+xarray/core/dask_array_compat.py:100
+xarray/core/dask_array_compat.py:100
+  /testbed/xarray/core/dask_array_compat.py:100: DeprecationWarning: distutils Version classes are deprecated. Use packaging.version instead.
+    if LooseVersion(dask_version) >= LooseVersion("2.8.1"):
+
+xarray/core/dask_array_compat.py:137
+xarray/core/dask_array_compat.py:137
+  /testbed/xarray/core/dask_array_compat.py:137: DeprecationWarning: distutils Version classes are deprecated. Use packaging.version instead.
+    if LooseVersion(dask_version) > LooseVersion("2.9.0"):
+
+xarray/core/formatting_html.py:6
+  /testbed/xarray/core/formatting_html.py:6: DeprecationWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html
+    import pkg_resources
+
+xarray/core/pdcompat.py:45
+  /testbed/xarray/core/pdcompat.py:45: DeprecationWarning: distutils Version classes are deprecated. Use packaging.version instead.
+    if LooseVersion(pd.__version__) < "0.25.0":
+
+../opt/miniconda3/envs/testbed/lib/python3.10/site-packages/setuptools/_distutils/version.py:345
+  /opt/miniconda3/envs/testbed/lib/python3.10/site-packages/setuptools/_distutils/version.py:345: DeprecationWarning: distutils Version classes are deprecated. Use packaging.version instead.
+    other = LooseVersion(other)
+
+xarray/tests/test_merge.py: 17 warnings
+  /testbed/xarray/core/alignment.py:298: FutureWarning: Index.__or__ operating as a set operation is deprecated, in the future this will be a logical operation matching Series.__or__.  Use index.union(other) instead.
+    index = joiner(matching_indexes)
+
+xarray/tests/test_merge.py::TestMergeFunction::test_merge_no_conflicts_single_var
+xarray/tests/test_merge.py::TestMergeMethod::test_merge_auto_align
+xarray/tests/test_merge.py::TestMergeMethod::test_merge_auto_align
+xarray/tests/test_merge.py::TestMergeMethod::test_merge_no_conflicts
+  /testbed/xarray/core/alignment.py:298: FutureWarning: Index.__and__ operating as a set operation is deprecated, in the future this will be a logical operation matching Series.__and__.  Use index.intersection(other) instead.
+    index = joiner(matching_indexes)
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+==================================== PASSES ====================================
+=========================== short test summary info ============================
+PASSED xarray/tests/test_merge.py::TestMergeInternals::test_broadcast_dimension_size
+PASSED xarray/tests/test_merge.py::TestMergeFunction::test_merge_arrays
+PASSED xarray/tests/test_merge.py::TestMergeFunction::test_merge_datasets
+PASSED xarray/tests/test_merge.py::TestMergeFunction::test_merge_dataarray_unnamed
+PASSED xarray/tests/test_merge.py::TestMergeFunction::test_merge_dicts_simple
+PASSED xarray/tests/test_merge.py::TestMergeFunction::test_merge_dicts_dims
+PASSED xarray/tests/test_merge.py::TestMergeFunction::test_merge_error
+PASSED xarray/tests/test_merge.py::TestMergeFunction::test_merge_alignment_error
+PASSED xarray/tests/test_merge.py::TestMergeFunction::test_merge_wrong_input_error
+PASSED xarray/tests/test_merge.py::TestMergeFunction::test_merge_no_conflicts_single_var
+PASSED xarray/tests/test_merge.py::TestMergeFunction::test_merge_no_conflicts_multi_var
+PASSED xarray/tests/test_merge.py::TestMergeFunction::test_merge_no_conflicts_preserve_attrs
+PASSED xarray/tests/test_merge.py::TestMergeFunction::test_merge_no_conflicts_broadcast
+PASSED xarray/tests/test_merge.py::TestMergeMethod::test_merge
+PASSED xarray/tests/test_merge.py::TestMergeMethod::test_merge_broadcast_equals
+PASSED xarray/tests/test_merge.py::TestMergeMethod::test_merge_compat
+PASSED xarray/tests/test_merge.py::TestMergeMethod::test_merge_auto_align
+PASSED xarray/tests/test_merge.py::TestMergeMethod::test_merge_fill_value[fill_value0]
+PASSED xarray/tests/test_merge.py::TestMergeMethod::test_merge_fill_value[2]
+PASSED xarray/tests/test_merge.py::TestMergeMethod::test_merge_fill_value[2.0]
+PASSED xarray/tests/test_merge.py::TestMergeMethod::test_merge_no_conflicts
+FAILED xarray/tests/test_merge.py::TestMergeMethod::test_merge_dataarray - At...
+================== 1 failed, 21 passed, 30 warnings in 1.98s ===================
+Updated 1 path from 1fdcd5db
+Downloading pygments (1.2MiB)
+Downloading virtualenv (5.1MiB)
+Downloading hf-xet (4.3MiB)
+Downloading aiohttp (1.7MiB)
+Downloading pyarrow (47.7MiB)
+Downloading pandas (10.8MiB)
+Downloading numpy (16.1MiB)
+Downloading chardet (1.4MiB)
+ Downloading pygments
+ Downloading chardet
+ Downloading aiohttp
+ Downloading hf-xet
+ Downloading virtualenv
+ Downloading pandas
+ Downloading numpy
+ Downloading pyarrow
+Installed 73 packages in 86ms
+SWEBench results starts here
+FAILED
+SWEBench results ends here

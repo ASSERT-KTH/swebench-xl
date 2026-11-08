@@ -1,0 +1,130 @@
+++ cd /testbed
+++ set +x
+++ python -m pip install -e .
+Obtaining file:///testbed
+  Preparing metadata (setup.py): started
+  Preparing metadata (setup.py): finished with status 'done'
+Requirement already satisfied: mpmath>=0.19 in /opt/miniconda3/envs/testbed/lib/python3.9/site-packages (from sympy==1.12.dev0) (1.3.0)
+Installing collected packages: sympy
+  Attempting uninstall: sympy
+    Found existing installation: sympy 1.12.dev0
+    Uninstalling sympy-1.12.dev0:
+      Successfully uninstalled sympy-1.12.dev0
+  DEPRECATION: Legacy editable install of sympy==1.12.dev0 from file:///testbed (setup.py develop) is deprecated. pip 25.0 will enforce this behaviour change. A possible replacement is to add a pyproject.toml or enable --use-pep517, and use setuptools >= 64. If the resulting installation is not behaving as expected, try using --config-settings editable_mode=compat. Please consult the setuptools documentation for more information. Discussion can be found at https://github.com/pypa/pip/issues/11457
+  Running setup.py develop for sympy
+Successfully installed sympy
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable.It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+++ git checkout a36caf5c74fe654cedc488e8a8a05fad388f8406 sympy/parsing/tests/test_sympy_parser.py
+Updated 1 path from 57a4c028a9
+++ git clean -fd
+++ echo 'diff --git a/sympy/parsing/tests/test_sympy_parser.py b/sympy/parsing/tests/test_sympy_parser.py
+--- a/sympy/parsing/tests/test_sympy_parser.py
++++ b/sympy/parsing/tests/test_sympy_parser.py
+@@ -6,7 +6,7 @@
+ import types
+
+ from sympy.assumptions import Q
+-from sympy.core import Symbol, Function, Float, Rational, Integer, I, Mul, Pow, Eq
++from sympy.core import Symbol, Function, Float, Rational, Integer, I, Mul, Pow, Eq, Lt, Le, Gt, Ge, Ne
+ from sympy.functions import exp, factorial, factorial2, sin, Min, Max
+ from sympy.logic import And
+ from sympy.series import Limit
+@@ -279,6 +279,17 @@ def test_parse_function_issue_3539():
+     f = Function('\''f'\'')
+     assert parse_expr('\''f(x)'\'') == f(x)
+
++def test_issue_24288():
++    inputs = {
++        "1 < 2": Lt(1, 2, evaluate=False),
++        "1 <= 2": Le(1, 2, evaluate=False),
++        "1 > 2": Gt(1, 2, evaluate=False),
++        "1 >= 2": Ge(1, 2, evaluate=False),
++        "1 != 2": Ne(1, 2, evaluate=False),
++        "1 == 2": Eq(1, 2, evaluate=False)
++    }
++    for text, result in inputs.items():
++        assert parse_expr(text, evaluate=False) == result
+
+ def test_split_symbols_numeric():
+     transformations = (
+'
+++ git apply --check /tmp/test_patch.diff
+++ git apply /tmp/test_patch.diff
++++ mktemp
+++ LOG_FILE=/tmp/tmp.ydcSA4Kku1
+++ export LOG_FILE
+++ exec
+++ exec
++++ tee /tmp/tmp.ydcSA4Kku1
+++ set +x
+============================= test process starts ==============================
+executable:         /opt/miniconda3/envs/testbed/bin/python  (3.9.20-final-0) [CPython]
+architecture:       64-bit
+cache:              no
+ground types:       python 
+numpy:              None
+random seed:        85548391
+hash randomization: on (PYTHONHASHSEED=3976014332)
+
+sympy/parsing/tests/test_sympy_parser.py[29] 
+test_sympy_parser ok
+test_rationalize ok
+test_factorial_fail ok
+test_repeated_fail ok
+test_repeated_dot_only ok
+test_local_dict ok
+test_local_dict_split_implmult ok
+test_local_dict_symbol_to_fcn ok
+test_global_dict ok
+test_no_globals ok
+test_issue_2515 ok
+test_issue_7663 ok
+test_recursive_evaluate_false_10560 ok
+test_function_evaluate_false ok
+test_issue_10773 ok
+test_split_symbols ok
+test_split_symbols_function ok
+test_functional_exponent ok
+test_match_parentheses_implicit_multiplication ok
+test_convert_equals_signs ok
+test_parse_function_issue_3539 ok
+test_issue_24288 F
+test_split_symbols_numeric ok
+test_unicode_names ok
+test_python3_features ok
+test_issue_19501 ok
+test_parsing_definitions ok
+test_builtins ok
+test_issue_22822 ok                                                       [FAIL]
+
+
+________________________________________________________________________________
+__________ sympy/parsing/tests/test_sympy_parser.py:test_issue_24288 ___________
+Traceback (most recent call last):
+  File "/testbed/sympy/parsing/tests/test_sympy_parser.py", line 292, in test_issue_24288
+    assert parse_expr(text, evaluate=False) == result
+AssertionError
+
+============= tests finished: 28 passed, 1 failed, in 0.21 seconds =============
+DO *NOT* COMMIT!
+Updated 1 path from 57a4c028a9
+Downloading virtualenv (5.1MiB)
+Downloading pygments (1.2MiB)
+Downloading aiohttp (1.7MiB)
+Downloading pyarrow (47.7MiB)
+Downloading hf-xet (4.3MiB)
+Downloading chardet (1.4MiB)
+Downloading pandas (10.8MiB)
+Downloading numpy (16.1MiB)
+ Downloading pygments
+ Downloading chardet
+ Downloading aiohttp
+ Downloading hf-xet
+ Downloading virtualenv
+ Downloading pandas
+ Downloading numpy
+ Downloading pyarrow
+Installed 73 packages in 112ms
+SWEBench results starts here
+FAILED
+SWEBench results ends here

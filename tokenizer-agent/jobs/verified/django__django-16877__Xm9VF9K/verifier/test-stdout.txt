@@ -1,0 +1,364 @@
+++ cd /testbed
+++ set +x
+++ python -m pip install -e .
+Obtaining file:///testbed
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Checking if build backend supports build_editable: started
+  Checking if build backend supports build_editable: finished with status 'done'
+  Getting requirements to build editable: started
+  Getting requirements to build editable: finished with status 'done'
+  Preparing editable metadata (pyproject.toml): started
+  Preparing editable metadata (pyproject.toml): finished with status 'done'
+Requirement already satisfied: asgiref>=3.6.0 in /opt/miniconda3/envs/testbed/lib/python3.11/site-packages (from Django==5.0.dev20260813014930) (3.8.1)
+Requirement already satisfied: sqlparse>=0.3.1 in /opt/miniconda3/envs/testbed/lib/python3.11/site-packages (from Django==5.0.dev20260813014930) (0.5.1)
+Building wheels for collected packages: Django
+  Building editable for Django (pyproject.toml): started
+  Building editable for Django (pyproject.toml): finished with status 'done'
+  Created wheel for Django: filename=django-5.0.dev20260813014930-0.editable-py3-none-any.whl size=27490 sha256=d1d64a4e3f41ba1fb14380e2b2251f7d794e514b279ab5a4a863de855dc0b2dd
+  Stored in directory: /tmp/pip-ephem-wheel-cache-_g1g4uiq/wheels/49/5f/4f/01b7d31ea6ddac9643da788242d33e5fd3467d95d17b032c6b
+Successfully built Django
+Installing collected packages: Django
+  Attempting uninstall: Django
+    Found existing installation: Django 5.0.dev20230522034729
+    Uninstalling Django-5.0.dev20230522034729:
+      Successfully uninstalled Django-5.0.dev20230522034729
+Successfully installed Django-5.0.dev20260813014930
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable.It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+++ git checkout 98f6ada0e2058d67d91fb6c16482411ec2ca0967
+Note: switching to '98f6ada0e2058d67d91fb6c16482411ec2ca0967'.
+
+You are in 'detached HEAD' state. You can look around, make experimental
+changes and commit them, and you can discard any commits you make in this
+state without impacting any branches by switching back to a branch.
+
+If you want to create a new branch to retain commits you create, you may
+do so (now or later) by using -c with the switch command. Example:
+
+  git switch -c <new-branch-name>
+
+Or undo this operation with:
+
+  git switch -
+
+Turn off this advice by setting config variable advice.detachedHead to false
+
+HEAD is now at 98f6ada0e2 Fixed #34580 -- Avoided unnecessary computation of selected expressions in SQLCompiler.
+++ git clean -fd
+++ echo 'diff --git a/tests/template_tests/filter_tests/test_escapeseq.py b/tests/template_tests/filter_tests/test_escapeseq.py
+new file mode 100644
+--- /dev/null
++++ b/tests/template_tests/filter_tests/test_escapeseq.py
+@@ -0,0 +1,59 @@
++from django.test import SimpleTestCase
++from django.utils.safestring import mark_safe
++
++from ..utils import setup
++
++
++class EscapeseqTests(SimpleTestCase):
++    """
++    The "escapeseq" filter works the same whether autoescape is on or off,
++    and has no effect on strings already marked as safe.
++    """
++
++    @setup(
++        {
++            "escapeseq_basic": (
++                '\''{{ a|escapeseq|join:", " }} -- {{ b|escapeseq|join:", " }}'\''
++            ),
++        }
++    )
++    def test_basic(self):
++        output = self.engine.render_to_string(
++            "escapeseq_basic",
++            {"a": ["x&y", "<p>"], "b": [mark_safe("x&y"), mark_safe("<p>")]},
++        )
++        self.assertEqual(output, "x&amp;y, &lt;p&gt; -- x&y, <p>")
++
++    @setup(
++        {
++            "escapeseq_autoescape_off": (
++                '\''{% autoescape off %}{{ a|escapeseq|join:", " }}'\''
++                " -- "
++                '\''{{ b|escapeseq|join:", "}}{% endautoescape %}'\''
++            )
++        }
++    )
++    def test_autoescape_off(self):
++        output = self.engine.render_to_string(
++            "escapeseq_autoescape_off",
++            {"a": ["x&y", "<p>"], "b": [mark_safe("x&y"), mark_safe("<p>")]},
++        )
++        self.assertEqual(output, "x&amp;y, &lt;p&gt; -- x&y, <p>")
++
++    @setup({"escapeseq_join": '\''{{ a|escapeseq|join:"<br/>" }}'\''})
++    def test_chain_join(self):
++        output = self.engine.render_to_string("escapeseq_join", {"a": ["x&y", "<p>"]})
++        self.assertEqual(output, "x&amp;y<br/>&lt;p&gt;")
++
++    @setup(
++        {
++            "escapeseq_join_autoescape_off": (
++                '\''{% autoescape off %}{{ a|escapeseq|join:"<br/>" }}{% endautoescape %}'\''
++            ),
++        }
++    )
++    def test_chain_join_autoescape_off(self):
++        output = self.engine.render_to_string(
++            "escapeseq_join_autoescape_off", {"a": ["x&y", "<p>"]}
++        )
++        self.assertEqual(output, "x&amp;y<br/>&lt;p&gt;")
+'
+++ git apply --check /tmp/test_patch.diff
+++ git apply /tmp/test_patch.diff
++++ mktemp
+++ LOG_FILE=/tmp/tmp.FamdQKstoi
+++ export LOG_FILE
+++ exec
+++ exec
++++ tee /tmp/tmp.FamdQKstoi
+++ set +x
+Testing against Django installed in '/testbed/django'
+Importing application template_tests
+Found 4 test(s).
+Skipping setup of unused database(s): default, other.
+System check identified no issues (0 silenced).
+test_autoescape_off (template_tests.filter_tests.test_escapeseq.EscapeseqTests.test_autoescape_off) ... ERROR
+test_basic (template_tests.filter_tests.test_escapeseq.EscapeseqTests.test_basic) ... ERROR
+test_chain_join (template_tests.filter_tests.test_escapeseq.EscapeseqTests.test_chain_join) ... ERROR
+test_chain_join_autoescape_off (template_tests.filter_tests.test_escapeseq.EscapeseqTests.test_chain_join_autoescape_off) ... ERROR
+
+======================================================================
+ERROR: test_autoescape_off (template_tests.filter_tests.test_escapeseq.EscapeseqTests.test_autoescape_off)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/testbed/django/test/utils.py", line 443, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/testbed/tests/template_tests/utils.py", line 58, in inner
+    func(self)
+  File "/testbed/tests/template_tests/filter_tests/test_escapeseq.py", line 37, in test_autoescape_off
+    output = self.engine.render_to_string(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/testbed/django/template/engine.py", line 189, in render_to_string
+    t = self.get_template(template_name)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/testbed/django/template/engine.py", line 175, in get_template
+    template, origin = self.find_template(template_name)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/testbed/django/template/engine.py", line 157, in find_template
+    template = loader.get_template(name, skip=skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/testbed/django/template/loaders/cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/testbed/django/template/loaders/base.py", line 28, in get_template
+    return Template(
+           ^^^^^^^^^
+  File "/testbed/django/template/base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/testbed/django/template/base.py", line 196, in compile_nodelist
+    return parser.parse()
+           ^^^^^^^^^^^^^^
+  File "/testbed/django/template/base.py", line 510, in parse
+    raise self.error(token, e)
+  File "/testbed/django/template/base.py", line 508, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/testbed/django/template/defaulttags.py", line 564, in autoescape
+    nodelist = parser.parse(("endautoescape",))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/testbed/django/template/base.py", line 481, in parse
+    raise self.error(token, e)
+  File "/testbed/django/template/base.py", line 479, in parse
+    filter_expression = self.compile_filter(token.contents)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/testbed/django/template/base.py", line 597, in compile_filter
+    return FilterExpression(token, self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/testbed/django/template/base.py", line 693, in __init__
+    filter_func = parser.find_filter(filter_name)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/testbed/django/template/base.py", line 603, in find_filter
+    raise TemplateSyntaxError("Invalid filter: '%s'" % filter_name)
+django.template.exceptions.TemplateSyntaxError: Invalid filter: 'escapeseq'
+
+======================================================================
+ERROR: test_basic (template_tests.filter_tests.test_escapeseq.EscapeseqTests.test_basic)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/testbed/django/test/utils.py", line 443, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/testbed/tests/template_tests/utils.py", line 58, in inner
+    func(self)
+  File "/testbed/tests/template_tests/filter_tests/test_escapeseq.py", line 21, in test_basic
+    output = self.engine.render_to_string(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/testbed/django/template/engine.py", line 189, in render_to_string
+    t = self.get_template(template_name)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/testbed/django/template/engine.py", line 175, in get_template
+    template, origin = self.find_template(template_name)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/testbed/django/template/engine.py", line 157, in find_template
+    template = loader.get_template(name, skip=skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/testbed/django/template/loaders/cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/testbed/django/template/loaders/base.py", line 28, in get_template
+    return Template(
+           ^^^^^^^^^
+  File "/testbed/django/template/base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/testbed/django/template/base.py", line 196, in compile_nodelist
+    return parser.parse()
+           ^^^^^^^^^^^^^^
+  File "/testbed/django/template/base.py", line 481, in parse
+    raise self.error(token, e)
+  File "/testbed/django/template/base.py", line 479, in parse
+    filter_expression = self.compile_filter(token.contents)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/testbed/django/template/base.py", line 597, in compile_filter
+    return FilterExpression(token, self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/testbed/django/template/base.py", line 693, in __init__
+    filter_func = parser.find_filter(filter_name)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/testbed/django/template/base.py", line 603, in find_filter
+    raise TemplateSyntaxError("Invalid filter: '%s'" % filter_name)
+django.template.exceptions.TemplateSyntaxError: Invalid filter: 'escapeseq'
+
+======================================================================
+ERROR: test_chain_join (template_tests.filter_tests.test_escapeseq.EscapeseqTests.test_chain_join)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/testbed/django/test/utils.py", line 443, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/testbed/tests/template_tests/utils.py", line 58, in inner
+    func(self)
+  File "/testbed/tests/template_tests/filter_tests/test_escapeseq.py", line 45, in test_chain_join
+    output = self.engine.render_to_string("escapeseq_join", {"a": ["x&y", "<p>"]})
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/testbed/django/template/engine.py", line 189, in render_to_string
+    t = self.get_template(template_name)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/testbed/django/template/engine.py", line 175, in get_template
+    template, origin = self.find_template(template_name)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/testbed/django/template/engine.py", line 157, in find_template
+    template = loader.get_template(name, skip=skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/testbed/django/template/loaders/cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/testbed/django/template/loaders/base.py", line 28, in get_template
+    return Template(
+           ^^^^^^^^^
+  File "/testbed/django/template/base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/testbed/django/template/base.py", line 196, in compile_nodelist
+    return parser.parse()
+           ^^^^^^^^^^^^^^
+  File "/testbed/django/template/base.py", line 481, in parse
+    raise self.error(token, e)
+  File "/testbed/django/template/base.py", line 479, in parse
+    filter_expression = self.compile_filter(token.contents)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/testbed/django/template/base.py", line 597, in compile_filter
+    return FilterExpression(token, self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/testbed/django/template/base.py", line 693, in __init__
+    filter_func = parser.find_filter(filter_name)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/testbed/django/template/base.py", line 603, in find_filter
+    raise TemplateSyntaxError("Invalid filter: '%s'" % filter_name)
+django.template.exceptions.TemplateSyntaxError: Invalid filter: 'escapeseq'
+
+======================================================================
+ERROR: test_chain_join_autoescape_off (template_tests.filter_tests.test_escapeseq.EscapeseqTests.test_chain_join_autoescape_off)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/testbed/django/test/utils.py", line 443, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/testbed/tests/template_tests/utils.py", line 58, in inner
+    func(self)
+  File "/testbed/tests/template_tests/filter_tests/test_escapeseq.py", line 56, in test_chain_join_autoescape_off
+    output = self.engine.render_to_string(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/testbed/django/template/engine.py", line 189, in render_to_string
+    t = self.get_template(template_name)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/testbed/django/template/engine.py", line 175, in get_template
+    template, origin = self.find_template(template_name)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/testbed/django/template/engine.py", line 157, in find_template
+    template = loader.get_template(name, skip=skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/testbed/django/template/loaders/cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/testbed/django/template/loaders/base.py", line 28, in get_template
+    return Template(
+           ^^^^^^^^^
+  File "/testbed/django/template/base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/testbed/django/template/base.py", line 196, in compile_nodelist
+    return parser.parse()
+           ^^^^^^^^^^^^^^
+  File "/testbed/django/template/base.py", line 510, in parse
+    raise self.error(token, e)
+  File "/testbed/django/template/base.py", line 508, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/testbed/django/template/defaulttags.py", line 564, in autoescape
+    nodelist = parser.parse(("endautoescape",))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/testbed/django/template/base.py", line 481, in parse
+    raise self.error(token, e)
+  File "/testbed/django/template/base.py", line 479, in parse
+    filter_expression = self.compile_filter(token.contents)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/testbed/django/template/base.py", line 597, in compile_filter
+    return FilterExpression(token, self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/testbed/django/template/base.py", line 693, in __init__
+    filter_func = parser.find_filter(filter_name)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/testbed/django/template/base.py", line 603, in find_filter
+    raise TemplateSyntaxError("Invalid filter: '%s'" % filter_name)
+django.template.exceptions.TemplateSyntaxError: Invalid filter: 'escapeseq'
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.003s
+
+FAILED (errors=4)
+HEAD is now at 98f6ada0e2 Fixed #34580 -- Avoided unnecessary computation of selected expressions in SQLCompiler.
+Downloading numpy (16.1MiB)
+Downloading pygments (1.2MiB)
+Downloading hf-xet (4.3MiB)
+Downloading chardet (1.4MiB)
+Downloading aiohttp (1.7MiB)
+Downloading virtualenv (5.1MiB)
+Downloading pandas (10.8MiB)
+Downloading pyarrow (47.7MiB)
+ Downloading pygments
+ Downloading chardet
+ Downloading aiohttp
+ Downloading hf-xet
+ Downloading virtualenv
+ Downloading pandas
+ Downloading numpy
+ Downloading pyarrow
+Installed 73 packages in 84ms
+SWEBench results starts here
+FAILED
+SWEBench results ends here

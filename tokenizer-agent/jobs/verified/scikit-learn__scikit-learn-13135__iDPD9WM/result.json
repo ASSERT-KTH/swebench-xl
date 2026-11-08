@@ -1,0 +1,127 @@
+{
+    "id": "aa36202e-9975-43c4-91d2-f72c8da4489e",
+    "task_name": "scikit-learn__scikit-learn-13135",
+    "trial_name": "scikit-learn__scikit-learn-13135__iDPD9WM",
+    "trial_uri": "file:///home/pontus/Documents/GitHub/swebench-xl/tokenizer-agent/jobs/2026-08-31__12-35-16/scikit-learn__scikit-learn-13135__iDPD9WM",
+    "task_id": {
+        "git_url": "https://github.com/laude-institute/harbor-datasets.git",
+        "git_commit_id": "86723674f04e4209ac479d0fb75d9d9f44b4377e",
+        "path": "datasets/swebench-verified/scikit-learn__scikit-learn-13135"
+    },
+    "source": "swebench-verified",
+    "task_checksum": "8d22a5cea28b7b67c94275c2866af098502495f5ec73d42d0752fcccf6de9bdd",
+    "config": {
+        "task": {
+            "path": "datasets/swebench-verified/scikit-learn__scikit-learn-13135",
+            "git_url": "https://github.com/laude-institute/harbor-datasets.git",
+            "git_commit_id": "86723674f04e4209ac479d0fb75d9d9f44b4377e",
+            "name": null,
+            "ref": null,
+            "overwrite": false,
+            "download_dir": null,
+            "source": "swebench-verified"
+        },
+        "trial_name": "scikit-learn__scikit-learn-13135__iDPD9WM",
+        "trials_dir": "jobs/2026-08-31__12-35-16",
+        "install_only": false,
+        "timeout_multiplier": 1.0,
+        "agent_timeout_multiplier": null,
+        "verifier_timeout_multiplier": null,
+        "agent_setup_timeout_multiplier": null,
+        "environment_build_timeout_multiplier": null,
+        "agent": {
+            "name": "tokenizer_agent:RepoTokenizerAgent",
+            "import_path": null,
+            "model_name": null,
+            "n_concurrent": null,
+            "concurrency_group": null,
+            "skills": [],
+            "override_timeout_sec": null,
+            "override_setup_timeout_sec": null,
+            "max_timeout_sec": null,
+            "resume_trajectory": false,
+            "load_trajectory": null,
+            "extra_allowed_hosts": [],
+            "kwargs": {},
+            "mcp_servers": []
+        },
+        "user_agent": null,
+        "environment": {
+            "type": "docker",
+            "import_path": null,
+            "force_build": false,
+            "delete": true,
+            "cpu_enforcement_policy": "auto",
+            "memory_enforcement_policy": "auto",
+            "override_cpus": null,
+            "override_memory_mb": null,
+            "override_storage_mb": null,
+            "override_gpus": null,
+            "override_tpu": null,
+            "mounts": null,
+            "extra_docker_compose": [],
+            "kwargs": {},
+            "extra_allowed_hosts": []
+        },
+        "verifier": {
+            "override_timeout_sec": null,
+            "max_timeout_sec": null,
+            "disable": false
+        },
+        "artifacts": [],
+        "extra_instruction_paths": [],
+        "extra_instructions": [],
+        "job_id": "d29290c5-a758-4156-ab4d-8568cd4bae52",
+        "source_trial": null
+    },
+    "agent_info": {
+        "name": "repo-tokenizer",
+        "version": "1.0.0",
+        "model_info": null
+    },
+    "agent_result": {
+        "n_input_tokens": null,
+        "n_cache_tokens": null,
+        "n_output_tokens": null,
+        "cost_usd": null,
+        "rollout_details": null,
+        "metadata": {
+            "repo_tokenizer": {
+                "instance_id": "scikit-learn__scikit-learn-13135",
+                "testbed_dir": "/testbed",
+                "encoding": "cl100k_base",
+                "total_tokens": 13286764,
+                "total_files": 1143,
+                "source_code_tokens": 12581168,
+                "source_code_files": 933,
+                "elapsed_sec": 4.43
+            }
+        }
+    },
+    "verifier_result": {
+        "rewards": {
+            "reward": 0.0
+        }
+    },
+    "verifier_environment_mode": "shared",
+    "exception_info": null,
+    "started_at": "2026-08-31T11:55:20.967001Z",
+    "finished_at": "2026-08-31T11:55:56.547415Z",
+    "environment_setup": {
+        "started_at": "2026-08-31T11:55:20.967460Z",
+        "finished_at": "2026-08-31T11:55:32.669448Z"
+    },
+    "agent_setup": {
+        "started_at": "2026-08-31T11:55:32.669468Z",
+        "finished_at": "2026-08-31T11:55:32.669494Z"
+    },
+    "agent_execution": {
+        "started_at": "2026-08-31T11:55:32.669530Z",
+        "finished_at": "2026-08-31T11:55:37.104634Z"
+    },
+    "verifier": {
+        "started_at": "2026-08-31T11:55:37.250634Z",
+        "finished_at": "2026-08-31T11:55:45.147396Z"
+    },
+    "step_results": null
+}

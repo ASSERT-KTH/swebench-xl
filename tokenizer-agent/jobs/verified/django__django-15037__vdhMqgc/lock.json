@@ -1,0 +1,38 @@
+{
+    "schema_version": 2,
+    "task": {
+        "name": "django__django-15037",
+        "type": "git",
+        "digest": "sha256:0a0425839663372849d0d44e8b9d9b90c1c498a1c848c7675628926c73a7ac81",
+        "source": "swebench-verified",
+        "path": "datasets/swebench-verified/django__django-15037",
+        "git_url": "https://github.com/laude-institute/harbor-datasets.git",
+        "git_commit_id": "86723674f04e4209ac479d0fb75d9d9f44b4377e"
+    },
+    "install_only": false,
+    "timeout_multiplier": 1.0,
+    "agent": {
+        "name": "tokenizer_agent:RepoTokenizerAgent",
+        "skills": [],
+        "resume_trajectory": false,
+        "extra_allowed_hosts": [],
+        "kwargs": {},
+        "mcp_servers": []
+    },
+    "bridge_inputs": {},
+    "skills": [],
+    "environment": {
+        "type": "docker",
+        "force_build": false,
+        "delete": true,
+        "cpu_enforcement_policy": "auto",
+        "memory_enforcement_policy": "auto",
+        "extra_docker_compose": [],
+        "kwargs": {},
+        "extra_allowed_hosts": []
+    },
+    "verifier": {
+        "disable": false,
+        "environment_mode": "shared"
+    }
+}

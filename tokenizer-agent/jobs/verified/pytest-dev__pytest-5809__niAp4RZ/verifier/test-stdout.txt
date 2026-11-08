@@ -1,0 +1,230 @@
+++ cd /testbed
+++ set +x
+++ python -m pip install -e .
+Obtaining file:///testbed
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Checking if build backend supports build_editable: started
+  Checking if build backend supports build_editable: finished with status 'done'
+  Getting requirements to build editable: started
+  Getting requirements to build editable: finished with status 'done'
+  Preparing editable metadata (pyproject.toml): started
+  Preparing editable metadata (pyproject.toml): finished with status 'done'
+Requirement already satisfied: py>=1.5.0 in /opt/miniconda3/envs/testbed/lib/python3.9/site-packages (from pytest==4.6.6.dev10+ge02f28aef) (1.11.0)
+Requirement already satisfied: six>=1.10.0 in /opt/miniconda3/envs/testbed/lib/python3.9/site-packages (from pytest==4.6.6.dev10+ge02f28aef) (1.16.0)
+Requirement already satisfied: packaging in /opt/miniconda3/envs/testbed/lib/python3.9/site-packages (from pytest==4.6.6.dev10+ge02f28aef) (23.1)
+Requirement already satisfied: attrs>=17.4.0 in /opt/miniconda3/envs/testbed/lib/python3.9/site-packages (from pytest==4.6.6.dev10+ge02f28aef) (23.1.0)
+Requirement already satisfied: more-itertools>=4.0.0 in /opt/miniconda3/envs/testbed/lib/python3.9/site-packages (from pytest==4.6.6.dev10+ge02f28aef) (10.1.0)
+Requirement already satisfied: atomicwrites>=1.0 in /opt/miniconda3/envs/testbed/lib/python3.9/site-packages (from pytest==4.6.6.dev10+ge02f28aef) (1.4.1)
+Requirement already satisfied: pluggy<1.0,>=0.12 in /opt/miniconda3/envs/testbed/lib/python3.9/site-packages (from pytest==4.6.6.dev10+ge02f28aef) (0.13.1)
+Requirement already satisfied: importlib-metadata>=0.12 in /opt/miniconda3/envs/testbed/lib/python3.9/site-packages (from pytest==4.6.6.dev10+ge02f28aef) (8.5.0)
+Requirement already satisfied: wcwidth in /opt/miniconda3/envs/testbed/lib/python3.9/site-packages (from pytest==4.6.6.dev10+ge02f28aef) (0.2.6)
+Requirement already satisfied: zipp>=3.20 in /opt/miniconda3/envs/testbed/lib/python3.9/site-packages (from importlib-metadata>=0.12->pytest==4.6.6.dev10+ge02f28aef) (3.20.2)
+Building wheels for collected packages: pytest
+  Building editable for pytest (pyproject.toml): started
+  Building editable for pytest (pyproject.toml): finished with status 'done'
+  Created wheel for pytest: filename=pytest-4.6.6.dev10+ge02f28aef-0.editable-py2.py3-none-any.whl size=4888 sha256=f351f12d93ea2aeff62e098e7b1304804928d008f96c174ad98c365e490ffd84
+  Stored in directory: /tmp/pip-ephem-wheel-cache-554zcxxb/wheels/7d/66/67/70d1ee2124ccf21d601c352e25cdca10f611f7c8b3f9ffb9e4
+Successfully built pytest
+Installing collected packages: pytest
+  Attempting uninstall: pytest
+    Found existing installation: pytest 4.6.6.dev9+g8aba863a6
+    Uninstalling pytest-4.6.6.dev9+g8aba863a6:
+      Successfully uninstalled pytest-4.6.6.dev9+g8aba863a6
+Successfully installed pytest-4.6.6.dev10+ge02f28aef
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable.It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+++ git checkout 8aba863a634f40560e25055d179220f0eefabe9a testing/test_pastebin.py
+Updated 0 paths from c079ecfca
+++ git clean -fd
+++ echo 'diff --git a/testing/test_pastebin.py b/testing/test_pastebin.py
+--- a/testing/test_pastebin.py
++++ b/testing/test_pastebin.py
+@@ -126,7 +126,7 @@ def test_create_new_paste(self, pastebin, mocked_urlopen):
+         assert len(mocked_urlopen) == 1
+         url, data = mocked_urlopen[0]
+         assert type(data) is bytes
+-        lexer = "python3" if sys.version_info[0] >= 3 else "python"
++        lexer = "text"
+         assert url == "https://bpaste.net"
+         assert "lexer=%s" % lexer in data.decode()
+         assert "code=full-paste-contents" in data.decode()
+'
+++ git apply --check /tmp/test_patch.diff
+++ git apply /tmp/test_patch.diff
++++ mktemp
+++ LOG_FILE=/tmp/tmp.Dlgd80V4NV
+++ export LOG_FILE
+++ exec
+++ exec
++++ tee /tmp/tmp.Dlgd80V4NV
+++ set +x
+============================= test session starts ==============================
+platform linux -- Python 3.9.20, pytest-4.6.6.dev10+ge02f28aef, py-1.11.0, pluggy-0.13.1
+rootdir: /testbed, inifile: tox.ini
+collected 4 items
+
+testing/test_pastebin.py F...                                            [100%]
+
+=================================== FAILURES ===================================
+_______________________ TestPaste.test_create_new_paste ________________________
+
+self = <test_pastebin.TestPaste object at 0x7f8031c67a30>
+pastebin = <module '_pytest.pastebin' from '/testbed/src/_pytest/pastebin.py'>
+mocked_urlopen = [('https://bpaste.net', b'code=full-paste-contents&lexer=python3&expiry=1week')]
+
+    def test_create_new_paste(self, pastebin, mocked_urlopen):
+        result = pastebin.create_new_paste(b"full-paste-contents")
+        assert result == "https://bpaste.net/show/3c0c6750bd"
+        assert len(mocked_urlopen) == 1
+        url, data = mocked_urlopen[0]
+        assert type(data) is bytes
+        lexer = "text"
+        assert url == "https://bpaste.net"
+>       assert "lexer=%s" % lexer in data.decode()
+E       AssertionError: assert ('lexer=%s' % 'text') in 'code=full-paste-contents&lexer=python3&expiry=1week'
+E        +  where 'code=full-paste-contents&lexer=python3&expiry=1week' = <built-in method decode of bytes object at 0x7f8031aa9f90>()
+E        +    where <built-in method decode of bytes object at 0x7f8031aa9f90> = b'code=full-paste-contents&lexer=python3&expiry=1week'.decode
+
+testing/test_pastebin.py:131: AssertionError
+==================================== PASSES ====================================
+_________________________ TestPasteCapture.test_failed _________________________
+----------------------------- Captured stdout call -----------------------------
+============================= test session starts ==============================
+platform linux -- Python 3.9.20, pytest-4.6.6.dev10+ge02f28aef, py-1.11.0, pluggy-0.13.1 -- /opt/miniconda3/envs/testbed/bin/python
+rootdir: /tmp/pytest-of-root/pytest-0/test_failed0
+collected 3 items
+
+test_failed.py .Fs                                                       [100%]
+
+=================================== FAILURES ===================================
+__________________________________ test_fail ___________________________________
+
+    def test_fail():
+>       assert 0
+E       assert 0
+
+test_failed.py:5: AssertionError
+===================== Sending information to Paste Service =====================
+test_failed.py:5: AssertionError --> None
+================ 1 failed, 1 passed, 1 skipped in 0.01 seconds =================
+__________________________ TestPasteCapture.test_all ___________________________
+----------------------------- Captured stdout call -----------------------------
+============================= test session starts ==============================
+platform linux -- Python 3.9.20, pytest-4.6.6.dev10+ge02f28aef, py-1.11.0, pluggy-0.13.1 -- /opt/miniconda3/envs/testbed/bin/python
+cachedir: .pytest_cache
+rootdir: /tmp/pytest-of-root/pytest-0/test_all0
+collecting ... collected 3 items
+
+test_all.py::test_pass PASSED                                            [ 33%]
+test_all.py::test_fail FAILED                                            [ 66%]
+test_all.py::test_skip SKIPPED                                           [100%]
+
+=================================== FAILURES ===================================
+__________________________________ test_fail ___________________________________
+
+    def test_fail():
+>       assert 0
+E       assert 0
+
+test_all.py:5: AssertionError
+================ 1 failed, 1 passed, 1 skipped in 0.01 seconds =================
+===================== Sending information to Paste Service =====================
+pastebin session-log: None
+
+__________________ TestPasteCapture.test_non_ascii_paste_text __________________
+----------------------------- Captured stdout call -----------------------------
+============================= test session starts ==============================
+platform linux -- Python 3.9.20, pytest-4.6.6.dev10+ge02f28aef, py-1.11.0, pluggy-0.13.1 -- /opt/miniconda3/envs/testbed/bin/python
+rootdir: /tmp/pytest-of-root/pytest-0/test_non_ascii_paste_text0
+collected 1 item
+
+test_unicode.py F                                                        [100%]
+
+=================================== FAILURES ===================================
+_____________________________________ test _____________________________________
+
+    def test():
+>       assert '☺' == 1
+E       AssertionError: assert '☺' == 1
+
+test_unicode.py:3: AssertionError
+=========================== 1 failed in 0.00 seconds ===========================
+===================== Sending information to Paste Service =====================
+----------------------------- Captured stderr call -----------------------------
+Traceback (most recent call last):
+  File "/testbed/src/_pytest/pytester.py", line 881, in runpytest_inprocess
+    reprec = self.inline_run(*args, **kwargs)
+  File "/testbed/src/_pytest/pytester.py", line 847, in inline_run
+    ret = pytest.main(list(args), plugins=plugins)
+  File "/testbed/src/_pytest/config/__init__.py", line 82, in main
+    return config.hook.pytest_cmdline_main(config=config)
+  File "/opt/miniconda3/envs/testbed/lib/python3.9/site-packages/pluggy/hooks.py", line 286, in __call__
+    return self._hookexec(self, self.get_hookimpls(), kwargs)
+  File "/opt/miniconda3/envs/testbed/lib/python3.9/site-packages/pluggy/manager.py", line 93, in _hookexec
+    return self._inner_hookexec(hook, methods, kwargs)
+  File "/opt/miniconda3/envs/testbed/lib/python3.9/site-packages/pluggy/manager.py", line 84, in <lambda>
+    self._inner_hookexec = lambda hook, methods, kwargs: hook.multicall(
+  File "/opt/miniconda3/envs/testbed/lib/python3.9/site-packages/pluggy/callers.py", line 208, in _multicall
+    return outcome.get_result()
+  File "/opt/miniconda3/envs/testbed/lib/python3.9/site-packages/pluggy/callers.py", line 80, in get_result
+    raise ex[1].with_traceback(ex[2])
+  File "/opt/miniconda3/envs/testbed/lib/python3.9/site-packages/pluggy/callers.py", line 187, in _multicall
+    res = hook_impl.function(*args)
+  File "/testbed/src/_pytest/main.py", line 243, in pytest_cmdline_main
+    return wrap_session(config, _main)
+  File "/testbed/src/_pytest/main.py", line 238, in wrap_session
+    config._ensure_unconfigure()
+  File "/testbed/src/_pytest/config/__init__.py", line 676, in _ensure_unconfigure
+    self.hook.pytest_unconfigure(config=self)
+  File "/opt/miniconda3/envs/testbed/lib/python3.9/site-packages/pluggy/hooks.py", line 286, in __call__
+    return self._hookexec(self, self.get_hookimpls(), kwargs)
+  File "/opt/miniconda3/envs/testbed/lib/python3.9/site-packages/pluggy/manager.py", line 93, in _hookexec
+    return self._inner_hookexec(hook, methods, kwargs)
+  File "/opt/miniconda3/envs/testbed/lib/python3.9/site-packages/pluggy/manager.py", line 337, in traced_hookexec
+    return outcome.get_result()
+  File "/opt/miniconda3/envs/testbed/lib/python3.9/site-packages/pluggy/callers.py", line 80, in get_result
+    raise ex[1].with_traceback(ex[2])
+  File "/opt/miniconda3/envs/testbed/lib/python3.9/site-packages/pluggy/callers.py", line 52, in from_call
+    result = func()
+  File "/opt/miniconda3/envs/testbed/lib/python3.9/site-packages/pluggy/manager.py", line 335, in <lambda>
+    outcome = _Result.from_call(lambda: oldcall(hook, hook_impls, kwargs))
+  File "/opt/miniconda3/envs/testbed/lib/python3.9/site-packages/pluggy/manager.py", line 84, in <lambda>
+    self._inner_hookexec = lambda hook, methods, kwargs: hook.multicall(
+  File "/opt/miniconda3/envs/testbed/lib/python3.9/site-packages/pluggy/callers.py", line 208, in _multicall
+    return outcome.get_result()
+  File "/opt/miniconda3/envs/testbed/lib/python3.9/site-packages/pluggy/callers.py", line 80, in get_result
+    raise ex[1].with_traceback(ex[2])
+  File "/opt/miniconda3/envs/testbed/lib/python3.9/site-packages/pluggy/callers.py", line 187, in _multicall
+    res = hook_impl.function(*args)
+  File "/testbed/src/_pytest/pastebin.py", line 61, in pytest_unconfigure
+    pastebinurl = create_new_paste(sessionlog)
+  File "/testbed/src/_pytest/pastebin.py", line 91, in create_new_paste
+    return "bad response: " + response
+TypeError: can only concatenate str (not "bytes") to str
+=========================== short test summary info ============================
+PASSED testing/test_pastebin.py::TestPasteCapture::test_failed
+PASSED testing/test_pastebin.py::TestPasteCapture::test_all
+PASSED testing/test_pastebin.py::TestPasteCapture::test_non_ascii_paste_text
+FAILED testing/test_pastebin.py::TestPaste::test_create_new_paste - Assertion...
+====================== 1 failed, 3 passed in 1.05 seconds ======================
+Updated 1 path from c079ecfca
+Downloading chardet (1.4MiB)
+Downloading aiohttp (1.7MiB)
+Downloading virtualenv (5.1MiB)
+Downloading pandas (10.8MiB)
+Downloading pyarrow (47.7MiB)
+Downloading pygments (1.2MiB)
+Downloading hf-xet (4.3MiB)
+Downloading numpy (16.1MiB)
+ Downloading pygments
+ Downloading chardet
+ Downloading aiohttp
+ Downloading hf-xet
+ Downloading virtualenv
+ Downloading pandas
+ Downloading numpy
+ Downloading pyarrow
+Installed 73 packages in 84ms
+SWEBench results starts here
+FAILED
+SWEBench results ends here

@@ -1,0 +1,347 @@
+{
+  "instance_id": "microsoft__typescript-63368",
+  "encoding": "cl100k_base",
+  "total_tokens": 117549690,
+  "total_characters": 428932465,
+  "total_files": 82682,
+  "source_code_tokens": 43705723,
+  "source_code_files": 40035,
+  "by_extension": {
+    ".js": {
+      "tokens": 30620966,
+      "files": 18171
+    },
+    ".types": {
+      "tokens": 21263761,
+      "files": 14016
+    },
+    ".symbols": {
+      "tokens": 14389791,
+      "files": 14016
+    },
+    ".ts": {
+      "tokens": 12986341,
+      "files": 21496
+    },
+    ".md": {
+      "tokens": 9722280,
+      "files": 108
+    },
+    ".map": {
+      "tokens": 9692994,
+      "files": 1529
+    },
+    ".txt": {
+      "tokens": 6978283,
+      "files": 9983
+    },
+    ".lcl": {
+      "tokens": 3941824,
+      "files": 13
+    },
+    ".baseline": {
+      "tokens": 3017569,
+      "files": 459
+    },
+    ".jsonc": {
+      "tokens": 2197200,
+      "files": 968
+    },
+    ".json": {
+      "tokens": 2086354,
+      "files": 1479
+    },
+    ".tsbuildinfo": {
+      "tokens": 342335,
+      "files": 13
+    },
+    ".lcg": {
+      "tokens": 178955,
+      "files": 1
+    },
+    ".tsx": {
+      "tokens": 63479,
+      "files": 333
+    },
+    ".mjs": {
+      "tokens": 23927,
+      "files": 17
+    },
+    ".yml": {
+      "tokens": 14886,
+      "files": 20
+    },
+    ".cjs": {
+      "tokens": 11010,
+      "files": 18
+    },
+    ".diff": {
+      "tokens": 10997,
+      "files": 24
+    },
+    ".yaml": {
+      "tokens": 5545,
+      "files": 9
+    },
+    "(no extension)": {
+      "tokens": 739,
+      "files": 8
+    },
+    ".cts": {
+      "tokens": 454,
+      "files": 1
+    }
+  },
+  "top_files": [
+    {
+      "path": "tests/baselines/reference/hugeDeclarationOutputGetsTruncatedWithError.types",
+      "tokens": 3976707,
+      "chars": 10413842
+    },
+    {
+      "path": "built/local/run.js.map",
+      "tokens": 3721528,
+      "chars": 6294624
+    },
+    {
+      "path": "built/local/run.js",
+      "tokens": 2989881,
+      "chars": 13172362
+    },
+    {
+      "path": "built/local/typescript.js.map",
+      "tokens": 2648716,
+      "chars": 4414804
+    },
+    {
+      "path": "built/local/typescript.js",
+      "tokens": 2122263,
+      "chars": 9143562
+    },
+    {
+      "path": "built/local/_tsc.js.map",
+      "tokens": 1808868,
+      "chars": 2994005
+    },
+    {
+      "path": "built/local/_tsc.js",
+      "tokens": 1443930,
+      "chars": 6239111
+    },
+    {
+      "path": "tests/cases/fourslash/codeFixClassImplementInterfaceNoTruncation.ts",
+      "tokens": 1191936,
+      "chars": 4025009
+    },
+    {
+      "path": "tests/baselines/reference/reallyLargeFile.baseline.jsonc",
+      "tokens": 1167518,
+      "chars": 2335173
+    },
+    {
+      "path": "tests/baselines/reference/parsingDeepParenthensizedExpression.types",
+      "tokens": 722063,
+      "chars": 2385649
+    },
+    {
+      "path": "tests/baselines/reference/largeControlFlowGraph.types",
+      "tokens": 700081,
+      "chars": 1300318
+    },
+    {
+      "path": "tests/cases/fourslash/codeFixClassImplementInterfaceNoTruncationProperties.ts",
+      "tokens": 668404,
+      "chars": 1301441
+    },
+    {
+      "path": "src/compiler/checker.ts",
+      "tokens": 592481,
+      "chars": 3097338
+    },
+    {
+      "path": "tests/cases/fourslash/reallyLargeFile.ts",
+      "tokens": 583747,
+      "chars": 2918680
+    },
+    {
+      "path": "tests/baselines/reference/completionsCommentsClassMembers.baseline",
+      "tokens": 539963,
+      "chars": 2632511
+    },
+    {
+      "path": "built/local/lib.dom.d.ts",
+      "tokens": 530260,
+      "chars": 2349323
+    },
+    {
+      "path": "src/lib/dom.generated.d.ts",
+      "tokens": 530117,
+      "chars": 2348509
+    },
+    {
+      "path": "tests/cases/fourslash/excessivelyLargeArrayLiteralCompletions.ts",
+      "tokens": 527581,
+      "chars": 1144018
+    },
+    {
+      "path": "tests/baselines/reference/tsserver/completionsIncomplete/resolves-more-when-available-from-module-specifier-cache-(1).js",
+      "tokens": 462342,
+      "chars": 1790248
+    },
+    {
+      "path": "tests/baselines/reference/resolvingClassDeclarationWhenInBaseTypeResolution.symbols",
+      "tokens": 457947,
+      "chars": 1577672
+    },
+    {
+      "path": "tests/baselines/reference/completionsCommitCharactersGlobal.baseline",
+      "tokens": 452673,
+      "chars": 2221503
+    },
+    {
+      "path": "tests/baselines/reference/mappedTypeRecursiveInference.types",
+      "tokens": 428362,
+      "chars": 1665600
+    },
+    {
+      "path": "tests/baselines/reference/recursiveConditionalCrash3.types",
+      "tokens": 391038,
+      "chars": 1274601
+    },
+    {
+      "path": "tests/baselines/reference/unionSubtypeReductionErrors.types",
+      "tokens": 390680,
+      "chars": 967254
+    },
+    {
+      "path": "tests/baselines/reference/excessivelyLargeTupleSpread.types",
+      "tokens": 362514,
+      "chars": 660930
+    },
+    {
+      "path": "src/loc/lcl/jpn/diagnosticMessages/diagnosticMessages.generated.json.lcl",
+      "tokens": 321690,
+      "chars": 992070
+    },
+    {
+      "path": "built/local/typescript.internal.d.ts",
+      "tokens": 315140,
+      "chars": 1532905
+    },
+    {
+      "path": "tests/baselines/reference/fixSignatureCaching.types",
+      "tokens": 312822,
+      "chars": 1386791
+    },
+    {
+      "path": "src/loc/lcl/kor/diagnosticMessages/diagnosticMessages.generated.json.lcl",
+      "tokens": 310437,
+      "chars": 989216
+    },
+    {
+      "path": "src/loc/lcl/rus/diagnosticMessages/diagnosticMessages.generated.json.lcl",
+      "tokens": 309005,
+      "chars": 1059334
+    },
+    {
+      "path": "src/loc/lcl/plk/diagnosticMessages/diagnosticMessages.generated.json.lcl",
+      "tokens": 308813,
+      "chars": 1065595
+    },
+    {
+      "path": "src/loc/lcl/csy/diagnosticMessages/diagnosticMessages.generated.json.lcl",
+      "tokens": 308369,
+      "chars": 1046780
+    },
+    {
+      "path": "src/loc/lcl/trk/diagnosticMessages/diagnosticMessages.generated.json.lcl",
+      "tokens": 307855,
+      "chars": 1056165
+    },
+    {
+      "path": "src/loc/lcl/cht/diagnosticMessages/diagnosticMessages.generated.json.lcl",
+      "tokens": 307232,
+      "chars": 959702
+    },
+    {
+      "path": "src/loc/lcl/deu/diagnosticMessages/diagnosticMessages.generated.json.lcl",
+      "tokens": 297546,
+      "chars": 1076158
+    },
+    {
+      "path": "src/loc/lcl/fra/diagnosticMessages/diagnosticMessages.generated.json.lcl",
+      "tokens": 296764,
+      "chars": 1079491
+    },
+    {
+      "path": "src/loc/lcl/ita/diagnosticMessages/diagnosticMessages.generated.json.lcl",
+      "tokens": 295950,
+      "chars": 1076732
+    },
+    {
+      "path": "src/loc/lcl/chs/diagnosticMessages/diagnosticMessages.generated.json.lcl",
+      "tokens": 293088,
+      "chars": 959063
+    },
+    {
+      "path": "src/loc/lcl/esn/diagnosticMessages/diagnosticMessages.generated.json.lcl",
+      "tokens": 292811,
+      "chars": 1074998
+    },
+    {
+      "path": "src/loc/lcl/ptb/diagnosticMessages/diagnosticMessages.generated.json.lcl",
+      "tokens": 292264,
+      "chars": 1064655
+    },
+    {
+      "path": "tests/baselines/reference/largeControlFlowGraph.symbols",
+      "tokens": 280079,
+      "chars": 730321
+    },
+    {
+      "path": "tests/baselines/reference/binaryArithmeticControlFlowGraphNotTooLarge.types",
+      "tokens": 241147,
+      "chars": 602887
+    },
+    {
+      "path": "tests/baselines/reference/completionsCommentsCommentParsing.baseline",
+      "tokens": 222396,
+      "chars": 1103151
+    },
+    {
+      "path": "tests/baselines/reference/conditionalTypeDiscriminatingLargeUnionRegularTypeFetchingSpeedReasonable.symbols",
+      "tokens": 219606,
+      "chars": 850561
+    },
+    {
+      "path": "tests/baselines/reference/temporal.types",
+      "tokens": 212407,
+      "chars": 767531
+    },
+    {
+      "path": "tests/baselines/reference/resolvingClassDeclarationWhenInBaseTypeResolution.types",
+      "tokens": 208602,
+      "chars": 605093
+    },
+    {
+      "path": "tests/baselines/reference/tsserver/completionsIncomplete/works.js",
+      "tokens": 197949,
+      "chars": 774394
+    },
+    {
+      "path": "tests/baselines/reference/manyConstExports(target=es5).types",
+      "tokens": 188021,
+      "chars": 506752
+    },
+    {
+      "path": "tests/baselines/reference/manyConstExports(target=es2015).types",
+      "tokens": 188021,
+      "chars": 506752
+    },
+    {
+      "path": "tests/baselines/reference/canWatch/getDirectoryToWatchFailedLookupLocationAtTypesInsubDirNonRecursiveUncDos.baseline.md",
+      "tokens": 187505,
+      "chars": 896039
+    }
+  ]
+}

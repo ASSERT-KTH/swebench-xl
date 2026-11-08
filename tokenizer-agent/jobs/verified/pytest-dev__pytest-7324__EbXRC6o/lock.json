@@ -1,0 +1,38 @@
+{
+    "schema_version": 2,
+    "task": {
+        "name": "pytest-dev__pytest-7324",
+        "type": "git",
+        "digest": "sha256:cc2b9c96d38eb2dc85e237957e6f68eda0415361c803082c5089a0618b7bfbc8",
+        "source": "swebench-verified",
+        "path": "datasets/swebench-verified/pytest-dev__pytest-7324",
+        "git_url": "https://github.com/laude-institute/harbor-datasets.git",
+        "git_commit_id": "86723674f04e4209ac479d0fb75d9d9f44b4377e"
+    },
+    "install_only": false,
+    "timeout_multiplier": 1.0,
+    "agent": {
+        "name": "tokenizer_agent:RepoTokenizerAgent",
+        "skills": [],
+        "resume_trajectory": false,
+        "extra_allowed_hosts": [],
+        "kwargs": {},
+        "mcp_servers": []
+    },
+    "bridge_inputs": {},
+    "skills": [],
+    "environment": {
+        "type": "docker",
+        "force_build": false,
+        "delete": true,
+        "cpu_enforcement_policy": "auto",
+        "memory_enforcement_policy": "auto",
+        "extra_docker_compose": [],
+        "kwargs": {},
+        "extra_allowed_hosts": []
+    },
+    "verifier": {
+        "disable": false,
+        "environment_mode": "shared"
+    }
+}

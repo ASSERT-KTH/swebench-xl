@@ -1,0 +1,749 @@
+++ cd /testbed
+++ set +x
+++ python -m pip install -e .
+Obtaining file:///testbed
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Checking if build backend supports build_editable: started
+  Checking if build backend supports build_editable: finished with status 'done'
+  Getting requirements to build editable: started
+  Getting requirements to build editable: finished with status 'done'
+  Preparing editable metadata (pyproject.toml): started
+  Preparing editable metadata (pyproject.toml): finished with status 'done'
+Requirement already satisfied: contourpy>=1.0.1 in /opt/miniconda3/envs/testbed/lib/python3.11/site-packages (from matplotlib==3.8.0.dev1195+gd811f7148) (1.1.0)
+Requirement already satisfied: cycler>=0.10 in /opt/miniconda3/envs/testbed/lib/python3.11/site-packages (from matplotlib==3.8.0.dev1195+gd811f7148) (0.11.0)
+Requirement already satisfied: fonttools>=4.22.0 in /opt/miniconda3/envs/testbed/lib/python3.11/site-packages (from matplotlib==3.8.0.dev1195+gd811f7148) (4.42.1)
+Requirement already satisfied: kiwisolver>=1.0.1 in /opt/miniconda3/envs/testbed/lib/python3.11/site-packages (from matplotlib==3.8.0.dev1195+gd811f7148) (1.4.5)
+Requirement already satisfied: numpy>=1.21 in /opt/miniconda3/envs/testbed/lib/python3.11/site-packages (from matplotlib==3.8.0.dev1195+gd811f7148) (1.25.2)
+Requirement already satisfied: packaging>=20.0 in /opt/miniconda3/envs/testbed/lib/python3.11/site-packages (from matplotlib==3.8.0.dev1195+gd811f7148) (23.1)
+Requirement already satisfied: pillow>=6.2.0 in /opt/miniconda3/envs/testbed/lib/python3.11/site-packages (from matplotlib==3.8.0.dev1195+gd811f7148) (10.0.0)
+Requirement already satisfied: pyparsing>=2.3.1 in /opt/miniconda3/envs/testbed/lib/python3.11/site-packages (from matplotlib==3.8.0.dev1195+gd811f7148) (3.0.9)
+Requirement already satisfied: python-dateutil>=2.7 in /opt/miniconda3/envs/testbed/lib/python3.11/site-packages (from matplotlib==3.8.0.dev1195+gd811f7148) (2.8.2)
+Requirement already satisfied: setuptools_scm>=7 in /opt/miniconda3/envs/testbed/lib/python3.11/site-packages (from matplotlib==3.8.0.dev1195+gd811f7148) (7.1.0)
+Requirement already satisfied: six>=1.5 in /opt/miniconda3/envs/testbed/lib/python3.11/site-packages (from python-dateutil>=2.7->matplotlib==3.8.0.dev1195+gd811f7148) (1.16.0)
+Requirement already satisfied: setuptools in /opt/miniconda3/envs/testbed/lib/python3.11/site-packages (from setuptools_scm>=7->matplotlib==3.8.0.dev1195+gd811f7148) (68.1.2)
+Requirement already satisfied: typing-extensions in /opt/miniconda3/envs/testbed/lib/python3.11/site-packages (from setuptools_scm>=7->matplotlib==3.8.0.dev1195+gd811f7148) (4.7.1)
+Building wheels for collected packages: matplotlib
+  Building editable for matplotlib (pyproject.toml): started
+  Building editable for matplotlib (pyproject.toml): finished with status 'done'
+  Created wheel for matplotlib: filename=matplotlib-3.8.0.dev1195+gd811f7148-0.editable-cp311-cp311-linux_x86_64.whl size=23421 sha256=12dd02e9dc311280d766d8b7ae395dc84ca2717804eef1c8e6d8598125eefd0c
+  Stored in directory: /tmp/pip-ephem-wheel-cache-bac36ydo/wheels/49/5f/4f/01b7d31ea6ddac9643da788242d33e5fd3467d95d17b032c6b
+Successfully built matplotlib
+Installing collected packages: matplotlib
+  Attempting uninstall: matplotlib
+    Found existing installation: matplotlib 3.8.0.dev1194+g26224d960
+    Uninstalling matplotlib-3.8.0.dev1194+g26224d960:
+      Successfully uninstalled matplotlib-3.8.0.dev1194+g26224d960
+Successfully installed matplotlib-3.8.0.dev1195+gd811f7148
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+++ git checkout 26224d96066b5c60882296c551f54ca7732c0af0 lib/matplotlib/tests/test_text.py
+Updated 0 paths from 06b30da7ce
+++ git clean -fd
+++ echo 'diff --git a/lib/matplotlib/tests/test_text.py b/lib/matplotlib/tests/test_text.py
+--- a/lib/matplotlib/tests/test_text.py
++++ b/lib/matplotlib/tests/test_text.py
+@@ -14,7 +14,7 @@
+ import matplotlib.transforms as mtransforms
+ from matplotlib.testing.decorators import check_figures_equal, image_comparison
+ from matplotlib.testing._markers import needs_usetex
+-from matplotlib.text import Text
++from matplotlib.text import Text, Annotation
+
+
+ @image_comparison(['\''font_styles'\''])
+@@ -902,3 +902,63 @@ def test_annotate_offset_fontsize():
+     points_coords, fontsize_coords = [ann.get_window_extent() for ann in anns]
+     fig.canvas.draw()
+     assert str(points_coords) == str(fontsize_coords)
++
++
++def test_set_antialiased():
++    txt = Text(.5, .5, "foo\nbar")
++    assert txt._antialiased == mpl.rcParams['\''text.antialiased'\'']
++
++    txt.set_antialiased(True)
++    assert txt._antialiased is True
++
++    txt.set_antialiased(False)
++    assert txt._antialiased is False
++
++
++def test_get_antialiased():
++
++    txt2 = Text(.5, .5, "foo\nbar", antialiased=True)
++    assert txt2._antialiased is True
++    assert txt2.get_antialiased() == txt2._antialiased
++
++    txt3 = Text(.5, .5, "foo\nbar", antialiased=False)
++    assert txt3._antialiased is False
++    assert txt3.get_antialiased() == txt3._antialiased
++
++    txt4 = Text(.5, .5, "foo\nbar")
++    assert txt4.get_antialiased() == mpl.rcParams['\''text.antialiased'\'']
++
++
++def test_annotation_antialiased():
++    annot = Annotation("foo\nbar", (.5, .5), antialiased=True)
++    assert annot._antialiased is True
++    assert annot.get_antialiased() == annot._antialiased
++
++    annot2 = Annotation("foo\nbar", (.5, .5), antialiased=False)
++    assert annot2._antialiased is False
++    assert annot2.get_antialiased() == annot2._antialiased
++
++    annot3 = Annotation("foo\nbar", (.5, .5), antialiased=False)
++    annot3.set_antialiased(True)
++    assert annot3.get_antialiased() is True
++    assert annot3._antialiased is True
++
++    annot4 = Annotation("foo\nbar", (.5, .5))
++    assert annot4._antialiased == mpl.rcParams['\''text.antialiased'\'']
++
++
++@check_figures_equal()
++def test_text_antialiased_off_default_vs_manual(fig_test, fig_ref):
++    fig_test.text(0.5, 0.5, '\''6 inches x 2 inches'\'',
++                             antialiased=False)
++
++    mpl.rcParams['\''text.antialiased'\''] = False
++    fig_ref.text(0.5, 0.5, '\''6 inches x 2 inches'\'')
++
++
++@check_figures_equal()
++def test_text_antialiased_on_default_vs_manual(fig_test, fig_ref):
++    fig_test.text(0.5, 0.5, '\''6 inches x 2 inches'\'', antialiased=True)
++
++    mpl.rcParams['\''text.antialiased'\''] = True
++    fig_ref.text(0.5, 0.5, '\''6 inches x 2 inches'\'')
+'
+++ git apply --check /tmp/test_patch.diff
+++ git apply /tmp/test_patch.diff
++++ mktemp
+++ LOG_FILE=/tmp/tmp.LG3knCS6zL
+++ export LOG_FILE
+++ exec
+++ exec
++++ tee /tmp/tmp.LG3knCS6zL
+++ set +x
+============================= test session starts ==============================
+platform linux -- Python 3.11.11, pytest-8.3.4, pluggy-1.5.0
+rootdir: /testbed
+configfile: pytest.ini
+plugins: cov-6.0.0, rerunfailures-15.0, timeout-2.3.1, xdist-3.6.1
+collected 109 items
+
+lib/matplotlib/tests/test_text.py ..s..s..s............s..s............. [ 34%]
+...............s.................ss...........................FFFFFFFFF  [100%]
+
+=================================== FAILURES ===================================
+_____________________________ test_set_antialiased _____________________________
+
+    def test_set_antialiased():
+        txt = Text(.5, .5, "foo\nbar")
+>       assert txt._antialiased == mpl.rcParams['text.antialiased']
+E       AttributeError: 'Text' object has no attribute '_antialiased'
+
+lib/matplotlib/tests/test_text.py:909: AttributeError
+_____________________________ test_get_antialiased _____________________________
+
+    def test_get_antialiased():
+    
+>       txt2 = Text(.5, .5, "foo\nbar", antialiased=True)
+
+lib/matplotlib/tests/test_text.py:920: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+lib/matplotlib/text.py:153: in __init__
+    self.update(kwargs)
+lib/matplotlib/text.py:201: in update
+    super().update(kwargs)
+lib/matplotlib/artist.py:1208: in update
+    return self._update_props(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = Text(0.5, 0.5, 'foo\nbar'), props = {'antialiased': True}
+errfmt = '{cls.__name__!r} object has no property {prop_name!r}'
+
+    def _update_props(self, props, errfmt):
+        """
+        Helper for `.Artist.set` and `.Artist.update`.
+    
+        *errfmt* is used to generate error messages for invalid property
+        names; it gets formatted with ``type(self)`` and the property name.
+        """
+        ret = []
+        with cbook._setattr_cm(self, eventson=False):
+            for k, v in props.items():
+                # Allow attributes we want to be able to update through
+                # art.update, art.set, setp.
+                if k == "axes":
+                    ret.append(setattr(self, k, v))
+                else:
+                    func = getattr(self, f"set_{k}", None)
+                    if not callable(func):
+>                       raise AttributeError(
+                            errfmt.format(cls=type(self), prop_name=k))
+E                       AttributeError: 'Text' object has no property 'antialiased'
+
+lib/matplotlib/artist.py:1192: AttributeError
+_________________________ test_annotation_antialiased __________________________
+
+    def test_annotation_antialiased():
+>       annot = Annotation("foo\nbar", (.5, .5), antialiased=True)
+
+lib/matplotlib/tests/test_text.py:933: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+lib/matplotlib/text.py:1820: in __init__
+    Text.__init__(self, x, y, text, **kwargs)
+lib/matplotlib/text.py:153: in __init__
+    self.update(kwargs)
+lib/matplotlib/text.py:201: in update
+    super().update(kwargs)
+lib/matplotlib/artist.py:1208: in update
+    return self._update_props(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = Text(0.5, 0.5, 'foo\nbar'), props = {'antialiased': True}
+errfmt = '{cls.__name__!r} object has no property {prop_name!r}'
+
+    def _update_props(self, props, errfmt):
+        """
+        Helper for `.Artist.set` and `.Artist.update`.
+    
+        *errfmt* is used to generate error messages for invalid property
+        names; it gets formatted with ``type(self)`` and the property name.
+        """
+        ret = []
+        with cbook._setattr_cm(self, eventson=False):
+            for k, v in props.items():
+                # Allow attributes we want to be able to update through
+                # art.update, art.set, setp.
+                if k == "axes":
+                    ret.append(setattr(self, k, v))
+                else:
+                    func = getattr(self, f"set_{k}", None)
+                    if not callable(func):
+>                       raise AttributeError(
+                            errfmt.format(cls=type(self), prop_name=k))
+E                       AttributeError: 'Annotation' object has no property 'antialiased'
+
+lib/matplotlib/artist.py:1192: AttributeError
+_______________ test_text_antialiased_off_default_vs_manual[png] _______________
+
+ext = 'png'
+request = <FixtureRequest for <Function test_text_antialiased_off_default_vs_manual[png]>>
+args = (), kwargs = {}
+file_name = 'test_text_antialiased_off_default_vs_manual[png]'
+fig_test = <Figure size 640x480 with 0 Axes>
+fig_ref = <Figure size 640x480 with 0 Axes>, figs = []
+
+    @pytest.mark.parametrize("ext", extensions)
+    def wrapper(*args, ext, request, **kwargs):
+        if 'ext' in old_sig.parameters:
+            kwargs['ext'] = ext
+        if 'request' in old_sig.parameters:
+            kwargs['request'] = request
+    
+        file_name = "".join(c for c in request.node.name
+                            if c in ALLOWED_CHARS)
+        try:
+            fig_test = plt.figure("test")
+            fig_ref = plt.figure("reference")
+            with _collect_new_figures() as figs:
+>               func(*args, fig_test=fig_test, fig_ref=fig_ref, **kwargs)
+
+lib/matplotlib/testing/decorators.py:411: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+lib/matplotlib/tests/test_text.py:952: in test_text_antialiased_off_default_vs_manual
+    fig_test.text(0.5, 0.5, '6 inches x 2 inches',
+lib/matplotlib/figure.py:1185: in text
+    text = Text(x=x, y=y, text=s, **effective_kwargs)
+lib/matplotlib/text.py:153: in __init__
+    self.update(kwargs)
+lib/matplotlib/text.py:201: in update
+    super().update(kwargs)
+lib/matplotlib/artist.py:1208: in update
+    return self._update_props(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = Text(0.5, 0.5, '6 inches x 2 inches')
+props = {'antialiased': False, 'transform': <matplotlib.transforms.BboxTransformTo object at 0x7f7da5cb5c10>}
+errfmt = '{cls.__name__!r} object has no property {prop_name!r}'
+
+    def _update_props(self, props, errfmt):
+        """
+        Helper for `.Artist.set` and `.Artist.update`.
+    
+        *errfmt* is used to generate error messages for invalid property
+        names; it gets formatted with ``type(self)`` and the property name.
+        """
+        ret = []
+        with cbook._setattr_cm(self, eventson=False):
+            for k, v in props.items():
+                # Allow attributes we want to be able to update through
+                # art.update, art.set, setp.
+                if k == "axes":
+                    ret.append(setattr(self, k, v))
+                else:
+                    func = getattr(self, f"set_{k}", None)
+                    if not callable(func):
+>                       raise AttributeError(
+                            errfmt.format(cls=type(self), prop_name=k))
+E                       AttributeError: 'Text' object has no property 'antialiased'
+
+lib/matplotlib/artist.py:1192: AttributeError
+_______________ test_text_antialiased_off_default_vs_manual[pdf] _______________
+
+ext = 'pdf'
+request = <FixtureRequest for <Function test_text_antialiased_off_default_vs_manual[pdf]>>
+args = (), kwargs = {}
+file_name = 'test_text_antialiased_off_default_vs_manual[pdf]'
+fig_test = <Figure size 640x480 with 0 Axes>
+fig_ref = <Figure size 640x480 with 0 Axes>, figs = []
+
+    @pytest.mark.parametrize("ext", extensions)
+    def wrapper(*args, ext, request, **kwargs):
+        if 'ext' in old_sig.parameters:
+            kwargs['ext'] = ext
+        if 'request' in old_sig.parameters:
+            kwargs['request'] = request
+    
+        file_name = "".join(c for c in request.node.name
+                            if c in ALLOWED_CHARS)
+        try:
+            fig_test = plt.figure("test")
+            fig_ref = plt.figure("reference")
+            with _collect_new_figures() as figs:
+>               func(*args, fig_test=fig_test, fig_ref=fig_ref, **kwargs)
+
+lib/matplotlib/testing/decorators.py:411: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+lib/matplotlib/tests/test_text.py:952: in test_text_antialiased_off_default_vs_manual
+    fig_test.text(0.5, 0.5, '6 inches x 2 inches',
+lib/matplotlib/figure.py:1185: in text
+    text = Text(x=x, y=y, text=s, **effective_kwargs)
+lib/matplotlib/text.py:153: in __init__
+    self.update(kwargs)
+lib/matplotlib/text.py:201: in update
+    super().update(kwargs)
+lib/matplotlib/artist.py:1208: in update
+    return self._update_props(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = Text(0.5, 0.5, '6 inches x 2 inches')
+props = {'antialiased': False, 'transform': <matplotlib.transforms.BboxTransformTo object at 0x7f7da5ccec90>}
+errfmt = '{cls.__name__!r} object has no property {prop_name!r}'
+
+    def _update_props(self, props, errfmt):
+        """
+        Helper for `.Artist.set` and `.Artist.update`.
+    
+        *errfmt* is used to generate error messages for invalid property
+        names; it gets formatted with ``type(self)`` and the property name.
+        """
+        ret = []
+        with cbook._setattr_cm(self, eventson=False):
+            for k, v in props.items():
+                # Allow attributes we want to be able to update through
+                # art.update, art.set, setp.
+                if k == "axes":
+                    ret.append(setattr(self, k, v))
+                else:
+                    func = getattr(self, f"set_{k}", None)
+                    if not callable(func):
+>                       raise AttributeError(
+                            errfmt.format(cls=type(self), prop_name=k))
+E                       AttributeError: 'Text' object has no property 'antialiased'
+
+lib/matplotlib/artist.py:1192: AttributeError
+_______________ test_text_antialiased_off_default_vs_manual[svg] _______________
+
+ext = 'svg'
+request = <FixtureRequest for <Function test_text_antialiased_off_default_vs_manual[svg]>>
+args = (), kwargs = {}
+file_name = 'test_text_antialiased_off_default_vs_manual[svg]'
+fig_test = <Figure size 640x480 with 0 Axes>
+fig_ref = <Figure size 640x480 with 0 Axes>, figs = []
+
+    @pytest.mark.parametrize("ext", extensions)
+    def wrapper(*args, ext, request, **kwargs):
+        if 'ext' in old_sig.parameters:
+            kwargs['ext'] = ext
+        if 'request' in old_sig.parameters:
+            kwargs['request'] = request
+    
+        file_name = "".join(c for c in request.node.name
+                            if c in ALLOWED_CHARS)
+        try:
+            fig_test = plt.figure("test")
+            fig_ref = plt.figure("reference")
+            with _collect_new_figures() as figs:
+>               func(*args, fig_test=fig_test, fig_ref=fig_ref, **kwargs)
+
+lib/matplotlib/testing/decorators.py:411: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+lib/matplotlib/tests/test_text.py:952: in test_text_antialiased_off_default_vs_manual
+    fig_test.text(0.5, 0.5, '6 inches x 2 inches',
+lib/matplotlib/figure.py:1185: in text
+    text = Text(x=x, y=y, text=s, **effective_kwargs)
+lib/matplotlib/text.py:153: in __init__
+    self.update(kwargs)
+lib/matplotlib/text.py:201: in update
+    super().update(kwargs)
+lib/matplotlib/artist.py:1208: in update
+    return self._update_props(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = Text(0.5, 0.5, '6 inches x 2 inches')
+props = {'antialiased': False, 'transform': <matplotlib.transforms.BboxTransformTo object at 0x7f7da47c7dd0>}
+errfmt = '{cls.__name__!r} object has no property {prop_name!r}'
+
+    def _update_props(self, props, errfmt):
+        """
+        Helper for `.Artist.set` and `.Artist.update`.
+    
+        *errfmt* is used to generate error messages for invalid property
+        names; it gets formatted with ``type(self)`` and the property name.
+        """
+        ret = []
+        with cbook._setattr_cm(self, eventson=False):
+            for k, v in props.items():
+                # Allow attributes we want to be able to update through
+                # art.update, art.set, setp.
+                if k == "axes":
+                    ret.append(setattr(self, k, v))
+                else:
+                    func = getattr(self, f"set_{k}", None)
+                    if not callable(func):
+>                       raise AttributeError(
+                            errfmt.format(cls=type(self), prop_name=k))
+E                       AttributeError: 'Text' object has no property 'antialiased'
+
+lib/matplotlib/artist.py:1192: AttributeError
+_______________ test_text_antialiased_on_default_vs_manual[png] ________________
+
+ext = 'png'
+request = <FixtureRequest for <Function test_text_antialiased_on_default_vs_manual[png]>>
+args = (), kwargs = {}
+file_name = 'test_text_antialiased_on_default_vs_manual[png]'
+fig_test = <Figure size 640x480 with 0 Axes>
+fig_ref = <Figure size 640x480 with 0 Axes>, figs = []
+
+    @pytest.mark.parametrize("ext", extensions)
+    def wrapper(*args, ext, request, **kwargs):
+        if 'ext' in old_sig.parameters:
+            kwargs['ext'] = ext
+        if 'request' in old_sig.parameters:
+            kwargs['request'] = request
+    
+        file_name = "".join(c for c in request.node.name
+                            if c in ALLOWED_CHARS)
+        try:
+            fig_test = plt.figure("test")
+            fig_ref = plt.figure("reference")
+            with _collect_new_figures() as figs:
+>               func(*args, fig_test=fig_test, fig_ref=fig_ref, **kwargs)
+
+lib/matplotlib/testing/decorators.py:411: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+lib/matplotlib/tests/test_text.py:961: in test_text_antialiased_on_default_vs_manual
+    fig_test.text(0.5, 0.5, '6 inches x 2 inches', antialiased=True)
+lib/matplotlib/figure.py:1185: in text
+    text = Text(x=x, y=y, text=s, **effective_kwargs)
+lib/matplotlib/text.py:153: in __init__
+    self.update(kwargs)
+lib/matplotlib/text.py:201: in update
+    super().update(kwargs)
+lib/matplotlib/artist.py:1208: in update
+    return self._update_props(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = Text(0.5, 0.5, '6 inches x 2 inches')
+props = {'antialiased': True, 'transform': <matplotlib.transforms.BboxTransformTo object at 0x7f7da58f32d0>}
+errfmt = '{cls.__name__!r} object has no property {prop_name!r}'
+
+    def _update_props(self, props, errfmt):
+        """
+        Helper for `.Artist.set` and `.Artist.update`.
+    
+        *errfmt* is used to generate error messages for invalid property
+        names; it gets formatted with ``type(self)`` and the property name.
+        """
+        ret = []
+        with cbook._setattr_cm(self, eventson=False):
+            for k, v in props.items():
+                # Allow attributes we want to be able to update through
+                # art.update, art.set, setp.
+                if k == "axes":
+                    ret.append(setattr(self, k, v))
+                else:
+                    func = getattr(self, f"set_{k}", None)
+                    if not callable(func):
+>                       raise AttributeError(
+                            errfmt.format(cls=type(self), prop_name=k))
+E                       AttributeError: 'Text' object has no property 'antialiased'
+
+lib/matplotlib/artist.py:1192: AttributeError
+_______________ test_text_antialiased_on_default_vs_manual[pdf] ________________
+
+ext = 'pdf'
+request = <FixtureRequest for <Function test_text_antialiased_on_default_vs_manual[pdf]>>
+args = (), kwargs = {}
+file_name = 'test_text_antialiased_on_default_vs_manual[pdf]'
+fig_test = <Figure size 640x480 with 0 Axes>
+fig_ref = <Figure size 640x480 with 0 Axes>, figs = []
+
+    @pytest.mark.parametrize("ext", extensions)
+    def wrapper(*args, ext, request, **kwargs):
+        if 'ext' in old_sig.parameters:
+            kwargs['ext'] = ext
+        if 'request' in old_sig.parameters:
+            kwargs['request'] = request
+    
+        file_name = "".join(c for c in request.node.name
+                            if c in ALLOWED_CHARS)
+        try:
+            fig_test = plt.figure("test")
+            fig_ref = plt.figure("reference")
+            with _collect_new_figures() as figs:
+>               func(*args, fig_test=fig_test, fig_ref=fig_ref, **kwargs)
+
+lib/matplotlib/testing/decorators.py:411: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+lib/matplotlib/tests/test_text.py:961: in test_text_antialiased_on_default_vs_manual
+    fig_test.text(0.5, 0.5, '6 inches x 2 inches', antialiased=True)
+lib/matplotlib/figure.py:1185: in text
+    text = Text(x=x, y=y, text=s, **effective_kwargs)
+lib/matplotlib/text.py:153: in __init__
+    self.update(kwargs)
+lib/matplotlib/text.py:201: in update
+    super().update(kwargs)
+lib/matplotlib/artist.py:1208: in update
+    return self._update_props(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = Text(0.5, 0.5, '6 inches x 2 inches')
+props = {'antialiased': True, 'transform': <matplotlib.transforms.BboxTransformTo object at 0x7f7da4ccea50>}
+errfmt = '{cls.__name__!r} object has no property {prop_name!r}'
+
+    def _update_props(self, props, errfmt):
+        """
+        Helper for `.Artist.set` and `.Artist.update`.
+    
+        *errfmt* is used to generate error messages for invalid property
+        names; it gets formatted with ``type(self)`` and the property name.
+        """
+        ret = []
+        with cbook._setattr_cm(self, eventson=False):
+            for k, v in props.items():
+                # Allow attributes we want to be able to update through
+                # art.update, art.set, setp.
+                if k == "axes":
+                    ret.append(setattr(self, k, v))
+                else:
+                    func = getattr(self, f"set_{k}", None)
+                    if not callable(func):
+>                       raise AttributeError(
+                            errfmt.format(cls=type(self), prop_name=k))
+E                       AttributeError: 'Text' object has no property 'antialiased'
+
+lib/matplotlib/artist.py:1192: AttributeError
+_______________ test_text_antialiased_on_default_vs_manual[svg] ________________
+
+ext = 'svg'
+request = <FixtureRequest for <Function test_text_antialiased_on_default_vs_manual[svg]>>
+args = (), kwargs = {}
+file_name = 'test_text_antialiased_on_default_vs_manual[svg]'
+fig_test = <Figure size 640x480 with 0 Axes>
+fig_ref = <Figure size 640x480 with 0 Axes>, figs = []
+
+    @pytest.mark.parametrize("ext", extensions)
+    def wrapper(*args, ext, request, **kwargs):
+        if 'ext' in old_sig.parameters:
+            kwargs['ext'] = ext
+        if 'request' in old_sig.parameters:
+            kwargs['request'] = request
+    
+        file_name = "".join(c for c in request.node.name
+                            if c in ALLOWED_CHARS)
+        try:
+            fig_test = plt.figure("test")
+            fig_ref = plt.figure("reference")
+            with _collect_new_figures() as figs:
+>               func(*args, fig_test=fig_test, fig_ref=fig_ref, **kwargs)
+
+lib/matplotlib/testing/decorators.py:411: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+lib/matplotlib/tests/test_text.py:961: in test_text_antialiased_on_default_vs_manual
+    fig_test.text(0.5, 0.5, '6 inches x 2 inches', antialiased=True)
+lib/matplotlib/figure.py:1185: in text
+    text = Text(x=x, y=y, text=s, **effective_kwargs)
+lib/matplotlib/text.py:153: in __init__
+    self.update(kwargs)
+lib/matplotlib/text.py:201: in update
+    super().update(kwargs)
+lib/matplotlib/artist.py:1208: in update
+    return self._update_props(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = Text(0.5, 0.5, '6 inches x 2 inches')
+props = {'antialiased': True, 'transform': <matplotlib.transforms.BboxTransformTo object at 0x7f7da45d9450>}
+errfmt = '{cls.__name__!r} object has no property {prop_name!r}'
+
+    def _update_props(self, props, errfmt):
+        """
+        Helper for `.Artist.set` and `.Artist.update`.
+    
+        *errfmt* is used to generate error messages for invalid property
+        names; it gets formatted with ``type(self)`` and the property name.
+        """
+        ret = []
+        with cbook._setattr_cm(self, eventson=False):
+            for k, v in props.items():
+                # Allow attributes we want to be able to update through
+                # art.update, art.set, setp.
+                if k == "axes":
+                    ret.append(setattr(self, k, v))
+                else:
+                    func = getattr(self, f"set_{k}", None)
+                    if not callable(func):
+>                       raise AttributeError(
+                            errfmt.format(cls=type(self), prop_name=k))
+E                       AttributeError: 'Text' object has no property 'antialiased'
+
+lib/matplotlib/artist.py:1192: AttributeError
+==================================== PASSES ====================================
+____________________________ test_font_styles[png] _____________________________
+------------------------------ Captured log call -------------------------------
+WARNING  matplotlib.font_manager:font_manager.py:1429 findfont: Font family ['Foo'] not found. Falling back to DejaVu Sans.
+_ test_annotate_errors[TypeError-print-xycoords callable must return a BboxBase or Transform, not a] _
+----------------------------- Captured stdout call -----------------------------
+<matplotlib.backends.backend_agg.RendererAgg object at 0x7f7da4409910>
+______________________________ test_nonfinite_pos ______________________________
+------------------------------ Captured log call -------------------------------
+WARNING  matplotlib.text:text.py:726 posx and posy should be finite values
+WARNING  matplotlib.text:text.py:726 posx and posy should be finite values
+=========================== short test summary info ============================
+PASSED lib/matplotlib/tests/test_text.py::test_font_styles[png]
+PASSED lib/matplotlib/tests/test_text.py::test_font_styles[pdf]
+PASSED lib/matplotlib/tests/test_text.py::test_multiline[png]
+PASSED lib/matplotlib/tests/test_text.py::test_multiline[pdf]
+PASSED lib/matplotlib/tests/test_text.py::test_multiline2[png]
+PASSED lib/matplotlib/tests/test_text.py::test_multiline2[pdf]
+PASSED lib/matplotlib/tests/test_text.py::test_antialiasing[png]
+PASSED lib/matplotlib/tests/test_text.py::test_afm_kerning
+PASSED lib/matplotlib/tests/test_text.py::test_contains[png]
+PASSED lib/matplotlib/tests/test_text.py::test_annotation_contains
+PASSED lib/matplotlib/tests/test_text.py::test_annotate_errors[TypeError-print-xycoords callable must return a BboxBase or Transform, not a]
+PASSED lib/matplotlib/tests/test_text.py::test_annotate_errors[TypeError-xycoords1-'xycoords' must be an instance of str, tuple]
+PASSED lib/matplotlib/tests/test_text.py::test_annotate_errors[ValueError-foo-'foo' is not a valid coordinate]
+PASSED lib/matplotlib/tests/test_text.py::test_annotate_errors[ValueError-foo bar-'foo bar' is not a valid coordinate]
+PASSED lib/matplotlib/tests/test_text.py::test_annotate_errors[ValueError-offset foo-xycoords cannot be an offset coordinate]
+PASSED lib/matplotlib/tests/test_text.py::test_annotate_errors[ValueError-axes foo-'foo' is not a recognized unit]
+PASSED lib/matplotlib/tests/test_text.py::test_titles[png]
+PASSED lib/matplotlib/tests/test_text.py::test_titles[pdf]
+PASSED lib/matplotlib/tests/test_text.py::test_alignment[png]
+PASSED lib/matplotlib/tests/test_text.py::test_alignment[pdf]
+PASSED lib/matplotlib/tests/test_text.py::test_axes_titles[png]
+PASSED lib/matplotlib/tests/test_text.py::test_set_position
+PASSED lib/matplotlib/tests/test_text.py::test_char_index_at
+PASSED lib/matplotlib/tests/test_text.py::test_non_default_dpi[empty]
+PASSED lib/matplotlib/tests/test_text.py::test_non_default_dpi[non-empty]
+PASSED lib/matplotlib/tests/test_text.py::test_get_rotation_string
+PASSED lib/matplotlib/tests/test_text.py::test_get_rotation_float
+PASSED lib/matplotlib/tests/test_text.py::test_get_rotation_int
+PASSED lib/matplotlib/tests/test_text.py::test_get_rotation_raises
+PASSED lib/matplotlib/tests/test_text.py::test_get_rotation_none
+PASSED lib/matplotlib/tests/test_text.py::test_get_rotation_mod360
+PASSED lib/matplotlib/tests/test_text.py::test_null_rotation_with_rotation_mode[center-center]
+PASSED lib/matplotlib/tests/test_text.py::test_null_rotation_with_rotation_mode[center-right]
+PASSED lib/matplotlib/tests/test_text.py::test_null_rotation_with_rotation_mode[center-left]
+PASSED lib/matplotlib/tests/test_text.py::test_null_rotation_with_rotation_mode[top-center]
+PASSED lib/matplotlib/tests/test_text.py::test_null_rotation_with_rotation_mode[top-right]
+PASSED lib/matplotlib/tests/test_text.py::test_null_rotation_with_rotation_mode[top-left]
+PASSED lib/matplotlib/tests/test_text.py::test_null_rotation_with_rotation_mode[bottom-center]
+PASSED lib/matplotlib/tests/test_text.py::test_null_rotation_with_rotation_mode[bottom-right]
+PASSED lib/matplotlib/tests/test_text.py::test_null_rotation_with_rotation_mode[bottom-left]
+PASSED lib/matplotlib/tests/test_text.py::test_null_rotation_with_rotation_mode[baseline-center]
+PASSED lib/matplotlib/tests/test_text.py::test_null_rotation_with_rotation_mode[baseline-right]
+PASSED lib/matplotlib/tests/test_text.py::test_null_rotation_with_rotation_mode[baseline-left]
+PASSED lib/matplotlib/tests/test_text.py::test_null_rotation_with_rotation_mode[center_baseline-center]
+PASSED lib/matplotlib/tests/test_text.py::test_null_rotation_with_rotation_mode[center_baseline-right]
+PASSED lib/matplotlib/tests/test_text.py::test_null_rotation_with_rotation_mode[center_baseline-left]
+PASSED lib/matplotlib/tests/test_text.py::test_bbox_clipping[png]
+PASSED lib/matplotlib/tests/test_text.py::test_bbox_clipping[pdf]
+PASSED lib/matplotlib/tests/test_text.py::test_annotation_negative_ax_coords[png]
+PASSED lib/matplotlib/tests/test_text.py::test_annotation_negative_fig_coords[png]
+PASSED lib/matplotlib/tests/test_text.py::test_text_stale
+PASSED lib/matplotlib/tests/test_text.py::test_agg_text_clip[png]
+PASSED lib/matplotlib/tests/test_text.py::test_text_size_binding
+PASSED lib/matplotlib/tests/test_text.py::test_font_scaling[pdf]
+PASSED lib/matplotlib/tests/test_text.py::test_two_2line_texts[0.4-2]
+PASSED lib/matplotlib/tests/test_text.py::test_two_2line_texts[2-0.4]
+PASSED lib/matplotlib/tests/test_text.py::test_two_2line_texts[2-2]
+PASSED lib/matplotlib/tests/test_text.py::test_validate_linespacing
+PASSED lib/matplotlib/tests/test_text.py::test_nonfinite_pos
+PASSED lib/matplotlib/tests/test_text.py::test_hinting_factor_backends
+PASSED lib/matplotlib/tests/test_text.py::test_usetex_is_copied
+PASSED lib/matplotlib/tests/test_text.py::test_single_artist_usetex
+PASSED lib/matplotlib/tests/test_text.py::test_single_artist_usenotex[png]
+PASSED lib/matplotlib/tests/test_text.py::test_single_artist_usenotex[pdf]
+PASSED lib/matplotlib/tests/test_text.py::test_single_artist_usenotex[svg]
+PASSED lib/matplotlib/tests/test_text.py::test_text_repr
+PASSED lib/matplotlib/tests/test_text.py::test_annotation_update
+PASSED lib/matplotlib/tests/test_text.py::test_annotation_units[png]
+PASSED lib/matplotlib/tests/test_text.py::test_large_subscript_title[png]
+PASSED lib/matplotlib/tests/test_text.py::test_wrap[0.7-0-left]
+PASSED lib/matplotlib/tests/test_text.py::test_wrap[0.5-95-left]
+PASSED lib/matplotlib/tests/test_text.py::test_wrap[0.3-0-right]
+PASSED lib/matplotlib/tests/test_text.py::test_wrap[0.3-185-left]
+PASSED lib/matplotlib/tests/test_text.py::test_mathwrap
+PASSED lib/matplotlib/tests/test_text.py::test_get_window_extent_wrapped
+PASSED lib/matplotlib/tests/test_text.py::test_long_word_wrap
+PASSED lib/matplotlib/tests/test_text.py::test_wrap_no_wrap
+PASSED lib/matplotlib/tests/test_text.py::test_buffer_size[png]
+PASSED lib/matplotlib/tests/test_text.py::test_fontproperties_kwarg_precedence
+PASSED lib/matplotlib/tests/test_text.py::test_transform_rotates_text
+PASSED lib/matplotlib/tests/test_text.py::test_update_mutate_input
+PASSED lib/matplotlib/tests/test_text.py::test_invalid_rotation_values[invalid string]
+PASSED lib/matplotlib/tests/test_text.py::test_invalid_rotation_values[rotation1]
+PASSED lib/matplotlib/tests/test_text.py::test_invalid_color
+PASSED lib/matplotlib/tests/test_text.py::test_pdf_kerning[pdf]
+PASSED lib/matplotlib/tests/test_text.py::test_unsupported_script
+PASSED lib/matplotlib/tests/test_text.py::test_parse_math
+PASSED lib/matplotlib/tests/test_text.py::test_parse_math_rcparams
+PASSED lib/matplotlib/tests/test_text.py::test_pdf_font42_kerning[pdf]
+PASSED lib/matplotlib/tests/test_text.py::test_pdf_chars_beyond_bmp[pdf]
+PASSED lib/matplotlib/tests/test_text.py::test_metrics_cache
+PASSED lib/matplotlib/tests/test_text.py::test_annotate_offset_fontsize
+SKIPPED [8] ../opt/miniconda3/envs/testbed/lib/python3.11/contextlib.py:81: Cannot compare svg files because Inkscape is not installed
+FAILED lib/matplotlib/tests/test_text.py::test_set_antialiased - AttributeErr...
+FAILED lib/matplotlib/tests/test_text.py::test_get_antialiased - AttributeErr...
+FAILED lib/matplotlib/tests/test_text.py::test_annotation_antialiased - Attri...
+FAILED lib/matplotlib/tests/test_text.py::test_text_antialiased_off_default_vs_manual[png]
+FAILED lib/matplotlib/tests/test_text.py::test_text_antialiased_off_default_vs_manual[pdf]
+FAILED lib/matplotlib/tests/test_text.py::test_text_antialiased_off_default_vs_manual[svg]
+FAILED lib/matplotlib/tests/test_text.py::test_text_antialiased_on_default_vs_manual[png]
+FAILED lib/matplotlib/tests/test_text.py::test_text_antialiased_on_default_vs_manual[pdf]
+FAILED lib/matplotlib/tests/test_text.py::test_text_antialiased_on_default_vs_manual[svg]
+=================== 9 failed, 92 passed, 8 skipped in 6.81s ====================
+Updated 1 path from 06b30da7ce
+Downloading chardet (1.4MiB)
+Downloading hf-xet (4.3MiB)
+Downloading aiohttp (1.7MiB)
+Downloading virtualenv (5.1MiB)
+Downloading pandas (10.8MiB)
+Downloading pygments (1.2MiB)
+Downloading numpy (16.1MiB)
+Downloading pyarrow (47.7MiB)
+ Downloading pygments
+ Downloading chardet
+ Downloading aiohttp
+ Downloading hf-xet
+ Downloading virtualenv
+ Downloading pandas
+ Downloading numpy
+ Downloading pyarrow
+Installed 73 packages in 98ms
+SWEBench results starts here
+FAILED
+SWEBench results ends here

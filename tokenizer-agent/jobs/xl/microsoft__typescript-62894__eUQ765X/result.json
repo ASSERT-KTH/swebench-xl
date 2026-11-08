@@ -1,0 +1,118 @@
+{
+    "id": "867a629f-c24d-41f0-b466-81487915f008",
+    "task_name": "microsoft__typescript-62894",
+    "trial_name": "microsoft__typescript-62894__eUQ765X",
+    "trial_uri": "file:///home/pontus/Documents/GitHub/swebench-xl/tokenizer-agent/jobs/2026-09-01__16-19-17/microsoft__typescript-62894__eUQ765X",
+    "task_id": {
+        "path": "/home/pontus/Downloads/swebench-xl/instances/microsoft__typescript-62894"
+    },
+    "source": "instances",
+    "task_checksum": "a681c7aee10c38a43a336436b821a32cdb7e2ed818df1663ee0f2af0692802f3",
+    "config": {
+        "task": {
+            "path": "/home/pontus/Downloads/swebench-xl/instances/microsoft__typescript-62894",
+            "git_url": null,
+            "git_commit_id": null,
+            "name": null,
+            "ref": null,
+            "overwrite": false,
+            "download_dir": null,
+            "source": "instances"
+        },
+        "trial_name": "microsoft__typescript-62894__eUQ765X",
+        "trials_dir": "jobs/2026-09-01__16-19-17",
+        "install_only": false,
+        "timeout_multiplier": 1.0,
+        "agent_timeout_multiplier": null,
+        "verifier_timeout_multiplier": null,
+        "agent_setup_timeout_multiplier": null,
+        "environment_build_timeout_multiplier": null,
+        "agent": {
+            "name": "tokenizer_agent:RepoTokenizerAgent",
+            "import_path": null,
+            "model_name": null,
+            "n_concurrent": null,
+            "concurrency_group": null,
+            "skills": [],
+            "override_timeout_sec": null,
+            "override_setup_timeout_sec": null,
+            "max_timeout_sec": null,
+            "resume_trajectory": false,
+            "load_trajectory": null,
+            "extra_allowed_hosts": [],
+            "kwargs": {},
+            "mcp_servers": []
+        },
+        "user_agent": null,
+        "environment": {
+            "type": "docker",
+            "import_path": null,
+            "force_build": false,
+            "delete": true,
+            "cpu_enforcement_policy": "auto",
+            "memory_enforcement_policy": "auto",
+            "override_cpus": null,
+            "override_memory_mb": null,
+            "override_storage_mb": null,
+            "override_gpus": null,
+            "override_tpu": null,
+            "mounts": null,
+            "extra_docker_compose": [],
+            "kwargs": {},
+            "extra_allowed_hosts": []
+        },
+        "verifier": {
+            "override_timeout_sec": null,
+            "max_timeout_sec": null,
+            "disable": true
+        },
+        "artifacts": [],
+        "extra_instruction_paths": [],
+        "extra_instructions": [],
+        "job_id": "65de59c4-9a1f-4770-9ad7-46be8a047c24",
+        "source_trial": null
+    },
+    "agent_info": {
+        "name": "repo-tokenizer",
+        "version": "1.0.0",
+        "model_info": null
+    },
+    "agent_result": {
+        "n_input_tokens": null,
+        "n_cache_tokens": null,
+        "n_output_tokens": null,
+        "cost_usd": null,
+        "rollout_details": null,
+        "metadata": {
+            "repo_tokenizer": {
+                "instance_id": "microsoft__typescript-62894",
+                "testbed_dir": "/testbed",
+                "encoding": "cl100k_base",
+                "total_tokens": 113683383,
+                "total_files": 76838,
+                "source_code_tokens": 44260029,
+                "source_code_files": 38821,
+                "elapsed_sec": 28.19
+            }
+        }
+    },
+    "verifier_result": null,
+    "verifier_environment_mode": "shared",
+    "exception_info": null,
+    "started_at": "2026-09-01T17:02:13.352163Z",
+    "finished_at": "2026-09-01T17:04:12.899833Z",
+    "environment_setup": {
+        "started_at": "2026-09-01T17:02:13.352847Z",
+        "finished_at": "2026-09-01T17:03:14.922746Z"
+    },
+    "agent_setup": {
+        "started_at": "2026-09-01T17:03:14.922763Z",
+        "finished_at": "2026-09-01T17:03:14.922786Z"
+    },
+    "agent_execution": {
+        "started_at": "2026-09-01T17:03:14.922823Z",
+        "finished_at": "2026-09-01T17:03:43.139661Z"
+    },
+    "verifier": null,
+    "step_results": null
+}

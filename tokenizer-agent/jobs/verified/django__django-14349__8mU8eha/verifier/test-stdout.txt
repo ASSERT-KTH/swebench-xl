@@ -1,0 +1,175 @@
+++ cd /testbed
+++ set +x
+++ python -m pip install -e .
+Obtaining file:///testbed
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Checking if build backend supports build_editable: started
+  Checking if build backend supports build_editable: finished with status 'done'
+  Getting requirements to build editable: started
+  Getting requirements to build editable: finished with status 'done'
+  Preparing editable metadata (pyproject.toml): started
+  Preparing editable metadata (pyproject.toml): finished with status 'done'
+Requirement already satisfied: asgiref>=3.3.2 in /opt/miniconda3/envs/testbed/lib/python3.8/site-packages (from Django==4.0.dev20260813012537) (3.8.1)
+Requirement already satisfied: pytz in /opt/miniconda3/envs/testbed/lib/python3.8/site-packages (from Django==4.0.dev20260813012537) (2024.2)
+Requirement already satisfied: sqlparse>=0.2.2 in /opt/miniconda3/envs/testbed/lib/python3.8/site-packages (from Django==4.0.dev20260813012537) (0.5.1)
+Requirement already satisfied: typing-extensions>=4 in /opt/miniconda3/envs/testbed/lib/python3.8/site-packages (from asgiref>=3.3.2->Django==4.0.dev20260813012537) (4.12.2)
+Building wheels for collected packages: Django
+  Building editable for Django (pyproject.toml): started
+  Building editable for Django (pyproject.toml): finished with status 'done'
+  Created wheel for Django: filename=django-4.0.dev20260813012537-0.editable-py3-none-any.whl size=26103 sha256=233233beaabb8b4858aec1371cd6746f4b2d1422bb7e3bec5486acca82ea1186
+  Stored in directory: /tmp/pip-ephem-wheel-cache-lxywr_2a/wheels/b2/50/f1/218f2e9962a80d01a4b1297698978f9fb3b60056aa24343f24
+Successfully built Django
+Installing collected packages: Django
+  Attempting uninstall: Django
+    Found existing installation: Django 4.0.dev20210506050452
+    Uninstalling Django-4.0.dev20210506050452:
+      Successfully uninstalled Django-4.0.dev20210506050452
+Successfully installed Django-4.0.dev20260813012537
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable.It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+++ git checkout a708f39ce67af174df90c5b5e50ad1976cec7cb8 tests/validators/tests.py
+Updated 1 path from 4086dca152
+++ git clean -fd
+++ echo 'diff --git a/tests/validators/tests.py b/tests/validators/tests.py
+--- a/tests/validators/tests.py
++++ b/tests/validators/tests.py
+@@ -226,9 +226,15 @@
+     (URLValidator(), None, ValidationError),
+     (URLValidator(), 56, ValidationError),
+     (URLValidator(), '\''no_scheme'\'', ValidationError),
+-    # Trailing newlines not accepted
++    # Newlines and tabs are not accepted.
+     (URLValidator(), '\''http://www.djangoproject.com/\n'\'', ValidationError),
+     (URLValidator(), '\''http://[::ffff:192.9.5.5]\n'\'', ValidationError),
++    (URLValidator(), '\''http://www.djangoproject.com/\r'\'', ValidationError),
++    (URLValidator(), '\''http://[::ffff:192.9.5.5]\r'\'', ValidationError),
++    (URLValidator(), '\''http://www.django\rproject.com/'\'', ValidationError),
++    (URLValidator(), '\''http://[::\rffff:192.9.5.5]'\'', ValidationError),
++    (URLValidator(), '\''http://\twww.djangoproject.com/'\'', ValidationError),
++    (URLValidator(), '\''http://\t[::ffff:192.9.5.5]'\'', ValidationError),
+     # Trailing junk does not take forever to reject
+     (URLValidator(), '\''http://www.asdasdasdasdsadfm.com.br '\'', ValidationError),
+     (URLValidator(), '\''http://www.asdasdasdasdsadfm.com.br z'\'', ValidationError),
+'
+++ git apply --check /tmp/test_patch.diff
+++ git apply /tmp/test_patch.diff
++++ mktemp
+++ LOG_FILE=/tmp/tmp.hgkv88Q7H5
+++ export LOG_FILE
+++ exec
+++ exec
++++ tee /tmp/tmp.hgkv88Q7H5
+++ set +x
+test_domain_whitelist (validators.tests.DeprecationTests) ... ok
+test_domain_whitelist_access_warning (validators.tests.DeprecationTests) ... ok
+test_domain_whitelist_set_warning (validators.tests.DeprecationTests) ... ok
+test_whitelist (validators.tests.DeprecationTests) ... ok
+test_whitelist_warning (validators.tests.DeprecationTests) ... ok
+test_max_length_validator_message (validators.tests.TestValidators) ... ok
+test_message_dict (validators.tests.TestValidators) ... ok
+test_message_list (validators.tests.TestValidators) ... ok
+test_regex_validator_flags (validators.tests.TestValidators) ... ok
+test_single_message (validators.tests.TestValidators) ... ok
+test_validators (validators.tests.TestValidators) ... test_basic_equality (validators.tests.TestValidatorEquality) ... ok
+test_decimal_equality (validators.tests.TestValidatorEquality) ... ok
+test_email_equality (validators.tests.TestValidatorEquality) ... ok
+test_file_extension_equality (validators.tests.TestValidatorEquality) ... ok
+test_prohibit_null_characters_validator_equality (validators.tests.TestValidatorEquality) ... ok
+test_regex_equality (validators.tests.TestValidatorEquality) ... ok
+test_regex_equality_blank (validators.tests.TestValidatorEquality) ... ok
+test_regex_equality_nocache (validators.tests.TestValidatorEquality) ... ok
+
+======================================================================
+FAIL: test_validators (validators.tests.TestValidators) [URLValidator] (value='http://www.djangoproject.com/\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/testbed/tests/validators/tests.py", line 334, in test_validators
+    validator(value)
+AssertionError: ValidationError not raised
+
+======================================================================
+FAIL: test_validators (validators.tests.TestValidators) [URLValidator] (value='http://[::ffff:192.9.5.5]\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/testbed/tests/validators/tests.py", line 334, in test_validators
+    validator(value)
+AssertionError: ValidationError not raised
+
+======================================================================
+FAIL: test_validators (validators.tests.TestValidators) [URLValidator] (value='http://www.djangoproject.com/\r')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/testbed/tests/validators/tests.py", line 334, in test_validators
+    validator(value)
+AssertionError: ValidationError not raised
+
+======================================================================
+FAIL: test_validators (validators.tests.TestValidators) [URLValidator] (value='http://[::ffff:192.9.5.5]\r')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/testbed/tests/validators/tests.py", line 334, in test_validators
+    validator(value)
+AssertionError: ValidationError not raised
+
+======================================================================
+FAIL: test_validators (validators.tests.TestValidators) [URLValidator] (value='http://www.django\rproject.com/')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/testbed/tests/validators/tests.py", line 334, in test_validators
+    validator(value)
+AssertionError: ValidationError not raised
+
+======================================================================
+FAIL: test_validators (validators.tests.TestValidators) [URLValidator] (value='http://[::\rffff:192.9.5.5]')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/testbed/tests/validators/tests.py", line 334, in test_validators
+    validator(value)
+AssertionError: ValidationError not raised
+
+======================================================================
+FAIL: test_validators (validators.tests.TestValidators) [URLValidator] (value='http://\twww.djangoproject.com/')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/testbed/tests/validators/tests.py", line 334, in test_validators
+    validator(value)
+AssertionError: ValidationError not raised
+
+======================================================================
+FAIL: test_validators (validators.tests.TestValidators) [URLValidator] (value='http://\t[::ffff:192.9.5.5]')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/testbed/tests/validators/tests.py", line 334, in test_validators
+    validator(value)
+AssertionError: ValidationError not raised
+
+----------------------------------------------------------------------
+Ran 19 tests in 0.037s
+
+FAILED (failures=8)
+Testing against Django installed in '/testbed/django'
+Importing application validators
+Found 19 tests.
+Skipping setup of unused database(s): default, other.
+System check identified no issues (0 silenced).
+Updated 1 path from 4086dca152
+Downloading aiohttp (1.7MiB)
+Downloading pygments (1.2MiB)
+Downloading virtualenv (5.1MiB)
+Downloading chardet (1.4MiB)
+Downloading pandas (10.8MiB)
+Downloading hf-xet (4.3MiB)
+Downloading numpy (16.1MiB)
+Downloading pyarrow (47.7MiB)
+ Downloading pygments
+ Downloading chardet
+ Downloading aiohttp
+ Downloading hf-xet
+ Downloading virtualenv
+ Downloading pandas
+ Downloading numpy
+ Downloading pyarrow
+Installed 73 packages in 93ms
+SWEBench results starts here
+FAILED
+SWEBench results ends here

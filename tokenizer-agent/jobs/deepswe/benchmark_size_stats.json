@@ -1,0 +1,831 @@
+{
+  "job_dir": "/home/pontus/Documents/GitHub/swebench-xl/tokenizer-agent/jobs/2026-08-31__16-09-55",
+  "n_instances": 113,
+  "metrics": {
+    "total_tokens": {
+      "mean": 1582660.274336283,
+      "median": 526586,
+      "stdev": 2482287.65035932,
+      "min": 33705,
+      "max": 14746064,
+      "sum": 178840611
+    },
+    "source_code_tokens": {
+      "mean": 746642.3982300885,
+      "median": 293155,
+      "stdev": 1071939.7769255901,
+      "min": 9813,
+      "max": 5950416,
+      "sum": 84370591
+    },
+    "total_files": {
+      "mean": 826.433628318584,
+      "median": 355,
+      "stdev": 1201.1006595066735,
+      "min": 12,
+      "max": 6998,
+      "sum": 93387
+    },
+    "source_code_files": {
+      "mean": 412.27433628318585,
+      "median": 194,
+      "stdev": 501.6968242880013,
+      "min": 6,
+      "max": 2466,
+      "sum": 46587
+    }
+  },
+  "instances": [
+    {
+      "instance_id": "wazero-multi-module-snapshots",
+      "total_tokens": 14746064,
+      "source_code_tokens": 1781042,
+      "total_files": 5825,
+      "source_code_files": 600
+    },
+    {
+      "instance_id": "prometheus-typed-label-sorting",
+      "total_tokens": 10191078,
+      "source_code_tokens": 3364510,
+      "total_files": 1562,
+      "source_code_files": 953
+    },
+    {
+      "instance_id": "prometheus-transactional-reload-status",
+      "total_tokens": 10154067,
+      "source_code_tokens": 3364524,
+      "total_files": 1561,
+      "source_code_files": 953
+    },
+    {
+      "instance_id": "effect-sse-httpapi-streaming",
+      "total_tokens": 8289025,
+      "source_code_tokens": 5950416,
+      "total_files": 2208,
+      "source_code_files": 1787
+    },
+    {
+      "instance_id": "opa-rego-rule-profiling",
+      "total_tokens": 8177439,
+      "source_code_tokens": 3196054,
+      "total_files": 6998,
+      "source_code_files": 1213
+    },
+    {
+      "instance_id": "opa-template-string-reconstruction",
+      "total_tokens": 8177439,
+      "source_code_tokens": 3196054,
+      "total_files": 6998,
+      "source_code_files": 1213
+    },
+    {
+      "instance_id": "langchain-request-coalescing",
+      "total_tokens": 7694244,
+      "source_code_tokens": 2467411,
+      "total_files": 2768,
+      "source_code_files": 2466
+    },
+    {
+      "instance_id": "wasmi-trap-coredumps",
+      "total_tokens": 7312757,
+      "source_code_tokens": 515142,
+      "total_files": 1317,
+      "source_code_files": 238
+    },
+    {
+      "instance_id": "yaegi-go-embed-directives",
+      "total_tokens": 4967454,
+      "source_code_tokens": 4925938,
+      "total_files": 1654,
+      "source_code_files": 1618
+    },
+    {
+      "instance_id": "fastapi-deprecation-response-headers",
+      "total_tokens": 4594737,
+      "source_code_tokens": 692172,
+      "total_files": 2682,
+      "source_code_files": 1128
+    },
+    {
+      "instance_id": "fastapi-implicit-head-options",
+      "total_tokens": 4594737,
+      "source_code_tokens": 692172,
+      "total_files": 2682,
+      "source_code_files": 1128
+    },
+    {
+      "instance_id": "pebble-durability-wait-apis",
+      "total_tokens": 4010850,
+      "source_code_tokens": 2439943,
+      "total_files": 1245,
+      "source_code_files": 759
+    },
+    {
+      "instance_id": "scc-bounded-memory-spilling",
+      "total_tokens": 3849938,
+      "source_code_tokens": 3175490,
+      "total_files": 1051,
+      "source_code_files": 727
+    },
+    {
+      "instance_id": "drizzle-orm-window-function-builders",
+      "total_tokens": 3598949,
+      "source_code_tokens": 3202500,
+      "total_files": 1374,
+      "source_code_files": 966
+    },
+    {
+      "instance_id": "kgateway-consistent-hash-policy",
+      "total_tokens": 3519684,
+      "source_code_tokens": 1234012,
+      "total_files": 2059,
+      "source_code_files": 692
+    },
+    {
+      "instance_id": "scriggo-method-declarations",
+      "total_tokens": 3494308,
+      "source_code_tokens": 3456124,
+      "total_files": 2051,
+      "source_code_files": 1863
+    },
+    {
+      "instance_id": "numba-stencil-boundary-modes",
+      "total_tokens": 3330159,
+      "source_code_tokens": 2910090,
+      "total_files": 1006,
+      "source_code_files": 813
+    },
+    {
+      "instance_id": "pwntools-tube-multiplexing",
+      "total_tokens": 3321451,
+      "source_code_tokens": 1557161,
+      "total_files": 1379,
+      "source_code_files": 380
+    },
+    {
+      "instance_id": "arcane-drift-detection-baselines",
+      "total_tokens": 2744926,
+      "source_code_tokens": 1119309,
+      "total_files": 1455,
+      "source_code_files": 737
+    },
+    {
+      "instance_id": "meriyah-explicit-resource-declarations",
+      "total_tokens": 2733882,
+      "source_code_tokens": 794372,
+      "total_files": 308,
+      "source_code_files": 183
+    },
+    {
+      "instance_id": "boa-hierarchical-evaluation-cancellation",
+      "total_tokens": 2729210,
+      "source_code_tokens": 2096163,
+      "total_files": 1885,
+      "source_code_files": 817
+    },
+    {
+      "instance_id": "vitest-duration-sharding",
+      "total_tokens": 2518790,
+      "source_code_tokens": 1713618,
+      "total_files": 2722,
+      "source_code_files": 2130
+    },
+    {
+      "instance_id": "query-persist-restored-query-state",
+      "total_tokens": 1966160,
+      "source_code_tokens": 985116,
+      "total_files": 2095,
+      "source_code_files": 1018
+    },
+    {
+      "instance_id": "valibot-recursive-schema-composition",
+      "total_tokens": 1890118,
+      "source_code_tokens": 1190914,
+      "total_files": 3177,
+      "source_code_files": 2320
+    },
+    {
+      "instance_id": "onedump-dump-encryption-pipeline",
+      "total_tokens": 1715677,
+      "source_code_tokens": 67537,
+      "total_files": 97,
+      "source_code_files": 72
+    },
+    {
+      "instance_id": "pest-character-class-coalescing",
+      "total_tokens": 1712211,
+      "source_code_tokens": 1121941,
+      "total_files": 591,
+      "source_code_files": 79
+    },
+    {
+      "instance_id": "happy-dom-abort-pending-body-reads",
+      "total_tokens": 1697309,
+      "source_code_tokens": 1458992,
+      "total_files": 1041,
+      "source_code_files": 972
+    },
+    {
+      "instance_id": "happy-dom-deterministic-intersectionobserver",
+      "total_tokens": 1697309,
+      "source_code_tokens": 1458992,
+      "total_files": 1041,
+      "source_code_files": 972
+    },
+    {
+      "instance_id": "textual-richlog-follow-state",
+      "total_tokens": 1450554,
+      "source_code_tokens": 987982,
+      "total_files": 1514,
+      "source_code_files": 987
+    },
+    {
+      "instance_id": "textual-kitty-key-phases",
+      "total_tokens": 1447066,
+      "source_code_tokens": 985369,
+      "total_files": 1513,
+      "source_code_files": 987
+    },
+    {
+      "instance_id": "dynamodb-toolbox-conditional-attribute-requirements",
+      "total_tokens": 1408530,
+      "source_code_tokens": 456891,
+      "total_files": 908,
+      "source_code_files": 705
+    },
+    {
+      "instance_id": "dynamodb-toolbox-lazy-recursive-schemas",
+      "total_tokens": 1408530,
+      "source_code_tokens": 456891,
+      "total_files": 908,
+      "source_code_files": 705
+    },
+    {
+      "instance_id": "skrub-duration-encoding",
+      "total_tokens": 1349482,
+      "source_code_tokens": 450339,
+      "total_files": 341,
+      "source_code_files": 187
+    },
+    {
+      "instance_id": "ytt-jsonpath-query-api",
+      "total_tokens": 1180669,
+      "source_code_tokens": 974005,
+      "total_files": 1187,
+      "source_code_files": 433
+    },
+    {
+      "instance_id": "obsidian-linter-auto-table-of-contents",
+      "total_tokens": 1096995,
+      "source_code_tokens": 326761,
+      "total_files": 307,
+      "source_code_files": 214
+    },
+    {
+      "instance_id": "obsidian-linter-scoped-ignore-markers",
+      "total_tokens": 1096995,
+      "source_code_tokens": 326761,
+      "total_files": 307,
+      "source_code_files": 214
+    },
+    {
+      "instance_id": "goreleaser-retry-publish-auditing",
+      "total_tokens": 1089817,
+      "source_code_tokens": 621381,
+      "total_files": 1019,
+      "source_code_files": 389
+    },
+    {
+      "instance_id": "kysely-window-grouping-helpers",
+      "total_tokens": 1079337,
+      "source_code_tokens": 642849,
+      "total_files": 622,
+      "source_code_files": 472
+    },
+    {
+      "instance_id": "helm-array-merge-strategies",
+      "total_tokens": 1072382,
+      "source_code_tokens": 835473,
+      "total_files": 1856,
+      "source_code_files": 556
+    },
+    {
+      "instance_id": "helm-unified-manifest-stream",
+      "total_tokens": 1072382,
+      "source_code_tokens": 835473,
+      "total_files": 1856,
+      "source_code_files": 556
+    },
+    {
+      "instance_id": "expr-try-catch-errors",
+      "total_tokens": 1025950,
+      "source_code_tokens": 458793,
+      "total_files": 230,
+      "source_code_files": 195
+    },
+    {
+      "instance_id": "arktype-json-schema-refs-dependencies",
+      "total_tokens": 1011007,
+      "source_code_tokens": 684444,
+      "total_files": 548,
+      "source_code_files": 442
+    },
+    {
+      "instance_id": "optique-conditional-option-dependencies",
+      "total_tokens": 996460,
+      "source_code_tokens": 675582,
+      "total_files": 203,
+      "source_code_files": 118
+    },
+    {
+      "instance_id": "obsidian-linter-link-format-conversion",
+      "total_tokens": 988953,
+      "source_code_tokens": 326761,
+      "total_files": 306,
+      "source_code_files": 214
+    },
+    {
+      "instance_id": "katex-multicolumn-array-spans",
+      "total_tokens": 961211,
+      "source_code_tokens": 368115,
+      "total_files": 243,
+      "source_code_files": 150
+    },
+    {
+      "instance_id": "narwhals-rolling-window-suite",
+      "total_tokens": 935549,
+      "source_code_tokens": 779229,
+      "total_files": 614,
+      "source_code_files": 516
+    },
+    {
+      "instance_id": "ipython-session-bundle-replay",
+      "total_tokens": 932152,
+      "source_code_tokens": 631094,
+      "total_files": 429,
+      "source_code_files": 294
+    },
+    {
+      "instance_id": "oxvg-structural-selector-preservation",
+      "total_tokens": 898909,
+      "source_code_tokens": 379801,
+      "total_files": 1308,
+      "source_code_files": 167
+    },
+    {
+      "instance_id": "go-git-worktree-merge-conflicts",
+      "total_tokens": 861709,
+      "source_code_tokens": 836284,
+      "total_files": 552,
+      "source_code_files": 524
+    },
+    {
+      "instance_id": "abs-module-cache-flags",
+      "total_tokens": 635119,
+      "source_code_tokens": 125991,
+      "total_files": 153,
+      "source_code_files": 38
+    },
+    {
+      "instance_id": "abs-stepped-slices",
+      "total_tokens": 635119,
+      "source_code_tokens": 125991,
+      "total_files": 153,
+      "source_code_files": 38
+    },
+    {
+      "instance_id": "superjson-error-stack-serialization",
+      "total_tokens": 614439,
+      "source_code_tokens": 18172,
+      "total_files": 30,
+      "source_code_files": 20
+    },
+    {
+      "instance_id": "actionlint-action-pinning-lint",
+      "total_tokens": 582917,
+      "source_code_tokens": 293155,
+      "total_files": 835,
+      "source_code_files": 142
+    },
+    {
+      "instance_id": "claude-code-by-agents-recursive-delegation",
+      "total_tokens": 542706,
+      "source_code_tokens": 165543,
+      "total_files": 207,
+      "source_code_files": 149
+    },
+    {
+      "instance_id": "quill-shared-toolbar-focus",
+      "total_tokens": 541177,
+      "source_code_tokens": 162312,
+      "total_files": 260,
+      "source_code_files": 164
+    },
+    {
+      "instance_id": "geo-shapeindex-serialization",
+      "total_tokens": 540723,
+      "source_code_tokens": 532766,
+      "total_files": 154,
+      "source_code_files": 144
+    },
+    {
+      "instance_id": "python-statemachine-state-data-scoping",
+      "total_tokens": 526586,
+      "source_code_tokens": 227480,
+      "total_files": 519,
+      "source_code_files": 228
+    },
+    {
+      "instance_id": "eicrud-keyset-pagination-cursor",
+      "total_tokens": 517087,
+      "source_code_tokens": 285511,
+      "total_files": 400,
+      "source_code_files": 290
+    },
+    {
+      "instance_id": "task-task-graph-export",
+      "total_tokens": 485178,
+      "source_code_tokens": 150260,
+      "total_files": 711,
+      "source_code_files": 134
+    },
+    {
+      "instance_id": "go-genai-streamed-function-args",
+      "total_tokens": 473601,
+      "source_code_tokens": 360956,
+      "total_files": 136,
+      "source_code_files": 84
+    },
+    {
+      "instance_id": "testem-bail-on-test-failure",
+      "total_tokens": 464701,
+      "source_code_tokens": 423346,
+      "total_files": 478,
+      "source_code_files": 273
+    },
+    {
+      "instance_id": "testem-per-launcher-reports",
+      "total_tokens": 464385,
+      "source_code_tokens": 423120,
+      "total_files": 477,
+      "source_code_files": 273
+    },
+    {
+      "instance_id": "kombu-single-active-consumer-priority",
+      "total_tokens": 445657,
+      "source_code_tokens": 350828,
+      "total_files": 342,
+      "source_code_files": 184
+    },
+    {
+      "instance_id": "kombu-virtual-queue-dead-lettering",
+      "total_tokens": 445657,
+      "source_code_tokens": 350828,
+      "total_files": 342,
+      "source_code_files": 184
+    },
+    {
+      "instance_id": "psd-tools-blend-range-api",
+      "total_tokens": 416233,
+      "source_code_tokens": 208619,
+      "total_files": 147,
+      "source_code_files": 98
+    },
+    {
+      "instance_id": "ts-pattern-match-each",
+      "total_tokens": 416035,
+      "source_code_tokens": 142675,
+      "total_files": 101,
+      "source_code_files": 78
+    },
+    {
+      "instance_id": "returns-validated-error-accumulation",
+      "total_tokens": 414241,
+      "source_code_tokens": 157430,
+      "total_files": 407,
+      "source_code_files": 201
+    },
+    {
+      "instance_id": "csstree-shorthand-expansion-compression",
+      "total_tokens": 410241,
+      "source_code_tokens": 130255,
+      "total_files": 324,
+      "source_code_files": 191
+    },
+    {
+      "instance_id": "cliffy-config-file-parsing",
+      "total_tokens": 407649,
+      "source_code_tokens": 305914,
+      "total_files": 406,
+      "source_code_files": 347
+    },
+    {
+      "instance_id": "aiomonitor-task-snapshots-diff",
+      "total_tokens": 404544,
+      "source_code_tokens": 184697,
+      "total_files": 81,
+      "source_code_files": 34
+    },
+    {
+      "instance_id": "sql-formatter-bigquery-pipe-formatting",
+      "total_tokens": 381428,
+      "source_code_tokens": 224568,
+      "total_files": 220,
+      "source_code_files": 171
+    },
+    {
+      "instance_id": "adaptix-name-mapping-aliases",
+      "total_tokens": 373282,
+      "source_code_tokens": 324454,
+      "total_files": 490,
+      "source_code_files": 414
+    },
+    {
+      "instance_id": "cattrs-partial-structuring-recovery",
+      "total_tokens": 332173,
+      "source_code_tokens": 137192,
+      "total_files": 162,
+      "source_code_files": 118
+    },
+    {
+      "instance_id": "awilix-async-container-initialization",
+      "total_tokens": 321777,
+      "source_code_tokens": 37911,
+      "total_files": 69,
+      "source_code_files": 48
+    },
+    {
+      "instance_id": "gql-incremental-graphql-delivery",
+      "total_tokens": 303531,
+      "source_code_tokens": 225934,
+      "total_files": 210,
+      "source_code_files": 125
+    },
+    {
+      "instance_id": "clack-async-autocomplete-options",
+      "total_tokens": 294785,
+      "source_code_tokens": 85884,
+      "total_files": 149,
+      "source_code_files": 89
+    },
+    {
+      "instance_id": "anko-default-function-arguments",
+      "total_tokens": 289930,
+      "source_code_tokens": 273178,
+      "total_files": 133,
+      "source_code_files": 85
+    },
+    {
+      "instance_id": "anko-typed-variable-bindings",
+      "total_tokens": 289927,
+      "source_code_tokens": 273175,
+      "total_files": 133,
+      "source_code_files": 85
+    },
+    {
+      "instance_id": "tengo-callable-instance-isolation",
+      "total_tokens": 277516,
+      "source_code_tokens": 245709,
+      "total_files": 119,
+      "source_code_files": 78
+    },
+    {
+      "instance_id": "tengo-destructuring-bindings",
+      "total_tokens": 277516,
+      "source_code_tokens": 245709,
+      "total_files": 119,
+      "source_code_files": 78
+    },
+    {
+      "instance_id": "mobly-grouped-test-barriers",
+      "total_tokens": 276223,
+      "source_code_tokens": 253623,
+      "total_files": 136,
+      "source_code_files": 105
+    },
+    {
+      "instance_id": "yjs-map-conflict-detection",
+      "total_tokens": 269786,
+      "source_code_tokens": 170763,
+      "total_files": 72,
+      "source_code_files": 57
+    },
+    {
+      "instance_id": "true-myth-iterable-collection-combinators",
+      "total_tokens": 266820,
+      "source_code_tokens": 133650,
+      "total_files": 70,
+      "source_code_files": 23
+    },
+    {
+      "instance_id": "sqlfmt-create-table-ddl-formatting",
+      "total_tokens": 263191,
+      "source_code_tokens": 104106,
+      "total_files": 234,
+      "source_code_files": 66
+    },
+    {
+      "instance_id": "koota-composite-trait-aspects",
+      "total_tokens": 260493,
+      "source_code_tokens": 147448,
+      "total_files": 478,
+      "source_code_files": 352
+    },
+    {
+      "instance_id": "koota-pair-relation-tracking",
+      "total_tokens": 260493,
+      "source_code_tokens": 147448,
+      "total_files": 478,
+      "source_code_files": 352
+    },
+    {
+      "instance_id": "koota-query-predicates",
+      "total_tokens": 260493,
+      "source_code_tokens": 147448,
+      "total_files": 478,
+      "source_code_files": 352
+    },
+    {
+      "instance_id": "koota-entity-snapshot-rollback",
+      "total_tokens": 259749,
+      "source_code_tokens": 147087,
+      "total_files": 477,
+      "source_code_files": 352
+    },
+    {
+      "instance_id": "sqlite-utils-safe-import-checkpoints",
+      "total_tokens": 255959,
+      "source_code_tokens": 156736,
+      "total_files": 94,
+      "source_code_files": 58
+    },
+    {
+      "instance_id": "mashumaro-flattened-dataclass-fields",
+      "total_tokens": 255222,
+      "source_code_tokens": 183361,
+      "total_files": 171,
+      "source_code_files": 146
+    },
+    {
+      "instance_id": "httpx-deterministic-cookie-store",
+      "total_tokens": 253493,
+      "source_code_tokens": 133516,
+      "total_files": 114,
+      "source_code_files": 60
+    },
+    {
+      "instance_id": "httpx-multipart-response-parsing",
+      "total_tokens": 253493,
+      "source_code_tokens": 133516,
+      "total_files": 114,
+      "source_code_files": 60
+    },
+    {
+      "instance_id": "httpx-streaming-json-iteration",
+      "total_tokens": 253493,
+      "source_code_tokens": 133516,
+      "total_files": 114,
+      "source_code_files": 60
+    },
+    {
+      "instance_id": "fd-deterministic-multi-key-sorting",
+      "total_tokens": 251151,
+      "source_code_tokens": 63844,
+      "total_files": 377,
+      "source_code_files": 26
+    },
+    {
+      "instance_id": "dateutil-rfc5545-timezone-interop",
+      "total_tokens": 243957,
+      "source_code_tokens": 187315,
+      "total_files": 93,
+      "source_code_files": 41
+    },
+    {
+      "instance_id": "go-critic-doc-link-checker",
+      "total_tokens": 231882,
+      "source_code_tokens": 206289,
+      "total_files": 396,
+      "source_code_files": 359
+    },
+    {
+      "instance_id": "kea-atomic-signal-selectors",
+      "total_tokens": 223931,
+      "source_code_tokens": 81666,
+      "total_files": 87,
+      "source_code_files": 73
+    },
+    {
+      "instance_id": "tomlkit-toml-table-converters",
+      "total_tokens": 211636,
+      "source_code_tokens": 78439,
+      "total_files": 1111,
+      "source_code_files": 40
+    },
+    {
+      "instance_id": "ink-grid-box-layout",
+      "total_tokens": 207310,
+      "source_code_tokens": 185580,
+      "total_files": 225,
+      "source_code_files": 214
+    },
+    {
+      "instance_id": "koota-deferred-mutation-buffer",
+      "total_tokens": 204713,
+      "source_code_tokens": 120637,
+      "total_files": 355,
+      "source_code_files": 271
+    },
+    {
+      "instance_id": "bandit-interprocedural-taint-checks",
+      "total_tokens": 197561,
+      "source_code_tokens": 172784,
+      "total_files": 289,
+      "source_code_files": 194
+    },
+    {
+      "instance_id": "bandit-structured-nosec-directives",
+      "total_tokens": 197561,
+      "source_code_tokens": 172784,
+      "total_files": 289,
+      "source_code_files": 194
+    },
+    {
+      "instance_id": "bandit-incremental-cache-control",
+      "total_tokens": 197280,
+      "source_code_tokens": 172518,
+      "total_files": 289,
+      "source_code_files": 194
+    },
+    {
+      "instance_id": "igel-persist-feature-schema",
+      "total_tokens": 178325,
+      "source_code_tokens": 32748,
+      "total_files": 100,
+      "source_code_files": 44
+    },
+    {
+      "instance_id": "dasel-html-document-format",
+      "total_tokens": 152064,
+      "source_code_tokens": 129147,
+      "total_files": 208,
+      "source_code_files": 179
+    },
+    {
+      "instance_id": "participle-grammar-conflict-analysis",
+      "total_tokens": 125872,
+      "source_code_tokens": 103512,
+      "total_files": 123,
+      "source_code_files": 82
+    },
+    {
+      "instance_id": "mnamer-daemon-watch-lifecycle",
+      "total_tokens": 101824,
+      "source_code_tokens": 49952,
+      "total_files": 60,
+      "source_code_files": 42
+    },
+    {
+      "instance_id": "updo-policy-alerting",
+      "total_tokens": 100030,
+      "source_code_tokens": 75229,
+      "total_files": 81,
+      "source_code_files": 56
+    },
+    {
+      "instance_id": "kcp-go-multiplexed-kcp-streams",
+      "total_tokens": 98029,
+      "source_code_tokens": 74401,
+      "total_files": 40,
+      "source_code_files": 31
+    },
+    {
+      "instance_id": "ofetch-per-origin-circuit-breaker",
+      "total_tokens": 84630,
+      "source_code_tokens": 9813,
+      "total_files": 32,
+      "source_code_files": 19
+    },
+    {
+      "instance_id": "vulture-persistent-analysis-cache",
+      "total_tokens": 46668,
+      "source_code_tokens": 31514,
+      "total_files": 69,
+      "source_code_files": 44
+    },
+    {
+      "instance_id": "etree-xml-diff-patch",
+      "total_tokens": 43103,
+      "source_code_tokens": 38903,
+      "total_files": 12,
+      "source_code_files": 6
+    },
+    {
+      "instance_id": "termenv-preserve-ansi-resets",
+      "total_tokens": 33705,
+      "source_code_tokens": 23748,
+      "total_files": 51,
+      "source_code_files": 28
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+    "schema_version": 2,
+    "task": {
+        "name": "psf__requests-6028",
+        "type": "git",
+        "digest": "sha256:7db9418fc257f37d6f3a269188b13b49492696f8b02cded86e605263cb449b34",
+        "source": "swebench-verified",
+        "path": "datasets/swebench-verified/psf__requests-6028",
+        "git_url": "https://github.com/laude-institute/harbor-datasets.git",
+        "git_commit_id": "86723674f04e4209ac479d0fb75d9d9f44b4377e"
+    },
+    "install_only": false,
+    "timeout_multiplier": 1.0,
+    "agent": {
+        "name": "tokenizer_agent:RepoTokenizerAgent",
+        "skills": [],
+        "resume_trajectory": false,
+        "extra_allowed_hosts": [],
+        "kwargs": {},
+        "mcp_servers": []
+    },
+    "bridge_inputs": {},
+    "skills": [],
+    "environment": {
+        "type": "docker",
+        "force_build": false,
+        "delete": true,
+        "cpu_enforcement_policy": "auto",
+        "memory_enforcement_policy": "auto",
+        "extra_docker_compose": [],
+        "kwargs": {},
+        "extra_allowed_hosts": []
+    },
+    "verifier": {
+        "disable": false,
+        "environment_mode": "shared"
+    }
+}

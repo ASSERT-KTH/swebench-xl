@@ -1,0 +1,176 @@
+++ cd /testbed
+++ set +x
+++ sed -i '/en_US.UTF-8/s/^# //g' /etc/locale.gen
+++ locale-gen
+Generating locales (this might take a while)...
+  en_US.UTF-8... done
+Generation complete.
+++ export LANG=en_US.UTF-8
+++ LANG=en_US.UTF-8
+++ export LANGUAGE=en_US:en
+++ LANGUAGE=en_US:en
+++ export LC_ALL=en_US.UTF-8
+++ LC_ALL=en_US.UTF-8
+++ python -m pip install -e .
+Obtaining file:///testbed
+Requirement already satisfied: asgiref>=3.2.10 in /opt/miniconda3/envs/testbed/lib/python3.6/site-packages (from Django==3.2) (3.4.1)
+Requirement already satisfied: pytz in /opt/miniconda3/envs/testbed/lib/python3.6/site-packages (from Django==3.2) (2024.2)
+Requirement already satisfied: sqlparse>=0.2.2 in /opt/miniconda3/envs/testbed/lib/python3.6/site-packages (from Django==3.2) (0.4.4)
+Requirement already satisfied: typing-extensions in /opt/miniconda3/envs/testbed/lib/python3.6/site-packages (from asgiref>=3.2.10->Django==3.2) (4.1.1)
+Installing collected packages: Django
+  Attempting uninstall: Django
+    Found existing installation: Django 3.2
+    Uninstalling Django-3.2:
+      Successfully uninstalled Django-3.2
+  Running setup.py develop for Django
+Successfully installed Django-3.2
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv
+++ git checkout ede9fac75807fe5810df66280a60e7068cc97e4a tests/auth_tests/test_checks.py
+Updated 1 path from 7714702d18
+++ git clean -fd
+++ echo 'diff --git a/tests/auth_tests/test_checks.py b/tests/auth_tests/test_checks.py
+--- a/tests/auth_tests/test_checks.py
++++ b/tests/auth_tests/test_checks.py
+@@ -4,6 +4,7 @@
+ from django.contrib.auth.models import AbstractBaseUser
+ from django.core import checks
+ from django.db import models
++from django.db.models import Q, UniqueConstraint
+ from django.test import (
+     SimpleTestCase, override_settings, override_system_checks,
+ )
+@@ -85,6 +86,61 @@ def test_username_non_unique(self):
+                 ),
+             ])
+
++    @override_settings(AUTH_USER_MODEL='\''auth_tests.CustomUserPartiallyUnique'\'')
++    def test_username_partially_unique(self):
++        class CustomUserPartiallyUnique(AbstractBaseUser):
++            username = models.CharField(max_length=30)
++            USERNAME_FIELD = '\''username'\''
++
++            class Meta:
++                constraints = [
++                    UniqueConstraint(
++                        fields=['\''username'\''],
++                        name='\''partial_username_unique'\'',
++                        condition=Q(password__isnull=False),
++                    ),
++                ]
++
++        errors = checks.run_checks(app_configs=self.apps.get_app_configs())
++        self.assertEqual(errors, [
++            checks.Error(
++                "'\''CustomUserPartiallyUnique.username'\'' must be unique because "
++                "it is named as the '\''USERNAME_FIELD'\''.",
++                obj=CustomUserPartiallyUnique,
++                id='\''auth.E003'\'',
++            ),
++        ])
++        with self.settings(AUTHENTICATION_BACKENDS=['\''my.custom.backend'\'']):
++            errors = checks.run_checks(app_configs=self.apps.get_app_configs())
++            self.assertEqual(errors, [
++                checks.Warning(
++                    "'\''CustomUserPartiallyUnique.username'\'' is named as the "
++                    "'\''USERNAME_FIELD'\'', but it is not unique.",
++                    hint=(
++                        '\''Ensure that your authentication backend(s) can '\''
++                        '\''handle non-unique usernames.'\''
++                    ),
++                    obj=CustomUserPartiallyUnique,
++                    id='\''auth.W004'\'',
++                ),
++            ])
++
++    @override_settings(AUTH_USER_MODEL='\''auth_tests.CustomUserUniqueConstraint'\'')
++    def test_username_unique_with_model_constraint(self):
++        class CustomUserUniqueConstraint(AbstractBaseUser):
++            username = models.CharField(max_length=30)
++            USERNAME_FIELD = '\''username'\''
++
++            class Meta:
++                constraints = [
++                    UniqueConstraint(fields=['\''username'\''], name='\''username_unique'\''),
++                ]
++
++        self.assertEqual(checks.run_checks(app_configs=self.apps.get_app_configs()), [])
++        with self.settings(AUTHENTICATION_BACKENDS=['\''my.custom.backend'\'']):
++            errors = checks.run_checks(app_configs=self.apps.get_app_configs())
++            self.assertEqual(errors, [])
++
+     @override_settings(AUTH_USER_MODEL='\''auth_tests.BadUser'\'')
+     def test_is_anonymous_authenticated_methods(self):
+         """
+'
+++ git apply --check /tmp/test_patch.diff
+++ git apply /tmp/test_patch.diff
++++ mktemp
+++ LOG_FILE=/tmp/tmp.Ie5fBwR0x7
+++ export LOG_FILE
+++ exec
+++ exec
++++ tee /tmp/tmp.Ie5fBwR0x7
+++ set +x
+Testing against Django installed in '/testbed/django'
+Importing application auth_tests
+Skipping setup of unused database(s): default, other.
+System check identified no issues (0 silenced).
+test_clashing_custom_permissions (auth_tests.test_checks.ModelsPermissionsChecksTests) ... ok
+test_clashing_default_permissions (auth_tests.test_checks.ModelsPermissionsChecksTests) ... ok
+test_custom_permission_codename_max_length (auth_tests.test_checks.ModelsPermissionsChecksTests) ... ok
+test_custom_permission_name_max_length (auth_tests.test_checks.ModelsPermissionsChecksTests) ... ok
+test_empty_default_permissions (auth_tests.test_checks.ModelsPermissionsChecksTests) ... ok
+test_model_name_max_length (auth_tests.test_checks.ModelsPermissionsChecksTests) ... ok
+test_non_clashing_custom_permissions (auth_tests.test_checks.ModelsPermissionsChecksTests) ... ok
+test_verbose_name_max_length (auth_tests.test_checks.ModelsPermissionsChecksTests) ... ok
+test_is_anonymous_authenticated_methods (auth_tests.test_checks.UserModelChecksTests) ... ok
+test_required_fields_is_list (auth_tests.test_checks.UserModelChecksTests)
+REQUIRED_FIELDS should be a list. ... ok
+test_username_non_unique (auth_tests.test_checks.UserModelChecksTests) ... ok
+test_username_not_in_required_fields (auth_tests.test_checks.UserModelChecksTests)
+USERNAME_FIELD should not appear in REQUIRED_FIELDS. ... ok
+test_username_partially_unique (auth_tests.test_checks.UserModelChecksTests) ... ok
+test_username_unique_with_model_constraint (auth_tests.test_checks.UserModelChecksTests) ... FAIL
+
+======================================================================
+FAIL: test_username_unique_with_model_constraint (auth_tests.test_checks.UserModelChecksTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/testbed/django/test/utils.py", line 382, in inner
+    return func(*args, **kwargs)
+  File "/testbed/tests/auth_tests/test_checks.py", line 139, in test_username_unique_with_model_constraint
+    self.assertEqual(checks.run_checks(app_configs=self.apps.get_app_configs()), [])
+AssertionError: Lists differ: [<Error: level=40, msg="'CustomUserUniqueC[242 chars]03'>] != []
+
+First list contains 1 additional elements.
+First extra element 0:
+<Error: level=40, msg="'CustomUserUniqueConstraint.username' must be unique because it is named as the 'USERNAME_FIELD'.", hint=None, obj=<class 'auth_tests.test_checks.UserModelChecksTests.test_username_unique_with_model_constraint.<locals>.CustomUserUniqueConstraint'>, id='auth.E003'>
+
+- [<Error: level=40, msg="'CustomUserUniqueConstraint.username' must be unique because it is named as the 'USERNAME_FIELD'.", hint=None, obj=<class 'auth_tests.test_checks.UserModelChecksTests.test_username_unique_with_model_constraint.<locals>.CustomUserUniqueConstraint'>, id='auth.E003'>]
++ []
+
+----------------------------------------------------------------------
+Ran 14 tests in 0.009s
+
+FAILED (failures=1)
+Updated 1 path from 7714702d18
+Downloading chardet (1.4MiB)
+Downloading numpy (16.1MiB)
+Downloading pandas (10.8MiB)
+Downloading virtualenv (5.1MiB)
+Downloading aiohttp (1.7MiB)
+Downloading pygments (1.2MiB)
+Downloading pyarrow (47.7MiB)
+Downloading hf-xet (4.3MiB)
+ Downloading pygments
+ Downloading chardet
+ Downloading aiohttp
+ Downloading hf-xet
+ Downloading virtualenv
+ Downloading pandas
+ Downloading numpy
+ Downloading pyarrow
+Installed 73 packages in 89ms
+SWEBench results starts here
+FAILED
+SWEBench results ends here

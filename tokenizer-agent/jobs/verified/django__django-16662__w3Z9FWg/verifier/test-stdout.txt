@@ -1,0 +1,172 @@
+++ cd /testbed
+++ set +x
+++ python -m pip install -e .
+Obtaining file:///testbed
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Checking if build backend supports build_editable: started
+  Checking if build backend supports build_editable: finished with status 'done'
+  Getting requirements to build editable: started
+  Getting requirements to build editable: finished with status 'done'
+  Preparing editable metadata (pyproject.toml): started
+  Preparing editable metadata (pyproject.toml): finished with status 'done'
+Requirement already satisfied: asgiref>=3.6.0 in /opt/miniconda3/envs/testbed/lib/python3.11/site-packages (from Django==5.0.dev20260813014744) (3.8.1)
+Requirement already satisfied: sqlparse>=0.3.1 in /opt/miniconda3/envs/testbed/lib/python3.11/site-packages (from Django==5.0.dev20260813014744) (0.5.1)
+Building wheels for collected packages: Django
+  Building editable for Django (pyproject.toml): started
+  Building editable for Django (pyproject.toml): finished with status 'done'
+  Created wheel for Django: filename=django-5.0.dev20260813014744-0.editable-py3-none-any.whl size=27437 sha256=f57e2087b80a0bc2c0c071203d5c044fb935d6fb3b6ec5948cc5ae087f50ebbe
+  Stored in directory: /tmp/pip-ephem-wheel-cache-nqt5j_c9/wheels/49/5f/4f/01b7d31ea6ddac9643da788242d33e5fd3467d95d17b032c6b
+Successfully built Django
+Installing collected packages: Django
+  Attempting uninstall: Django
+    Found existing installation: Django 5.0.dev20230320050210
+    Uninstalling Django-5.0.dev20230320050210:
+      Successfully uninstalled Django-5.0.dev20230320050210
+Successfully installed Django-5.0.dev20260813014744
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable.It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+++ git checkout 0eb3e9bd754e4c9fac8b616b705178727fc8031e tests/migrations/test_writer.py
+Updated 1 path from 1b1d1d6842
+++ git clean -fd
+++ echo 'diff --git a/tests/migrations/test_writer.py b/tests/migrations/test_writer.py
+--- a/tests/migrations/test_writer.py
++++ b/tests/migrations/test_writer.py
+@@ -7,6 +7,7 @@
+ import pathlib
+ import re
+ import sys
++import time
+ import uuid
+ import zoneinfo
+ from types import NoneType
+@@ -912,13 +913,18 @@ def test_sorted_imports(self):
+                             ),
+                         ),
+                     ),
++                    migrations.AddField(
++                        "mymodel",
++                        "myfield2",
++                        models.FloatField(default=time.time),
++                    ),
+                 ]
+             },
+         )
+         writer = MigrationWriter(migration)
+         output = writer.as_string()
+         self.assertIn(
+-            "import datetime\nfrom django.db import migrations, models\n",
++            "import datetime\nimport time\nfrom django.db import migrations, models\n",
+             output,
+         )
+
+'
+++ git apply --check /tmp/test_patch.diff
+++ git apply /tmp/test_patch.diff
++++ mktemp
+++ LOG_FILE=/tmp/tmp.fivplG8l4v
+++ export LOG_FILE
+++ exec
+++ exec
++++ tee /tmp/tmp.fivplG8l4v
+++ set +x
+Testing against Django installed in '/testbed/django'
+Importing application migrations
+Found 52 test(s).
+Skipping setup of unused database(s): default, other.
+System check identified no issues (0 silenced).
+test_args_kwargs_signature (migrations.test_writer.OperationWriterTests.test_args_kwargs_signature) ... ok
+test_args_signature (migrations.test_writer.OperationWriterTests.test_args_signature) ... ok
+test_empty_signature (migrations.test_writer.OperationWriterTests.test_empty_signature) ... ok
+test_expand_args_signature (migrations.test_writer.OperationWriterTests.test_expand_args_signature) ... ok
+test_kwargs_signature (migrations.test_writer.OperationWriterTests.test_kwargs_signature) ... ok
+test_multiline_args_signature (migrations.test_writer.OperationWriterTests.test_multiline_args_signature) ... ok
+test_nested_args_signature (migrations.test_writer.OperationWriterTests.test_nested_args_signature) ... ok
+test_nested_operation_expand_args_signature (migrations.test_writer.OperationWriterTests.test_nested_operation_expand_args_signature) ... ok
+test_custom_operation (migrations.test_writer.WriterTests.test_custom_operation) ... ok
+test_deconstruct_class_arguments (migrations.test_writer.WriterTests.test_deconstruct_class_arguments) ... ok
+test_migration_file_header_comments (migrations.test_writer.WriterTests.test_migration_file_header_comments)
+Test comments at top of file. ... ok
+test_migration_path (migrations.test_writer.WriterTests.test_migration_path) ... ok
+test_models_import_omitted (migrations.test_writer.WriterTests.test_models_import_omitted)
+django.db.models shouldn't be imported if unused. ... ok
+test_register_non_serializer (migrations.test_writer.WriterTests.test_register_non_serializer) ... ok
+test_register_serializer (migrations.test_writer.WriterTests.test_register_serializer) ... ok
+test_serialize_builtin_types (migrations.test_writer.WriterTests.test_serialize_builtin_types) ... ok
+test_serialize_builtins (migrations.test_writer.WriterTests.test_serialize_builtins) ... ok
+test_serialize_choices (migrations.test_writer.WriterTests.test_serialize_choices) ... ok
+test_serialize_class_based_validators (migrations.test_writer.WriterTests.test_serialize_class_based_validators)
+Ticket #22943: Test serialization of class-based validators, including ... ok
+test_serialize_collections (migrations.test_writer.WriterTests.test_serialize_collections) ... ok
+test_serialize_compiled_regex (migrations.test_writer.WriterTests.test_serialize_compiled_regex)
+Make sure compiled regex can be serialized. ... ok
+test_serialize_complex_func_index (migrations.test_writer.WriterTests.test_serialize_complex_func_index) ... ok
+test_serialize_constants (migrations.test_writer.WriterTests.test_serialize_constants) ... ok
+test_serialize_datetime (migrations.test_writer.WriterTests.test_serialize_datetime) ... ok
+test_serialize_empty_nonempty_tuple (migrations.test_writer.WriterTests.test_serialize_empty_nonempty_tuple)
+Ticket #22679: makemigrations generates invalid code for (an empty ... ok
+test_serialize_enum_flags (migrations.test_writer.WriterTests.test_serialize_enum_flags) ... ok
+test_serialize_enums (migrations.test_writer.WriterTests.test_serialize_enums) ... ok
+test_serialize_fields (migrations.test_writer.WriterTests.test_serialize_fields) ... ok
+test_serialize_frozensets (migrations.test_writer.WriterTests.test_serialize_frozensets) ... ok
+test_serialize_functions (migrations.test_writer.WriterTests.test_serialize_functions) ... ok
+test_serialize_functools_partial (migrations.test_writer.WriterTests.test_serialize_functools_partial) ... ok
+test_serialize_functools_partialmethod (migrations.test_writer.WriterTests.test_serialize_functools_partialmethod) ... ok
+test_serialize_iterators (migrations.test_writer.WriterTests.test_serialize_iterators) ... ok
+test_serialize_lazy_objects (migrations.test_writer.WriterTests.test_serialize_lazy_objects) ... ok
+test_serialize_local_function_reference (migrations.test_writer.WriterTests.test_serialize_local_function_reference)
+A reference in a local scope can't be serialized. ... ok
+test_serialize_managers (migrations.test_writer.WriterTests.test_serialize_managers) ... ok
+test_serialize_multiline_strings (migrations.test_writer.WriterTests.test_serialize_multiline_strings) ... ok
+test_serialize_nested_class (migrations.test_writer.WriterTests.test_serialize_nested_class) ... ok
+test_serialize_numbers (migrations.test_writer.WriterTests.test_serialize_numbers) ... ok
+test_serialize_path_like (migrations.test_writer.WriterTests.test_serialize_path_like) ... ok
+test_serialize_pathlib (migrations.test_writer.WriterTests.test_serialize_pathlib) ... ok
+test_serialize_range (migrations.test_writer.WriterTests.test_serialize_range) ... ok
+test_serialize_set (migrations.test_writer.WriterTests.test_serialize_set) ... ok
+test_serialize_settings (migrations.test_writer.WriterTests.test_serialize_settings) ... ok
+test_serialize_strings (migrations.test_writer.WriterTests.test_serialize_strings) ... ok
+test_serialize_timedelta (migrations.test_writer.WriterTests.test_serialize_timedelta) ... ok
+test_serialize_type_model (migrations.test_writer.WriterTests.test_serialize_type_model) ... ok
+test_serialize_type_none (migrations.test_writer.WriterTests.test_serialize_type_none) ... ok
+test_serialize_unbound_method_reference (migrations.test_writer.WriterTests.test_serialize_unbound_method_reference)
+An unbound method used within a class body can be serialized. ... ok
+test_serialize_uuid (migrations.test_writer.WriterTests.test_serialize_uuid) ... ok
+test_simple_migration (migrations.test_writer.WriterTests.test_simple_migration)
+Tests serializing a simple migration. ... ok
+test_sorted_imports (migrations.test_writer.WriterTests.test_sorted_imports)
+#24155 - Tests ordering of imports. ... FAIL
+
+======================================================================
+FAIL: test_sorted_imports (migrations.test_writer.WriterTests.test_sorted_imports)
+#24155 - Tests ordering of imports.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/testbed/tests/migrations/test_writer.py", line 926, in test_sorted_imports
+    self.assertIn(
+AssertionError: 'import datetime\nimport time\nfrom django.db import migrations, models\n' not found in "# Generated by Django 5.0.dev20260813014744 on 2026-08-31 05:37\n\nimport datetime\nfrom django.db import migrations, models\nimport time\n\n\nclass Migration(migrations.Migration):\n\n    dependencies = [\n    ]\n\n    operations = [\n        migrations.AddField(\n            model_name='mymodel',\n            name='myfield',\n            field=models.DateTimeField(default=datetime.datetime(2012, 1, 1, 1, 1, tzinfo=datetime.timezone.utc)),\n        ),\n        migrations.AddField(\n            model_name='mymodel',\n            name='myfield2',\n            field=models.FloatField(default=time.time),\n        ),\n    ]\n"
+
+----------------------------------------------------------------------
+Ran 52 tests in 0.007s
+
+FAILED (failures=1)
+Updated 1 path from 1b1d1d6842
+Downloading pandas (10.8MiB)
+Downloading pygments (1.2MiB)
+Downloading pyarrow (47.7MiB)
+Downloading numpy (16.1MiB)
+Downloading virtualenv (5.1MiB)
+Downloading hf-xet (4.3MiB)
+Downloading aiohttp (1.7MiB)
+Downloading chardet (1.4MiB)
+ Downloading pygments
+ Downloading chardet
+ Downloading aiohttp
+ Downloading hf-xet
+ Downloading virtualenv
+ Downloading pandas
+ Downloading numpy
+ Downloading pyarrow
+Installed 73 packages in 92ms
+SWEBench results starts here
+FAILED
+SWEBench results ends here

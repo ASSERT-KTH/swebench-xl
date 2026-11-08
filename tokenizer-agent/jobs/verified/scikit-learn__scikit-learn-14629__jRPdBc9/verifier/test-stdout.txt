@@ -1,0 +1,119 @@
+++ cd /testbed
+++ set +x
+++ git checkout 4aded39b5663d943f6a4809abacfa9cae3d7fb6a sklearn/tests/test_multioutput.py
+Updated 1 path from 69762d3f5
+++ git clean -fd
+++ echo 'diff --git a/sklearn/tests/test_multioutput.py b/sklearn/tests/test_multioutput.py
+--- a/sklearn/tests/test_multioutput.py
++++ b/sklearn/tests/test_multioutput.py
+@@ -527,3 +527,20 @@ def test_base_chain_crossval_fit_and_predict():
+             assert jaccard_score(Y, Y_pred_cv, average='\''samples'\'') > .4
+         else:
+             assert mean_squared_error(Y, Y_pred_cv) < .25
++
++
++@pytest.mark.parametrize(
++    '\''estimator'\'',
++    [RandomForestClassifier(n_estimators=2),
++     MultiOutputClassifier(RandomForestClassifier(n_estimators=2)),
++     ClassifierChain(RandomForestClassifier(n_estimators=2))]
++)
++def test_multi_output_classes_(estimator):
++    # Tests classes_ attribute of multioutput classifiers
++    # RandomForestClassifier supports multioutput out-of-the-box
++    estimator.fit(X, y)
++    assert isinstance(estimator.classes_, list)
++    assert len(estimator.classes_) == n_outputs
++    for estimator_classes, expected_classes in zip(classes,
++                                                   estimator.classes_):
++        assert_array_equal(estimator_classes, expected_classes)
+'
+++ git apply --check /tmp/test_patch.diff
+++ git apply /tmp/test_patch.diff
++++ mktemp
+++ LOG_FILE=/tmp/tmp.HqUCw0zcA7
+++ export LOG_FILE
+++ exec
+++ exec
++++ tee /tmp/tmp.HqUCw0zcA7
+++ set +x
+============================= test session starts ==============================
+platform linux -- Python 3.6.13, pytest-6.2.4, py-1.11.0, pluggy-0.13.1
+rootdir: /testbed, configfile: setup.cfg
+collected 27 items
+
+sklearn/tests/test_multioutput.py .........................F.            [100%]
+
+=================================== FAILURES ===================================
+____________________ test_multi_output_classes_[estimator1] ____________________
+
+estimator = MultiOutputClassifier(estimator=RandomForestClassifier(bootstrap=True,
+                                               ...verbose=0,
+                                                       warm_start=False),
+                      n_jobs=None)
+
+    @pytest.mark.parametrize(
+        'estimator',
+        [RandomForestClassifier(n_estimators=2),
+         MultiOutputClassifier(RandomForestClassifier(n_estimators=2)),
+         ClassifierChain(RandomForestClassifier(n_estimators=2))]
+    )
+    def test_multi_output_classes_(estimator):
+        # Tests classes_ attribute of multioutput classifiers
+        # RandomForestClassifier supports multioutput out-of-the-box
+        estimator.fit(X, y)
+>       assert isinstance(estimator.classes_, list)
+E       AttributeError: 'MultiOutputClassifier' object has no attribute 'classes_'
+
+sklearn/tests/test_multioutput.py:542: AttributeError
+==================================== PASSES ====================================
+=========================== short test summary info ============================
+PASSED sklearn/tests/test_multioutput.py::test_multi_target_regression
+PASSED sklearn/tests/test_multioutput.py::test_multi_target_regression_partial_fit
+PASSED sklearn/tests/test_multioutput.py::test_multi_target_regression_one_target
+PASSED sklearn/tests/test_multioutput.py::test_multi_target_sparse_regression
+PASSED sklearn/tests/test_multioutput.py::test_multi_target_sample_weights_api
+PASSED sklearn/tests/test_multioutput.py::test_multi_target_sample_weight_partial_fit
+PASSED sklearn/tests/test_multioutput.py::test_multi_target_sample_weights
+PASSED sklearn/tests/test_multioutput.py::test_multi_output_classification_partial_fit_parallelism
+PASSED sklearn/tests/test_multioutput.py::test_multi_output_predict_proba
+PASSED sklearn/tests/test_multioutput.py::test_multi_output_classification_partial_fit
+PASSED sklearn/tests/test_multioutput.py::test_multi_output_classification_partial_fit_no_first_classes_exception
+PASSED sklearn/tests/test_multioutput.py::test_multi_output_classification
+PASSED sklearn/tests/test_multioutput.py::test_multiclass_multioutput_estimator
+PASSED sklearn/tests/test_multioutput.py::test_multiclass_multioutput_estimator_predict_proba
+PASSED sklearn/tests/test_multioutput.py::test_multi_output_classification_sample_weights
+PASSED sklearn/tests/test_multioutput.py::test_multi_output_classification_partial_fit_sample_weights
+PASSED sklearn/tests/test_multioutput.py::test_multi_output_exceptions
+PASSED sklearn/tests/test_multioutput.py::test_classifier_chain_fit_and_predict_with_linear_svc
+PASSED sklearn/tests/test_multioutput.py::test_classifier_chain_fit_and_predict_with_sparse_data
+PASSED sklearn/tests/test_multioutput.py::test_classifier_chain_vs_independent_models
+PASSED sklearn/tests/test_multioutput.py::test_base_chain_fit_and_predict
+PASSED sklearn/tests/test_multioutput.py::test_base_chain_fit_and_predict_with_sparse_data_and_cv
+PASSED sklearn/tests/test_multioutput.py::test_base_chain_random_order
+PASSED sklearn/tests/test_multioutput.py::test_base_chain_crossval_fit_and_predict
+PASSED sklearn/tests/test_multioutput.py::test_multi_output_classes_[estimator0]
+PASSED sklearn/tests/test_multioutput.py::test_multi_output_classes_[estimator2]
+FAILED sklearn/tests/test_multioutput.py::test_multi_output_classes_[estimator1]
+================== 1 failed, 26 passed, 61 warnings in 6.06s ===================
+Updated 1 path from 69762d3f5
+Downloading hf-xet (4.3MiB)
+Downloading pandas (10.8MiB)
+Downloading virtualenv (5.1MiB)
+Downloading aiohttp (1.7MiB)
+Downloading numpy (16.1MiB)
+Downloading chardet (1.4MiB)
+Downloading pygments (1.2MiB)
+Downloading pyarrow (47.7MiB)
+ Downloading pygments
+ Downloading chardet
+ Downloading aiohttp
+ Downloading hf-xet
+ Downloading virtualenv
+ Downloading pandas
+ Downloading numpy
+ Downloading pyarrow
+Installed 73 packages in 99ms
+SWEBench results starts here
+FAILED
+SWEBench results ends here

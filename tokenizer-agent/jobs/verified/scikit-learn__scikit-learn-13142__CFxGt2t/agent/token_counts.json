@@ -1,0 +1,308 @@
+{
+  "instance_id": "scikit-learn__scikit-learn-13142",
+  "encoding": "cl100k_base",
+  "total_tokens": 13287022,
+  "total_files": 1143,
+  "source_code_tokens": 12581264,
+  "source_code_files": 933,
+  "by_extension": {
+    ".c": {
+      "tokens": 9436825,
+      "files": 83
+    },
+    ".py": {
+      "tokens": 2067125,
+      "files": 739
+    },
+    ".cpp": {
+      "tokens": 796935,
+      "files": 8
+    },
+    ".rst": {
+      "tokens": 424875,
+      "files": 121
+    },
+    ".pyx": {
+      "tokens": 137763,
+      "files": 42
+    },
+    ".csv": {
+      "tokens": 115632,
+      "files": 6
+    },
+    ".css": {
+      "tokens": 99103,
+      "files": 5
+    },
+    ".h": {
+      "tokens": 67185,
+      "files": 24
+    },
+    ".js": {
+      "tokens": 58051,
+      "files": 7
+    },
+    ".pxi": {
+      "tokens": 25049,
+      "files": 1
+    },
+    ".txt": {
+      "tokens": 15520,
+      "files": 41
+    },
+    ".pxd": {
+      "tokens": 9037,
+      "files": 17
+    },
+    ".css_t": {
+      "tokens": 7618,
+      "files": 1
+    },
+    "(no extension)": {
+      "tokens": 7407,
+      "files": 17
+    },
+    ".sh": {
+      "tokens": 6367,
+      "files": 12
+    },
+    ".html": {
+      "tokens": 3657,
+      "files": 1
+    },
+    ".yml": {
+      "tokens": 3167,
+      "files": 6
+    },
+    ".ps1": {
+      "tokens": 1976,
+      "files": 1
+    },
+    ".md": {
+      "tokens": 1244,
+      "files": 4
+    },
+    ".bat": {
+      "tokens": 1136,
+      "files": 1
+    },
+    ".cmd": {
+      "tokens": 944,
+      "files": 1
+    },
+    ".cfg": {
+      "tokens": 280,
+      "files": 2
+    },
+    ".in": {
+      "tokens": 75,
+      "files": 2
+    },
+    ".conf": {
+      "tokens": 51,
+      "files": 1
+    }
+  },
+  "top_files": [
+    {
+      "path": "sklearn/utils/sparsefuncs_fast.c",
+      "tokens": 681164
+    },
+    {
+      "path": "sklearn/neighbors/kd_tree.c",
+      "tokens": 652947
+    },
+    {
+      "path": "sklearn/neighbors/ball_tree.c",
+      "tokens": 645154
+    },
+    {
+      "path": "sklearn/linear_model/cd_fast.c",
+      "tokens": 515720
+    },
+    {
+      "path": "sklearn/cluster/_k_means.c",
+      "tokens": 481519
+    },
+    {
+      "path": "sklearn/utils/_cython_blas.c",
+      "tokens": 455071
+    },
+    {
+      "path": "sklearn/neighbors/dist_metrics.c",
+      "tokens": 448670
+    },
+    {
+      "path": "sklearn/linear_model/sgd_fast.c",
+      "tokens": 422478
+    },
+    {
+      "path": "sklearn/cluster/_hierarchical.cpp",
+      "tokens": 366385
+    },
+    {
+      "path": "sklearn/cluster/_k_means_elkan.c",
+      "tokens": 365510
+    },
+    {
+      "path": "sklearn/preprocessing/_csr_polynomial_expansion.c",
+      "tokens": 349677
+    },
+    {
+      "path": "sklearn/ensemble/_gradient_boosting.c",
+      "tokens": 324496
+    },
+    {
+      "path": "sklearn/tree/_tree.c",
+      "tokens": 311248
+    },
+    {
+      "path": "sklearn/utils/fast_dict.cpp",
+      "tokens": 309939
+    },
+    {
+      "path": "sklearn/metrics/pairwise_fast.c",
+      "tokens": 307126
+    },
+    {
+      "path": "sklearn/manifold/_barnes_hut_tsne.c",
+      "tokens": 281535
+    },
+    {
+      "path": "sklearn/_isotonic.c",
+      "tokens": 266500
+    },
+    {
+      "path": "sklearn/tree/_splitter.c",
+      "tokens": 246595
+    },
+    {
+      "path": "sklearn/decomposition/cdnmf_fast.c",
+      "tokens": 231692
+    },
+    {
+      "path": "sklearn/neighbors/quad_tree.c",
+      "tokens": 199253
+    },
+    {
+      "path": "sklearn/tree/_criterion.c",
+      "tokens": 194743
+    },
+    {
+      "path": "sklearn/svm/libsvm.c",
+      "tokens": 179922
+    },
+    {
+      "path": "sklearn/tree/_utils.c",
+      "tokens": 177810
+    },
+    {
+      "path": "sklearn/svm/libsvm_sparse.c",
+      "tokens": 150931
+    },
+    {
+      "path": "sklearn/linear_model/sag_fast.c",
+      "tokens": 142326
+    },
+    {
+      "path": "sklearn/utils/seq_dataset.c",
+      "tokens": 125630
+    },
+    {
+      "path": "sklearn/utils/graph_shortest_path.c",
+      "tokens": 121464
+    },
+    {
+      "path": "sklearn/utils/_random.c",
+      "tokens": 108131
+    },
+    {
+      "path": "sklearn/metrics/cluster/expected_mutual_info_fast.c",
+      "tokens": 106115
+    },
+    {
+      "path": "sklearn/datasets/_svmlight_format.c",
+      "tokens": 105707
+    },
+    {
+      "path": "sklearn/utils/murmurhash.c",
+      "tokens": 104295
+    },
+    {
+      "path": "sklearn/feature_extraction/_hashing.c",
+      "tokens": 92343
+    },
+    {
+      "path": "sklearn/svm/liblinear.c",
+      "tokens": 90591
+    },
+    {
+      "path": "sklearn/decomposition/_online_lda.c",
+      "tokens": 83052
+    },
+    {
+      "path": "sklearn/utils/weight_vector.c",
+      "tokens": 82698
+    },
+    {
+      "path": "sklearn/manifold/_utils.c",
+      "tokens": 79717
+    },
+    {
+      "path": "sklearn/datasets/data/breast_cancer.csv",
+      "tokens": 79097
+    },
+    {
+      "path": "sklearn/cluster/_dbscan_inner.cpp",
+      "tokens": 72237
+    },
+    {
+      "path": "sklearn/utils/arrayfuncs.c",
+      "tokens": 67674
+    },
+    {
+      "path": "sklearn/utils/_logistic_sigmoid.c",
+      "tokens": 66090
+    },
+    {
+      "path": "sklearn/neighbors/typedefs.c",
+      "tokens": 54592
+    },
+    {
+      "path": "doc/tutorial/machine_learning_map/pyparsing.py",
+      "tokens": 52949
+    },
+    {
+      "path": "doc/themes/scikit-learn/static/css/bootstrap.css",
+      "tokens": 48163
+    },
+    {
+      "path": "doc/themes/scikit-learn/static/css/bootstrap.min.css",
+      "tokens": 38218
+    },
+    {
+      "path": "sklearn/utils/lgamma.c",
+      "tokens": 34193
+    },
+    {
+      "path": "sklearn/__check_build/_check_build.c",
+      "tokens": 29488
+    },
+    {
+      "path": "doc/themes/scikit-learn/static/jquery.js",
+      "tokens": 29211
+    },
+    {
+      "path": "sklearn/neighbors/binary_tree.pxi",
+      "tokens": 25049
+    },
+    {
+      "path": "sklearn/datasets/data/boston_house_prices.csv",
+      "tokens": 24860
+    },
+    {
+      "path": "sklearn/preprocessing/data.py",
+      "tokens": 24470
+    }
+  ]
+}

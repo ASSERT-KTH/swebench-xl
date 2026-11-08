@@ -1,0 +1,301 @@
+++ cd /testbed
+++ set +x
+++ python -m pip install -e .
+Obtaining file:///testbed
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Checking if build backend supports build_editable: started
+  Checking if build backend supports build_editable: finished with status 'done'
+  Getting requirements to build editable: started
+  Getting requirements to build editable: finished with status 'done'
+  Preparing editable metadata (pyproject.toml): started
+  Preparing editable metadata (pyproject.toml): finished with status 'done'
+Requirement already satisfied: asgiref>=3.4.1 in /opt/miniconda3/envs/testbed/lib/python3.9/site-packages (from Django==4.1.dev20260813013029) (3.8.1)
+Requirement already satisfied: sqlparse>=0.2.2 in /opt/miniconda3/envs/testbed/lib/python3.9/site-packages (from Django==4.1.dev20260813013029) (0.5.1)
+Requirement already satisfied: typing-extensions>=4 in /opt/miniconda3/envs/testbed/lib/python3.9/site-packages (from asgiref>=3.4.1->Django==4.1.dev20260813013029) (4.12.2)
+Building wheels for collected packages: Django
+  Building editable for Django (pyproject.toml): started
+  Building editable for Django (pyproject.toml): finished with status 'done'
+  Created wheel for Django: filename=django-4.1.dev20260813013029-0.editable-py3-none-any.whl size=26979 sha256=efc0436246d3d5da96a67c08f34c8353673f5ce9b3cacc77a982ee46bd4ec342
+  Stored in directory: /tmp/pip-ephem-wheel-cache-vsmo6gnr/wheels/7d/66/67/70d1ee2124ccf21d601c352e25cdca10f611f7c8b3f9ffb9e4
+Successfully built Django
+Installing collected packages: Django
+  Attempting uninstall: Django
+    Found existing installation: Django 4.1.dev20220127180326
+    Uninstalling Django-4.1.dev20220127180326:
+      Successfully uninstalled Django-4.1.dev20220127180326
+Successfully installed Django-4.1.dev20260813013029
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable.It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+++ git checkout 0af9a5fc7d765aa05ea784e2c3237675f3bb4b49 tests/model_formsets/tests.py
+Updated 1 path from c4c9cffec5
+++ git clean -fd
+++ echo 'diff --git a/tests/model_formsets/tests.py b/tests/model_formsets/tests.py
+--- a/tests/model_formsets/tests.py
++++ b/tests/model_formsets/tests.py
+@@ -1771,6 +1771,73 @@ def test_initial_form_count_empty_data(self):
+         formset = AuthorFormSet({})
+         self.assertEqual(formset.initial_form_count(), 0)
+
++    def test_edit_only(self):
++        charles = Author.objects.create(name='\''Charles Baudelaire'\'')
++        AuthorFormSet = modelformset_factory(Author, fields='\''__all__'\'', edit_only=True)
++        data = {
++            '\''form-TOTAL_FORMS'\'': '\''2'\'',
++            '\''form-INITIAL_FORMS'\'': '\''0'\'',
++            '\''form-MAX_NUM_FORMS'\'': '\''0'\'',
++            '\''form-0-name'\'': '\''Arthur Rimbaud'\'',
++            '\''form-1-name'\'': '\''Walt Whitman'\'',
++        }
++        formset = AuthorFormSet(data)
++        self.assertIs(formset.is_valid(), True)
++        formset.save()
++        self.assertSequenceEqual(Author.objects.all(), [charles])
++        data = {
++            '\''form-TOTAL_FORMS'\'': '\''2'\'',
++            '\''form-INITIAL_FORMS'\'': '\''1'\'',
++            '\''form-MAX_NUM_FORMS'\'': '\''0'\'',
++            '\''form-0-id'\'': charles.pk,
++            '\''form-0-name'\'': '\''Arthur Rimbaud'\'',
++            '\''form-1-name'\'': '\''Walt Whitman'\'',
++        }
++        formset = AuthorFormSet(data)
++        self.assertIs(formset.is_valid(), True)
++        formset.save()
++        charles.refresh_from_db()
++        self.assertEqual(charles.name, '\''Arthur Rimbaud'\'')
++        self.assertSequenceEqual(Author.objects.all(), [charles])
++
++    def test_edit_only_inlineformset_factory(self):
++        charles = Author.objects.create(name='\''Charles Baudelaire'\'')
++        book = Book.objects.create(author=charles, title='\''Les Paradis Artificiels'\'')
++        AuthorFormSet = inlineformset_factory(
++            Author, Book, can_delete=False, fields='\''__all__'\'', edit_only=True,
++        )
++        data = {
++            '\''book_set-TOTAL_FORMS'\'': '\''4'\'',
++            '\''book_set-INITIAL_FORMS'\'': '\''1'\'',
++            '\''book_set-MAX_NUM_FORMS'\'': '\''0'\'',
++            '\''book_set-0-id'\'': book.pk,
++            '\''book_set-0-title'\'': '\''Les Fleurs du Mal'\'',
++            '\''book_set-0-author'\'': charles.pk,
++            '\''book_set-1-title'\'': '\''Flowers of Evil'\'',
++            '\''book_set-1-author'\'': charles.pk,
++        }
++        formset = AuthorFormSet(data, instance=charles)
++        self.assertIs(formset.is_valid(), True)
++        formset.save()
++        book.refresh_from_db()
++        self.assertEqual(book.title, '\''Les Fleurs du Mal'\'')
++        self.assertSequenceEqual(Book.objects.all(), [book])
++
++    def test_edit_only_object_outside_of_queryset(self):
++        charles = Author.objects.create(name='\''Charles Baudelaire'\'')
++        walt = Author.objects.create(name='\''Walt Whitman'\'')
++        data = {
++            '\''form-TOTAL_FORMS'\'': '\''1'\'',
++            '\''form-INITIAL_FORMS'\'': '\''1'\'',
++            '\''form-0-id'\'': walt.pk,
++            '\''form-0-name'\'': '\''Parth Patil'\'',
++        }
++        AuthorFormSet = modelformset_factory(Author, fields='\''__all__'\'', edit_only=True)
++        formset = AuthorFormSet(data, queryset=Author.objects.filter(pk=charles.pk))
++        self.assertIs(formset.is_valid(), True)
++        formset.save()
++        self.assertCountEqual(Author.objects.all(), [charles, walt])
++
+
+ class TestModelFormsetOverridesTroughFormMeta(TestCase):
+     def test_modelformset_factory_widgets(self):
+'
+++ git apply --check /tmp/test_patch.diff
+++ git apply /tmp/test_patch.diff
++++ mktemp
+++ LOG_FILE=/tmp/tmp.uX30CvRTSd
+++ export LOG_FILE
+++ exec
+++ exec
++++ tee /tmp/tmp.uX30CvRTSd
+++ set +x
+Creating test database for alias 'default' ('file:memorydb_default?mode=memory&cache=shared')...
+Testing against Django installed in '/testbed/django'
+Importing application model_formsets
+Found 67 test(s).
+Skipping setup of unused database(s): other.
+Operations to perform:
+  Synchronize unmigrated apps: auth, contenttypes, messages, model_formsets, sessions, staticfiles
+  Apply all migrations: admin, sites
+Synchronizing apps without migrations:
+  Creating tables...
+    Creating table django_content_type
+    Creating table auth_permission
+    Creating table auth_group
+    Creating table auth_user
+    Creating table django_session
+    Creating table model_formsets_author
+    Creating table model_formsets_betterauthor
+    Creating table model_formsets_book
+    Creating table model_formsets_bookwithcustompk
+    Creating table model_formsets_editor
+    Creating table model_formsets_bookwithoptionalalteditor
+    Creating table model_formsets_alternatebook
+    Creating table model_formsets_authormeeting
+    Creating table model_formsets_customprimarykey
+    Creating table model_formsets_place
+    Creating table model_formsets_owner
+    Creating table model_formsets_location
+    Creating table model_formsets_ownerprofile
+    Creating table model_formsets_restaurant
+    Creating table model_formsets_product
+    Creating table model_formsets_price
+    Creating table model_formsets_mexicanrestaurant
+    Creating table model_formsets_classymexicanrestaurant
+    Creating table model_formsets_repository
+    Creating table model_formsets_revision
+    Creating table model_formsets_person
+    Creating table model_formsets_membership
+    Creating table model_formsets_team
+    Creating table model_formsets_player
+    Creating table model_formsets_poet
+    Creating table model_formsets_poem
+    Creating table model_formsets_post
+    Creating table model_formsets_uuidpkparent
+    Creating table model_formsets_uuidpkchild
+    Creating table model_formsets_childwitheditablepk
+    Creating table model_formsets_autopkchildofuuidpkparent
+    Creating table model_formsets_autopkparent
+    Creating table model_formsets_uuidpkchildofautopkparent
+    Creating table model_formsets_parentwithuuidalternatekey
+    Creating table model_formsets_childrelatedviaak
+    Running deferred SQL...
+Running migrations:
+  Applying admin.0001_initial... OK
+  Applying admin.0002_logentry_remove_auto_add... OK
+  Applying admin.0003_logentry_add_action_flag_choices... OK
+  Applying sites.0001_initial... OK
+  Applying sites.0002_alter_domain_unique... OK
+System check identified no issues (1 silenced).
+test_add_form_deletion_when_invalid (model_formsets.tests.DeletionTests)
+Make sure that an add form that is filled out, but marked for deletion ... ok
+test_change_form_deletion_when_invalid (model_formsets.tests.DeletionTests)
+Make sure that a change form that is filled out, but marked for deletion ... ok
+test_deletion (model_formsets.tests.DeletionTests) ... ok
+test_outdated_deletion (model_formsets.tests.DeletionTests) ... ok
+test_callable_defaults (model_formsets.tests.ModelFormsetTest) ... ok
+test_commit_false (model_formsets.tests.ModelFormsetTest) ... ok
+test_custom_form (model_formsets.tests.ModelFormsetTest)
+model_formset_factory() respects fields and exclude parameters of a ... ok
+test_custom_pk (model_formsets.tests.ModelFormsetTest) ... ok
+test_custom_queryset_init (model_formsets.tests.ModelFormsetTest)
+A queryset can be overridden in the formset's __init__() method. ... ok
+test_custom_save_method (model_formsets.tests.ModelFormsetTest) ... ok
+test_edit_only (model_formsets.tests.ModelFormsetTest) ... ERROR
+test_edit_only_inlineformset_factory (model_formsets.tests.ModelFormsetTest) ... ERROR
+test_edit_only_object_outside_of_queryset (model_formsets.tests.ModelFormsetTest) ... ERROR
+test_foreign_keys_in_parents (model_formsets.tests.ModelFormsetTest) ... ok
+test_initial_form_count_empty_data (model_formsets.tests.ModelFormsetTest) ... ok
+test_inline_formsets (model_formsets.tests.ModelFormsetTest) ... ok
+test_inline_formsets_save_as_new (model_formsets.tests.ModelFormsetTest) ... ok
+test_inline_formsets_with_custom_pk (model_formsets.tests.ModelFormsetTest) ... ok
+test_inline_formsets_with_custom_save_method (model_formsets.tests.ModelFormsetTest) ... ok
+test_inline_formsets_with_custom_save_method_related_instance (model_formsets.tests.ModelFormsetTest)
+The ModelForm.save() method should be able to access the related object ... ok
+test_inline_formsets_with_multi_table_inheritance (model_formsets.tests.ModelFormsetTest) ... ok
+test_inline_formsets_with_nullable_unique_together (model_formsets.tests.ModelFormsetTest) ... ok
+test_inline_formsets_with_wrong_fk_name (model_formsets.tests.ModelFormsetTest)
+Regression for #23451 ... ok
+test_inlineformset_factory_with_null_fk (model_formsets.tests.ModelFormsetTest) ... ok
+test_inlineformset_with_arrayfield (model_formsets.tests.ModelFormsetTest) ... ok
+test_max_num (model_formsets.tests.ModelFormsetTest) ... ok
+test_min_num (model_formsets.tests.ModelFormsetTest) ... ok
+test_min_num_with_existing (model_formsets.tests.ModelFormsetTest) ... ok
+test_model_formset_with_custom_pk (model_formsets.tests.ModelFormsetTest) ... ok
+test_model_formset_with_initial_model_instance (model_formsets.tests.ModelFormsetTest) ... ok
+test_model_formset_with_initial_queryset (model_formsets.tests.ModelFormsetTest) ... ok
+test_model_inheritance (model_formsets.tests.ModelFormsetTest) ... ok
+test_modelformset_factory_without_fields (model_formsets.tests.ModelFormsetTest)
+Regression for #19733 ... ok
+test_modelformset_min_num_equals_max_num_less_than (model_formsets.tests.ModelFormsetTest) ... ok
+test_modelformset_min_num_equals_max_num_more_than (model_formsets.tests.ModelFormsetTest) ... ok
+test_modelformset_validate_max_flag (model_formsets.tests.ModelFormsetTest) ... ok
+test_prevent_change_outer_model_and_create_invalid_data (model_formsets.tests.ModelFormsetTest) ... ok
+test_prevent_duplicates_from_with_the_same_formset (model_formsets.tests.ModelFormsetTest) ... ok
+test_simple_save (model_formsets.tests.ModelFormsetTest) ... ok
+test_unique_together_validation (model_formsets.tests.ModelFormsetTest) ... ok
+test_unique_together_with_inlineformset_factory (model_formsets.tests.ModelFormsetTest) ... ok
+test_unique_true_enforces_max_num_one (model_formsets.tests.ModelFormsetTest) ... ok
+test_unique_validation (model_formsets.tests.ModelFormsetTest) ... ok
+test_validation_with_child_model_without_id (model_formsets.tests.ModelFormsetTest) ... ok
+test_validation_with_invalid_id (model_formsets.tests.ModelFormsetTest) ... ok
+test_validation_with_nonexistent_id (model_formsets.tests.ModelFormsetTest) ... ok
+test_validation_without_id (model_formsets.tests.ModelFormsetTest) ... ok
+test_inlineformset_factory_absolute_max (model_formsets.tests.TestModelFormsetOverridesTroughFormMeta) ... ok
+test_inlineformset_factory_absolute_max_with_max_num (model_formsets.tests.TestModelFormsetOverridesTroughFormMeta) ... ok
+test_inlineformset_factory_can_delete_extra (model_formsets.tests.TestModelFormsetOverridesTroughFormMeta) ... ok
+test_inlineformset_factory_can_not_delete_extra (model_formsets.tests.TestModelFormsetOverridesTroughFormMeta) ... ok
+test_inlineformset_factory_error_messages_overrides (model_formsets.tests.TestModelFormsetOverridesTroughFormMeta) ... ok
+test_inlineformset_factory_field_class_overrides (model_formsets.tests.TestModelFormsetOverridesTroughFormMeta) ... ok
+test_inlineformset_factory_help_text_overrides (model_formsets.tests.TestModelFormsetOverridesTroughFormMeta) ... ok
+test_inlineformset_factory_labels_overrides (model_formsets.tests.TestModelFormsetOverridesTroughFormMeta) ... ok
+test_inlineformset_factory_passes_renderer (model_formsets.tests.TestModelFormsetOverridesTroughFormMeta) ... ok
+test_inlineformset_factory_widgets (model_formsets.tests.TestModelFormsetOverridesTroughFormMeta) ... ok
+test_modelformset_factory_absolute_max (model_formsets.tests.TestModelFormsetOverridesTroughFormMeta) ... ok
+test_modelformset_factory_absolute_max_with_max_num (model_formsets.tests.TestModelFormsetOverridesTroughFormMeta) ... ok
+test_modelformset_factory_can_delete_extra (model_formsets.tests.TestModelFormsetOverridesTroughFormMeta) ... ok
+test_modelformset_factory_disable_delete_extra (model_formsets.tests.TestModelFormsetOverridesTroughFormMeta) ... ok
+test_modelformset_factory_error_messages_overrides (model_formsets.tests.TestModelFormsetOverridesTroughFormMeta) ... ok
+test_modelformset_factory_field_class_overrides (model_formsets.tests.TestModelFormsetOverridesTroughFormMeta) ... ok
+test_modelformset_factory_help_text_overrides (model_formsets.tests.TestModelFormsetOverridesTroughFormMeta) ... ok
+test_modelformset_factory_labels_overrides (model_formsets.tests.TestModelFormsetOverridesTroughFormMeta) ... ok
+test_modelformset_factory_passes_renderer (model_formsets.tests.TestModelFormsetOverridesTroughFormMeta) ... ok
+test_modelformset_factory_widgets (model_formsets.tests.TestModelFormsetOverridesTroughFormMeta) ... ok
+
+======================================================================
+ERROR: test_edit_only (model_formsets.tests.ModelFormsetTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/testbed/tests/model_formsets/tests.py", line 1776, in test_edit_only
+    AuthorFormSet = modelformset_factory(Author, fields='__all__', edit_only=True)
+TypeError: modelformset_factory() got an unexpected keyword argument 'edit_only'
+
+======================================================================
+ERROR: test_edit_only_inlineformset_factory (model_formsets.tests.ModelFormsetTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/testbed/tests/model_formsets/tests.py", line 1806, in test_edit_only_inlineformset_factory
+    AuthorFormSet = inlineformset_factory(
+TypeError: inlineformset_factory() got an unexpected keyword argument 'edit_only'
+
+======================================================================
+ERROR: test_edit_only_object_outside_of_queryset (model_formsets.tests.ModelFormsetTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/testbed/tests/model_formsets/tests.py", line 1835, in test_edit_only_object_outside_of_queryset
+    AuthorFormSet = modelformset_factory(Author, fields='__all__', edit_only=True)
+TypeError: modelformset_factory() got an unexpected keyword argument 'edit_only'
+
+----------------------------------------------------------------------
+Ran 67 tests in 0.271s
+
+FAILED (errors=3)
+Destroying test database for alias 'default' ('file:memorydb_default?mode=memory&cache=shared')...
+Updated 1 path from c4c9cffec5
+Downloading aiohttp (1.7MiB)
+Downloading virtualenv (5.1MiB)
+Downloading chardet (1.4MiB)
+Downloading hf-xet (4.3MiB)
+Downloading pandas (10.8MiB)
+Downloading pygments (1.2MiB)
+Downloading numpy (16.1MiB)
+Downloading pyarrow (47.7MiB)
+ Downloading pygments
+ Downloading chardet
+ Downloading aiohttp
+ Downloading hf-xet
+ Downloading virtualenv
+ Downloading pandas
+ Downloading numpy
+ Downloading pyarrow
+Installed 73 packages in 103ms
+SWEBench results starts here
+FAILED
+SWEBench results ends here

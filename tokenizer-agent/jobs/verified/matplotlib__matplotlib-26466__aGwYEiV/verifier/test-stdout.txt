@@ -1,0 +1,279 @@
+++ cd /testbed
+++ set +x
+++ python -m pip install -e .
+Obtaining file:///testbed
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Checking if build backend supports build_editable: started
+  Checking if build backend supports build_editable: finished with status 'done'
+  Getting requirements to build editable: started
+  Getting requirements to build editable: finished with status 'done'
+  Preparing editable metadata (pyproject.toml): started
+  Preparing editable metadata (pyproject.toml): finished with status 'done'
+Requirement already satisfied: contourpy>=1.0.1 in /opt/miniconda3/envs/testbed/lib/python3.11/site-packages (from matplotlib==3.8.0.dev1741+g20e9c8c37) (1.1.0)
+Requirement already satisfied: cycler>=0.10 in /opt/miniconda3/envs/testbed/lib/python3.11/site-packages (from matplotlib==3.8.0.dev1741+g20e9c8c37) (0.11.0)
+Requirement already satisfied: fonttools>=4.22.0 in /opt/miniconda3/envs/testbed/lib/python3.11/site-packages (from matplotlib==3.8.0.dev1741+g20e9c8c37) (4.42.1)
+Requirement already satisfied: kiwisolver>=1.0.1 in /opt/miniconda3/envs/testbed/lib/python3.11/site-packages (from matplotlib==3.8.0.dev1741+g20e9c8c37) (1.4.5)
+Requirement already satisfied: numpy>=1.21 in /opt/miniconda3/envs/testbed/lib/python3.11/site-packages (from matplotlib==3.8.0.dev1741+g20e9c8c37) (1.25.2)
+Requirement already satisfied: packaging>=20.0 in /opt/miniconda3/envs/testbed/lib/python3.11/site-packages (from matplotlib==3.8.0.dev1741+g20e9c8c37) (23.1)
+Requirement already satisfied: pillow>=6.2.0 in /opt/miniconda3/envs/testbed/lib/python3.11/site-packages (from matplotlib==3.8.0.dev1741+g20e9c8c37) (10.0.0)
+Requirement already satisfied: pyparsing>=2.3.1 in /opt/miniconda3/envs/testbed/lib/python3.11/site-packages (from matplotlib==3.8.0.dev1741+g20e9c8c37) (3.0.9)
+Requirement already satisfied: python-dateutil>=2.7 in /opt/miniconda3/envs/testbed/lib/python3.11/site-packages (from matplotlib==3.8.0.dev1741+g20e9c8c37) (2.8.2)
+Requirement already satisfied: setuptools_scm>=7 in /opt/miniconda3/envs/testbed/lib/python3.11/site-packages (from matplotlib==3.8.0.dev1741+g20e9c8c37) (7.1.0)
+Requirement already satisfied: six>=1.5 in /opt/miniconda3/envs/testbed/lib/python3.11/site-packages (from python-dateutil>=2.7->matplotlib==3.8.0.dev1741+g20e9c8c37) (1.16.0)
+Requirement already satisfied: setuptools in /opt/miniconda3/envs/testbed/lib/python3.11/site-packages (from setuptools_scm>=7->matplotlib==3.8.0.dev1741+g20e9c8c37) (68.1.2)
+Requirement already satisfied: typing-extensions in /opt/miniconda3/envs/testbed/lib/python3.11/site-packages (from setuptools_scm>=7->matplotlib==3.8.0.dev1741+g20e9c8c37) (4.7.1)
+Building wheels for collected packages: matplotlib
+  Building editable for matplotlib (pyproject.toml): started
+  Building editable for matplotlib (pyproject.toml): finished with status 'done'
+  Created wheel for matplotlib: filename=matplotlib-3.8.0.dev1741+g20e9c8c37-0.editable-cp311-cp311-linux_x86_64.whl size=22067 sha256=7b773ed9eb373068fe169fdc58f8932a3755ee214f3d06303ee5d2278066d36d
+  Stored in directory: /tmp/pip-ephem-wheel-cache-lhuqb0_t/wheels/49/5f/4f/01b7d31ea6ddac9643da788242d33e5fd3467d95d17b032c6b
+Successfully built matplotlib
+Installing collected packages: matplotlib
+  Attempting uninstall: matplotlib
+    Found existing installation: matplotlib 3.8.0.dev1740+g3dd06a467
+    Uninstalling matplotlib-3.8.0.dev1740+g3dd06a467:
+      Successfully uninstalled matplotlib-3.8.0.dev1740+g3dd06a467
+Successfully installed matplotlib-3.8.0.dev1741+g20e9c8c37
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+++ git checkout 3dd06a46750d174f821df5377996f493f1af4ebb lib/matplotlib/tests/test_text.py
+Updated 0 paths from 92c6a499ae
+++ git clean -fd
+++ echo 'diff --git a/lib/matplotlib/tests/test_text.py b/lib/matplotlib/tests/test_text.py
+--- a/lib/matplotlib/tests/test_text.py
++++ b/lib/matplotlib/tests/test_text.py
+@@ -16,7 +16,7 @@
+ import matplotlib.transforms as mtransforms
+ from matplotlib.testing.decorators import check_figures_equal, image_comparison
+ from matplotlib.testing._markers import needs_usetex
+-from matplotlib.text import Text, Annotation
++from matplotlib.text import Text, Annotation, OffsetFrom
+
+ pyparsing_version = parse_version(pyparsing.__version__)
+
+@@ -988,3 +988,19 @@ def test_text_math_antialiased_off_default_vs_manual(fig_test, fig_ref):
+
+     mpl.rcParams['\''text.antialiased'\''] = False
+     fig_ref.text(0.5, 0.5, r"OutsideMath $I\'\''m \sqrt{2}$")
++
++
++@check_figures_equal(extensions=["png"])
++def test_annotate_and_offsetfrom_copy_input(fig_test, fig_ref):
++    # Both approaches place the text (10, 0) pixels away from the center of the line.
++    ax = fig_test.add_subplot()
++    l, = ax.plot([0, 2], [0, 2])
++    of_xy = np.array([.5, .5])
++    ax.annotate("foo", textcoords=OffsetFrom(l, of_xy), xytext=(10, 0),
++                xy=(0, 0))  # xy is unused.
++    of_xy[:] = 1
++    ax = fig_ref.add_subplot()
++    l, = ax.plot([0, 2], [0, 2])
++    an_xy = np.array([.5, .5])
++    ax.annotate("foo", xy=an_xy, xycoords=l, xytext=(10, 0), textcoords="offset points")
++    an_xy[:] = 2
+'
+++ git apply --check /tmp/test_patch.diff
+++ git apply /tmp/test_patch.diff
++++ mktemp
+++ LOG_FILE=/tmp/tmp.u8KbU4ilxC
+++ export LOG_FILE
+++ exec
+++ exec
++++ tee /tmp/tmp.u8KbU4ilxC
+++ set +x
+============================= test session starts ==============================
+platform linux -- Python 3.11.11, pytest-8.3.4, pluggy-1.5.0
+rootdir: /testbed
+configfile: pytest.ini
+plugins: cov-6.0.0, rerunfailures-15.0, timeout-2.3.1, xdist-3.6.1
+collected 116 items
+
+lib/matplotlib/tests/test_text.py ..s..s..s............s..s............. [ 32%]
+...............s.................ss................................s..s. [ 94%]
+.s..sF                                                                   [100%]
+
+=================================== FAILURES ===================================
+_________________ test_annotate_and_offsetfrom_copy_input[png] _________________
+
+ext = 'png'
+request = <FixtureRequest for <Function test_annotate_and_offsetfrom_copy_input[png]>>
+args = (), kwargs = {}
+file_name = 'test_annotate_and_offsetfrom_copy_input[png]'
+fig_test = <Figure size 640x480 with 1 Axes>
+fig_ref = <Figure size 640x480 with 1 Axes>, figs = []
+test_image_path = PosixPath('/testbed/result_images/test_text/test_annotate_and_offsetfrom_copy_input[png].png')
+ref_image_path = PosixPath('/testbed/result_images/test_text/test_annotate_and_offsetfrom_copy_input[png]-expected.png')
+
+    @pytest.mark.parametrize("ext", extensions)
+    def wrapper(*args, ext, request, **kwargs):
+        if 'ext' in old_sig.parameters:
+            kwargs['ext'] = ext
+        if 'request' in old_sig.parameters:
+            kwargs['request'] = request
+    
+        file_name = "".join(c for c in request.node.name
+                            if c in ALLOWED_CHARS)
+        try:
+            fig_test = plt.figure("test")
+            fig_ref = plt.figure("reference")
+            with _collect_new_figures() as figs:
+                func(*args, fig_test=fig_test, fig_ref=fig_ref, **kwargs)
+            if figs:
+                raise RuntimeError('Number of open figures changed during '
+                                   'test. Make sure you are plotting to '
+                                   'fig_test or fig_ref, or if this is '
+                                   'deliberate explicitly close the '
+                                   'new figure(s) inside the test.')
+            test_image_path = result_dir / (file_name + "." + ext)
+            ref_image_path = result_dir / (file_name + "-expected." + ext)
+            fig_test.savefig(test_image_path)
+            fig_ref.savefig(ref_image_path)
+>           _raise_on_image_difference(
+                ref_image_path, test_image_path, tol=tol
+            )
+E           matplotlib.testing.exceptions.ImageComparisonFailure: images not close (RMS 3.353):
+E           	result_images/test_text/test_annotate_and_offsetfrom_copy_input[png].png
+E           	result_images/test_text/test_annotate_and_offsetfrom_copy_input[png]-expected.png
+E           	result_images/test_text/test_annotate_and_offsetfrom_copy_input[png]-failed-diff.png
+
+lib/matplotlib/testing/decorators.py:422: ImageComparisonFailure
+==================================== PASSES ====================================
+____________________________ test_font_styles[png] _____________________________
+------------------------------ Captured log call -------------------------------
+WARNING  matplotlib.font_manager:font_manager.py:1432 findfont: Font family ['Foo'] not found. Falling back to DejaVu Sans.
+_ test_annotate_errors[TypeError-print-xycoords callable must return a BboxBase or Transform, not a] _
+----------------------------- Captured stdout call -----------------------------
+<matplotlib.backends.backend_agg.RendererAgg object at 0x7f1df8c24910>
+______________________________ test_nonfinite_pos ______________________________
+------------------------------ Captured log call -------------------------------
+WARNING  matplotlib.text:text.py:757 posx and posy should be finite values
+WARNING  matplotlib.text:text.py:757 posx and posy should be finite values
+=========================== short test summary info ============================
+PASSED lib/matplotlib/tests/test_text.py::test_font_styles[png]
+PASSED lib/matplotlib/tests/test_text.py::test_font_styles[pdf]
+PASSED lib/matplotlib/tests/test_text.py::test_multiline[png]
+PASSED lib/matplotlib/tests/test_text.py::test_multiline[pdf]
+PASSED lib/matplotlib/tests/test_text.py::test_multiline2[png]
+PASSED lib/matplotlib/tests/test_text.py::test_multiline2[pdf]
+PASSED lib/matplotlib/tests/test_text.py::test_antialiasing[png]
+PASSED lib/matplotlib/tests/test_text.py::test_afm_kerning
+PASSED lib/matplotlib/tests/test_text.py::test_contains[png]
+PASSED lib/matplotlib/tests/test_text.py::test_annotation_contains
+PASSED lib/matplotlib/tests/test_text.py::test_annotate_errors[TypeError-print-xycoords callable must return a BboxBase or Transform, not a]
+PASSED lib/matplotlib/tests/test_text.py::test_annotate_errors[TypeError-xycoords1-'xycoords' must be an instance of str, tuple]
+PASSED lib/matplotlib/tests/test_text.py::test_annotate_errors[ValueError-foo-'foo' is not a valid coordinate]
+PASSED lib/matplotlib/tests/test_text.py::test_annotate_errors[ValueError-foo bar-'foo bar' is not a valid coordinate]
+PASSED lib/matplotlib/tests/test_text.py::test_annotate_errors[ValueError-offset foo-xycoords cannot be an offset coordinate]
+PASSED lib/matplotlib/tests/test_text.py::test_annotate_errors[ValueError-axes foo-'foo' is not a recognized unit]
+PASSED lib/matplotlib/tests/test_text.py::test_titles[png]
+PASSED lib/matplotlib/tests/test_text.py::test_titles[pdf]
+PASSED lib/matplotlib/tests/test_text.py::test_alignment[png]
+PASSED lib/matplotlib/tests/test_text.py::test_alignment[pdf]
+PASSED lib/matplotlib/tests/test_text.py::test_axes_titles[png]
+PASSED lib/matplotlib/tests/test_text.py::test_set_position
+PASSED lib/matplotlib/tests/test_text.py::test_char_index_at
+PASSED lib/matplotlib/tests/test_text.py::test_non_default_dpi[empty]
+PASSED lib/matplotlib/tests/test_text.py::test_non_default_dpi[non-empty]
+PASSED lib/matplotlib/tests/test_text.py::test_get_rotation_string
+PASSED lib/matplotlib/tests/test_text.py::test_get_rotation_float
+PASSED lib/matplotlib/tests/test_text.py::test_get_rotation_int
+PASSED lib/matplotlib/tests/test_text.py::test_get_rotation_raises
+PASSED lib/matplotlib/tests/test_text.py::test_get_rotation_none
+PASSED lib/matplotlib/tests/test_text.py::test_get_rotation_mod360
+PASSED lib/matplotlib/tests/test_text.py::test_null_rotation_with_rotation_mode[center-center]
+PASSED lib/matplotlib/tests/test_text.py::test_null_rotation_with_rotation_mode[center-right]
+PASSED lib/matplotlib/tests/test_text.py::test_null_rotation_with_rotation_mode[center-left]
+PASSED lib/matplotlib/tests/test_text.py::test_null_rotation_with_rotation_mode[top-center]
+PASSED lib/matplotlib/tests/test_text.py::test_null_rotation_with_rotation_mode[top-right]
+PASSED lib/matplotlib/tests/test_text.py::test_null_rotation_with_rotation_mode[top-left]
+PASSED lib/matplotlib/tests/test_text.py::test_null_rotation_with_rotation_mode[bottom-center]
+PASSED lib/matplotlib/tests/test_text.py::test_null_rotation_with_rotation_mode[bottom-right]
+PASSED lib/matplotlib/tests/test_text.py::test_null_rotation_with_rotation_mode[bottom-left]
+PASSED lib/matplotlib/tests/test_text.py::test_null_rotation_with_rotation_mode[baseline-center]
+PASSED lib/matplotlib/tests/test_text.py::test_null_rotation_with_rotation_mode[baseline-right]
+PASSED lib/matplotlib/tests/test_text.py::test_null_rotation_with_rotation_mode[baseline-left]
+PASSED lib/matplotlib/tests/test_text.py::test_null_rotation_with_rotation_mode[center_baseline-center]
+PASSED lib/matplotlib/tests/test_text.py::test_null_rotation_with_rotation_mode[center_baseline-right]
+PASSED lib/matplotlib/tests/test_text.py::test_null_rotation_with_rotation_mode[center_baseline-left]
+PASSED lib/matplotlib/tests/test_text.py::test_bbox_clipping[png]
+PASSED lib/matplotlib/tests/test_text.py::test_bbox_clipping[pdf]
+PASSED lib/matplotlib/tests/test_text.py::test_annotation_negative_ax_coords[png]
+PASSED lib/matplotlib/tests/test_text.py::test_annotation_negative_fig_coords[png]
+PASSED lib/matplotlib/tests/test_text.py::test_text_stale
+PASSED lib/matplotlib/tests/test_text.py::test_agg_text_clip[png]
+PASSED lib/matplotlib/tests/test_text.py::test_text_size_binding
+PASSED lib/matplotlib/tests/test_text.py::test_font_scaling[pdf]
+PASSED lib/matplotlib/tests/test_text.py::test_two_2line_texts[0.4-2]
+PASSED lib/matplotlib/tests/test_text.py::test_two_2line_texts[2-0.4]
+PASSED lib/matplotlib/tests/test_text.py::test_two_2line_texts[2-2]
+PASSED lib/matplotlib/tests/test_text.py::test_validate_linespacing
+PASSED lib/matplotlib/tests/test_text.py::test_nonfinite_pos
+PASSED lib/matplotlib/tests/test_text.py::test_hinting_factor_backends
+PASSED lib/matplotlib/tests/test_text.py::test_usetex_is_copied
+PASSED lib/matplotlib/tests/test_text.py::test_single_artist_usetex
+PASSED lib/matplotlib/tests/test_text.py::test_single_artist_usenotex[png]
+PASSED lib/matplotlib/tests/test_text.py::test_single_artist_usenotex[pdf]
+PASSED lib/matplotlib/tests/test_text.py::test_single_artist_usenotex[svg]
+PASSED lib/matplotlib/tests/test_text.py::test_text_repr
+PASSED lib/matplotlib/tests/test_text.py::test_annotation_update
+PASSED lib/matplotlib/tests/test_text.py::test_annotation_units[png]
+PASSED lib/matplotlib/tests/test_text.py::test_large_subscript_title[png]
+PASSED lib/matplotlib/tests/test_text.py::test_wrap[0.7-0-left]
+PASSED lib/matplotlib/tests/test_text.py::test_wrap[0.5-95-left]
+PASSED lib/matplotlib/tests/test_text.py::test_wrap[0.3-0-right]
+PASSED lib/matplotlib/tests/test_text.py::test_wrap[0.3-185-left]
+PASSED lib/matplotlib/tests/test_text.py::test_mathwrap
+PASSED lib/matplotlib/tests/test_text.py::test_get_window_extent_wrapped
+PASSED lib/matplotlib/tests/test_text.py::test_long_word_wrap
+PASSED lib/matplotlib/tests/test_text.py::test_wrap_no_wrap
+PASSED lib/matplotlib/tests/test_text.py::test_buffer_size[png]
+PASSED lib/matplotlib/tests/test_text.py::test_fontproperties_kwarg_precedence
+PASSED lib/matplotlib/tests/test_text.py::test_transform_rotates_text
+PASSED lib/matplotlib/tests/test_text.py::test_update_mutate_input
+PASSED lib/matplotlib/tests/test_text.py::test_invalid_rotation_values[invalid string]
+PASSED lib/matplotlib/tests/test_text.py::test_invalid_rotation_values[rotation1]
+PASSED lib/matplotlib/tests/test_text.py::test_invalid_color
+PASSED lib/matplotlib/tests/test_text.py::test_pdf_kerning[pdf]
+PASSED lib/matplotlib/tests/test_text.py::test_unsupported_script
+PASSED lib/matplotlib/tests/test_text.py::test_parse_math
+PASSED lib/matplotlib/tests/test_text.py::test_parse_math_rcparams
+PASSED lib/matplotlib/tests/test_text.py::test_pdf_font42_kerning[pdf]
+PASSED lib/matplotlib/tests/test_text.py::test_pdf_chars_beyond_bmp[pdf]
+PASSED lib/matplotlib/tests/test_text.py::test_metrics_cache
+PASSED lib/matplotlib/tests/test_text.py::test_annotate_offset_fontsize
+PASSED lib/matplotlib/tests/test_text.py::test_set_antialiased
+PASSED lib/matplotlib/tests/test_text.py::test_get_antialiased
+PASSED lib/matplotlib/tests/test_text.py::test_annotation_antialiased
+PASSED lib/matplotlib/tests/test_text.py::test_text_antialiased_off_default_vs_manual[png]
+PASSED lib/matplotlib/tests/test_text.py::test_text_antialiased_off_default_vs_manual[pdf]
+PASSED lib/matplotlib/tests/test_text.py::test_text_antialiased_on_default_vs_manual[png]
+PASSED lib/matplotlib/tests/test_text.py::test_text_antialiased_on_default_vs_manual[pdf]
+PASSED lib/matplotlib/tests/test_text.py::test_text_math_antialiased_on_default_vs_manual[png]
+PASSED lib/matplotlib/tests/test_text.py::test_text_math_antialiased_on_default_vs_manual[pdf]
+PASSED lib/matplotlib/tests/test_text.py::test_text_math_antialiased_off_default_vs_manual[png]
+PASSED lib/matplotlib/tests/test_text.py::test_text_math_antialiased_off_default_vs_manual[pdf]
+SKIPPED [8] ../opt/miniconda3/envs/testbed/lib/python3.11/contextlib.py:81: Cannot compare svg files because Inkscape is not installed
+SKIPPED [4] lib/matplotlib/testing/compare.py:282: Don't know how to convert .svg files to png
+FAILED lib/matplotlib/tests/test_text.py::test_annotate_and_offsetfrom_copy_input[png]
+================== 1 failed, 103 passed, 12 skipped in 6.07s ===================
+Updated 1 path from 92c6a499ae
+Downloading hf-xet (4.3MiB)
+Downloading virtualenv (5.1MiB)
+Downloading numpy (16.1MiB)
+Downloading pandas (10.8MiB)
+Downloading pygments (1.2MiB)
+Downloading pyarrow (47.7MiB)
+Downloading aiohttp (1.7MiB)
+Downloading chardet (1.4MiB)
+ Downloading pygments
+ Downloading chardet
+ Downloading aiohttp
+ Downloading hf-xet
+ Downloading virtualenv
+ Downloading pandas
+ Downloading numpy
+ Downloading pyarrow
+Installed 73 packages in 86ms
+SWEBench results starts here
+FAILED
+SWEBench results ends here

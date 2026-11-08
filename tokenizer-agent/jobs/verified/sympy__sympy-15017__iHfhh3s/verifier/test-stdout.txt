@@ -1,0 +1,115 @@
+++ cd /testbed
+++ set +x
+++ python -m pip install -e .
+Obtaining file:///testbed
+  Preparing metadata (setup.py): started
+  Preparing metadata (setup.py): finished with status 'done'
+Requirement already satisfied: mpmath>=0.19 in /opt/miniconda3/envs/testbed/lib/python3.9/site-packages (from sympy==1.2.1.dev0) (1.3.0)
+Installing collected packages: sympy
+  Attempting uninstall: sympy
+    Found existing installation: sympy 1.2.1.dev0
+    Uninstalling sympy-1.2.1.dev0:
+      Successfully uninstalled sympy-1.2.1.dev0
+  DEPRECATION: Legacy editable install of sympy==1.2.1.dev0 from file:///testbed (setup.py develop) is deprecated. pip 25.0 will enforce this behaviour change. A possible replacement is to add a pyproject.toml or enable --use-pep517, and use setuptools >= 64. If the resulting installation is not behaving as expected, try using --config-settings editable_mode=compat. Please consult the setuptools documentation for more information. Discussion can be found at https://github.com/pypa/pip/issues/11457
+  Running setup.py develop for sympy
+Successfully installed sympy
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable.It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+++ git checkout 6810dee426943c1a2fe85b5002dd0d4cf2246a05 sympy/tensor/array/tests/test_immutable_ndim_array.py
+Updated 1 path from 99dc0679e
+++ git clean -fd
+++ echo 'diff --git a/sympy/tensor/array/tests/test_immutable_ndim_array.py b/sympy/tensor/array/tests/test_immutable_ndim_array.py
+--- a/sympy/tensor/array/tests/test_immutable_ndim_array.py
++++ b/sympy/tensor/array/tests/test_immutable_ndim_array.py
+@@ -9,6 +9,10 @@
+
+
+ def test_ndim_array_initiation():
++    arr_with_no_elements = ImmutableDenseNDimArray([], shape=(0,))
++    assert len(arr_with_no_elements) == 0
++    assert arr_with_no_elements.rank() == 1
++
+     arr_with_one_element = ImmutableDenseNDimArray([23])
+     assert len(arr_with_one_element) == 1
+     assert arr_with_one_element[0] == 23
+@@ -73,11 +77,11 @@ def test_ndim_array_initiation():
+
+     from sympy.abc import x
+     rank_zero_array = ImmutableDenseNDimArray(x)
+-    assert len(rank_zero_array) == 0
++    assert len(rank_zero_array) == 1
+     assert rank_zero_array.shape == ()
+     assert rank_zero_array.rank() == 0
+     assert rank_zero_array[()] == x
+-    raises(ValueError, lambda: rank_zero_array[0])
++    assert rank_zero_array[0] == x
+
+
+ def test_reshape():
+'
+++ git apply --check /tmp/test_patch.diff
+++ git apply /tmp/test_patch.diff
++++ mktemp
+++ LOG_FILE=/tmp/tmp.5TBd8Oql80
+++ export LOG_FILE
+++ exec
+++ exec
++++ tee /tmp/tmp.5TBd8Oql80
+++ set +x
+============================= test process starts ==============================
+executable:         /opt/miniconda3/envs/testbed/bin/python  (3.9.20-final-0) [CPython]
+architecture:       64-bit
+cache:              no
+ground types:       python 
+numpy:              None
+random seed:        15675989
+hash randomization: on (PYTHONHASHSEED=3842215121)
+
+sympy/tensor/array/tests/test_immutable_ndim_array.py[16] 
+test_ndim_array_initiation F
+test_reshape ok
+test_iterator ok
+test_sparse ok
+test_calculation ok
+test_ndim_array_converting ok
+test_converting_functions ok
+test_equality ok
+test_arithmetic ok
+test_higher_dimenions ok
+test_rebuild_immutable_arrays ok
+test_slices ok
+test_diff_and_applyfunc ok
+test_op_priority ok
+test_symbolic_indexing ok
+test_issue_12665 ok                                                       [FAIL]
+
+
+________________________________________________________________________________
+ sympy/tensor/array/tests/test_immutable_ndim_array.py:test_ndim_array_initiation 
+Traceback (most recent call last):
+  File "/testbed/sympy/tensor/array/tests/test_immutable_ndim_array.py", line 80, in test_ndim_array_initiation
+    assert len(rank_zero_array) == 1
+AssertionError
+
+============= tests finished: 15 passed, 1 failed, in 0.03 seconds =============
+DO *NOT* COMMIT!
+Updated 1 path from 99dc0679e
+Downloading chardet (1.4MiB)
+Downloading numpy (16.1MiB)
+Downloading pandas (10.8MiB)
+Downloading virtualenv (5.1MiB)
+Downloading aiohttp (1.7MiB)
+Downloading hf-xet (4.3MiB)
+Downloading pyarrow (47.7MiB)
+Downloading pygments (1.2MiB)
+ Downloading pygments
+ Downloading chardet
+ Downloading aiohttp
+ Downloading hf-xet
+ Downloading virtualenv
+ Downloading pandas
+ Downloading numpy
+ Downloading pyarrow
+Installed 73 packages in 83ms
+SWEBench results starts here
+FAILED
+SWEBench results ends here

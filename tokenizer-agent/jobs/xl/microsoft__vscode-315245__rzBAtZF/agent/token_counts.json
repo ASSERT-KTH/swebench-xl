@@ -1,0 +1,616 @@
+{
+  "instance_id": "microsoft__vscode-315245",
+  "encoding": "cl100k_base",
+  "total_tokens": 131043787,
+  "total_files": 22255,
+  "source_code_tokens": 102031599,
+  "source_code_files": 17103,
+  "by_extension": {
+    ".js": {
+      "tokens": 73031251,
+      "files": 6894
+    },
+    ".ts": {
+      "tokens": 28012487,
+      "files": 9619
+    },
+    ".json": {
+      "tokens": 10372325,
+      "files": 1447
+    },
+    ".txt": {
+      "tokens": 5327862,
+      "files": 211
+    },
+    ".map": {
+      "tokens": 5149564,
+      "files": 842
+    },
+    ".tiktoken": {
+      "tokens": 3380370,
+      "files": 2
+    },
+    ".css": {
+      "tokens": 1053255,
+      "files": 739
+    },
+    ".tsbuildinfo": {
+      "tokens": 931374,
+      "files": 39
+    },
+    ".md": {
+      "tokens": 715232,
+      "files": 302
+    },
+    ".tsx": {
+      "tokens": 699785,
+      "files": 263
+    },
+    ".snap": {
+      "tokens": 575501,
+      "files": 454
+    },
+    ".html": {
+      "tokens": 403980,
+      "files": 192
+    },
+    ".patch": {
+      "tokens": 376688,
+      "files": 50
+    },
+    ".xpm": {
+      "tokens": 178437,
+      "files": 1
+    },
+    ".rs": {
+      "tokens": 160548,
+      "files": 79
+    },
+    ".jsonl": {
+      "tokens": 128718,
+      "files": 16
+    },
+    ".tst": {
+      "tokens": 91402,
+      "files": 180
+    },
+    ".ipynb": {
+      "tokens": 72943,
+      "files": 93
+    },
+    ".yml": {
+      "tokens": 41179,
+      "files": 30
+    },
+    ".lock": {
+      "tokens": 40095,
+      "files": 1
+    },
+    "(no extension)": {
+      "tokens": 39694,
+      "files": 253
+    },
+    ".mts": {
+      "tokens": 36965,
+      "files": 68
+    },
+    ".sh": {
+      "tokens": 34860,
+      "files": 73
+    },
+    ".cpp": {
+      "tokens": 28398,
+      "files": 17
+    },
+    ".ps1": {
+      "tokens": 16630,
+      "files": 14
+    },
+    ".py": {
+      "tokens": 13019,
+      "files": 73
+    },
+    ".code-snippets": {
+      "tokens": 12566,
+      "files": 16
+    },
+    ".xml": {
+      "tokens": 12294,
+      "files": 35
+    },
+    ".cjs": {
+      "tokens": 10928,
+      "files": 6
+    },
+    ".zsh": {
+      "tokens": 7390,
+      "files": 8
+    },
+    ".text": {
+      "tokens": 7320,
+      "files": 22
+    },
+    ".scm": {
+      "tokens": 7212,
+      "files": 10
+    },
+    ".bat": {
+      "tokens": 7184,
+      "files": 11
+    },
+    ".diff": {
+      "tokens": 5481,
+      "files": 32
+    },
+    ".tempo-summarized": {
+      "tokens": 5410,
+      "files": 6
+    },
+    ".fish": {
+      "tokens": 4522,
+      "files": 2
+    },
+    ".ps1xml": {
+      "tokens": 3890,
+      "files": 2
+    },
+    ".template": {
+      "tokens": 3675,
+      "files": 6
+    },
+    ".cs": {
+      "tokens": 3288,
+      "files": 16
+    },
+    ".hpp": {
+      "tokens": 3128,
+      "files": 4
+    },
+    ".jxs": {
+      "tokens": 2720,
+      "files": 8
+    },
+    ".mjs": {
+      "tokens": 2685,
+      "files": 4
+    },
+    ".expected": {
+      "tokens": 2458,
+      "files": 2
+    },
+    ".round2": {
+      "tokens": 2394,
+      "files": 3
+    },
+    ".round1": {
+      "tokens": 2305,
+      "files": 2
+    },
+    ".scss": {
+      "tokens": 2113,
+      "files": 4
+    },
+    ".tmlanguage": {
+      "tokens": 2034,
+      "files": 1
+    },
+    ".yaml": {
+      "tokens": 1671,
+      "files": 8
+    },
+    ".cmd": {
+      "tokens": 1593,
+      "files": 9
+    },
+    ".rb": {
+      "tokens": 1535,
+      "files": 5
+    },
+    ".toml": {
+      "tokens": 1282,
+      "files": 4
+    },
+    ".java": {
+      "tokens": 1237,
+      "files": 7
+    },
+    ".groovy": {
+      "tokens": 1091,
+      "files": 1
+    },
+    ".cu": {
+      "tokens": 998,
+      "files": 1
+    },
+    ".go": {
+      "tokens": 593,
+      "files": 4
+    },
+    ".pl": {
+      "tokens": 547,
+      "files": 2
+    },
+    ".winget": {
+      "tokens": 479,
+      "files": 1
+    },
+    ".psd1": {
+      "tokens": 472,
+      "files": 2
+    },
+    ".clj": {
+      "tokens": 410,
+      "files": 1
+    },
+    ".qwoff": {
+      "tokens": 385,
+      "files": 2
+    },
+    ".jsonc": {
+      "tokens": 381,
+      "files": 1
+    },
+    ".rst": {
+      "tokens": 377,
+      "files": 1
+    },
+    ".less": {
+      "tokens": 357,
+      "files": 5
+    },
+    ".mm": {
+      "tokens": 335,
+      "files": 1
+    },
+    ".m": {
+      "tokens": 335,
+      "files": 1
+    },
+    ".cshtml": {
+      "tokens": 331,
+      "files": 1
+    },
+    ".desktop": {
+      "tokens": 321,
+      "files": 2
+    },
+    ".php": {
+      "tokens": 320,
+      "files": 3
+    },
+    ".mmd": {
+      "tokens": 309,
+      "files": 1
+    },
+    ".jl": {
+      "tokens": 308,
+      "files": 1
+    },
+    ".view-port": {
+      "tokens": 298,
+      "files": 1
+    },
+    ".log": {
+      "tokens": 297,
+      "files": 1
+    },
+    ".c": {
+      "tokens": 283,
+      "files": 1
+    },
+    ".sty": {
+      "tokens": 272,
+      "files": 1
+    },
+    ".p6": {
+      "tokens": 255,
+      "files": 1
+    },
+    ".off": {
+      "tokens": 239,
+      "files": 1
+    },
+    ".psm1": {
+      "tokens": 198,
+      "files": 2
+    },
+    ".pug": {
+      "tokens": 197,
+      "files": 2
+    },
+    ".coffee": {
+      "tokens": 196,
+      "files": 2
+    },
+    ".jsx": {
+      "tokens": 193,
+      "files": 1
+    },
+    ".vb": {
+      "tokens": 192,
+      "files": 1
+    },
+    ".handlebars": {
+      "tokens": 187,
+      "files": 1
+    },
+    ".cc": {
+      "tokens": 185,
+      "files": 1
+    },
+    ".hbs": {
+      "tokens": 174,
+      "files": 1
+    },
+    ".tex": {
+      "tokens": 168,
+      "files": 1
+    },
+    ".fs": {
+      "tokens": 160,
+      "files": 1
+    },
+    ".r": {
+      "tokens": 134,
+      "files": 1
+    },
+    ".bib": {
+      "tokens": 124,
+      "files": 1
+    },
+    ".shader": {
+      "tokens": 88,
+      "files": 1
+    },
+    ".messages": {
+      "tokens": 87,
+      "files": 5
+    },
+    ".ini": {
+      "tokens": 81,
+      "files": 1
+    },
+    ".pic": {
+      "tokens": 76,
+      "files": 2
+    },
+    ".swift": {
+      "tokens": 73,
+      "files": 1
+    },
+    ".dart": {
+      "tokens": 72,
+      "files": 1
+    },
+    ".lua": {
+      "tokens": 71,
+      "files": 1
+    },
+    ".github-issues": {
+      "tokens": 69,
+      "files": 1
+    },
+    ".sql": {
+      "tokens": 49,
+      "files": 1
+    },
+    ".code-workspace": {
+      "tokens": 48,
+      "files": 1
+    },
+    ".hlsl": {
+      "tokens": 43,
+      "files": 1
+    },
+    ".asar": {
+      "tokens": 38,
+      "files": 1
+    },
+    ".env": {
+      "tokens": 14,
+      "files": 1
+    }
+  },
+  "top_files": [
+    {
+      "path": "extensions/copilot/src/platform/tokenizer/node/o200k_base.tiktoken",
+      "tokens": 2279803
+    },
+    {
+      "path": "out/vs/base/test/node/uri.perf.data.txt",
+      "tokens": 1991115
+    },
+    {
+      "path": "src/vs/base/test/node/uri.perf.data.txt",
+      "tokens": 1991115
+    },
+    {
+      "path": "extensions/vscode-colorize-perf-tests/test/colorize-fixtures/test-checker.ts",
+      "tokens": 1604193
+    },
+    {
+      "path": "extensions/copilot/src/extension/inlineEdits/test/node/recordings/EditSourceTracker.test1.recording.w.json",
+      "tokens": 1140958
+    },
+    {
+      "path": "extensions/copilot/src/platform/tokenizer/node/cl100k_base.tiktoken",
+      "tokens": 1100567
+    },
+    {
+      "path": "extensions/mermaid-chat-features/chat-webview-out/index-editor.js",
+      "tokens": 1088364
+    },
+    {
+      "path": "extensions/mermaid-chat-features/chat-webview-out/index.js",
+      "tokens": 1088326
+    },
+    {
+      "path": "out/vs/workbench/contrib/notebook/test/browser/diff/notebookDiffService.test.js",
+      "tokens": 440393
+    },
+    {
+      "path": "extensions/vscode-colorize-tests/test/colorize-results/test_scss.json",
+      "tokens": 385994
+    },
+    {
+      "path": "out/vs/workbench/api/test/browser/extHostDocumentData.test.perf-data.js",
+      "tokens": 347236
+    },
+    {
+      "path": "src/vs/workbench/api/test/browser/extHostDocumentData.test.perf-data.ts",
+      "tokens": 346986
+    },
+    {
+      "path": "package-lock.json",
+      "tokens": 306313
+    },
+    {
+      "path": "extensions/copilot/package-lock.json",
+      "tokens": 299938
+    },
+    {
+      "path": "out/vs/editor/test/browser/controller/cursor.test.js",
+      "tokens": 261715
+    },
+    {
+      "path": "extensions/terminal-suggest/out/completions/git.js.map",
+      "tokens": 249130
+    },
+    {
+      "path": "extensions/latex/syntaxes/cpp-grammar-bailout.tmLanguage.json",
+      "tokens": 239032
+    },
+    {
+      "path": "extensions/vscode-colorize-tests/test/colorize-results/test_cu.json",
+      "tokens": 228616
+    },
+    {
+      "path": "src/vs/workbench/contrib/notebook/test/browser/diff/notebookDiffService.test.ts",
+      "tokens": 221172
+    },
+    {
+      "path": "extensions/cpp/syntaxes/cuda-cpp.tmLanguage.json",
+      "tokens": 220382
+    },
+    {
+      "path": "extensions/vscode-colorize-tests/test/colorize-results/test_ts.json",
+      "tokens": 214172
+    },
+    {
+      "path": "extensions/copilot/test/prompts/fixtures/devcontainer/devContainerIndex.json",
+      "tokens": 212651
+    },
+    {
+      "path": "extensions/copilot/src/extension/completions-core/vscode-node/extension/src/panelShared/languages/cuda-cpp.tmLanguage.ts",
+      "tokens": 211320
+    },
+    {
+      "path": "out/vs/editor/test/browser/controller/textAreaInput.test.js",
+      "tokens": 210135
+    },
+    {
+      "path": "extensions/vscode-colorize-tests/test/colorize-results/test_css.json",
+      "tokens": 196332
+    },
+    {
+      "path": "extensions/cpp/syntaxes/cpp.tmLanguage.json",
+      "tokens": 191990
+    },
+    {
+      "path": "extensions/vscode-colorize-tests/test/colorize-results/test_groovy.json",
+      "tokens": 184825
+    },
+    {
+      "path": "extensions/git/out/commands.js.map",
+      "tokens": 184642
+    },
+    {
+      "path": "out/vs/workbench/contrib/chat/test/browser/agentSessions/agentHostChatContribution.test.js",
+      "tokens": 182279
+    },
+    {
+      "path": "extensions/cpp/syntaxes/platform.tmLanguage.json",
+      "tokens": 182166
+    },
+    {
+      "path": "out/vs/workbench/contrib/chat/test/browser/tools/languageModelToolsService.test.js",
+      "tokens": 178603
+    },
+    {
+      "path": "resources/linux/rpm/code.xpm",
+      "tokens": 178437
+    },
+    {
+      "path": "out/vs/workbench/services/configuration/test/browser/configurationService.test.js",
+      "tokens": 178040
+    },
+    {
+      "path": "src/vscode-dts/vscode.d.ts",
+      "tokens": 173994
+    },
+    {
+      "path": "out/vs/workbench/contrib/tasks/browser/abstractTaskService.js",
+      "tokens": 167048
+    },
+    {
+      "path": "out/vs/workbench/contrib/chat/test/common/promptSyntax/service/promptsService.test.js",
+      "tokens": 161505
+    },
+    {
+      "path": "out/vs/workbench/contrib/extensions/test/electron-browser/extensionsActions.test.js",
+      "tokens": 161088
+    },
+    {
+      "path": "out/vs/workbench/api/common/extHostTypeConverters.js",
+      "tokens": 157678
+    },
+    {
+      "path": "out/vs/editor/common/config/editorOptions.js",
+      "tokens": 154119
+    },
+    {
+      "path": "out/vs/workbench/contrib/extensions/browser/extensionsActions.js",
+      "tokens": 152678
+    },
+    {
+      "path": "out/vs/workbench/contrib/chat/browser/widget/input/chatInputPart.js",
+      "tokens": 148029
+    },
+    {
+      "path": "extensions/terminal-suggest/out/completions/upstream/docker.js.map",
+      "tokens": 147803
+    },
+    {
+      "path": "extensions/php-language-features/out/features/phpGlobalFunctions.js.map",
+      "tokens": 142034
+    },
+    {
+      "path": "out/vs/workbench/contrib/extensions/browser/extensionsWorkbenchService.js",
+      "tokens": 139521
+    },
+    {
+      "path": "out/vs/workbench/contrib/chat/browser/widget/chatListRenderer.js",
+      "tokens": 137384
+    },
+    {
+      "path": "extensions/vscode-colorize-tests/test/colorize-tree-sitter-results/test_ts.json",
+      "tokens": 130594
+    },
+    {
+      "path": "cli/ThirdPartyNotices.txt",
+      "tokens": 129669
+    },
+    {
+      "path": "out/vs/workbench/test/browser/parts/editor/editorGroupModel.test.js",
+      "tokens": 128808
+    },
+    {
+      "path": "extensions/vscode-colorize-tests/test/colorize-tree-sitter-results/test_css.json",
+      "tokens": 127752
+    },
+    {
+      "path": "extensions/vscode-colorize-tests/test/colorize-results/md-math_md.json",
+      "tokens": 123868
+    }
+  ]
+}

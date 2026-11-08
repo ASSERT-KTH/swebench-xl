@@ -1,0 +1,155 @@
+++ cd /testbed
+++ set +x
+++ python -m pip install -e .
+Obtaining file:///testbed
+  Preparing metadata (setup.py): started
+  Preparing metadata (setup.py): finished with status 'done'
+Requirement already satisfied: mpmath>=0.19 in /opt/miniconda3/envs/testbed/lib/python3.9/site-packages (from sympy==1.7.dev0) (1.3.0)
+Installing collected packages: sympy
+  Attempting uninstall: sympy
+    Found existing installation: sympy 1.7.dev0
+    Uninstalling sympy-1.7.dev0:
+      Successfully uninstalled sympy-1.7.dev0
+  DEPRECATION: Legacy editable install of sympy==1.7.dev0 from file:///testbed (setup.py develop) is deprecated. pip 25.0 will enforce this behaviour change. A possible replacement is to add a pyproject.toml or enable --use-pep517, and use setuptools >= 64. If the resulting installation is not behaving as expected, try using --config-settings editable_mode=compat. Please consult the setuptools documentation for more information. Discussion can be found at https://github.com/pypa/pip/issues/11457
+  Running setup.py develop for sympy
+Successfully installed sympy
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable.It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+++ git checkout 6f54459aa0248bf1467ad12ee6333d8bc924a642 sympy/combinatorics/tests/test_perm_groups.py
+Updated 1 path from 3ce4d616b7
+++ git clean -fd
+++ echo 'diff --git a/sympy/combinatorics/tests/test_perm_groups.py b/sympy/combinatorics/tests/test_perm_groups.py
+--- a/sympy/combinatorics/tests/test_perm_groups.py
++++ b/sympy/combinatorics/tests/test_perm_groups.py
+@@ -905,6 +905,14 @@ def test_sylow_subgroup():
+     assert G.order() % S.order() == 0
+     assert G.order()/S.order() % 2 > 0
+
++    G = DihedralGroup(18)
++    S = G.sylow_subgroup(p=2)
++    assert S.order() == 4
++
++    G = DihedralGroup(50)
++    S = G.sylow_subgroup(p=2)
++    assert S.order() == 4
++
+
+ @slow
+ def test_presentation():
+'
+++ git apply --check /tmp/test_patch.diff
+++ git apply /tmp/test_patch.diff
++++ mktemp
+++ LOG_FILE=/tmp/tmp.dd6Mp5rJ33
+++ export LOG_FILE
+++ exec
+++ exec
++++ tee /tmp/tmp.dd6Mp5rJ33
+++ set +x
+============================= test process starts ==============================
+executable:         /opt/miniconda3/envs/testbed/bin/python  (3.9.20-final-0) [CPython]
+architecture:       64-bit
+cache:              no
+ground types:       python 
+numpy:              None
+random seed:        6985528
+hash randomization: on (PYTHONHASHSEED=3066685773)
+
+sympy/combinatorics/tests/test_perm_groups.py[61] 
+test_has ok
+test_generate ok
+test_order ok
+test_equality ok
+test_stabilizer ok
+test_center ok
+test_centralizer ok
+test_coset_rank ok
+test_coset_factor ok
+test_orbits ok
+test_is_normal ok
+test_eq ok
+test_derived_subgroup ok
+test_is_solvable ok
+test_rubik1 ok
+test_rubik f
+test_direct_product ok
+test_orbit_rep ok
+test_schreier_vector ok
+test_random_pr ok
+test_is_alt_sym ok
+test_minimal_block ok
+test_minimal_blocks ok
+test_max_div ok
+test_is_primitive ok
+test_random_stab ok
+test_transitivity_degree ok
+test_schreier_sims_random ok
+test_baseswap ok
+test_schreier_sims_incremental ok
+test_subgroup_search ok
+test_subgroup_search2 f
+test_normal_closure ok
+test_derived_series ok
+test_lower_central_series ok
+test_commutator ok
+test_is_nilpotent ok
+test_is_trivial ok
+test_pointwise_stabilizer ok
+test_make_perm ok
+test_elements ok
+test_is_group ok
+test_PermutationGroup ok
+test_coset_transvesal ok
+test_coset_table ok
+test_subgroup ok
+test_generator_product ok
+test_sylow_subgroup E
+test_presentation Slow w
+test_polycyclic ok
+test_elementary ok
+test_perfect ok
+test_index ok
+test_cyclic ok
+test_abelian_invariants ok
+test_composition_series ok
+test_is_symmetric ok
+test_conjugacy_class ok
+test_conjugacy_classes ok
+test_coset_class ok
+test_symmetricpermutationgroup ok                                         [FAIL]
+
+
+________________________________________________________________________________
+______ sympy/combinatorics/tests/test_perm_groups.py:test_sylow_subgroup _______
+Traceback (most recent call last):
+  File "/testbed/sympy/combinatorics/tests/test_perm_groups.py", line 909, in test_sylow_subgroup
+    S = G.sylow_subgroup(p=2)
+  File "/testbed/sympy/combinatorics/perm_groups.py", line 4354, in sylow_subgroup
+    blocks = self.minimal_blocks()
+  File "/testbed/sympy/combinatorics/perm_groups.py", line 2201, in minimal_blocks
+    del num_blocks[i], blocks[i]
+IndexError: list assignment index out of range
+
+ tests finished: 57 passed, 1 skipped, 2 expected to fail, 1 exceptions, 
+in 1.04 seconds 
+DO *NOT* COMMIT!
+Updated 1 path from 3ce4d616b7
+Downloading numpy (16.1MiB)
+Downloading pyarrow (47.7MiB)
+Downloading pygments (1.2MiB)
+Downloading chardet (1.4MiB)
+Downloading aiohttp (1.7MiB)
+Downloading hf-xet (4.3MiB)
+Downloading virtualenv (5.1MiB)
+Downloading pandas (10.8MiB)
+ Downloading pygments
+ Downloading chardet
+ Downloading aiohttp
+ Downloading hf-xet
+ Downloading virtualenv
+ Downloading pandas
+ Downloading numpy
+ Downloading pyarrow
+Installed 73 packages in 93ms
+SWEBench results starts here
+FAILED
+SWEBench results ends here

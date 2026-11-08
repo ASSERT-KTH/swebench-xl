@@ -1,0 +1,45 @@
+{
+  "schema_version": "ATIF-v1.7",
+  "session_id": "instance_protonmail__webclients__YZLirkC__agent",
+  "agent": {
+    "name": "repo-tokenizer",
+    "version": "1.0.0"
+  },
+  "steps": [
+    {
+      "step_id": 1,
+      "source": "agent",
+      "message": "Tokenized '/app' for instance 'instance_protonmail__webclients-0d0267c4438cf378bda90bc85eed3a3615871ac4'",
+      "tool_calls": [
+        {
+          "tool_call_id": "tc_1",
+          "function_name": "walk_and_count",
+          "arguments": {
+            "testbed_dir": "/app",
+            "encoding": "cl100k_base"
+          }
+        }
+      ],
+      "observation": {
+        "results": [
+          {
+            "source_call_id": "tc_1",
+            "content": "{\"total_tokens\": 17952130, \"total_files\": 5562, \"source_code_tokens\": 7975106, \"source_code_files\": 4774, \"top_extension\": \".json\"}"
+          }
+        ]
+      },
+      "llm_call_count": 0
+    }
+  ],
+  "notes": "Deterministic repo-sizing agent: does not attempt the task, only tokenizes its working directory with tiktoken.",
+  "final_metrics": {
+    "total_steps": 1,
+    "extra": {
+      "repo_total_tokens": 17952130,
+      "repo_source_code_tokens": 7975106,
+      "repo_total_files": 5562,
+      "repo_source_code_files": 4774,
+      "elapsed_seconds": 12.59
+    }
+  }
+}
