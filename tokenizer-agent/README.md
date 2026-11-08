@@ -15,8 +15,13 @@ instance, and on average?"
 
 | File | Purpose |
 | --- | --- |
-| `tokenizer_agent.py` | The Harbor agent (`RepoTokenizerAgent`). Run this via `harbor run`. |
-| `benchmark_size_stats.py` | Standalone script that aggregates a completed job's per-instance results into mean/median/stdev. |
+| `tokenizer_core.py` | The shared tokenization core (walk/skip-list/chunking logic), ported from `tokenizer copy.py`. No Harbor dependency. |
+| `tokenizer_agent.py` | The Harbor agent (`RepoTokenizerAgent`). Run this via `harbor run` against a Harbor dataset/environment. |
+| `benchmark_size_stats.py` | Aggregates a job's per-instance results into mean/median/stdev. |
+| `file_type_breakdown.py` | Groups a job's per-instance `by_extension` counts into file-type categories (source code, other code, docs, config/build, localization, data/fixtures, ...) per instance, per repo and per benchmark. Output lives in `results/file_types/`. |
+| `file_type_report.py` | Writes the file-type report ([`results/file_types/README.md`](results/file_types/README.md)) and CSVs from those JSONs. |
+| `jobs/` | The raw Harbor job output behind every number in `results/` — see [Raw run data](#raw-run-data). |
+| `plot_token_size_boxplot.py` | Reads every `results/*.json` and prints a copy-paste-ready pgfplots figure: one horizontal boxplot (min/25th/median/75th/max) per benchmark, benchmarks on the y-axis, token count on a log-scale x-axis. |
 | `tokenizer copy.py` | The original standalone tokenization script this agent's algorithm is ported from. Kept as-is for reference; not used by Harbor. |
 
 ## How it works
@@ -181,3 +186,71 @@ python benchmark_size_stats.py jobs/<the-job-that-just-ran>
 With only 10 instances the mean/median/stdev are just a smoke test, not a
 meaningful benchmark-wide estimate — rerun without `-l` (or with a larger
 value) for real numbers.
+
+## Raw run data
+
+`jobs/` holds the complete Harbor job directories of the runs that produced
+`results/`, one per benchmark:
+
+| Benchmark | Job directory | Original job name | Instances | Results |
+| --- | --- | --- | ---: | --- |
+| SWE-bench Verified | `jobs/verified` | `2026-08-31__12-35-16` | 500 | `results/verified.json` |
+| SWE-bench Pro | `jobs/pro` | `2026-08-31__17-03-08` | 731 | `results/pro.json` |
+| SWE-bench XL | `jobs/xl` | `2026-09-01__16-19-17` | 180 | `results/xl.json` |
+| DeepSWE (DataCurve) | `jobs/deepswe` | `2026-08-31__16-09-55` | 113 | `results/deepswe.json` |
+
+The directories were renamed from Harbor's timestamped job names after the
+runs, so the `job_dir` field in `results/<benchmark>.json` and the job/trial
+names inside Harbor's own `config.json`/`result.json` files still use the
+original names.
+
+Each job directory has Harbor's job-level `config.json`/`result.json`/
+`job.log` plus one directory per instance (trial) containing:
+
+- `agent/token_counts.json` — the raw measurement (totals, per-extension
+  counts, 50 largest files) that every number in `results/` is computed from.
+- `agent/trajectories/trajectory.json`, `config.json`, `result.json`,
+  `lock.json`, `trial.log` — Harbor's record of the trial, including the exact
+  task/dataset ref and Docker image used.
+- `verifier/` (Verified only, which ran before `--disable-verification` was
+  added) and `artifacts/`.
+
+To recompute the published stats from it:
+
+```bash
+python benchmark_size_stats.py jobs/<benchmark> -o results/<benchmark>.json
+```
+
+This reproduces the published files exactly, except that it also adds a
+`total_characters` field, which only the XL run recorded (it is `0` for the
+other benchmarks).
+
+## Token counts per file type
+
+`results/file_types/<benchmark>.json` breaks the numbers in
+`results/<benchmark>.json` down by file type. It is computed from the
+`token_counts.json` files of the *same* jobs (no re-tokenization), so totals
+are identical; the script asserts that every instance's categories sum to its
+`total_tokens`/`total_files` and that `source_code` equals
+`source_code_tokens`/`source_code_files`.
+
+It is computed from the job directories in [`jobs/`](#raw-run-data):
+
+```bash
+python file_type_breakdown.py jobs/<benchmark> -o results/file_types/<benchmark>.json
+```
+
+DeepSWE instance ids don't encode the repository, so for it also pass
+`--task-defs <dir>` with the job's task definitions downloaded at the refs it
+ran against (see the script's docstring for the one-liner).
+
+Then `python file_type_report.py` writes the report,
+[`results/file_types/README.md`](results/file_types/README.md) (category
+definitions, every extension per category, and the tables), plus CSVs for
+figures.
+
+Each JSON contains the extension -> category mapping used, benchmark-wide
+stats per category (`tokens`, `files`, per-instance `token_share`, and the
+size-weighted `pooled_token_share`), the same stats per repository, and every
+instance's category counts plus its raw `by_extension` counts. Categories are
+defined by file extension alone.

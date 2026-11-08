@@ -25,6 +25,7 @@ from typing import Any
 # Fields from token_counts.json that get aggregated across the benchmark.
 STATS_FIELDS = (
     "total_tokens",
+    "total_characters",
     "source_code_tokens",
     "total_files",
     "source_code_files",
@@ -129,7 +130,7 @@ def main() -> None:
     parser.add_argument(
         "job_dir",
         type=Path,
-        help="Path to a Harbor job directory (e.g. jobs/2026-08-31-map)",
+        help="Path to a Harbor job directory (e.g. jobs/verified)",
     )
     parser.add_argument(
         "-o",
