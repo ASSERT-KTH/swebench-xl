@@ -24,6 +24,34 @@ instance, and on average?"
 | `plot_token_size_boxplot.py` | Reads every `results/*.json` and prints a copy-paste-ready pgfplots figure: one horizontal boxplot (min/25th/median/75th/max) per benchmark, benchmarks on the y-axis, token count on a log-scale x-axis. |
 | `tokenizer copy.py` | The original standalone tokenization script this agent's algorithm is ported from. Kept as-is for reference; not used by Harbor. |
 
+## Results
+
+Repository size per benchmark (`cl100k_base` tokens), computed from the runs
+in [`jobs/`](#raw-run-data):
+
+| Benchmark | Overall size | Size per file type |
+| --- | --- | --- |
+| SWE-bench Verified | [`results/verified.json`](results/verified.json) | [`results/file_types/verified.json`](results/file_types/verified.json) |
+| SWE-bench Pro | [`results/pro.json`](results/pro.json) | [`results/file_types/pro.json`](results/file_types/pro.json) |
+| SWE-bench XL | [`results/xl.json`](results/xl.json) | [`results/file_types/xl.json`](results/file_types/xl.json) |
+| DeepSWE (DataCurve) | [`results/deepswe.json`](results/deepswe.json) | [`results/file_types/deepswe.json`](results/file_types/deepswe.json) |
+
+**Token counts per file type:** [`results/file_types/`](results/file_types/)
+has a report, [`results/file_types/README.md`](results/file_types/README.md),
+that defines the categories, lists every extension in each one, and gives the
+per-benchmark tables. It also has CSVs for figures:
+
+| File | One row per |
+| --- | --- |
+| [`benchmark_summary.csv`](results/file_types/benchmark_summary.csv) | benchmark × category (mean/median/stdev/min/max/sum of tokens and files, token shares) |
+| [`benchmark_share_wide.csv`](results/file_types/benchmark_share_wide.csv) | benchmark, one column per category's token share |
+| [`repo_summary.csv`](results/file_types/repo_summary.csv) | benchmark × repository × category |
+| [`instances.csv`](results/file_types/instances.csv) | instance, with tokens and files per category |
+| [`extension_categories.csv`](results/file_types/extension_categories.csv) | extension, with its category |
+
+See [Token counts per file type](#token-counts-per-file-type) for how they
+are produced.
+
 ## How it works
 
 For each trial, `RepoTokenizerAgent.run()`:
