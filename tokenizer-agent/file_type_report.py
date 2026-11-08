@@ -35,6 +35,7 @@ BENCHMARKS: dict[str, str] = {
     "verified": "SWE-bench Verified",
     "pro": "SWE-bench Pro",
     "xl": "SWE-bench XL",
+    "xl_subset": "SWE-bench XL (subset)",
     "deepswe": "DeepSWE (DataCurve)",
 }
 
@@ -267,6 +268,9 @@ published `source_code_tokens` and `source_code_files`.
 | --- | --- | --- | ---: |
 {provenance}
 
+SWE-bench XL (subset) is the {data['xl_subset']['n_instances']} XL instances listed in
+`tokenizer-agent/results/xl_subset_instances.txt`, taken from the same XL run.
+
 Repositories are parsed from the instance ids. DeepSWE ids don't contain the
 repository, so it was read from `repository_url` in each task's `task.toml`.
 
@@ -316,6 +320,8 @@ From `tokenizer-agent/`:
 python file_type_breakdown.py jobs/verified -o results/file_types/verified.json
 python file_type_breakdown.py jobs/pro -o results/file_types/pro.json
 python file_type_breakdown.py jobs/xl -o results/file_types/xl.json
+python file_type_breakdown.py jobs/xl -o results/file_types/xl_subset.json \\
+    --instances results/xl_subset_instances.txt
 python file_type_breakdown.py jobs/deepswe -o results/file_types/deepswe.json \\
     --task-defs <dir with the DeepSWE task definitions>
 python file_type_report.py

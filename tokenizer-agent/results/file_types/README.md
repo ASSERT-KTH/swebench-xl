@@ -23,7 +23,11 @@ published `source_code_tokens` and `source_code_files`.
 | SWE-bench Verified | `verified.json` | `tokenizer-agent/jobs/verified` | 500 |
 | SWE-bench Pro | `pro.json` | `tokenizer-agent/jobs/pro` | 731 |
 | SWE-bench XL | `xl.json` | `tokenizer-agent/jobs/xl` | 180 |
+| SWE-bench XL (subset) | `xl_subset.json` | `tokenizer-agent/jobs/xl` | 100 |
 | DeepSWE (DataCurve) | `deepswe.json` | `tokenizer-agent/jobs/deepswe` | 113 |
+
+SWE-bench XL (subset) is the 100 XL instances listed in
+`tokenizer-agent/results/xl_subset_instances.txt`, taken from the same XL run.
 
 Repositories are parsed from the instance ids. DeepSWE ids don't contain the
 repository, so it was read from `repository_url` in each task's `task.toml`.
@@ -79,6 +83,7 @@ have files in that category.
 | SWE-bench Verified | 64.7% | 2.0% | 2.5% | 0.2% | 16.8% | 13.0% | 0.5% | 0.4% |
 | SWE-bench Pro | 52.1% | 2.3% | 2.8% | 4.8% | 1.7% | 34.8% | 1.0% | 0.6% |
 | SWE-bench XL | 63.5% | 0.4% | 4.5% | 2.1% | 1.0% | 28.2% | 0.1% | 0.3% |
+| SWE-bench XL (subset) | 67.6% | 0.5% | 3.5% | 2.1% | 0.7% | 25.3% | 0.1% | 0.3% |
 | DeepSWE (DataCurve) | 47.2% | 8.8% | 9.6% | 10.4% | 0.0% | 21.8% | 1.1% | 1.1% |
 
 ### SWE-bench Verified
@@ -135,6 +140,24 @@ Largest `other` extensions (total tokens): `.feature` (6,393,963), `.mrc` (5,197
 
 Largest `other` extensions (total tokens): `.interp` (7,681,200), `.lcg` (6,972,942), `.xpm` (6,959,043), `.st` (4,436,357), `.tst` (3,564,678).
 
+### SWE-bench XL (subset)
+
+100 instances, 4 repositories.
+
+| Category | Mean tokens | Median tokens | Total tokens | Share | Mean files |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| `source_code` | 57,366,996 | 44,903,510 | 5,736,699,593 | 67.6% | 21,566 |
+| `other_code` | 387,279 | 49,474 | 38,727,893 | 0.5% | 336 |
+| `docs` | 2,977,590 | 1,864,973 | 297,758,997 | 3.5% | 1,308 |
+| `config_build` | 1,778,132 | 2,217,581 | 177,813,170 | 2.1% | 1,161 |
+| `localization` | 591,274 | 0 | 59,127,360 | 0.7% | 2 |
+| `data_fixtures` | 21,497,582 | 21,248,113 | 2,149,758,216 | 25.3% | 7,994 |
+| `no_extension` | 57,557 | 44,811 | 5,755,713 | 0.1% | 132 |
+| `other` | 245,336 | 314,660 | 24,533,558 | 0.3% | 178 |
+| **total** | **84,901,745** | **73,987,134** | **8,490,174,500** | **100%** | **32,676** |
+
+Largest `other` extensions (total tokens): `.interp` (5,168,827), `.xpm` (4,817,799), `.st` (2,982,138), `.lcg` (2,681,444), `.tst` (2,467,854).
+
 ### DeepSWE (DataCurve)
 
 113 instances, 91 repositories.
@@ -179,6 +202,8 @@ From `tokenizer-agent/`:
 python file_type_breakdown.py jobs/verified -o results/file_types/verified.json
 python file_type_breakdown.py jobs/pro -o results/file_types/pro.json
 python file_type_breakdown.py jobs/xl -o results/file_types/xl.json
+python file_type_breakdown.py jobs/xl -o results/file_types/xl_subset.json \
+    --instances results/xl_subset_instances.txt
 python file_type_breakdown.py jobs/deepswe -o results/file_types/deepswe.json \
     --task-defs <dir with the DeepSWE task definitions>
 python file_type_report.py

@@ -42,6 +42,7 @@ SCRIPT_DIR = Path(__file__).resolve().parent
 # Add an entry here as soon as a new benchmark's stats land in results/.
 BENCHMARK_NAMES: dict[str, str] = {
     "xl": "SWE-bench XL",
+    "xl_subset": "SWE-bench XL (subset)",
     "pro": "SWE-bench Pro",
     "verified": "SWE-bench Verified",
     "deepswe": "DeepSWE (DataCurve)",
@@ -50,7 +51,7 @@ BENCHMARK_NAMES: dict[str, str] = {
 # Top-to-bottom row order in the figure. Anything found but not listed here
 # is appended at the end (alphabetically) so new/renamed files still show up
 # instead of silently vanishing.
-BENCHMARK_ORDER: list[str] = ["xl", "pro", "verified", "deepswe"]
+BENCHMARK_ORDER: list[str] = ["xl", "xl_subset", "pro", "verified", "deepswe"]
 
 
 def _quartiles(values: list[float]) -> tuple[float, float, float]:

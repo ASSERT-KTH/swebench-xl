@@ -10,17 +10,25 @@ Harbor's own ``<job_dir>/result.json`` — with the mean/median/population
 standard deviation across the whole benchmark, plus a sorted per-instance
 breakdown.
 
+``--instances`` restricts the aggregation to a subset of the job's instances
+(a text file with one instance id per line; blank lines and ``#`` comments are
+ignored). Every listed id must be present in the job.
+
 Usage:
     python benchmark_size_stats.py <job_dir> [-o OUTPUT] [--metric FIELD]
+        [--instances FILE]
 """
 
 from __future__ import annotations
 
 import argparse
 import json
+import os
 import statistics
 from pathlib import Path
 from typing import Any
+
+SCRIPT_DIR = Path(__file__).resolve().parent
 
 # Fields from token_counts.json that get aggregated across the benchmark.
 STATS_FIELDS = (
@@ -50,17 +58,47 @@ def _find_token_counts_files(job_dir: Path) -> list[Path]:
     return found
 
 
-def _load_instances(job_dir: Path) -> list[dict[str, Any]]:
+def load_instance_ids(path: Path | None) -> set[str] | None:
+    """Read an instance-id list (one per line, ``#`` comments allowed)."""
+    if path is None:
+        return None
+    ids = set()
+    for line in path.read_text(encoding="utf-8").splitlines():
+        line = line.split("#", 1)[0].strip()
+        if line:
+            ids.add(line)
+    return ids
+
+
+def check_all_found(wanted: set[str] | None, found: set[str], job_dir: Path) -> None:
+    if wanted is None:
+        return
+    missing = sorted(wanted - found)
+    if missing:
+        raise SystemExit(
+            f"{len(missing)} listed instance(s) not found in {job_dir}: "
+            + ", ".join(missing[:5])
+            + (" ..." if len(missing) > 5 else "")
+        )
+
+
+def _load_instances(
+    job_dir: Path, only: set[str] | None = None
+) -> list[dict[str, Any]]:
     instances: list[dict[str, Any]] = []
     for path in _find_token_counts_files(job_dir):
         with open(path, encoding="utf-8") as f:
             data = json.load(f)
+        instance_id = data.get("instance_id", path.parent.parent.name)
+        if only is not None and instance_id not in only:
+            continue
         instances.append(
             {
-                "instance_id": data.get("instance_id", path.parent.parent.name),
+                "instance_id": instance_id,
                 **{field: data.get(field, 0) for field in STATS_FIELDS},
             }
         )
+    check_all_found(only, {inst["instance_id"] for inst in instances}, job_dir)
     return instances
 
 
@@ -75,8 +113,10 @@ def _compute_stats(values: list[float]) -> dict[str, float]:
     }
 
 
-def build_summary(job_dir: Path, metric: str) -> dict[str, Any]:
-    instances = _load_instances(job_dir)
+def build_summary(
+    job_dir: Path, metric: str, only: set[str] | None = None
+) -> dict[str, Any]:
+    instances = _load_instances(job_dir, only)
     if not instances:
         raise SystemExit(
             f"No token_counts.json files found under {job_dir}. Did the job run "
@@ -86,7 +126,7 @@ def build_summary(job_dir: Path, metric: str) -> dict[str, Any]:
     instances.sort(key=lambda inst: inst[metric], reverse=True)
 
     return {
-        "job_dir": str(job_dir),
+        "job_dir": os.path.relpath(job_dir, SCRIPT_DIR),
         "n_instances": len(instances),
         "metrics": {
             field: _compute_stats([inst[field] for inst in instances])
@@ -145,13 +185,19 @@ def main() -> None:
         default="total_tokens",
         help="Field to sort the per-instance table by (default: total_tokens)",
     )
+    parser.add_argument(
+        "--instances",
+        type=Path,
+        default=None,
+        help="Only aggregate the instance ids listed in this file (one per line)",
+    )
     args = parser.parse_args()
 
     job_dir = args.job_dir.expanduser().resolve()
     if not job_dir.is_dir():
         raise SystemExit(f"Job directory not found: {job_dir}")
 
-    summary = build_summary(job_dir, args.metric)
+    summary = build_summary(job_dir, args.metric, load_instance_ids(args.instances))
 
     output_path = args.output or (job_dir / "benchmark_size_stats.json")
     with open(output_path, "w", encoding="utf-8") as f:

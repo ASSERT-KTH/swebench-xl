@@ -35,9 +35,12 @@ exact refs a job ran against::
         for t in (json.load(open(f))['task_id'] for f in glob.glob('jobs/<job>/*/result.json'))]" \\
       | xargs -I{} harbor task download {} -o <task_defs_dir>
 
+``--instances FILE`` restricts the breakdown to the instance ids listed in FILE
+(one per line), e.g. ``results/xl_subset_instances.txt``.
+
 Usage:
     python file_type_breakdown.py <job_dir> -o results/file_types/<benchmark>.json
-        [--task-defs DIR]
+        [--task-defs DIR] [--instances FILE]
 """
 
 from __future__ import annotations
@@ -51,7 +54,11 @@ import tomllib
 from pathlib import Path
 from typing import Any
 
-from benchmark_size_stats import _find_token_counts_files
+from benchmark_size_stats import (
+    _find_token_counts_files,
+    check_all_found,
+    load_instance_ids,
+)
 from tokenizer_core import SOURCE_CODE_EXTENSIONS
 
 SCRIPT_DIR = Path(__file__).resolve().parent
@@ -224,16 +231,21 @@ def _category_metrics(instances: list[dict[str, Any]]) -> dict[str, Any]:
     return metrics
 
 
-def build_breakdown(job_dir: Path, task_repos: dict[str, str]) -> dict[str, Any]:
+def build_breakdown(
+    job_dir: Path, task_repos: dict[str, str], only: set[str] | None = None
+) -> dict[str, Any]:
     instances: list[dict[str, Any]] = []
     for path in _find_token_counts_files(job_dir):
         with open(path, encoding="utf-8") as f:
             data = json.load(f)
+        if only is not None and data["instance_id"] not in only:
+            continue
         instances.append(
             _instance_breakdown(data, resolve_repo(data["instance_id"], task_repos))
         )
     if not instances:
         raise SystemExit(f"No token_counts.json files found under {job_dir}.")
+    check_all_found(only, {inst["instance_id"] for inst in instances}, job_dir)
 
     instances.sort(key=lambda inst: inst["total_tokens"], reverse=True)
 
@@ -292,13 +304,21 @@ def main() -> None:
         help="Directory of downloaded Harbor task definitions (<task>/task.toml), "
         "used to look up repos for instance ids that don't encode one",
     )
+    parser.add_argument(
+        "--instances",
+        type=Path,
+        default=None,
+        help="Only include the instance ids listed in this file (one per line)",
+    )
     args = parser.parse_args()
 
     job_dir = args.job_dir.expanduser().resolve()
     if not job_dir.is_dir():
         raise SystemExit(f"Job directory not found: {job_dir}")
 
-    summary = build_breakdown(job_dir, _load_task_repos(args.task_defs))
+    summary = build_breakdown(
+        job_dir, _load_task_repos(args.task_defs), load_instance_ids(args.instances)
+    )
 
     output_path = args.output or (job_dir / "file_type_breakdown.json")
     output_path.parent.mkdir(parents=True, exist_ok=True)

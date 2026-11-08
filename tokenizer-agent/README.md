@@ -34,6 +34,7 @@ in [`jobs/`](#raw-run-data):
 | SWE-bench Verified | [`results/verified.json`](results/verified.json) | [`results/file_types/verified.json`](results/file_types/verified.json) |
 | SWE-bench Pro | [`results/pro.json`](results/pro.json) | [`results/file_types/pro.json`](results/file_types/pro.json) |
 | SWE-bench XL | [`results/xl.json`](results/xl.json) | [`results/file_types/xl.json`](results/file_types/xl.json) |
+| SWE-bench XL (subset) | [`results/xl_subset.json`](results/xl_subset.json) | [`results/file_types/xl_subset.json`](results/file_types/xl_subset.json) |
 | DeepSWE (DataCurve) | [`results/deepswe.json`](results/deepswe.json) | [`results/file_types/deepswe.json`](results/file_types/deepswe.json) |
 
 **Token counts per file type:** [`results/file_types/`](results/file_types/)
@@ -225,6 +226,7 @@ value) for real numbers.
 | SWE-bench Verified | `jobs/verified` | `2026-08-31__12-35-16` | 500 | `results/verified.json` |
 | SWE-bench Pro | `jobs/pro` | `2026-08-31__17-03-08` | 731 | `results/pro.json` |
 | SWE-bench XL | `jobs/xl` | `2026-09-01__16-19-17` | 180 | `results/xl.json` |
+| SWE-bench XL (subset) | `jobs/xl` | `2026-09-01__16-19-17` | 100 | `results/xl_subset.json` |
 | DeepSWE (DataCurve) | `jobs/deepswe` | `2026-08-31__16-09-55` | 113 | `results/deepswe.json` |
 
 The directories were renamed from Harbor's timestamped job names after the
@@ -249,6 +251,14 @@ To recompute the published stats from it:
 python benchmark_size_stats.py jobs/<benchmark> -o results/<benchmark>.json
 ```
 
+The SWE-bench XL subset is 100 of the 180 XL instances, listed in
+[`results/xl_subset_instances.txt`](results/xl_subset_instances.txt). Both
+scripts take `--instances <file>` to restrict a job to such a list:
+
+```bash
+python benchmark_size_stats.py jobs/xl --instances results/xl_subset_instances.txt -o results/xl_subset.json
+```
+
 This reproduces the published files exactly, except that it also adds a
 `total_characters` field, which only the XL run recorded (it is `0` for the
 other benchmarks).
@@ -266,6 +276,8 @@ It is computed from the job directories in [`jobs/`](#raw-run-data):
 
 ```bash
 python file_type_breakdown.py jobs/<benchmark> -o results/file_types/<benchmark>.json
+python file_type_breakdown.py jobs/xl --instances results/xl_subset_instances.txt \
+    -o results/file_types/xl_subset.json
 ```
 
 DeepSWE instance ids don't encode the repository, so for it also pass
