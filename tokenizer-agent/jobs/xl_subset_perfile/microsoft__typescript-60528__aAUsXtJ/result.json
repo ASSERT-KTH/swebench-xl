@@ -1,0 +1,123 @@
+{
+    "id": "724dd1b6-c4d5-42b9-a3de-86caf008293d",
+    "task_name": "microsoft__typescript-60528",
+    "trial_name": "microsoft__typescript-60528__aAUsXtJ",
+    "trial_uri": "file:///home/pontus/Documents/GitHub/swebench-xl/tokenizer-agent/jobs/xl_subset_perfile/microsoft__typescript-60528__aAUsXtJ",
+    "task_id": {
+        "path": "/home/pontus/Downloads/swebench-xl/instances/microsoft__typescript-60528"
+    },
+    "source": "instances",
+    "task_checksum": "f4b687d16975c675aee7b0e21023948565258e14e2b02852a9bc58cd9a7cc4c1",
+    "config": {
+        "task": {
+            "path": "/home/pontus/Downloads/swebench-xl/instances/microsoft__typescript-60528",
+            "git_url": null,
+            "git_commit_id": null,
+            "name": null,
+            "ref": null,
+            "overwrite": false,
+            "download_dir": null,
+            "source": "instances"
+        },
+        "trial_name": "microsoft__typescript-60528__aAUsXtJ",
+        "trials_dir": "jobs/xl_subset_perfile",
+        "install_only": false,
+        "timeout_multiplier": 1.0,
+        "agent_timeout_multiplier": null,
+        "verifier_timeout_multiplier": null,
+        "agent_setup_timeout_multiplier": null,
+        "environment_build_timeout_multiplier": null,
+        "agent": {
+            "name": "tokenizer_agent:RepoTokenizerAgent",
+            "import_path": null,
+            "model_name": null,
+            "n_concurrent": null,
+            "concurrency_group": null,
+            "skills": [],
+            "override_timeout_sec": null,
+            "override_setup_timeout_sec": null,
+            "max_timeout_sec": null,
+            "resume_trajectory": false,
+            "load_trajectory": null,
+            "extra_allowed_hosts": [],
+            "kwargs": {},
+            "mcp_servers": []
+        },
+        "user_agent": null,
+        "environment": {
+            "type": "docker",
+            "import_path": null,
+            "force_build": false,
+            "delete": true,
+            "cpu_enforcement_policy": "auto",
+            "memory_enforcement_policy": "auto",
+            "override_cpus": null,
+            "override_memory_mb": null,
+            "override_storage_mb": null,
+            "override_gpus": null,
+            "override_tpu": null,
+            "mounts": null,
+            "extra_docker_compose": [],
+            "kwargs": {},
+            "extra_allowed_hosts": []
+        },
+        "verifier": {
+            "override_timeout_sec": null,
+            "max_timeout_sec": null,
+            "disable": true
+        },
+        "artifacts": [],
+        "extra_instruction_paths": [],
+        "extra_instructions": [],
+        "job_id": "4715c1f7-c061-4605-9f3d-480c03a9f631",
+        "source_trial": null
+    },
+    "agent_info": {
+        "name": "repo-tokenizer",
+        "version": "1.1.0",
+        "model_info": null
+    },
+    "agent_result": {
+        "n_input_tokens": null,
+        "n_cache_tokens": null,
+        "n_output_tokens": null,
+        "cost_usd": null,
+        "rollout_details": null,
+        "metadata": {
+            "repo_tokenizer": {
+                "instance_id": "microsoft__typescript-60528",
+                "testbed_dir": "/testbed",
+                "encoding": "cl100k_base",
+                "total_tokens": 113688895,
+                "total_files": 76855,
+                "source_code_tokens": 44260271,
+                "source_code_files": 38826,
+                "total_lines": 9903996,
+                "total_bytes": 424184300,
+                "source_code_lines": 4945226,
+                "source_code_bytes": 179483042,
+                "skipped_files": 9,
+                "elapsed_sec": 29.78
+            }
+        }
+    },
+    "verifier_result": null,
+    "verifier_environment_mode": "shared",
+    "exception_info": null,
+    "started_at": "2026-11-12T20:04:58.603174Z",
+    "finished_at": "2026-11-12T20:07:28.477034Z",
+    "environment_setup": {
+        "started_at": "2026-11-12T20:04:58.603660Z",
+        "finished_at": "2026-11-12T20:05:42.396265Z"
+    },
+    "agent_setup": {
+        "started_at": "2026-11-12T20:05:42.396286Z",
+        "finished_at": "2026-11-12T20:05:42.396316Z"
+    },
+    "agent_execution": {
+        "started_at": "2026-11-12T20:05:42.396356Z",
+        "finished_at": "2026-11-12T20:06:12.555233Z"
+    },
+    "verifier": null,
+    "step_results": null
+}

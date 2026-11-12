@@ -1,0 +1,123 @@
+{
+    "id": "52650fb6-6345-435e-91d7-50674802e94c",
+    "task_name": "huggingface__transformers-45540",
+    "trial_name": "huggingface__transformers-45540__ZbHGccW",
+    "trial_uri": "file:///home/pontus/Documents/GitHub/swebench-xl/tokenizer-agent/jobs/xl_subset_perfile/huggingface__transformers-45540__ZbHGccW",
+    "task_id": {
+        "path": "/home/pontus/Downloads/swebench-xl/instances/huggingface__transformers-45540"
+    },
+    "source": "instances",
+    "task_checksum": "a618cbb356c32a20d547b5536291430983d5cde7798feefaedb428ad0e958e82",
+    "config": {
+        "task": {
+            "path": "/home/pontus/Downloads/swebench-xl/instances/huggingface__transformers-45540",
+            "git_url": null,
+            "git_commit_id": null,
+            "name": null,
+            "ref": null,
+            "overwrite": false,
+            "download_dir": null,
+            "source": "instances"
+        },
+        "trial_name": "huggingface__transformers-45540__ZbHGccW",
+        "trials_dir": "jobs/xl_subset_perfile",
+        "install_only": false,
+        "timeout_multiplier": 1.0,
+        "agent_timeout_multiplier": null,
+        "verifier_timeout_multiplier": null,
+        "agent_setup_timeout_multiplier": null,
+        "environment_build_timeout_multiplier": null,
+        "agent": {
+            "name": "tokenizer_agent:RepoTokenizerAgent",
+            "import_path": null,
+            "model_name": null,
+            "n_concurrent": null,
+            "concurrency_group": null,
+            "skills": [],
+            "override_timeout_sec": null,
+            "override_setup_timeout_sec": null,
+            "max_timeout_sec": null,
+            "resume_trajectory": false,
+            "load_trajectory": null,
+            "extra_allowed_hosts": [],
+            "kwargs": {},
+            "mcp_servers": []
+        },
+        "user_agent": null,
+        "environment": {
+            "type": "docker",
+            "import_path": null,
+            "force_build": false,
+            "delete": true,
+            "cpu_enforcement_policy": "auto",
+            "memory_enforcement_policy": "auto",
+            "override_cpus": null,
+            "override_memory_mb": null,
+            "override_storage_mb": null,
+            "override_gpus": null,
+            "override_tpu": null,
+            "mounts": null,
+            "extra_docker_compose": [],
+            "kwargs": {},
+            "extra_allowed_hosts": []
+        },
+        "verifier": {
+            "override_timeout_sec": null,
+            "max_timeout_sec": null,
+            "disable": true
+        },
+        "artifacts": [],
+        "extra_instruction_paths": [],
+        "extra_instructions": [],
+        "job_id": "4715c1f7-c061-4605-9f3d-480c03a9f631",
+        "source_trial": null
+    },
+    "agent_info": {
+        "name": "repo-tokenizer",
+        "version": "1.1.0",
+        "model_info": null
+    },
+    "agent_result": {
+        "n_input_tokens": null,
+        "n_cache_tokens": null,
+        "n_output_tokens": null,
+        "cost_usd": null,
+        "rollout_details": null,
+        "metadata": {
+            "repo_tokenizer": {
+                "instance_id": "huggingface__transformers-45540",
+                "testbed_dir": "/testbed",
+                "encoding": "cl100k_base",
+                "total_tokens": 19203181,
+                "total_files": 5779,
+                "source_code_tokens": 15253364,
+                "source_code_files": 4262,
+                "total_lines": 1816037,
+                "total_bytes": 81178366,
+                "source_code_lines": 1542255,
+                "source_code_bytes": 67055853,
+                "skipped_files": 9,
+                "elapsed_sec": 5.11
+            }
+        }
+    },
+    "verifier_result": null,
+    "verifier_environment_mode": "shared",
+    "exception_info": null,
+    "started_at": "2026-11-12T20:04:27.710189Z",
+    "finished_at": "2026-11-12T20:05:05.138700Z",
+    "environment_setup": {
+        "started_at": "2026-11-12T20:04:27.710637Z",
+        "finished_at": "2026-11-12T20:04:49.285679Z"
+    },
+    "agent_setup": {
+        "started_at": "2026-11-12T20:04:49.285696Z",
+        "finished_at": "2026-11-12T20:04:49.285722Z"
+    },
+    "agent_execution": {
+        "started_at": "2026-11-12T20:04:49.285754Z",
+        "finished_at": "2026-11-12T20:04:54.423478Z"
+    },
+    "verifier": null,
+    "step_results": null
+}

@@ -1,0 +1,383 @@
+{
+  "instance_id": "huggingface__transformers-43227",
+  "encoding": "cl100k_base",
+  "total_tokens": 18635381,
+  "total_characters": 77517856,
+  "total_files": 5294,
+  "total_lines": 1745970,
+  "total_nonblank_lines": 1450297,
+  "total_bytes": 79392234,
+  "source_code_tokens": 14817367,
+  "source_code_files": 3871,
+  "source_code_lines": 1484523,
+  "source_code_nonblank_lines": 1258846,
+  "source_code_bytes": 65765170,
+  "skipped_files": 9,
+  "skipped_bytes": 3365851,
+  "by_extension": {
+    ".py": {
+      "tokens": 14816189,
+      "files": 3864,
+      "lines": 1484409,
+      "nonblank_lines": 1258744,
+      "bytes": 65760562
+    },
+    ".md": {
+      "tokens": 3479515,
+      "files": 1235,
+      "lines": 230143,
+      "nonblank_lines": 161449,
+      "bytes": 12346684
+    },
+    ".json": {
+      "tokens": 133718,
+      "files": 28,
+      "lines": 13297,
+      "nonblank_lines": 13291,
+      "bytes": 507555
+    },
+    ".yml": {
+      "tokens": 93041,
+      "files": 72,
+      "lines": 10487,
+      "nonblank_lines": 9788,
+      "bytes": 357295
+    },
+    ".txt": {
+      "tokens": 57276,
+      "files": 40,
+      "lines": 4214,
+      "nonblank_lines": 4149,
+      "bytes": 196833
+    },
+    "(no extension)": {
+      "tokens": 46232,
+      "files": 23,
+      "lines": 2637,
+      "nonblank_lines": 2161,
+      "bytes": 188797
+    },
+    ".dockerfile": {
+      "tokens": 2414,
+      "files": 7,
+      "lines": 136,
+      "nonblank_lines": 117,
+      "bytes": 8766
+    },
+    ".yaml": {
+      "tokens": 1833,
+      "files": 7,
+      "lines": 277,
+      "nonblank_lines": 253,
+      "bytes": 6557
+    },
+    ".tsv": {
+      "tokens": 1474,
+      "files": 4,
+      "lines": 34,
+      "nonblank_lines": 34,
+      "bytes": 5019
+    },
+    ".sh": {
+      "tokens": 1178,
+      "files": 7,
+      "lines": 114,
+      "nonblank_lines": 102,
+      "bytes": 4608
+    },
+    ".toml": {
+      "tokens": 966,
+      "files": 1,
+      "lines": 88,
+      "nonblank_lines": 81,
+      "bytes": 3582
+    },
+    ".cff": {
+      "tokens": 667,
+      "files": 1,
+      "lines": 82,
+      "nonblank_lines": 82,
+      "bytes": 2331
+    },
+    ".csv": {
+      "tokens": 624,
+      "files": 2,
+      "lines": 14,
+      "nonblank_lines": 14,
+      "bytes": 2708
+    },
+    ".jsonnet": {
+      "tokens": 254,
+      "files": 1,
+      "lines": 38,
+      "nonblank_lines": 32,
+      "bytes": 937
+    },
+    ".sql": {
+      "tokens": 0,
+      "files": 1,
+      "lines": 0,
+      "nonblank_lines": 0,
+      "bytes": 0
+    },
+    ".typed": {
+      "tokens": 0,
+      "files": 1,
+      "lines": 0,
+      "nonblank_lines": 0,
+      "bytes": 0
+    }
+  },
+  "top_files": [
+    {
+      "path": "tests/test_tokenization_mistral_common.py",
+      "tokens": 108767,
+      "chars": 227914
+    },
+    {
+      "path": "tests/models/markuplm/test_tokenization_markuplm.py",
+      "tokens": 85882,
+      "chars": 210502
+    },
+    {
+      "path": "tests/models/whisper/test_modeling_whisper.py",
+      "tokens": 57800,
+      "chars": 250999
+    },
+    {
+      "path": "tests/utils/tiny_model_summary.json",
+      "tokens": 56223,
+      "chars": 206927
+    },
+    {
+      "path": "tests/trainer/test_trainer.py",
+      "tokens": 55453,
+      "chars": 259745
+    },
+    {
+      "path": "tests/generation/test_utils.py",
+      "tokens": 53071,
+      "chars": 252011
+    },
+    {
+      "path": "src/transformers/trainer.py",
+      "tokens": 52157,
+      "chars": 259415
+    },
+    {
+      "path": "src/transformers/modeling_utils.py",
+      "tokens": 49989,
+      "chars": 241675
+    },
+    {
+      "path": "tests/test_modeling_common.py",
+      "tokens": 47465,
+      "chars": 239029
+    },
+    {
+      "path": "src/transformers/models/seamless_m4t_v2/modeling_seamless_m4t_v2.py",
+      "tokens": 43519,
+      "chars": 202927
+    },
+    {
+      "path": "src/transformers/models/qwen2_5_omni/modular_qwen2_5_omni.py",
+      "tokens": 43109,
+      "chars": 188089
+    },
+    {
+      "path": "src/transformers/generation/utils.py",
+      "tokens": 42378,
+      "chars": 213955
+    },
+    {
+      "path": "src/transformers/models/qwen3_omni_moe/modeling_qwen3_omni_moe.py",
+      "tokens": 41919,
+      "chars": 183330
+    },
+    {
+      "path": "src/transformers/models/qwen2_5_omni/modeling_qwen2_5_omni.py",
+      "tokens": 41477,
+      "chars": 182236
+    },
+    {
+      "path": "src/transformers/models/seamless_m4t/modeling_seamless_m4t.py",
+      "tokens": 39157,
+      "chars": 185275
+    },
+    {
+      "path": "src/transformers.egg-info/SOURCES.txt",
+      "tokens": 36896,
+      "chars": 133240
+    },
+    {
+      "path": "src/transformers/tokenization_utils_base.py",
+      "tokens": 36358,
+      "chars": 179386
+    },
+    {
+      "path": "src/transformers/testing_utils.py",
+      "tokens": 35770,
+      "chars": 157536
+    },
+    {
+      "path": "tests/utils/test_modeling_utils.py",
+      "tokens": 35054,
+      "chars": 160818
+    },
+    {
+      "path": "src/transformers/generation/logits_process.py",
+      "tokens": 34302,
+      "chars": 149640
+    },
+    {
+      "path": "docs/source/ja/main_classes/deepspeed.md",
+      "tokens": 34289,
+      "chars": 68997
+    },
+    {
+      "path": "src/transformers/models/edgetam_video/modeling_edgetam_video.py",
+      "tokens": 31951,
+      "chars": 146907
+    },
+    {
+      "path": "src/transformers/training_args.py",
+      "tokens": 31526,
+      "chars": 145170
+    },
+    {
+      "path": "tests/models/bigbird_pegasus/test_modeling_bigbird_pegasus.py",
+      "tokens": 30199,
+      "chars": 110214
+    },
+    {
+      "path": "tests/utils/test_audio_utils.py",
+      "tokens": 29847,
+      "chars": 79942
+    },
+    {
+      "path": "tests/models/encodec/test_modeling_encodec.py",
+      "tokens": 29796,
+      "chars": 70338
+    },
+    {
+      "path": "src/transformers/models/speecht5/modeling_speecht5.py",
+      "tokens": 29660,
+      "chars": 140174
+    },
+    {
+      "path": "src/transformers/models/qwen3_omni_moe/modular_qwen3_omni_moe.py",
+      "tokens": 29469,
+      "chars": 128982
+    },
+    {
+      "path": "src/transformers/models/gemma3n/modular_gemma3n.py",
+      "tokens": 29456,
+      "chars": 128743
+    },
+    {
+      "path": "src/transformers/models/oneformer/modeling_oneformer.py",
+      "tokens": 29238,
+      "chars": 138224
+    },
+    {
+      "path": "src/transformers/models/sam3_tracker_video/modeling_sam3_tracker_video.py",
+      "tokens": 29046,
+      "chars": 135160
+    },
+    {
+      "path": "src/transformers/models/sam2_video/modeling_sam2_video.py",
+      "tokens": 28726,
+      "chars": 133418
+    },
+    {
+      "path": "src/transformers/models/perceiver/modeling_perceiver.py",
+      "tokens": 28318,
+      "chars": 134489
+    },
+    {
+      "path": "src/transformers/models/mm_grounding_dino/modeling_mm_grounding_dino.py",
+      "tokens": 27644,
+      "chars": 129286
+    },
+    {
+      "path": "src/transformers/models/grounding_dino/modeling_grounding_dino.py",
+      "tokens": 27535,
+      "chars": 130379
+    },
+    {
+      "path": "src/transformers/models/bigbird_pegasus/modeling_bigbird_pegasus.py",
+      "tokens": 27319,
+      "chars": 125605
+    },
+    {
+      "path": "docs/source/zh/main_classes/deepspeed.md",
+      "tokens": 26456,
+      "chars": 60570
+    },
+    {
+      "path": "tests/test_tokenization_common.py",
+      "tokens": 26414,
+      "chars": 131985
+    },
+    {
+      "path": "src/transformers/models/big_bird/modeling_big_bird.py",
+      "tokens": 26310,
+      "chars": 120155
+    },
+    {
+      "path": "src/transformers/models/gemma3n/modeling_gemma3n.py",
+      "tokens": 26194,
+      "chars": 113207
+    },
+    {
+      "path": "src/transformers/models/sam2_video/modular_sam2_video.py",
+      "tokens": 26162,
+      "chars": 124461
+    },
+    {
+      "path": "docs/source/ja/index.md",
+      "tokens": 25856,
+      "chars": 77556
+    },
+    {
+      "path": "tests/models/layoutlmv2/test_tokenization_layoutlmv2.py",
+      "tokens": 25661,
+      "chars": 115213
+    },
+    {
+      "path": "src/transformers/models/moshi/modeling_moshi.py",
+      "tokens": 25636,
+      "chars": 120888
+    },
+    {
+      "path": "src/transformers/models/tapas/tokenization_tapas.py",
+      "tokens": 24980,
+      "chars": 119099
+    },
+    {
+      "path": "src/transformers/models/auto/modeling_auto.py",
+      "tokens": 24754,
+      "chars": 91809
+    },
+    {
+      "path": "tests/models/layoutlmv3/test_tokenization_layoutlmv3.py",
+      "tokens": 24731,
+      "chars": 112348
+    },
+    {
+      "path": "src/transformers/models/mask2former/modeling_mask2former.py",
+      "tokens": 24563,
+      "chars": 117345
+    },
+    {
+      "path": "docs/source/ar/llm_tutorial_optimization.md",
+      "tokens": 24484,
+      "chars": 42706
+    },
+    {
+      "path": "tests/models/led/test_modeling_led.py",
+      "tokens": 24037,
+      "chars": 95901
+    }
+  ]
+}

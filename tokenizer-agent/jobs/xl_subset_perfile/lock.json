@@ -1,0 +1,3628 @@
+{
+    "schema_version": 3,
+    "created_at": "2026-11-12T19:05:23.999262Z",
+    "harbor": {
+        "version": "0.22.0",
+        "is_editable": false
+    },
+    "n_concurrent_trials": 4,
+    "retry": {
+        "max_retries": 0,
+        "exclude_exceptions": [
+            "RewardFileEmptyError",
+            "ModelNotFoundError",
+            "VerifierOutputParseError",
+            "AgentAuthenticationError",
+            "RewardFileNotFoundError",
+            "VerifierTimeoutError",
+            "AgentSafetyRefusalError",
+            "ApiUsageLimitError",
+            "AgentTimeoutError"
+        ],
+        "wait_multiplier": 1.0,
+        "min_wait_sec": 1.0,
+        "max_wait_sec": 60.0
+    },
+    "trials": [
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "elastic__elasticsearch-135899",
+                "type": "local",
+                "digest": "sha256:3abb93bea2d37143148440dc43a95482a83da4a135fd228bb090a0a185143189",
+                "source": "instances",
+                "path": "/home/pontus/Downloads/swebench-xl/instances/elastic__elasticsearch-135899"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "shared"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "elastic__elasticsearch-137744",
+                "type": "local",
+                "digest": "sha256:ae4ad4270d4573aad683b27f82b61fc1be60c40ec11953896fe350983ee615ea",
+                "source": "instances",
+                "path": "/home/pontus/Downloads/swebench-xl/instances/elastic__elasticsearch-137744"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "shared"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "elastic__elasticsearch-139873",
+                "type": "local",
+                "digest": "sha256:a3b563f33518e50dc7f35ff8a0551e231b23dc51390996d4a0f9fef9d9451de3",
+                "source": "instances",
+                "path": "/home/pontus/Downloads/swebench-xl/instances/elastic__elasticsearch-139873"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "shared"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "elastic__elasticsearch-140027",
+                "type": "local",
+                "digest": "sha256:51bf1792d0b65f2fe29774d113d10ce503dc35b1c083a0962089e47a3ca051e4",
+                "source": "instances",
+                "path": "/home/pontus/Downloads/swebench-xl/instances/elastic__elasticsearch-140027"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "shared"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "elastic__elasticsearch-140094",
+                "type": "local",
+                "digest": "sha256:48795fce1ad7f24eaccf0cab6a5f875771a42c0b9e43c21d663e036ca2ed5daa",
+                "source": "instances",
+                "path": "/home/pontus/Downloads/swebench-xl/instances/elastic__elasticsearch-140094"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "shared"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "elastic__elasticsearch-140099",
+                "type": "local",
+                "digest": "sha256:9753501616a04abeb3ad46b534a3e77be1b6e8d4455b8174fcadcba03276a92b",
+                "source": "instances",
+                "path": "/home/pontus/Downloads/swebench-xl/instances/elastic__elasticsearch-140099"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "shared"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "elastic__elasticsearch-140217",
+                "type": "local",
+                "digest": "sha256:400a34d2cd98c536d8074f7af509f3655ccf507a6f1da8ced9981b1cb39b4b7b",
+                "source": "instances",
+                "path": "/home/pontus/Downloads/swebench-xl/instances/elastic__elasticsearch-140217"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "shared"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "elastic__elasticsearch-140394",
+                "type": "local",
+                "digest": "sha256:d808a5233bd3000388bee2e4d82f2e9d702a4ed9ba5e1bd0a5522829956216e9",
+                "source": "instances",
+                "path": "/home/pontus/Downloads/swebench-xl/instances/elastic__elasticsearch-140394"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "shared"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "elastic__elasticsearch-140982",
+                "type": "local",
+                "digest": "sha256:8e5e8e80c371466ab19d96a8cb9ee7cee3a01aa85ebabc3ce5137f3f2375a09e",
+                "source": "instances",
+                "path": "/home/pontus/Downloads/swebench-xl/instances/elastic__elasticsearch-140982"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "shared"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "elastic__elasticsearch-141157",
+                "type": "local",
+                "digest": "sha256:ec1818ef5ce503ef97de1c21ed55a785eeca050624c5c7bfdef2399970abf470",
+                "source": "instances",
+                "path": "/home/pontus/Downloads/swebench-xl/instances/elastic__elasticsearch-141157"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "shared"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "elastic__elasticsearch-141196",
+                "type": "local",
+                "digest": "sha256:0cab69918d8cc1a30b6dfc9fc30855b4759e10976419ff59ce54fbfb02884bc6",
+                "source": "instances",
+                "path": "/home/pontus/Downloads/swebench-xl/instances/elastic__elasticsearch-141196"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "shared"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "elastic__elasticsearch-141242",
+                "type": "local",
+                "digest": "sha256:ec7d9b0b205b4db6adb108c93b42e679a73628dbe6bc472ac4a7fa59a9399c54",
+                "source": "instances",
+                "path": "/home/pontus/Downloads/swebench-xl/instances/elastic__elasticsearch-141242"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "shared"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "elastic__elasticsearch-141371",
+                "type": "local",
+                "digest": "sha256:10c101feb548866a86cf65dde04203844612dae70538d7e89ffea3d7ff5eb04c",
+                "source": "instances",
+                "path": "/home/pontus/Downloads/swebench-xl/instances/elastic__elasticsearch-141371"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "shared"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "elastic__elasticsearch-141482",
+                "type": "local",
+                "digest": "sha256:1bd1215f0eccf4aaf4ca9d5ee39cf12ddc6b3a92f89e9eb8acff082fc72490e1",
+                "source": "instances",
+                "path": "/home/pontus/Downloads/swebench-xl/instances/elastic__elasticsearch-141482"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "shared"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "elastic__elasticsearch-141503",
+                "type": "local",
+                "digest": "sha256:187887d1724d737a42f3e16dbf9d094112e4f352f75e5777443a035b019145c4",
+                "source": "instances",
+                "path": "/home/pontus/Downloads/swebench-xl/instances/elastic__elasticsearch-141503"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "shared"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "elastic__elasticsearch-141523",
+                "type": "local",
+                "digest": "sha256:52b6f906de30ff35ad4fcef300319ad661fe644e525a3a5a6cb18e0a9b433482",
+                "source": "instances",
+                "path": "/home/pontus/Downloads/swebench-xl/instances/elastic__elasticsearch-141523"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "shared"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "elastic__elasticsearch-141592",
+                "type": "local",
+                "digest": "sha256:07e6deae41c8cb762e4007bbd52618ddce2ce14a01f25f7dd75eedbe6584d967",
+                "source": "instances",
+                "path": "/home/pontus/Downloads/swebench-xl/instances/elastic__elasticsearch-141592"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "shared"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "elastic__elasticsearch-141619",
+                "type": "local",
+                "digest": "sha256:944021f1d7d9d2908cbac85f8db061c50f6627e212bfa14894fffb2242d3dff4",
+                "source": "instances",
+                "path": "/home/pontus/Downloads/swebench-xl/instances/elastic__elasticsearch-141619"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "shared"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "elastic__elasticsearch-142117",
+                "type": "local",
+                "digest": "sha256:05074ac809c5f83bc02673ce94b958372aac2ca5f4b0ccc4059e191bc4138e58",
+                "source": "instances",
+                "path": "/home/pontus/Downloads/swebench-xl/instances/elastic__elasticsearch-142117"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "shared"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "elastic__elasticsearch-142401",
+                "type": "local",
+                "digest": "sha256:3421d00cafd1439b9309d88aaa62662b6e4cb2f57e2dddc33aa9a5e2f8d22fae",
+                "source": "instances",
+                "path": "/home/pontus/Downloads/swebench-xl/instances/elastic__elasticsearch-142401"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "shared"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "elastic__elasticsearch-142450",
+                "type": "local",
+                "digest": "sha256:935c4cb937865794003f6e245c83c12b22069b2621ff5922a10986e22b838dd1",
+                "source": "instances",
+                "path": "/home/pontus/Downloads/swebench-xl/instances/elastic__elasticsearch-142450"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "shared"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "elastic__elasticsearch-142489",
+                "type": "local",
+                "digest": "sha256:2da3e8ab8184d2e6e95d4c5676b4b4ff8924a03fabd8336529608748f6885470",
+                "source": "instances",
+                "path": "/home/pontus/Downloads/swebench-xl/instances/elastic__elasticsearch-142489"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "shared"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "elastic__elasticsearch-142752",
+                "type": "local",
+                "digest": "sha256:779c63108c6fbb98ec9ff6709902c271433320951246c3a541a45035b3d97f04",
+                "source": "instances",
+                "path": "/home/pontus/Downloads/swebench-xl/instances/elastic__elasticsearch-142752"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "shared"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "elastic__elasticsearch-142882",
+                "type": "local",
+                "digest": "sha256:f47f9fa5c016c731b0dc01efc783d59e4e3406b76cc6f2c006af959cc51541f4",
+                "source": "instances",
+                "path": "/home/pontus/Downloads/swebench-xl/instances/elastic__elasticsearch-142882"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "shared"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "elastic__elasticsearch-143153",
+                "type": "local",
+                "digest": "sha256:70ba5cd47900e23476199a9cf6807b69b98d8ecbb47920e373aa7b916a0a24bc",
+                "source": "instances",
+                "path": "/home/pontus/Downloads/swebench-xl/instances/elastic__elasticsearch-143153"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "shared"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "elastic__elasticsearch-143155",
+                "type": "local",
+                "digest": "sha256:f5937242e10a526769827f8dadda40220ea4dce5ec9a4bff1834bccab4caba1a",
+                "source": "instances",
+                "path": "/home/pontus/Downloads/swebench-xl/instances/elastic__elasticsearch-143155"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "shared"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "elastic__elasticsearch-143241",
+                "type": "local",
+                "digest": "sha256:b1dd77f6d9ab596ad2d2aef5dc40dcee3b4c3ee2495189e89fbe3219329d9165",
+                "source": "instances",
+                "path": "/home/pontus/Downloads/swebench-xl/instances/elastic__elasticsearch-143241"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "shared"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "elastic__elasticsearch-143249",
+                "type": "local",
+                "digest": "sha256:d659c0ae56b3b204c48693173555d9ce9a34950af955780480d04925f6b7c199",
+                "source": "instances",
+                "path": "/home/pontus/Downloads/swebench-xl/instances/elastic__elasticsearch-143249"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "shared"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "elastic__elasticsearch-143463",
+                "type": "local",
+                "digest": "sha256:2e36065edd3c75913c453ee46dcbd3f334d83f487309813e8ca4d793e9cfe8e6",
+                "source": "instances",
+                "path": "/home/pontus/Downloads/swebench-xl/instances/elastic__elasticsearch-143463"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "shared"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "elastic__elasticsearch-143533",
+                "type": "local",
+                "digest": "sha256:a84a1f4916a3440ae813d73e031417ce811281d4010e92ed68d2ce3d29a4ad71",
+                "source": "instances",
+                "path": "/home/pontus/Downloads/swebench-xl/instances/elastic__elasticsearch-143533"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "shared"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "elastic__elasticsearch-143810",
+                "type": "local",
+                "digest": "sha256:2cb62ca7c746769649ca316b198d0c11b91d547e1b1d9f517603e72a189bb471",
+                "source": "instances",
+                "path": "/home/pontus/Downloads/swebench-xl/instances/elastic__elasticsearch-143810"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "shared"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "elastic__elasticsearch-143893",
+                "type": "local",
+                "digest": "sha256:26d4d379346db5dd8fb9343c5b7148a37e00f9887afbf82365402e733488ef32",
+                "source": "instances",
+                "path": "/home/pontus/Downloads/swebench-xl/instances/elastic__elasticsearch-143893"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "shared"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "elastic__elasticsearch-144029",
+                "type": "local",
+                "digest": "sha256:eb8c9be19ee3844958409da8c4cfbede01db6c881e63ba58542737ff2bdd3212",
+                "source": "instances",
+                "path": "/home/pontus/Downloads/swebench-xl/instances/elastic__elasticsearch-144029"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "shared"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "elastic__elasticsearch-144031",
+                "type": "local",
+                "digest": "sha256:dafbc7cfde3aedc82c4ad2e44db7b46b919c3664db5efabfa3d9eb3e7df1772e",
+                "source": "instances",
+                "path": "/home/pontus/Downloads/swebench-xl/instances/elastic__elasticsearch-144031"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "shared"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "elastic__elasticsearch-144040",
+                "type": "local",
+                "digest": "sha256:a1f9b550139e3f05865d4adb88021f79cb97814d10de748d7edffed6a1989216",
+                "source": "instances",
+                "path": "/home/pontus/Downloads/swebench-xl/instances/elastic__elasticsearch-144040"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "shared"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "elastic__elasticsearch-144183",
+                "type": "local",
+                "digest": "sha256:be6e13d82f0be3ee47d36421f6c5841b36b5e8b9f6a9b19a509ac794393ef864",
+                "source": "instances",
+                "path": "/home/pontus/Downloads/swebench-xl/instances/elastic__elasticsearch-144183"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "shared"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "elastic__elasticsearch-144308",
+                "type": "local",
+                "digest": "sha256:6479d615f2717dbfe6ad403f522f1992b9709197e7cce193b74073746e7fef66",
+                "source": "instances",
+                "path": "/home/pontus/Downloads/swebench-xl/instances/elastic__elasticsearch-144308"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "shared"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "elastic__elasticsearch-144545",
+                "type": "local",
+                "digest": "sha256:6d1351bdbb658ea4d46903bb8ef6f5840ebc458769e7c31884bf953a317b8f6a",
+                "source": "instances",
+                "path": "/home/pontus/Downloads/swebench-xl/instances/elastic__elasticsearch-144545"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "shared"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "elastic__elasticsearch-144588",
+                "type": "local",
+                "digest": "sha256:9d6841ee4b0a5c88f95e432fe51c3a5035798a8c13a75c9e84f172560e25a920",
+                "source": "instances",
+                "path": "/home/pontus/Downloads/swebench-xl/instances/elastic__elasticsearch-144588"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "shared"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "huggingface__transformers-42136",
+                "type": "local",
+                "digest": "sha256:bbebdb6fb54b1fdc825c9b73c99ee6ce5079ef4777402f20a73a70b6aa467186",
+                "source": "instances",
+                "path": "/home/pontus/Downloads/swebench-xl/instances/huggingface__transformers-42136"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "shared"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "huggingface__transformers-42227",
+                "type": "local",
+                "digest": "sha256:7f9c21137b6ceaa10565a32743a1beedb3c5965bc2afc50098f7a7cb84ef8ee7",
+                "source": "instances",
+                "path": "/home/pontus/Downloads/swebench-xl/instances/huggingface__transformers-42227"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "shared"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "huggingface__transformers-43047",
+                "type": "local",
+                "digest": "sha256:52b2c9974e536e5cf29a9a5609793fd943dedc7c0dd2d777509f8825a1ff8b10",
+                "source": "instances",
+                "path": "/home/pontus/Downloads/swebench-xl/instances/huggingface__transformers-43047"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "shared"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "huggingface__transformers-43227",
+                "type": "local",
+                "digest": "sha256:ce8f84bcb15d607db9666e7c6625ac77c1bd6cbb5ee7134dc1477f6de7453a09",
+                "source": "instances",
+                "path": "/home/pontus/Downloads/swebench-xl/instances/huggingface__transformers-43227"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "shared"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "huggingface__transformers-43721",
+                "type": "local",
+                "digest": "sha256:e2a25d9fd321587b3b20dd96195f077af118a741505d30af8ac137d763e2fb29",
+                "source": "instances",
+                "path": "/home/pontus/Downloads/swebench-xl/instances/huggingface__transformers-43721"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "shared"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "huggingface__transformers-44081",
+                "type": "local",
+                "digest": "sha256:2f4cb7440a546bdc5661a04d7183b2e184e5d7c43733c188a9d7e6a4118ef708",
+                "source": "instances",
+                "path": "/home/pontus/Downloads/swebench-xl/instances/huggingface__transformers-44081"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "shared"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "huggingface__transformers-44406",
+                "type": "local",
+                "digest": "sha256:cbbf1ee8bc8831e45d6e9db4feb94b875e23b90df3c7b3d349583aa502073af1",
+                "source": "instances",
+                "path": "/home/pontus/Downloads/swebench-xl/instances/huggingface__transformers-44406"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "shared"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "huggingface__transformers-44487",
+                "type": "local",
+                "digest": "sha256:a938356f3660147d27e165758813882c5b1df4c34f20319f24205555828a4f3f",
+                "source": "instances",
+                "path": "/home/pontus/Downloads/swebench-xl/instances/huggingface__transformers-44487"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "shared"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "huggingface__transformers-45184",
+                "type": "local",
+                "digest": "sha256:5f0f63de6f41c2300c42f5ca2765c9179d06757947fdb8efe67431c51a5edccf",
+                "source": "instances",
+                "path": "/home/pontus/Downloads/swebench-xl/instances/huggingface__transformers-45184"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "shared"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "huggingface__transformers-45394",
+                "type": "local",
+                "digest": "sha256:5e33dc1c43ba7ee90061614364b76b754b12fae9c2046fa9cf8091491ded2901",
+                "source": "instances",
+                "path": "/home/pontus/Downloads/swebench-xl/instances/huggingface__transformers-45394"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "shared"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "huggingface__transformers-45432",
+                "type": "local",
+                "digest": "sha256:efcedb4df607a2dc2c7e5fce5f3dbd7bea287aecff9c8dfe236867d4f1ef6e47",
+                "source": "instances",
+                "path": "/home/pontus/Downloads/swebench-xl/instances/huggingface__transformers-45432"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "shared"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "huggingface__transformers-45433",
+                "type": "local",
+                "digest": "sha256:950811e3b3d087375808ef3e7e4cf2c7a57519c743c0f3c66131e6e920bce60e",
+                "source": "instances",
+                "path": "/home/pontus/Downloads/swebench-xl/instances/huggingface__transformers-45433"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "shared"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "huggingface__transformers-45448",
+                "type": "local",
+                "digest": "sha256:977e2df3d6d99dc3777fa63e6d03fb74f860545436635a80f5501ad8a68b58f3",
+                "source": "instances",
+                "path": "/home/pontus/Downloads/swebench-xl/instances/huggingface__transformers-45448"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "shared"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "huggingface__transformers-45473",
+                "type": "local",
+                "digest": "sha256:6c382ad256e05854304771fc0b385474020b3673c118b1bf49de563e62ed3c6e",
+                "source": "instances",
+                "path": "/home/pontus/Downloads/swebench-xl/instances/huggingface__transformers-45473"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "shared"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "huggingface__transformers-45477",
+                "type": "local",
+                "digest": "sha256:eefe00cc6096ccab409c77d281e23dfcdb4de7e9c52e034a32fb092d55b5b235",
+                "source": "instances",
+                "path": "/home/pontus/Downloads/swebench-xl/instances/huggingface__transformers-45477"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "shared"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "huggingface__transformers-45513",
+                "type": "local",
+                "digest": "sha256:529f58b6a3b74daa503dbfcc27040be25449061d3b4002b38e3d55e7913cca82",
+                "source": "instances",
+                "path": "/home/pontus/Downloads/swebench-xl/instances/huggingface__transformers-45513"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "shared"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "huggingface__transformers-45540",
+                "type": "local",
+                "digest": "sha256:3142f9d5d844c0a1c07a843f34afa77fce890d9216bcebba210d9e52d39d7c09",
+                "source": "instances",
+                "path": "/home/pontus/Downloads/swebench-xl/instances/huggingface__transformers-45540"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "shared"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "huggingface__transformers-45596",
+                "type": "local",
+                "digest": "sha256:38a03bb7ee0523d0954de984be889a3c45ee4c4c2f91dddff8bce3853d0e3d7b",
+                "source": "instances",
+                "path": "/home/pontus/Downloads/swebench-xl/instances/huggingface__transformers-45596"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "shared"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "huggingface__transformers-45844",
+                "type": "local",
+                "digest": "sha256:934e464ff5a2bc30f10816f7a488e5846c9b17f5ce83f8551dfb39f27ce359dc",
+                "source": "instances",
+                "path": "/home/pontus/Downloads/swebench-xl/instances/huggingface__transformers-45844"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "shared"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "microsoft__typescript-60528",
+                "type": "local",
+                "digest": "sha256:b465b78a44f487e8ef822b9485900b6c3c4b768b12984d8a94cb56e23ff5a8d1",
+                "source": "instances",
+                "path": "/home/pontus/Downloads/swebench-xl/instances/microsoft__typescript-60528"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "shared"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "microsoft__typescript-62418",
+                "type": "local",
+                "digest": "sha256:0b284c3d109a442b1d0b5e0c029032e5bade0c2d461f604314799ed3962d9d91",
+                "source": "instances",
+                "path": "/home/pontus/Downloads/swebench-xl/instances/microsoft__typescript-62418"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "shared"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "microsoft__typescript-62628",
+                "type": "local",
+                "digest": "sha256:d8a7c1b59e9cc6a73ad6750c3afb2d021d62f924bdf5a835433d8faf51d32bd0",
+                "source": "instances",
+                "path": "/home/pontus/Downloads/swebench-xl/instances/microsoft__typescript-62628"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "shared"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "microsoft__typescript-62789",
+                "type": "local",
+                "digest": "sha256:6a553fb9131eb3b141a9a64364e8f886a291d1b3358ad7d401be65aa6d2a0d14",
+                "source": "instances",
+                "path": "/home/pontus/Downloads/swebench-xl/instances/microsoft__typescript-62789"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "shared"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "microsoft__typescript-62894",
+                "type": "local",
+                "digest": "sha256:018029bc3ca9947ac60fc3e082b680f5ceaa832bb86a3993f39c39cbcaac5fe4",
+                "source": "instances",
+                "path": "/home/pontus/Downloads/swebench-xl/instances/microsoft__typescript-62894"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "shared"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "microsoft__typescript-63026",
+                "type": "local",
+                "digest": "sha256:ae6f01215671027fb82d37d16ae3d90c30d9c9ed96459bbcf17cc1d0f9e35cec",
+                "source": "instances",
+                "path": "/home/pontus/Downloads/swebench-xl/instances/microsoft__typescript-63026"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "shared"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "microsoft__typescript-63038",
+                "type": "local",
+                "digest": "sha256:25dedd5d24c971602384845bb52f3d70f3975726e4f8cdedb0eaf061d8e4f0b9",
+                "source": "instances",
+                "path": "/home/pontus/Downloads/swebench-xl/instances/microsoft__typescript-63038"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "shared"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "microsoft__typescript-63043",
+                "type": "local",
+                "digest": "sha256:509229a4de6224c6f8e4cac81c2d94c12bffea8557eab94e8e1366615042402d",
+                "source": "instances",
+                "path": "/home/pontus/Downloads/swebench-xl/instances/microsoft__typescript-63043"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "shared"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "microsoft__typescript-63070",
+                "type": "local",
+                "digest": "sha256:7d455d9e481d493480e4992e56ff6b9ebf2018fbdb73f7722a187776c3f437d5",
+                "source": "instances",
+                "path": "/home/pontus/Downloads/swebench-xl/instances/microsoft__typescript-63070"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "shared"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "microsoft__typescript-63084",
+                "type": "local",
+                "digest": "sha256:03932e3f93458c6c28fc9469c01057c2e96b0725ea4fef7fba1264842d2eb9a9",
+                "source": "instances",
+                "path": "/home/pontus/Downloads/swebench-xl/instances/microsoft__typescript-63084"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "shared"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "microsoft__typescript-63137",
+                "type": "local",
+                "digest": "sha256:e41b568e74a170aaed113033bd47bb6ea84885288ab650b0adc35429602df43d",
+                "source": "instances",
+                "path": "/home/pontus/Downloads/swebench-xl/instances/microsoft__typescript-63137"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "shared"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "microsoft__typescript-63163",
+                "type": "local",
+                "digest": "sha256:801ab18efc7b1aeb927600555106e644e9f9c8a059c7651f6150bebb479989b5",
+                "source": "instances",
+                "path": "/home/pontus/Downloads/swebench-xl/instances/microsoft__typescript-63163"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "shared"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "microsoft__typescript-63172",
+                "type": "local",
+                "digest": "sha256:f743da9eaf21d20a84345a7b0be83fd02a03b38ac2ea7c34486eaf1f806515ef",
+                "source": "instances",
+                "path": "/home/pontus/Downloads/swebench-xl/instances/microsoft__typescript-63172"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "shared"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "microsoft__typescript-63200",
+                "type": "local",
+                "digest": "sha256:4b3d57a93d58bb061e6ea36e0e67f79243c37a03844e94aad06009bb926d25e1",
+                "source": "instances",
+                "path": "/home/pontus/Downloads/swebench-xl/instances/microsoft__typescript-63200"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "shared"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "microsoft__typescript-63327",
+                "type": "local",
+                "digest": "sha256:65ad1dfaff880b6b7e821e1f408a8e70cf6a1ec7a911d7fbddad079195fa94a5",
+                "source": "instances",
+                "path": "/home/pontus/Downloads/swebench-xl/instances/microsoft__typescript-63327"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "shared"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "microsoft__vscode-288335",
+                "type": "local",
+                "digest": "sha256:4cb40099a188e5706baf1851666d228f8232d077fc9bdd23189daa193e7f5217",
+                "source": "instances",
+                "path": "/home/pontus/Downloads/swebench-xl/instances/microsoft__vscode-288335"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "shared"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "microsoft__vscode-295139",
+                "type": "local",
+                "digest": "sha256:eb58727d0c0223a5ed79dc49bf80a8be10363ec85796b7b21850312eac91b951",
+                "source": "instances",
+                "path": "/home/pontus/Downloads/swebench-xl/instances/microsoft__vscode-295139"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "shared"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "microsoft__vscode-297020",
+                "type": "local",
+                "digest": "sha256:c2855e2e6de2b65a0257d4ec5a5e232238a5ba91e5a1b02ae361973a418badc4",
+                "source": "instances",
+                "path": "/home/pontus/Downloads/swebench-xl/instances/microsoft__vscode-297020"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "shared"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "microsoft__vscode-298772",
+                "type": "local",
+                "digest": "sha256:99436817d2a3571292ed352dfe5edf48882d8ae03f6caa5c5e54af528049d6ee",
+                "source": "instances",
+                "path": "/home/pontus/Downloads/swebench-xl/instances/microsoft__vscode-298772"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "shared"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "microsoft__vscode-298829",
+                "type": "local",
+                "digest": "sha256:e6d5df4a80839a6c0ad7aae7224e127c178370fe402084c09f74fca0f8f74d75",
+                "source": "instances",
+                "path": "/home/pontus/Downloads/swebench-xl/instances/microsoft__vscode-298829"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "shared"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "microsoft__vscode-301740",
+                "type": "local",
+                "digest": "sha256:c03466f30b1881fb4e465783aa0c1837f1ee73d4f716c9b53cb7abf8174b10ef",
+                "source": "instances",
+                "path": "/home/pontus/Downloads/swebench-xl/instances/microsoft__vscode-301740"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "shared"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "microsoft__vscode-302160",
+                "type": "local",
+                "digest": "sha256:7e6e69dfbe77319dbb7625e2da48a481c912e5c03ce2047aacac746468c8ae59",
+                "source": "instances",
+                "path": "/home/pontus/Downloads/swebench-xl/instances/microsoft__vscode-302160"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "shared"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "microsoft__vscode-305859",
+                "type": "local",
+                "digest": "sha256:ca34862201d9e27e503029246aee0532d16df7b592aace73a91871aec55a2116",
+                "source": "instances",
+                "path": "/home/pontus/Downloads/swebench-xl/instances/microsoft__vscode-305859"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "shared"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "microsoft__vscode-306139",
+                "type": "local",
+                "digest": "sha256:551db213fa92034bc7cdcb8aec160c04293fc622bc09bee0574837b47cffba2b",
+                "source": "instances",
+                "path": "/home/pontus/Downloads/swebench-xl/instances/microsoft__vscode-306139"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "shared"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "microsoft__vscode-306184",
+                "type": "local",
+                "digest": "sha256:6c3e2ed711e80378d5fb625b2a7a46e0cbee84d223ece6902653cada473be360",
+                "source": "instances",
+                "path": "/home/pontus/Downloads/swebench-xl/instances/microsoft__vscode-306184"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "shared"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "microsoft__vscode-308000",
+                "type": "local",
+                "digest": "sha256:2c6d2a2aeecce0af761e2fe826a42532d89a9323640dd5839277a00ccbccda57",
+                "source": "instances",
+                "path": "/home/pontus/Downloads/swebench-xl/instances/microsoft__vscode-308000"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "shared"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "microsoft__vscode-314245",
+                "type": "local",
+                "digest": "sha256:7897d02b157c0382f93e039d3e6333c9c266fb99df3eb4ba1f9014bcc300b788",
+                "source": "instances",
+                "path": "/home/pontus/Downloads/swebench-xl/instances/microsoft__vscode-314245"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "shared"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "microsoft__vscode-314281",
+                "type": "local",
+                "digest": "sha256:ab4de518d6ddfa93441d7570ffe37d7dd1935b56c9534999ac6fa2aeed9e6934",
+                "source": "instances",
+                "path": "/home/pontus/Downloads/swebench-xl/instances/microsoft__vscode-314281"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "shared"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "microsoft__vscode-314332",
+                "type": "local",
+                "digest": "sha256:8fd7932e73ca79442fc4cffed4ce3ee0bd962dcf95cf7fb5839fc0bc27ef5f3c",
+                "source": "instances",
+                "path": "/home/pontus/Downloads/swebench-xl/instances/microsoft__vscode-314332"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "shared"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "microsoft__vscode-315245",
+                "type": "local",
+                "digest": "sha256:065d0942556c170695bd41ebc771d166cef4774aa92aee645492280dfc9e423a",
+                "source": "instances",
+                "path": "/home/pontus/Downloads/swebench-xl/instances/microsoft__vscode-315245"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "shared"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "microsoft__vscode-315413",
+                "type": "local",
+                "digest": "sha256:2ee55da0343419c26d092d856e0a07129862770393799eb5fbafdbdd33c3a07f",
+                "source": "instances",
+                "path": "/home/pontus/Downloads/swebench-xl/instances/microsoft__vscode-315413"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "shared"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "microsoft__vscode-315475",
+                "type": "local",
+                "digest": "sha256:d145c37a110bae68f22d4ccad04c622dff10cbb7638546ada443ced491850dd3",
+                "source": "instances",
+                "path": "/home/pontus/Downloads/swebench-xl/instances/microsoft__vscode-315475"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "shared"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "microsoft__vscode-315488",
+                "type": "local",
+                "digest": "sha256:009f6c1d179256f2a34907674e87404db33510edf983ddfaadc461998fcb175a",
+                "source": "instances",
+                "path": "/home/pontus/Downloads/swebench-xl/instances/microsoft__vscode-315488"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "shared"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "microsoft__vscode-315490",
+                "type": "local",
+                "digest": "sha256:ad0829fe2fdce811d3eec1716c0dff01270a9291b0432a02a8a01d714a45ff63",
+                "source": "instances",
+                "path": "/home/pontus/Downloads/swebench-xl/instances/microsoft__vscode-315490"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "shared"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "microsoft__vscode-315491",
+                "type": "local",
+                "digest": "sha256:49a84118873d1cd6cb0bc4661f4a5f2ab106d0a2734884ec3ef1152e6d79e531",
+                "source": "instances",
+                "path": "/home/pontus/Downloads/swebench-xl/instances/microsoft__vscode-315491"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "shared"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "microsoft__vscode-315523",
+                "type": "local",
+                "digest": "sha256:8b5660fe6eb919dd746937599af2a92918307f9dd94c1287316682def36ecbc7",
+                "source": "instances",
+                "path": "/home/pontus/Downloads/swebench-xl/instances/microsoft__vscode-315523"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "shared"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "microsoft__vscode-315552",
+                "type": "local",
+                "digest": "sha256:e88f57355ee62a6ff8a75408c223cef6adc14c3a909b0c548967932caf062918",
+                "source": "instances",
+                "path": "/home/pontus/Downloads/swebench-xl/instances/microsoft__vscode-315552"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "shared"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "microsoft__vscode-315556",
+                "type": "local",
+                "digest": "sha256:8db38f829590f4721928fac7a718df3d2a6b847b7fbf8987bfecb1229158ca2d",
+                "source": "instances",
+                "path": "/home/pontus/Downloads/swebench-xl/instances/microsoft__vscode-315556"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "shared"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "microsoft__vscode-315562",
+                "type": "local",
+                "digest": "sha256:2e4c762d57cfb0e8d2ee5d9e924a8c392f91d9df97b685fb28c0ca9c1e17530e",
+                "source": "instances",
+                "path": "/home/pontus/Downloads/swebench-xl/instances/microsoft__vscode-315562"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "shared"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "microsoft__vscode-315579",
+                "type": "local",
+                "digest": "sha256:04d3a35cbed3f43a8c6aca525455ccee3d89305c0099cea2ed88e3b07558ce66",
+                "source": "instances",
+                "path": "/home/pontus/Downloads/swebench-xl/instances/microsoft__vscode-315579"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "shared"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "microsoft__vscode-315625",
+                "type": "local",
+                "digest": "sha256:e973bca9a2b84ca6fce48cc5e9b68bb41e860493ced0949b1f3ad7081b09263d",
+                "source": "instances",
+                "path": "/home/pontus/Downloads/swebench-xl/instances/microsoft__vscode-315625"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "shared"
+            }
+        },
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "microsoft__vscode-315626",
+                "type": "local",
+                "digest": "sha256:f5a89eb662b360c355cde3d760285a2481264dc09a09c857ce679b20fe8c389e",
+                "source": "instances",
+                "path": "/home/pontus/Downloads/swebench-xl/instances/microsoft__vscode-315626"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "tokenizer_agent:RepoTokenizerAgent",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": true,
+                "environment_mode": "shared"
+            }
+        }
+    ]
+}
