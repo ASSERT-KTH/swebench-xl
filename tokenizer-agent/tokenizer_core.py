@@ -10,6 +10,8 @@ container first) imports this module.
 
 from __future__ import annotations
 
+import csv
+import gzip
 import os
 from pathlib import Path
 from typing import Any
@@ -158,13 +160,43 @@ def _safe_encode_count(enc: tiktoken.Encoding, content: str) -> int:
     return total
 
 
+def count_lines(content: str) -> tuple[int, int]:
+    """Return (lines, nonblank_lines) for decoded file text.
+
+    A line is a ``\n``-terminated run of text; an unterminated last line
+    still counts, so ``"a\nb"`` and ``"a\nb\n"`` are both 2 lines. Text is
+    read with universal newlines, so ``\r\n`` and ``\r`` count as ``\n``.
+    A line is non-blank if it has any non-whitespace character.
+    """
+    parts = content.split("\n")
+    if parts[-1] == "":
+        parts.pop()
+    return len(parts), sum(1 for line in parts if line.strip())
+
+
+def _file_bytes(path: str) -> int | None:
+    """On-disk size of `path` (following symlinks), or None if it can't be stat'ed."""
+    try:
+        return os.stat(path).st_size
+    except OSError:
+        return None
+
+
 def walk_and_count(
     repo_dir: Path,
     enc: tiktoken.Encoding,
 ) -> tuple[list[dict[str, Any]], dict[str, dict[str, int]]]:
-    """Walk a local copy of the repo tree and return per-file token counts."""
+    """Walk a local copy of the repo tree and return per-file counts.
+
+    Every file under `repo_dir` (outside SKIP_DIRS) gets an entry in the
+    returned list. Files we tokenize have ``tokenized=True`` plus tokens,
+    chars, lines and bytes. Files we don't have ``tokenized=False``, a
+    ``skip_reason`` (``"extension"``: in SKIP_EXTENSIONS; ``"binary"``: not
+    valid UTF-8; ``"unreadable"``: e.g. a broken symlink) and only ``bytes``. ``by_extension`` only
+    aggregates tokenized files, as before.
+    """
     file_results: list[dict[str, Any]] = []
-    by_extension: dict[str, dict[str, int]] = {}  # ext → {tokens, files}
+    by_extension: dict[str, dict[str, int]] = {}  # ext → {tokens, files, lines, ...}
 
     for root, dirs, files in os.walk(repo_dir):
         # Prune skipped directories in-place so os.walk won't descend
@@ -172,24 +204,43 @@ def walk_and_count(
 
         for fname in files:
             fpath = os.path.join(root, fname)
-
-            if should_skip_extension(fpath):
-                continue
-
-            content = try_read_text(fpath)
-            if content is None:
-                continue
-
-            tokens = _safe_encode_count(enc, content)
             rel_path = os.path.relpath(fpath, repo_dir)
             _, ext = os.path.splitext(fname)
             ext = ext.lower() if ext else "(no extension)"
+            size = _file_bytes(fpath)
 
-            file_results.append({"path": rel_path, "tokens": tokens, "chars": len(content)})
+            if should_skip_extension(fpath):
+                content = None
+                skip_reason = "extension"
+            else:
+                content = try_read_text(fpath)
+                if content is None:
+                    skip_reason = "unreadable" if size is None else "binary"
 
-            entry = by_extension.setdefault(ext, {"tokens": 0, "files": 0})
+            if content is None:
+                file_results.append({
+                    "path": rel_path, "ext": ext, "tokenized": False,
+                    "skip_reason": skip_reason, "bytes": size,
+                })
+                continue
+
+            tokens = _safe_encode_count(enc, content)
+            lines, nonblank_lines = count_lines(content)
+
+            file_results.append({
+                "path": rel_path, "ext": ext, "tokenized": True,
+                "tokens": tokens, "chars": len(content), "bytes": size,
+                "lines": lines, "nonblank_lines": nonblank_lines,
+            })
+
+            entry = by_extension.setdefault(
+                ext, {"tokens": 0, "files": 0, "lines": 0, "nonblank_lines": 0, "bytes": 0}
+            )
             entry["tokens"] += tokens
             entry["files"] += 1
+            entry["lines"] += lines
+            entry["nonblank_lines"] += nonblank_lines
+            entry["bytes"] += size or 0
 
     return file_results, by_extension
 
@@ -200,24 +251,30 @@ def build_token_result(
     by_extension: dict[str, dict[str, int]],
     encoding_name: str,
 ) -> dict[str, Any]:
-    total_tokens = sum(f["tokens"] for f in file_results)
-    total_characters = sum(f.get("chars", 0) for f in file_results)
-    total_files = len(file_results)
+    tokenized = [f for f in file_results if f["tokenized"]]
+    skipped = [f for f in file_results if not f["tokenized"]]
+
+    total_tokens = sum(f["tokens"] for f in tokenized)
+    total_characters = sum(f["chars"] for f in tokenized)
+    total_files = len(tokenized)
+    total_lines = sum(f["lines"] for f in tokenized)
+    total_nonblank_lines = sum(f["nonblank_lines"] for f in tokenized)
+    total_bytes = sum(f["bytes"] or 0 for f in tokenized)
 
     sorted_ext = dict(
         sorted(by_extension.items(), key=lambda x: x[1]["tokens"], reverse=True)
     )
 
-    top_files = sorted(file_results, key=lambda x: x["tokens"], reverse=True)[
-        :TOP_N_FILES
+    top_files = [
+        {"path": f["path"], "tokens": f["tokens"], "chars": f["chars"]}
+        for f in sorted(tokenized, key=lambda x: x["tokens"], reverse=True)[:TOP_N_FILES]
     ]
 
-    source_code_tokens = 0
-    source_code_files = 0
+    source = {"tokens": 0, "files": 0, "lines": 0, "nonblank_lines": 0, "bytes": 0}
     for ext, info in by_extension.items():
         if ext in SOURCE_CODE_EXTENSIONS:
-            source_code_tokens += info["tokens"]
-            source_code_files += info["files"]
+            for key in source:
+                source[key] += info[key]
 
     return {
         "instance_id": instance_id,
@@ -225,8 +282,32 @@ def build_token_result(
         "total_tokens": total_tokens,
         "total_characters": total_characters,
         "total_files": total_files,
-        "source_code_tokens": source_code_tokens,
-        "source_code_files": source_code_files,
+        "total_lines": total_lines,
+        "total_nonblank_lines": total_nonblank_lines,
+        "total_bytes": total_bytes,
+        "source_code_tokens": source["tokens"],
+        "source_code_files": source["files"],
+        "source_code_lines": source["lines"],
+        "source_code_nonblank_lines": source["nonblank_lines"],
+        "source_code_bytes": source["bytes"],
+        "skipped_files": len(skipped),
+        "skipped_bytes": sum(f["bytes"] or 0 for f in skipped),
         "by_extension": sorted_ext,
         "top_files": top_files,
     }
+
+
+# Column order of the per-file CSV written next to token_counts.json.
+FILE_CSV_COLUMNS = [
+    "path", "ext", "tokenized", "skip_reason",
+    "tokens", "chars", "bytes", "lines", "nonblank_lines",
+]
+
+
+def write_files_csv(file_results: list[dict[str, Any]], out_path: Path) -> None:
+    """Write one row per file (tokenized or not) as gzip-compressed CSV."""
+    with gzip.open(out_path, "wt", encoding="utf-8", newline="") as f:
+        writer = csv.DictWriter(f, fieldnames=FILE_CSV_COLUMNS, extrasaction="raise")
+        writer.writeheader()
+        for row in sorted(file_results, key=lambda r: r["path"]):
+            writer.writerow({**row, "tokenized": int(row["tokenized"])})

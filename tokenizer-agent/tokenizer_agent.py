@@ -18,7 +18,7 @@ repository is, independent of whether any agent can actually solve it.
   (e.g. Helm's chart-loader tests, which symlink to ``/dev/null``), and
   ``"data"`` refuses to extract those.
 - Results are written using Harbor's own conventions: a detailed
-  ``token_counts.json`` and an ATIF ``trajectories/trajectory.json`` under the
+  ``token_counts.json``, a per-file ``files.csv.gz`` and an ATIF ``trajectories/trajectory.json`` under the
   agent's log directory (``self.logs_dir``, i.e. ``<trial_dir>/agent/``), and
   a summary on ``AgentContext.metadata`` so it shows up in each trial's
   ``result.json``. See ``benchmark_size_stats.py`` for aggregating these
@@ -58,6 +58,7 @@ from tokenizer_core import (
     SKIP_DIRS,
     build_token_result,
     walk_and_count,
+    write_files_csv,
 )
 
 # ---------------------------------------------------------------------------
@@ -175,7 +176,7 @@ class RepoTokenizerAgent(BaseAgent):
 
     @override
     def version(self) -> str | None:
-        return "1.0.0"
+        return "1.1.0"
 
     @override
     async def setup(self, environment: BaseEnvironment) -> None:
@@ -210,6 +211,7 @@ class RepoTokenizerAgent(BaseAgent):
 
         self.logs_dir.mkdir(parents=True, exist_ok=True)
         self._write_token_counts(token_result)
+        write_files_csv(file_results, self.logs_dir / "files.csv.gz")
         self._write_trajectory(instance_id, testbed_dir, token_result, elapsed)
 
         # Harbor-native per-trial result: shows up under `agent_result.metadata`
@@ -223,6 +225,11 @@ class RepoTokenizerAgent(BaseAgent):
                 "total_files": token_result["total_files"],
                 "source_code_tokens": token_result["source_code_tokens"],
                 "source_code_files": token_result["source_code_files"],
+                "total_lines": token_result["total_lines"],
+                "total_bytes": token_result["total_bytes"],
+                "source_code_lines": token_result["source_code_lines"],
+                "source_code_bytes": token_result["source_code_bytes"],
+                "skipped_files": token_result["skipped_files"],
                 "elapsed_sec": round(elapsed, 2),
             }
         }
