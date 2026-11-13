@@ -1,0 +1,383 @@
+{
+  "instance_id": "pydata__xarray-3095",
+  "encoding": "cl100k_base",
+  "total_tokens": 1809841,
+  "total_characters": 4607387,
+  "total_files": 216,
+  "total_lines": 85211,
+  "total_nonblank_lines": 69449,
+  "total_bytes": 4607467,
+  "source_code_tokens": 616673,
+  "source_code_files": 136,
+  "source_code_lines": 68472,
+  "source_code_nonblank_lines": 56421,
+  "source_code_bytes": 2563173,
+  "skipped_files": 15,
+  "skipped_bytes": 1183447,
+  "by_extension": {
+    ".ipynb": {
+      "tokens": 1038715,
+      "files": 2,
+      "lines": 797,
+      "nonblank_lines": 797,
+      "bytes": 1465898
+    },
+    ".py": {
+      "tokens": 616655,
+      "files": 135,
+      "lines": 68470,
+      "nonblank_lines": 56419,
+      "bytes": 2563110
+    },
+    ".rst": {
+      "tokens": 122471,
+      "files": 31,
+      "lines": 12985,
+      "nonblank_lines": 9578,
+      "bytes": 470507
+    },
+    ".tex": {
+      "tokens": 12470,
+      "files": 3,
+      "lines": 824,
+      "nonblank_lines": 797,
+      "bytes": 32744
+    },
+    "(no extension)": {
+      "tokens": 11149,
+      "files": 13,
+      "lines": 1044,
+      "nonblank_lines": 878,
+      "bytes": 45263
+    },
+    ".yml": {
+      "tokens": 3056,
+      "files": 15,
+      "lines": 459,
+      "nonblank_lines": 417,
+      "bytes": 9651
+    },
+    ".json": {
+      "tokens": 1569,
+      "files": 1,
+      "lines": 151,
+      "nonblank_lines": 131,
+      "bytes": 6176
+    },
+    ".txt": {
+      "tokens": 1523,
+      "files": 5,
+      "lines": 204,
+      "nonblank_lines": 201,
+      "bytes": 5183
+    },
+    ".md": {
+      "tokens": 1020,
+      "files": 4,
+      "lines": 102,
+      "nonblank_lines": 67,
+      "bytes": 5098
+    },
+    ".cfg": {
+      "tokens": 710,
+      "files": 1,
+      "lines": 114,
+      "nonblank_lines": 107,
+      "bytes": 2537
+    },
+    ".ict": {
+      "tokens": 342,
+      "files": 1,
+      "lines": 31,
+      "nonblank_lines": 31,
+      "bytes": 702
+    },
+    ".css": {
+      "tokens": 78,
+      "files": 1,
+      "lines": 18,
+      "nonblank_lines": 14,
+      "bytes": 270
+    },
+    ".in": {
+      "tokens": 43,
+      "files": 1,
+      "lines": 8,
+      "nonblank_lines": 8,
+      "bytes": 180
+    },
+    ".html": {
+      "tokens": 22,
+      "files": 1,
+      "lines": 2,
+      "nonblank_lines": 2,
+      "bytes": 85
+    },
+    ".sh": {
+      "tokens": 18,
+      "files": 1,
+      "lines": 2,
+      "nonblank_lines": 2,
+      "bytes": 63
+    },
+    ".typed": {
+      "tokens": 0,
+      "files": 1,
+      "lines": 0,
+      "nonblank_lines": 0,
+      "bytes": 0
+    }
+  },
+  "top_files": [
+    {
+      "path": "examples/xarray_seasonal_means.ipynb",
+      "tokens": 632968,
+      "chars": 891787
+    },
+    {
+      "path": "examples/xarray_multidimensional_coords.ipynb",
+      "tokens": 405747,
+      "chars": 574111
+    },
+    {
+      "path": "xarray/tests/test_dataset.py",
+      "tokens": 54720,
+      "chars": 208672
+    },
+    {
+      "path": "xarray/tests/test_dataarray.py",
+      "tokens": 45082,
+      "chars": 170806
+    },
+    {
+      "path": "doc/whats-new.rst",
+      "tokens": 42056,
+      "chars": 152863
+    },
+    {
+      "path": "xarray/tests/test_backends.py",
+      "tokens": 40073,
+      "chars": 173907
+    },
+    {
+      "path": "xarray/core/dataset.py",
+      "tokens": 39358,
+      "chars": 185800
+    },
+    {
+      "path": "xarray/core/dataarray.py",
+      "tokens": 23347,
+      "chars": 105722
+    },
+    {
+      "path": "xarray/tests/test_variable.py",
+      "tokens": 22444,
+      "chars": 82713
+    },
+    {
+      "path": "xarray/tests/test_plot.py",
+      "tokens": 18780,
+      "chars": 70846
+    },
+    {
+      "path": "xarray/core/variable.py",
+      "tokens": 17307,
+      "chars": 81599
+    },
+    {
+      "path": "versioneer.py",
+      "tokens": 16316,
+      "chars": 68628
+    },
+    {
+      "path": "xarray/tests/test_cftime_offsets.py",
+      "tokens": 11349,
+      "chars": 34190
+    },
+    {
+      "path": "xarray/core/indexing.py",
+      "tokens": 10705,
+      "chars": 48079
+    },
+    {
+      "path": "xarray/backends/api.py",
+      "tokens": 10268,
+      "chars": 47735
+    },
+    {
+      "path": "xarray/tests/test_coding_times.py",
+      "tokens": 9892,
+      "chars": 37427
+    },
+    {
+      "path": "xarray/core/common.py",
+      "tokens": 9739,
+      "chars": 42170
+    },
+    {
+      "path": "xarray/tests/test_computation.py",
+      "tokens": 9492,
+      "chars": 36999
+    },
+    {
+      "path": "xarray/core/computation.py",
+      "tokens": 9459,
+      "chars": 43356
+    },
+    {
+      "path": "xarray/tests/test_combine.py",
+      "tokens": 9109,
+      "chars": 33312
+    },
+    {
+      "path": "doc/io.rst",
+      "tokens": 8409,
+      "chars": 32628
+    },
+    {
+      "path": "xarray/coding/cftime_offsets.py",
+      "tokens": 8321,
+      "chars": 36072
+    },
+    {
+      "path": "xarray/tests/test_cftimeindex.py",
+      "tokens": 8268,
+      "chars": 29546
+    },
+    {
+      "path": "xarray/tests/test_dask.py",
+      "tokens": 8187,
+      "chars": 32347
+    },
+    {
+      "path": "xarray/plot/plot.py",
+      "tokens": 7961,
+      "chars": 33036
+    },
+    {
+      "path": "doc/contributing.rst",
+      "tokens": 7085,
+      "chars": 30474
+    },
+    {
+      "path": "xarray/core/groupby.py",
+      "tokens": 6921,
+      "chars": 32881
+    },
+    {
+      "path": "xarray/tests/test_indexing.py",
+      "tokens": 6816,
+      "chars": 26623
+    },
+    {
+      "path": "doc/indexing.rst",
+      "tokens": 6767,
+      "chars": 25758
+    },
+    {
+      "path": "xarray/tests/test_accessor_str.py",
+      "tokens": 6765,
+      "chars": 24938
+    },
+    {
+      "path": "xarray/core/combine.py",
+      "tokens": 6323,
+      "chars": 29629
+    },
+    {
+      "path": "xarray/core/accessor_str.py",
+      "tokens": 6305,
+      "chars": 30275
+    },
+    {
+      "path": "doc/plotting.rst",
+      "tokens": 6185,
+      "chars": 23817
+    },
+    {
+      "path": "xarray/tests/test_duck_array_ops.py",
+      "tokens": 6006,
+      "chars": 23615
+    },
+    {
+      "path": "xarray/tests/test_interp.py",
+      "tokens": 5913,
+      "chars": 20189
+    },
+    {
+      "path": "xarray/plot/utils.py",
+      "tokens": 5824,
+      "chars": 23763
+    },
+    {
+      "path": "xarray/conventions.py",
+      "tokens": 5470,
+      "chars": 25750
+    },
+    {
+      "path": "xarray/backends/zarr.py",
+      "tokens": 5204,
+      "chars": 25410
+    },
+    {
+      "path": "doc/data-structures.rst",
+      "tokens": 5167,
+      "chars": 21398
+    },
+    {
+      "path": "xarray/core/rolling.py",
+      "tokens": 4700,
+      "chars": 21323
+    },
+    {
+      "path": "xarray/core/merge.py",
+      "tokens": 4699,
+      "chars": 22339
+    },
+    {
+      "path": "xarray/core/formatting.py",
+      "tokens": 4569,
+      "chars": 19440
+    },
+    {
+      "path": "xarray/coding/cftimeindex.py",
+      "tokens": 4543,
+      "chars": 19845
+    },
+    {
+      "path": "doc/computation.rst",
+      "tokens": 4495,
+      "chars": 17853
+    },
+    {
+      "path": "xarray/_version.py",
+      "tokens": 4463,
+      "chars": 18451
+    },
+    {
+      "path": "xarray/core/alignment.py",
+      "tokens": 4281,
+      "chars": 19344
+    },
+    {
+      "path": "xarray/core/utils.py",
+      "tokens": 4265,
+      "chars": 18285
+    },
+    {
+      "path": "doc/_static/dataset-diagram-square-logo.tex",
+      "tokens": 4180,
+      "chars": 10947
+    },
+    {
+      "path": "xarray/core/missing.py",
+      "tokens": 4172,
+      "chars": 18164
+    },
+    {
+      "path": "doc/_static/dataset-diagram-logo.tex",
+      "tokens": 4170,
+      "chars": 10922
+    }
+  ]
+}

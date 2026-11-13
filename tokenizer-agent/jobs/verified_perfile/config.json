@@ -1,0 +1,17 @@
+{
+    "job_name": "verified_perfile",
+    "verifier": {
+        "disable": true
+    },
+    "agents": [
+        {
+            "name": "tokenizer_agent:RepoTokenizerAgent"
+        }
+    ],
+    "datasets": [
+        {
+            "name": "swebench-verified",
+            "version": "1.0"
+        }
+    ]
+}

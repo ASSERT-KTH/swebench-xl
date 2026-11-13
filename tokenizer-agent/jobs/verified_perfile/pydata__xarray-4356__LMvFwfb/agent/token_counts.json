@@ -1,0 +1,397 @@
+{
+  "instance_id": "pydata__xarray-4356",
+  "encoding": "cl100k_base",
+  "total_tokens": 1020170,
+  "total_characters": 4025088,
+  "total_files": 253,
+  "total_lines": 115119,
+  "total_nonblank_lines": 95459,
+  "total_bytes": 4025218,
+  "source_code_tokens": 799875,
+  "source_code_files": 147,
+  "source_code_lines": 92434,
+  "source_code_nonblank_lines": 77038,
+  "source_code_bytes": 3211898,
+  "skipped_files": 15,
+  "skipped_bytes": 1183447,
+  "by_extension": {
+    ".py": {
+      "tokens": 799857,
+      "files": 146,
+      "lines": 92432,
+      "nonblank_lines": 77036,
+      "bytes": 3211835
+    },
+    ".rst": {
+      "tokens": 151654,
+      "files": 34,
+      "lines": 15658,
+      "nonblank_lines": 11888,
+      "bytes": 579365
+    },
+    ".ipynb": {
+      "tokens": 23166,
+      "files": 8,
+      "lines": 2451,
+      "nonblank_lines": 2451,
+      "bytes": 75680
+    },
+    "(no extension)": {
+      "tokens": 14007,
+      "files": 14,
+      "lines": 1361,
+      "nonblank_lines": 1111,
+      "bytes": 60408
+    },
+    ".tex": {
+      "tokens": 12470,
+      "files": 3,
+      "lines": 824,
+      "nonblank_lines": 797,
+      "bytes": 32744
+    },
+    ".yml": {
+      "tokens": 4836,
+      "files": 21,
+      "lines": 733,
+      "nonblank_lines": 686,
+      "bytes": 14970
+    },
+    ".json": {
+      "tokens": 4206,
+      "files": 3,
+      "lines": 423,
+      "nonblank_lines": 403,
+      "bytes": 15164
+    },
+    ".md": {
+      "tokens": 2572,
+      "files": 7,
+      "lines": 282,
+      "nonblank_lines": 219,
+      "bytes": 11284
+    },
+    ".txt": {
+      "tokens": 2218,
+      "files": 6,
+      "lines": 285,
+      "nonblank_lines": 281,
+      "bytes": 7592
+    },
+    ".css": {
+      "tokens": 1875,
+      "files": 2,
+      "lines": 362,
+      "nonblank_lines": 299,
+      "bytes": 6241
+    },
+    ".cfg": {
+      "tokens": 1630,
+      "files": 1,
+      "lines": 200,
+      "nonblank_lines": 184,
+      "bytes": 6382
+    },
+    ".html": {
+      "tokens": 901,
+      "files": 2,
+      "lines": 17,
+      "nonblank_lines": 17,
+      "bytes": 1428
+    },
+    ".ict": {
+      "tokens": 342,
+      "files": 1,
+      "lines": 31,
+      "nonblank_lines": 31,
+      "bytes": 702
+    },
+    ".yaml": {
+      "tokens": 313,
+      "files": 1,
+      "lines": 33,
+      "nonblank_lines": 33,
+      "bytes": 983
+    },
+    ".toml": {
+      "tokens": 67,
+      "files": 1,
+      "lines": 18,
+      "nonblank_lines": 14,
+      "bytes": 212
+    },
+    ".in": {
+      "tokens": 38,
+      "files": 1,
+      "lines": 7,
+      "nonblank_lines": 7,
+      "bytes": 165
+    },
+    ".sh": {
+      "tokens": 18,
+      "files": 1,
+      "lines": 2,
+      "nonblank_lines": 2,
+      "bytes": 63
+    },
+    ".typed": {
+      "tokens": 0,
+      "files": 1,
+      "lines": 0,
+      "nonblank_lines": 0,
+      "bytes": 0
+    }
+  },
+  "top_files": [
+    {
+      "path": "xarray/tests/test_dataarray.py",
+      "tokens": 67592,
+      "chars": 248517
+    },
+    {
+      "path": "xarray/tests/test_dataset.py",
+      "tokens": 62032,
+      "chars": 230172
+    },
+    {
+      "path": "doc/whats-new.rst",
+      "tokens": 58328,
+      "chars": 209951
+    },
+    {
+      "path": "xarray/core/dataset.py",
+      "tokens": 54145,
+      "chars": 244075
+    },
+    {
+      "path": "xarray/tests/test_units.py",
+      "tokens": 44143,
+      "chars": 181744
+    },
+    {
+      "path": "xarray/tests/test_backends.py",
+      "tokens": 42806,
+      "chars": 180809
+    },
+    {
+      "path": "xarray/core/dataarray.py",
+      "tokens": 34268,
+      "chars": 147870
+    },
+    {
+      "path": "xarray/tests/test_variable.py",
+      "tokens": 24360,
+      "chars": 87742
+    },
+    {
+      "path": "xarray/tests/test_plot.py",
+      "tokens": 23652,
+      "chars": 87307
+    },
+    {
+      "path": "xarray/core/variable.py",
+      "tokens": 21224,
+      "chars": 98653
+    },
+    {
+      "path": "xarray/tests/test_dask.py",
+      "tokens": 14516,
+      "chars": 54959
+    },
+    {
+      "path": "xarray/core/common.py",
+      "tokens": 13761,
+      "chars": 55903
+    },
+    {
+      "path": "xarray/core/computation.py",
+      "tokens": 13542,
+      "chars": 54771
+    },
+    {
+      "path": "xarray/tests/test_computation.py",
+      "tokens": 12929,
+      "chars": 47999
+    },
+    {
+      "path": "xarray/core/indexing.py",
+      "tokens": 11663,
+      "chars": 51766
+    },
+    {
+      "path": "xarray/tests/test_cftime_offsets.py",
+      "tokens": 11657,
+      "chars": 36013
+    },
+    {
+      "path": "xarray/tests/test_cftimeindex.py",
+      "tokens": 11173,
+      "chars": 37968
+    },
+    {
+      "path": "xarray/backends/api.py",
+      "tokens": 11081,
+      "chars": 50408
+    },
+    {
+      "path": "doc/io.rst",
+      "tokens": 10096,
+      "chars": 38629
+    },
+    {
+      "path": "xarray/tests/test_coding_times.py",
+      "tokens": 9288,
+      "chars": 33660
+    },
+    {
+      "path": "xarray/tests/test_combine.py",
+      "tokens": 9162,
+      "chars": 31866
+    },
+    {
+      "path": "xarray/coding/cftime_offsets.py",
+      "tokens": 8310,
+      "chars": 35720
+    },
+    {
+      "path": "doc/examples/apply_ufunc_vectorize_1d.ipynb",
+      "tokens": 8297,
+      "chars": 28157
+    },
+    {
+      "path": "xarray/plot/plot.py",
+      "tokens": 8198,
+      "chars": 33300
+    },
+    {
+      "path": "xarray/core/groupby.py",
+      "tokens": 7871,
+      "chars": 35258
+    },
+    {
+      "path": "xarray/core/merge.py",
+      "tokens": 7842,
+      "chars": 32163
+    },
+    {
+      "path": "xarray/tests/test_interp.py",
+      "tokens": 7713,
+      "chars": 26064
+    },
+    {
+      "path": "xarray/tests/test_duck_array_ops.py",
+      "tokens": 7656,
+      "chars": 28434
+    },
+    {
+      "path": "xarray/tests/test_sparse.py",
+      "tokens": 7628,
+      "chars": 28177
+    },
+    {
+      "path": "doc/contributing.rst",
+      "tokens": 7519,
+      "chars": 32211
+    },
+    {
+      "path": "doc/plotting.rst",
+      "tokens": 7484,
+      "chars": 29038
+    },
+    {
+      "path": "xarray/tests/test_accessor_str.py",
+      "tokens": 6944,
+      "chars": 25549
+    },
+    {
+      "path": "xarray/tests/test_indexing.py",
+      "tokens": 6902,
+      "chars": 26721
+    },
+    {
+      "path": "doc/indexing.rst",
+      "tokens": 6774,
+      "chars": 25561
+    },
+    {
+      "path": "xarray/coding/cftimeindex.py",
+      "tokens": 6769,
+      "chars": 29020
+    },
+    {
+      "path": "xarray/core/combine.py",
+      "tokens": 6715,
+      "chars": 28226
+    },
+    {
+      "path": "xarray/plot/utils.py",
+      "tokens": 6528,
+      "chars": 25962
+    },
+    {
+      "path": "xarray/tests/test_concat.py",
+      "tokens": 6154,
+      "chars": 21555
+    },
+    {
+      "path": "xarray/core/accessor_str.py",
+      "tokens": 6137,
+      "chars": 29212
+    },
+    {
+      "path": "xarray/core/rolling.py",
+      "tokens": 6016,
+      "chars": 26632
+    },
+    {
+      "path": "xarray/tests/test_missing.py",
+      "tokens": 6013,
+      "chars": 20697
+    },
+    {
+      "path": "xarray/core/alignment.py",
+      "tokens": 5974,
+      "chars": 24262
+    },
+    {
+      "path": "xarray/core/missing.py",
+      "tokens": 5915,
+      "chars": 25094
+    },
+    {
+      "path": "doc/api-hidden.rst",
+      "tokens": 5885,
+      "chars": 23254
+    },
+    {
+      "path": "xarray/conventions.py",
+      "tokens": 5850,
+      "chars": 27119
+    },
+    {
+      "path": "xarray/tests/test_groupby.py",
+      "tokens": 5601,
+      "chars": 17452
+    },
+    {
+      "path": "xarray/backends/zarr.py",
+      "tokens": 5526,
+      "chars": 26140
+    },
+    {
+      "path": "doc/dask.rst",
+      "tokens": 5500,
+      "chars": 22170
+    },
+    {
+      "path": "xarray/core/utils.py",
+      "tokens": 5495,
+      "chars": 23089
+    },
+    {
+      "path": "doc/computation.rst",
+      "tokens": 5343,
+      "chars": 20870
+    }
+  ]
+}

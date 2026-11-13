@@ -1,0 +1,125 @@
+{
+    "id": "5061dbff-85e1-4db3-9bc7-dbdeece50bc8",
+    "task_name": "astropy__astropy-14539",
+    "trial_name": "astropy__astropy-14539__eq2gsnD",
+    "trial_uri": "file:///home/pontus/Documents/GitHub/swebench-xl/tokenizer-agent/jobs/verified_perfile/astropy__astropy-14539__eq2gsnD",
+    "task_id": {
+        "git_url": "https://github.com/laude-institute/harbor-datasets.git",
+        "git_commit_id": "86723674f04e4209ac479d0fb75d9d9f44b4377e",
+        "path": "datasets/swebench-verified/astropy__astropy-14539"
+    },
+    "source": "swebench-verified",
+    "task_checksum": "5a27f8a7b00423aadcdb40cb7b0af2d067a7a54413c787e75c51a8ab7a46dd14",
+    "config": {
+        "task": {
+            "path": "datasets/swebench-verified/astropy__astropy-14539",
+            "git_url": "https://github.com/laude-institute/harbor-datasets.git",
+            "git_commit_id": "86723674f04e4209ac479d0fb75d9d9f44b4377e",
+            "name": null,
+            "ref": null,
+            "overwrite": false,
+            "download_dir": null,
+            "source": "swebench-verified"
+        },
+        "trial_name": "astropy__astropy-14539__eq2gsnD",
+        "trials_dir": "jobs/verified_perfile",
+        "install_only": false,
+        "timeout_multiplier": 1.0,
+        "agent_timeout_multiplier": null,
+        "verifier_timeout_multiplier": null,
+        "agent_setup_timeout_multiplier": null,
+        "environment_build_timeout_multiplier": null,
+        "agent": {
+            "name": "tokenizer_agent:RepoTokenizerAgent",
+            "import_path": null,
+            "model_name": null,
+            "n_concurrent": null,
+            "concurrency_group": null,
+            "skills": [],
+            "override_timeout_sec": null,
+            "override_setup_timeout_sec": null,
+            "max_timeout_sec": null,
+            "resume_trajectory": false,
+            "load_trajectory": null,
+            "extra_allowed_hosts": [],
+            "kwargs": {},
+            "mcp_servers": []
+        },
+        "user_agent": null,
+        "environment": {
+            "type": "docker",
+            "import_path": null,
+            "force_build": false,
+            "delete": true,
+            "cpu_enforcement_policy": "auto",
+            "memory_enforcement_policy": "auto",
+            "override_cpus": null,
+            "override_memory_mb": null,
+            "override_storage_mb": null,
+            "override_gpus": null,
+            "override_tpu": null,
+            "mounts": null,
+            "extra_docker_compose": [],
+            "kwargs": {},
+            "extra_allowed_hosts": []
+        },
+        "verifier": {
+            "override_timeout_sec": null,
+            "max_timeout_sec": null,
+            "disable": true
+        },
+        "artifacts": [],
+        "extra_instruction_paths": [],
+        "extra_instructions": [],
+        "job_id": "120d4e6a-7d92-48ee-bc16-6f804b9c5b84",
+        "source_trial": null
+    },
+    "agent_info": {
+        "name": "repo-tokenizer",
+        "version": "1.1.0",
+        "model_info": null
+    },
+    "agent_result": {
+        "n_input_tokens": null,
+        "n_cache_tokens": null,
+        "n_output_tokens": null,
+        "cost_usd": null,
+        "rollout_details": null,
+        "metadata": {
+            "repo_tokenizer": {
+                "instance_id": "astropy__astropy-14539",
+                "testbed_dir": "/testbed",
+                "encoding": "cl100k_base",
+                "total_tokens": 12401858,
+                "total_files": 1770,
+                "source_code_tokens": 8196095,
+                "source_code_files": 1115,
+                "total_lines": 873756,
+                "total_bytes": 36765739,
+                "source_code_lines": 719045,
+                "source_code_bytes": 26153920,
+                "skipped_files": 138,
+                "elapsed_sec": 3.82
+            }
+        }
+    },
+    "verifier_result": null,
+    "verifier_environment_mode": "shared",
+    "exception_info": null,
+    "started_at": "2026-11-13T00:24:47.221568Z",
+    "finished_at": "2026-11-13T00:25:30.278525Z",
+    "environment_setup": {
+        "started_at": "2026-11-13T00:24:47.221863Z",
+        "finished_at": "2026-11-13T00:25:15.228018Z"
+    },
+    "agent_setup": {
+        "started_at": "2026-11-13T00:25:15.228036Z",
+        "finished_at": "2026-11-13T00:25:15.228059Z"
+    },
+    "agent_execution": {
+        "started_at": "2026-11-13T00:25:15.228089Z",
+        "finished_at": "2026-11-13T00:25:19.061855Z"
+    },
+    "verifier": null,
+    "step_results": null
+}

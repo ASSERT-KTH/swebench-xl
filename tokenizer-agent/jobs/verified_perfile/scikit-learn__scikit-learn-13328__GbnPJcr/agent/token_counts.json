@@ -1,0 +1,446 @@
+{
+  "instance_id": "scikit-learn__scikit-learn-13328",
+  "encoding": "cl100k_base",
+  "total_tokens": 14585095,
+  "total_characters": 49800263,
+  "total_files": 1110,
+  "total_lines": 1268588,
+  "total_nonblank_lines": 1144944,
+  "total_bytes": 49807247,
+  "source_code_tokens": 13858807,
+  "source_code_files": 890,
+  "source_code_lines": 1207493,
+  "source_code_nonblank_lines": 1095881,
+  "source_code_bytes": 47310028,
+  "skipped_files": 184,
+  "skipped_bytes": 45013821,
+  "by_extension": {
+    ".c": {
+      "tokens": 10721444,
+      "files": 43,
+      "lines": 876854,
+      "nonblank_lines": 820084,
+      "bytes": 34976062
+    },
+    ".py": {
+      "tokens": 2115142,
+      "files": 747,
+      "lines": 237269,
+      "nonblank_lines": 191802,
+      "bytes": 8836192
+    },
+    ".cpp": {
+      "tokens": 796895,
+      "files": 8,
+      "lines": 71317,
+      "nonblank_lines": 66230,
+      "bytes": 2611568
+    },
+    ".rst": {
+      "tokens": 433704,
+      "files": 122,
+      "lines": 42584,
+      "nonblank_lines": 31880,
+      "bytes": 1713633
+    },
+    ".pyx": {
+      "tokens": 144762,
+      "files": 42,
+      "lines": 16745,
+      "nonblank_lines": 13532,
+      "bytes": 600434
+    },
+    ".csv": {
+      "tokens": 115632,
+      "files": 6,
+      "lines": 1450,
+      "nonblank_lines": 1450,
+      "bytes": 168977
+    },
+    ".css": {
+      "tokens": 99103,
+      "files": 5,
+      "lines": 8296,
+      "nonblank_lines": 8247,
+      "bytes": 311224
+    },
+    ".js": {
+      "tokens": 58051,
+      "files": 7,
+      "lines": 2729,
+      "nonblank_lines": 2136,
+      "bytes": 199637
+    },
+    ".pxi": {
+      "tokens": 25077,
+      "files": 1,
+      "lines": 2619,
+      "nonblank_lines": 2213,
+      "bytes": 107160
+    },
+    ".txt": {
+      "tokens": 15012,
+      "files": 41,
+      "lines": 1504,
+      "nonblank_lines": 1403,
+      "bytes": 56934
+    },
+    ".tp": {
+      "tokens": 10626,
+      "files": 3,
+      "lines": 1230,
+      "nonblank_lines": 969,
+      "bytes": 45191
+    },
+    ".pxd": {
+      "tokens": 9806,
+      "files": 17,
+      "lines": 1054,
+      "nonblank_lines": 836,
+      "bytes": 39267
+    },
+    ".sh": {
+      "tokens": 7898,
+      "files": 18,
+      "lines": 917,
+      "nonblank_lines": 772,
+      "bytes": 28610
+    },
+    ".css_t": {
+      "tokens": 7618,
+      "files": 1,
+      "lines": 1391,
+      "nonblank_lines": 1162,
+      "bytes": 25135
+    },
+    "(no extension)": {
+      "tokens": 7443,
+      "files": 17,
+      "lines": 712,
+      "nonblank_lines": 574,
+      "bytes": 25061
+    },
+    ".yml": {
+      "tokens": 4228,
+      "files": 9,
+      "lines": 494,
+      "nonblank_lines": 455,
+      "bytes": 15527
+    },
+    ".html": {
+      "tokens": 3657,
+      "files": 1,
+      "lines": 360,
+      "nonblank_lines": 327,
+      "bytes": 13259
+    },
+    ".h": {
+      "tokens": 2833,
+      "files": 7,
+      "lines": 379,
+      "nonblank_lines": 291,
+      "bytes": 11061
+    },
+    ".ps1": {
+      "tokens": 1976,
+      "files": 1,
+      "lines": 229,
+      "nonblank_lines": 198,
+      "bytes": 7197
+    },
+    ".cmd": {
+      "tokens": 1402,
+      "files": 4,
+      "lines": 143,
+      "nonblank_lines": 125,
+      "bytes": 4982
+    },
+    ".md": {
+      "tokens": 1244,
+      "files": 4,
+      "lines": 138,
+      "nonblank_lines": 108,
+      "bytes": 5419
+    },
+    ".bat": {
+      "tokens": 1136,
+      "files": 1,
+      "lines": 120,
+      "nonblank_lines": 103,
+      "bytes": 3308
+    },
+    ".cfg": {
+      "tokens": 280,
+      "files": 2,
+      "lines": 33,
+      "nonblank_lines": 28,
+      "bytes": 931
+    },
+    ".in": {
+      "tokens": 75,
+      "files": 2,
+      "lines": 10,
+      "nonblank_lines": 9,
+      "bytes": 286
+    },
+    ".conf": {
+      "tokens": 51,
+      "files": 1,
+      "lines": 11,
+      "nonblank_lines": 10,
+      "bytes": 192
+    }
+  },
+  "top_files": [
+    {
+      "path": "sklearn/utils/sparsefuncs_fast.c",
+      "tokens": 683369,
+      "chars": 2113413
+    },
+    {
+      "path": "sklearn/neighbors/kd_tree.c",
+      "tokens": 653494,
+      "chars": 2087601
+    },
+    {
+      "path": "sklearn/neighbors/ball_tree.c",
+      "tokens": 645611,
+      "chars": 2071395
+    },
+    {
+      "path": "sklearn/linear_model/cd_fast.c",
+      "tokens": 538489,
+      "chars": 1726277
+    },
+    {
+      "path": "sklearn/utils/_cython_blas.c",
+      "tokens": 488433,
+      "chars": 1505272
+    },
+    {
+      "path": "sklearn/tree/_tree.c",
+      "tokens": 482157,
+      "chars": 1566047
+    },
+    {
+      "path": "sklearn/cluster/_k_means.c",
+      "tokens": 481945,
+      "chars": 1546261
+    },
+    {
+      "path": "sklearn/neighbors/dist_metrics.c",
+      "tokens": 450406,
+      "chars": 1452520
+    },
+    {
+      "path": "sklearn/linear_model/sgd_fast.c",
+      "tokens": 428829,
+      "chars": 1401947
+    },
+    {
+      "path": "sklearn/tree/_splitter.c",
+      "tokens": 417571,
+      "chars": 1410136
+    },
+    {
+      "path": "sklearn/neighbors/quad_tree.c",
+      "tokens": 372196,
+      "chars": 1216559
+    },
+    {
+      "path": "sklearn/tree/_criterion.c",
+      "tokens": 369848,
+      "chars": 1224164
+    },
+    {
+      "path": "sklearn/cluster/_hierarchical.cpp",
+      "tokens": 366373,
+      "chars": 1195900
+    },
+    {
+      "path": "sklearn/tree/_utils.c",
+      "tokens": 360332,
+      "chars": 1191330
+    },
+    {
+      "path": "sklearn/cluster/_k_means_elkan.c",
+      "tokens": 352553,
+      "chars": 1158291
+    },
+    {
+      "path": "sklearn/preprocessing/_csr_polynomial_expansion.c",
+      "tokens": 349677,
+      "chars": 1165965
+    },
+    {
+      "path": "sklearn/ensemble/_gradient_boosting.c",
+      "tokens": 325512,
+      "chars": 1079331
+    },
+    {
+      "path": "sklearn/_isotonic.c",
+      "tokens": 317768,
+      "chars": 1048596
+    },
+    {
+      "path": "sklearn/utils/fast_dict.cpp",
+      "tokens": 309935,
+      "chars": 1026492
+    },
+    {
+      "path": "sklearn/metrics/pairwise_fast.c",
+      "tokens": 307126,
+      "chars": 1017462
+    },
+    {
+      "path": "sklearn/utils/arrayfuncs.c",
+      "tokens": 288154,
+      "chars": 955094
+    },
+    {
+      "path": "sklearn/manifold/_barnes_hut_tsne.c",
+      "tokens": 281237,
+      "chars": 932585
+    },
+    {
+      "path": "sklearn/decomposition/cdnmf_fast.c",
+      "tokens": 231692,
+      "chars": 774652
+    },
+    {
+      "path": "sklearn/linear_model/sag_fast.c",
+      "tokens": 199642,
+      "chars": 687128
+    },
+    {
+      "path": "sklearn/svm/libsvm.c",
+      "tokens": 183463,
+      "chars": 578412
+    },
+    {
+      "path": "sklearn/utils/seq_dataset.c",
+      "tokens": 178148,
+      "chars": 588956
+    },
+    {
+      "path": "sklearn/svm/libsvm_sparse.c",
+      "tokens": 154039,
+      "chars": 490253
+    },
+    {
+      "path": "sklearn/utils/graph_shortest_path.c",
+      "tokens": 122781,
+      "chars": 413996
+    },
+    {
+      "path": "sklearn/utils/_random.c",
+      "tokens": 108131,
+      "chars": 366670
+    },
+    {
+      "path": "sklearn/metrics/cluster/expected_mutual_info_fast.c",
+      "tokens": 106508,
+      "chars": 342112
+    },
+    {
+      "path": "sklearn/utils/murmurhash.c",
+      "tokens": 106006,
+      "chars": 354292
+    },
+    {
+      "path": "sklearn/datasets/_svmlight_format.c",
+      "tokens": 105668,
+      "chars": 354542
+    },
+    {
+      "path": "sklearn/svm/liblinear.c",
+      "tokens": 93084,
+      "chars": 316006
+    },
+    {
+      "path": "sklearn/feature_extraction/_hashing.c",
+      "tokens": 92980,
+      "chars": 312769
+    },
+    {
+      "path": "sklearn/utils/weight_vector.c",
+      "tokens": 86149,
+      "chars": 293545
+    },
+    {
+      "path": "sklearn/decomposition/_online_lda.c",
+      "tokens": 82921,
+      "chars": 281265
+    },
+    {
+      "path": "sklearn/manifold/_utils.c",
+      "tokens": 81584,
+      "chars": 278653
+    },
+    {
+      "path": "sklearn/datasets/data/breast_cancer.csv",
+      "tokens": 79097,
+      "chars": 119913
+    },
+    {
+      "path": "sklearn/cluster/_dbscan_inner.cpp",
+      "tokens": 72189,
+      "chars": 249399
+    },
+    {
+      "path": "sklearn/utils/_logistic_sigmoid.c",
+      "tokens": 66090,
+      "chars": 226636
+    },
+    {
+      "path": "sklearn/neighbors/typedefs.c",
+      "tokens": 54601,
+      "chars": 186899
+    },
+    {
+      "path": "doc/tutorial/machine_learning_map/pyparsing.py",
+      "tokens": 52949,
+      "chars": 225338
+    },
+    {
+      "path": "doc/themes/scikit-learn/static/css/bootstrap.css",
+      "tokens": 48163,
+      "chars": 147182
+    },
+    {
+      "path": "doc/themes/scikit-learn/static/css/bootstrap.min.css",
+      "tokens": 38218,
+      "chars": 125082
+    },
+    {
+      "path": "sklearn/utils/lgamma.c",
+      "tokens": 34187,
+      "chars": 121056
+    },
+    {
+      "path": "sklearn/__check_build/_check_build.c",
+      "tokens": 29577,
+      "chars": 103592
+    },
+    {
+      "path": "doc/themes/scikit-learn/static/jquery.js",
+      "tokens": 29211,
+      "chars": 86709
+    },
+    {
+      "path": "sklearn/neighbors/binary_tree.pxi",
+      "tokens": 25077,
+      "chars": 107160
+    },
+    {
+      "path": "sklearn/preprocessing/data.py",
+      "tokens": 24937,
+      "chars": 110082
+    },
+    {
+      "path": "sklearn/datasets/data/boston_house_prices.csv",
+      "tokens": 24860,
+      "chars": 34742
+    }
+  ]
+}

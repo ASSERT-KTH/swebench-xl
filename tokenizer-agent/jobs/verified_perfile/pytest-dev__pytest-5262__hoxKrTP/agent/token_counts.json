@@ -1,0 +1,383 @@
+{
+  "instance_id": "pytest-dev__pytest-5262",
+  "encoding": "cl100k_base",
+  "total_tokens": 675766,
+  "total_characters": 2913352,
+  "total_files": 405,
+  "total_lines": 89697,
+  "total_nonblank_lines": 71441,
+  "total_bytes": 2914201,
+  "source_code_tokens": 441341,
+  "source_code_files": 199,
+  "source_code_lines": 61236,
+  "source_code_nonblank_lines": 51825,
+  "source_code_bytes": 1948959,
+  "skipped_files": 9,
+  "skipped_bytes": 242165,
+  "by_extension": {
+    ".py": {
+      "tokens": 441341,
+      "files": 199,
+      "lines": 61236,
+      "nonblank_lines": 51825,
+      "bytes": 1948959
+    },
+    ".rst": {
+      "tokens": 218122,
+      "files": 167,
+      "lines": 26290,
+      "nonblank_lines": 17730,
+      "bytes": 911541
+    },
+    "(no extension)": {
+      "tokens": 4680,
+      "files": 12,
+      "lines": 593,
+      "nonblank_lines": 537,
+      "bytes": 14934
+    },
+    ".yml": {
+      "tokens": 2881,
+      "files": 4,
+      "lines": 281,
+      "nonblank_lines": 254,
+      "bytes": 8564
+    },
+    ".css_t": {
+      "tokens": 2706,
+      "files": 1,
+      "lines": 557,
+      "nonblank_lines": 444,
+      "bytes": 8846
+    },
+    ".ini": {
+      "tokens": 1583,
+      "files": 3,
+      "lines": 192,
+      "nonblank_lines": 172,
+      "bytes": 5444
+    },
+    ".toml": {
+      "tokens": 1270,
+      "files": 2,
+      "lines": 200,
+      "nonblank_lines": 163,
+      "bytes": 4753
+    },
+    ".html": {
+      "tokens": 996,
+      "files": 6,
+      "lines": 96,
+      "nonblank_lines": 91,
+      "bytes": 3297
+    },
+    ".yaml": {
+      "tokens": 648,
+      "files": 1,
+      "lines": 70,
+      "nonblank_lines": 70,
+      "bytes": 2190
+    },
+    ".cfg": {
+      "tokens": 456,
+      "files": 1,
+      "lines": 71,
+      "nonblank_lines": 58,
+      "bytes": 1723
+    },
+    ".inc": {
+      "tokens": 290,
+      "files": 1,
+      "lines": 22,
+      "nonblank_lines": 21,
+      "bytes": 948
+    },
+    ".md": {
+      "tokens": 270,
+      "files": 2,
+      "lines": 26,
+      "nonblank_lines": 20,
+      "bytes": 1182
+    },
+    ".bat": {
+      "tokens": 242,
+      "files": 2,
+      "lines": 23,
+      "nonblank_lines": 23,
+      "bytes": 923
+    },
+    ".cmd": {
+      "tokens": 178,
+      "files": 1,
+      "lines": 21,
+      "nonblank_lines": 18,
+      "bytes": 607
+    },
+    ".txt": {
+      "tokens": 60,
+      "files": 2,
+      "lines": 10,
+      "nonblank_lines": 7,
+      "bytes": 127
+    },
+    ".conf": {
+      "tokens": 43,
+      "files": 1,
+      "lines": 9,
+      "nonblank_lines": 8,
+      "bytes": 163
+    }
+  },
+  "top_files": [
+    {
+      "path": "CHANGELOG.rst",
+      "tokens": 70344,
+      "chars": 274085
+    },
+    {
+      "path": "testing/python/fixtures.py",
+      "tokens": 24799,
+      "chars": 120086
+    },
+    {
+      "path": "testing/test_terminal.py",
+      "tokens": 12826,
+      "chars": 54304
+    },
+    {
+      "path": "testing/python/metafunc.py",
+      "tokens": 12462,
+      "chars": 54271
+    },
+    {
+      "path": "src/_pytest/python.py",
+      "tokens": 11816,
+      "chars": 55231
+    },
+    {
+      "path": "testing/code/test_excinfo.py",
+      "tokens": 10990,
+      "chars": 46388
+    },
+    {
+      "path": "src/_pytest/fixtures.py",
+      "tokens": 10759,
+      "chars": 50681
+    },
+    {
+      "path": "testing/test_capture.py",
+      "tokens": 10601,
+      "chars": 46804
+    },
+    {
+      "path": "src/_pytest/pytester.py",
+      "tokens": 10564,
+      "chars": 47659
+    },
+    {
+      "path": "testing/test_assertion.py",
+      "tokens": 10153,
+      "chars": 42200
+    },
+    {
+      "path": "doc/en/fixture.rst",
+      "tokens": 10059,
+      "chars": 44957
+    },
+    {
+      "path": "testing/test_assertrewrite.py",
+      "tokens": 9894,
+      "chars": 41987
+    },
+    {
+      "path": "testing/test_junitxml.py",
+      "tokens": 9789,
+      "chars": 41599
+    },
+    {
+      "path": "testing/test_collection.py",
+      "tokens": 9719,
+      "chars": 42091
+    },
+    {
+      "path": "testing/python/collect.py",
+      "tokens": 9587,
+      "chars": 42809
+    },
+    {
+      "path": "src/_pytest/assertion/rewrite.py",
+      "tokens": 9404,
+      "chars": 41272
+    },
+    {
+      "path": "testing/test_config.py",
+      "tokens": 9346,
+      "chars": 39794
+    },
+    {
+      "path": "testing/acceptance_test.py",
+      "tokens": 9145,
+      "chars": 40368
+    },
+    {
+      "path": "testing/test_pdb.py",
+      "tokens": 8544,
+      "chars": 37449
+    },
+    {
+      "path": "src/_pytest/config/__init__.py",
+      "tokens": 8419,
+      "chars": 38876
+    },
+    {
+      "path": "src/_pytest/terminal.py",
+      "tokens": 8384,
+      "chars": 38395
+    },
+    {
+      "path": "testing/test_doctest.py",
+      "tokens": 8228,
+      "chars": 36726
+    },
+    {
+      "path": "src/_pytest/_code/code.py",
+      "tokens": 7991,
+      "chars": 35965
+    },
+    {
+      "path": "doc/en/reference.rst",
+      "tokens": 7908,
+      "chars": 34193
+    },
+    {
+      "path": "testing/test_cacheprovider.py",
+      "tokens": 7777,
+      "chars": 33119
+    },
+    {
+      "path": "testing/test_skipping.py",
+      "tokens": 7397,
+      "chars": 32947
+    },
+    {
+      "path": "testing/logging/test_reporting.py",
+      "tokens": 7084,
+      "chars": 31888
+    },
+    {
+      "path": "testing/test_runner.py",
+      "tokens": 6745,
+      "chars": 30154
+    },
+    {
+      "path": "testing/test_mark.py",
+      "tokens": 6676,
+      "chars": 29329
+    },
+    {
+      "path": "src/_pytest/python_api.py",
+      "tokens": 6429,
+      "chars": 28005
+    },
+    {
+      "path": "doc/en/example/simple.rst",
+      "tokens": 6396,
+      "chars": 28815
+    },
+    {
+      "path": "testing/test_unittest.py",
+      "tokens": 6205,
+      "chars": 29519
+    },
+    {
+      "path": "doc/en/example/reportingdemo.rst",
+      "tokens": 6156,
+      "chars": 23482
+    },
+    {
+      "path": "src/_pytest/capture.py",
+      "tokens": 6135,
+      "chars": 27149
+    },
+    {
+      "path": "doc/en/example/markers.rst",
+      "tokens": 5977,
+      "chars": 26345
+    },
+    {
+      "path": "testing/python/approx.py",
+      "tokens": 5829,
+      "chars": 18620
+    },
+    {
+      "path": "src/_pytest/main.py",
+      "tokens": 5775,
+      "chars": 26602
+    },
+    {
+      "path": "doc/en/usage.rst",
+      "tokens": 5251,
+      "chars": 23807
+    },
+    {
+      "path": "testing/test_conftest.py",
+      "tokens": 5058,
+      "chars": 19642
+    },
+    {
+      "path": "doc/en/example/parametrize.rst",
+      "tokens": 5016,
+      "chars": 21728
+    },
+    {
+      "path": "src/_pytest/junitxml.py",
+      "tokens": 5013,
+      "chars": 23231
+    },
+    {
+      "path": "doc/en/writing_plugins.rst",
+      "tokens": 4942,
+      "chars": 22658
+    },
+    {
+      "path": "src/_pytest/logging.py",
+      "tokens": 4730,
+      "chars": 22800
+    },
+    {
+      "path": "testing/test_warnings.py",
+      "tokens": 4573,
+      "chars": 21047
+    },
+    {
+      "path": "testing/code/test_source.py",
+      "tokens": 4512,
+      "chars": 17758
+    },
+    {
+      "path": "src/_pytest/hookspec.py",
+      "tokens": 4404,
+      "chars": 21273
+    },
+    {
+      "path": "src/_pytest/doctest.py",
+      "tokens": 4163,
+      "chars": 18890
+    },
+    {
+      "path": "testing/test_pytester.py",
+      "tokens": 4057,
+      "chars": 17112
+    },
+    {
+      "path": "src/_pytest/cacheprovider.py",
+      "tokens": 3442,
+      "chars": 15598
+    },
+    {
+      "path": "src/_pytest/config/argparsing.py",
+      "tokens": 3388,
+      "chars": 15761
+    }
+  ]
+}

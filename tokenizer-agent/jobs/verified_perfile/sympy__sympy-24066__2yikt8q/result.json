@@ -1,0 +1,125 @@
+{
+    "id": "f9aed000-49c9-4a5f-aa09-409421890f1b",
+    "task_name": "sympy__sympy-24066",
+    "trial_name": "sympy__sympy-24066__2yikt8q",
+    "trial_uri": "file:///home/pontus/Documents/GitHub/swebench-xl/tokenizer-agent/jobs/verified_perfile/sympy__sympy-24066__2yikt8q",
+    "task_id": {
+        "git_url": "https://github.com/laude-institute/harbor-datasets.git",
+        "git_commit_id": "86723674f04e4209ac479d0fb75d9d9f44b4377e",
+        "path": "datasets/swebench-verified/sympy__sympy-24066"
+    },
+    "source": "swebench-verified",
+    "task_checksum": "9cbdf3bc44807ece4c44833d77334dacb8042408cded7585ec6ded246878d61d",
+    "config": {
+        "task": {
+            "path": "datasets/swebench-verified/sympy__sympy-24066",
+            "git_url": "https://github.com/laude-institute/harbor-datasets.git",
+            "git_commit_id": "86723674f04e4209ac479d0fb75d9d9f44b4377e",
+            "name": null,
+            "ref": null,
+            "overwrite": false,
+            "download_dir": null,
+            "source": "swebench-verified"
+        },
+        "trial_name": "sympy__sympy-24066__2yikt8q",
+        "trials_dir": "jobs/verified_perfile",
+        "install_only": false,
+        "timeout_multiplier": 1.0,
+        "agent_timeout_multiplier": null,
+        "verifier_timeout_multiplier": null,
+        "agent_setup_timeout_multiplier": null,
+        "environment_build_timeout_multiplier": null,
+        "agent": {
+            "name": "tokenizer_agent:RepoTokenizerAgent",
+            "import_path": null,
+            "model_name": null,
+            "n_concurrent": null,
+            "concurrency_group": null,
+            "skills": [],
+            "override_timeout_sec": null,
+            "override_setup_timeout_sec": null,
+            "max_timeout_sec": null,
+            "resume_trajectory": false,
+            "load_trajectory": null,
+            "extra_allowed_hosts": [],
+            "kwargs": {},
+            "mcp_servers": []
+        },
+        "user_agent": null,
+        "environment": {
+            "type": "docker",
+            "import_path": null,
+            "force_build": false,
+            "delete": true,
+            "cpu_enforcement_policy": "auto",
+            "memory_enforcement_policy": "auto",
+            "override_cpus": null,
+            "override_memory_mb": null,
+            "override_storage_mb": null,
+            "override_gpus": null,
+            "override_tpu": null,
+            "mounts": null,
+            "extra_docker_compose": [],
+            "kwargs": {},
+            "extra_allowed_hosts": []
+        },
+        "verifier": {
+            "override_timeout_sec": null,
+            "max_timeout_sec": null,
+            "disable": true
+        },
+        "artifacts": [],
+        "extra_instruction_paths": [],
+        "extra_instructions": [],
+        "job_id": "120d4e6a-7d92-48ee-bc16-6f804b9c5b84",
+        "source_trial": null
+    },
+    "agent_info": {
+        "name": "repo-tokenizer",
+        "version": "1.1.0",
+        "model_info": null
+    },
+    "agent_result": {
+        "n_input_tokens": null,
+        "n_cache_tokens": null,
+        "n_output_tokens": null,
+        "cost_usd": null,
+        "rollout_details": null,
+        "metadata": {
+            "repo_tokenizer": {
+                "instance_id": "sympy__sympy-24066",
+                "testbed_dir": "/testbed",
+                "encoding": "cl100k_base",
+                "total_tokens": 12121456,
+                "total_files": 1950,
+                "source_code_tokens": 11013738,
+                "source_code_files": 1561,
+                "total_lines": 845797,
+                "total_bytes": 34880642,
+                "source_code_lines": 770137,
+                "source_code_bytes": 31772137,
+                "skipped_files": 45,
+                "elapsed_sec": 2.97
+            }
+        }
+    },
+    "verifier_result": null,
+    "verifier_environment_mode": "shared",
+    "exception_info": null,
+    "started_at": "2026-11-13T00:26:48.039415Z",
+    "finished_at": "2026-11-13T00:27:19.008690Z",
+    "environment_setup": {
+        "started_at": "2026-11-13T00:26:48.039711Z",
+        "finished_at": "2026-11-13T00:27:01.946163Z"
+    },
+    "agent_setup": {
+        "started_at": "2026-11-13T00:27:01.946182Z",
+        "finished_at": "2026-11-13T00:27:01.946206Z"
+    },
+    "agent_execution": {
+        "started_at": "2026-11-13T00:27:01.946236Z",
+        "finished_at": "2026-11-13T00:27:04.923283Z"
+    },
+    "verifier": null,
+    "step_results": null
+}

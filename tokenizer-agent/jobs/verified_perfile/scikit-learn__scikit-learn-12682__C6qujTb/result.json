@@ -1,0 +1,125 @@
+{
+    "id": "85b6bec0-851b-4c5e-a9c0-a198b572560d",
+    "task_name": "scikit-learn__scikit-learn-12682",
+    "trial_name": "scikit-learn__scikit-learn-12682__C6qujTb",
+    "trial_uri": "file:///home/pontus/Documents/GitHub/swebench-xl/tokenizer-agent/jobs/verified_perfile/scikit-learn__scikit-learn-12682__C6qujTb",
+    "task_id": {
+        "git_url": "https://github.com/laude-institute/harbor-datasets.git",
+        "git_commit_id": "86723674f04e4209ac479d0fb75d9d9f44b4377e",
+        "path": "datasets/swebench-verified/scikit-learn__scikit-learn-12682"
+    },
+    "source": "swebench-verified",
+    "task_checksum": "18fbc9f15fc031ed88098c435896d77166033c56f165092cb2062a5880d878ae",
+    "config": {
+        "task": {
+            "path": "datasets/swebench-verified/scikit-learn__scikit-learn-12682",
+            "git_url": "https://github.com/laude-institute/harbor-datasets.git",
+            "git_commit_id": "86723674f04e4209ac479d0fb75d9d9f44b4377e",
+            "name": null,
+            "ref": null,
+            "overwrite": false,
+            "download_dir": null,
+            "source": "swebench-verified"
+        },
+        "trial_name": "scikit-learn__scikit-learn-12682__C6qujTb",
+        "trials_dir": "jobs/verified_perfile",
+        "install_only": false,
+        "timeout_multiplier": 1.0,
+        "agent_timeout_multiplier": null,
+        "verifier_timeout_multiplier": null,
+        "agent_setup_timeout_multiplier": null,
+        "environment_build_timeout_multiplier": null,
+        "agent": {
+            "name": "tokenizer_agent:RepoTokenizerAgent",
+            "import_path": null,
+            "model_name": null,
+            "n_concurrent": null,
+            "concurrency_group": null,
+            "skills": [],
+            "override_timeout_sec": null,
+            "override_setup_timeout_sec": null,
+            "max_timeout_sec": null,
+            "resume_trajectory": false,
+            "load_trajectory": null,
+            "extra_allowed_hosts": [],
+            "kwargs": {},
+            "mcp_servers": []
+        },
+        "user_agent": null,
+        "environment": {
+            "type": "docker",
+            "import_path": null,
+            "force_build": false,
+            "delete": true,
+            "cpu_enforcement_policy": "auto",
+            "memory_enforcement_policy": "auto",
+            "override_cpus": null,
+            "override_memory_mb": null,
+            "override_storage_mb": null,
+            "override_gpus": null,
+            "override_tpu": null,
+            "mounts": null,
+            "extra_docker_compose": [],
+            "kwargs": {},
+            "extra_allowed_hosts": []
+        },
+        "verifier": {
+            "override_timeout_sec": null,
+            "max_timeout_sec": null,
+            "disable": true
+        },
+        "artifacts": [],
+        "extra_instruction_paths": [],
+        "extra_instructions": [],
+        "job_id": "120d4e6a-7d92-48ee-bc16-6f804b9c5b84",
+        "source_trial": null
+    },
+    "agent_info": {
+        "name": "repo-tokenizer",
+        "version": "1.1.0",
+        "model_info": null
+    },
+    "agent_result": {
+        "n_input_tokens": null,
+        "n_cache_tokens": null,
+        "n_output_tokens": null,
+        "cost_usd": null,
+        "rollout_details": null,
+        "metadata": {
+            "repo_tokenizer": {
+                "instance_id": "scikit-learn__scikit-learn-12682",
+                "testbed_dir": "/testbed",
+                "encoding": "cl100k_base",
+                "total_tokens": 16857726,
+                "total_files": 1111,
+                "source_code_tokens": 16123672,
+                "source_code_files": 887,
+                "total_lines": 1465520,
+                "total_bytes": 57315350,
+                "source_code_lines": 1403400,
+                "source_code_bytes": 54785483,
+                "skipped_files": 192,
+                "elapsed_sec": 5.78
+            }
+        }
+    },
+    "verifier_result": null,
+    "verifier_environment_mode": "shared",
+    "exception_info": null,
+    "started_at": "2026-11-12T23:50:53.079340Z",
+    "finished_at": "2026-11-12T23:51:46.812479Z",
+    "environment_setup": {
+        "started_at": "2026-11-12T23:50:53.079710Z",
+        "finished_at": "2026-11-12T23:51:30.039973Z"
+    },
+    "agent_setup": {
+        "started_at": "2026-11-12T23:51:30.039991Z",
+        "finished_at": "2026-11-12T23:51:30.040015Z"
+    },
+    "agent_execution": {
+        "started_at": "2026-11-12T23:51:30.040047Z",
+        "finished_at": "2026-11-12T23:51:35.824639Z"
+    },
+    "verifier": null,
+    "step_results": null
+}

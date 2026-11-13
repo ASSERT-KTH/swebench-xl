@@ -1,0 +1,376 @@
+{
+  "instance_id": "pylint-dev__pylint-4661",
+  "encoding": "cl100k_base",
+  "total_tokens": 755008,
+  "total_characters": 3198498,
+  "total_files": 1557,
+  "total_lines": 97163,
+  "total_nonblank_lines": 76944,
+  "total_bytes": 3201257,
+  "source_code_tokens": 568213,
+  "source_code_files": 840,
+  "source_code_lines": 78339,
+  "source_code_nonblank_lines": 63017,
+  "source_code_bytes": 2450378,
+  "skipped_files": 5,
+  "skipped_bytes": 39053,
+  "by_extension": {
+    ".py": {
+      "tokens": 568213,
+      "files": 840,
+      "lines": 78339,
+      "nonblank_lines": 63017,
+      "bytes": 2450378
+    },
+    ".txt": {
+      "tokens": 62385,
+      "files": 435,
+      "lines": 3214,
+      "nonblank_lines": 2973,
+      "bytes": 234399
+    },
+    "(no extension)": {
+      "tokens": 61015,
+      "files": 24,
+      "lines": 7711,
+      "nonblank_lines": 5007,
+      "bytes": 253944
+    },
+    ".rst": {
+      "tokens": 45595,
+      "files": 46,
+      "lines": 5622,
+      "nonblank_lines": 3867,
+      "bytes": 197402
+    },
+    ".yaml": {
+      "tokens": 5040,
+      "files": 4,
+      "lines": 587,
+      "nonblank_lines": 570,
+      "bytes": 19927
+    },
+    ".rc": {
+      "tokens": 3019,
+      "files": 187,
+      "lines": 524,
+      "nonblank_lines": 499,
+      "bytes": 9319
+    },
+    ".yml": {
+      "tokens": 2467,
+      "files": 8,
+      "lines": 333,
+      "nonblank_lines": 297,
+      "bytes": 10197
+    },
+    ".el": {
+      "tokens": 2439,
+      "files": 2,
+      "lines": 270,
+      "nonblank_lines": 231,
+      "bytes": 9703
+    },
+    ".bat": {
+      "tokens": 1877,
+      "files": 1,
+      "lines": 198,
+      "nonblank_lines": 174,
+      "bytes": 5445
+    },
+    ".cfg": {
+      "tokens": 821,
+      "files": 1,
+      "lines": 113,
+      "nonblank_lines": 96,
+      "bytes": 3177
+    },
+    ".md": {
+      "tokens": 743,
+      "files": 4,
+      "lines": 86,
+      "nonblank_lines": 64,
+      "bytes": 2819
+    },
+    ".ini": {
+      "tokens": 579,
+      "files": 1,
+      "lines": 85,
+      "nonblank_lines": 76,
+      "bytes": 2016
+    },
+    ".toml": {
+      "tokens": 444,
+      "files": 1,
+      "lines": 47,
+      "nonblank_lines": 39,
+      "bytes": 1363
+    },
+    ".dot": {
+      "tokens": 306,
+      "files": 2,
+      "lines": 20,
+      "nonblank_lines": 20,
+      "bytes": 934
+    },
+    ".in": {
+      "tokens": 65,
+      "files": 1,
+      "lines": 14,
+      "nonblank_lines": 14,
+      "bytes": 234
+    }
+  },
+  "top_files": [
+    {
+      "path": "ChangeLog",
+      "tokens": 43998,
+      "chars": 184477
+    },
+    {
+      "path": "pylint/checkers/base.py",
+      "tokens": 22044,
+      "chars": 100743
+    },
+    {
+      "path": "pylint/checkers/classes.py",
+      "tokens": 18750,
+      "chars": 90516
+    },
+    {
+      "path": "pylint/checkers/variables.py",
+      "tokens": 17224,
+      "chars": 84130
+    },
+    {
+      "path": "pylint/checkers/typecheck.py",
+      "tokens": 16233,
+      "chars": 76255
+    },
+    {
+      "path": "pylint/checkers/refactoring/refactoring_checker.py",
+      "tokens": 16069,
+      "chars": 77613
+    },
+    {
+      "path": "tests/extensions/test_check_docs.py",
+      "tokens": 13667,
+      "chars": 69890
+    },
+    {
+      "path": "pylint/checkers/utils.py",
+      "tokens": 12285,
+      "chars": 53700
+    },
+    {
+      "path": "pylint/checkers/python3.py",
+      "tokens": 11446,
+      "chars": 53439
+    },
+    {
+      "path": "tests/test_self.py",
+      "tokens": 10551,
+      "chars": 45448
+    },
+    {
+      "path": "pylint/lint/pylinter.py",
+      "tokens": 9972,
+      "chars": 50895
+    },
+    {
+      "path": "pylint/checkers/imports.py",
+      "tokens": 8534,
+      "chars": 39327
+    },
+    {
+      "path": "tests/checkers/unittest_python3.py",
+      "tokens": 8389,
+      "chars": 38690
+    },
+    {
+      "path": "pylint/checkers/strings.py",
+      "tokens": 8331,
+      "chars": 39373
+    },
+    {
+      "path": "pylint/checkers/similar.py",
+      "tokens": 7885,
+      "chars": 33721
+    },
+    {
+      "path": "doc/whatsnew/1.7.rst",
+      "tokens": 7816,
+      "chars": 33496
+    },
+    {
+      "path": "tests/lint/unittest_lint.py",
+      "tokens": 7407,
+      "chars": 28137
+    },
+    {
+      "path": "pylint/checkers/format.py",
+      "tokens": 6839,
+      "chars": 29476
+    },
+    {
+      "path": "pylint/checkers/stdlib.py",
+      "tokens": 6067,
+      "chars": 26102
+    },
+    {
+      "path": "pylint/extensions/_check_docs_utils.py",
+      "tokens": 5451,
+      "chars": 23814
+    },
+    {
+      "path": "tests/extensions/test_check_raise_docs.py",
+      "tokens": 5140,
+      "chars": 25808
+    },
+    {
+      "path": "pylint/checkers/exceptions.py",
+      "tokens": 5121,
+      "chars": 23742
+    },
+    {
+      "path": "pylint/extensions/docparams.py",
+      "tokens": 5088,
+      "chars": 24136
+    },
+    {
+      "path": "tests/checkers/unittest_base.py",
+      "tokens": 5014,
+      "chars": 22278
+    },
+    {
+      "path": "tests/checkers/unittest_spelling.py",
+      "tokens": 4622,
+      "chars": 21524
+    },
+    {
+      "path": "pylint/checkers/design_analysis.py",
+      "tokens": 4503,
+      "chars": 19867
+    },
+    {
+      "path": "examples/pylintrc",
+      "tokens": 4130,
+      "chars": 18800
+    },
+    {
+      "path": ".github/workflows/ci.yaml",
+      "tokens": 4091,
+      "chars": 16691
+    },
+    {
+      "path": "tests/extensions/test_check_return_docs.py",
+      "tokens": 3973,
+      "chars": 19470
+    },
+    {
+      "path": "LICENSE",
+      "tokens": 3884,
+      "chars": 17984
+    },
+    {
+      "path": "pylint/checkers/spelling.py",
+      "tokens": 3754,
+      "chars": 16293
+    },
+    {
+      "path": "pylint/lint/run.py",
+      "tokens": 3497,
+      "chars": 18810
+    },
+    {
+      "path": "pylint/checkers/logging.py",
+      "tokens": 3444,
+      "chars": 16072
+    },
+    {
+      "path": "tests/checkers/unittest_similar.py",
+      "tokens": 3343,
+      "chars": 12352
+    },
+    {
+      "path": "tests/checkers/unittest_typecheck.py",
+      "tokens": 3314,
+      "chars": 15189
+    },
+    {
+      "path": "tests/benchmark/test_baseline_benchmarks.py",
+      "tokens": 3213,
+      "chars": 13840
+    },
+    {
+      "path": "tests/checkers/unittest_deprecated.py",
+      "tokens": 3186,
+      "chars": 16950
+    },
+    {
+      "path": "pylint/message/message_handler_mix_in.py",
+      "tokens": 3121,
+      "chars": 15458
+    },
+    {
+      "path": "tests/test_check_parallel.py",
+      "tokens": 3118,
+      "chars": 13600
+    },
+    {
+      "path": "CONTRIBUTORS.txt",
+      "tokens": 3046,
+      "chars": 12051
+    },
+    {
+      "path": "doc/whatsnew/2.0.rst",
+      "tokens": 2982,
+      "chars": 12858
+    },
+    {
+      "path": "pylint/config/option_manager_mixin.py",
+      "tokens": 2916,
+      "chars": 14588
+    },
+    {
+      "path": "tests/extensions/test_check_yields_docs.py",
+      "tokens": 2915,
+      "chars": 14009
+    },
+    {
+      "path": "pylintrc",
+      "tokens": 2812,
+      "chars": 11350
+    },
+    {
+      "path": "doc/whatsnew/1.8.rst",
+      "tokens": 2803,
+      "chars": 12093
+    },
+    {
+      "path": "pylint/extensions/typing.py",
+      "tokens": 2726,
+      "chars": 12084
+    },
+    {
+      "path": "doc/user_guide/ide-integration.rst",
+      "tokens": 2651,
+      "chars": 11198
+    },
+    {
+      "path": "pylint/pyreverse/inspector.py",
+      "tokens": 2640,
+      "chars": 12181
+    },
+    {
+      "path": "tests/checkers/unittest_format.py",
+      "tokens": 2604,
+      "chars": 10235
+    },
+    {
+      "path": "tests/functional/u/useless/useless_super_delegation.py",
+      "tokens": 2573,
+      "chars": 11040
+    }
+  ]
+}

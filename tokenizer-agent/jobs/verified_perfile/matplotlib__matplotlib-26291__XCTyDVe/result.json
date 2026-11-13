@@ -1,0 +1,125 @@
+{
+    "id": "02f242b6-a474-46c5-b137-8a1cc62e6f11",
+    "task_name": "matplotlib__matplotlib-26291",
+    "trial_name": "matplotlib__matplotlib-26291__XCTyDVe",
+    "trial_uri": "file:///home/pontus/Documents/GitHub/swebench-xl/tokenizer-agent/jobs/verified_perfile/matplotlib__matplotlib-26291__XCTyDVe",
+    "task_id": {
+        "git_url": "https://github.com/laude-institute/harbor-datasets.git",
+        "git_commit_id": "86723674f04e4209ac479d0fb75d9d9f44b4377e",
+        "path": "datasets/swebench-verified/matplotlib__matplotlib-26291"
+    },
+    "source": "swebench-verified",
+    "task_checksum": "0cecc7df5648ac72c8240b9b72c87867b25afc3c18e7abe4392f9b0faf573b54",
+    "config": {
+        "task": {
+            "path": "datasets/swebench-verified/matplotlib__matplotlib-26291",
+            "git_url": "https://github.com/laude-institute/harbor-datasets.git",
+            "git_commit_id": "86723674f04e4209ac479d0fb75d9d9f44b4377e",
+            "name": null,
+            "ref": null,
+            "overwrite": false,
+            "download_dir": null,
+            "source": "swebench-verified"
+        },
+        "trial_name": "matplotlib__matplotlib-26291__XCTyDVe",
+        "trials_dir": "jobs/verified_perfile",
+        "install_only": false,
+        "timeout_multiplier": 1.0,
+        "agent_timeout_multiplier": null,
+        "verifier_timeout_multiplier": null,
+        "agent_setup_timeout_multiplier": null,
+        "environment_build_timeout_multiplier": null,
+        "agent": {
+            "name": "tokenizer_agent:RepoTokenizerAgent",
+            "import_path": null,
+            "model_name": null,
+            "n_concurrent": null,
+            "concurrency_group": null,
+            "skills": [],
+            "override_timeout_sec": null,
+            "override_setup_timeout_sec": null,
+            "max_timeout_sec": null,
+            "resume_trajectory": false,
+            "load_trajectory": null,
+            "extra_allowed_hosts": [],
+            "kwargs": {},
+            "mcp_servers": []
+        },
+        "user_agent": null,
+        "environment": {
+            "type": "docker",
+            "import_path": null,
+            "force_build": false,
+            "delete": true,
+            "cpu_enforcement_policy": "auto",
+            "memory_enforcement_policy": "auto",
+            "override_cpus": null,
+            "override_memory_mb": null,
+            "override_storage_mb": null,
+            "override_gpus": null,
+            "override_tpu": null,
+            "mounts": null,
+            "extra_docker_compose": [],
+            "kwargs": {},
+            "extra_allowed_hosts": []
+        },
+        "verifier": {
+            "override_timeout_sec": null,
+            "max_timeout_sec": null,
+            "disable": true
+        },
+        "artifacts": [],
+        "extra_instruction_paths": [],
+        "extra_instructions": [],
+        "job_id": "120d4e6a-7d92-48ee-bc16-6f804b9c5b84",
+        "source_trial": null
+    },
+    "agent_info": {
+        "name": "repo-tokenizer",
+        "version": "1.1.0",
+        "model_info": null
+    },
+    "agent_result": {
+        "n_input_tokens": null,
+        "n_cache_tokens": null,
+        "n_output_tokens": null,
+        "cost_usd": null,
+        "rollout_details": null,
+        "metadata": {
+            "repo_tokenizer": {
+                "instance_id": "matplotlib__matplotlib-26291",
+                "testbed_dir": "/testbed",
+                "encoding": "cl100k_base",
+                "total_tokens": 5600723,
+                "total_files": 1863,
+                "source_code_tokens": 3245953,
+                "source_code_files": 1202,
+                "total_lines": 503094,
+                "total_bytes": 18712839,
+                "source_code_lines": 349635,
+                "source_code_bytes": 12181521,
+                "skipped_files": 2666,
+                "elapsed_sec": 3.04
+            }
+        }
+    },
+    "verifier_result": null,
+    "verifier_environment_mode": "shared",
+    "exception_info": null,
+    "started_at": "2026-11-13T03:46:17.742057Z",
+    "finished_at": "2026-11-13T03:47:54.732660Z",
+    "environment_setup": {
+        "started_at": "2026-11-13T03:46:17.742489Z",
+        "finished_at": "2026-11-13T03:47:40.917267Z"
+    },
+    "agent_setup": {
+        "started_at": "2026-11-13T03:47:40.917285Z",
+        "finished_at": "2026-11-13T03:47:40.917310Z"
+    },
+    "agent_execution": {
+        "started_at": "2026-11-13T03:47:40.917344Z",
+        "finished_at": "2026-11-13T03:47:43.974229Z"
+    },
+    "verifier": null,
+    "step_results": null
+}

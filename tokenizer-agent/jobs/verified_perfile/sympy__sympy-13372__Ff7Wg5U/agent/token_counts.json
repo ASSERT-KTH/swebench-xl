@@ -1,0 +1,425 @@
+{
+  "instance_id": "sympy__sympy-13372",
+  "encoding": "cl100k_base",
+  "total_tokens": 8502286,
+  "total_characters": 25045417,
+  "total_files": 1471,
+  "total_lines": 566163,
+  "total_nonblank_lines": 456782,
+  "total_bytes": 25058933,
+  "source_code_tokens": 7717705,
+  "source_code_files": 1183,
+  "source_code_lines": 514756,
+  "source_code_nonblank_lines": 413001,
+  "source_code_bytes": 22952314,
+  "skipped_files": 33,
+  "skipped_bytes": 1270223,
+  "by_extension": {
+    ".py": {
+      "tokens": 7716101,
+      "files": 1179,
+      "lines": 514541,
+      "nonblank_lines": 412816,
+      "bytes": 22946800
+    },
+    ".ipynb": {
+      "tokens": 326191,
+      "files": 16,
+      "lines": 8399,
+      "nonblank_lines": 8399,
+      "bytes": 580736
+    },
+    ".rst": {
+      "tokens": 249125,
+      "files": 225,
+      "lines": 25690,
+      "nonblank_lines": 19434,
+      "bytes": 849649
+    },
+    ".xsl": {
+      "tokens": 119554,
+      "files": 3,
+      "lines": 8691,
+      "nonblank_lines": 7992,
+      "bytes": 366200
+    },
+    "(no extension)": {
+      "tokens": 27947,
+      "files": 21,
+      "lines": 2299,
+      "nonblank_lines": 2017,
+      "bytes": 92250
+    },
+    ".txt": {
+      "tokens": 16567,
+      "files": 6,
+      "lines": 1468,
+      "nonblank_lines": 1463,
+      "bytes": 52369
+    },
+    ".json": {
+      "tokens": 15506,
+      "files": 1,
+      "lines": 1954,
+      "nonblank_lines": 1954,
+      "bytes": 64930
+    },
+    ".xsh": {
+      "tokens": 8848,
+      "files": 1,
+      "lines": 1069,
+      "nonblank_lines": 889,
+      "bytes": 35139
+    },
+    ".xml": {
+      "tokens": 4415,
+      "files": 1,
+      "lines": 407,
+      "nonblank_lines": 381,
+      "bytes": 17842
+    },
+    ".tex": {
+      "tokens": 3690,
+      "files": 1,
+      "lines": 268,
+      "nonblank_lines": 264,
+      "bytes": 8791
+    },
+    ".enc": {
+      "tokens": 3135,
+      "files": 1,
+      "lines": 1,
+      "nonblank_lines": 1,
+      "bytes": 4408
+    },
+    ".yml": {
+      "tokens": 2453,
+      "files": 1,
+      "lines": 301,
+      "nonblank_lines": 293,
+      "bytes": 8286
+    },
+    ".1": {
+      "tokens": 2214,
+      "files": 1,
+      "lines": 188,
+      "nonblank_lines": 167,
+      "bytes": 6673
+    },
+    ".md": {
+      "tokens": 2122,
+      "files": 3,
+      "lines": 218,
+      "nonblank_lines": 154,
+      "bytes": 9396
+    },
+    ".css_t": {
+      "tokens": 1879,
+      "files": 1,
+      "lines": 337,
+      "nonblank_lines": 280,
+      "bytes": 6504
+    },
+    ".sh": {
+      "tokens": 1604,
+      "files": 4,
+      "lines": 215,
+      "nonblank_lines": 185,
+      "bytes": 5514
+    },
+    ".sample": {
+      "tokens": 565,
+      "files": 1,
+      "lines": 56,
+      "nonblank_lines": 49,
+      "bytes": 2200
+    },
+    ".bench": {
+      "tokens": 152,
+      "files": 1,
+      "lines": 21,
+      "nonblank_lines": 14,
+      "bytes": 504
+    },
+    ".conf": {
+      "tokens": 77,
+      "files": 1,
+      "lines": 19,
+      "nonblank_lines": 12,
+      "bytes": 233
+    },
+    ".in": {
+      "tokens": 50,
+      "files": 1,
+      "lines": 11,
+      "nonblank_lines": 9,
+      "bytes": 213
+    },
+    ".html": {
+      "tokens": 49,
+      "files": 1,
+      "lines": 6,
+      "nonblank_lines": 5,
+      "bytes": 171
+    },
+    ".scm": {
+      "tokens": 42,
+      "files": 1,
+      "lines": 4,
+      "nonblank_lines": 4,
+      "bytes": 125
+    }
+  },
+  "top_files": [
+    {
+      "path": "sympy/integrals/rubi/rules/sine.py",
+      "tokens": 435917,
+      "chars": 1121413
+    },
+    {
+      "path": "sympy/integrals/rubi/rules/trinomial_products.py",
+      "tokens": 356506,
+      "chars": 886617
+    },
+    {
+      "path": "sympy/integrals/rubi/rules/secant.py",
+      "tokens": 260973,
+      "chars": 669006
+    },
+    {
+      "path": "sympy/polys/benchmarks/bench_solvers.py",
+      "tokens": 238119,
+      "chars": 446839
+    },
+    {
+      "path": "sympy/integrals/rubi/rules/quadratic_products.py",
+      "tokens": 209042,
+      "chars": 516259
+    },
+    {
+      "path": "sympy/integrals/rubi/rules/inverse_hyperbolic.py",
+      "tokens": 200772,
+      "chars": 521619
+    },
+    {
+      "path": "sympy/integrals/rubi/rules/tangent.py",
+      "tokens": 188726,
+      "chars": 482297
+    },
+    {
+      "path": "sympy/integrals/rubi/rules/inverse_trig.py",
+      "tokens": 180209,
+      "chars": 471016
+    },
+    {
+      "path": "sympy/physics/quantum/tests/test_spin.py",
+      "tokens": 175777,
+      "chars": 320440
+    },
+    {
+      "path": "examples/notebooks/fresnel_integrals.ipynb",
+      "tokens": 148428,
+      "chars": 213869
+    },
+    {
+      "path": "sympy/integrals/rubi/rules/miscellaneous_algebraic.py",
+      "tokens": 140254,
+      "chars": 351941
+    },
+    {
+      "path": "sympy/integrals/rubi/rules/hyperbolic.py",
+      "tokens": 118518,
+      "chars": 312637
+    },
+    {
+      "path": "sympy/integrals/rubi/rules/binomial_products.py",
+      "tokens": 117720,
+      "chars": 305868
+    },
+    {
+      "path": "sympy/solvers/ode.py",
+      "tokens": 102709,
+      "chars": 336071
+    },
+    {
+      "path": "sympy/integrals/rubi/rules/miscellaneous_trig.py",
+      "tokens": 101223,
+      "chars": 268401
+    },
+    {
+      "path": "examples/notebooks/spin.ipynb",
+      "tokens": 83164,
+      "chars": 147478
+    },
+    {
+      "path": "sympy/integrals/rubi/utility_function.py",
+      "tokens": 82019,
+      "chars": 256481
+    },
+    {
+      "path": "sympy/solvers/tests/test_ode.py",
+      "tokens": 59406,
+      "chars": 143492
+    },
+    {
+      "path": "sympy/integrals/rubi/rules/logarithms.py",
+      "tokens": 56063,
+      "chars": 148786
+    },
+    {
+      "path": "sympy/integrals/rubi/rules/linear_products.py",
+      "tokens": 54322,
+      "chars": 141490
+    },
+    {
+      "path": "sympy/polys/polytools.py",
+      "tokens": 49944,
+      "chars": 179786
+    },
+    {
+      "path": "sympy/polys/polyquinticconst.py",
+      "tokens": 49892,
+      "chars": 96143
+    },
+    {
+      "path": "sympy/printing/pretty/tests/test_pretty.py",
+      "tokens": 46804,
+      "chars": 119462
+    },
+    {
+      "path": "sympy/utilities/mathml/data/mmltex.xsl",
+      "tokens": 46105,
+      "chars": 137325
+    },
+    {
+      "path": "sympy/polys/tests/test_polytools.py",
+      "tokens": 44536,
+      "chars": 109849
+    },
+    {
+      "path": "examples/intermediate/schwarzschild.ipynb",
+      "tokens": 40888,
+      "chars": 69807
+    },
+    {
+      "path": "sympy/tensor/tensor.py",
+      "tokens": 38115,
+      "chars": 151710
+    },
+    {
+      "path": "sympy/core/tests/test_args.py",
+      "tokens": 36922,
+      "chars": 129686
+    },
+    {
+      "path": "sympy/utilities/mathml/data/mmlctop.xsl",
+      "tokens": 36744,
+      "chars": 114443
+    },
+    {
+      "path": "sympy/utilities/mathml/data/simple_mmlctop.xsl",
+      "tokens": 36705,
+      "chars": 114432
+    },
+    {
+      "path": "sympy/combinatorics/perm_groups.py",
+      "tokens": 36598,
+      "chars": 145503
+    },
+    {
+      "path": "sympy/matrices/matrices.py",
+      "tokens": 36236,
+      "chars": 146878
+    },
+    {
+      "path": "sympy/integrals/rubi/tests/test_1_3.py",
+      "tokens": 36100,
+      "chars": 61187
+    },
+    {
+      "path": "sympy/matrices/tests/test_matrices.py",
+      "tokens": 36097,
+      "chars": 93231
+    },
+    {
+      "path": "sympy/utilities/tests/test_wester.py",
+      "tokens": 34953,
+      "chars": 93886
+    },
+    {
+      "path": "sympy/integrals/rubi/rules/exponential.py",
+      "tokens": 33869,
+      "chars": 91670
+    },
+    {
+      "path": "sympy/solvers/diophantine.py",
+      "tokens": 31244,
+      "chars": 98070
+    },
+    {
+      "path": "sympy/solvers/solvers.py",
+      "tokens": 30275,
+      "chars": 124627
+    },
+    {
+      "path": "sympy/solvers/tests/test_solvers.py",
+      "tokens": 29870,
+      "chars": 73076
+    },
+    {
+      "path": "sympy/assumptions/tests/test_query.py",
+      "tokens": 29775,
+      "chars": 92246
+    },
+    {
+      "path": "sympy/core/numbers.py",
+      "tokens": 29083,
+      "chars": 115195
+    },
+    {
+      "path": "sympy/core/expr.py",
+      "tokens": 28374,
+      "chars": 117085
+    },
+    {
+      "path": "sympy/integrals/rubi/tests/test_utility_function.py",
+      "tokens": 26472,
+      "chars": 69772
+    },
+    {
+      "path": "sympy/tensor/tests/test_tensor.py",
+      "tokens": 25289,
+      "chars": 59713
+    },
+    {
+      "path": "sympy/printing/tests/test_latex.py",
+      "tokens": 24862,
+      "chars": 69156
+    },
+    {
+      "path": "sympy/holonomic/holonomic.py",
+      "tokens": 24806,
+      "chars": 94321
+    },
+    {
+      "path": "sympy/simplify/hyperexpand.py",
+      "tokens": 24725,
+      "chars": 83623
+    },
+    {
+      "path": "sympy/integrals/meijerint.py",
+      "tokens": 23941,
+      "chars": 76290
+    },
+    {
+      "path": "sympy/polys/subresultants_qq_zz.py",
+      "tokens": 23623,
+      "chars": 79863
+    },
+    {
+      "path": "sympy/functions/elementary/trigonometric.py",
+      "tokens": 23225,
+      "chars": 83722
+    }
+  ]
+}

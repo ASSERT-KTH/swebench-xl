@@ -1,0 +1,125 @@
+{
+    "id": "bf629ca1-97be-4083-aa8a-771496b99423",
+    "task_name": "django__django-15629",
+    "trial_name": "django__django-15629__yyeR5od",
+    "trial_uri": "file:///home/pontus/Documents/GitHub/swebench-xl/tokenizer-agent/jobs/verified_perfile/django__django-15629__yyeR5od",
+    "task_id": {
+        "git_url": "https://github.com/laude-institute/harbor-datasets.git",
+        "git_commit_id": "86723674f04e4209ac479d0fb75d9d9f44b4377e",
+        "path": "datasets/swebench-verified/django__django-15629"
+    },
+    "source": "swebench-verified",
+    "task_checksum": "b86c31b5a4521f235155d2f214de38b7427bd3418613b7ded4d7ba7e29d059a8",
+    "config": {
+        "task": {
+            "path": "datasets/swebench-verified/django__django-15629",
+            "git_url": "https://github.com/laude-institute/harbor-datasets.git",
+            "git_commit_id": "86723674f04e4209ac479d0fb75d9d9f44b4377e",
+            "name": null,
+            "ref": null,
+            "overwrite": false,
+            "download_dir": null,
+            "source": "swebench-verified"
+        },
+        "trial_name": "django__django-15629__yyeR5od",
+        "trials_dir": "jobs/verified_perfile",
+        "install_only": false,
+        "timeout_multiplier": 1.0,
+        "agent_timeout_multiplier": null,
+        "verifier_timeout_multiplier": null,
+        "agent_setup_timeout_multiplier": null,
+        "environment_build_timeout_multiplier": null,
+        "agent": {
+            "name": "tokenizer_agent:RepoTokenizerAgent",
+            "import_path": null,
+            "model_name": null,
+            "n_concurrent": null,
+            "concurrency_group": null,
+            "skills": [],
+            "override_timeout_sec": null,
+            "override_setup_timeout_sec": null,
+            "max_timeout_sec": null,
+            "resume_trajectory": false,
+            "load_trajectory": null,
+            "extra_allowed_hosts": [],
+            "kwargs": {},
+            "mcp_servers": []
+        },
+        "user_agent": null,
+        "environment": {
+            "type": "docker",
+            "import_path": null,
+            "force_build": false,
+            "delete": true,
+            "cpu_enforcement_policy": "auto",
+            "memory_enforcement_policy": "auto",
+            "override_cpus": null,
+            "override_memory_mb": null,
+            "override_storage_mb": null,
+            "override_gpus": null,
+            "override_tpu": null,
+            "mounts": null,
+            "extra_docker_compose": [],
+            "kwargs": {},
+            "extra_allowed_hosts": []
+        },
+        "verifier": {
+            "override_timeout_sec": null,
+            "max_timeout_sec": null,
+            "disable": true
+        },
+        "artifacts": [],
+        "extra_instruction_paths": [],
+        "extra_instructions": [],
+        "job_id": "120d4e6a-7d92-48ee-bc16-6f804b9c5b84",
+        "source_trial": null
+    },
+    "agent_info": {
+        "name": "repo-tokenizer",
+        "version": "1.1.0",
+        "model_info": null
+    },
+    "agent_result": {
+        "n_input_tokens": null,
+        "n_cache_tokens": null,
+        "n_output_tokens": null,
+        "cost_usd": null,
+        "rollout_details": null,
+        "metadata": {
+            "repo_tokenizer": {
+                "instance_id": "django__django-15629",
+                "testbed_dir": "/testbed",
+                "encoding": "cl100k_base",
+                "total_tokens": 8347350,
+                "total_files": 5255,
+                "source_code_tokens": 3852518,
+                "source_code_files": 2854,
+                "total_lines": 981041,
+                "total_bytes": 32858436,
+                "source_code_lines": 467247,
+                "source_code_bytes": 17313397,
+                "skipped_files": 1381,
+                "elapsed_sec": 2.8
+            }
+        }
+    },
+    "verifier_result": null,
+    "verifier_environment_mode": "shared",
+    "exception_info": null,
+    "started_at": "2026-11-12T23:46:30.989741Z",
+    "finished_at": "2026-11-12T23:47:02.000783Z",
+    "environment_setup": {
+        "started_at": "2026-11-12T23:46:30.990049Z",
+        "finished_at": "2026-11-12T23:46:48.107078Z"
+    },
+    "agent_setup": {
+        "started_at": "2026-11-12T23:46:48.107098Z",
+        "finished_at": "2026-11-12T23:46:48.107126Z"
+    },
+    "agent_execution": {
+        "started_at": "2026-11-12T23:46:48.107158Z",
+        "finished_at": "2026-11-12T23:46:50.936220Z"
+    },
+    "verifier": null,
+    "step_results": null
+}
