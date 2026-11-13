@@ -1,0 +1,125 @@
+{
+    "id": "fe7a289a-8d1b-4bc4-9a3d-f8fcf3ce684d",
+    "task_name": "scale-ai/instance_qutebrowser__qutebrowser-5cef49ff3074f9eab1da6937a141a39a20828502-v02ad04386d5238fe2d1a1be450df257370de4b6a",
+    "trial_name": "instance_qutebrowser__qutebrowse__ic7YZ2X",
+    "trial_uri": "file:///home/pontus/Documents/GitHub/swebench-xl/tokenizer-agent/jobs/pro_perfile/instance_qutebrowser__qutebrowse__ic7YZ2X",
+    "task_id": {
+        "org": "scale-ai",
+        "name": "instance_qutebrowser__qutebrowser-5cef49ff3074f9eab1da6937a141a39a20828502-v02ad04386d5238fe2d1a1be450df257370de4b6a",
+        "ref": "sha256:24d5a5b2495826aca103c59357afb2a6c16d9dc4f67a1268437baa45afdb6aff"
+    },
+    "source": "scale-ai/swe-bench-pro",
+    "task_checksum": "e254691bdb4379b8c027a1d3daae5297e42e04a7c3a604e512e5ac697f0774e4",
+    "config": {
+        "task": {
+            "path": null,
+            "git_url": null,
+            "git_commit_id": null,
+            "name": "scale-ai/instance_qutebrowser__qutebrowser-5cef49ff3074f9eab1da6937a141a39a20828502-v02ad04386d5238fe2d1a1be450df257370de4b6a",
+            "ref": "sha256:24d5a5b2495826aca103c59357afb2a6c16d9dc4f67a1268437baa45afdb6aff",
+            "overwrite": false,
+            "download_dir": null,
+            "source": "scale-ai/swe-bench-pro"
+        },
+        "trial_name": "instance_qutebrowser__qutebrowse__ic7YZ2X",
+        "trials_dir": "jobs/pro_perfile",
+        "install_only": false,
+        "timeout_multiplier": 1.0,
+        "agent_timeout_multiplier": null,
+        "verifier_timeout_multiplier": null,
+        "agent_setup_timeout_multiplier": null,
+        "environment_build_timeout_multiplier": null,
+        "agent": {
+            "name": "tokenizer_agent:RepoTokenizerAgent",
+            "import_path": null,
+            "model_name": null,
+            "n_concurrent": null,
+            "concurrency_group": null,
+            "skills": [],
+            "override_timeout_sec": null,
+            "override_setup_timeout_sec": null,
+            "max_timeout_sec": null,
+            "resume_trajectory": false,
+            "load_trajectory": null,
+            "extra_allowed_hosts": [],
+            "kwargs": {},
+            "mcp_servers": []
+        },
+        "user_agent": null,
+        "environment": {
+            "type": "docker",
+            "import_path": null,
+            "force_build": false,
+            "delete": true,
+            "cpu_enforcement_policy": "auto",
+            "memory_enforcement_policy": "auto",
+            "override_cpus": null,
+            "override_memory_mb": null,
+            "override_storage_mb": null,
+            "override_gpus": null,
+            "override_tpu": null,
+            "mounts": null,
+            "extra_docker_compose": [],
+            "kwargs": {},
+            "extra_allowed_hosts": []
+        },
+        "verifier": {
+            "override_timeout_sec": null,
+            "max_timeout_sec": null,
+            "disable": true
+        },
+        "artifacts": [],
+        "extra_instruction_paths": [],
+        "extra_instructions": [],
+        "job_id": "1e0b53f0-5349-48d9-8983-75c80327ec7e",
+        "source_trial": null
+    },
+    "agent_info": {
+        "name": "repo-tokenizer",
+        "version": "1.1.0",
+        "model_info": null
+    },
+    "agent_result": {
+        "n_input_tokens": null,
+        "n_cache_tokens": null,
+        "n_output_tokens": null,
+        "cost_usd": null,
+        "rollout_details": null,
+        "metadata": {
+            "repo_tokenizer": {
+                "instance_id": "instance_qutebrowser__qutebrowser-5cef49ff3074f9eab1da6937a141a39a20828502-v02ad04386d5238fe2d1a1be450df257370de4b6a",
+                "testbed_dir": "/app",
+                "encoding": "cl100k_base",
+                "total_tokens": 1819253,
+                "total_files": 872,
+                "source_code_tokens": 1177372,
+                "source_code_files": 474,
+                "total_lines": 202330,
+                "total_bytes": 7428400,
+                "source_code_lines": 138480,
+                "source_code_bytes": 5043860,
+                "skipped_files": 57,
+                "elapsed_sec": 0.9
+            }
+        }
+    },
+    "verifier_result": null,
+    "verifier_environment_mode": "shared",
+    "exception_info": null,
+    "started_at": "2026-11-12T21:47:53.195871Z",
+    "finished_at": "2026-11-12T21:49:07.664094Z",
+    "environment_setup": {
+        "started_at": "2026-11-12T21:47:53.196352Z",
+        "finished_at": "2026-11-12T21:48:56.115308Z"
+    },
+    "agent_setup": {
+        "started_at": "2026-11-12T21:48:56.115327Z",
+        "finished_at": "2026-11-12T21:48:56.115351Z"
+    },
+    "agent_execution": {
+        "started_at": "2026-11-12T21:48:56.115385Z",
+        "finished_at": "2026-11-12T21:48:57.016309Z"
+    },
+    "verifier": null,
+    "step_results": null
+}

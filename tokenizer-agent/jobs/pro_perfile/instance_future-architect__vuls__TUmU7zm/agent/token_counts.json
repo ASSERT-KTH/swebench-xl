@@ -1,0 +1,313 @@
+{
+  "instance_id": "instance_future-architect__vuls-3c1489e588dacea455ccf4c352a3b1006902e2d4",
+  "encoding": "cl100k_base",
+  "total_tokens": 526808,
+  "total_characters": 1695948,
+  "total_files": 169,
+  "total_lines": 43921,
+  "total_nonblank_lines": 40874,
+  "total_bytes": 1699851,
+  "source_code_tokens": 414882,
+  "source_code_files": 143,
+  "source_code_lines": 40378,
+  "source_code_nonblank_lines": 37726,
+  "source_code_bytes": 1442265,
+  "skipped_files": 6,
+  "skipped_bytes": 630538,
+  "by_extension": {
+    ".go": {
+      "tokens": 414882,
+      "files": 143,
+      "lines": 40378,
+      "nonblank_lines": 37726,
+      "bytes": 1442265
+    },
+    ".sum": {
+      "tokens": 80868,
+      "files": 1,
+      "lines": 1461,
+      "nonblank_lines": 1461,
+      "bytes": 144937
+    },
+    ".md": {
+      "tokens": 19118,
+      "files": 10,
+      "lines": 891,
+      "nonblank_lines": 684,
+      "bytes": 64469
+    },
+    "(no extension)": {
+      "tokens": 8210,
+      "files": 6,
+      "lines": 803,
+      "nonblank_lines": 655,
+      "bytes": 37282
+    },
+    ".yml": {
+      "tokens": 2069,
+      "files": 8,
+      "lines": 304,
+      "nonblank_lines": 267,
+      "bytes": 6954
+    },
+    ".mod": {
+      "tokens": 1661,
+      "files": 1,
+      "lines": 84,
+      "nonblank_lines": 81,
+      "bytes": 3944
+    }
+  },
+  "top_files": [
+    {
+      "path": "contrib/trivy/parser/parser_test.go",
+      "tokens": 99059,
+      "chars": 310289
+    },
+    {
+      "path": "go.sum",
+      "tokens": 80868,
+      "chars": 144937
+    },
+    {
+      "path": "cwe/en.go",
+      "tokens": 76426,
+      "chars": 367767
+    },
+    {
+      "path": "CHANGELOG.md",
+      "tokens": 15988,
+      "chars": 52120
+    },
+    {
+      "path": "scan/debian.go",
+      "tokens": 11529,
+      "chars": 37767
+    },
+    {
+      "path": "scan/debian_test.go",
+      "tokens": 9456,
+      "chars": 27487
+    },
+    {
+      "path": "report/tui.go",
+      "tokens": 9251,
+      "chars": 28713
+    },
+    {
+      "path": "oval/util_test.go",
+      "tokens": 8757,
+      "chars": 24528
+    },
+    {
+      "path": "cwe/ja.go",
+      "tokens": 8727,
+      "chars": 25819
+    },
+    {
+      "path": "models/vulninfos_test.go",
+      "tokens": 7764,
+      "chars": 21013
+    },
+    {
+      "path": "LICENSE",
+      "tokens": 7285,
+      "chars": 34523
+    },
+    {
+      "path": "scan/base.go",
+      "tokens": 7277,
+      "chars": 24275
+    },
+    {
+      "path": "models/vulninfos.go",
+      "tokens": 7017,
+      "chars": 24372
+    },
+    {
+      "path": "scan/base_test.go",
+      "tokens": 6522,
+      "chars": 18736
+    },
+    {
+      "path": "report/util.go",
+      "tokens": 6302,
+      "chars": 20693
+    },
+    {
+      "path": "scan/redhatbase.go",
+      "tokens": 6085,
+      "chars": 20029
+    },
+    {
+      "path": "scan/serverapi.go",
+      "tokens": 5653,
+      "chars": 20140
+    },
+    {
+      "path": "models/scanresults_test.go",
+      "tokens": 5449,
+      "chars": 15894
+    },
+    {
+      "path": "report/report.go",
+      "tokens": 4900,
+      "chars": 15473
+    },
+    {
+      "path": "models/scanresults.go",
+      "tokens": 4420,
+      "chars": 15085
+    },
+    {
+      "path": "config/config.go",
+      "tokens": 4212,
+      "chars": 15975
+    },
+    {
+      "path": "oval/debian.go",
+      "tokens": 3980,
+      "chars": 12189
+    },
+    {
+      "path": "scan/redhatbase_test.go",
+      "tokens": 3976,
+      "chars": 11411
+    },
+    {
+      "path": "scan/executil.go",
+      "tokens": 3779,
+      "chars": 12715
+    },
+    {
+      "path": "config/os_test.go",
+      "tokens": 3511,
+      "chars": 9445
+    },
+    {
+      "path": "report/util_test.go",
+      "tokens": 3345,
+      "chars": 10412
+    },
+    {
+      "path": "oval/util.go",
+      "tokens": 3176,
+      "chars": 10843
+    },
+    {
+      "path": "models/packages_test.go",
+      "tokens": 2891,
+      "chars": 8221
+    },
+    {
+      "path": "scan/freebsd.go",
+      "tokens": 2808,
+      "chars": 9087
+    },
+    {
+      "path": "report/slack.go",
+      "tokens": 2794,
+      "chars": 9157
+    },
+    {
+      "path": "subcmds/report.go",
+      "tokens": 2759,
+      "chars": 9224
+    },
+    {
+      "path": "config/os.go",
+      "tokens": 2619,
+      "chars": 6873
+    },
+    {
+      "path": "oval/redhat.go",
+      "tokens": 2480,
+      "chars": 7760
+    },
+    {
+      "path": "report/db_client.go",
+      "tokens": 2410,
+      "chars": 7419
+    },
+    {
+      "path": "models/cvecontents.go",
+      "tokens": 2400,
+      "chars": 8415
+    },
+    {
+      "path": "scan/freebsd_test.go",
+      "tokens": 2272,
+      "chars": 6214
+    },
+    {
+      "path": "gost/redhat.go",
+      "tokens": 2194,
+      "chars": 6635
+    },
+    {
+      "path": "models/packages.go",
+      "tokens": 2188,
+      "chars": 8058
+    },
+    {
+      "path": "wordpress/wordpress.go",
+      "tokens": 2162,
+      "chars": 7146
+    },
+    {
+      "path": "README.md",
+      "tokens": 2106,
+      "chars": 8251
+    },
+    {
+      "path": "subcmds/discover.go",
+      "tokens": 1981,
+      "chars": 6657
+    },
+    {
+      "path": "github/github.go",
+      "tokens": 1898,
+      "chars": 7125
+    },
+    {
+      "path": "scan/executil_test.go",
+      "tokens": 1866,
+      "chars": 5732
+    },
+    {
+      "path": "config/tomlloader.go",
+      "tokens": 1719,
+      "chars": 5801
+    },
+    {
+      "path": "scan/suse.go",
+      "tokens": 1714,
+      "chars": 5774
+    },
+    {
+      "path": "saas/uuid.go",
+      "tokens": 1665,
+      "chars": 5764
+    },
+    {
+      "path": "go.mod",
+      "tokens": 1661,
+      "chars": 3944
+    },
+    {
+      "path": "report/email.go",
+      "tokens": 1645,
+      "chars": 5693
+    },
+    {
+      "path": "report/cve_client.go",
+      "tokens": 1568,
+      "chars": 4999
+    },
+    {
+      "path": "subcmds/scan.go",
+      "tokens": 1523,
+      "chars": 5344
+    }
+  ]
+}

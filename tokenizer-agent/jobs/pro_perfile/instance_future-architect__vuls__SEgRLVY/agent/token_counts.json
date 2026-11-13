@@ -1,0 +1,334 @@
+{
+  "instance_id": "instance_future-architect__vuls-7eb77f5b5127c847481bcf600b4dca2b7a85cf3e",
+  "encoding": "cl100k_base",
+  "total_tokens": 849571,
+  "total_characters": 2536106,
+  "total_files": 171,
+  "total_lines": 66901,
+  "total_nonblank_lines": 62496,
+  "total_bytes": 2540025,
+  "source_code_tokens": 424733,
+  "source_code_files": 137,
+  "source_code_lines": 41530,
+  "source_code_nonblank_lines": 38916,
+  "source_code_bytes": 1472835,
+  "skipped_files": 6,
+  "skipped_bytes": 630538,
+  "by_extension": {
+    ".go": {
+      "tokens": 424733,
+      "files": 137,
+      "lines": 41530,
+      "nonblank_lines": 38916,
+      "bytes": 1472835
+    },
+    ".lock": {
+      "tokens": 250151,
+      "files": 6,
+      "lines": 18656,
+      "nonblank_lines": 17308,
+      "bytes": 665207
+    },
+    ".sum": {
+      "tokens": 108851,
+      "files": 1,
+      "lines": 1947,
+      "nonblank_lines": 1947,
+      "bytes": 196338
+    },
+    ".json": {
+      "tokens": 32594,
+      "files": 1,
+      "lines": 2440,
+      "nonblank_lines": 2440,
+      "bytes": 85853
+    },
+    ".md": {
+      "tokens": 19141,
+      "files": 10,
+      "lines": 895,
+      "nonblank_lines": 686,
+      "bytes": 64547
+    },
+    "(no extension)": {
+      "tokens": 10061,
+      "files": 5,
+      "lines": 961,
+      "nonblank_lines": 794,
+      "bytes": 43153
+    },
+    ".yml": {
+      "tokens": 2052,
+      "files": 8,
+      "lines": 300,
+      "nonblank_lines": 263,
+      "bytes": 6910
+    },
+    ".mod": {
+      "tokens": 1280,
+      "files": 1,
+      "lines": 62,
+      "nonblank_lines": 60,
+      "bytes": 2926
+    },
+    ".toml": {
+      "tokens": 708,
+      "files": 2,
+      "lines": 110,
+      "nonblank_lines": 82,
+      "bytes": 2256
+    }
+  },
+  "top_files": [
+    {
+      "path": "integration/data/lockfile/yarn.lock",
+      "tokens": 115118,
+      "chars": 243205
+    },
+    {
+      "path": "go.sum",
+      "tokens": 108851,
+      "chars": 196338
+    },
+    {
+      "path": "contrib/trivy/parser/parser_test.go",
+      "tokens": 99304,
+      "chars": 311036
+    },
+    {
+      "path": "cwe/en.go",
+      "tokens": 76426,
+      "chars": 367767
+    },
+    {
+      "path": "integration/data/lockfile/composer.lock",
+      "tokens": 54647,
+      "chars": 223683
+    },
+    {
+      "path": "integration/data/lockfile/Cargo.lock",
+      "tokens": 37794,
+      "chars": 100070
+    },
+    {
+      "path": "integration/data/lockfile/package-lock.json",
+      "tokens": 32594,
+      "chars": 85853
+    },
+    {
+      "path": "integration/data/lockfile/poetry.lock",
+      "tokens": 24164,
+      "chars": 54898
+    },
+    {
+      "path": "CHANGELOG.md",
+      "tokens": 15988,
+      "chars": 52120
+    },
+    {
+      "path": "integration/data/lockfile/Pipfile.lock",
+      "tokens": 15058,
+      "chars": 35864
+    },
+    {
+      "path": "models/vulninfos_test.go",
+      "tokens": 11159,
+      "chars": 30264
+    },
+    {
+      "path": "scanner/debian.go",
+      "tokens": 10910,
+      "chars": 35888
+    },
+    {
+      "path": "oval/util_test.go",
+      "tokens": 10898,
+      "chars": 30678
+    },
+    {
+      "path": "scanner/debian_test.go",
+      "tokens": 9467,
+      "chars": 27543
+    },
+    {
+      "path": "tui/tui.go",
+      "tokens": 9192,
+      "chars": 28547
+    },
+    {
+      "path": "cwe/ja.go",
+      "tokens": 8727,
+      "chars": 25819
+    },
+    {
+      "path": "scanner/base.go",
+      "tokens": 8335,
+      "chars": 27753
+    },
+    {
+      "path": "LICENSE",
+      "tokens": 7285,
+      "chars": 34523
+    },
+    {
+      "path": "models/vulninfos.go",
+      "tokens": 7038,
+      "chars": 24405
+    },
+    {
+      "path": "scanner/base_test.go",
+      "tokens": 6588,
+      "chars": 18885
+    },
+    {
+      "path": "reporter/util.go",
+      "tokens": 6018,
+      "chars": 19676
+    },
+    {
+      "path": "scanner/redhatbase_test.go",
+      "tokens": 5799,
+      "chars": 16440
+    },
+    {
+      "path": "scanner/redhatbase.go",
+      "tokens": 5673,
+      "chars": 18852
+    },
+    {
+      "path": "scanner/serverapi.go",
+      "tokens": 5161,
+      "chars": 18594
+    },
+    {
+      "path": "reporter/util_test.go",
+      "tokens": 5084,
+      "chars": 15132
+    },
+    {
+      "path": "models/scanresults.go",
+      "tokens": 4537,
+      "chars": 15406
+    },
+    {
+      "path": "detector/detector.go",
+      "tokens": 4527,
+      "chars": 14321
+    },
+    {
+      "path": "oval/debian.go",
+      "tokens": 4162,
+      "chars": 12725
+    },
+    {
+      "path": "oval/util.go",
+      "tokens": 4033,
+      "chars": 13899
+    },
+    {
+      "path": "config/os_test.go",
+      "tokens": 3610,
+      "chars": 9716
+    },
+    {
+      "path": "integration/data/lockfile/Gemfile.lock",
+      "tokens": 3370,
+      "chars": 7471
+    },
+    {
+      "path": "saas/uuid_test.go",
+      "tokens": 3152,
+      "chars": 9704
+    },
+    {
+      "path": "subcmds/report.go",
+      "tokens": 2958,
+      "chars": 10208
+    },
+    {
+      "path": "models/packages_test.go",
+      "tokens": 2891,
+      "chars": 8221
+    },
+    {
+      "path": "reporter/slack.go",
+      "tokens": 2871,
+      "chars": 9353
+    },
+    {
+      "path": "scanner/freebsd.go",
+      "tokens": 2829,
+      "chars": 9183
+    },
+    {
+      "path": "config/config.go",
+      "tokens": 2789,
+      "chars": 10894
+    },
+    {
+      "path": "oval/redhat.go",
+      "tokens": 2671,
+      "chars": 8362
+    },
+    {
+      "path": "models/scanresults_test.go",
+      "tokens": 2531,
+      "chars": 7660
+    },
+    {
+      "path": "GNUmakefile",
+      "tokens": 2523,
+      "chars": 7798
+    },
+    {
+      "path": "config/os.go",
+      "tokens": 2469,
+      "chars": 6363
+    },
+    {
+      "path": "models/cvecontents.go",
+      "tokens": 2400,
+      "chars": 8415
+    },
+    {
+      "path": "scanner/executil.go",
+      "tokens": 2353,
+      "chars": 7968
+    },
+    {
+      "path": "detector/wordpress.go",
+      "tokens": 2316,
+      "chars": 7730
+    },
+    {
+      "path": "scanner/freebsd_test.go",
+      "tokens": 2272,
+      "chars": 6217
+    },
+    {
+      "path": "config/vulnDictConf.go",
+      "tokens": 2168,
+      "chars": 6911
+    },
+    {
+      "path": "models/packages.go",
+      "tokens": 2161,
+      "chars": 7990
+    },
+    {
+      "path": "gost/redhat.go",
+      "tokens": 2139,
+      "chars": 6437
+    },
+    {
+      "path": "README.md",
+      "tokens": 2129,
+      "chars": 8329
+    },
+    {
+      "path": "detector/util.go",
+      "tokens": 2124,
+      "chars": 7195
+    }
+  ]
+}

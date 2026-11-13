@@ -1,0 +1,418 @@
+{
+  "instance_id": "instance_navidrome__navidrome-b3980532237e57ab15b2b93c49d5cd5b2d050013",
+  "encoding": "cl100k_base",
+  "total_tokens": 1087009,
+  "total_characters": 3098069,
+  "total_files": 561,
+  "total_lines": 84901,
+  "total_nonblank_lines": 80695,
+  "total_bytes": 3125575,
+  "source_code_tokens": 244195,
+  "source_code_files": 418,
+  "source_code_lines": 33777,
+  "source_code_nonblank_lines": 29900,
+  "source_code_bytes": 920571,
+  "skipped_files": 35,
+  "skipped_bytes": 36233067,
+  "by_extension": {
+    ".json": {
+      "tokens": 721810,
+      "files": 61,
+      "lines": 45944,
+      "nonblank_lines": 45944,
+      "bytes": 1908094
+    },
+    ".go": {
+      "tokens": 172488,
+      "files": 250,
+      "lines": 22621,
+      "nonblank_lines": 19507,
+      "bytes": 619322
+    },
+    ".js": {
+      "tokens": 70766,
+      "files": 165,
+      "lines": 11038,
+      "nonblank_lines": 10296,
+      "bytes": 297811
+    },
+    ".sum": {
+      "tokens": 69070,
+      "files": 1,
+      "lines": 1247,
+      "nonblank_lines": 1247,
+      "bytes": 123282
+    },
+    ".xml": {
+      "tokens": 32816,
+      "files": 35,
+      "lines": 1951,
+      "nonblank_lines": 1951,
+      "bytes": 96499
+    },
+    "(no extension)": {
+      "tokens": 9916,
+      "files": 17,
+      "lines": 963,
+      "nonblank_lines": 797,
+      "bytes": 42676
+    },
+    ".md": {
+      "tokens": 3496,
+      "files": 7,
+      "lines": 359,
+      "nonblank_lines": 266,
+      "bytes": 15720
+    },
+    ".yml": {
+      "tokens": 2868,
+      "files": 6,
+      "lines": 393,
+      "nonblank_lines": 350,
+      "bytes": 9776
+    },
+    ".mod": {
+      "tokens": 977,
+      "files": 1,
+      "lines": 56,
+      "nonblank_lines": 53,
+      "bytes": 2224
+    },
+    ".html": {
+      "tokens": 739,
+      "files": 3,
+      "lines": 77,
+      "nonblank_lines": 73,
+      "bytes": 2837
+    },
+    ".cpp": {
+      "tokens": 632,
+      "files": 1,
+      "lines": 81,
+      "nonblank_lines": 69,
+      "bytes": 2311
+    },
+    ".service": {
+      "tokens": 387,
+      "files": 1,
+      "lines": 55,
+      "nonblank_lines": 47,
+      "bytes": 1517
+    },
+    ".dockerfile": {
+      "tokens": 333,
+      "files": 1,
+      "lines": 37,
+      "nonblank_lines": 28,
+      "bytes": 1204
+    },
+    ".sh": {
+      "tokens": 226,
+      "files": 1,
+      "lines": 22,
+      "nonblank_lines": 17,
+      "bytes": 804
+    },
+    ".txt": {
+      "tokens": 147,
+      "files": 4,
+      "lines": 14,
+      "nonblank_lines": 12,
+      "bytes": 386
+    },
+    ".css": {
+      "tokens": 110,
+      "files": 1,
+      "lines": 13,
+      "nonblank_lines": 12,
+      "bytes": 366
+    },
+    ".h": {
+      "tokens": 83,
+      "files": 1,
+      "lines": 15,
+      "nonblank_lines": 11,
+      "bytes": 323
+    },
+    ".conf": {
+      "tokens": 45,
+      "files": 1,
+      "lines": 1,
+      "nonblank_lines": 1,
+      "bytes": 111
+    },
+    ".toml": {
+      "tokens": 42,
+      "files": 1,
+      "lines": 6,
+      "nonblank_lines": 6,
+      "bytes": 149
+    },
+    ".dev": {
+      "tokens": 32,
+      "files": 1,
+      "lines": 2,
+      "nonblank_lines": 2,
+      "bytes": 93
+    },
+    ".m3u": {
+      "tokens": 26,
+      "files": 2,
+      "lines": 6,
+      "nonblank_lines": 6,
+      "bytes": 70
+    }
+  },
+  "top_files": [
+    {
+      "path": "ui/package-lock.json",
+      "tokens": 624909,
+      "chars": 1552991
+    },
+    {
+      "path": "go.sum",
+      "tokens": 69070,
+      "chars": 123282
+    },
+    {
+      "path": "tests/fixtures/itunes-library.xml",
+      "tokens": 29665,
+      "chars": 86631
+    },
+    {
+      "path": "tests/fixtures/lastfm.artist.getinfo.json",
+      "tokens": 6957,
+      "chars": 22084
+    },
+    {
+      "path": "LICENSE",
+      "tokens": 6862,
+      "chars": 32472
+    },
+    {
+      "path": "tests/fixtures/spotify.search.artist.json",
+      "tokens": 5723,
+      "chars": 13338
+    },
+    {
+      "path": "resources/i18n/th.json",
+      "tokens": 5698,
+      "chars": 13914
+    },
+    {
+      "path": "resources/i18n/uk.json",
+      "tokens": 5047,
+      "chars": 14539
+    },
+    {
+      "path": "utils/strings_test.go",
+      "tokens": 4739,
+      "chars": 13915
+    },
+    {
+      "path": "resources/i18n/cs.json",
+      "tokens": 4498,
+      "chars": 14813
+    },
+    {
+      "path": "server/subsonic/responses/responses_test.go",
+      "tokens": 4325,
+      "chars": 14861
+    },
+    {
+      "path": "server/subsonic/responses/responses.go",
+      "tokens": 4288,
+      "chars": 19880
+    },
+    {
+      "path": "resources/i18n/pl.json",
+      "tokens": 4242,
+      "chars": 15172
+    },
+    {
+      "path": "resources/i18n/ja.json",
+      "tokens": 4196,
+      "chars": 12096
+    },
+    {
+      "path": "resources/i18n/sl.json",
+      "tokens": 4160,
+      "chars": 14734
+    },
+    {
+      "path": "resources/i18n/zh-Hant.json",
+      "tokens": 4127,
+      "chars": 11406
+    },
+    {
+      "path": "resources/i18n/eo.json",
+      "tokens": 4046,
+      "chars": 14164
+    },
+    {
+      "path": "scanner/metadata/ffmpeg_test.go",
+      "tokens": 4010,
+      "chars": 12141
+    },
+    {
+      "path": "resources/i18n/nl.json",
+      "tokens": 3891,
+      "chars": 15348
+    },
+    {
+      "path": "resources/i18n/sv.json",
+      "tokens": 3815,
+      "chars": 14435
+    },
+    {
+      "path": "resources/i18n/tr.json",
+      "tokens": 3750,
+      "chars": 13092
+    },
+    {
+      "path": "resources/i18n/ru.json",
+      "tokens": 3747,
+      "chars": 13143
+    },
+    {
+      "path": "resources/i18n/pt.json",
+      "tokens": 3653,
+      "chars": 15246
+    },
+    {
+      "path": "resources/i18n/es.json",
+      "tokens": 3621,
+      "chars": 15608
+    },
+    {
+      "path": "resources/i18n/fr.json",
+      "tokens": 3614,
+      "chars": 14931
+    },
+    {
+      "path": "resources/i18n/de.json",
+      "tokens": 3603,
+      "chars": 14680
+    },
+    {
+      "path": "core/external_metadata.go",
+      "tokens": 3552,
+      "chars": 12344
+    },
+    {
+      "path": "resources/i18n/it.json",
+      "tokens": 3434,
+      "chars": 13886
+    },
+    {
+      "path": "resources/i18n/da.json",
+      "tokens": 3409,
+      "chars": 13056
+    },
+    {
+      "path": "resources/i18n/zh-Hans.json",
+      "tokens": 3353,
+      "chars": 10942
+    },
+    {
+      "path": "scanner/tag_scanner.go",
+      "tokens": 3324,
+      "chars": 12331
+    },
+    {
+      "path": "ui/src/i18n/en.json",
+      "tokens": 3171,
+      "chars": 12479
+    },
+    {
+      "path": "server/subsonic/browsing.go",
+      "tokens": 3158,
+      "chars": 11546
+    },
+    {
+      "path": "persistence/album_repository.go",
+      "tokens": 3064,
+      "chars": 10743
+    },
+    {
+      "path": "server/subsonic/middlewares_test.go",
+      "tokens": 2655,
+      "chars": 9675
+    },
+    {
+      "path": "ui/src/themes/ligera.js",
+      "tokens": 2649,
+      "chars": 9981
+    },
+    {
+      "path": "ui/src/audioplayer/Player.js",
+      "tokens": 2466,
+      "chars": 10273
+    },
+    {
+      "path": "server/subsonic/api.go",
+      "tokens": 2466,
+      "chars": 8938
+    },
+    {
+      "path": "core/media_streamer_test.go",
+      "tokens": 2156,
+      "chars": 7137
+    },
+    {
+      "path": "scanner/metadata/metadata.go",
+      "tokens": 2034,
+      "chars": 6971
+    },
+    {
+      "path": "persistence/artist_repository.go",
+      "tokens": 2025,
+      "chars": 7086
+    },
+    {
+      "path": "persistence/mediafile_repository_test.go",
+      "tokens": 1966,
+      "chars": 6055
+    },
+    {
+      "path": "ui/src/themes/spotify.js",
+      "tokens": 1964,
+      "chars": 7317
+    },
+    {
+      "path": "ui/src/layout/Login.js",
+      "tokens": 1941,
+      "chars": 9647
+    },
+    {
+      "path": "server/subsonic/media_annotation.go",
+      "tokens": 1864,
+      "chars": 6532
+    },
+    {
+      "path": "conf/configuration.go",
+      "tokens": 1822,
+      "chars": 7142
+    },
+    {
+      "path": "persistence/mediafile_repository.go",
+      "tokens": 1820,
+      "chars": 6757
+    },
+    {
+      "path": "cmd/root.go",
+      "tokens": 1732,
+      "chars": 6661
+    },
+    {
+      "path": "persistence/sql_base_repository.go",
+      "tokens": 1703,
+      "chars": 5957
+    },
+    {
+      "path": "server/subsonic/album_lists.go",
+      "tokens": 1689,
+      "chars": 6282
+    }
+  ]
+}

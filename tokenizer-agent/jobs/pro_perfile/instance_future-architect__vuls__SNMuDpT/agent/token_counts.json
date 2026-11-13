@@ -1,0 +1,320 @@
+{
+  "instance_id": "instance_future-architect__vuls-fe8d252c51114e922e6836055ef86a15f79ad042",
+  "encoding": "cl100k_base",
+  "total_tokens": 556675,
+  "total_characters": 1691807,
+  "total_files": 178,
+  "total_lines": 46124,
+  "total_nonblank_lines": 42770,
+  "total_bytes": 1695704,
+  "source_code_tokens": 368491,
+  "source_code_files": 149,
+  "source_code_lines": 40919,
+  "source_code_nonblank_lines": 37994,
+  "source_code_bytes": 1293071,
+  "skipped_files": 7,
+  "skipped_bytes": 664893,
+  "by_extension": {
+    ".go": {
+      "tokens": 368491,
+      "files": 149,
+      "lines": 40919,
+      "nonblank_lines": 37994,
+      "bytes": 1293071
+    },
+    ".sum": {
+      "tokens": 152121,
+      "files": 1,
+      "lines": 2737,
+      "nonblank_lines": 2737,
+      "bytes": 274252
+    },
+    ".md": {
+      "tokens": 19506,
+      "files": 11,
+      "lines": 913,
+      "nonblank_lines": 699,
+      "bytes": 65931
+    },
+    "(no extension)": {
+      "tokens": 10369,
+      "files": 6,
+      "lines": 984,
+      "nonblank_lines": 813,
+      "bytes": 44163
+    },
+    ".mod": {
+      "tokens": 3490,
+      "files": 1,
+      "lines": 172,
+      "nonblank_lines": 169,
+      "bytes": 8813
+    },
+    ".yml": {
+      "tokens": 2527,
+      "files": 9,
+      "lines": 369,
+      "nonblank_lines": 329,
+      "bytes": 8860
+    },
+    ".toml": {
+      "tokens": 171,
+      "files": 1,
+      "lines": 30,
+      "nonblank_lines": 29,
+      "bytes": 614
+    }
+  },
+  "top_files": [
+    {
+      "path": "go.sum",
+      "tokens": 152121,
+      "chars": 274252
+    },
+    {
+      "path": "cwe/en.go",
+      "tokens": 76426,
+      "chars": 367767
+    },
+    {
+      "path": "CHANGELOG.md",
+      "tokens": 15988,
+      "chars": 52120
+    },
+    {
+      "path": "oval/util_test.go",
+      "tokens": 15098,
+      "chars": 42458
+    },
+    {
+      "path": "models/vulninfos_test.go",
+      "tokens": 12363,
+      "chars": 33477
+    },
+    {
+      "path": "scanner/debian.go",
+      "tokens": 10912,
+      "chars": 35883
+    },
+    {
+      "path": "scanner/base.go",
+      "tokens": 10381,
+      "chars": 35008
+    },
+    {
+      "path": "scanner/debian_test.go",
+      "tokens": 9307,
+      "chars": 27079
+    },
+    {
+      "path": "tui/tui.go",
+      "tokens": 9283,
+      "chars": 28845
+    },
+    {
+      "path": "cwe/ja.go",
+      "tokens": 8727,
+      "chars": 25819
+    },
+    {
+      "path": "contrib/trivy/parser/v2/parser_test.go",
+      "tokens": 7874,
+      "chars": 23595
+    },
+    {
+      "path": "models/vulninfos.go",
+      "tokens": 7589,
+      "chars": 26038
+    },
+    {
+      "path": "LICENSE",
+      "tokens": 7445,
+      "chars": 35117
+    },
+    {
+      "path": "scanner/base_test.go",
+      "tokens": 6695,
+      "chars": 19262
+    },
+    {
+      "path": "scanner/redhatbase.go",
+      "tokens": 6660,
+      "chars": 22154
+    },
+    {
+      "path": "reporter/util.go",
+      "tokens": 6116,
+      "chars": 19999
+    },
+    {
+      "path": "scanner/redhatbase_test.go",
+      "tokens": 5799,
+      "chars": 16440
+    },
+    {
+      "path": "detector/detector.go",
+      "tokens": 5644,
+      "chars": 17986
+    },
+    {
+      "path": "scanner/serverapi.go",
+      "tokens": 5249,
+      "chars": 18863
+    },
+    {
+      "path": "config/os_test.go",
+      "tokens": 5226,
+      "chars": 13939
+    },
+    {
+      "path": "reporter/util_test.go",
+      "tokens": 5084,
+      "chars": 15132
+    },
+    {
+      "path": "oval/util.go",
+      "tokens": 4585,
+      "chars": 15774
+    },
+    {
+      "path": "models/scanresults.go",
+      "tokens": 4491,
+      "chars": 15247
+    },
+    {
+      "path": "oval/debian.go",
+      "tokens": 4456,
+      "chars": 13605
+    },
+    {
+      "path": "models/scanresults_test.go",
+      "tokens": 3978,
+      "chars": 11671
+    },
+    {
+      "path": "go.mod",
+      "tokens": 3490,
+      "chars": 8813
+    },
+    {
+      "path": "oval/redhat.go",
+      "tokens": 3459,
+      "chars": 10848
+    },
+    {
+      "path": "scanner/freebsd_test.go",
+      "tokens": 3232,
+      "chars": 8590
+    },
+    {
+      "path": "saas/uuid_test.go",
+      "tokens": 3148,
+      "chars": 9690
+    },
+    {
+      "path": "subcmds/report.go",
+      "tokens": 3101,
+      "chars": 10722
+    },
+    {
+      "path": "models/cvecontents.go",
+      "tokens": 3080,
+      "chars": 10600
+    },
+    {
+      "path": "config/os.go",
+      "tokens": 2979,
+      "chars": 7616
+    },
+    {
+      "path": "config/config.go",
+      "tokens": 2957,
+      "chars": 11521
+    },
+    {
+      "path": "models/packages_test.go",
+      "tokens": 2891,
+      "chars": 8211
+    },
+    {
+      "path": "reporter/slack.go",
+      "tokens": 2890,
+      "chars": 9416
+    },
+    {
+      "path": "scanner/freebsd.go",
+      "tokens": 2835,
+      "chars": 9213
+    },
+    {
+      "path": "GNUmakefile",
+      "tokens": 2645,
+      "chars": 8120
+    },
+    {
+      "path": "README.md",
+      "tokens": 2466,
+      "chars": 9576
+    },
+    {
+      "path": "config/vulnDictConf.go",
+      "tokens": 2404,
+      "chars": 7533
+    },
+    {
+      "path": "gost/debian.go",
+      "tokens": 2374,
+      "chars": 7642
+    },
+    {
+      "path": "scanner/executil.go",
+      "tokens": 2353,
+      "chars": 7968
+    },
+    {
+      "path": "detector/wordpress.go",
+      "tokens": 2329,
+      "chars": 7770
+    },
+    {
+      "path": "subcmds/discover.go",
+      "tokens": 2300,
+      "chars": 7659
+    },
+    {
+      "path": "gost/redhat.go",
+      "tokens": 2275,
+      "chars": 6888
+    },
+    {
+      "path": "detector/util.go",
+      "tokens": 2164,
+      "chars": 7349
+    },
+    {
+      "path": "models/packages.go",
+      "tokens": 2161,
+      "chars": 7990
+    },
+    {
+      "path": "models/cvecontents_test.go",
+      "tokens": 2003,
+      "chars": 5313
+    },
+    {
+      "path": "detector/github.go",
+      "tokens": 1929,
+      "chars": 7258
+    },
+    {
+      "path": "contrib/trivy/pkg/converter.go",
+      "tokens": 1909,
+      "chars": 6669
+    },
+    {
+      "path": "config/portscan.go",
+      "tokens": 1893,
+      "chars": 6670
+    }
+  ]
+}

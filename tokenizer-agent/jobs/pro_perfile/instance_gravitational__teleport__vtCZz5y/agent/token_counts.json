@@ -1,0 +1,642 @@
+{
+  "instance_id": "instance_gravitational__teleport-73cc189b0e9636d418c4470ecce0d9af5dae2f02-vee9b09fb20c43af7e520f57e9239bbcf46b7113d",
+  "encoding": "cl100k_base",
+  "total_tokens": 10991010,
+  "total_characters": 37769388,
+  "total_files": 3177,
+  "total_lines": 1151803,
+  "total_nonblank_lines": 1023979,
+  "total_bytes": 37787653,
+  "source_code_tokens": 7802060,
+  "source_code_files": 2017,
+  "source_code_lines": 952128,
+  "source_code_nonblank_lines": 854664,
+  "source_code_bytes": 27728908,
+  "skipped_files": 465,
+  "skipped_bytes": 127635481,
+  "by_extension": {
+    ".go": {
+      "tokens": 6642661,
+      "files": 1886,
+      "lines": 782871,
+      "nonblank_lines": 705668,
+      "bytes": 23498543
+    },
+    ".json": {
+      "tokens": 1141946,
+      "files": 10,
+      "lines": 5060,
+      "nonblank_lines": 5058,
+      "bytes": 2414943
+    },
+    ".h": {
+      "tokens": 749159,
+      "files": 13,
+      "lines": 121718,
+      "nonblank_lines": 107602,
+      "bytes": 2525868
+    },
+    ".mdx": {
+      "tokens": 557676,
+      "files": 318,
+      "lines": 65543,
+      "nonblank_lines": 49896,
+      "bytes": 2318983
+    },
+    ".md": {
+      "tokens": 379162,
+      "files": 153,
+      "lines": 36993,
+      "nonblank_lines": 27858,
+      "bytes": 1660008
+    },
+    ".yml": {
+      "tokens": 241725,
+      "files": 13,
+      "lines": 19048,
+      "nonblank_lines": 18719,
+      "bytes": 801909
+    },
+    ".sum": {
+      "tokens": 215141,
+      "files": 7,
+      "lines": 3892,
+      "nonblank_lines": 3892,
+      "bytes": 385970
+    },
+    ".js": {
+      "tokens": 199031,
+      "files": 28,
+      "lines": 25418,
+      "nonblank_lines": 21987,
+      "bytes": 836864
+    },
+    ".proto": {
+      "tokens": 187264,
+      "files": 37,
+      "lines": 18006,
+      "nonblank_lines": 16020,
+      "bytes": 719335
+    },
+    ".yaml": {
+      "tokens": 166815,
+      "files": 282,
+      "lines": 22066,
+      "nonblank_lines": 21164,
+      "bytes": 814077
+    },
+    ".rs": {
+      "tokens": 110893,
+      "files": 13,
+      "lines": 11998,
+      "nonblank_lines": 10855,
+      "bytes": 454619
+    },
+    "(no extension)": {
+      "tokens": 82776,
+      "files": 103,
+      "lines": 7247,
+      "nonblank_lines": 6213,
+      "bytes": 268374
+    },
+    ".snap": {
+      "tokens": 68876,
+      "files": 21,
+      "lines": 10421,
+      "nonblank_lines": 10309,
+      "bytes": 272555
+    },
+    ".ts": {
+      "tokens": 47981,
+      "files": 19,
+      "lines": 4190,
+      "nonblank_lines": 3408,
+      "bytes": 220072
+    },
+    ".pem": {
+      "tokens": 36842,
+      "files": 25,
+      "lines": 869,
+      "nonblank_lines": 867,
+      "bytes": 57493
+    },
+    ".sh": {
+      "tokens": 29330,
+      "files": 33,
+      "lines": 3117,
+      "nonblank_lines": 2786,
+      "bytes": 106618
+    },
+    ".tf": {
+      "tokens": 25313,
+      "files": 41,
+      "lines": 3548,
+      "nonblank_lines": 3108,
+      "bytes": 98417
+    },
+    ".bats": {
+      "tokens": 22590,
+      "files": 24,
+      "lines": 1951,
+      "nonblank_lines": 1674,
+      "bytes": 74915
+    },
+    ".lock": {
+      "tokens": 17607,
+      "files": 2,
+      "lines": 1825,
+      "nonblank_lines": 1631,
+      "bytes": 46004
+    },
+    ".mod": {
+      "tokens": 10896,
+      "files": 7,
+      "lines": 594,
+      "nonblank_lines": 568,
+      "bytes": 28264
+    },
+    ".c": {
+      "tokens": 9600,
+      "files": 8,
+      "lines": 1219,
+      "nonblank_lines": 985,
+      "bytes": 34187
+    },
+    ".m": {
+      "tokens": 6919,
+      "files": 7,
+      "lines": 865,
+      "nonblank_lines": 751,
+      "bytes": 27387
+    },
+    ".ps1": {
+      "tokens": 5000,
+      "files": 5,
+      "lines": 531,
+      "nonblank_lines": 459,
+      "bytes": 18489
+    },
+    ".pub": {
+      "tokens": 4912,
+      "files": 8,
+      "lines": 8,
+      "nonblank_lines": 8,
+      "bytes": 7274
+    },
+    ".golden": {
+      "tokens": 4011,
+      "files": 13,
+      "lines": 187,
+      "nonblank_lines": 169,
+      "bytes": 9409
+    },
+    ".toml": {
+      "tokens": 3779,
+      "files": 13,
+      "lines": 323,
+      "nonblank_lines": 275,
+      "bytes": 13846
+    },
+    ".service": {
+      "tokens": 3130,
+      "files": 29,
+      "lines": 433,
+      "nonblank_lines": 380,
+      "bytes": 10896
+    },
+    ".defs": {
+      "tokens": 2779,
+      "files": 1,
+      "lines": 341,
+      "nonblank_lines": 304,
+      "bytes": 10533
+    },
+    ".asc": {
+      "tokens": 2185,
+      "files": 1,
+      "lines": 52,
+      "nonblank_lines": 51,
+      "bytes": 3096
+    },
+    ".csr": {
+      "tokens": 1869,
+      "files": 5,
+      "lines": 51,
+      "nonblank_lines": 51,
+      "bytes": 2971
+    },
+    ".conf": {
+      "tokens": 1805,
+      "files": 4,
+      "lines": 232,
+      "nonblank_lines": 198,
+      "bytes": 6602
+    },
+    ".html": {
+      "tokens": 1793,
+      "files": 2,
+      "lines": 236,
+      "nonblank_lines": 219,
+      "bytes": 7463
+    },
+    ".plist": {
+      "tokens": 1297,
+      "files": 3,
+      "lines": 136,
+      "nonblank_lines": 136,
+      "bytes": 3799
+    },
+    ".io": {
+      "tokens": 1170,
+      "files": 1,
+      "lines": 27,
+      "nonblank_lines": 27,
+      "bytes": 1675
+    },
+    ".cnf": {
+      "tokens": 1115,
+      "files": 2,
+      "lines": 160,
+      "nonblank_lines": 138,
+      "bytes": 4135
+    },
+    ".py": {
+      "tokens": 1011,
+      "files": 2,
+      "lines": 160,
+      "nonblank_lines": 127,
+      "bytes": 4586
+    },
+    ".tpl": {
+      "tokens": 888,
+      "files": 7,
+      "lines": 96,
+      "nonblank_lines": 96,
+      "bytes": 3209
+    },
+    ".mk": {
+      "tokens": 778,
+      "files": 2,
+      "lines": 56,
+      "nonblank_lines": 50,
+      "bytes": 2785
+    },
+    ".tmpl": {
+      "tokens": 744,
+      "files": 1,
+      "lines": 58,
+      "nonblank_lines": 50,
+      "bytes": 2460
+    },
+    ".bash": {
+      "tokens": 475,
+      "files": 3,
+      "lines": 41,
+      "nonblank_lines": 36,
+      "bytes": 1675
+    },
+    ".txt": {
+      "tokens": 455,
+      "files": 3,
+      "lines": 35,
+      "nonblank_lines": 28,
+      "bytes": 2111
+    },
+    ".pc": {
+      "tokens": 426,
+      "files": 4,
+      "lines": 48,
+      "nonblank_lines": 44,
+      "bytes": 1328
+    },
+    ".entitlements": {
+      "tokens": 333,
+      "files": 2,
+      "lines": 30,
+      "nonblank_lines": 28,
+      "bytes": 972
+    },
+    ".etcd": {
+      "tokens": 202,
+      "files": 1,
+      "lines": 20,
+      "nonblank_lines": 15,
+      "bytes": 664
+    },
+    ".cfg": {
+      "tokens": 191,
+      "files": 3,
+      "lines": 21,
+      "nonblank_lines": 18,
+      "bytes": 645
+    },
+    ".timer": {
+      "tokens": 171,
+      "files": 4,
+      "lines": 32,
+      "nonblank_lines": 28,
+      "bytes": 671
+    },
+    ".cmake": {
+      "tokens": 109,
+      "files": 1,
+      "lines": 4,
+      "nonblank_lines": 4,
+      "bytes": 345
+    },
+    ".alias": {
+      "tokens": 65,
+      "files": 2,
+      "lines": 7,
+      "nonblank_lines": 4,
+      "bytes": 215
+    },
+    ".socket": {
+      "tokens": 52,
+      "files": 1,
+      "lines": 12,
+      "nonblank_lines": 10,
+      "bytes": 197
+    },
+    ".file": {
+      "tokens": 19,
+      "files": 1,
+      "lines": 2,
+      "nonblank_lines": 2,
+      "bytes": 68
+    },
+    ".gen": {
+      "tokens": 18,
+      "files": 1,
+      "lines": 2,
+      "nonblank_lines": 2,
+      "bytes": 35
+    },
+    ".j2": {
+      "tokens": 14,
+      "files": 1,
+      "lines": 2,
+      "nonblank_lines": 2,
+      "bytes": 68
+    },
+    ".influxdb": {
+      "tokens": 11,
+      "files": 1,
+      "lines": 1,
+      "nonblank_lines": 1,
+      "bytes": 26
+    }
+  },
+  "top_files": [
+    {
+      "path": "lib/srv/desktop/tdp/testdata/png_frames.json",
+      "tokens": 1072516,
+      "chars": 2146752
+    },
+    {
+      "path": "bpf/vmlinux.h",
+      "tokens": 743535,
+      "chars": 2502470
+    },
+    {
+      "path": "api/types/types.pb.go",
+      "tokens": 693913,
+      "chars": 2042951
+    },
+    {
+      "path": "api/client/proto/authservice.pb.go",
+      "tokens": 534353,
+      "chars": 1713780
+    },
+    {
+      "path": "api/types/events/events.pb.go",
+      "tokens": 520398,
+      "chars": 1577714
+    },
+    {
+      "path": ".drone.yml",
+      "tokens": 235248,
+      "chars": 779744
+    },
+    {
+      "path": "go.sum",
+      "tokens": 100519,
+      "chars": 181311
+    },
+    {
+      "path": "lib/teleterm/api/protogen/js/v1/service_pb.js",
+      "tokens": 87595,
+      "chars": 368929
+    },
+    {
+      "path": "lib/teleterm/api/protogen/golang/v1/service.pb.go",
+      "tokens": 85030,
+      "chars": 189514
+    },
+    {
+      "path": "lib/web/apiserver_test.go",
+      "tokens": 61816,
+      "chars": 232624
+    },
+    {
+      "path": "integration/integration_test.go",
+      "tokens": 55919,
+      "chars": 215512
+    },
+    {
+      "path": "lib/services/role_test.go",
+      "tokens": 53702,
+      "chars": 186935
+    },
+    {
+      "path": "api/proto/teleport/legacy/types/types.proto",
+      "tokens": 51456,
+      "chars": 191900
+    },
+    {
+      "path": "lib/auth/auth_with_roles.go",
+      "tokens": 50674,
+      "chars": 208204
+    },
+    {
+      "path": "api/types/webauthn/webauthn.pb.go",
+      "tokens": 45404,
+      "chars": 138868
+    },
+    {
+      "path": "lib/service/service.go",
+      "tokens": 44011,
+      "chars": 178228
+    },
+    {
+      "path": "operator/crdgen/testdata/protofiles/types.proto",
+      "tokens": 43995,
+      "chars": 165224
+    },
+    {
+      "path": "CHANGELOG.md",
+      "tokens": 40493,
+      "chars": 163452
+    },
+    {
+      "path": "api/proto/teleport/legacy/types/events/events.proto",
+      "tokens": 40208,
+      "chars": 142964
+    },
+    {
+      "path": "lib/auth/auth.go",
+      "tokens": 39137,
+      "chars": 153947
+    },
+    {
+      "path": "lib/srv/desktop/rdp/rdpclient/src/rdpdr.rs",
+      "tokens": 38967,
+      "chars": 172950
+    },
+    {
+      "path": "api/gen/proto/go/teleport/devicetrust/v1/devicetrust_service.pb.go",
+      "tokens": 38200,
+      "chars": 88168
+    },
+    {
+      "path": ".cloudbuild/scripts/go.sum",
+      "tokens": 38134,
+      "chars": 68214
+    },
+    {
+      "path": "lib/auth/grpcserver.go",
+      "tokens": 37829,
+      "chars": 144751
+    },
+    {
+      "path": "tool/tsh/tsh.go",
+      "tokens": 37641,
+      "chars": 147849
+    },
+    {
+      "path": "lib/client/api.go",
+      "tokens": 35351,
+      "chars": 137902
+    },
+    {
+      "path": "lib/auth/init_test.go",
+      "tokens": 34794,
+      "chars": 68835
+    },
+    {
+      "path": "lib/auth/auth_with_roles_test.go",
+      "tokens": 32452,
+      "chars": 122679
+    },
+    {
+      "path": "lib/web/apiserver.go",
+      "tokens": 31044,
+      "chars": 123425
+    },
+    {
+      "path": "tool/tsh/tsh_test.go",
+      "tokens": 29517,
+      "chars": 104067
+    },
+    {
+      "path": "api/proto/teleport/legacy/client/proto/authservice.proto",
+      "tokens": 29326,
+      "chars": 123362
+    },
+    {
+      "path": "api/go.sum",
+      "tokens": 29187,
+      "chars": 52211
+    },
+    {
+      "path": "lib/srv/desktop/rdp/rdpclient/src/rdpdr/scard.rs",
+      "tokens": 28348,
+      "chars": 99401
+    },
+    {
+      "path": "lib/prehog/gen/prehog/v1alpha/teleport.pb.go",
+      "tokens": 28133,
+      "chars": 62780
+    },
+    {
+      "path": "lib/auth/tls_test.go",
+      "tokens": 27525,
+      "chars": 105490
+    },
+    {
+      "path": "lib/config/configuration_test.go",
+      "tokens": 27018,
+      "chars": 92270
+    },
+    {
+      "path": "api/client/client.go",
+      "tokens": 26644,
+      "chars": 106045
+    },
+    {
+      "path": "docs/pages/reference/cli.mdx",
+      "tokens": 26119,
+      "chars": 107248
+    },
+    {
+      "path": "api/gen/proto/go/usageevents/v1/usageevents.pb.go",
+      "tokens": 25649,
+      "chars": 77780
+    },
+    {
+      "path": "lib/auth/grpcserver_test.go",
+      "tokens": 24873,
+      "chars": 91703
+    },
+    {
+      "path": "lib/services/role.go",
+      "tokens": 24130,
+      "chars": 95594
+    },
+    {
+      "path": "lib/prehog/gen-js/prehog/v1alpha/teleport_pb.js",
+      "tokens": 23640,
+      "chars": 98282
+    },
+    {
+      "path": "lib/auth/auth_test.go",
+      "tokens": 23562,
+      "chars": 87386
+    },
+    {
+      "path": "lib/auth/aws_certs.go",
+      "tokens": 22576,
+      "chars": 33836
+    },
+    {
+      "path": "assets/backport/go.sum",
+      "tokens": 22310,
+      "chars": 39842
+    },
+    {
+      "path": "lib/srv/db/access_test.go",
+      "tokens": 22030,
+      "chars": 82496
+    },
+    {
+      "path": "lib/cache/cache_test.go",
+      "tokens": 21019,
+      "chars": 81651
+    },
+    {
+      "path": "lib/auth/webauthncli/fido2_test.go",
+      "tokens": 20429,
+      "chars": 70253
+    },
+    {
+      "path": "lib/srv/regular/sshserver_test.go",
+      "tokens": 20406,
+      "chars": 76942
+    },
+    {
+      "path": ".github/ISSUE_TEMPLATE/testplan.md",
+      "tokens": 19952,
+      "chars": 81172
+    }
+  ]
+}

