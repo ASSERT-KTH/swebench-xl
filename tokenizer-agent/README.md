@@ -21,6 +21,7 @@ instance, and on average?"
 | `file_type_breakdown.py` | Groups a job's per-instance `by_extension` counts into file-type categories (source code, other code, docs, config/build, localization, data/fixtures, ...) per instance, per repo and per benchmark. Output lives in `results/file_types/`. |
 | `file_type_report.py` | Writes the file-type report ([`results/file_types/README.md`](results/file_types/README.md)) and CSVs from those JSONs. |
 | `jobs/` | The raw Harbor job output behind every number in `results/` — see [Raw run data](#raw-run-data). |
+| `tracked_files/` | Recounts the per-file runs over the files git tracks at each task's base commit, dropping build output and generated files that exist only in the container. See [`tracked_files/README.md`](tracked_files/README.md). |
 | `plot_token_size_boxplot.py` | Reads every `results/*.json` and prints a copy-paste-ready pgfplots figure: one horizontal boxplot (min/25th/median/75th/max) per benchmark, benchmarks on the y-axis, token count on a log-scale x-axis. |
 | `tokenizer copy.py` | The original standalone tokenization script this agent's algorithm is ported from. Kept as-is for reference; not used by Harbor. |
 
